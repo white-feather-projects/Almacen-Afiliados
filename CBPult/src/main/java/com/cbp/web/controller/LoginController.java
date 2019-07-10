@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cbp.web.util.Util;
+
 
 @Controller
-public class LoginController {
+public class LoginController{
 	
 	//private final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -621,4 +623,16 @@ public class LoginController {
 		
 	
 	//-////////////// Configuración Almacen ///////////////
+		
+		
+		//////////////////////////////////////////////////
+		////////Vielma///////////////////////////////////
+		
+		@RequestMapping(value = "/newClientTdc", method = RequestMethod.GET)
+		public String newClientTdc(Model model) {
+			model.addAttribute("name", name);
+			model.addAttribute("link", link);
+			
+		return "templates.gestion_cliente/client";
+		}
 }
