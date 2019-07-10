@@ -2,15 +2,15 @@
 
 window.addEventListener('load', function(){
 	
-	var primer_nombre = document.querySelector("#primer_nombre");
-	var segundo_nombre = document.querySelector("#segundo_nombre");
-	var primer_apellido = document.querySelector("#primer_apellido");
-	var segundo_apellido = document.querySelector("#segundo_apellido");
-	var tipo_identificacion = document.querySelector("#tipo_identificacion");
-	var identificacion = document.querySelector("#identificacion");
-	var telefono_local = document.querySelector("#telefono_local");
-	var telefono_celular = document.querySelector("#telefono_celular");
-	var correo = document.querySelector("#correo");
+	var primer_nombre = document.querySelector("#primer_nombre_tab4");
+	var segundo_nombre = document.querySelector("#segundo_nombre_tab4");
+	var primer_apellido = document.querySelector("#primer_apellido_tab4");
+	var segundo_apellido = document.querySelector("#segundo_apellido_tab4");
+	var tipo_identificacion = document.querySelector("#tipo_identificacion_tab4");
+	var identificacion = document.querySelector("#identificacion_tab4");
+	var telefono_local = document.querySelector("#telefono_local_tab4");
+	var telefono_celular = document.querySelector("#telefono_celular_tab4");
+	var correo = document.querySelector("#correo_tab4");
 	
 	/////////////////////////////////////////////////////////////////////////
 	

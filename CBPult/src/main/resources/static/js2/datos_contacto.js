@@ -2,14 +2,14 @@
 
 window.addEventListener('load', function(){
 	
-	var cargo = document.querySelector("#cargo");
-	var primer_nombre = document.querySelector("#primer_nombre");
-	var segundo_nombre = document.querySelector("#segundo_nombre");
-	var primer_apellido = document.querySelector("#primer_apellido");
-	var segundo_apellido = document.querySelector("#segundo_apellido");
-	var tipo_identificacion = document.querySelector("#tipo_identificacion");
-	var identificacion = document.querySelector("#identificacion");
-	var telefono = document.querySelector("#telefono");
+	var cargo = document.querySelector("#cargo_tab6");
+	var primer_nombre = document.querySelector("#primer_nombre_tab6");
+	var segundo_nombre = document.querySelector("#segundo_nombre_tab6");
+	var primer_apellido = document.querySelector("#primer_apellido_tab6");
+	var segundo_apellido = document.querySelector("#segundo_apellido_tab6");
+	var tipo_identificacion = document.querySelector("#tipo_identificacion_tab6");
+	var identificacion = document.querySelector("#identificacion_tab6");
+	var telefono = document.querySelector("#telefono_tab6");
 	
 	///////////////////////////////////////////////////////////////////////////
 	
