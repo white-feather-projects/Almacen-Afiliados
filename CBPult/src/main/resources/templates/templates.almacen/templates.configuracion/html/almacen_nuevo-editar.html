@@ -27,16 +27,10 @@
         <script th:src="@{/js2/bandeja_ventas.js}"></script>       
         <script th:src="@{/js-almacen/almacen_nuevo-editar.js}"></script>
         
-        <style>
-    		.botonera .btn{
-    			width: 300px;
-    			font-size: 25px;
-    			
-    		}
-    		
-    		.botonera2 .btn{
-    			margin-left: 30px;
-    			float: right;
+        <link rel="stylesheet" type="text/css" th:href="@{/css-almacen-movimiento/cards.css}">
+        <style type="text/css">
+    		.card-block{
+    			border: 2px solid #01a9ac;
     		}
     	</style>
     </head>
@@ -193,7 +187,14 @@
 					                                                            	<td>Centro, Bogotá</td>
 					                                                            	<td>Almacén</td>
 					                                                            	<td>Elon Musk</td>
-					                                                            	<td><button class="editar-relacion">Editar Relación</button></td>
+					                                                            	<td>
+					                                                            		<a class="editar-relacion">
+					                                                            			<img class="btnaccion" alt="Editar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
+					                                                            		</a>
+					                                                            		<a onclick="alert('Relación Eliminada')">
+					                                                            			<img class="btnaccion" alt="Eliminar" th:src="@{/img2/bin_delete_file_garbage_recycle_remove_trash_icon_123192.ico}" width="30px">
+					                                                            		</a>				                                                            		
+					                                                            	</td>
 					                                                            </tr>
 					                                                            <tr>
 					                                                            	<td>3</td>
@@ -201,7 +202,14 @@
 					                                                            	<td>Centro, Bogotá</td>
 					                                                            	<td>Almacén</td>
 					                                                            	<td>Elon Musk</td>
-					                                                            	<td><button class="editar-relacion">Editar Relación</button></td>
+					                                                            	<td>
+					                                                            		<a class="editar-relacion">
+					                                                            			<img class="btnaccion" alt="Editar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
+					                                                            		</a>
+					                                                            		<a onclick="alert('Relación Eliminada')">
+					                                                            			<img class="btnaccion" alt="Eliminar" th:src="@{/img2/bin_delete_file_garbage_recycle_remove_trash_icon_123192.ico}" width="30px">
+					                                                            		</a>					                                                            		
+					                                                            	</td>
 					                                                            </tr>
 					                                                            <tr>
 					                                                            	<td>4</td>
@@ -209,7 +217,14 @@
 					                                                            	<td>Centro, Bogotá</td>
 					                                                            	<td>Almacén</td>
 					                                                            	<td>Elon Musk</td>
-					                                                            	<td><button class="editar-relacion">Editar Relación</button></td>
+					                                                            	<td>
+					                                                            		<a class="editar-relacion">
+					                                                            			<img class="btnaccion" alt="Editar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
+					                                                            		</a>
+					                                                            		<a onclick="alert('Relación Eliminada')">
+					                                                            			<img class="btnaccion" alt="Eliminar" th:src="@{/img2/bin_delete_file_garbage_recycle_remove_trash_icon_123192.ico}" width="30px">
+					                                                            		</a>					                                                            		
+					                                                            	</td>
 					                                                            </tr>
 					                                                        </tbody>
 					                                                    </table>
@@ -285,35 +300,55 @@
 					                                                            	<td>Recibo</td>
 					                                                            	<td>Recibo de Nueva Mercancia</td>
 					                                                            	<td>Alfred Newman</td>
-					                                                            	<td><button class="editar-relacion" onclick="location.href='/zona_nuevo-editar'">Editar Zona</button></td>
+					                                                            	<td>
+					                                                            		<a onclick="location.href='/zona_nuevo-editar'">
+					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
+					                                                            		</a>					                                                            		
+					                                                            	</td>					                                                            	
 					                                                            </tr>
 					                                                            <tr>
 					                                                            	<td>R2</td>
 					                                                            	<td>Recibo</td>
 					                                                            	<td>Recibo de Mercancia en Reparaciones</td>
 					                                                            	<td>Carlos Rater</td>
-					                                                            	<td><button class="editar-relacion" onclick="location.href='/zona_nuevo-editar'">Editar Zona</button></td>
+					                                                            	<td>
+					                                                            		<a onclick="location.href='/zona_nuevo-editar'">
+					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
+					                                                            		</a>					                                                            		
+					                                                            	</td>
 					                                                            </tr>
 					                                                            <tr>
 					                                                            	<td>A1</td>
 					                                                            	<td>Alcenaje</td>
 					                                                            	<td>Almacenaje General</td>
 					                                                            	<td>Carlos Rater</td>
-					                                                            	<td><button class="editar-relacion" onclick="location.href='/zona_nuevo-editar'">Editar Zona</button></td>
+					                                                            	<td>
+					                                                            		<a onclick="location.href='/zona_nuevo-editar'">
+					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
+					                                                            		</a>					                                                            		
+					                                                            	</td>
 					                                                            </tr>
 					                                                            <tr>
 					                                                            	<td>X1</td>
 					                                                            	<td>Alcenaje Restringido</td>
 					                                                            	<td>Almacenaje de Mercancia de alto valor</td>
 					                                                            	<td>Empleado X</td>
-					                                                            	<td><button class="editar-relacion"onclick="location.href='/zona_nuevo-editar'">Editar Zona</button></td>
+					                                                            	<td>
+					                                                            		<a onclick="location.href='/zona_nuevo-editar'">
+					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
+					                                                            		</a>					                                                            		
+					                                                            	</td>
 					                                                            </tr>
 					                                                            <tr>
 					                                                            	<td>D1 ( OBLIGATORIO )</td>
 					                                                            	<td>Despacho</td>
 					                                                            	<td>Despacho de Mercancias</td>
 					                                                            	<td>Stiven Rutherford</td>
-					                                                            	<td><button class="editar-relacion" onclick="location.href='/zona_nuevo-editar'">Editar Zona</button></td>
+					                                                            	<td>
+					                                                            		<a onclick="location.href='/zona_nuevo-editar'">
+					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
+					                                                            		</a>					                                                            		
+					                                                            	</td>
 					                                                            </tr>
 					                                                            
 					                                                        </tbody>
