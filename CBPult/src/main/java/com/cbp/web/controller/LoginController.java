@@ -529,9 +529,14 @@ public class LoginController{
 		return "templates.afiliacion/pre_carga_operador";
 	}
 	
+	
+	
+	
 	/**
 	 * Url Gestion de configuracion
 	 */
+	
+	
 	
 	//////////////// Configuración Afiliados ///////////////
 	@RequestMapping(value = "/configuration_afiliados", method = RequestMethod.GET)
@@ -625,14 +630,81 @@ public class LoginController{
 	//-////////////// Configuración Almacen ///////////////
 		
 		
-		//////////////////////////////////////////////////
-		////////Vielma///////////////////////////////////
 		
-		@RequestMapping(value = "/newClientTdc", method = RequestMethod.GET)
-		public String newClientTdc(Model model) {
+		
+	//+////////////// Movimiento de Mercancia ///////////////
+	
+	//+////////////// Menu Movimiento de Mercancia ///////////////
+	@RequestMapping(value = "/menu_movimiento-mercancia", method = RequestMethod.GET)
+	public String menu_movimiento_mercancia(Model model) {
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		
+	return "templates.almacen/templates.movimiento-mercancia/menu_movimiento-mercancia";
+	}
+	//-////////////// Menu Movimiento de Mercancia ///////////////
+		
+		//+////////////// Inventario Almacen ///////////////
+		@RequestMapping(value = "/inventario_almacen", method = RequestMethod.GET)
+		public String inventario_almacen(Model model) {
 			model.addAttribute("name", name);
 			model.addAttribute("link", link);
 			
-		return "templates.gestion_cliente/client";
+		return "templates.almacen/templates.movimiento-mercancia/inventario-almacen_movimiento-mercancia";
 		}
+		//-////////////// Inventario Almacen ///////////////
+		
+		//+////////////// Inventario General ///////////////
+		@RequestMapping(value = "/inventario_general", method = RequestMethod.GET)
+		public String inventario_general(Model model) {
+			model.addAttribute("name", name);
+			model.addAttribute("link", link);
+			
+		return "templates.almacen/templates.movimiento-mercancia/inventario-general_movimiento-mercancia";
+		}
+		//-////////////// Inventario General ///////////////
+		
+		//+////////////// Inventario Zona ///////////////
+		@RequestMapping(value = "/inventario_zona", method = RequestMethod.GET)
+		public String inventario_zona(Model model) {
+			model.addAttribute("name", name);
+			model.addAttribute("link", link);
+			
+		return "templates.almacen/templates.movimiento-mercancia/inventario-zona_movimiento-mercancia";
+		}
+		//-////////////// Inventario Zona ///////////////
+		
+		//+////////////// Inventario Movimiento ///////////////
+		@RequestMapping(value = "/inventario_movimiento", method = RequestMethod.GET)
+		public String inventario_movimiento(Model model) {
+			model.addAttribute("name", name);
+			model.addAttribute("link", link);
+			
+		return "templates.almacen/templates.movimiento-mercancia/movimiento-nuevo_movimiento-mercancia";
+		}
+		//-////////////// Inventario Movimiento ///////////////
+	
+	//+////////////// Movimiento de Mercancia ///////////////
+		
+		
+	
+		
+		
+	
+		
+		
+		
+		
+		
+		
+	//////////////////////////////////////////////////
+	////////Vielma///////////////////////////////////
+	
+	@RequestMapping(value = "/newClientTdc", method = RequestMethod.GET)
+	public String newClientTdc(Model model) {
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		
+	return "templates.gestion_cliente/client";
+	}
 }

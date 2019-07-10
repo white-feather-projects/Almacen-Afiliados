@@ -27,6 +27,12 @@
         <script th:src="@{/js2/bandeja_ventas.js}"></script>
         
         <script th:src="@{/js/configuration_almacen.js}"></script>
+        <link rel="stylesheet" type="text/css" th:href="@{/css-almacen-movimiento/cards.css}">
+        <style type="text/css">
+    		.card-block{
+    			border: 2px solid #01a9ac;
+    		}
+    	</style>
     </head>
     <body themebg-pattern="pattern4">
     		<!--/////////////////////////////////////////////////-->
@@ -108,7 +114,11 @@
 					                                                            	<td>Centro, Bogotá</td>
 					                                                            	<td>Almacén</td>
 					                                                            	<td>Elon Musk</td>
-					                                                            	<td><button class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">Editar Almacén</button></td>
+					                                                            	<td>
+					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
+					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
+					                                                            		</a>					                                                            		
+					                                                            	</td>
 					                                                            </tr>
 					                                                            <tr>
 					                                                            	<td>2</td>
@@ -116,7 +126,11 @@
 					                                                            	<td>Caracas, Venezuela</td>
 					                                                            	<td>Laboratorio</td>
 					                                                            	<td>Javier Murillo</td>
-					                                                            	<td><button class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">Editar Almacén</button></td>
+					                                                            	<td>
+					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
+					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
+					                                                            		</a>					                                                            		
+					                                                            	</td>					                                                           
 					                                                            </tr>
 					                                                            <tr>
 					                                                            	<td>3</td>
@@ -124,7 +138,11 @@
 					                                                            	<td>Maracaibo, Venezuela</td>
 					                                                            	<td>Almacén / Técnico</td>
 					                                                            	<td>Carlos Posada</td>
-					                                                            	<td><button class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">Editar Almacén</button></td>
+					                                                            	<td>
+					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
+					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
+					                                                            		</a>					                                                            		
+					                                                            	</td>
 					                                                            </tr>
 					                                                            <tr>
 					                                                            	<td>4</td>
@@ -132,7 +150,11 @@
 					                                                            	<td>San José, Costa Rica</td>
 					                                                            	<td>Almacén / Técnico</td>
 					                                                            	<td>Jhon Ladurne</td>
-					                                                            	<td><button class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">Editar Almacén</button></td>
+					                                                            	<td>
+					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
+					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
+					                                                            		</a>					                                                            		
+					                                                            	</td>
 					                                                            </tr>
 					                                                        </tbody>
 					                                                    </table>

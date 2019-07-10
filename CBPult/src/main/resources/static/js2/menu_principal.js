@@ -34,11 +34,7 @@
         })
     
         $('#gestion_configuracion').on('click', function(){
-    //        location.href = "../";
-        	/*
-            if (!window.__cfRLUnblockHandlers) return false; 
-            _gaq.push(['_trackEvent', 'example', 'try', 'sweet-6']);
-            */
+        	location.href="/configuration"
         })
     
         $('#gestion_reportes').on('click', function(){
@@ -48,11 +44,7 @@
         })
     
         $('#gestion_inventario').on('click', function(){
-    //        location.href = "../";
-        	/*
-            if (!window.__cfRLUnblockHandlers) return false; 
-            _gaq.push(['_trackEvent', 'example', 'try', 'sweet-8']);
-            */
+            location.href = "/menu_movimiento-mercancia";        	
         })
     
     })
