@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	xmlns:security="http://www.springframework.org/security/tags" lang="es"
+	class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"
+	>
+    <head>
+		<th:block th:replace="fragments/header :: headlayout"></th:block>
+  <script text="text/javascript" th:src="@{/js2/menu_principal.js}"></script>
+  <style>
+  	.card-block{
+  		height: 197px;
+  	}
+  	
+ .social-icon{
+  	font-size:50px !important;
+  	}
+  /*	
+  	.bg-simple-c-blue{
+  	background:#6c16b4 !important;
+  	}
+  	
+  	.text-c-blue{
+  	color:#6c16b4 !important;
+  	
+  	}
+  	
+  	.bg-simple-c-yellow{
+  	  	background:#28035a !important;
+  	
+  	}
+  	
+  	.text-c-yellow{
+  	  	color:#28035a !important;
+  	}
+  	
+  	.bg-simple-c-pink{
+  		background:#f46465 !important;
+  	}
+  	
+  	.text-c-pink{
+  	
+  	color:#f46465 !important;
+  	}
+  	
+  	.bg-simple-c-green{
+  	background:#66cbd3 !important;
+  	}
+  	
+  	.text-c-green{
+  		color:#66cbd3 !important;
+  	}
+  	*/
+  </style>
+
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.7.0/css/all.css">
+  
+    </head>
+    <body themebg-pattern="pattern4">
+    		<!--/////////////////////////////////////////////////-->
+            <th:block th:replace="fragments/theme_loader :: theme_loader"></th:block>
+            <!--/////////////////////////////////////////////////-->
+        
+        <div id="pcoded" class="pcoded iscollapsed" nav-type="st6" theme-layout="vertical" vertical-placement="left" vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded" vertical-effect="shrink" vnavigation-view="view1" fream-type="theme1" sidebar-img="false" sidebar-img-type="img1" layout-type="light">
+            <div class="pcoded-overlay-box"></div>
+            <div class="pcoded-container navbar-wrapper">
+            <!--/////////////////////////////////////////////////-->
+            <th:block th:replace="fragments/nav :: nav_notification"></th:block>
+            <!--/////////////////////////////////////////////////-->
+             
+                <div id="sidebar" class="users p-chat-user showChat"></div>                                        
+                <div id="showChatContent" class="showChat_inner"></div>
+                <div class="pcoded-main-container" style="margin-top: 56px;">
+                    <div class="pcoded-wrapper">
+                        <nav class="pcoded-navbar" navbar-theme="theme1" active-item-theme="theme1" sub-item-theme="theme2" active-item-style="style0" pcoded-navbar-position="fixed">
+                            <div class="pcoded-inner-navbar main-menu mCustomScrollbar _mCS_1" style="height: calc(100% - 80px);">
+                                <div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical_horizontal mCSB_inside" tabindex="0">
+                                    
+                                </div>
+                            </div>
+                        </nav>
+                        <div class="pcoded-content">
+                            <div class="pcoded-inner-content">
+                                <div class="main-body">
+                                    <div class="page-wrapper">
+                                        <div class="page-body">
+                                            <div class="row">
+
+                                                <!--/////////////////////////////////////////////////-->
+                                               <div class="col-xl-4 col-md-6">
+                                                    <div class="card social-card bg-simple-c-blue">
+                                                        <div class="card-block">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-auto">
+                                                                    <i class="fas fa-archive text-c-blue social-icon"></i>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <h6 class="m-b-0">INVENTARIO</h6>
+                                                                    <p></p>
+                                                                    <p class="m-b-0">Movimiento y estatus de tarjetas entre oficinas y almacenes.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <span class="download-icon sweet-8" id="gestion_inventario"><i class="feather icon-arrow-down"></i></span>
+                                                    </div>
+                                                </div>
+                                               <div class="col-xl-4 col-md-6">
+                                                    <div class="card social-card bg-simple-c-blue">
+                                                        <div class="card-block">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-auto">
+                                                                    <i class="fas fa-user-headset text-c-blue social-icon"></i>
+                                                            
+                                                                    
+                                                                </div>
+                                                                <div class="col">
+                                                                    <h6 class="m-b-0">REQUERIMIENTOS</h6>
+                                                                    <p></p>
+                                                                    <p class="m-b-0">Atención al cliente. aumento de límite. no se reconocen transacciones.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <span class="download-icon sweet-5" id="gestion_requerimientos"><i class="feather icon-arrow-down"></i></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-4 col-md-6">
+                                                    <div class="card social-card bg-simple-c-green">
+                                                        <div class="card-block">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-auto">
+                                                                    <i class="fas fa-tasks text-c-green social-icon"></i>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <h6 class="m-b-0">SOLICITUDES</h6>
+                                                                    <p></p>
+                                                                    <p class="m-b-0">Gestiona todo lo que es los requerimientos.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <span class="download-icon sweet-2" id="gestion_solicitudes"><i class="feather icon-arrow-down"></i></span>
+                                                    </div>
+                                                </div>
+                                                <!--///////////////////////////////////////////////////-->
+                                                <div class="col-xl-4 col-md-6">
+                                                    <div class="card social-card bg-simple-c-pink">
+                                                        <div class="card-block">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-auto">
+                                                                    <i class="fas fa-align-justify text-c-pink social-icon"></i>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <h6 class="m-b-0">REPORTES Y CONSULTAS</h6>
+                                                                    <p></p>
+                                                                    <p class="m-b-0">Muestra los reportes y consultas de los distintos módulos.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <span class="download-icon sweet-7" id="gestion_reportes"><i class="feather icon-arrow-down"></i></span>
+                                                    </div>
+                                                </div>
+                                                 <div class="col-xl-4 col-md-6">
+                                                    <div class="card social-card bg-simple-c-pink">
+                                                        <div class="card-block">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-auto">
+                                                                    <i class="fas fa-times text-c-pink social-icon"></i>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <h6 class="m-b-0">CIERRES</h6>
+                                                                    <p></p>
+                                                                    <p class="m-b-0">Operaciones relacionadas a los procesos de cierre, generación de estados de cuenta, parte contable, tarjeta relacionado a la contabilidad y procesos batch.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <span class="download-icon sweet-4" id="gestion_cierres"><i class="feather icon-arrow-down"></i></span>
+                                                    </div>
+                                                </div>
+                                               <div class="col-xl-4 col-md-12">
+                                                    <div class="card social-card bg-simple-c-green">
+                                                        <div class="card-block">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-auto">
+                                                                
+                                                                    <i class="fas fa-credit-card text-c-green social-icon"></i>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <h6 class="m-b-0">GESTIÓN DE COMPRAS</h6>
+                                                                    <p></p>
+                                                                    <p class="m-b-0">Procesos que están relacionados a la compra de productos por volumen ante el proveedor.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <span class="download-icon sweet-1" id="gestion_plasticos"><i class="feather icon-arrow-down"></i></span>
+                                                    </div>
+                                                </div>
+                                                <!--///////////////////////////////////////////////////-->
+                                                   <div class="col-xl-4 col-md-6">
+                                                    <div class="card social-card bg-simple-c-yellow">
+                                                        <div class="card-block">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-auto">
+                                                                    <i class="fas fa-cog text-c-yellow social-icon"></i>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <h6 class="m-b-0">	CONFIGURACIÓN</h6>
+                                                                    <p></p>
+                                                                    <p class="m-b-0">Parametrización del sistema, mínimos máximos, limites, cantidades para todos los módulos.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <span class="download-icon sweet-6" id="gestion_configuracion"><i class="feather icon-arrow-down"></i></span>
+                                                    </div>
+                                                </div>
+                                                 <div class="col-xl-4 col-md-6">
+                                                    <div class="card social-card bg-simple-c-yellow">
+                                                        <div class="card-block">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-auto">
+                                                                    <i class="fas fa-user-alt text-c-yellow social-icon"></i>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <h6 class="m-b-0">CLIENTES</h6>
+                                                                    <p></p>
+                                                                    <p class="m-b-0">Modulo que se refiere a información del cliente, movimientos, estados de cuenta. enfocado.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <span class="download-icon sweet-3" id="gestion_clientes"><i class="feather icon-arrow-down"></i></span>
+                                                    </div>
+                                                </div>
+                                                <!--///////////////////////////////////////////////////-->
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="styleSelector"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	
+	<th:block th:replace="fragments/footer_js :: footer_js"></th:block>
+	
+    </body>
+</html>

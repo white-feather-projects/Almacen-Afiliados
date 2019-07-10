@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:security="http://www.springframework.org/security/tags" lang="es"
+	class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"
+	>
+    <head>
+		<th:block th:replace="fragments/header :: headlayout"></th:block>
+        <script type="text/javascript" src="../js2/datos_contacto.js"></script>
+     </head>
+    <body themebg-pattern="pattern4">
+         	<!--/////////////////////////////////////////////////-->
+            <th:block th:replace="fragments/theme_loader :: theme_loader"></th:block>
+            <!--/////////////////////////////////////////////////-->
+        <div id="pcoded" class="pcoded iscollapsed" nav-type="st6" theme-layout="vertical" vertical-placement="left" vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded" vertical-effect="shrink" vnavigation-view="view1" fream-type="theme1" sidebar-img="false" sidebar-img-type="img1" layout-type="light">
+            <div class="pcoded-overlay-box"></div>
+            <div class="pcoded-container navbar-wrapper">
+               <!--/////////////////////////////////////////////////-->
+            <th:block th:replace="fragments/nav :: nav_notification"></th:block>
+            <!--/////////////////////////////////////////////////-->
+                <div id="sidebar" class="users p-chat-user showChat"></div>                                        
+                <div id="showChatContent" class="showChat_inner"></div>
+                <div class="pcoded-main-container" style="margin-top: 56px;">
+                    <div class="pcoded-wrapper">
+                        <nav class="pcoded-navbar" navbar-theme="theme1" active-item-theme="theme1" sub-item-theme="theme2" active-item-style="style0" pcoded-navbar-position="fixed">
+                            <div class="pcoded-inner-navbar main-menu mCustomScrollbar _mCS_1" style="height: calc(100% - 80px);">
+                                <div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical_horizontal mCSB_inside" tabindex="0">
+                                    
+                                </div>
+                            </div>
+                        </nav>
+                        <div class="pcoded-content">
+                            <div class="pcoded-inner-content">                                
+                                <div class="main-body">
+                                    <div class="page-wrapper">
+                                        <div class="page-body">
+                                            <div class="row">
+
+                                                <!--/////////////////////////////////////////////////-->
+                                                <div class="col-sm-12">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <div class="card-header-rigth">
+                                                                <i class="icofont icofont-spinner-alt-4"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-block">
+                                                            <h4 class="sub-title">Datos de Persona Contacto</h4>
+                                                            <div class="row col-sm-12">
+	                                                            <div class="col-sm-6">
+	                                                            	<form id="miform">
+		                                                                <div class="form-group row">
+		                                                                    <div class="col-sm-12">
+		                                                                    	<div class="col-sm-12">
+		                                                                    		<label>Cargo: </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="cargo"/>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+		                                                                    		<label>Segundo Nombre: </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="segundo_nombre"/>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+		                                                                    		<label>Segundo Apellido: </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="segundo_apellido"/>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+		                                                                    		<label>Identificación: </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="identificacion"/>
+																				</div>
+																				
+		                                                                    </div>
+		                                                                </div>
+		                                                            </form>
+	                                                            </div>
+	                                                            <div class="col-sm-6">
+	                                                            	<form id="miform">
+		                                                                <div class="form-group row">
+		                                                                    <div class="col-sm-12">
+																				<div class="col-sm-12">
+		                                                                    		<label>Primer Nombre: </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="primer_nombre"/>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+		                                                                    		<label>Primer Apellido: </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="primer_apellido"/>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+		                                                                    		<label>Tipo Identificación: </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<select name="select" id="tipo_identificacion" class="form-control">
+																						<option value="RIF">RIF</option>
+		                                                                                <option value="C.I.">C.I.</option>
+		                                                                                <option value="Pasaporte">Pasaporte</option>
+                                                                        			</select>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+		                                                                    		<label>Teléfono: </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="telefono"/>
+																				</div>
+																				
+		                                                                    </div>
+		                                                                </div>
+		                                                            </form>
+	                                                            </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+																				<div class="col-sm-12 text-center">
+																					<button type="button" id="atras" class="btn btn-primary btn-md waves-effect text-center mb-20">
+		                                                                            	Atras
+		                                                                        	</button>
+		                                                                        	<button type="button" id="guardar" class="btn btn-primary btn-md waves-effect text-center mb-20">
+		                                                                            	Guardar
+		                                                                        	</button>
+		                                                                        	<button type="button" id="negada" class="btn btn-primary btn-md waves-effect text-center mb-20">
+		                                                                            	Negada
+		                                                                        	</button>
+		                                                                        	<button type="button" id="aceptar" class="btn btn-primary btn-md waves-effect text-center mb-20">
+		                                                                            	Aceptar
+		                                                                        	</button>
+																				</div>
+                                                </div>
+                                                <!--///////////////////////////////////////////////////-->
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div id="styleSelector"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+  
+      <th:block th:replace="fragments/footer_js :: footer_js"></th:block>
+    </body>
+</html>
