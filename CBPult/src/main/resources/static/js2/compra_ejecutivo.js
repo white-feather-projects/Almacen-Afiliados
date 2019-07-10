@@ -2,11 +2,11 @@
 
 window.addEventListener('load', function(){
 
-    var nombre_banco = document.querySelector("#nombre_banco");
-    var numero_afiliacion = document.querySelector("#numero_afiliacion");
-    var cantidad_terminales = document.querySelector("#cantidad_terminales");
-    var cantidad_movistar = document.querySelector("#cantidad_movistar");
-    var cantidad_digitel = document.querySelector("#cantidad_digitel");
+    var nombre_banco = document.querySelector("#nombre_banco_tab3");
+    var numero_afiliacion = document.querySelector("#numero_afiliacion_tab3");
+    var cantidad_terminales = document.querySelector("#cantidad_terminales_tab3");
+    var cantidad_movistar = document.querySelector("#cantidad_movistar_tab3");
+    var cantidad_digitel = document.querySelector("#cantidad_digitel_tab3");
     
     /////////////////////////////////////////////////////////////////////
     
