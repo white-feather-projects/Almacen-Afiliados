@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
 	xmlns:security="http://www.springframework.org/security/tags" lang="es"
 	class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"
 	>
     <head>
 		<th:block th:replace="fragments/header :: headlayout"></th:block>
-        <script text="text/javascript" th:src="@{/js2/configuration.js}"></script>
+  <script text="text/javascript" th:src="@{../js2/configuration.js}"></script>
+  <style>
+  	.card-block{
+  		height: 197px;
+  	}
+  </style>
     </head>
     <body themebg-pattern="pattern4">
-           	<!--/////////////////////////////////////////////////-->
+    		<!--/////////////////////////////////////////////////-->
             <th:block th:replace="fragments/theme_loader :: theme_loader"></th:block>
             <!--/////////////////////////////////////////////////-->
+        
         <div id="pcoded" class="pcoded iscollapsed" nav-type="st6" theme-layout="vertical" vertical-placement="left" vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded" vertical-effect="shrink" vnavigation-view="view1" fream-type="theme1" sidebar-img="false" sidebar-img-type="img1" layout-type="light">
             <div class="pcoded-overlay-box"></div>
             <div class="pcoded-container navbar-wrapper">
-                           <!--/////////////////////////////////////////////////-->
+            <!--/////////////////////////////////////////////////-->
             <th:block th:replace="fragments/nav :: nav_notification"></th:block>
             <!--/////////////////////////////////////////////////-->
+             
                 <div id="sidebar" class="users p-chat-user showChat"></div>                                        
                 <div id="showChatContent" class="showChat_inner"></div>
                 <div class="pcoded-main-container" style="margin-top: 56px;">
@@ -36,32 +43,42 @@
                                     <div class="page-wrapper">
                                         <div class="page-body">
                                             <div class="row">
-
                                                 <!--/////////////////////////////////////////////////-->
                                                 <div class="col-xl-4 col-md-6">
-                                                            <div class="card social-card bg-simple-c-blue">
+                                                    <div class="card social-card bg-simple-c-blue">
                                                         <div class="card-block">
                                                             <div class="row align-items-center">
                                                                 <div class="col-auto">
                                                                     <i class="feather icon-mail f-34 text-c-blue social-icon"></i>
                                                                 </div>
                                                                 <div class="col">
-                                                                    <h6 class="m-b-0">Configuracion Gestion compras</h6>
+                                                                    <h6 class="m-b-0">Configuración de Almacenes</h6>
                                                                     <p></p>
-                                                                    <p class="m-b-0">Lorem Ipsum is simply dummy text of the printing</p>
+                                                                    <p class="m-b-0">Configuración relacionada con el Diseño y Estructuración de Almacenes.</p>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <span class="download-icon sweet-2" id="generationPurchases"><i class="feather icon-arrow-down"></i></span>
+                                                        <span class="download-icon sweet-1" id="configuration_almacen"><i class="feather icon-arrow-down"></i></span>
                                                     </div>
                                                 </div>
-                                                <!--///////////////////////////////////////////////////-->
                                                 <div class="col-xl-4 col-md-6">
-                                                        
+                                                    <div class="card social-card bg-simple-c-green">
+                                                        <div class="card-block">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-auto">
+                                                                    <i class="feather icon-twitter f-34 text-c-green social-icon"></i>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <h6 class="m-b-0">Configuración Afiliados</h6>
+                                                                    <p></p>
+                                                                    <p class="m-b-0">Configuración del Proceso de Afiliación.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <span class="download-icon sweet-2" id="configuration_afiliados"><i class="feather icon-arrow-down"></i></span>
+                                                    </div>
                                                 </div>
-                                                <!--///////////////////////////////////////////////////-->
-                                                
-                                            </div>
+                                        	</div>
                                         </div>
                                     </div>
                                     <div id="styleSelector"></div>
@@ -72,6 +89,8 @@
                 </div>
             </div>
         </div>
-         <th:block th:replace="fragments/footer_js :: footer_js"></th:block>
+	
+	<th:block th:replace="fragments/footer_js :: footer_js"></th:block>
+	
     </body>
 </html>

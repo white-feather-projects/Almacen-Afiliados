@@ -8,8 +8,6 @@ window.addEventListener('load', function(){
 	
 	var tres = 0;
 	
-	$(".wrapper").hide();
-	
 	/////////////////////////////////////////////
 	
 	var url = window.location.pathname;
@@ -112,7 +110,45 @@ window.addEventListener('load', function(){
 	    */
 	    //console.log("uno: "+data_finantial.uno);
 	    //console.log("dos: "+data_finantial.dos);
-	    
+	
+		$.ajax({          
+	  	     
+			  type: "GET",
+			  dataType: "json",
+			  url: "/consultClient/"+id+"",
+			  success: function(data)
+		    {
+		     console.log(data);
+		     var uno = data.fileFinantial;
+		  	   
+		     console.log('boton1');
+		  	document.getElementById("verte2").src = '/viewPdf/'+uno+'';
+		                
+		    }
+		        
+		 }); 
+		    
+		$.ajax({          
+	  	     
+			  type: "GET",
+			  dataType: "json",
+			  url: "/consultClient/"+id+"",
+			  success: function(data)
+		    {
+		     console.log(data);
+		     var dos = data.filePersonal;
+		  	   
+		     console.log('boton2');
+		  	$(".wrapper").show();
+		  	document.getElementById("verte1").src = '/viewPdf/'+dos+'';
+		  	$("#close").on('click', function(){
+		  		$(".wrapper").hide();
+		  	})
+		                
+		    }
+		        
+		 });
+	/*
 	    $('#documento1_confirm').on('click', function(){
 	    	
 		    	$.ajax({          
@@ -126,11 +162,7 @@ window.addEventListener('load', function(){
 		       var uno = data.fileFinantial;
 		    	   
 		       console.log('boton1');
-		    	$(".wrapper").show();
-		    	document.getElementById("embed").src = '/viewPdf/'+uno+'';
-		    	$("#close").on('click', function(){
-		    		$(".wrapper").hide();
-		    	})
+		    	document.getElementById("verte1").src = '/viewPdf/'+uno+'';
 		                  
 		      }
 		          
@@ -163,7 +195,7 @@ window.addEventListener('load', function(){
 		          
 		   }); 
 	    })
-	    /*
+	    
 	}else if(data_finantial.uno === null && data_finantial.dos === null){
 		swal("No tiene documentos");
 		

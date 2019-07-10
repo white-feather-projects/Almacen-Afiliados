@@ -83,9 +83,6 @@ cantidad.addEventListener('keyup', ()=>{
 });
 
 
-/////////////////////////////Mostrar ultima orden de compra////////////////////////////////////////
-
-
 $(document).ready(function() {	
 	listarLastOrder();
 	mostrarDatos();
@@ -100,29 +97,33 @@ $.ajax({
 		  url: "/listLastPurchaseOrderRequest",
 		  success: function(data)
 	    {
-         console.log(data);
           
-		 var fecha = data.fechaCarga;
+        $("#tbodyProducto").html('');
+        /* Vemos que la respuesta no este vacía y sea una arreglo */
+         
+         console.log(data.quantity);
          var quantity = data.quantity;
+         var fecha = data.fechaCarga;
+         console.log(fecha);
          var descriptionOrder = data.descriptionOrder;
          var numberOrder = data.numberOrder;
-         var producto = data.productDTO;
-         var productoId = producto.idProduct;
-         var productoName= producto.productName;
-         
-         console.log("producto",productoId);
-         console.log("producto",productoName);
-      
+        
+         var number = parseInt(numberOrder);
+         var loteSiguiente = number+1;
+         console.log(loteSiguiente);
+         console.log(number);
+         console.log(numberOrder);
         document.getElementById('cantidadTarjetasAnterior').value = quantity;
-        document.getElementById('descripcionAnterior').value = descriptionOrder;
-        document.getElementById('anteriorLote').value = numberOrder;
-        document.getElementById('fecha').value = fecha;
-        $("#productoAnterior").append('<option value=' + productoId + '>' + productoName+ '</option>');
+           document.getElementById('descripcionAnterior').value = descriptionOrder;
+            document.getElementById('anteriorLote').value = number;
+            document.getElementById('fecha').value = fecha;
+             document.getElementById('lote').value = loteSiguiente;
+          console.log(data);
                 
                              
             }
             
-      },);  
+              },);  
               
 }   
 
@@ -138,25 +139,19 @@ function mostrarDatos() {
 			  url: "/consultId/"+id,
 			  success: function(data)
 		    {
-	         
+	          console.log(data);
 	         
 	         console.log(data.quantity);
 	         var quantity = data.quantity;
 	         var descriptionOrder = data.descriptionOrder;
 	         var status = data.statusOrder;
-	         var producto = data.productDTO;
-	         var productoId = producto.idProduct;
-	         var productoName= producto.productName;
-	         var lote = data.numberOrder; 
-	         
-	        
+	         //console.log("status"+status);
 	         
 	        document.getElementById('cantidadTarjetasSolicitar').value = quantity;
-	        document.getElementById('descripcionOrden').value = descriptionOrder;
-	        document.getElementById('status').value = status;
-	        $("#producto").append('<option value=' + productoId + '>' + productoName+ '</option>');
-	        document.getElementById('lote_confirmacion').value = lote;
-	  
+	           document.getElementById('descripcionOrden').value = descriptionOrder;
+	           document.getElementById('status').value = status;
+	          
+	          console.log(data);
 	              
 	                             
 	            }

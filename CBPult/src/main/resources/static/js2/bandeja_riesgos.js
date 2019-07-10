@@ -9,7 +9,8 @@ window.addEventListener('load', ()=>{
 
 })
 
-/////////////////////////////////////////7
+/////////////////////////////////////////
+/////////////////////////////////////////
 
 function listarPurchseOrder(){
 	
@@ -47,7 +48,7 @@ function listarPurchseOrder(){
 	              }
 	            },   
 	            {
-	                "data": "fechaCarga", // can be null or undefined
+	                "data": "clientBirthday", // can be null or undefined
 	                "class": "tres1",
 	                "defaultContent": "",
 	                "render": function ( data ) {
@@ -65,14 +66,14 @@ function listarPurchseOrder(){
 	              }
 	            },
 	            {
-	                "data": "idClient",
+	                "data": "clientDocumentId",
 	                "class": "editar",
 	                "defaultContent": "",
 	                "render": function (data) {
 	                	if(uno == "NEGADA"){
                    
 	                	}else if(uno == "ACTIVA"){
-	                		return '<center><a href="/customerAnalysisTdc/'+data+'" title="Analizar"><i class="fa fa-plus-square agregaryasignar" style="font-size:30px"></i></a></center>';                      
+	                		return '<center><a href="/confirmacion2/'+data+'" title="Editar"><i class="fa fa-plus-square agregaryasignar" style="font-size:30px"></i></a></center>';                      
 	                	}
 	                }
 	            }

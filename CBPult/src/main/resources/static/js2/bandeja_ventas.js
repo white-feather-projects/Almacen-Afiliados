@@ -17,11 +17,6 @@ window.addEventListener('load', ()=>{
 		var status = "TARJETA_POR_IMPRIMIR";
 		listarTdc(status);
 	});
-	
-	$("#solicitud_completada").on('click', function(){
-		var status = "SOLICITUD_COMPLETADA";
-		listarTdc(status);
-	});
 
     $("#crear_Soli").on('click', function(){
         location.href = "/carga_datos";

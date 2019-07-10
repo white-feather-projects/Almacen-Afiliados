@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
+    <head>
+        <th:block th:replace="fragments/header :: headlayout"></th:block>
+        <!-- switches -->
+        <link rel="stylesheet" type="text/css" th:href="@{/css/switchery.min.css}">        
+        <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-tagsinput.css}">
+    </head>
+    <body themebg-pattern="pattern4">
+        <!--/////////////////////////////////////////////////-->
+            <th:block th:replace="fragments/theme_loader :: theme_loader"></th:block>
+            <!--/////////////////////////////////////////////////-->
+        	<div id="pcoded" class="pcoded iscollapsed" nav-type="st6" theme-layout="vertical" vertical-placement="left" vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded" vertical-effect="shrink" vnavigation-view="view1" fream-type="theme1" sidebar-img="false" sidebar-img-type="img1" layout-type="light">
+            <div class="pcoded-overlay-box"></div>
+            <div class="pcoded-container navbar-wrapper">
+               <!--/////////////////////////////////////////////////-->
+            <th:block th:replace="fragments/nav :: nav_notification"></th:block>
+            <!--/////////////////////////////////////////////////-->
+                <div id="sidebar" class="users p-chat-user showChat"></div>                                        
+                <div class="showChat_inner"></div>
+                <div class="pcoded-main-container" style="margin-top: 56px;">
+                    <div class="pcoded-wrapper">
+                        <nav class="pcoded-navbar" navbar-theme="theme1" active-item-theme="theme1" sub-item-theme="theme2" active-item-style="style0" pcoded-navbar-position="fixed">
+                            <div class="pcoded-inner-navbar main-menu mCustomScrollbar _mCS_1" style="height: calc(100% - 80px);">
+                                <div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical_horizontal mCSB_inside" tabindex="0"></div>
+                            </div>
+                        </nav>
+                        <!-- Contenido del Form -->
+                        <div class="pcoded-content">
+                            <div class="pcoded-inner-content">                                
+                                <div class="main-body">
+                                    <!-- Header deL Form -->
+                                    <div class="page-wrapper">                                    
+                                        <div class="page-header">
+                                            <div class="row align-items-end">
+                                                <div class="col-lg-8">
+                                                    <div class="page-header-title">
+                                                        <div class="d-inline">
+                                                            <h4>Configuración de Afiliados</h4>
+                                                            <span>Personaliza tu proceso de <code>Afiliación</code></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+	                                                <div class="page-header-breadcrumb">
+	                                                    <ul class="breadcrumb-title">
+	                                                    	<!-- 
+	                                                    	<li class="breadcrumb-item"><a href="#"> <i class="feather icon-home"></i> </a></li>
+	                                                        <li class="breadcrumb-item"><a href="#!">Forms</a></li>
+	                                                        <li class="breadcrumb-item"><a href="#!">Basic Form</a></li>	                                                    	
+	                                                    	 -->	                                                        
+	                                                    </ul>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>   
+	                                    <!-- Header deL Form -->
+	                                    <!--  Body del Form-->
+	                                    <div class="page-body">
+	                                        <!-- Row1 Forms-Obligartorios --> 
+	                                        <div class="row">                                   
+	                                            <div class="col-sm-4">
+	                                                <div class="card">
+	                                                	                                                   
+	                                                    <div class="card-block">
+	                                                    	<h5 class="sub-title">Pre-Carga</h5>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Nombre de la Empresa</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-single" checked="" data-switchery="true" style="display: none;" id="cboxNameEmpresa_PreCarga"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Tipo de Identificación</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxTipoId_PreCarga"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Identificación</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxId_PreCarga"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Correo Electronico</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxEmailContacto_PreCarga"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Numero de Telefono de Contacto</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxNumTelContacto_PreCarga"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Ubicación Geografica</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxUbicacion_PreCarga"></div>
+	                                                        </div>                                                        
+	                                                        <h3 style="color:white">a</h3>                                                                                                              
+	                                                    </div>
+	                                                </div>
+	                                            </div>                                            
+	                                            <div class="col-sm-4" style="height:100%;">
+                                            		
+	                                                <div class="card"> 
+	                                                      	                                                    
+	                                                    <div class="card-block">
+	                                                    	<h5 class="sub-title">Datos del Comercio</h5>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Nombre Comercial</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxNombreComercial_Comercio"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Numero de Cuenta Corriente</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxNumCuentaCorriente_Comercio"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Actividad Comercial</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxActividadComercial_Comercio"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Horario del Comercio</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxHorarioComercio_Comercio"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Telefono Local</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxTelLocal_Comercio"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Telefono Alternativo</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxTelAlternativo_Comercio"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Afiliado Otro Banco</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxAfiliadoOtroBanco_Comercio"></div>
+	                                                        </div>                                                        
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                            <div class="col-sm-4">
+	                                                <div class="card">                                                        
+	                                                    
+	                                                    <div class="card-block">
+                                                    		<h5 class="sub-title">Representante Legal</h5>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Telefono Local</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxTelLocal_RepLegal"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Telefono Celular</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxTelCelular_RepLegal"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Correo Electronico</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxEmail_RepLegal"></div>
+	                                                        </div>     
+	                                                        <h3 style="color:white">a</h3> 
+	                                                        <h3 style="color:white">a</h3> 
+	                                                        <h3 style="color:white">a</h3>        
+	                                                        <h3 style="color:white">a</h3>                                      
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                            <div class="col-sm-4">
+	                                                <div class="card">                                                        
+	                                                    
+	                                                    <div class="card-block">
+	                                                    	<h5 class="sub-title">Dirección del Establecimiento</h5>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Localidad</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;"  id="cboxLocalidad_DirEstab"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Nombre Inmueble</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxNameInmueble_DirEstab"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Punto de Referencia</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxPtoRef_DirEstab"></div>
+	                                                        </div>                                                        
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                            <div class="col-sm-4">
+	                                                <div class="card">                                                        
+	                                                   
+	                                                    <div class="card-block">
+	                                                    	<h5 class="sub-title">Persona Contacto Comercio</h5>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Cargo</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxCargo_ContactComercio"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Nombres y Apellidos</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxNameLast_ContactComercio"></div>
+	                                                        </div>                                                       
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                            <div class="col-sm-4">
+	                                                <div class="card">                                                        
+	                                                    
+	                                                    <div class="card-block">
+	                                                    	<h5 class="sub-title">Otros Bancos</h5>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Cargo</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxCargo_OtroBanco"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Nombres y Apellidos</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxNameLast_OtroBanco"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Punto de Referencia</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxPtoRef_OtroBanco"></div>
+	                                                        </div>                                                        
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                        <!-- Row1 Forms-Obligartorios -->
+	                                        <div class="page-header">
+	                                            <div class="row align-items-end">
+	                                                <div class="col-lg-8">
+	                                                    <div class="page-header-title">
+	                                                        <div class="d-inline">
+	                                                            <h4>Formularios Opcionales</h4>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>                                                
+	                                            </div>
+	                                        </div>                                     
+	                                        <!-- Row2 Forms-Opcionales-->
+	                                        <div class="row">
+	                                            <div class="col-sm-4">
+	                                                <div class="card">
+	                                                    <div class="card-header col-sm-12">
+	                                                        <div class="row">
+	                                                            <h5 class="sub-title col-sm-8">Banco de Afiliación</h5>
+	                                                            <div class="col-sm-3"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cbox_BancoAfiliacion"></div>
+	                                                        </div>                                                    
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                            <div class="col-sm-4">
+	                                                <div class="card">
+	                                                    <div class="card-header col-sm-12">
+	                                                        <div class="row">
+	                                                            <h5 class="sub-title col-sm-8">Otros Bancos</h5>
+	                                                            <div class="col-sm-3"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cbox_OtrosBanco"></div>
+	                                                        </div>                                                    
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                        <!-- Row2 Forms-Opcionales-->
+	                                    </div>
+	                                </div>
+                                </div>
+                            </div>
+                            <div id="styleSelector"></div>
+                        </div>
+                        <!-- Contenido deL Form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/jquery-ui.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/jquery.slimscroll.js}"></script>
+        <script type="text/javascript" th:src="@{/js/modernizr.js}"></script>
+        <script type="text/javascript" th:src="@{/js/Chart.js}"></script>
+        <script type="text/javascript" th:src="@{/js/amcharts.js}"></script>
+        <script type="text/javascript" th:src="@{/js/serial.js}"></script>
+        <script type="text/javascript" th:src="@{/js/light.js}"></script>
+        <script type="text/javascript" th:src="@{/js/SmoothScroll.js}"></script>
+        <script type="text/javascript" th:src="@{/js/pcoded.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/vartical-layout.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js2/script.min2.js}"></script>
+        <!-- Para Switches -->
+        <script type="text/javascript" th:src="@{/js/switchery.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/bootstrap-tagsinput.js}"></script>
+        <script type="text/javascript" th:src="@{/js/swithces.js}"></script>
+    </body>
+</html>

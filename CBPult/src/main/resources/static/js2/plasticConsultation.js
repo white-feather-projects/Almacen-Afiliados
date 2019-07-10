@@ -1,32 +1,37 @@
 
- $(document).ready(function() {
 
-
-$("#enviar").click(function(){
+$(document).ready(function() {
 	
-   listarPlasticos();
-   $(".vmodal").toggle(1000);
-   });
-   });
- 
- 
- 
+	
+	
+	listarPlasticos();
+
+		
+	});
+
+
+
+
 	function listarPlasticos(){
 		
-		var lote =  $('#lote').val();
-      
+		
+		var url = window.location.pathname;
+		var id = url.substring(url.lastIndexOf('/') + 1);
+		
 	
 	    $('#listPlastic').DataTable( {
 	    
 	    	sort:true,
 	    	destroy: true,
-	    	searching: true,
-	      	
+	    	 
+	        
+	          
+	    	
 	    	language: {
 	    		url: '/js2/Spanish.json'
 	        },
 	        ajax: {
-	        	url:"/listPlastic/"+lote,
+	        	url:"/listPlastic/"+id,
 	            dataSrc: '',
 	        	
 	        },

@@ -11,9 +11,9 @@
 				swal("Estamos Trabajando!", "Gestión de Solicitudes")
 			};
 			*/
-			document.querySelector('.sweet-3').onclick = function(){
+			/*document.querySelector('.sweet-3').onclick = function(){
 				swal("Estamos Trabajando!", "Gestión de Clientes")
-			};
+			};*/
 			document.querySelector('.sweet-4').onclick = function(){
 				swal("Estamos Trabajando!", "Gestión de Cierres")
 			};
@@ -23,14 +23,14 @@
 			/*
 			document.querySelector('.sweet-6').onclick = function(){
 				swal("Estamos Trabajando!", "Gestión de Configuración")
-			};
-			*/
+			};*/
 			document.querySelector('.sweet-7').onclick = function(){
 				swal("Estamos Trabajando!", "Reportes y Consultas")
 			};
+			/*
 			document.querySelector('.sweet-8').onclick = function(){
 				swal("Estamos Trabajando!", "Gestión de Inventario")
-			};
+			};*/
 			//success message
 			document.querySelector('.alert-success-msg').onclick = function(){
 				swal("Good job!", "You clicked the button!", "success");

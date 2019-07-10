@@ -14,8 +14,11 @@
     
         $('#gestion_clientes').on('click', function(){
     //        location.href = "../";
+        	location.href = "/menu_afiliacion";
+        	/*
             if (!window.__cfRLUnblockHandlers) return false; 
             _gaq.push(['_trackEvent', 'example', 'try', 'sweet-3']);
+            */
         })
     
         $('#gestion_cierres').on('click', function(){
@@ -30,9 +33,12 @@
             _gaq.push(['_trackEvent', 'example', 'try', 'sweet-5']);
         })
     
-     $('#gestion_configuracion').on('click', function(){
+        $('#gestion_configuracion').on('click', function(){
     //        location.href = "../";
-        	 location.href = "/configuration";
+        	/*
+            if (!window.__cfRLUnblockHandlers) return false; 
+            _gaq.push(['_trackEvent', 'example', 'try', 'sweet-6']);
+            */
         })
     
         $('#gestion_reportes').on('click', function(){
@@ -43,8 +49,10 @@
     
         $('#gestion_inventario').on('click', function(){
     //        location.href = "../";
+        	/*
             if (!window.__cfRLUnblockHandlers) return false; 
             _gaq.push(['_trackEvent', 'example', 'try', 'sweet-8']);
+            */
         })
     
     })

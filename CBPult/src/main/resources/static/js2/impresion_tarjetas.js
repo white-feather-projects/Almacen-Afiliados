@@ -8,11 +8,8 @@ window.addEventListener('load', function(){
    // var documento_identidad = data_json.documento_identidad;
     console.log(documento_identidad);
     
-    ///////////////////////////////////////////////////////////////
-    //$('#dataCvv').html('555');
-   // $('#numeroUltimos').html('5555');
-   // $('#dateExperition').html('14/05');
-   // $('#dateEmison').html('14/05');
+    ///////////////////////////////////////////////////////////////7
+    
     var accountIban;
 	var accountNumber;
 	var accountStatus;
@@ -24,32 +21,22 @@ window.addEventListener('load', function(){
 	
     $.getJSON( "/consultAccountByClientWS/"+documento_identidad+"")
 	  .done(function( json ) {
-		  console.log(json);                
-		  console.log(json.idDocument);
-		  accountIban = json.iban;
-		  accountNumber = json.account;
-		 // accountStatus = json.accountStatus;
-		  clientDTO_clientFirstName = json.firtName.toUpperCase();
-		  clientDTO_clientLastName = json.lastName;
-		  clientDTO_clientSurname = json.lastSurname.toUpperCase();
-		  idclient = json.idClient;
-		
-		  if(clientDTO_clientSurname.indexOf("-") > -1==true){
-			  surname = clientDTO_clientSurname.split("-");
-			 
-		  }else{
-			  surname = clientDTO_clientSurname.split(" ");
-		  }
-		 
+		  console.log(json.clientDTO.clientFirstName);
+		  accountIban = json.accountIban;
+		  accountNumber = json.accountNumber;
+		  accountStatus = json.accountStatus;
+		  clientDTO_clientFirstName = json.clientDTO.clientFirstName;
+		  clientDTO_clientLastName = json.clientDTO.clientLastName;
+		  clientDTO_clientSurname = json.clientDTO.clientSurname;
+		  idclient = json.clientDTO.idClient;
+		  surname = clientDTO_clientSurname.split(" ");
 		  //console.log(surname[0]);
 		  console.log(idclient);
 		  
 	    //console.log( "JSON Data: " + json.clientDTO.clientSurname );
 	    //console.log(json.length);
-		 document.getElementById('textodos_unoPrinted').innerHTML = clientDTO_clientFirstName+" "+surname[0] + " "+surname[1].charAt(0);
-		 document.getElementById('textodos_uno').innerHTML = clientDTO_clientFirstName+" "+surname[0] + " "+surname[1].charAt(0);
+		 document.getElementById('textodos_uno').innerHTML = clientDTO_clientFirstName+" "+surname[0];
 		 document.getElementById('textotres').innerHTML = accountIban;
-		 document.getElementById('textotresPrinted').innerHTML = accountIban;
 	    
 	  })
 	  .fail(function( jqxhr, textStatus, error ) {
@@ -81,24 +68,20 @@ window.addEventListener('load', function(){
  //   $('#input1').blur(function(){
     var texto = $('#input1').val();
     $('#textouno_do').html(texto);
-    $('#textouno_doPrinted').html(texto);
 
     var texto = $('#input2').val();
     $('#textouno_dos').html(texto);
-    $('#textouno_dosPrinted').html(texto);
  //   })
 
     $('#input3').keyup(function(){
         var texto = $(this).val();
         $('#textouno_tres').html(texto);
-        $('#textouno_tresPrinted').html(texto);
         input3_1 = texto;
     })
 
     $('#input4').keyup(function(){
         var texto = $(this).val();
         $('#textouno_cuatro').html(texto);
-        $('#textouno_cuatroPrinted').html(texto);
         input4_1 = texto;
     })
 
@@ -136,7 +119,6 @@ window.addEventListener('load', function(){
   		  plasticNumber = json.plasticNumber;
   		  plasticStatus = json.plasticStatus;
   	    
-  		 
   		  //console.log('Json: '+json.idPlastic+", "+json.plasticAsigned+", "+json.plasticCvv+", "+json.plasticDateIssue+", "+json.plasticExpDate+", "+json.plasticNumber+", "+json.plasticStatus);
   		  if(json.idPlastic == null){
   			  swal("Tarjeta no Encontrada");
@@ -144,39 +126,21 @@ window.addEventListener('load', function(){
   		  }else
   			  {
   			  	if(json.plasticAsigned == 0){
-  			  		 			  		
-  			  		//$('#textouno_uno').html(plasticExpDate);
-  			  		//$('#textouno_uno_a').html(input4_1);
-  			  		$('#dateEmison').html(''+plasticDateIssue+'');
-  			  		$('#dateExperition').html(''+plasticExpDate+'');
-  			  	    $('#dataCvv').html(''+json.plasticCvv+'');
-  			  	    $('#numeroUltimos').html(''+$('#input4').val()+'');
-  			  	    
-  			  	    $('#dateEmisonPrinted').html(''+plasticDateIssue+'');
-			  		$('#dateExperitionPrinted').html(''+plasticExpDate+'');
-			  	    $('#dataCvvPrinted').html(''+json.plasticCvv+'');
-			  	    $('#numeroUltimosPrinted').html(''+$('#input4').val()+'');
-  			  	  
+  			  		swal("Tarjeta disponible");
+  			  		$('#textouno_uno').html(plasticExpDate);
+  			  		$('#textouno_uno_a').html(input4_1);
+  			  		$('#textouno_dos_a').html(plasticCvv);
   			  		document.getElementById("imprimirButton").disabled = false;
   			  		///////////////////////////////////////////
-  			  	    swal("Tarjeta disponible");
-		  			  //	console.log('idClient: '+idclient+', clientFirstName: '+clientDTO_clientFirstName+', clientLastName: '+clientDTO_clientLastName+', clientSurname: '+clientDTO_clientSurname);
-		  	        //	console.log('idPlastic: '+idPlastic+', plasticAsigned: '+plasticAsigned+', plasticCvv: '+plasticCvv+', plasticDateIssue: '+plasticDateIssue+', plasticExpDate: '+plasticExpDate+', plasticNumber: '+plasticNumber+', plasticStatus: '+plasticStatus);
+  			  		
+		  			  	console.log('idClient: '+idclient+', clientFirstName: '+clientDTO_clientFirstName+', clientLastName: '+clientDTO_clientLastName+', clientSurname: '+clientDTO_clientSurname);
+		  	        	console.log('idPlastic: '+idPlastic+', plasticAsigned: '+plasticAsigned+', plasticCvv: '+plasticCvv+', plasticDateIssue: '+plasticDateIssue+', plasticExpDate: '+plasticExpDate+', plasticNumber: '+plasticNumber+', plasticStatus: '+plasticStatus);
   			  		
   			  	}else
   			  		{
   			  			stattarjet = 1;
   			  			swal("Tarjeta en uso");
   			  			document.getElementById("imprimirButton").disabled = true;
-  			  		$('#dateEmison').html('');
-  			  		$('#dateExperition').html('');
-  			  	    $('#dataCvv').html('');
-  			  	    $('#numeroUltimos').html('');
-  			     	$('#dateEmisonPrinted').html('');
-			  		$('#dateExperitionPrinted').html('');
-			  	    $('#dataCvvPrinted').html('');
-			  	    $('#numeroUltimosPrinted').html('');
-  			  	  
   			  		}
   			  }
   	  })
@@ -346,13 +310,13 @@ window.addEventListener('load', function(){
 	            	
 	            	swal({
 	            	    title: 'Exito al Asignar Tarjeta',
-	            	    //text: 'Redirigiendo...',
+	            	    text: 'Redirigiendo...',
 	            	    icon: 'Exitoso',
 	            	    timer: 1000,
 	            	    buttons: false,
 	            	},
 	            	function() {
-	            	  //  location.href = "/dashborad";
+	            	    location.href = "/dashborad";
 	            	})
 	            }  
 	        	
@@ -374,27 +338,7 @@ window.addEventListener('load', function(){
 		  	        	
 
     });
-    
-    
-    $("#saveComplet").click(function(){
-    	swal({
-    	    title: 'Imprimiendo tarjeta',
-    	    //text: 'Redirigiendo...',
-    	    icon: 'Exitoso',
-    	    timer: 2000,
-    	    buttons: false,
-    	},
-    	function() {
-    		
-    	   location.href = "/dashborad";
-    	
-    	})
-    });  
-    
-    
 });
-
-
 
 /////////////////////////////////////////////////////7
 

@@ -27,9 +27,9 @@ window.addEventListener('load', ()=>{
  
   /*Campos Trabajo*/  
     
-   
+    
     nombreEmpresa.addEventListener('keyup', ()=>{
-    	soloTextoNumeros(nombreEmpresa);
+    	soloTexto(nombreEmpresa);
         document.getElementById("nombreEmpresa").style.border = "1px solid black";
     }); 
     
@@ -76,13 +76,13 @@ window.addEventListener('load', ()=>{
     }); 
     
     /////////////////////////////////////////////////
-    
+    /*
     antiguedad.addEventListener('keyup', ()=>{
-    	soloTextoNumeros(antiguedad);
+    	alfaNumerico(antiguedad);
         document.getElementById("antiguedad").style.border = "1px solid black";
     }); 
     
-    
+    */
     
     cargoOtraEmpresa.addEventListener('keyup', ()=>{
         soloTexto(cargoOtraEmpresa);

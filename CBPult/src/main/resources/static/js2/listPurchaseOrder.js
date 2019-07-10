@@ -18,7 +18,7 @@ console.log(user);
 
 function listarPurchseOrder(){
     $('#listPurchaseOrder').DataTable( {
-  
+    
     	sort:true,
     	destroy: true,
     	 
@@ -39,16 +39,15 @@ function listarPurchseOrder(){
         	{
                 "data": "numberOrder", // can be null or undefined
                 "class": "cero",
-                "render": function (data, type, full, meta) {
+                "render": function ( data ) {
                 	
             	//	return '<center>'+ data +'</center>';
             		
-            		if (full.statusOrder != "APROBADA") {
+            		if (data == null) {
                    
-            		return '<center title="No hay detalle,debe generar orden de compra">'+data+'</center>';
-            			//return '<center title="Ver detalle de compra"><a href="/verDetalleCompra/'+full.idOrderRequest+'">'+data+'</a></center><input type="hidden" id="status" value="'+data+'">'
+            			return '<center>'+ "No generada" +'</center>';                 
                       }else{
-                    	return '<center title="Ver detalle de compra"><a href="/verDetalleCompra/'+full.idOrderRequest+'">'+data+'</a></center><input type="hidden" id="status" value="'+data+'">'
+                    	return '<center ><a href="/verDetalleCompra/'+data+'">'+data+'</a></center><input type="hidden" id="status" value="'+data+'">'
                     	 // return '<center>'+ data +'</center>';
                       }
               	}	
@@ -116,7 +115,7 @@ function listarPurchseOrder(){
                 "class": "editar",
                 "defaultContent": "",
                 "render": function (data, type, full, meta) {
-                	if (full.statusOrder == "APROVADA") {
+                	if (full.statusOrder == "aprobada") {
                   // console.log(data);
                   // console.log(full.statusOrder);
                 		return '<center><i class="fa fa-check" agregaryasignar" title="Solicitud aprobada" style="font-size:30px"></i></center>';                  
@@ -144,7 +143,7 @@ function listarPurchseOrder(){
               
                 	var user=$('#username').val();
                 	
-                	if(full.statusOrder == "APROBADA" && user != 'ROLE_USER'){
+                	if(full.statusOrder == "aprobada" && user != 'ROLE_USER'){
                 	
                 		return '<center><i class="fa fa-check" agregaryasignar" title="Solicitud aprobada" style="font-size:30px"></i></center>';                               
                 	}else if(user == 'ROLE_USER'){
@@ -188,21 +187,16 @@ $.ajax({
     	//location.href = '/'+resp.mensaje;
     	
     	swal({
-    		  title: "Estas Seguro?",
-    		  text: "Su solicitud sera cancelada!",
-    		  type: "warning",
-    		  showCancelButton: true,
-    		  confirmButtonClass: "btn-danger",
-    		  confirmButtonText: "Si,Cancelar Solicitud!",
-    		  closeOnConfirm: false
-    		},
-    		function(){
-    			swal("Su solicitud fue cancela!");
-    			location.href = "/listpurchaseorder";
-    		  
-    		});
+    	    title: 'Seguro de cancelar solicitud de orden de compra?',
+    	    text: 'Redirigiendo...',
+    	    icon: 'Exitoso',
+    	    buttons: true,
+    	},
+    	function() {
     		
-    	   
+    	    location.href = "/listpurchaseorder";
+ 
+    	}) 
 
    
 	/*    if(true){

@@ -6,24 +6,20 @@ window.addEventListener('load', ()=>{
 
     var data_json = JSON.parse(localStorage.getItem("data"));
 
-    $("#lote_confirmacion").val(data_json.lote);
-    $("#cantidadTarjetasSolicitar_confirmacion").val(data_json.cantidadTarjetasSolicitar);
-    $("#producto_confirmacion").val(data_json.producto);
-    $("#descripcionOrden_confirmacion").val(data_json.descripcionOrden);
-    $("#fechaSolicitud_confimacion").val(data_json.fechaSolicitud);
-    $("#lote_confirmacion").val(data_json.ordenNumero);
-    $("#creador_Solicitud_confirmacion").val(data_json.usuarioCreador);
-    $(".productConfirmation").append('<option selected value=' + data_json.producto + '>' + data_json.proName+ '</option>');
-    
+    $("#lote_confirmacion").val(data_json.lote).prop("disabled", true);
+    $("#cantidadTarjetasSolicitar_confirmacion").val(data_json.cantidadTarjetasSolicitar).prop("disabled", true);
+    $("#producto_confirmacion").val(data_json.producto).prop("disabled", true);
+    $("#descripcionOrden_confirmacion").val(data_json.descripcionOrden).prop("disabled", true);
+   
 // ////////////////////////////////////////////////////////////////////
 	
  var lo =  document.querySelector("#lote_confirmacion");
 console.log(lo);
-    var cantidad= document.querySelector("#cantidadTarjetasSolicitar_confirmacion");
+      var cantidad= document.querySelector("#cantidadTarjetasSolicitar_confirmacion");
     var prod = document.querySelector("#producto_confirmacion");
 
     var descripcion = document.querySelector("#descripcionOrden_confirmacion");
-    var fecha =  document.querySelector("#fechaSolicitud_confimacion");
+
     // ///////////////////////////////////////////////////////////////////
 
     cantidad.addEventListener('keyup', ()=>{
@@ -72,33 +68,24 @@ console.log(lo);
     $('#aceptar_confirmacion').click(function(){
        var url = window.location.pathname;
        var id = url.substring(url.lastIndexOf('/') + 1);
-      
-       var cantidad = $("#cantidadTarjetasSolicitar_confirmacion").val();
-     
+       console.log(id);
+ 	   var cantidad = $("#cantidadTarjetasSolicitar_confirmacion").val();
 	   var descripcion = $("#descripcionOrden_confirmacion").val();
-       var status ="Cargada";
+	   console.log(descripcion);
+	   var status ="Cargada";
+	   console.log(status);
 	   var producto = $("#producto_confirmacion").val();
-	   var fechaSolicitudOrdenCompra = $("#fechaSolicitud_confimacion").val();
-	   var loteSiguiente = $("#lote_confirmacion").val();
-	   var usuarioCreadorSolicitud = $("#creador_Solicitud_confirmacion").val();
-	   //alert(usuarioCreadorSolicitud);
-	   var usuarioAprovadorSolicitud = $("#usuarioAprovador").val();
+	   console.log(producto);
 	   
-	   //alert(usuarioAprovadorSolicitud);
 		var contenido = {
     			"orderDescription": descripcion,
     			"orderCommetns": descripcion,
     			"orderType": "orderType",
-    			"purchaseOrderDate": fechaSolicitudOrdenCompra,
     			"quantity": cantidad,
-    			"orderStatus":"APROBADA",
+    			"orderStatus":"aprovada",
     			"idProduct": producto,
-    			"idOrderRequest": id,
-    			"purchaseOrderNumber":loteSiguiente,
-    			"codUserLoader":usuarioCreadorSolicitud,
-    			"codAprovedUser":usuarioAprovadorSolicitud
+    			"idOrderRequest": id
     			}
-		
     	      
         var url='/generated';
     	
@@ -110,8 +97,7 @@ console.log(lo);
     	    type: 'POST',
     	    success: function(resp){
     	    	//location.href = '/'+resp.mensaje;
-    	    	console.log("response"+resp);
-    	   
+    	    	console.log(resp);
     	   	
     	    	swal({
             	    title: 'Generando lista,input file y ftp',
@@ -122,7 +108,7 @@ console.log(lo);
             	},
             	function() {
             	    location.href = "/listpurchaseorder";
-            	})   
+            	}) 
 	    	
     	    },
     	    error: function(e)
@@ -134,7 +120,7 @@ console.log(lo);
   //////////////////// Cambiar status en lista principal /////////////////////////      
         var datos = {
         		"idRequest": id,
-        		"statusOrder": "APROBADA"
+        		"statusOrder": "aprobada"
         		}
         
   var url2='/cambio';
@@ -165,8 +151,8 @@ console.log(lo);
     	var url = window.location.pathname;
     	var id2 = url.substring(url.lastIndexOf('/') + 1);
     	 
-   var status ="EN APROBACIÓN";
-
+   var status ="En aprobacion";
+   console.log(status);
     	    
    var datos = {
    		"idRequest": id2,
@@ -216,43 +202,38 @@ var url3='/cambio';
 
 /////////////////////////////Mostrar ultima orden de compra////////////////////////////////////////
 
+    $(document).ready(function() {	
+  		listarLastOrder();
+  	});
 
-$(document).ready(function() {	
-	listarLastOrder();
-	
-});
+  	function listarLastOrder() {
 
-function listarLastOrder() {
-
-$.ajax({          
-             
-		  type: "GET",
-		  dataType: "json",
-		  url: "/listLastPurchaseOrderRequest",
-		  success: function(data)
-	    {
-         console.log(data);
-          
-		 var fecha = data.fechaCarga;
-         var quantity = data.quantity;
-         var descriptionOrder = data.descriptionOrder;
-         var numberOrder = data.numberOrder;
-         var producto = data.productDTO;
-         var productoId = producto.idProduct;
-         var productoName= producto.productName;
-         
-         console.log("producto",productoId);
-         console.log("producto",productoName);
-      
-        document.getElementById('cantidadTarjetasAnterior').value = quantity;
-        document.getElementById('descripcionAnterior').value = descriptionOrder;
-        document.getElementById('anteriorLote').value = numberOrder;
-        document.getElementById('fecha').value = fecha;
-        $("#productoAnterior").append('<option value=' + productoId + '>' + productoName+ '</option>');
-                
-                             
-            }
-            
-      },);  
-              
-}  
+  	$.ajax({          
+  	             
+  			  type: "GET",
+  			  dataType: "json",
+  			  url: "/listLastPurchaseOrderRequest",
+  			  success: function(data)
+  		    {
+  	          
+  	          
+  			 var fecha = data.fechaCarga;
+  	         var quantity = data.quantity;
+  	         var descriptionOrder = data.descriptionOrder;
+  	         var numberOrder = data.numberOrder;
+  	         var number = parseInt(numberOrder);
+  	         var loteSiguiente = number+1;
+  	      
+  	        document.getElementById('cantidadTarjetasAnterior').value = quantity;
+  	        document.getElementById('descripcionAnterior').value = descriptionOrder;
+  	        document.getElementById('anteriorLote').value = number;
+  	        document.getElementById('lote_confirmacion').value = loteSiguiente;
+  	        document.getElementById('fecha').value = fecha;
+  	        console.log(data);
+  	                
+  	                             
+  	            }
+  	            
+  	      },);  
+  	              
+  	}  

@@ -66,19 +66,19 @@ window.addEventListener('load', ()=>{
     //////////////////////////////////////////////////////////////   
     
     ciudadVivienda.addEventListener('keyup', ()=>{
-    	soloTextoNumeros(ciudadVivienda);
+        soloTexto(ciudadVivienda);
         document.getElementById("ciudadVivienda").style.border = "1px solid black";
     }); 
-   
+    
     sectorVivienda.addEventListener('keyup', ()=>{
-    	soloTextoNumeros(sectorVivienda);
+        soloTexto(sectorVivienda);
         document.getElementById("sectorVivienda").style.border = "1px solid black";
     }); 
     
     //////////////////////////////////////////////////////////////  
-   
+    
     ptoReferenciaVivienda.addEventListener('keyup', ()=>{
-    	soloTextoNumeros(ptoReferenciaVivienda);
+        soloTexto(ptoReferenciaVivienda);
         document.getElementById("ptoReferenciaVivienda").style.border = "1px solid black";
     }); 
     
