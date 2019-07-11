@@ -6,7 +6,7 @@
 
 	/* Red Card */
 	.redCard .card-footer{
-		background: #fc2d2d;
+		background: #dc3545;
 		color: white;
 	}
 	
@@ -16,14 +16,14 @@
 	}
 	
 	.redCard .card-block{
-		border: 1px solid #fc2d2d;
+		border: 1px solid #dc3545;
 	}
 	/* Red Card */
 	
 	
 	/* Blue Card */
 	.blueCard .card-footer{
-		background: #025df0;
+		background: #17a2b8;
 		color: white;
 	}
 	
@@ -33,14 +33,14 @@
 	}
 	
 	.blueCard .card-block{
-		border: 1px solid #025df0;
+		border: 1px solid #17a2b8;
 	}
 	/* Blue Card */
 	
 	
 	/* Green Card */
 	.greenCard .card-footer{
-		background: #0a8a25;
+		background: #20c997;
 		color: white;
 	}
 	
@@ -50,7 +50,7 @@
 	}
 	
 	.greenCard .card-block{
-		border: 1px solid #0a8a25;
+		border: 1px solid #20c997;
 	}
 	/* Green Card */
 

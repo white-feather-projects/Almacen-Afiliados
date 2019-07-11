@@ -9,19 +9,19 @@ $(document).ready(function(){
 	
 	Array.prototype.forEach.call(red_switches, (item, i)=>{
 		var actual_switch = new Switchery(item, {
-			color: '#fc2d2d'
+			color: '#dc3545'
 		});
 	});
 	
 	Array.prototype.forEach.call(blue_switches, (item, i)=>{
 		var actual_switch = new Switchery(item, {
-			color: '#025df0'
+			color: '#17a2b8'
 		});
 	});
 	
 	Array.prototype.forEach.call(green_switches, (item, i)=>{
 		var actual_switch = new Switchery(item, {
-			color: '#0a8a25'
+			color: '#20c997'
 		});
 	});
 	
