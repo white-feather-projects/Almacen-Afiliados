@@ -1,3 +1,57 @@
 .cardlimit .card-block{
 	height: 332px;
 }
+
+/* Tarjetas por Colores */
+
+	/* Red Card */
+	.redCard .card-footer{
+		background: #fc2d2d;
+		color: white;
+	}
+	
+	.redCard .card-footer p{
+		font-size: 20px;
+		letter-spacing: 2px;
+	}
+	
+	.redCard .card-block{
+		border: 1px solid #fc2d2d;
+	}
+	/* Red Card */
+	
+	
+	/* Blue Card */
+	.blueCard .card-footer{
+		background: #025df0;
+		color: white;
+	}
+	
+	.blueCard .card-footer p{
+		font-size: 20px;
+		letter-spacing: 2px;
+	}
+	
+	.blueCard .card-block{
+		border: 1px solid #025df0;
+	}
+	/* Blue Card */
+	
+	
+	/* Green Card */
+	.greenCard .card-footer{
+		background: #0a8a25;
+		color: white;
+	}
+	
+	.greenCard .card-footer p{
+		font-size: 20px;
+		letter-spacing: 2px;
+	}
+	
+	.greenCard .card-block{
+		border: 1px solid #0a8a25;
+	}
+	/* Green Card */
+
+/* Tarjetas por Colores */
