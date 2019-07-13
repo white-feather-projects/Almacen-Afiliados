@@ -378,7 +378,7 @@ public class LoginController{
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	
 	@RequestMapping(value = "/menu_afiliacion_ejecutivo", method = RequestMethod.GET)
-	public String menu_afiliacion(Model model) {
+	public String menu_afiliacion_ejecutivo(Model model) {
 		
 		model.addAttribute("name", name);
 		model.addAttribute("link", link);
@@ -529,6 +529,13 @@ public class LoginController{
 		return "templates.afiliacion/pre_carga_operador";
 	}
 	
+	@RequestMapping(value = "/menu_afiliacion", method = RequestMethod.GET)
+	public String menu_afiliacion(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/menu_afiliacion";
+	}
 	
 	
 	

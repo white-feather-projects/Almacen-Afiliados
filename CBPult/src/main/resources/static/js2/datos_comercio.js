@@ -2,17 +2,17 @@
 
 window.addEventListener('load', function(){
 	
-	var nombre_empresa = document.querySelector("#nombre_empresa");
-	var tipo_identificacion = document.querySelector("#tipo_identificacion");
-	var identificacion = document.querySelector("#identificacion");
-	var correo = document.querySelector("#correo");
-	var nombre_comercial = document.querySelector("#nombre_comercial");
-	var numero_cuenta_asociado = document.querySelector("#numero_cuenta_asociado");
-	var actividad_comercial = document.querySelector("#actividad_comercial");
-	var horario_comercio = document.querySelector("#horario_comercio");
-	var telefono_local = document.querySelector("#telefono_local");
-	var telefono_alternativo = document.querySelector("#telefono_alternativo");
-	var afiliado = document.querySelector("#afiliado");
+	var nombre_empresa = document.querySelector("#nombre_empresa_tab2");
+	var tipo_identificacion = document.querySelector("#tipo_identificacion_tab2");
+	var identificacion = document.querySelector("#identificacion_tab2");
+	var correo = document.querySelector("#correo_tab2");
+	var nombre_comercial = document.querySelector("#nombre_comercial_tab2");
+	var numero_cuenta_asociado = document.querySelector("#numero_cuenta_asociado_tab2");
+	var actividad_comercial = document.querySelector("#actividad_comercial_tab2");
+	var horario_comercio = document.querySelector("#horario_comercio_tab2");
+	var telefono_local = document.querySelector("#telefono_local_tab2");
+	var telefono_alternativo = document.querySelector("#telefono_alternativo_tab2");
+	var afiliado = document.querySelector("#afiliado_tab2");
 	
 	////////////////////////////////////////////////////////////////////////////////////
 	
@@ -79,12 +79,6 @@ window.addEventListener('load', function(){
 	afiliado.addEventListener('blur', ()=>{
 		console.log("afiliado", afiliado.value);
 	});
-	
-	/////////////////////////////////////////////////////////////////
-	
-	$("#aceptar").on('click', function(){
-		location.href="/representante_legal";
-	})
 
 });
 

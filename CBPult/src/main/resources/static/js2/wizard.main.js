@@ -1,4 +1,4 @@
- var cliente = $('#cliente');
+ 	var cliente = $('#cliente');
     var clientValidator = cliente.validate();
   
     var frmInfo = $('#frmInfo');
@@ -13,10 +13,11 @@
     var divFiles = $('#divFiles');
     var divFilesValidator = divFiles.validate();
 
-    $('#demo').steps({
+    $('#demo').steps({/*
       onChange: function (currentIndex, newIndex, stepDirection) {
         console.log('onChange', currentIndex, newIndex, stepDirection);
         // tab1
+        
    if (currentIndex === 3) {
           if (stepDirection === 'forward') {
             var valid = frmLogin.valid();
@@ -82,7 +83,7 @@
       },
       onFinish: function () {
         alert('Wizard Completed');
-      }
+      }*/
     });
     
     

@@ -2,9 +2,9 @@
 
 window.addEventListener('load', function(){
 	
-	var tipo_pago = document.querySelector("#tipo_pago");
-	var tipo_banco = document.querySelector("#tipo_banco");
-	var comprobante_recibo = document.querySelector("#comprobante_recibo");
+	var tipo_pago = document.querySelector("#tipo_pago_tab7");
+	var tipo_banco = document.querySelector("#tipo_banco_tab7");
+	var comprobante_recibo = document.querySelector("#comprobante_recibo_tab7");
 	
 	///////////////////////////////////////////////////////////////////////
 	
@@ -22,12 +22,6 @@ window.addEventListener('load', function(){
 		console.log("comprobante_recibo", comprobante_recibo.value);
 		soloNumeros(comprobante_recibo);
 	});
-	
-	//////////////////////////////////////////////////////////////////
-	
-	$("#aceptar").on('click', function(){
-		location.href="/carga_archivos_ejecutivo";
-	})
 
 });
 
