@@ -559,7 +559,7 @@ public class LoginController{
 		model.addAttribute("name", name);
 		model.addAttribute("link", link);
 		
-     return "templates.almacen/templates.configuracion/html/configuration_almacen";
+     return "templates.almacen/templates.configuracion/configuration_almacen";
 	}
 	
 	//+////////////// Almacen ///////////////
@@ -570,7 +570,7 @@ public class LoginController{
 			model.addAttribute("name", name);
 			model.addAttribute("link", link);
 			
-	     return "templates.almacen/templates.configuracion/html/almacen_nuevo-editar";
+	     return "templates.almacen/templates.configuracion/almacen_nuevo-editar";
 		}
 		//-////////////// Nuevo/Editar Almacen ///////////////
 		
@@ -580,7 +580,7 @@ public class LoginController{
 			model.addAttribute("name", name);
 			model.addAttribute("link", link);
 			
-		return "templates.almacen/templates.configuracion/html/relacion-almacen_nuevo-editar";
+		return "templates.almacen/templates.configuracion/relacion-almacen_nuevo-editar";
 		}
 		//-////////////// Nuevo/Editar Relacion Almacen ///////////////
 				
@@ -594,7 +594,7 @@ public class LoginController{
 			model.addAttribute("name", name);
 			model.addAttribute("link", link);
 			
-		return "templates.almacen/templates.configuracion/html/zona_nuevo-editar";
+		return "templates.almacen/templates.configuracion/zona_nuevo-editar";
 		}
 		//-////////////// Nuevo/Editar Almacen ///////////////
 		
@@ -604,7 +604,7 @@ public class LoginController{
 			model.addAttribute("name", name);
 			model.addAttribute("link", link);
 			
-		return "templates.almacen/templates.configuracion/html/relacion-zona_nuevo-editar";
+		return "templates.almacen/templates.configuracion/relacion-zona_nuevo-editar";
 		}
 		//-////////////// Nuevo/Editar Relacion Almacen ///////////////
 		
@@ -619,7 +619,7 @@ public class LoginController{
 			model.addAttribute("name", name);
 			model.addAttribute("link", link);
 			
-		return "templates.almacen/templates.configuracion/html/estanteria_nuevo-editar";
+		return "templates.almacen/templates.configuracion/estanteria_nuevo-editar";
 		}
 		//-////////////// Nuevo/Editar Estanteria ///////////////		
 				
