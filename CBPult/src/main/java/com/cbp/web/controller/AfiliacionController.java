@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cbp.web.dao.AfiliacionDAO;
 import com.cbp.web.dto.ClientDTO;
 import com.cbp.web.dto.RespuestaDTO;
+import com.cbp.web.dto.consultaComercioDTO;
 import com.cbp.web.dto.crearComercioDTO;
+import com.cbp3.ws.cbp.service.ConsultaComercioPorIdentificacionComercioWSResponse;
 import com.cbp3.ws.cbp.service.CrearComercioWSResponse;
 
 @Controller
@@ -23,6 +25,17 @@ public class AfiliacionController {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		CrearComercioWSResponse respuesta = new CrearComercioWSResponse();
 		respuesta = afiliacionMethods.crearClienteComercio(crearComercio);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/consultaComercio", produces = { "application/json" })
+	public @ResponseBody ConsultaComercioPorIdentificacionComercioWSResponse consultaComercio(@RequestBody consultaComercioDTO consultaComercio) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ConsultaComercioPorIdentificacionComercioWSResponse respuesta = new ConsultaComercioPorIdentificacionComercioWSResponse();
+		respuesta = afiliacionMethods.consultaComercio(consultaComercio);
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
 	}
