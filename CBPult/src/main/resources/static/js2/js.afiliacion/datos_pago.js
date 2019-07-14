@@ -2,9 +2,9 @@
 
 window.addEventListener('load', function(){
 	
-	var tipo_pago = document.querySelector("#tipo_pago_tab7");
-	var tipo_banco = document.querySelector("#tipo_banco_tab7");
-	var comprobante_recibo = document.querySelector("#comprobante_recibo_tab7");
+	var tipo_pago = document.querySelector("#tipo_pago_tab8");
+	var tipo_banco = document.querySelector("#tipo_banco_tab8");
+	var comprobante_recibo = document.querySelector("#comprobante_recibo_tab8");
 	
 	///////////////////////////////////////////////////////////////////////
 	
@@ -28,7 +28,7 @@ window.addEventListener('load', function(){
 ////////////////////////////////////////////////////
 
 function soloTexto(texto){
-	var patron = /^[A-Za-z\u00C0-\u017F]*$/;
+	var patron = /^[A-Za-z \u00C0-\u017F]*$/;
 	if(texto.value.search(patron)){
 		swal("Solo Texto");
 		texto.value = "";

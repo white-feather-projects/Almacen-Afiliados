@@ -10,6 +10,7 @@ window.addEventListener('load', function(){
 	var codigo_postal = document.querySelector("#codigo_postal_tab5");
 	var localidad = document.querySelector("#localidad_tab5");
 	var nombre_inmueble = document.querySelector("#nombre_inmueble_tab5");
+	var geo_localizacion_tab5 = document.querySelector("#geo_localizacion_tab5");
 	var punto_referencia = document.querySelector("#punto_referencia_tab5");
 	
 	/////////////////////////////////////////////////////////////////////////
@@ -910,6 +911,11 @@ window.addEventListener('load', function(){
 		soloTexto(nombre_inmueble);
 	});
 	
+	geo_localizacion_tab5.addEventListener('blur', ()=>{
+		console.log("geo_localizacion_tab5", geo_localizacion_tab5.value);
+		
+	});
+	
 	punto_referencia.addEventListener('blur', ()=>{
 		console.log("punto_referencia", punto_referencia.value);
 		soloTexto(punto_referencia);
@@ -920,7 +926,7 @@ window.addEventListener('load', function(){
 ////////////////////////////////////////////////////
 
 function soloTexto(texto){
-	var patron = /^[A-Za-z\u00C0-\u017F]*$/;
+	var patron = /^[A-Za-z \u00C0-\u017F]*$/;
 	if(texto.value.search(patron)){
 		swal("Solo Texto");
 		texto.value = "";

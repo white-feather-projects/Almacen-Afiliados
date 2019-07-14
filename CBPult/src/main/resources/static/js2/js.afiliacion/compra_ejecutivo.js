@@ -5,8 +5,7 @@ window.addEventListener('load', function(){
     var nombre_banco = document.querySelector("#nombre_banco_tab3");
     var numero_afiliacion = document.querySelector("#numero_afiliacion_tab3");
     var cantidad_terminales = document.querySelector("#cantidad_terminales_tab3");
-    var cantidad_movistar = document.querySelector("#cantidad_movistar_tab3");
-    var cantidad_digitel = document.querySelector("#cantidad_digitel_tab3");
+    var cantidad_claro = document.querySelector("#cantidad_claro_tab3");
     
     /////////////////////////////////////////////////////////////////////
     
@@ -25,14 +24,9 @@ window.addEventListener('load', function(){
     	
     });
     
-    cantidad_movistar.addEventListener('blur', ()=>{
-    	console.log("cantidad_movistar", cantidad_movistar.value);
-    	soloNumeros(cantidad_movistar);
-    });
-    
-    cantidad_digitel.addEventListener('blur', ()=>{
-    	console.log("cantidad_digitel", cantidad_digitel.value);
-    	soloNumeros(cantidad_digitel);
+    cantidad_claro.addEventListener('blur', ()=>{
+    	console.log("cantidad_claro", cantidad_claro.value);
+    	soloNumeros(cantidad_claro);
     });
     
     //////////////////////////////////////////////////////////////////
@@ -46,7 +40,7 @@ window.addEventListener('load', function(){
 ///////////////////////////////////////////////////////
 
 function soloTexto(texto){
-	var patron = /^[A-Za-z\u00C0-\u017F]*$/;
+	var patron = /^[A-Za-z \u00C0-\u017F]*$/;
 	if(texto.value.search(patron)){
 		swal("Solo Texto");
 		texto.value = "";
