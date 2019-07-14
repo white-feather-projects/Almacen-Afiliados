@@ -6,25 +6,9 @@
         <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
         <script type="text/javascript" th:src="@{/js2/index.js}"></script>
         <script th:src="@{/js2/bandeja_ventas.js}"></script>       
-        <script th:src="@{/js-almacen/almacen_nuevo-editar.js}"></script>
-        
-        <style>
-    		.botonera .btn{
-    			width: 300px;
-    			font-size: 25px;
-    			
-    		}
-    		
-    		.botonera2 .btn{
-    			margin-left: 30px;
-    			float: right;
-    		}
-    	</style>
-    	<style type="text/css">
-    		.card-block{
-    			border: 2px solid #01a9ac;
-    		}
-    	</style>
+	
+        <link rel="stylesheet" type="text/css" th:href="@{/css2/css.almacen/GeneralForm.css}">
+
     </head>
     <body themebg-pattern="pattern4">
     		<!--/////////////////////////////////////////////////-->
@@ -99,14 +83,14 @@
                                                         		<div class="col-sm-6">
 	                                                                <label class="col-sm-12 col-form-label">Código de Almacén</label>
 	                                                                <div class="col-sm-12">
-	                                                                    <input type="text" id="txtCodigoActual_relacion-almacen" class="form-control" placeholder="Codigo" disabled="false">
+	                                                                    <input type="text" id="txtCodigoActual_relacion-almacen" class="form-control" placeholder="Codigo" disabled>
 	                                                                </div>
                                                             	</div>
                                                             
 	                                                            <div class="col-sm-6 mobile-inputs">
 	                                                                <label class="col-sm-12 col-form-label">Tipo Almacén</label>
 	                                                                <div class="col-sm-12">
-		                                                                <select name="select" id="cboxTipoActual_relacion-almacen" class="form-control" disabled="false">
+		                                                                <select name="select" id="cboxTipoActual_relacion-almacen" class="form-control" disabled>
 		                                                                    <option value="Almacén">Almacén</option>
 		                                                                    <option value="Laboratorio">Laboratorio</option>
 		                                                                    <option value="Sucursal">Sucursal</option>
@@ -117,21 +101,21 @@
 	                                                            <div class="col-sm-12 mobile-inputs">
 	                                                            	<label class="col-sm-12 col-form-label">Nombre Almacén</label>
 	                                                            	<div class="col-sm-12">
-	                                                                    <input type="text" id="txtNameActual_relacion-almacen" class="form-control" placeholder="Nombre del Almacén" disabled="false">
+	                                                                    <input type="text" id="txtNameActual_relacion-almacen" class="form-control" placeholder="Nombre del Almacén" disabled>
 	                                                                </div>
 	                                                            </div>	
 	                                                        	
 	                                                        	<div class="col-sm-12">
 	                                                                <label class="col-sm-12 col-form-label">Ubicación (Dirección)</label>
 	                                                                <div class="col-sm-12">
-	                                                                    <input type="text" id="txtUbicacionActual_relacion-almacen" class="form-control" placeholder="Dirección del Almacén" disabled="false">
+	                                                                    <input type="text" id="txtUbicacionActual_relacion-almacen" class="form-control" placeholder="Dirección del Almacén" disabled>
 	                                                                </div>
 	                                                            </div>
 	                                                            
 	                                                            <div class="col-sm-12 mobile-inputs">
 	                                                                <label class="col-sm-12 col-form-label">Gerente de Sucursal</label>
 	                                                                <div class="col-sm-12">
-		                                                                <select name="select" id="txtGerenteActual_relacion-almacen" class="form-control" disabled="false">
+		                                                                <select name="select" id="txtGerenteActual_relacion-almacen" class="form-control" disabled>
 		                                                                    <option value="Elon Musk">Elon Musk</option>
 		                                                                    <option value="Einstein">Einstein</option>
 		                                                                    <option value="Jack Ma">Jack Ma</option>
@@ -164,14 +148,14 @@
                                                         		<div class="col-sm-6">
 	                                                                <label class="col-sm-12 col-form-label">Código de Almacén</label>
 	                                                                <div class="col-sm-12">
-	                                                                    <input type="text" id="txtCodigoDest_relacion-almacen" class="form-control" placeholder="Codigo" disabled="false">
+	                                                                    <input type="text" id="txtCodigoDest_relacion-almacen" class="form-control" placeholder="Codigo" disabled>
 	                                                                </div>
                                                             	</div>
                                                             
 	                                                            <div class="col-sm-6 mobile-inputs">
 	                                                                <label class="col-sm-12 col-form-label">Tipo Almacén</label>
 	                                                                <div class="col-sm-12">
-		                                                                <select name="select" id="cboxTipoDest_relacion-almacen" class="form-control" disabled="false">
+		                                                                <select name="select" id="cboxTipoDest_relacion-almacen" class="form-control" disabled>
 		                                                                    <option value="Almacén">Almacén</option>
 		                                                                    <option value="Laboratorio">Laboratorio</option>
 		                                                                    <option value="Sucursal">Sucursal</option>
@@ -182,21 +166,21 @@
 	                                                            <div class="col-sm-12 mobile-inputs">
 	                                                            	<label class="col-sm-12 col-form-label">Nombre Almacén</label>
 	                                                            	<div class="col-sm-12">
-	                                                                    <input type="text" id="txtNameDest_relacion-almacen" class="form-control" placeholder="Nombre del Almacén" disabled="false">
+	                                                                    <input type="text" id="txtNameDest_relacion-almacen" class="form-control" placeholder="Nombre del Almacén" disabled>
 	                                                                </div>
 	                                                            </div>	
 	                                                        	
 	                                                        	<div class="col-sm-12">
 	                                                                <label class="col-sm-12 col-form-label">Ubicación (Dirección)</label>
 	                                                                <div class="col-sm-12">
-	                                                                    <input type="text" id="txtUbicacionDest_relacion-almacen" class="form-control" placeholder="Dirección del Almacén" disabled="false">
+	                                                                    <input type="text" id="txtUbicacionDest_relacion-almacen" class="form-control" placeholder="Dirección del Almacén" disabled>
 	                                                                </div>
 	                                                            </div>
 	                                                            
 	                                                            <div class="col-sm-12 mobile-inputs">
 	                                                                <label class="col-sm-12 col-form-label">Gerente de Sucursal</label>
 	                                                                <div class="col-sm-12">
-		                                                                <select name="select" id="cboxGerenteDest_relacion-almacen" class="form-control" disabled="false">		                                                                    
+		                                                                <select name="select" id="cboxGerenteDest_relacion-almacen" class="form-control" disabled>		                                                                    
 		                                                                    <option value="Einstein">Einstein</option>
 		                                                                    <option value="Elon Musk">Elon Musk</option>
 		                                                                    <option value="Jack Ma">Jack Ma</option>

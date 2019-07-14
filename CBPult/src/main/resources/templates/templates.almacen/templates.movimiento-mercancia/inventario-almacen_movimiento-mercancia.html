@@ -27,13 +27,9 @@
         <script th:src="@{/js2/bandeja_ventas.js}"></script>       
         <script th:src="@{/js-almacen/almacen_nuevo-editar.js}"></script>
         
-        <link rel="stylesheet" type="text/css" th:href="@{/css-almacen-movimiento/cards.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css2/css.almacen/GeneralForm.css}">
         
-        <style type="text/css">
-    		.card-block{
-    			border: 2px solid #01a9ac;
-    		}
-    	</style>
+        
     </head>
     <body themebg-pattern="pattern4">
     		<!--/////////////////////////////////////////////////-->
@@ -92,7 +88,7 @@
                                             	<div class="col-sm-4"> 
                                             	                                           
                                                 	<div class="card">                                                   
-                                                    	<div class="card-block">
+                                                    	<div class="card-block cardlimit">
                                                     		<!-- Titulo de Card -->
                                                         	<h4 class="sub-title">Información de Almacén</h4>
                                                         	
@@ -103,7 +99,7 @@
                                                         		<div class="col-sm-6">
 	                                                                <label class="col-sm-12 col-form-label">Código de Almacén</label>
 	                                                                <div class="col-sm-12">
-	                                                                    <input type="text" id="txtCodigo_almacen" class="form-control" placeholder="Codigo" disabled="false">
+	                                                                    <input type="text" id="txtCodigo_almacen" class="form-control" placeholder="Codigo" disabled>
 	                                                                </div>
                                                             	</div>
                                                             
@@ -128,7 +124,7 @@
 	                                                        	<div class="col-sm-12">
 	                                                                <label class="col-sm-12 col-form-label">Ubicación (Dirección)</label>
 	                                                                <div class="col-sm-12">
-	                                                                    <input type="text" class="form-control" placeholder="" id="primer_apellido">
+	                                                                    <input type="text" class="form-control" id="txtUbicacion_almacen">
 	                                                                </div>
 	                                                            </div>
 	                                                            
@@ -157,7 +153,7 @@
                                             	<div class="col-sm-8"> 
                                             	                                           
                                                 	<div class="card">                                                   
-                                                    	<div class="card-block">
+                                                    	<div class="card-block cardlimit">
                                                     		<!-- Titulo de Card -->
                                                         	<h4 class="sub-title">Almacenes Relacionados</h4>
                                                         	

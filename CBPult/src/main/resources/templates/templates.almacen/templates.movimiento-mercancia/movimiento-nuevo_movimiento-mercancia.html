@@ -33,24 +33,7 @@
         
         <script th:src="@{/js-almacen/zona_nuevo-editar.js}"></script>
         
-        <style>
-    		.botonera .btn{
-    			width: 300px;
-    			font-size: 25px;
-    			
-    		}
-    		
-    		.botonera2 .btn{
-    			margin-left: 30px;
-    			float: right;
-    		}
-    	</style>
-    	
-    	<style type="text/css">
-    		.card-block{
-    			border: 2px solid #01a9ac;
-    		}
-    	</style>
+        <link rel="stylesheet" type="text/css" th:href="@{/css2/css.almacen/GeneralForm.css}">
     </head>
     <body themebg-pattern="pattern4">
     		<!--/////////////////////////////////////////////////-->
@@ -99,11 +82,11 @@
                                             
                                             	<div class="col-sm-12 botonera botonera2" style="margin-bottom:30px">                                            		
                                             		
-                                           			<button type="button" id="btnGuardar_estanteria" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/zona_nuevo-editar'; alert('Estanteria Guardada')">
+                                           			<button type="button" id="btnGuardar_movimiento" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/zona_nuevo-editar'; alert('Estanteria Guardada')">
 			                                   			Guardar
 			                                   		</button>                                            			                                       		
 		                                       		
-			                                   		<button type="button" id="btnCancelar_estanteria" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/zona_nuevo-editar'; alert('Estanteria Cancelada');">
+			                                   		<button type="button" id="btnCancelar_movimiento" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/zona_nuevo-editar'; alert('Estanteria Cancelada');">
 			                                   			Cancelar
 			                                   		</button>
 		                                   		
@@ -129,7 +112,7 @@
 	                                                        			<div class="col-sm-12">
 			                                                                <label class="col-sm-12 col-form-label">Código del Movimiento</label>
 			                                                                <div class="col-sm-12">
-			                                                                    <input type="text" id="txtCodigo_estanteria" class="form-control" placeholder="Codigo" disabled="false">
+			                                                                    <input type="text" id="txtCodigo_movimiento" class="form-control" placeholder="Codigo" disabled>
 			                                                                </div>
 		                                                            	</div>	                                                                                                                         
 			                                                            
@@ -137,7 +120,7 @@
 		                                                                <div class="col-sm-12 mobile-inputs">
 			                                                                <label class="col-sm-12 col-form-label">Tipo de Movimiento</label>
 			                                                                <div class="col-sm-12">
-				                                                                <select name="select" id="cboxTipo_almacen" class="form-control">
+				                                                                <select name="select" id="cboxTipo_movimiento" class="form-control">
 				                                                                    <option value="Almacén">Recibo</option>
 				                                                                    <option value="Laboratorio">Despacho</option>
 				                                                                    <option value="Sucursal">Transferencia</option>
@@ -158,14 +141,14 @@
 	                                                            		<div class="col-sm-12">
 			                                                                <label class="col-sm-12 col-form-label">Fecha Movimiento</label>
 			                                                                <div class="col-sm-12">
-			                                                                    <input type="date" id="txtCodigo_estanteria" class="form-control">
+			                                                                    <input type="date" id="txtDate_movimiento" class="form-control">
 			                                                                </div>
 		                                                            	</div>
 		                                                            	
 		                                                            	<div class="col-sm-12">
 			                                                            	<label class="col-sm-12 col-form-label">Encargado de Movimiento</label>
 			                                                                <div class="col-sm-12">
-				                                                                <select name="select" id="cboxEncargado_almacen" class="form-control">
+				                                                                <select name="select" id="cboxEncargado_movimiento" class="form-control">
 				                                                                    <option value="Elon Musk">Elon Musk</option>
 				                                                                    <option value="Einstein">Einstein</option>
 				                                                                    <option value="Jack Ma">Jack Ma</option>
@@ -209,7 +192,7 @@
 	                                                        			<div class="col-sm-12">
 			                                                                <label class="col-sm-12 col-form-label">Código de la Orden</label>
 			                                                                <div class="col-sm-12">
-			                                                                    <input type="text" id="txtCodigo_estanteria" class="form-control" placeholder="Codigo" disabled="false">
+			                                                                    <input type="text" id="txtCodigo_orden" class="form-control" placeholder="Codigo" disabled>
 			                                                                </div>
 		                                                            	</div>	                                                                                                                         
 			                                                            
@@ -217,7 +200,7 @@
 		                                                                <div class="col-sm-12 mobile-inputs">
 			                                                                <label class="col-sm-12 col-form-label">Tipo de Orden</label>
 			                                                                <div class="col-sm-12">
-				                                                                <select name="select" id="cboxTipo_almacen" class="form-control" >
+				                                                                <select name="select" id="cboxTipo_orden" class="form-control" >
 				                                                                    <option>Orden de Compra</option>
 				                                                                    <option>Transferencia</option>
 				                                                                    <option>Orden de Despacho</option>
@@ -237,14 +220,14 @@
 	                                                            		<div class="col-sm-12">
 			                                                                <label class="col-sm-12 col-form-label">Fecha de la Orden</label>
 			                                                                <div class="col-sm-12">
-			                                                                    <input type="date" id="txtCodigo_estanteria" class="form-control">
+			                                                                    <input type="date" id="txtDate_orden" class="form-control">
 			                                                                </div>
 		                                                            	</div>
 		                                                            	
 		                                                            	<div class="col-sm-12">
 			                                                            	<label class="col-sm-12 col-form-label">Encargado de Orden</label>
 			                                                                <div class="col-sm-12">
-				                                                                <select name="select" id="cboxEncargado_almacen" class="form-control">
+				                                                                <select name="select" id="cboxEncargado_movimiento" class="form-control">
 				                                                                    <option value="Elon Musk">Elon Musk</option>
 				                                                                    <option value="Einstein">Einstein</option>
 				                                                                    <option value="Jack Ma">Jack Ma</option>
@@ -283,7 +266,7 @@
                                                         		<div class="col-sm-12">
 	                                                                <label class="col-sm-12 col-form-label">Código de Origen</label>
 	                                                                <div class="col-sm-12">
-	                                                                    <input type="text" id="txtCodigo_zona" class="form-control" placeholder="Codigo" disabled="false">
+	                                                                    <input type="text" id="txtCodigo_zona" class="form-control" placeholder="Codigo" disabled>
 	                                                                </div>
                                                             	</div>
                                                             
@@ -344,7 +327,7 @@
                                                         		<div class="col-sm-12">
 	                                                                <label class="col-sm-12 col-form-label">Código de Destino</label>
 	                                                                <div class="col-sm-12">
-	                                                                    <input type="text" id="txtCodigo_zona" class="form-control" placeholder="Codigo" disabled="false">
+	                                                                    <input type="text" id="txtCodigo_zona" class="form-control" placeholder="Codigo" disabled>
 	                                                                </div>
                                                             	</div>
                                                             
@@ -391,7 +374,7 @@
 	                                            <!-- Card 1 -->
 	                                            
 	                                            <!-- Card 5 -->
-                                            	<div class="col-sm-12"> 
+                                            	<div id="detalle_table" class="col-sm-12"> 
                                             	                                           
                                                 	<div class="card">                                                   
                                                     	<div class="card-block">
@@ -406,9 +389,9 @@
 	                                                           	<div class="col-sm-12">
 	                                                           	
 	                                                           		<div class="sub-title">
-		                                                           		<div class="row">
-			                                                        		<div class="col-sm-1" align="left">																
-																				<a id="btnNuevoAlmacen_config" onclick="alert('Se añadió un nuevo producto al detalle');" style="margin-right: 5px;" title="Nuevo Almacén">
+		                                                           		<div class="row">		                                                           			
+			                                                        		<div  class="col-sm-1" align="left">																
+																				<a id="btnNuevoAlmacen_config" href="#detalle_table" onclick="alert('Se añadió un nuevo producto al detalle');" style="margin-right: 5px;" title="Nuevo Almacén">
 																					<i class="fa fa-plus-square agregaryasignar" style="font-size: 50px"></i>
 																				</a>
 																			</div>
@@ -518,7 +501,7 @@
 	                                            <div class="col-sm-6 mobile-inputs">
                                                 	 <div class="row">
                                                          <div class="col-sm-2"><label class="col-form-label" style="font-size: 25px">Imprimir</label></div>
-                                                         <div class="col-sm-2" style="display: flex;justify-content: center;align-items: center;"><input type="checkbox" class="js-switch-blue" checked="" data-switchery="true" style="display: none;" id="cboxNameEmpresa_PreCarga"></div>
+                                                         <div class="col-sm-2" style="display: flex;justify-content: center;align-items: center;"><input type="checkbox" class="js-switch-blue" checked data-switchery="true" style="display: none;" id="cboxNameEmpresa_PreCarga"></div>
                                                      </div>
                                                 </div>	
 	                                            
@@ -586,6 +569,6 @@
         <script type="text/javascript" th:src="@{/js/switchery.min.js}"></script>
         <script type="text/javascript" th:src="@{/js/bootstrap-tagsinput.js}"></script>
         <!-- <script type="text/javascript" th:src="@{/js/swithces.js}"></script> -->
-        <script type="text/javascript" th:src="@{/js-almacen-afiliados/switches-johan.js}"></script>
+        <script type="text/javascript" th:src="@{/js2/switches-johan.js}"></script>
     </body>
 </html>

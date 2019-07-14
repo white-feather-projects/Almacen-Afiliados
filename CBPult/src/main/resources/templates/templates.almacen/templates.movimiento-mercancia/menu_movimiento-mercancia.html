@@ -26,28 +26,8 @@
         <script type="text/javascript" th:src="@{/js2/index.js}"></script>
         <script th:src="@{/js2/bandeja_ventas.js}"></script>
         
-        <script th:src="@{/js/configuration_almacen.js}"></script>
-        
-        <link rel="stylesheet" type="text/css" th:href="@{/css-almacen-movimiento/cards.css}">
-        
-        
-        <style>
-    		.botonera .btn{
-    			width: 300px;
-    			font-size: 25px;
-    			
-    		}
-    		
-    		.botonera2 .btn{
-    			margin-left: 30px;
-    			float: right;
-    		}
-    	</style>
-    	<style type="text/css">
-    		.card-block{
-    			border: 2px solid #01a9ac;
-    		}
-    	</style>
+        <link rel="stylesheet" type="text/css" th:href="@{/css2/css.almacen/GeneralForm.css}">
+            	
     </head>
     <body themebg-pattern="pattern4">
     		<!--/////////////////////////////////////////////////-->
@@ -81,7 +61,8 @@
                                                 <div class="col-lg-8">
                                                     <div class="page-header-title">
                                                         <div class="d-inline">
-                                                            <h4>Movimento de Mercancia</h4>
+                                                            <h2>Movimento de Mercancia</h2>
+                                                            <span style="font-size:20px">Gestión de <code style="font-size:20px">Inventario y Movimientos de Mercancia</code></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -95,7 +76,7 @@
                                             
                                             	<div class="col-sm-12 botonera botonera2" style="margin-bottom:30px">                                            		
                                             		
-		                                  			<button type="button" id="btnGuardar_almacen" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/inventario_general';">
+		                                  			<button type="button" id="btnInventarioGeneral" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/inventario_general';">
 		                                   				Inventario General
 			                                   		</button>
 			                                   				                                       		
@@ -137,8 +118,8 @@
 					                                                            	<td>Almacén</td>
 					                                                            	<td>Elon Musk</td>
 					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/inventario_almacen'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/brows_browsing_find_search_seo_web_zoom_icon_123196.ico}" width="30px">
+					                                                            		<a class="btnConsultar_almacen" onclick="location.href='/inventario_almacen'">
+					                                                            			<img alt="Consultar" th:src="@{/img2/eye_on_see_show_view_vision_watch_icon_123215.ico}" width="30px">
 					                                                            		</a>					                                                            		
 					                                                            	</td>
 					                                                            </tr>
@@ -149,8 +130,8 @@
 					                                                            	<td>Laboratorio</td>
 					                                                            	<td>Javier Murillo</td>
 					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/inventario_almacen'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/brows_browsing_find_search_seo_web_zoom_icon_123196.ico}" width="30px">
+					                                                            		<a class="btnConsultar_almacen" onclick="location.href='/inventario_almacen'">
+					                                                            			<img alt="Consultar" th:src="@{/img2/eye_on_see_show_view_vision_watch_icon_123215.ico}" width="30px">
 					                                                            		</a>					                                                            		
 					                                                            	</td>					                                                           
 					                                                            </tr>
@@ -161,8 +142,8 @@
 					                                                            	<td>Almacén / Técnico</td>
 					                                                            	<td>Carlos Posada</td>
 					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/inventario_almacen'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/brows_browsing_find_search_seo_web_zoom_icon_123196.ico}" width="30px">
+					                                                            		<a class="btnConsultar_almacen" onclick="location.href='/inventario_almacen'">
+					                                                            			<img alt="Consultar" th:src="@{/img2/eye_on_see_show_view_vision_watch_icon_123215.ico}" width="30px">
 					                                                            		</a>					                                                            		
 					                                                            	</td>
 					                                                            </tr>
@@ -173,8 +154,8 @@
 					                                                            	<td>Almacén / Técnico</td>
 					                                                            	<td>Jhon Ladurne</td>
 					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/inventario_almacen'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/brows_browsing_find_search_seo_web_zoom_icon_123196.ico}" width="30px">
+					                                                            		<a class="btnConsultar_almacen" onclick="location.href='/inventario_almacen'">
+					                                                            			<img alt="Consultar" th:src="@{/img2/eye_on_see_show_view_vision_watch_icon_123215.ico}" width="30px">
 					                                                            		</a>					                                                            		
 					                                                            	</td>
 					                                                            </tr>
