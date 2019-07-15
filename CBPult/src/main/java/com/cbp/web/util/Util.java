@@ -165,7 +165,7 @@ public class Util {
         Properties prop = new Properties();
         String valueProperties = "";
         try {
-        	is = new FileInputStream("c:\\Configuracion\\configuracion.properties");
+        	is = new FileInputStream("c:\\confPropertiesCBP\\configuracion.properties");
             //is = new FileInputStream("/home/confPropertiesCBP/configuracion.properties");
             prop.load(is);
             valueProperties = prop.getProperty(val);

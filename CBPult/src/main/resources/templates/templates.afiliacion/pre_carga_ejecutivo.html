@@ -7,7 +7,7 @@
 	>
     <head>
 		<th:block th:replace="fragments/header :: headlayout"></th:block>
-        <script type="text/javascript" src="../js2/pre_carga_ejecutivo.js"></script>
+        <script type="text/javascript" src="../js2/js.afiliacion/pre_carga_ejecutivo.js"></script>
      </head>
     <body themebg-pattern="pattern4">
          	<!--/////////////////////////////////////////////////-->
@@ -48,38 +48,96 @@
                                                         <div class="card-block">
                                                             <h4 class="sub-title">Pre-Carga - Ejecutivo de Ventas</h4>
                                                             <div class="row col-sm-12">
-	                                                            <div class="col-sm-6 mx-auto">
+	                                                            <div class="col-sm-4">
 	                                                            	<form id="miform">
 		                                                                <div class="form-group row">
 		                                                                    <div class="col-sm-12">
 		                                                                    	<div class="col-sm-12">
-		                                                                    		<label>Identificación: </label>
+		                                                                    		<label>Tipo Identificación(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="identificacion">
+																					<select name="select" id="tipo_identificacion" class="form-control">
+																						<option value="RIF">RIF</option>
+		                                                                                <option value="C.I.">C.I.</option>
+		                                                                                <option value="Pasaporte">Pasaporte</option>
+		                                                                                <option value ="Cedula de Persona Jurídica">Cedula de Persona Jurídica</option>
+                                                                        			</select>
 																				</div>
 																				
-																				<i class="feather text-primary f-60 p-t-15 p-b-20 d-block"></i>
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
-																				<div class="col-sm-12 text-center">
-																					<button type="button" id="aceptar_1" class="btn btn-primary btn-md waves-effect text-center mb-20">
-		                                                                            	Aceptar
-		                                                                        	</button>
+																				<div class="col-sm-12">
+		                                                                    		<label>Provincia(*): </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<select name="select" id="provincia" class="form-control">
+																						<option value="provincia">provincia</option>
+		                                                                                
+                                                                        			</select>
 																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+		                                                                    		<label>Ciudad(*): </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="ciudad"/>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+		                                                                    		<label>Punto de referencia(*): </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="punto_de_referencia"/>
+																				</div>
+																				
 		                                                                    </div>
 		                                                                </div>
 		                                                            </form>
 	                                                            </div>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                        <div class="card-block">
-                                                            <h4 class="sub-title">Detalle</h4>
-                                                            <div class="row col-sm-12">
-	                                                            <div class="col-sm-12">
+	                                                            <div class="col-sm-4">
 	                                                            	<form id="miform">
 		                                                                <div class="form-group row">
-		                                                                    <div class="col-sm-6">
+		                                                                    <div class="col-sm-12">
+		                                                                    	<div class="col-sm-12">
+		                                                                    		<label>Documento de Identidad(*): </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="documento"/>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+		                                                                    		<label>Canton(*): </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<select name="select" id="canton" class="form-control">
+																						<option value="canton">canton</option>
+		                                                                                
+                                                                        			</select>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+		                                                                    		<label>Urbanización(*): </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="urbanizacion"/>
+																				</div>
+																				
+		                                                                    </div>
+		                                                                </div>
+		                                                            </form>
+	                                                            </div>
+	                                                            <div class="col-sm-4">
+	                                                            	<form id="miform">
+		                                                                <div class="form-group row">
+		                                                                    <div class="col-sm-12">
 		                                                                    	<div class="col-sm-12">
 		                                                                    		<label>Nombre de la Empresa: </label>
 		                                                                    	</div>
@@ -90,52 +148,120 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-																					<label>Identificación: </label>
-																				</div>
+		                                                                    		<label>Distrito(*): </label>
+		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="identificacion2"/>
+																					<select name="select" id="distrito" class="form-control">
+																						<option value="distrito">distrito</option>
+		                                                                                
+                                                                        			</select>
 																				</div>
 																				
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-																					<label>Numero de telefono de Contacto: </label>
-																				</div>
+		                                                                    		<label>Geo Localización(*): </label>
+		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="numero_contacto"/>
+																					<input type="text" class="form-control" placeholder="" id="geo_localizacion"/>
 																				</div>
 																				
 		                                                                    </div>
-		                                                                    <div class="col-sm-6">
-																				<div class="col-sm-12">
-		                                                                    		<label>Tipo Identificación: </label>
+		                                                                </div>
+		                                                            </form>
+	                                                            </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        <div class="card-block">
+                                                            <h4 class="sub-title">Datos de Persona Contacto</h4>
+                                                            <div class="row col-sm-12">
+	                                                            <div class="col-sm-12">
+	                                                            	<form id="miform">
+		                                                                <div class="form-group row">
+		                                                                    <div class="col-sm-4">
+		                                                                    	<div class="col-sm-12">
+		                                                                    		<label>Tipo Identificación(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<select name="select" id="tipo_identificacion" class="form-control">
+																					<select name="select" id="tipo_identificacion2" class="form-control">
 																						<option value="RIF">RIF</option>
 		                                                                                <option value="C.I.">C.I.</option>
 		                                                                                <option value="Pasaporte">Pasaporte</option>
+		                                                                                <option value ="Cedula de Persona Jurídica">Cedula de Persona Jurídica</option>
                                                                         			</select>
 																				</div>
 																				
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-																					<label>Correo electronico: </label>
+																					<label>Primer nombre(*): </label>
 																				</div>
 																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="correo_electronico"/>
+																					<input type="text" class="form-control" placeholder="" id="primer_nombre"/>
 																				</div>
 																				
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Ubicación Geografica: </label>
+																					<label>Primer apellido: </label>
+																				</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="primer_apellido"/>
+																				</div>
+																				
+		                                                                    </div>
+		                                                                    <div class="col-sm-4">
+																				<div class="col-sm-12">
+		                                                                    		<label>Documento de identidad(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<select name="select" id="tipo_geografia" class="form-control">
-																						<option value="Geografica 1">Geografica 1</option>
-                                                                        			</select>
+																					<input type="text" class="form-control" placeholder="" id="documento2"/>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+																					<label>Segundo nombre: </label>
+																				</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="segundo_nombre"/>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+		                                                                    		<label>Segundo apellido: </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="segundo_apellido"/>
+																				</div>
+																				
+		                                                                    </div>
+		                                                                    <div class="col-sm-4">
+																				<div class="col-sm-12">
+		                                                                    		<label>Telefono Celular: </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="telefono_celular"/>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+																					<label>Telefono Local: </label>
+																				</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="telefono_local"/>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+		                                                                    		<label>Correo Electronico: </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="correo_electronico"/>
 																				</div>
 																				
 		                                                                    </div>

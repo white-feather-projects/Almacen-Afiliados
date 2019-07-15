@@ -1731,39 +1731,4 @@ public class InformacionAdicionalClienteDTO {
         this.ultimoSueldo = value;
     }
 
-	@Override
-	public String toString() {
-		return "InformacionAdicionalClienteDTO [actividadEmpresa=" + actividadEmpresa + ", antiguedad=" + antiguedad
-				+ ", apellidos=" + apellidos + ", banco=" + banco + ", bancoEmisor=" + bancoEmisor + ", cantonTrabajo="
-				+ cantonTrabajo + ", cantonVivienda=" + cantonVivienda + ", cargo=" + cargo + ", cargoOtraEmpresa="
-				+ cargoOtraEmpresa + ", categoriOcuId=" + categoriOcuId + ", channelRequest=" + channelRequest
-				+ ", ciudad=" + ciudad + ", clientBirthday=" + clientBirthday + ", clientCellPhone=" + clientCellPhone
-				+ ", clientCivilStatus=" + clientCivilStatus + ", clientDocumentId=" + clientDocumentId
-				+ ", clientEmail=" + clientEmail + ", clientFirstName=" + clientFirstName + ", clientGender="
-				+ clientGender + ", clientHomePhone=" + clientHomePhone + ", clientLastName=" + clientLastName
-				+ ", clientNationality=" + clientNationality + ", clientPreaprovedAmount=" + clientPreaprovedAmount
-				+ ", clientProfession=" + clientProfession + ", clientSurname=" + clientSurname + ", clientTypeId="
-				+ clientTypeId + ", codPostal=" + codPostal + ", comentariosPersonaExpuesta="
-				+ comentariosPersonaExpuesta + ", ctaAhorro=" + ctaAhorro + ", ctaCorriente=" + ctaCorriente
-				+ ", cuotaMensual=" + cuotaMensual + ", distritoTrabajo=" + distritoTrabajo + ", distritoVivienda="
-				+ distritoVivienda + ", documentsBurotSupport=" + documentsBurotSupport + ", documentsCreditSupport="
-				+ documentsCreditSupport + ", email=" + email + ", emailReferencia=" + emailReferencia
-				+ ", fileFinantialInformationName=" + fileFinantialInformationName + ", filePersonalInformationName="
-				+ filePersonalInformationName + ", genero=" + genero + ", idClient=" + idClient + ", idDocument="
-				+ idDocument + ", idReferencia=" + idReferencia + ", idTrabajo=" + idTrabajo + ", idVivienda="
-				+ idVivienda + ", nombreEmpresa=" + nombreEmpresa + ", nombreOtraEmpresa=" + nombreOtraEmpresa
-				+ ", nombreUsuarioModifica=" + nombreUsuarioModifica + ", numeroDocumento=" + numeroDocumento
-				+ ", paisId=" + paisId + ", personaExpuestaPoliticamente=" + personaExpuestaPoliticamente
-				+ ", primerNombre=" + primerNombre + ", provinciaTrabajo=" + provinciaTrabajo + ", provinciaVivienda="
-				+ provinciaVivienda + ", ptoReferencia=" + ptoReferencia + ", sector=" + sector + ", segundoNombre="
-				+ segundoNombre + ", sueldoMensual=" + sueldoMensual + ", tdc=" + tdc + ", telefonoCelular="
-				+ telefonoCelular + ", telefonoEmpresa=" + telefonoEmpresa + ", telefonoFijo=" + telefonoFijo
-				+ ", tenenciaVivienda=" + tenenciaVivienda + ", tipoDocumento=" + tipoDocumento + ", ultimoSueldo="
-				+ ultimoSueldo + "]";
-	}
-
-	
-    
-    
-
 }
