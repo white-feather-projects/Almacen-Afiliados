@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:security="http://www.springframework.org/security/tags" lang="es"
+	class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"
+	>
+    <head>
+		<th:block th:replace="fragments/header :: headlayout"></th:block>
+ <script type="text/javascript" src="../js2/editPurchaceOrder.js"></script>
+  </head>
+  
+    <body themebg-pattern="pattern4">
+<!--/////////////////////////////////////////////////-->
+            <th:block th:replace="fragments/theme_loader :: theme_loader"></th:block>
+<!--/////////////////////////////////////////////////-->
+            
+        <div id="pcoded" class="pcoded iscollapsed" nav-type="st6" theme-layout="vertical" vertical-placement="left" vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded" vertical-effect="shrink" vnavigation-view="view1" fream-type="theme1" sidebar-img="false" sidebar-img-type="img1" layout-type="light">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+<!--/////////////////////////////////////////////////-->
+        <th:block th:replace="fragments/nav :: nav_notification"></th:block>
+<!--/////////////////////////////////////////////////-->
+        <div id="sidebar" class="users p-chat-user showChat"></div>                                        
+        <div id="showChatContent" class="showChat_inner"></div>
+        <div class="pcoded-main-container" style="margin-top: 56px;">
+        <div class="pcoded-wrapper">
+        <nav class="pcoded-navbar" navbar-theme="theme1" active-item-theme="theme1" sub-item-theme="theme2" active-item-style="style0" pcoded-navbar-position="fixed">
+        <div class="pcoded-inner-navbar main-menu mCustomScrollbar _mCS_1" style="height: calc(100% - 80px);">
+        <div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical_horizontal mCSB_inside" tabindex="0">
+                                    
+        </div>
+        </div>
+        </nav>
+        
+         <div class="pcoded-content">
+         <div class="pcoded-inner-content">                                
+         <div class="main-body">
+         <div class="page-wrapper">                                    
+         <div class="page-header">
+         <div class="row align-items-end">
+         <div class="col-lg-8">
+         <div class="page-header-title">
+         <div class="d-inline">
+         <input type="hidden" id="valorMaximo" th:value="${valorMaximo}">
+	     <input type="hidden" id="valorMinimo" th:value="${valorMinimo}">
+         <h4>Editar solicitud Pedido compras</h4>
+         </div>
+         </div>
+         </div>
+         </div>
+         </div>                      
+                   
+         <div class="page-body">
+         <div class="row">
+         <div class="col-sm-12">                                            
+         <div class="card">
+         <div class="card-header">
+         <h5></h5>
+         <div class="card-header-right">
+         <i class="icofont icofont-spinner-alt-5"></i>
+         </div>
+         </div>
+         <div class="card-block">
+         
+         <h4 class="sub-title">Compra de tarjetas</h4>
+         
+         <form id="createPurchaseOrden">
+														
+         <div class="row">
+													
+         <div class="col-sm-6">
+         <label class="col-sm-12 col-form-label">Lote Anterior</label>
+         <div class="col-sm-12">
+         <input type="text" class="form-control" placeholder="" id="anteriorLote"  readonly>
+         </div>
+         </div>
+         
+		 <div class="col-sm-6">
+         <label class="col-sm-12 col-form-label">Lote Número</label>
+         <div class="col-sm-12">
+         <input type="text" class="form-control" placeholder="" id="lote" readonly>
+         </div>
+         </div>
+         
+	     </div>
+													
+													
+<!--//////////////////////////////////////////////-->
+
+         <div class="row">
+																
+	     <div class="col-sm-6">
+         <label class="col-sm-12 col-form-label">Cantidad de tarjetas Solicitadas </label>
+         <div class="col-sm-12">
+         <input type="text" class="form-control" placeholder="" id="cantidadTarjetasAnterior" readonly>
+         </div>
+         </div>
+		 <div class="col-sm-6">
+         <label class="col-sm-12 col-form-label">Cantidad de tarjetas a solicitar(*)</label>
+         <div class="col-sm-12">
+         <input type="text" class="form-control" placeholder="" id="cantidadTarjetasSolicitar">
+         </div>
+         </div>
+         </div>
+         
+ <!--//////////////////////////////////////////////-->
+ 
+		<div class="row">
+															 
+		<div class="col-sm-6 mobile-inputs">
+        <label class="col-sm-12 col-form-label">Tipo de Producto(*)</label>
+        <div class="col-sm-12">
+        <select name="select"  id="productoAnterior" class="form-control" readonly>
+ 
+        </select>
+        </div>
+        </div>
+																
+														
+		<div class="col-sm-6 mobile-inputs">
+        <label class="col-sm-12 col-form-label">Tipo de Producto(*)</label>
+        <div class="col-sm-12">
+        <select name="select" id="producto"  class="form-control product" readonly>
+       
+        </select>
+        </div>
+        </div>
+        </div>
+                                                            
+<!--//////////////////////////////////////////////-->        
+                                                                                                               
+      <div class="row">
+															
+															
+	<div class="col-sm-6 mobile-inputs">
+    <label class="col-sm-12 col-form-label">Descripción de orden</label>
+    <div class="col-sm-12">
+    <textarea rows="4" cols="50" id="descripcionAnterior" class="form-control" readonly></textarea>
+    </div>
+    </div>
+    <div class="col-sm-6 mobile-inputs">
+    <label class="col-sm-12 col-form-label">Descripción de orden</label>
+    <div class="col-sm-12">
+    <textarea rows="4" cols="50" id="descripcionOrden" class="form-control" readonly></textarea>
+    </div>
+    </div>
+    </div>
+                                                                                                                          
+         															
+<!--//////////////////////////////////////////////-->
+															
+    <div class="row">
+															 
+	<div class="col-sm-6 mobile-inputs">
+    <label class="col-sm-12 col-form-label">Fecha</label>
+    <div class="col-sm-12">
+    <input type="text"  id="fecha" readonly class="form-control">
+    </div>
+    </div>
+	</div>
+	
+<!--//////////////////////////////////////////////-->	                                                                                               
+
+		</form>														
+																				
+   <!--//////////////////////////////////////////////-->                                                   
+         <p>
+         <br>
+                                        
+                                                       
+        <div class="row text-center">
+        <div class="col-sm-12">
+        <button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="cancelar">
+        Cancelar
+        </button>
+        <button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="siguiente">
+        Aceptar
+        </button>
+        </div>
+        </div>
+        
+<!--//////////////////////////////////////////////--> 
+       </div>
+       </div>
+       </div>                                                
+       </div>
+       </div>
+       </div>
+       <div id="styleSelector"></div>
+       </div>
+       </div>
+       </div>
+       </div>
+       </div>
+       </div>
+       </div>
+       <th:block th:replace="fragments/footer_js :: footer_js"></th:block>
+    </body>
+</html>

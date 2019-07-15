@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	xmlns:security="http://www.springframework.org/security/tags" lang="es"
+	class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"
+	>
+    <head>
+    <th:block th:replace="fragments/header :: headlayout"></th:block>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/jquery-steps.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css2/style.css}">
+ 
+     <link rel="stylesheet" type="text/css" th:href="@{/css/jquery-ui.css}">
+
+    
+    <script type="text/javascript" th:src="@{/js2/carga_datos.js}"></script>
+    <script type="text/javascript" th:src="@{/js2/cargaClient.js}"></script>
+    <script type="text/javascript" th:src="@{/js2/cargaInformationAdditional.js}"></script>
+    <script type="text/javascript" th:src="@{/js2/cargaTrabajo.js}"></script>
+    <script type="text/javascript" th:src="@{/js2/cargaReferencias.js}"></script>
+
+
+    </head>
+    <body themebg-pattern="pattern4">
+   
+<!--/////////////////////////////////////////////////-->
+<!-- Comentada por dar problemas para cargar -->
+    <!--th:block th:replace="fragments/theme_loader :: theme_loader"></th:block--!>
+<!--/////////////////////////////////////////////////-->
+            
+    <div id="pcoded" class="pcoded iscollapsed" nav-type="st6" theme-layout="vertical" vertical-placement="left" vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded" vertical-effect="shrink" vnavigation-view="view1" fream-type="theme1" sidebar-img="false" sidebar-img-type="img1" layout-type="light">
+    <div class="pcoded-overlay-box"></div>
+    <div class="pcoded-container navbar-wrapper">
+    
+<!--/////////////////////////////////////////////////-->
+     <th:block th:replace="fragments/nav :: nav_notification"></th:block>
+<!--/////////////////////////////////////////////////-->
+
+     <div id="sidebar" class="users p-chat-user showChat"></div>                                        
+     <div id="showChatContent" class="showChat_inner"></div>
+     <div class="pcoded-main-container" style="margin-top: 56px;">
+     <div class="pcoded-wrapper">
+     
+     <nav class="pcoded-navbar" navbar-theme="theme1" active-item-theme="theme1" sub-item-theme="theme2" active-item-style="style0" pcoded-navbar-position="fixed">
+     <div class="pcoded-inner-navbar main-menu mCustomScrollbar _mCS_1" style="height: calc(100% - 80px);">
+     <div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical_horizontal mCSB_inside" tabindex="0">
+
+     </div>
+     </div>
+     </nav>
+     
+     <div class="pcoded-content">
+     <div class="pcoded-inner-content">
+	 <div class="main-body">
+	 <div class="page-wrapper">
+	 <div class="page-header">
+	 <div class="row align-items-end">
+     <div class="col-lg-8">
+     <div class="page-header-title">
+	 <div class="d-inline">
+	 <h4>Proceso de Carga</h4>
+	 
+	 </div>
+	 </div>
+	 </div>
+     </div>
+	 </div>
+
+	 <div class="page-body">
+	 
+	 <div class="row">
+	 <div class="col-sm-12">
+	 <div class="card">
+	 <div class="card-header">
+	 <div class="card-header-right">
+	 <i class="icofont icofont-spinner-alt-5"></i>
+	 </div>
+	 </div>
+	 
+	<div class="card-block">
+
+	<div id="demo">
+    <div class="step-app">
+        
+      <ul class="step-steps">
+  
+
+
+        <li class="tb1"><a href="#tab1"><span class="number"></span> <i class="fa fa-user" style="font-size:30px"></i></a></li>
+        <li class="tb2"><a href="#tab2" id="verificar"><span class="number"></span> <i class="fa fa-home" style="font-size:30px"></i></a></li>
+        <li class="tb3"><a href="#tab3"><span class="number"></span> <i class="fa fa-suitcase" style="font-size:30px"></i></a></li>
+        <li class="tb4"><a href="#tab4"><span class="number"></span><i class="fa fa-id-card-o" style="font-size:30px"></i></a></li>
+        <li class="tb5"><a href="#tab5"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
+       
+      </ul>
+      <div class="step-content">
+      <div class="step-tab-panel" id="tab1">
+          <!--h3>Tab1</h3-->
+            <div class="page-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">                                            
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5></h5>
+                                                        <div class="card-header-right">
+                                                            <i class="icofont icofont-spinner-alt-5"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <h4 class="sub-title">Datos del Cliente</h4>
+                                                         
+                                                        <form name="cliente" id="cliente">
+                                                        <input type="text"  value="" title="Debe crear el cliente" class="client"  name="client" id="client" style="visibility:hidden" required>
+                                                         <!--input type="text"  value="" title="Debe crear el cliente" class="detener" name="detener" id="detener"  required-->
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                   
+                                                                     <label class="col-sm-12 col-form-label">Tipo de identificador(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                      
+                                                                        <select title="El campo no puede estar vacio" name="select" id="tipo_identificador" class="form-control" onchange="addMajorList()">
+                                                                               
+                                                                                <option value="Cedula">Cedula Nacional</option>
+                                                                                <option value="Cedula Residencia">Cedula Residencia</option>
+                                                                            
+                               
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6 mobile-inputs">
+                                                                 <label class="col-sm-12 col-form-label">Documento de identidad(*)</label>
+                                                                   
+                                                                    <div class="col-sm-12">
+                                                                    <input type="text" title="El campo no puede estar vacio" class="form-control" placeholder="" name="documento_identidad" id="documento_identidad" required>
+                                                                     
+                                                                          
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--//////////////////////////////////////////////-->
+
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                     <label class="col-sm-12 col-form-label">Primer nombre(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                          <input type="text" title="El campo no puede estar vacio" class="form-control" placeholder="" name="primer_nombre" id="primer_nombre" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6 mobile-inputs">
+                                                                    <label class="col-sm-12 col-form-label">Segundo nombre</label>
+                                                                    <div class="col-sm-12">
+                                                                         <input type="text" class="form-control" placeholder="" id="segundo_nombre">    
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--//////////////////////////////////////////////-->
+
+                                                            <div class="row">
+                                                                <div class="col-sm-4">
+                                                                    <label class="col-sm-12 col-form-label">Primer apellido(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                      <input type="text" title="El campo no puede estar vacio" class="form-control" placeholder="" name="primer_apellido" id="primer_apellido" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-4 mobile-inputs">
+                                                                   <label class="col-sm-12 col-form-label">Segundo apellido(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                         <input type="text" title="El campo no puede estar vacio" class="form-control" placeholder="" name="segundo_apellido" id="segundo_apellido_cliente" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-4 mobile-inputs">
+                                                                    <label class="col-sm-12 col-form-label">Genero(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <div class="form-radio">
+                                                                     
+                                                                                <div class="radio radio-inline">
+                                                                                    <label>
+                                                                                        <input type="radio" name="radio_genero" id="radio_genero" value="Femenino" checked>
+                                                                                        <i class="helper">
+                                                                                        </i>
+                                                                                        Femenino
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="radio radio-inline">
+                                                                                    <label>
+                                                                                        <input type="radio" name="radio_genero" id="radio_genero	" value="Masculino">
+                                                                                        <i class="helper">
+                                                                                        </i>
+                                                                                        Masculino
+                                                                                    </label>
+                                                                                </div>
+                                                                        
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--//////////////////////////////////////////////-->
+
+                                                            <div class="row">
+                                                              <div class="col-sm-6">
+                                                                    <label class="col-sm-12 col-form-label">Fecha de Nacimiento(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                    <!--input  type='text' id="example-datetime-local-input"  value="01/01/1999" class="form-control datepicker-here" data-timepicker="false" data-language='es' min="1919-01-01" max="2001-01-01" data-date-format="dd/mm/yyyy"/-->
+                                                                        <!--input class="form-control" type="date" value="1919-01-01" id="example-datetime-local-input" min="1919-01-01" max="2001-01-01"-->
+                                                                        <input class="form-control" type="text"  value="01/01/1999" id="example-datetime-local-input">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6 mobile-inputs">
+                                                                    <label class="col-sm-12 col-form-label">Pais de Nacimiento(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <select name="paisNacimiento" id="pais_nacimiento" class="form-control">
+                                                                          <!--  
+                                                                            <option value="Costa Rica">Costa Rica</option>
+                                                                            <option value="Argentina">Argentina</option>
+                                                                            <option value="Brasil">Brasil</option>
+                                                                            -->
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--//////////////////////////////////////////////-->
+
+                                                            <div class="row">
+                                                                <div class="col-sm-12">
+                                                                    <label class="col-sm-12 col-form-label">Estado Civil(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <div class="form-radio">
+                                                          
+                                                                                <div class="radio radio-inline col-sm-2">
+                                                                                    <label>
+                                                                                        <input type="radio" name="radio_estado" id="radio_estado" value="Soltero" checked>
+                                                                                        <i class="helper">
+                                                                                        </i>
+                                                                                        Soltero (a)
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="radio radio-inline col-sm-2">
+                                                                                    <label>
+                                                                                        <input type="radio" name="radio_estado" id="radio_estado" value="Casado">
+                                                                                        <i class="helper">
+                                                                                        </i>
+                                                                                        Casado (a)
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="radio radio-inline col-sm-2">
+                                                                                    <label>
+                                                                                        <input type="radio" name="radio_estado" id="radio_estado" value="Divorciado">
+                                                                                        <i class="helper">
+                                                                                        </i>
+                                                                                        Divorciado (a)
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="radio radio-inline col-sm-2">
+                                                                                    <label>
+                                                                                        <input type="radio" name="radio_estado" id="radio_estado" value="Viudo">
+                                                                                        <i class="helper">
+                                                                                        </i>
+                                                                                        Viudo (a)
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="radio radio-inline col-sm-2">
+                                                                                    <label>
+                                                                                        <input type="radio" name="radio_estado" id="radio_estado" value="Unión libre">
+                                                                                        <i class="helper">
+                                                                                        </i>
+                                                                                        Unión libre
+                                                                                    </label>
+                                                                                </div>
+                                                              
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--//////////////////////////////////////////////-->
+
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <label class="col-sm-12 col-form-label">Correo electronico personal(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="email" class="form-control" title="El campo no puede estar vacio" placeholder="" name="correo" id="correo" oncopy="return false" onpaste="return false" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6 mobile-inputs">
+                                                                    <label class="col-sm-12 col-form-label">Confirmar correo electronico personal(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="email" class="form-control" title="El campo no puede estar vacio" placeholder="" name="correo_confirm" id="correo_confirm" oncopy="return false" onpaste="return false" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--//////////////////////////////////////////////-->
+
+                                                            <div class="row">
+                                                                <div class="col-sm-4">
+                                                                    <label class="col-sm-12 col-form-label">Profesión(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text" title="El campo no puede estar vacio" class="form-control"  name="profesion" id="profesion" required>
+                                      
+                                                                    </div>
+                                                                </div>
+                                                                 <div class="col-sm-4">
+                                                                    <label class="col-sm-12 col-form-label">Telefono celular(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input class="form-control"  title="El campo no puede estar vacio"  type="text" name="celular" id="celular" required>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <label class="col-sm-12 col-form-label">Telefono de Hogar</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text"  class="form-control" placeholder="" name="tell_home" id="tell_home">   
+                                                                  
+                                                                    </div>
+                                                                </div>                                   
+                                                            </div>
+                                                            
+                                                             <div class="row">
+                                                                 <div class="col-sm-4">
+                                                                 <label class="col-sm-12 col-form-label">Categoria Ocupacional(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                         <select title="El campo no puede estar vacio" name="ocupacion" id="CatOcupacion" class="form-control" required>
+                                                                   
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                             	  <div class="col-sm-4">
+                                                                    <label class="col-sm-12 col-form-label">Persona expuesta politicamente(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <div class="form-radio"  id="divRadiosExpuesto">
+                                                                   
+                                                                            	
+                                                                                <div class="radio radio-inline col-sm-4">
+                                                                                    <label>
+                                                                                        <input type="radio" name="radio_expuesto" id="radio_expuesto" value="Si">
+                                                                                        <i class="helper">
+                                                                                        </i>
+                                                                                        Si
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="radio radio-inline col-sm-4">
+                                                                                    <label>
+                                                                                         <input type="radio" name="radio_expuesto" id="radio_expuesto" value="No" checked>
+                                                                                        <i class="helper">
+                                                                                        </i>
+                                                                                        No
+                                                                                    </label>
+                                                                                </div>
+                                             
+                                                                  
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                             	
+                                                                <div class="col-sm-4 personaEP">
+                                                                    <label class="col-sm-12 col-form-label">Persona expuesta politicamente(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text" class="form-control" id="personaEP">
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                                 
+                                                                 
+                                                            </div>
+                                                            <div class="row">
+                                                            	  <div class="col-sm-6">
+                                                                    <label class="col-sm-12 col-form-label">Monto Pre-Aprobado</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text" class="form-control input1" value="2000" name="primer_nombre" id="preAprobado" readonly>
+                                                                         <div class="colones">₡</div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                
+                                                                
+                                                            </div>
+                                                           
+                                                            <!--//////////////////////////////////////////////-->
+
+                                                        </form>
+                                                           
+                                                        
+
+                                                            <!--//////////////////////////////////////////////-->    
+                                                      
+
+                                                            <!--//////////////////////////////////////////////-->
+
+                                                            <i class="feather text-primary f-60 p-t-15 p-b-20 d-block"></i>
+
+                                                            <!--//////////////////////////////////////////////--> 
+                                                      
+        													<div class="row text-center" id="procesoGif" hidden>
+                                                                <div class="col-sm-6">
+                                                                  
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                               	<img th:src="@{/gits/procc.gif}" alt="Funny image"  >
+                                                               	<span>  PROCESANDO LA SOLICITUD <span> 
+                                                                </div>
+                                                            </div>
+                                                            <!--//////////////////////////////////////////////--> 
+                                                        </div>
+                                                    </div>
+                                                </div>                                                
+                                            </div>
+                                        </div>
+        </div>
+        
+        
+  <!-- ---////////////////////////////////////////////////----------------------------------------- -->      
+       
+ 
+        
+        <div class="step-tab-panel" id="tab2">
+    
+       
+            <div class="page-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">                                            
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5></h5>
+                                                        <div class="card-header-right">
+                                                            <i class="icofont icofont-spinner-alt-5"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <h4 class="sub-title">Datos de Vivienda</h4>
+                                                          <form name="frmInfo" id="frmInfo">
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <label class="col-sm-12 col-form-label">Vivienda(*)</label>
+                                                                    <div class="col-sm-12">
+                                               
+                                                                         <select title="El campo no puede estar vacio" name="tipo_vivienda" id="tenenciaVivienda" class="form-control" onchange="addViviendaList()" required>
+                                                                                <option value="PROPIA">Propia</option>
+                                                                                <option value="ALQUILADA">Alquilada</option>
+                                                                                  <option value="DE UN FAMILIAR">De un Familiar</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6 mobile-inputs">
+                                                                    <label class="col-sm-12 col-form-label">Cuota/Alquiler Mensual</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input title="El campo no puede estar vacio" class="form-control input1" type="text" name="cuota_mensual" id="cuotaMensual"  required>
+                                                                        <div class="colones">₡</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--//////////////////////////////////////////////-->
+
+
+
+                                                            <!--//////////////////////////////////////////////-->
+                                                            <div class="row">
+                                                              <div class="col-sm-6">
+                                                                    <label class="col-sm-12 col-form-label">Pais de Actual(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <select title="El campo no puede estar vacio" name="pais_vivienda" id="pais_vivienda" class="form-control" required>
+                                                                                
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <label class="col-sm-12 col-form-label">Provincia(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <select title="El campo no puede estar vacio" name="provincia" id="provinciaVivienda" class="form-control" required>
+                                                                                
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                          <div class="row">
+                                                               <div class="col-sm-6">
+                                                                    <label class="col-sm-12 col-form-label">Canton(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <select title="El campo no puede estar vacio" name="canton" id="cantonVivienda" class="form-control" required>
+                                                                                
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                           <div class="col-sm-6">
+                                                                    <label class="col-sm-12 col-form-label">Distrito</label>
+                                                                    <div class="col-sm-12">
+                                                                        <select title="El campo no puede estar vacio" name="distrito" id="distritoVivienda" class="form-control" required>
+                                                                                
+                                                                        </select>
+                                                                    </div>
+                                                             </div>
+                                                            </div>
+
+                                                            <!--//////////////////////////////////////////////-->
+
+                                                     
+                                                            
+                                                             <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <label class="col-sm-12 col-form-label">Ciudad(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input  class="form-control" title="El campo no puede estar vacio" type="text" name="ciudad" id="ciudad" required>
+                                                                    </div>
+                                                                </div>
+                                                                 <div class="col-sm-6">
+                                                                    <label class="col-sm-12 col-form-label">Urbanizacion(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input class="form-control" title="El campo no puede estar vacio" type="text" name="urbanizacion" id="sector" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--//////////////////////////////////////////////-->
+                                                            
+                                                             <div class="row">
+                                                                <div class="col-sm-8">
+                                                                    <label class="col-sm-12 col-form-label">Punto de referencia(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input  class="form-control" title="El campo no puede estar vacio" type="textarea" name="punto_referencia" id="ptoReferencia" required>
+                                                                    </div>
+                                                                </div>
+                                                                 <div class="col-sm-4">
+                                                                    <label class="col-sm-12 col-form-label">Codigo Postal(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                   <input class="form-control" title="El campo no puede estar vacio" type="text" name="codigo_postal" id="codPostal" readonly required>
+                                                                   
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </form>
+                                                           
+                                                        
+
+                                                            <!--//////////////////////////////////////////////-->    
+                                                      
+
+                                                    
+
+                                                            <i class="feather text-primary f-60 p-t-15 p-b-20 d-block"></i>
+
+                                                            <!--//////////////////////////////////////////////--> 
+                                                      
+        
+                                                            <!--//////////////////////////////////////////////--> 
+                                                        </div>
+                                                    </div>
+                                                </div>                                                
+                                            </div>
+                                        </div>
+        </div>
+        
+        
+        
+        
+          <!-- ---////////////////////////////////////////////////----------------------------------------- -->      
+        
+        
+        <div class="step-tab-panel" id="tab3">
+          <!--h3>Tab3</h3-->
+    <div class="page-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">                                            
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5></h5>
+                                                        <div class="card-header-right">
+                                                            <i class="icofont icofont-spinner-alt-5"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <h4 class="sub-title">Datos de su Trabajo</h4>
+                                                          <form name="frmInfo2" id="frmInfo2">
+                                                            <div class="row">
+                                                                 <div class="col-sm-6 mobile-inputs">
+                                                                    <label class="col-sm-12 col-form-label">Nombre de la Empresa</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text" title="El campo no puede estar vacio" class="form-control" placeholder="" name="nombreEmpresa" id="nombreEmpresa" required>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                           
+                                                                
+                                                                <div class="col-sm-6 mobile-inputs">
+                                                                    <label class="col-sm-12 col-form-label">Tipo Fijo de la Empresa</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text" class="form-control" title="El campo no puede estar vacio" placeholder="" name="actividadEmpresa" id="actividadEmpresa" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--//////////////////////////////////////////////-->
+
+                                                               <div class="row">
+                                                                 <div class="col-sm-4 mobile-inputs">
+                                                                    <label class="col-sm-12 col-form-label">Cargo</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text" title="El campo no puede estar vacio" class="form-control" placeholder="" name="cargo" id="cargo" required>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                 <div class="col-sm-4 mobile-inputs">
+                                                                  <label class="col-sm-12 col-form-label">Telefono Laboral(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text" title="El campo no puede estar vacio" class="form-control" placeholder="" name="telefonoEmpresa" id="telefonoEmpresa" required>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="col-sm-4 mobile-inputs">
+                                                                    <label class="col-sm-12 col-form-label">Sueldo</label>
+                                                                    <div class="col-sm-12">
+                                                                           <select title="El campo no puede estar vacio" name="sueldoMensual" id="sueldoMensual" class="form-control" required>
+                                                                                <option value="400">Menos a 400.000 Colonos</option>
+                                                                                <option value="400">De 400.000 a 850.000 Colones</option>
+                                                                                <option value="850">De 850.001 a 2.000.000 Colones</option>
+                                                                                <option value="2000">De 2.000.000 a 3.000.000 Colones</option>
+                                                                                <option value="3000">De 3.000.000 Colones en adelante</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                                   <!--//////////////////////////////////////////////-->
+                                                      
+
+                                                            <!--//////////////////////////////////////////////-->
+
+                                                            <div class="row">
+                                                                <div class="col-sm-4">
+                                                                    <label class="col-sm-12 col-form-label">Provincia(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <select title="El campo no puede estar vacio" name="provinciaTrabajo" id="provinciaTrabajo" class="form-control" required>
+                                                                                
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                               <div class="col-sm-4">
+                                                                    <label class="col-sm-12 col-form-label">Canton(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <select title="El campo no puede estar vacio" name="cantonTrabajo" id="cantonTrabajo" class="form-control" required>
+                                                                                
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                           <div class="col-sm-4">
+                                                                    <label class="col-sm-12 col-form-label">Distrito</label>
+                                                                    <div class="col-sm-12">
+                                                                        <select title="El campo no puede estar vacio" name="distritoTrabajo" id="distritoTrabajo" class="form-control" required>
+                                                                                
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--//////////////////////////////////////////////-->
+
+                                                     
+                                                            
+                                                                 <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <label class="col-sm-12 col-form-label">Correo electronico personal(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input title="El campo no puede estar vacio" type="email" class="form-control correo_trabajo" placeholder="" name="correo" id="correo" oncopy="return false" onpaste="return false" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6 mobile-inputs">
+                                                                    <label class="col-sm-12 col-form-label">Confirmar correo electronico personal(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input title="El campo no puede estar vacio" type="email" class="form-control correo_trabajo_confirm" placeholder="" name="email" id="email" oncopy="return false" onpaste="return false" required >
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--//////////////////////////////////////////////-->
+                                                            <p>
+                                                             <h4 class="sub-title">Si tiene menos de dos(2) años en su actual empleo,indique nombre de la Empresa anterior</h4>
+                                                             <p>
+                                                             
+                                                              <div class="row">
+                                                                 <div class="col-sm-6 mobile-inputs">
+                                                                    <label class="col-sm-12 col-form-label">Nombre de la Empresa anterior</label>
+                                                                    <div class="col-sm-12">
+                                                                         <input type="text" class="form-control" placeholder=""  name="empresa_anterior" id="nombreOtraEmpresa">
+                                                                    </div>
+                                                                </div>
+                                                                
+                                           
+                                                                
+                                                                <div class="col-sm-6 mobile-inputs">
+                                                                     <label class="col-sm-12 col-form-label">Antiguedad(años y meses)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text" class="form-control" placeholder=""  name="antiguedad" id="antiguedad">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                                <div class="row">
+                                                                 <div class="col-sm-6 mobile-inputs">
+                                                                   <label class="col-sm-12 col-form-label">Cargo</label>
+                                                                    <div class="col-sm-12">
+                                                                           <input type="text" class="form-control" placeholder="" name="cargoOtraEmpresa" id="cargoOtraEmpresa">
+                                                                    </div>
+                                                                </div>
+                                                                
+                                           
+                                                                
+                                                                <div class="col-sm-6 mobile-inputs">
+                                                                      <label class="col-sm-12 col-form-label">Ultimo Sueldo Mensual</label>
+                                                                    <div class="col-sm-12">
+                                                                         <input type="text"  class="form-control input1" placeholder="" value="0" name="ultimoSueldo" id="ultimoSueldo">
+                                                                     <div class="colones">₡</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                             
+                                                             
+
+                                                        </form>
+                                                           
+                                                        
+
+                                                            <!--//////////////////////////////////////////////-->    
+                                                      
+
+                                                    
+
+                                                            <i class="feather text-primary f-60 p-t-15 p-b-20 d-block"></i>
+
+                                                            <!--//////////////////////////////////////////////--> 
+                                                      
+        
+                                                            <!--//////////////////////////////////////////////--> 
+                                                        </div>
+                                                    </div>
+                                                </div>                                                
+                                            </div>
+                                        </div>        </div>
+                                        
+                                        
+                                        
+  <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////// -->                                      
+                                        
+                                        
+                                        
+        <div class="step-tab-panel" id="tab4">
+          <!--h3>Tab4</h3-->
+           <div class="page-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">                                            
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5></h5>
+                                                        <div class="card-header-right">
+                                                            <i class="icofont icofont-spinner-alt-5"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <h4 class="sub-title">Referencias Personales</h4>
+                                                      <form name="frmLogin" id="frmLogin">
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                  <label class="col-sm-12 col-form-label">Tipo de identificador(*)</label>
+                                                                    <div class="col-sm-12">
+                                                    
+                                                                       <select title="El campo no puede estar vacio"  name="tipo_identificador_referencia" id="tipoDocumento" class="form-control" onChange="addCedulaReferencia()">
+                                                                                <option value="Cedula">Cedula Nacional</option>
+                                                                                <option value="Cedula Residencia">Cedula Residencia</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6 mobile-inputs">
+                                                                     <label class="col-sm-12 col-form-label">Documento de identidad(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text" title="El campo no puede estar vacio"  class="form-control" placeholder="" name="numeroDocumento" id="numeroDocumento" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--//////////////////////////////////////////////-->
+
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                   <label class="col-sm-12 col-form-label">Primer nombre(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text" class="form-control" title="El campo no puede estar vacio"  placeholder="" name="primer_nombre_referencia" id="primerNombre" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6 mobile-inputs">
+                                                                     <label class="col-sm-12 col-form-label">Segundo nombre</label>
+                                                                    <div class="col-sm-12">
+                                                                       <input type="text" class="form-control"   placeholder="" name="segundo_nombre_referencia" id="segundoNombre">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--//////////////////////////////////////////////-->
+
+                                                            <div class="row">
+                                                                <div class="col-sm-4">
+                                                                     <label class="col-sm-12 col-form-label">Primer apellido(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                         <input type="text" title="El campo no puede estar vacio"  class="form-control" placeholder="" name="primer_apellido_referencia" id="apellidos" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-4 mobile-inputs">
+                                                                    <label class="col-sm-12 col-form-label">Segundo apellido(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text" title="El campo no puede estar vacio"  class="form-control" placeholder="" name="segundo_apellido_referencia" id="segundo_apellido" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-4 mobile-inputs">
+                                                                    <label class="col-sm-12 col-form-label">Genero(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <div class="form-radio">
+                                                                      
+                                                                                <div class="radio radio-inline">
+                                                                                    <label>
+                                                                                        <input type="radio" name="radio_genero" id="genero" value="Femenino" checked>
+                                                                                        <i class="helper">
+                                                                                        </i>
+                                                                                        Femenino
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="radio radio-inline">
+                                                                                    <label>
+                                                                                        <input type="radio" name="radio_genero" id="genero" value="Masculino">
+                                                                                        <i class="helper">
+                                                                                        </i>
+                                                                                        Masculino
+                                                                                    </label>
+                                                                                </div>
+                                                                         
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--//////////////////////////////////////////////-->
+
+
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <label class="col-sm-12 col-form-label">Correo electronico personal(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="email" class="form-control" title="El campo no puede estar vacio"  placeholder="" name="correo_referencia" id="correo_referencia" oncopy="return false" onpaste="return false" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6 mobile-inputs">
+                                                                    <label class="col-sm-12 col-form-label">Confirmar correo electronico personal(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="email" class="form-control" title="El campo no puede estar vacio"  placeholder="" name="correo_confirm_referencia" id="emailReferencia" oncopy="return false" onpaste="return false" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--//////////////////////////////////////////////-->
+
+                                                            
+                                                             <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <label class="col-sm-12 col-form-label">Telefono Fijo(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input class="form-control" title="El campo no puede estar vacio"  type="text" name="telefono_fijo_referencia" id="telefonoFijo" required>
+                                                                    </div>
+                                                                </div>
+                                                                 <div class="col-sm-6">
+                                                                    <label class="col-sm-12 col-form-label">Telefono Celular(*)</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input class="form-control" title="El campo no puede estar vacio"  type="text" name="telefono_celular_referencia" id="telefonoCelular" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                             <!--//////////////////////////////////////////////-->
+                                                            <p>
+                                                             <h4 class="sub-title">Referencias Bancarias</h4>
+                                                             <p>
+                                                             
+                                                             <div class="row">
+                                                             	
+                                                                <div class="col-sm-3">
+                                                                    <label class="col-sm-12 col-form-label">Nombre del Banco</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text"   class="form-control" placeholder=""  name="banco" id="banco">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="col-sm-12 col-form-label">Posee Cuenta de Ahorro?</label>
+                                                                    <div class="col-sm-12">
+                                      
+                                                                          <div class="form-radio">
+                                                                   
+                                                                            	
+                                                                                <div class="radio radio-inline col-sm-4">
+                                                                                    <label>
+                                                                                        <input type="radio" name="ctaAhorro" id="ctaAhorro" value="Si">
+                                                                                        <i class="helper">
+                                                                                        </i>
+                                                                                        Si
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="radio radio-inline col-sm-4">
+                                                                                    <label>
+                                                                                         <input type="radio" name="ctaAhorro" id="ctaAhorro" value="No" checked>
+                                                                                        <i class="helper">
+                                                                                        </i>
+                                                                                        No
+                                                                                    </label>
+                                                                                </div>
+                                             
+                                                                  
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="col-sm-12 col-form-label">Posee Cuenta Corriente?</label>
+                                                                    <div class="col-sm-12">
+                                                                      
+                                                                          <div class="form-radio">
+                                                                   
+                                                                            	
+                                                                                <div class="radio radio-inline col-sm-4">
+                                                                                    <label>
+                                                                                        <input type="radio" name="ctaCorriente" id="ctaCorriente" value="Si">
+                                                                                        <i class="helper">
+                                                                                        </i>
+                                                                                        Si
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="radio radio-inline col-sm-4">
+                                                                                    <label>
+                                                                                         <input type="radio" name="ctaCorriente" id="ctaCorriente" value="No" checked>
+                                                                                        <i class="helper">
+                                                                                        </i>
+                                                                                        No
+                                                                                    </label>
+                                                                                </div>
+                                             
+                                                                  
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                          
+                                                          
+                                                            </div>
+                                                            
+                                                                 <div class="row">
+                                                             
+                                                             	  <div class="col-sm-3">
+                                                                    <label class="col-sm-12 col-form-label">Posee Tarjeta de credito?</label>
+                                                                    <div class="col-sm-12">
+                                                                        <div class="form-radio"  id="divRadiosTarjetaCredito">
+                                                                   
+                                                                            	
+                                                                                <div class="radio radio-inline col-sm-4">
+                                                                                    <label>
+                                                                                        <input type="radio" name="tarjeta_credito" id="tarjetaCredito" value="Si">
+                                                                                        <i class="helper">
+                                                                                        </i>
+                                                                                        Si
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="radio radio-inline col-sm-4">
+                                                                                    <label>
+                                                                                         <input type="radio" name="tarjeta_credito" id="tarjetaCredito" value="No" checked>
+                                                                                        <i class="helper">
+                                                                                        </i>
+                                                                                        No
+                                                                                    </label>
+                                                                                </div>
+                                             
+                                                                  
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                             	
+                                                             	
+                                                             	 <div class="col-sm-3" id="emisor">
+                                                                    <label class="col-sm-12 col-form-label">Banco emisor</label>
+                                                                    <div class="col-sm-12">
+                                                                     <input type="text"   class="form-control" title="Introducir banco emisor" placeholder=""  name="bancoEmisor" id="bancoEmisor" minlength="2" maxlength="16">
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                             	
+                                                               <div class="col-sm-3" id="poseeTarjeta">
+                                                                    <label class="col-sm-12 col-form-label">Tarjeta de credito</label>
+                                                                    <div class="col-sm-12">
+                                                                     <input type="text"   class="form-control" title="Debe ingresar 16 digitos" placeholder=""  name="TDC" id="TDC" minlength="16" maxlength="16">
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                
+                                                            </div>
+
+                                                            <!--//////////////////////////////////////////////-->
+
+                                                        </form>
+                                                           
+                                                        
+
+                                                            <!--//////////////////////////////////////////////-->    
+                                                      
+
+                                                            <!--//////////////////////////////////////////////-->
+
+                                                            <i class="feather text-primary f-60 p-t-15 p-b-20 d-block"></i>
+
+                                                            <!--//////////////////////////////////////////////--> 
+                                                        
+        
+                                                            <!--//////////////////////////////////////////////--> 
+                                                        </div>
+                                                    </div>
+                                                </div>                                                
+                                            </div>
+                                        </div>
+        </div>
+        
+         <!--//////////////////////////////////////////////--> 
+          <!--//////////////////////////////////////////////--> 
+     <div class="step-tab-panel" id="tab5">
+          <form name="divFiles" id="divFiles">
+                    <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="card">
+                                                        <div class="card-block">
+                                                            <form id="miform">
+                                                                <div class="form-group row">
+                                                                    <div class="col-sm-12">
+                                                                        <div class="panel panel-default">
+                                                                            <div class="panel-footer">
+                                                                                <div class="row">
+                                                                                    <label class="col-sm-9 col-form-label">Importante:</label>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-9">
+                                                                                        <ul class="col-sm-9">
+                                                                                            <li>El tamaño máximo de un archivo adjunto está limitado a 1MB.</li> 
+                                                                                            <li>Los archivos deben ser de tipo pdf.</li> 
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="form-group row">
+                                                                	<div class="row col-sm-12">
+                                                                        <div class="col-sm-6">
+                                                                            <label for="file" class="col-sm-12 col-form-label">Documento de Identificación Financiero</label>
+                                                                            <div class="col-sm-12">
+                                                                                <input type="file" id="fileFinantialInformationName" name="fileFinantialInformationName" class="form-control" required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-4">
+                                                                        	<label for="file" class="col-sm-12 col-form-label">Visualizar Documento de Identificación</label>
+                                                                        	<div class="col-sm-12">
+                                                                        		<button type="button" id="view_identificacion" class="btn btn-primary btn-md waves-effect text-center mb-20"  data-toggle="modal" data-target="#exampleModalLong" disabled>
+	                                                                            	Visualizar
+	                                                                        	</button>
+                                                                        	</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+																	
+                                                                <div class="form-group row">
+                                                                	<div class="row col-sm-12">
+                                                                        <div class="col-sm-6">
+                                                                            <label for="file" class="col-sm-12 col-form-label">Documento de Identificación Personal</label>
+                                                                            <div class="col-sm-12">
+                                                                                <input type="file" id="filePersonalInformationName" name="filePersonalInformationName" class="form-control" required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-4">
+                                                                        	<label for="file" class="col-sm-12 col-form-label">Documento de Identificación Financiero</label>
+                                                                        	<div class="col-sm-12">
+                                                                        		<button type="button" id="view_personal" class="btn btn-primary btn-md waves-effect text-center mb-20" data-toggle="modal" data-target="#exampleModalLong"  disabled>
+	                                                                            	Visualizar
+	                                                                        	</button>
+                                                                        	</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                                                                               
+
+                                                                <i class="feather text-primary f-60 p-t-15 p-b-20 d-block"></i>
+                                                                
+                                                            	<div class="row text-center" id="procesoGif2" hidden>
+                                                                <div class="col-sm-6">
+                                                                  
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                               	<img th:src="@{/gits/procc.gif}" alt="Funny image"  >
+                                                               	<span>  PROCESANDO LA SOLICITUD <span> 
+                                                                </div>
+                                                            </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+       
+          </form>
+        </div>
+        
+       <!--//////////////////////////////////////////////-->  
+							        <!-- Modal visualizacion del files -->
+							<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+							  <div class="modal-dialog modal-lg" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h5 class="modal-title" id="exampleModalLongTitle">Visualizar el Archivo Selecionado</h5>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-body">
+							       <embed id="viweFiles"  src="" type="application/pdf" width="100%" height="600px" />
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							       
+							      </div>
+							    </div>
+							  </div>
+							</div>
+        <!--//////////////////////////////////////////////--> 
+        
+         <!--//////////////////////////////////////////////--> 
+          <!--//////////////////////////////////////////////--> 
+      </div>
+    <div class="step-footer">
+        <button class="btn btn-primary" value="0" id="validateClient" >Crear Cliente</button>
+        <button data-direction="prev" class="btn btn-secondary" id="atrasWizard">Atras</button>
+        <button data-direction="next" class="btn btn-primary" value="0" id="siguiente" hidden>Siguiente</button>
+        <button data-direction="finish" class="btn btn-success" id="saveComplet">Asociacion Adicional</button>
+     </div>
+    </div>
+    </div>
+  </div>
+    
+	</div>
+
+
+    <i class="feather text-primary f-60 p-t-15 p-b-20 d-block"></i>
+
+
+<!--//////////////////////////////////////////////-->
+
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	<div id="styleSelector"></div>
+	</div>
+	</div>
+	</div>
+    </div>
+    </div>
+
+
+ 	<th:block th:replace="fragments/footer_js :: footer_js"></th:block>
+
+    <script type="text/javascript" th:src="@{/js/jquery.validate.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-steps.js}"></script>
+    <script type="text/javascript" th:src="@{/js2/wizard.main.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-ui.js}"></script>
+    <script type="text/javascript" th:src="@{/js/dateFormat.js}"></script>
+    <script type="text/javascript" th:src="@{/js/moment.js}"></script>
+ 
+
+
+
+ 	
+</body>
+</html>
