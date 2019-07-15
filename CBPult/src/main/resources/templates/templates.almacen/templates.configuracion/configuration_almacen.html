@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
     <head>
+    
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="Expires" content="0">
         <meta http-equiv="Last-Modified" content="0">
@@ -27,7 +28,7 @@
         <script th:src="@{/js2/bandeja_ventas.js}"></script>
         
         <link rel="stylesheet" type="text/css" th:href="@{/css2/css.almacen/GeneralForm.css}">
-            	
+        
     </head>
     <body themebg-pattern="pattern4">
     		<!--/////////////////////////////////////////////////-->
@@ -61,8 +62,8 @@
                                                 <div class="col-lg-8">
                                                     <div class="page-header-title">
                                                         <div class="d-inline">
-                                                            <h2>Movimento de Mercancia</h2>
-                                                            <span style="font-size:20px">Gestión de <code style="font-size:20px">Inventario y Movimientos de Mercancia</code></span>
+                                                            <h2>Configuración Almacenes</h2>
+                                                            <span style="font-size:20px">Creación y Configuración de <code style="font-size:20px">Almacenes</code></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -73,21 +74,10 @@
                                         <div class="page-body">
                                             <div class="row">
                                             
-                                            
-                                            	<div class="col-sm-12 botonera botonera2" style="margin-bottom:30px">                                            		
-                                            		
-		                                  			<button type="button" id="btnInventarioGeneral" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/inventario_general';">
-		                                   				Inventario General
-			                                   		</button>
-			                                   				                                       		
-		                                   			
-			                                   	</div>
                                             	<!-- Cards -->
                                             	
                                             	<!-- Card 1 -->
-                                            	<div class="col-sm-12">                                             		
-		                                   		
-                                            		
+                                            	<div class="col-sm-12"> 
                                             	                                           
                                                 	<div class="card">                                                   
                                                     	<div class="card-block">
@@ -97,7 +87,11 @@
                                                         	<!-- Fila 1 -->                                      
                                                         	<div class="row">
                                                         		<div class="col-sm-12">
-	                                                        		
+	                                                        		<div class="column" align="right">																
+																		<a id="btnNuevoAlmacen_config" href="/almacen_nuevo-editar" style="margin-right: 5px;" title="Nuevo Almacén">
+																			<i class="fa fa-plus-square agregaryasignar" style="font-size: 50px"></i>
+																		</a>
+																	</div>
                                                         			<div class="dt-responsive table-responsive">
 					                                                    <table id="simpletable" class="table table-striped table-bordered  display nowrap">
 					                                                        <thead>
@@ -118,8 +112,8 @@
 					                                                            	<td>Almacén</td>
 					                                                            	<td>Elon Musk</td>
 					                                                            	<td>
-					                                                            		<a class="btnConsultar_almacen" onclick="location.href='/inventario_almacen'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/eye_on_see_show_view_vision_watch_icon_123215.ico}" width="30px">
+					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
+					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
 					                                                            		</a>					                                                            		
 					                                                            	</td>
 					                                                            </tr>
@@ -130,8 +124,8 @@
 					                                                            	<td>Laboratorio</td>
 					                                                            	<td>Javier Murillo</td>
 					                                                            	<td>
-					                                                            		<a class="btnConsultar_almacen" onclick="location.href='/inventario_almacen'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/eye_on_see_show_view_vision_watch_icon_123215.ico}" width="30px">
+					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
+					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
 					                                                            		</a>					                                                            		
 					                                                            	</td>					                                                           
 					                                                            </tr>
@@ -142,8 +136,8 @@
 					                                                            	<td>Almacén / Técnico</td>
 					                                                            	<td>Carlos Posada</td>
 					                                                            	<td>
-					                                                            		<a class="btnConsultar_almacen" onclick="location.href='/inventario_almacen'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/eye_on_see_show_view_vision_watch_icon_123215.ico}" width="30px">
+					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
+					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
 					                                                            		</a>					                                                            		
 					                                                            	</td>
 					                                                            </tr>
@@ -154,8 +148,8 @@
 					                                                            	<td>Almacén / Técnico</td>
 					                                                            	<td>Jhon Ladurne</td>
 					                                                            	<td>
-					                                                            		<a class="btnConsultar_almacen" onclick="location.href='/inventario_almacen'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/eye_on_see_show_view_vision_watch_icon_123215.ico}" width="30px">
+					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
+					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
 					                                                            		</a>					                                                            		
 					                                                            	</td>
 					                                                            </tr>

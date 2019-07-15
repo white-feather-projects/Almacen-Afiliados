@@ -2,14 +2,14 @@
 
     window.addEventListener('load', function(){
 
-        $('#generationPurchases').on('click', function(){
-            location.href = "/purchaseManagementConfiguration";
+        $('#configuration_almacen').on('click', function(){
+            location.href = "/configuration_almacen";
     
         })
         
-    /*    $('#confirmacionOrdenes').on('click', function(){
-            location.href = "/bandeja_riesgos";
+        $('#configuration_afiliados').on('click', function(){
+            location.href = "/configuration_afiliados";
     
         })
-    */
+    
     });

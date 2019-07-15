@@ -6,7 +6,7 @@
         <link rel="stylesheet" type="text/css" th:href="@{/css/switchery.min.css}">        
         <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-tagsinput.css}">
         
-        <link rel="stylesheet" type="text/css" th:href="@{/css-almacen-movimiento/configuration_afiliados.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css2/css.almacen/configuration_afiliados.css}">
     </head>
     <body themebg-pattern="pattern4">
         <!--/////////////////////////////////////////////////-->
@@ -62,149 +62,166 @@
 	                                        <!-- Row1 Forms-Obligartorios --> 
 	                                        <div class="row cardlimit">                                   
 	                                            <div class="col-sm-4">
-	                                                <div class="card">
-	                                                	                                                   
+	                                                <div class="card redCard">
+                                             
 	                                                    <div class="card-block">
-	                                                    	<h5 class="sub-title">Pre-Carga</h5>
+	                                                    	
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Nombre de la Empresa</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-single" checked="" data-switchery="true" style="display: none;" id="cboxNameEmpresa_PreCarga"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-red" checked="" data-switchery="true" style="display: none;" id="cboxNameEmpresa_PreCarga"></div>
 	                                                        </div>
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Tipo de Identificación</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxTipoId_PreCarga"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-red" checked="" data-switchery="true" style="display: none;" id="cboxTipoId_PreCarga"></div>
 	                                                        </div>
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Identificación</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxId_PreCarga"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-red" checked="" data-switchery="true" style="display: none;" id="cboxId_PreCarga"></div>
 	                                                        </div>
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Correo Electronico</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxEmailContacto_PreCarga"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-red" checked="" data-switchery="true" style="display: none;" id="cboxEmailContacto_PreCarga"></div>
 	                                                        </div>
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Numero de Telefono de Contacto</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxNumTelContacto_PreCarga"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-red" checked="" data-switchery="true" style="display: none;" id="cboxNumTelContacto_PreCarga"></div>
 	                                                        </div>
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Ubicación Geografica</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxUbicacion_PreCarga"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-red" checked="" data-switchery="true" style="display: none;" id="cboxUbicacion_PreCarga"></div>
 	                                                        </div>	                                                                                                                                                                     
 	                                                    </div>
+	                                                    <div class="card-footer">
+                                                            <p class="text-white m-b-0">Pre Carga Afiliación</p>
+                                                        </div>
 	                                                </div>
 	                                            </div>                                            
 	                                            <div class="col-sm-4" style="height:100%;">
                                             		
-	                                                <div class="card"> 
+	                                                <div class="card blueCard"> 
 	                                                      	                                                    
 	                                                    <div class="card-block">
-	                                                    	<h5 class="sub-title">Datos del Comercio</h5>
+	                                                    	
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Nombre Comercial</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxNombreComercial_Comercio"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-blue" checked="" data-switchery="true" style="display: none;" id="cboxNombreComercial_Comercio"></div>
 	                                                        </div>
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Numero de Cuenta Corriente</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxNumCuentaCorriente_Comercio"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-blue" checked="" data-switchery="true" style="display: none;" id="cboxNumCuentaCorriente_Comercio"></div>
 	                                                        </div>
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Actividad Comercial</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxActividadComercial_Comercio"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-blue" checked="" data-switchery="true" style="display: none;" id="cboxActividadComercial_Comercio"></div>
 	                                                        </div>
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Horario del Comercio</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxHorarioComercio_Comercio"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-blue" checked="" data-switchery="true" style="display: none;" id="cboxHorarioComercio_Comercio"></div>
 	                                                        </div>
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Telefono Local</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxTelLocal_Comercio"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-blue" checked="" data-switchery="true" style="display: none;" id="cboxTelLocal_Comercio"></div>
 	                                                        </div>
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Telefono Alternativo</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxTelAlternativo_Comercio"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-blue" checked="" data-switchery="true" style="display: none;" id="cboxTelAlternativo_Comercio"></div>
 	                                                        </div>
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Afiliado Otro Banco</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxAfiliadoOtroBanco_Comercio"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-blue" checked="" data-switchery="true" style="display: none;" id="cboxAfiliadoOtroBanco_Comercio"></div>
 	                                                        </div>                                                        
 	                                                    </div>
+	                                                    <div class="card-footer">
+                                                            <p class="text-white m-b-0">Datos del Comercio</p>
+                                                        </div>
 	                                                </div>
 	                                            </div>
 	                                            <div class="col-sm-4">
-	                                                <div class="card">                                                        
+	                                                <div class="card greenCard">                                                        
 	                                                    
 	                                                    <div class="card-block">
-                                                    		<h5 class="sub-title">Representante Legal</h5>
+                                                    		
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Telefono Local</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxTelLocal_RepLegal"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-green" checked="" data-switchery="true" style="display: none;" id="cboxTelLocal_RepLegal"></div>
 	                                                        </div>
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Telefono Celular</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxTelCelular_RepLegal"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-green" checked="" data-switchery="true" style="display: none;" id="cboxTelCelular_RepLegal"></div>
 	                                                        </div>
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Correo Electronico</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxEmail_RepLegal"></div>
-	                                                        </div>     
-	                                                                                              
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-green" checked="" data-switchery="true" style="display: none;" id="cboxEmail_RepLegal"></div>
+	                                                        </div>	                                                                                              
 	                                                    </div>
+	                                                    <div class="card-footer">
+                                                            <p class="text-white m-b-0">Representante Legal</p>
+                                                        </div>
 	                                                </div>
 	                                            </div>
 	                                            <div class="col-sm-4">
-	                                                <div class="card">                                                        
+	                                                <div class="card greenCard">                                                        
 	                                                    
 	                                                    <div class="card-block">
-	                                                    	<h5 class="sub-title">Dirección del Establecimiento</h5>
+	                                                    	
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Localidad</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;"  id="cboxLocalidad_DirEstab"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-green" checked="" data-switchery="true" style="display: none;"  id="cboxLocalidad_DirEstab"></div>
 	                                                        </div>
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Nombre Inmueble</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxNameInmueble_DirEstab"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-green" checked="" data-switchery="true" style="display: none;" id="cboxNameInmueble_DirEstab"></div>
 	                                                        </div>
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Punto de Referencia</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxPtoRef_DirEstab"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-green" checked="" data-switchery="true" style="display: none;" id="cboxPtoRef_DirEstab"></div>
 	                                                        </div>                                                        
 	                                                    </div>
+	                                                    <div class="card-footer">
+                                                            <p class="text-white m-b-0">Dirección del Establecimiento</p>
+                                                        </div>
 	                                                </div>
 	                                            </div>
 	                                            <div class="col-sm-4">
-	                                                <div class="card">                                                        
+	                                                <div class="card redCard">                                                        
 	                                                   
 	                                                    <div class="card-block">
-	                                                    	<h5 class="sub-title">Persona Contacto Comercio</h5>
+	                                                    	
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Cargo</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxCargo_ContactComercio"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-red" checked="" data-switchery="true" style="display: none;" id="cboxCargo_ContactComercio"></div>
 	                                                        </div>
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Nombres y Apellidos</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxNameLast_ContactComercio"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-red" checked="" data-switchery="true" style="display: none;" id="cboxNameLast_ContactComercio"></div>
 	                                                        </div>                                                       
 	                                                    </div>
+	                                                    <div class="card-footer">
+                                                            <p class="text-white m-b-0">Persona Contacto Comercio</p>
+                                                        </div>
 	                                                </div>
 	                                            </div>
 	                                            <div class="col-sm-4">
-	                                                <div class="card">                                                        
+	                                                <div class="card blueCard">                                                        
 	                                                    
 	                                                    <div class="card-block">
-	                                                    	<h5 class="sub-title">Otros Bancos</h5>
+	                                                    	
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Cargo</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxCargo_OtroBanco"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-blue" checked="" data-switchery="true" style="display: none;" id="cboxCargo_OtroBanco"></div>
 	                                                        </div>
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Nombres y Apellidos</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxNameLast_OtroBanco"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-blue" checked="" data-switchery="true" style="display: none;" id="cboxNameLast_OtroBanco"></div>
 	                                                        </div>
 	                                                        <div class="row">
 	                                                            <div class="col-sm-8"><label class="col-form-label">Punto de Referencia</label></div>
-	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cboxPtoRef_OtroBanco"></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class=js-switch-blue checked="" data-switchery="true" style="display: none;" id="cboxPtoRef_OtroBanco"></div>
 	                                                        </div>                                                        
 	                                                    </div>
+	                                                    <div class="card-footer">
+                                                            <p class="text-white m-b-0">Otros Bancos</p>
+                                                        </div>
 	                                                </div>
 	                                            </div>
 	                                        </div>
@@ -227,7 +244,7 @@
 	                                                    <div class="card-header col-sm-12">
 	                                                        <div class="row">
 	                                                            <h5 class="sub-title col-sm-8">Banco de Afiliación</h5>
-	                                                            <div class="col-sm-3"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cbox_BancoAfiliacion"></div>
+	                                                            <div class="col-sm-3"><input type="checkbox" class="js-switch-blue" checked="" data-switchery="true" style="display: none;" id="cbox_BancoAfiliacion"></div>
 	                                                        </div>                                                    
 	                                                    </div>
 	                                                </div>
@@ -237,7 +254,7 @@
 	                                                    <div class="card-header col-sm-12">
 	                                                        <div class="row">
 	                                                            <h5 class="sub-title col-sm-8">Otros Bancos</h5>
-	                                                            <div class="col-sm-3"><input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;" id="cbox_OtrosBanco"></div>
+	                                                            <div class="col-sm-3"><input type="checkbox" class="js-switch-blue" checked="" data-switchery="true" style="display: none;" id="cbox_OtrosBanco"></div>
 	                                                        </div>                                                    
 	                                                    </div>
 	                                                </div>
@@ -272,6 +289,7 @@
         <!-- Para Switches -->
         <script type="text/javascript" th:src="@{/js/switchery.min.js}"></script>
         <script type="text/javascript" th:src="@{/js/bootstrap-tagsinput.js}"></script>
-        <script type="text/javascript" th:src="@{/js/swithces.js}"></script>
+        <!-- <script type="text/javascript" th:src="@{/js/swithces.js}"></script> -->
+        <script type="text/javascript" th:src="@{/js2/switches-johan.js}"></script>
     </body>
 </html>

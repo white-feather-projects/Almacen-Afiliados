@@ -26,8 +26,9 @@
         <script type="text/javascript" th:src="@{/js2/index.js}"></script>
         <script th:src="@{/js2/bandeja_ventas.js}"></script>
         
+        <script th:src="@{/js-almacen/zona_nuevo-editar.js}"></script>
+        
         <link rel="stylesheet" type="text/css" th:href="@{/css2/css.almacen/GeneralForm.css}">
-            	
     </head>
     <body themebg-pattern="pattern4">
     		<!--/////////////////////////////////////////////////-->
@@ -58,126 +59,112 @@
                                 	<div class="page-wrapper">                                    
                                         <div class="page-header">
                                             <div class="row align-items-end">
-                                                <div class="col-lg-8">
+                                                <div class="col-lg-4">
                                                     <div class="page-header-title">
                                                         <div class="d-inline">
-                                                            <h2>Movimento de Mercancia</h2>
-                                                            <span style="font-size:20px">Gestión de <code style="font-size:20px">Inventario y Movimientos de Mercancia</code></span>
+                                                            <h2>Nueva / Editar / Consultar Estanteria</h2>                                                            
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div>                                                
                                         	</div>
                                    		</div>
                                     </div>
                                     <div class="page-wrapper">
                                         <div class="page-body">
+                                        
+                                        	<!-- Row General -->
                                             <div class="row">
-                                            
                                             
                                             	<div class="col-sm-12 botonera botonera2" style="margin-bottom:30px">                                            		
                                             		
-		                                  			<button type="button" id="btnInventarioGeneral" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/inventario_general';">
-		                                   				Inventario General
+                                           			<button type="button" id="btnGuardar_estanteria" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/zona_nuevo-editar'; alert('Estanteria Guardada')">
+			                                   			Guardar
+			                                   		</button>                                            			                                       		
+		                                       		
+			                                   		<button type="button" id="btnCancelar_estanteria" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/zona_nuevo-editar'; alert('Estanteria Cancelada');">
+			                                   			Cancelar
 			                                   		</button>
-			                                   				                                       		
-		                                   			
-			                                   	</div>
-                                            	<!-- Cards -->
+		                                   		
+                                            	</div>	
                                             	
                                             	<!-- Card 1 -->
-                                            	<div class="col-sm-12">                                             		
-		                                   		
-                                            		
+                                            	<div class="col-sm-6"> 
                                             	                                           
                                                 	<div class="card">                                                   
                                                     	<div class="card-block">
                                                     		<!-- Titulo de Card -->
-                                                        	<h4 class="sub-title">Tabla de Almacenes</h4>
+                                                        	<h4 class="sub-title">Información de Estanteria</h4>
                                                         	
-                                                        	<!-- Fila 1 -->                                      
+                                                        	<!-- Row -->                                                        	
                                                         	<div class="row">
+                                                        		
+                                                        		<!-- Contenido de Card -->  
                                                         		<div class="col-sm-12">
-	                                                        		
-                                                        			<div class="dt-responsive table-responsive">
-					                                                    <table id="simpletable" class="table table-striped table-bordered  display nowrap">
-					                                                        <thead>
-						                                                        <tr>
-							                                                        <th>Código</th>
-							                                                        <th>Nombre Almacén</th>
-							                                                        <th>Ubicación</th>
-							                                                        <th>Tipo</th>
-							                                                        <th>Encargado</th>
-							                                                        <th>Acciones</th>
-						                                                        </tr>						                                                        
-					                                                        </thead>
-					                                                        <tbody>
-					                                                            <tr>
-					                                                            	<td>1</td>
-					                                                            	<td>Almacén Puma</td>
-					                                                            	<td>Centro, Bogotá</td>
-					                                                            	<td>Almacén</td>
-					                                                            	<td>Elon Musk</td>
-					                                                            	<td>
-					                                                            		<a class="btnConsultar_almacen" onclick="location.href='/inventario_almacen'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/eye_on_see_show_view_vision_watch_icon_123215.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>2</td>
-					                                                            	<td>Laboratorio Raphson</td>
-					                                                            	<td>Caracas, Venezuela</td>
-					                                                            	<td>Laboratorio</td>
-					                                                            	<td>Javier Murillo</td>
-					                                                            	<td>
-					                                                            		<a class="btnConsultar_almacen" onclick="location.href='/inventario_almacen'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/eye_on_see_show_view_vision_watch_icon_123215.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>					                                                           
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>3</td>
-					                                                            	<td>Reparaciones Electrónicas</td>
-					                                                            	<td>Maracaibo, Venezuela</td>
-					                                                            	<td>Almacén / Técnico</td>
-					                                                            	<td>Carlos Posada</td>
-					                                                            	<td>
-					                                                            		<a class="btnConsultar_almacen" onclick="location.href='/inventario_almacen'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/eye_on_see_show_view_vision_watch_icon_123215.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>4</td>
-					                                                            	<td>Electrónicas y Mecatrónicos</td>
-					                                                            	<td>San José, Costa Rica</td>
-					                                                            	<td>Almacén / Técnico</td>
-					                                                            	<td>Jhon Ladurne</td>
-					                                                            	<td>
-					                                                            		<a class="btnConsultar_almacen" onclick="location.href='/inventario_almacen'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/eye_on_see_show_view_vision_watch_icon_123215.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>
-					                                                            </tr>
-					                                                        </tbody>
-					                                                    </table>
-				                                                   	</div>
-                                                        		</div>                                                                                                                            
+	                                                                <label class="col-sm-12 col-form-label">Código de Estanteria</label>
+	                                                                <div class="col-sm-12">
+	                                                                    <input type="text" id="txtCodigo_estanteria" class="form-control" placeholder="Codigo" disabled>
+	                                                                </div>
+                                                            	</div>	                                                            
+	                                                            
+	                                                            <div class="col-sm-12 mobile-inputs">
+	                                                            	<label class="col-sm-12 col-form-label">Descripción Estanteria</label>
+	                                                            	<div class="col-sm-12">
+	                                                                    <input type="text" id="txtDescripcion_estanteria" class="form-control" placeholder="Descripción">
+	                                                                </div>
+	                                                            </div>	                                                        	
+	                                                            
+	                                                            <!-- Contenido de Card -->  
+	                                                            
                                                         	</div>
-                                                        	<!-- Fila 1 -->
-                                                        	
-                                                        	<!-- Fila 2 -->
-                                                        	<div class="row">
-                                                            	<!-- Contenido de la Fila -->
-                                                        	</div>
-                                                        	<!-- Fila 2-->                                                          
+                                                        	<!-- Row -->                                                      		                                                        	
+                                                                                                      
                                                     	</div>
                                                 	</div> 
                                             	                                
 	                                            </div>
-	                                            <!-- Card 1 --> 
+	                                            <!-- Card 1 -->
+	                                            
+	                                            <!-- Card 2 -->
+                                            	<div class="col-sm-6"> 
+                                            	                                           
+                                                	<div class="card">                                                   
+                                                    	<div class="card-block">
+                                                    		<!-- Titulo de Card -->
+                                                        	<h4 class="sub-title">Información de Estanteria</h4>
+                                                        	
+                                                        	<!-- Row -->                                                        	
+                                                        	<div class="row">
+                                                        		
+                                                        		<!-- Contenido de Card -->  
+                                                        		<div class="col-sm-12">
+	                                                                <label class="col-sm-12 col-form-label">Módulos</label>
+	                                                                <div class="col-sm-12">
+	                                                                    <input type="text" id="txtModulos_estanteria" class="form-control" placeholder="Módulos" disabled>
+	                                                                </div>
+                                                            	</div>	                                                            
+	                                                            
+	                                                            <div class="col-sm-12 mobile-inputs">
+	                                                            	<label class="col-sm-12 col-form-label">Niveles</label>
+	                                                            	<div class="col-sm-12">
+	                                                                    <input type="text" id="txtNiveles_estanteria" class="form-control" placeholder="Niveles" disabled>
+	                                                                </div>
+	                                                            </div>	                                                        	
+	                                                            
+	                                                            <!-- Contenido de Card -->  
+	                                                            
+                                                        	</div>
+                                                        	<!-- Row -->                                                      		                                                        	
+                                                                                                      
+                                                    	</div>
+                                                	</div> 
+                                            	                                
+	                                            </div>
+	                                            <!-- Card 2 -->	                                            
+	                                            
 	                                        </div>
-	                                    </div>
+	                                        <!-- Row General -->
+	                                        
+	                                    </div>	                                    
 	                                    <div id="styleSelector"></div>
 	                                </div>
 	                            </div>

@@ -27,12 +27,6 @@
         <script th:src="@{/js2/bandeja_ventas.js}"></script>
         
         <script th:src="@{/js/configuration_almacen.js}"></script>
-        <link rel="stylesheet" type="text/css" th:href="@{/css-almacen-movimiento/cards.css}">
-        <style type="text/css">
-    		.card-block{
-    			border: 2px solid #01a9ac;
-    		}
-    	</style>
     </head>
     <body themebg-pattern="pattern4">
     		<!--/////////////////////////////////////////////////-->
@@ -66,7 +60,7 @@
                                                 <div class="col-lg-8">
                                                     <div class="page-header-title">
                                                         <div class="d-inline">
-                                                            <h4>Configuración Almacenes</h4>
+                                                            <h4>Inventario General</h4>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -85,77 +79,42 @@
                                                 	<div class="card">                                                   
                                                     	<div class="card-block">
                                                     		<!-- Titulo de Card -->
-                                                        	<h4 class="sub-title">Tabla de Almacenes</h4>
+                                                        	<h4 class="sub-title">Mercancias en el Almacén</h4>
                                                         	
                                                         	<!-- Fila 1 -->                                      
                                                         	<div class="row">
                                                         		<div class="col-sm-12">
-	                                                        		<div class="column" align="right">																
-																		<a id="btnNuevoAlmacen_config" href="/almacen_nuevo-editar" style="margin-right: 5px;" title="Nuevo Almacén">
-																			<i class="fa fa-plus-square agregaryasignar" style="font-size: 50px"></i>
-																		</a>
-																	</div>
+	                                                        		
                                                         			<div class="dt-responsive table-responsive">
 					                                                    <table id="simpletable" class="table table-striped table-bordered  display nowrap">
 					                                                        <thead>
 						                                                        <tr>
-							                                                        <th>Código</th>
-							                                                        <th>Nombre Almacén</th>
-							                                                        <th>Ubicación</th>
-							                                                        <th>Tipo</th>
-							                                                        <th>Encargado</th>
-							                                                        <th>Acciones</th>
+							                                                        <th>Código Producto</th>
+							                                                        <th>Descripción</th>
+							                                                        <th>Cantidad</th>							                                                        
 						                                                        </tr>						                                                        
 					                                                        </thead>
 					                                                        <tbody>
 					                                                            <tr>
 					                                                            	<td>1</td>
-					                                                            	<td>Almacén Puma</td>
-					                                                            	<td>Centro, Bogotá</td>
-					                                                            	<td>Almacén</td>
-					                                                            	<td>Elon Musk</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>
+					                                                            	<td>Terminales (POS) Hk37</td>
+					                                                            	<td>275</td>					                                                            	
 					                                                            </tr>
 					                                                            <tr>
 					                                                            	<td>2</td>
-					                                                            	<td>Laboratorio Raphson</td>
-					                                                            	<td>Caracas, Venezuela</td>
-					                                                            	<td>Laboratorio</td>
-					                                                            	<td>Javier Murillo</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>					                                                           
+					                                                            	<td>Sim Cards Claro</td>
+					                                                            	<td>322</td>					                                                            	
+					                                                            </tr>
+					                                                            <tr>
+					                                                            	<td>2M</td>
+					                                                            	<td>Sim Cards Movistar</td>
+					                                                            	<td>275</td>					                                                            	
 					                                                            </tr>
 					                                                            <tr>
 					                                                            	<td>3</td>
-					                                                            	<td>Reparaciones Electrónicas</td>
-					                                                            	<td>Maracaibo, Venezuela</td>
-					                                                            	<td>Almacén / Técnico</td>
-					                                                            	<td>Carlos Posada</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>4</td>
-					                                                            	<td>Electrónicas y Mecatrónicos</td>
-					                                                            	<td>San José, Costa Rica</td>
-					                                                            	<td>Almacén / Técnico</td>
-					                                                            	<td>Jhon Ladurne</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>
-					                                                            </tr>
+					                                                            	<td>Tarjetas</td>
+					                                                            	<td>5000</td>					                                                            	
+					                                                            </tr>					                                                            
 					                                                        </tbody>
 					                                                    </table>
 				                                                   	</div>

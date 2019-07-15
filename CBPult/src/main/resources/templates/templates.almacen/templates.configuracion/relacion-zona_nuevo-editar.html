@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
     <head>
-        <th:block th:replace="fragments/header :: headlayout"></th:block>
-        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Expires" content="0">
+        <meta http-equiv="Last-Modified" content="0">
+        <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <title>FinanPlus</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="#">
+        <meta name="keywords" content="">
+        <meta name="author" content="#">
+        <link rel="icon" th:href="@{/img/favicon.ico}" type="image/x-icon">
+        <link th:href="@{/css/init.css}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/feather.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/jquery.mCustomScrollbar.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/dataTables.bootstrap4.min.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/buttons.dataTables.min.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/responsive.bootstrap4.min.css}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
         <script type="text/javascript" th:src="@{/js2/index.js}"></script>
         <script th:src="@{/js2/bandeja_ventas.js}"></script>       
-        <script th:src="@{/js-almacen/almacen_nuevo-editar.js}"></script>
+		
+		<link rel="stylesheet" type="text/css" th:href="@{/css2/css.almacen/GeneralForm.css}">
         
-        <style>
-    		.botonera .btn{
-    			width: 300px;
-    			font-size: 25px;
-    			
-    		}
-    		
-    		.botonera2 .btn{
-    			margin-left: 30px;
-    			float: right;
-    		}
-    	</style>
     	<style type="text/css">
     		.card-block{
     			border: 2px solid #01a9ac;
@@ -58,7 +66,7 @@
                                                 <div class="col-lg-4">
                                                     <div class="page-header-title">
                                                         <div class="d-inline">
-                                                            <h2>Nuevo / Editar / Consultar  Relación Almacén</h2>                                                            
+                                                            <h2>Nuevo / Editar  Relación Zona</h2>                                                            
                                                         </div>
                                                     </div>
                                                 </div>                                                
@@ -73,12 +81,12 @@
                                             
                                             	<div class="col-sm-12 botonera botonera2" style="margin-bottom:30px">                                            		
                                             		
-                                           			<button type="button" id="btnRelacionar_relacion-almacen" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/almacen_nuevo-editar'; alert('Almacenes Relacionados');">
+                                           			<button type="button" id="btnRelacionar_relacion-zona" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/almacen_nuevo-editar'; alert('Almacenes Relacionados');">
 			                                   			Relacionar
 			                                   		</button>
                                             			                                       		
 		                                       		
-			                                   		<button type="button" id="btnCancelar_relacion-almacen" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/almacen_nuevo-editar'; alert('Relación Cancelada');">
+			                                   		<button type="button" id="btnCancelar_relacion-zona" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/almacen_nuevo-editar'; alert('Relación Cancelada');">
 			                                   			Cancelar
 			                                   		</button>
 		                                   		
@@ -90,48 +98,42 @@
                                                 	<div class="card">                                                   
                                                     	<div class="card-block">
                                                     		<!-- Titulo de Card -->
-                                                        	<h4 class="sub-title">Información de Almacén Actual</h4>
+                                                        	<h4 class="sub-title">Información de Zona Actual</h4>
                                                         	
                                                         	<!-- Row -->                                                        	
                                                         	<div class="row">
                                                         		
                                                         		<!-- Contenido de Card -->  
                                                         		<div class="col-sm-6">
-	                                                                <label class="col-sm-12 col-form-label">Código de Almacén</label>
+	                                                                <label class="col-sm-12 col-form-label">Código de Zona</label>
 	                                                                <div class="col-sm-12">
-	                                                                    <input type="text" id="txtCodigoActual_relacion-almacen" class="form-control" placeholder="Codigo" disabled="false">
+	                                                                    <input type="text" id="txtCodigoActual_relacion-zona" class="form-control" placeholder="Codigo" disabled>
 	                                                                </div>
                                                             	</div>
                                                             
 	                                                            <div class="col-sm-6 mobile-inputs">
-	                                                                <label class="col-sm-12 col-form-label">Tipo Almacén</label>
+	                                                                <label class="col-sm-12 col-form-label">Tipo Zona</label>
 	                                                                <div class="col-sm-12">
-		                                                                <select name="select" id="cboxTipoActual_relacion-almacen" class="form-control" disabled="false">
-		                                                                    <option value="Almacén">Almacén</option>
-		                                                                    <option value="Laboratorio">Laboratorio</option>
-		                                                                    <option value="Sucursal">Sucursal</option>
+		                                                                <select name="select" id="cboxTipoActual_relacion-zona" class="form-control" disabled>
+		                                                                    <option value="Recibo">Recibo</option>
+		                                                                    <option value="Almacenaje">Almacenaje</option>
+		                                                                    <option value="Almacenaje Restringido">Almacenaje Restringido</option>
+		                                                                    <option value="Despacho">Despacho</option>
 		                                                                </select>
 	                                                         		</div>
 	                                                            </div>
 	                                                            
 	                                                            <div class="col-sm-12 mobile-inputs">
-	                                                            	<label class="col-sm-12 col-form-label">Nombre Almacén</label>
+	                                                            	<label class="col-sm-12 col-form-label">Descripción Zona</label>
 	                                                            	<div class="col-sm-12">
-	                                                                    <input type="text" id="txtNameActual_relacion-almacen" class="form-control" placeholder="Nombre del Almacén" disabled="false">
+	                                                                    <input type="text" id="txtDescripcionActual_relacion-zona" class="form-control" placeholder="Descripción de Zona" disabled>
 	                                                                </div>
-	                                                            </div>	
-	                                                        	
-	                                                        	<div class="col-sm-12">
-	                                                                <label class="col-sm-12 col-form-label">Ubicación (Dirección)</label>
-	                                                                <div class="col-sm-12">
-	                                                                    <input type="text" id="txtUbicacionActual_relacion-almacen" class="form-control" placeholder="Dirección del Almacén" disabled="false">
-	                                                                </div>
-	                                                            </div>
+	                                                            </div>	                                                        	
 	                                                            
 	                                                            <div class="col-sm-12 mobile-inputs">
-	                                                                <label class="col-sm-12 col-form-label">Gerente de Sucursal</label>
+	                                                                <label class="col-sm-12 col-form-label">Encargado de Zona</label>
 	                                                                <div class="col-sm-12">
-		                                                                <select name="select" id="txtGerenteActual_relacion-almacen" class="form-control" disabled="false">
+		                                                                <select name="select" id="txtEncargadoActual_relacion-zona"class="form-control" disabled>
 		                                                                    <option value="Elon Musk">Elon Musk</option>
 		                                                                    <option value="Einstein">Einstein</option>
 		                                                                    <option value="Jack Ma">Jack Ma</option>
@@ -155,59 +157,53 @@
                                                 	<div class="card">                                                   
                                                     	<div class="card-block">
                                                     		<!-- Titulo de Card -->
-                                                        	<h4 class="sub-title">Información Almacén Destino</h4>
+                                                        	<h4 class="sub-title">Información de Zona Destino</h4>
                                                         	
-                                                        	<!-- Fila 1 -->                                      
+                                                        	<!-- Row -->                                                        	
                                                         	<div class="row">
-                                                        	
+                                                        		
                                                         		<!-- Contenido de Card -->  
                                                         		<div class="col-sm-6">
-	                                                                <label class="col-sm-12 col-form-label">Código de Almacén</label>
+	                                                                <label class="col-sm-12 col-form-label">Código de Zona</label>
 	                                                                <div class="col-sm-12">
-	                                                                    <input type="text" id="txtCodigoDest_relacion-almacen" class="form-control" placeholder="Codigo" disabled="false">
+	                                                                    <input type="text" id="txtCodigoDestino_relacion-zona" class="form-control" placeholder="Codigo" disabled>
 	                                                                </div>
                                                             	</div>
                                                             
 	                                                            <div class="col-sm-6 mobile-inputs">
-	                                                                <label class="col-sm-12 col-form-label">Tipo Almacén</label>
+	                                                                <label class="col-sm-12 col-form-label">Tipo Zona</label>
 	                                                                <div class="col-sm-12">
-		                                                                <select name="select" id="cboxTipoDest_relacion-almacen" class="form-control" disabled="false">
-		                                                                    <option value="Almacén">Almacén</option>
-		                                                                    <option value="Laboratorio">Laboratorio</option>
-		                                                                    <option value="Sucursal">Sucursal</option>
+		                                                                <select name="select" id="cboxTipoDestino_relacion-zona" class="form-control" disabled>		                                                                
+		                                                                    <option value="Almacenaje">Almacenaje</option>
+		                                                                    <option value="Recibo">Recibo</option>
+		                                                                    <option value="Almacenaje Restringido">Almacenaje Restringido</option>
+		                                                                    <option value="Despacho">Despacho</option>
 		                                                                </select>
 	                                                         		</div>
 	                                                            </div>
 	                                                            
 	                                                            <div class="col-sm-12 mobile-inputs">
-	                                                            	<label class="col-sm-12 col-form-label">Nombre Almacén</label>
+	                                                            	<label class="col-sm-12 col-form-label">Descripción Zona</label>
 	                                                            	<div class="col-sm-12">
-	                                                                    <input type="text" id="txtNameDest_relacion-almacen" class="form-control" placeholder="Nombre del Almacén" disabled="false">
+	                                                                    <input type="text" id="txtDescripcionDestino_relacion-zona" class="form-control" placeholder="Descripción de Zona">
 	                                                                </div>
-	                                                            </div>	
-	                                                        	
-	                                                        	<div class="col-sm-12">
-	                                                                <label class="col-sm-12 col-form-label">Ubicación (Dirección)</label>
-	                                                                <div class="col-sm-12">
-	                                                                    <input type="text" id="txtUbicacionDest_relacion-almacen" class="form-control" placeholder="Dirección del Almacén" disabled="false">
-	                                                                </div>
-	                                                            </div>
+	                                                            </div>	                                                        	
 	                                                            
 	                                                            <div class="col-sm-12 mobile-inputs">
-	                                                                <label class="col-sm-12 col-form-label">Gerente de Sucursal</label>
+	                                                                <label class="col-sm-12 col-form-label">Encargado de Zona</label>
 	                                                                <div class="col-sm-12">
-		                                                                <select name="select" id="cboxGerenteDest_relacion-almacen" class="form-control" disabled="false">		                                                                    
-		                                                                    <option value="Einstein">Einstein</option>
-		                                                                    <option value="Elon Musk">Elon Musk</option>
+		                                                                <select name="select" id="cboxEncargadoDestino_relacion-zona" class="form-control" disabled>
+		                                                                	<option value="Einstein">Einstein</option>
+		                                                                    <option value="Elon Musk">Elon Musk</option>		                                                                    
 		                                                                    <option value="Jack Ma">Jack Ma</option>
 		                                                                </select>
 	                                                         		</div>
 	                                                            </div>
-	                                                            <!-- Contenido de Card -->   
-	                                                                                                                                                                                      
+	                                                            <!-- Contenido de Card -->  
+	                                                            
                                                         	</div>
-                                                        	<!-- Fila 1 -->                                                   	
-                                                        	                                                         
+                                                        	<!-- Row -->                                                      		                                                        	
+                                                                                                      
                                                     	</div>
                                                 	</div> 
                                             	                                
