@@ -31,7 +31,6 @@
         <link rel="stylesheet" type="text/css" th:href="@{/css/switchery.min.css}">        
         <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-tagsinput.css}">
         
-        <script th:src="@{/js-almacen/zona_nuevo-editar.js}"></script>
         
         <link rel="stylesheet" type="text/css" th:href="@{/css2/css.almacen/GeneralForm.css}">
     </head>
@@ -80,17 +79,17 @@
                                         	<!-- Row General -->
                                             <div class="row">
                                             
-                                            	<div class="col-sm-12 botonera botonera2" style="margin-bottom:30px">                                            		
+                                            	<div class="col-sm-6 botonera botonera2" style="margin-bottom:30px" align="right">                                            		
                                             		
-                                           			<button type="button" id="btnGuardar_movimiento" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/zona_nuevo-editar'; alert('Estanteria Guardada')">
+                                           			<button type="button" id="btnGuardar_movimiento" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/inventario_zona'; alert('Movimiento Guardadado')">
 			                                   			Guardar
 			                                   		</button>                                            			                                       		
 		                                       		
-			                                   		<button type="button" id="btnCancelar_movimiento" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/zona_nuevo-editar'; alert('Estanteria Cancelada');">
+			                                   		<button type="button" id="btnCancelar_movimiento" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/inventario_zona'; alert('Movimiento Cancelado');">
 			                                   			Cancelar
 			                                   		</button>
 		                                   		
-                                            	</div>	
+                                            	</div> 
                                             	
                                             	<!-- Card 1 -->
                                             	<div class="col-sm-6"> 
@@ -507,11 +506,11 @@
 	                                            
 	                                            <div class="col-sm-6 botonera botonera2" style="margin-bottom:30px" align="right">                                            		
                                             		
-                                           			<button type="button" id="btnGuardar_estanteria" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/zona_nuevo-editar'; alert('Estanteria Guardada')">
+                                           			<button type="button" id="btnGuardar_movimiento" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/inventario_zona'; alert('Movimiento Guardadado')">
 			                                   			Guardar
 			                                   		</button>                                            			                                       		
 		                                       		
-			                                   		<button type="button" id="btnCancelar_estanteria" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/zona_nuevo-editar'; alert('Estanteria Cancelada');">
+			                                   		<button type="button" id="btnCancelar_movimiento" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/inventario_zona'; alert('Movimiento Cancelado');">
 			                                   			Cancelar
 			                                   		</button>
 		                                   		
