@@ -10,13 +10,13 @@
     	<link rel="stylesheet" type="text/css" th:href="@{/css/jquery-steps.css}">
     	<link rel="stylesheet" type="text/css" th:href="@{/css2/style.css}">
  		<link rel="stylesheet" type="text/css" th:href="@{/css/jquery-ui.css}">
-        <script type="text/javascript" src="../js2/confirm_pre_carga_ejecutivo.js"></script>
-        <script type="text/javascript" src="../js2/datos_comercio.js"></script>
-        <script type="text/javascript" src="../js2/compra_ejecutivo.js"></script>
-        <script type="text/javascript" src="../js2/representante_legal.js"></script>
-        <script type="text/javascript" src="../js2/direccion_establecimiento.js"></script>
-        <script type="text/javascript" src="../js2/datos_contacto.js"></script>
-        <script type="text/javascript" src="../js2/datos_pago.js"></script>
+        <script type="text/javascript" th:src="@{/js2/js.afiliacion/datos_comercio.js}"></script>
+        <script type="text/javascript" th:src="@{/js2/js.afiliacion/compra_ejecutivo.js}"></script>
+        <script type="text/javascript" th:src="@{/js2/js.afiliacion/representante_legal.js}"></script>
+        <script type="text/javascript" th:src="@{/js2/js.afiliacion/direccion_establecimiento.js}"></script>
+        <script type="text/javascript" th:src="@{/js2/js.afiliacion/datos_contacto.js}"></script>
+        <script type="text/javascript" th:src="@{/js2/js.afiliacion/datos_pago.js}"></script>
+        <script type="text/javascript" th:src="@{/js2/js.afiliacion/informacion_bancos.js}"></script>
      </head>
     <body themebg-pattern="pattern4">
             
@@ -75,10 +75,8 @@
     <div class="step-app">
         
       <ul class="step-steps">
-  
 
-
-        <li class="tb1"><a href="#tab1"><span class="number"></span> <i class="fa fa-user" style="font-size:30px"></i></a></li>
+        <!-- <li class="tb1"><a href="#tab1"><span class="number"></span> <i class="fa fa-user" style="font-size:30px"></i></a></li> -->
         <li class="tb2"><a href="#tab2" id="verificar"><span class="number"></span> <i class="fa fa-home" style="font-size:30px"></i></a></li>
         <li class="tb3"><a href="#tab3"><span class="number"></span> <i class="fa fa-suitcase" style="font-size:30px"></i></a></li>
         <li class="tb4"><a href="#tab4"><span class="number"></span><i class="fa fa-id-card-o" style="font-size:30px"></i></a></li>
@@ -86,116 +84,10 @@
         <li class="tb6"><a href="#tab6"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
         <li class="tb7"><a href="#tab7"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
         <li class="tb8"><a href="#tab8"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
-        
+        <li class="tb9"><a href="#tab9"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
        
       </ul>
       <div class="step-content">
-      <div class="step-tab-panel" id="tab1">
-          <!--h3>Tab1</h3-->
-            <div class="page-body">
-                                            <div class="row">
-
-                                                <!--/////////////////////////////////////////////////-->
-                                                <div class="col-sm-12">
-                                                    <div class="card">
-                                                        <div class="card-header">
-                                                            <div class="card-header-rigth">
-                                                                <i class="icofont icofont-spinner-alt-4"></i>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class="card-block">
-                                                            <h4 class="sub-title">Datos de la Pre-Carga</h4>
-                                                            <div class="row col-sm-12">
-	                                                            <div class="col-sm-6">
-	                                                            	<form id="miform">
-		                                                                <div class="form-group row">
-		                                                                    <div class="col-sm-12">
-		                                                                    	<div class="col-sm-12">
-		                                                                    		<label>Nombre de la Empresa: </label>
-		                                                                    	</div>
-																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="nombre_empresa"/>
-																				</div>
-																				
-																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
-																				
-																				<div class="col-sm-12">
-																					<label>Identificación: </label>
-																				</div>
-																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="identificacion"/>
-																				</div>
-																				
-																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
-																				
-																				<div class="col-sm-12">
-																					<label>Numero de telefono de Contacto: </label>
-																				</div>
-																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="numero_contacto"/>
-																				</div>
-																				
-		                                                                    </div>
-		                                                                </div>
-		                                                            </form>
-	                                                            </div>
-	                                                            <div class="col-sm-6">
-	                                                            	<form id="miform">
-		                                                                <div class="form-group row">
-		                                                                    <div class="col-sm-12">
-																				
-																				<div class="col-sm-12">
-		                                                                    		<label>Tipo Identificación: </label>
-		                                                                    	</div>
-																				<div class="col-sm-12">
-																					<select name="select" id="tipo_identificacion" class="form-control">
-																						<option value="RIF">RIF</option>
-		                                                                                <option value="C.I.">C.I.</option>
-		                                                                                <option value="Pasaporte">Pasaporte</option>
-                                                                        			</select>
-																				</div>
-																				
-																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
-																				
-																				<div class="col-sm-12">
-																					<label>Correo electronico: </label>
-																				</div>
-																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="correo_electronico"/>
-																				</div>
-																				
-																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
-																				
-																				<div class="col-sm-12">
-		                                                                    		<label>Ubicación Geografica: </label>
-		                                                                    	</div>
-																				<div class="col-sm-12">
-																					<select name="select" id="tipo_geografica" class="form-control">
-																						<option value="Geografica 1">Geografica 1</option>
-                                                                        			</select>
-																				</div>
-																				
-																				
-		                                                                    </div>
-		                                                                </div>
-		                                                            </form>
-	                                                            </div>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!--///////////////////////////////////////////////////-->
-                                                
-                                            </div>
-                                        </div>
-        </div>
-        
-        
-  <!-- ---////////////////////////////////////////////////----------------------------------------- -->      
-       
- 
         
         <div class="step-tab-panel" id="tab2">
     
@@ -219,6 +111,20 @@
 		                                                                <div class="form-group row">
 		                                                                    <div class="col-sm-12">
 		                                                                    	<div class="col-sm-12">
+		                                                                    		<label>Tipo de Identificación(*): </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<select name="select" id="tipo_identificacion_tab2" class="form-control">
+																						<option value="RIF">RIF</option>
+		                                                                                <option value="C.I.">C.I.</option>
+		                                                                                <option value="Pasaporte">Pasaporte</option>
+		                                                                                <option value="Cedula de persona jurídica">Cedula de persona jurídica</option>
+                                                                        			</select>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
 		                                                                    		<label>Nombre de la Empresa: </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
@@ -228,7 +134,52 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Identificación: </label>
+		                                                                    		<label>Correo Electronico: </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="correo_tab2"/>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+		                                                                    		<label>Numero de IBAN: </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="numero_iban_tab2"/>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+		                                                                    		<label>Afiliado a otra Procesadora: </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<select name="select" id="afiliado_tab2" class="form-control">
+																						<option value="SI">SI</option>
+		                                                                                <option value="NO">NO</option>
+                                                                        			</select>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+		                                                                    		<label>Teléfono Alternativo: </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="telefono_alternativo_tab2"/>
+																				</div>
+																				
+		                                                                    </div>
+		                                                                </div>
+		                                                            </form>
+	                                                            </div>
+	                                                            <div class="col-sm-6">
+	                                                            	<form id="miform">
+		                                                                <div class="form-group row">
+		                                                                    <div class="col-sm-12">
+																				<div class="col-sm-12">
+		                                                                    		<label>Documento de Identidad(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="identificacion_tab2"/>
@@ -246,15 +197,6 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Actividad Comercial: </label>
-		                                                                    	</div>
-																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="actividad_comercial_tab2"/>
-																				</div>
-																				
-																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
-																				
-																				<div class="col-sm-12">
 		                                                                    		<label>Teléfono Local: </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
@@ -264,50 +206,12 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Afiliado a otro Banco: </label>
+		                                                                    		<label>Banco: </label>
 		                                                                    	</div>
-																				<div class="col-sm-12">
-																					<select name="select" id="afiliado_tab2" class="form-control">
-																						<option value="SI">SI</option>
-		                                                                                <option value="NO">NO</option>
+		                                                                    	<div class="col-sm-12">
+																					<select name="select" id="banco_tab2" class="form-control">
+																						<option value="BANCO 1">BANCO 1</option>
                                                                         			</select>
-																				</div>
-																				
-		                                                                    </div>
-		                                                                </div>
-		                                                            </form>
-	                                                            </div>
-	                                                            <div class="col-sm-6">
-	                                                            	<form id="miform">
-		                                                                <div class="form-group row">
-		                                                                    <div class="col-sm-12">
-																				<div class="col-sm-12">
-		                                                                    		<label>Tipo de Identificación: </label>
-		                                                                    	</div>
-																				<div class="col-sm-12">
-																					<select name="select" id="tipo_identificacion_tab2" class="form-control">
-																						<option value="RIF">RIF</option>
-		                                                                                <option value="C.I.">C.I.</option>
-		                                                                                <option value="Pasaporte">Pasaporte</option>
-                                                                        			</select>
-																				</div>
-																				
-																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
-																				
-																				<div class="col-sm-12">
-		                                                                    		<label>Correo Electronico: </label>
-		                                                                    	</div>
-																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="correo_tab2"/>
-																				</div>
-																				
-																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
-																				
-																				<div class="col-sm-12">
-		                                                                    		<label>Numero de Cuenta Corriente Asociado: </label>
-		                                                                    	</div>
-																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="numero_cuenta_asociado_tab2"/>
 																				</div>
 																				
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -338,15 +242,6 @@
 		                                                                                <option value="06:00 pm">06:00 pm</option>
 		                                                                                
                                                                         			</select>
-																				</div>
-																				
-																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
-																				
-																				<div class="col-sm-12">
-		                                                                    		<label>Teléfono Alternativo: </label>
-		                                                                    	</div>
-																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="telefono_alternativo_tab2"/>
 																				</div>
 																				
 		                                                                    </div>
@@ -420,14 +315,14 @@
                                                             
                                                         </div>
                                                         <div class="card-block">
-                                                            <h4 class="sub-title">Terminales a comprar</h4>
+                                                            <h4 class="sub-title">Terminales Requeridos</h4>
                                                             <div class="row col-sm-12">
 	                                                            <div class="col-sm-6">
 	                                                            	<form id="miform">
 		                                                                <div class="form-group row">
 		                                                                    <div class="col-sm-12">
 		                                                                    	<div class="col-sm-12">
-		                                                                    		<label>Cantidad de terminales a Comprar: </label>
+		                                                                    		<label>Cantidad de terminales Requeridos: </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<select name="select" id="cantidad_terminales_tab3" class="form-control">
@@ -452,25 +347,10 @@
 		                                                                <div class="form-group row">
 		                                                                    <div class="col-sm-12">
 		                                                                    	<div class="col-sm-12">
-		                                                                    		<label>Movistar: </label>
+		                                                                    		<label>Claro: </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="cantidad_movistar_tab3"/>
-																				</div>
-																				
-		                                                                    </div>
-		                                                                </div>
-		                                                            </form>
-	                                                            </div>
-	                                                            <div class="col-sm-6">
-	                                                            	<form id="miform">
-		                                                                <div class="form-group row">
-		                                                                    <div class="col-sm-12">
-																				<div class="col-sm-12">
-		                                                                    		<label>Digitel: </label>
-		                                                                    	</div>
-																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="cantidad_digitel_tab3"/>
+																					<input type="text" class="form-control" placeholder="" id="cantidad_claro_tab3"/>
 																				</div>
 																				
 		                                                                    </div>
@@ -515,6 +395,20 @@
 		                                                                <div class="form-group row">
 		                                                                    <div class="col-sm-12">
 		                                                                    	<div class="col-sm-12">
+		                                                                    		<label>Tipo de Identificación: </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<select name="select" id="tipo_identificacion_tab4" class="form-control">
+																						<option value="RIF">RIF</option>
+		                                                                                <option value="C.I.">C.I.</option>
+		                                                                                <option value="Pasaporte">Pasaporte</option>
+		                                                                                <option value="Cedula de Persona Jurídica">Cedula de Persona Jurídica</option>
+                                                                        			</select>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+		                                                                    
+		                                                                    	<div class="col-sm-12">
 		                                                                    		<label>Primer Nombre: </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
@@ -528,19 +422,6 @@
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="primer_apellido_tab4"/>
-																				</div>
-																				
-																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
-																				
-																				<div class="col-sm-12">
-		                                                                    		<label>Tipo de Identificación: </label>
-		                                                                    	</div>
-																				<div class="col-sm-12">
-																					<select name="select" id="tipo_identificacion_tab4" class="form-control">
-																						<option value="RIF">RIF</option>
-		                                                                                <option value="C.I.">C.I.</option>
-		                                                                                <option value="Pasaporte">Pasaporte</option>
-                                                                        			</select>
 																				</div>
 																				
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -568,6 +449,15 @@
 	                                                            	<form id="miform">
 		                                                                <div class="form-group row">
 		                                                                    <div class="col-sm-12">
+		                                                                    	<div class="col-sm-12">
+		                                                                    		<label>Documento de identidad: </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="identificacion_tab4"/>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+		                                                                    
 																				<div class="col-sm-12">
 		                                                                    		<label>Segundo Nombre: </label>
 		                                                                    	</div>
@@ -582,15 +472,6 @@
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="segundo_apellido_tab4"/>
-																				</div>
-																				
-																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
-																				
-																				<div class="col-sm-12">
-		                                                                    		<label>Identificación: </label>
-		                                                                    	</div>
-																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="identificacion_tab4"/>
 																				</div>
 																				
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -723,11 +604,21 @@
 																				</div>
 																				
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
 																				<div class="col-sm-12">
 		                                                                    		<label>Nombre del inmueble: </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="nombre_inmueble_tab5"/>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+		                                                                    		<label>Geo Localización: </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="geo_localizacion_tab5"/>
 																				</div>
 																				
 		                                                                    </div>
@@ -870,6 +761,70 @@
                                                             </div>
                                                         </div>
                                                         <div class="card-block">
+                                                            <h4 class="sub-title">Información de otros Bancos</h4>
+                                                            <div class="row col-sm-12">
+	                                                            <div class="col-sm-6">
+	                                                            	<form id="miform">
+		                                                                <div class="form-group row">
+		                                                                    <div class="col-sm-12">
+		                                                                    	<div class="col-sm-12">
+		                                                                    		<label>Nombre del banco: </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="nombre_banco_tab7"/>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+		                                                                    		<label>Cantidad de POS: </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="cantidad_tab7"/>
+																				</div>
+																				
+		                                                                    </div>
+		                                                                </div>
+		                                                            </form>
+	                                                            </div>
+	                                                            <div class="col-sm-6">
+	                                                            	<form id="miform">
+		                                                                <div class="form-group row">
+		                                                                    <div class="col-sm-12">
+																				<div class="col-sm-12">
+		                                                                    		<label>Tipo de POS: </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="tipo_POS_tab7"/>
+																				</div>
+																				
+		                                                                    </div>
+		                                                                </div>
+		                                                            </form>
+	                                                            </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--///////////////////////////////////////////////////-->
+                                                
+                                            </div>
+                                        </div>
+        </div>
+        <div class="step-tab-panel" id="tab8">
+          <div class="page-body">
+                                            <div class="row">
+
+                                                <!--/////////////////////////////////////////////////-->
+                                                <div class="col-sm-12">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <div class="card-header-rigth">
+                                                                <i class="icofont icofont-spinner-alt-4"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-block">
                                                             <h4 class="sub-title">Datos del Pago</h4>
                                                             <div class="row col-sm-12">
 	                                                            <div class="col-sm-6">
@@ -880,7 +835,7 @@
 		                                                                    		<label>Modo de Pago: </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<select name="select" id="tipo_pago_tab7" class="form-control">
+																					<select name="select" id="tipo_pago_tab8" class="form-control">
 																						<option value="Efectivo">Efectivo</option>
 																						<option value="Transferencia">Transferencia</option>
 																						<option value="Divisa">Divisa</option>
@@ -894,7 +849,7 @@
 		                                                                    		<label>Numero de Comprobante / Recibo: </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="comprobante_recibo_tab7"/>
+																					<input type="text" class="form-control" placeholder="" id="comprobante_recibo_tab8"/>
 																				</div>
 																				
 		                                                                    </div>
@@ -909,7 +864,7 @@
 		                                                                    		<label>Banco: </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<select name="select" id="tipo_banco_tab7" class="form-control">
+																					<select name="select" id="tipo_banco_tab8" class="form-control">
 																						<option value="BANCO 1">BANCO 1</option>
                                                                         			</select>
 																				</div>
@@ -928,7 +883,7 @@
                                             </div>
                                         </div>
         </div>
-        <div class="step-tab-panel" id="tab8">
+        <div class="step-tab-panel" id="tab9">
           <div class="page-body">
                                             <div class="row">
                                                 <div class="col-sm-12">
@@ -954,7 +909,7 @@
 	                                                                                    <div class="col-sm-9">
 	                                                                                        <ul class="col-sm-9">
 	                                                                                            <li>El tamaño máximo de un archivo adjunto está limitado a 1MB.</li> 
-	                                                                                            <li>Los archivos deben ser de tipo pdf.</li> 
+	                                                                                            <li>Los archivos deben ser de tipo PDF y JPEG.</li>
 	                                                                                        </ul>
 	                                                                                    </div>
 	                                                                                </div>
@@ -970,11 +925,12 @@
 	                                                                            <div class="col-sm-12">
 	                                                                                <select name="select" id="" class="form-control">
 	                                                                                    <option value="PDF">PDF</option>
+	                                                                                    <option value="PDF">JPEG</option>
 	                                                                                </select>
 	                                                                            </div>
 	                                                                        </div>
 	                                                                        <div class="col-sm-8">
-	                                                                            <label for="file" class="col-sm-12 col-form-label">Documento de Identificación</label>
+	                                                                            <label for="file" class="col-sm-12 col-form-label">Cedula de Representante legal</label>
 	                                                                            <div class="col-sm-12">
 	                                                                                <input type="file" id="fileinput" name="file_financiera" class="form-control">
 	                                                                            </div>
@@ -989,11 +945,32 @@
 	                                                                            <div class="col-sm-12">
 	                                                                                <select name="select" id="" class="form-control">
 	                                                                                    <option value="PDF">PDF</option>
+	                                                                                    <option value="PDF">JPEG</option>
 	                                                                                </select>
 	                                                                            </div>
 	                                                                        </div>
 	                                                                        <div class="col-sm-8">
-	                                                                            <label for="file" class="col-sm-12 col-form-label">Orden Patronal</label>
+	                                                                            <label for="file" class="col-sm-12 col-form-label">Cedula del Contacto</label>
+	                                                                            <div class="col-sm-12">
+	                                                                                <input type="file" id="fileinput2" name="file_personal" class="form-control">
+	                                                                            </div>
+	                                                                        </div>
+	                                                                    </div>
+	                                                                </div>
+	                                                                
+	                                                                <div class="form-group row">
+	                                                                	<div class="row col-sm-12">
+	                                                                        <div class="col-sm-4">
+	                                                                            <label class="col-sm-12 col-form-label">Tipo de adjunto(*)</label>
+	                                                                            <div class="col-sm-12">
+	                                                                                <select name="select" id="" class="form-control">
+	                                                                                    <option value="PDF">PDF</option>
+	                                                                                    <option value="PDF">JPEG</option>
+	                                                                                </select>
+	                                                                            </div>
+	                                                                        </div>
+	                                                                        <div class="col-sm-8">
+	                                                                            <label for="file" class="col-sm-12 col-form-label">Fachada del Negocio</label>
 	                                                                            <div class="col-sm-12">
 	                                                                                <input type="file" id="fileinput2" name="file_personal" class="form-control">
 	                                                                            </div>
@@ -1018,11 +995,12 @@
                                                             <div class="col-sm-4">
                                                             	<div class="accordion" id="accordionExample">
 																	<div class="card z-depth-0 bordered">
+																	
 			                                                       		<div class="card-header" id="headingOne">
 				                                                         	<h5 class="mb-0">
                                                                         		<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
 																		          aria-expanded="true" aria-controls="collapseOne">
-																		          Visualizar Documento de Identificación
+																		          Visualizar Cedula de Representante Legal
 																		        </button>
 																	        </h5>
 																        </div>
@@ -1040,7 +1018,7 @@
                                                                        		<h5 class="mb-0">
                                                                         		<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo"
 																		          aria-expanded="true" aria-controls="collapseTwo">
-																		          Visualizar orden Patronal
+																		          Visualizar Cedula del Contacto
 																		        </button>
 																	        </h5>
 																        </div>
@@ -1053,6 +1031,25 @@
 																			    </div>
 																			    
 																	    </div>
+																	    <!-- //////////////////////////////////////////////////////// -->
+																	    <div class="card-header" id="headingOne">
+                                                                       		<h5 class="mb-0">
+                                                                        		<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo"
+																		          aria-expanded="true" aria-controls="collapseTwo">
+																		          Visualizar Fachada del Negocio
+																		        </button>
+																	        </h5>
+																        </div>
+																        <div id="collapseTwo" class="collapse hide" aria-labelledby="headingOne"
+																	      data-parent="#accordionExample">
+																	      
+																			    <div class="popup">
+																			        <embed id="verte2"  src="" type="application/pdf" width="100%" height="600px" />
+																			        
+																			    </div>
+																			    
+																	    </div>
+																	    
 																	 </div>
 																</div>
                                                             </div>
@@ -1092,10 +1089,9 @@
           <!--//////////////////////////////////////////////--> 
       </div>
     <div class="step-footer">
-        <button class="btn btn-primary" value="0" id="validateClient" >Crear Cliente</button>
         <button data-direction="prev" class="btn btn-secondary" id="atrasWizard">Atras</button>
-        <button data-direction="next" class="btn btn-primary" value="0" id="siguiente" hidden>Siguiente</button>
-        <button data-direction="finish" class="btn btn-success" id="saveComplet">Asociacion Adicional</button>
+        <button data-direction="next" class="btn btn-primary" value="0" id="siguiente">Siguiente</button>
+        <button data-direction="finish" class="btn btn-success" id="saveComplet">Finalizar</button>
      </div>
     </div>
     </div>
@@ -1127,7 +1123,7 @@
 
     <script type="text/javascript" th:src="@{/js/jquery.validate.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/jquery-steps.js}"></script>
-    <script type="text/javascript" th:src="@{/js2/wizard.main.js}"></script>
+    <script type="text/javascript" th:src="@{/js2/js.afiliacion/wizard.main.js}"></script>
     <script type="text/javascript" th:src="@{/js/jquery-ui.js}"></script>
     <script type="text/javascript" th:src="@{/js/dateFormat.js}"></script>
     <script type="text/javascript" th:src="@{/js/moment.js}"></script>

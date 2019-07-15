@@ -1,0 +1,45 @@
+
+/* Botoneras Grandes */
+
+.botonera .btn{
+	width: 300px;
+	font-size: 25px;   			
+}
+  		
+.botonera2 .btn{
+	margin-left: 30px;
+	float: right;
+}
+
+/* Botoneras Grandes */
+
+
+/* Botoneras Tablas */
+a img{
+	transition: 0.3s;
+}
+
+a img:hover{
+	background: #ffffff;
+	width: 35px;
+}
+/* Botoneras Tablas */
+
+
+
+ /* Tarjetas */
+.cardlimit{
+	height: 379px;
+	overflow: hidden;
+}
+
+.tablelimit{
+	max-height: 290px;
+	overflow: hidden;
+}
+
+.tableinnerlimit{
+	max-height: 100px;
+}
+ /* Tarjetas */	
+
