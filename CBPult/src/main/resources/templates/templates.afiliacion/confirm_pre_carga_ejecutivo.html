@@ -10,6 +10,8 @@
     	<link rel="stylesheet" type="text/css" th:href="@{/css/jquery-steps.css}">
     	<link rel="stylesheet" type="text/css" th:href="@{/css2/style.css}">
  		<link rel="stylesheet" type="text/css" th:href="@{/css/jquery-ui.css}">
+ 		<link rel="stylesheet" type="text/css" th:href="@{/css/switchery.min.css}">        
+        <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-tagsinput.css}">
         <script type="text/javascript" th:src="@{/js2/js.afiliacion/datos_comercio.js}"></script>
         <script type="text/javascript" th:src="@{/js2/js.afiliacion/compra_ejecutivo.js}"></script>
         <script type="text/javascript" th:src="@{/js2/js.afiliacion/representante_legal.js}"></script>
@@ -100,7 +102,6 @@
                                                     <div class="card">
                                                         <div class="card-header">
                                                             <div class="card-header-rigth">
-                                                                <i class="icofont icofont-spinner-alt-4"></i>
                                                             </div>
                                                         </div>
                                                         <div class="card-block">
@@ -125,7 +126,7 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Nombre de la Empresa: </label>
+		                                                                    		<label>Nombre de la Empresa(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="nombre_empresa_tab2"/>
@@ -143,7 +144,7 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Numero de IBAN: </label>
+		                                                                    		<label>Numero de IBAN(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="numero_iban_tab2"/>
@@ -152,7 +153,7 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Afiliado a otra Procesadora: </label>
+		                                                                    		<label>Afiliado a otra Procesadora(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<select name="select" id="afiliado_tab2" class="form-control">
@@ -188,7 +189,7 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Nombre Comercial o Fantasía: </label>
+		                                                                    		<label>Nombre Comercial o Fantasía(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="nombre_comercial_tab2"/>
@@ -197,7 +198,7 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Teléfono Local: </label>
+		                                                                    		<label>Teléfono Local(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="telefono_local_tab2"/>
@@ -206,7 +207,7 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Banco: </label>
+		                                                                    		<label>Banco(*): </label>
 		                                                                    	</div>
 		                                                                    	<div class="col-sm-12">
 																					<select name="select" id="banco_tab2" class="form-control">
@@ -217,10 +218,27 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Horario del Comercio: </label>
+		                                                                    		<label>Hora de Inicio(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<select name="select" id="horario_comercio_tab2" class="form-control">
+																					<select name="select" id="horario_inicio_tab2" class="form-control">
+																						<option value="12:30 am">12:30 am</option>
+																						<option value="01:00 am">01:00 am</option>
+																						<option value="01:30 am">01:30 am</option>
+																						<option value="02:00 am">02:00 am</option>
+																						<option value="02:30 am">02:30 am</option>
+																						<option value="03:00 am">03:00 am</option>
+																						<option value="03:30 am">03:30 am</option>
+																						<option value="04:00 am">04:00 am</option>
+																						<option value="04:30 am">04:30 am</option>
+																						<option value="05:00 am">05:00 am</option>
+																						<option value="05:30 am">05:30 am</option>
+																						<option value="06:00 am">06:00 am</option>
+																						<option value="06:30 am">06:30 am</option>
+																						<option value="07:00 am">07:00 am</option>
+																						<option value="07:30 am">07:30 am</option>
+																						<option value="08:00 am">08:00 am</option>
+																						<option value="08:30 am">08:30 am</option>
 																						<option value="09:00 am">09:00 am</option>
 		                                                                                <option value="09:30 am">09:30 am</option>
 		                                                                                <option value="10:00 am">10:00 am</option>
@@ -240,6 +258,77 @@
 		                                                                                <option value="05:00 pm">05:00 pm</option>
 		                                                                                <option value="05:30 pm">05:30 pm</option>
 		                                                                                <option value="06:00 pm">06:00 pm</option>
+		                                                                                <option value="06:30 pm">06:30 pm</option>
+		                                                                                <option value="07:00 pm">07:00 pm</option>
+		                                                                                <option value="07:30 pm">07:30 pm</option>
+		                                                                                <option value="08:00 pm">08:00 pm</option>
+		                                                                                <option value="08:30 pm">08:30 pm</option>
+		                                                                                <option value="09:00 pm">09:00 pm</option>
+		                                                                                <option value="09:30 pm">09:30 pm</option>
+		                                                                                <option value="10:00 pm">10:00 pm</option>
+		                                                                                <option value="10:30 pm">10:30 pm</option>
+		                                                                                <option value="11:00 pm">11:00 pm</option>
+		                                                                                <option value="11:30 pm">11:30 pm</option>
+		                                                                                <option value="12:00 am">12:00 am</option>
+		                                                                                
+                                                                        			</select>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+		                                                                    		<label>Hora de Finalización(*): </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<select name="select" id="horario_fin_tab2" class="form-control">
+																						<option value="12:30 am">12:30 am</option>
+																						<option value="01:00 am">01:00 am</option>
+																						<option value="01:30 am">01:30 am</option>
+																						<option value="02:00 am">02:00 am</option>
+																						<option value="02:30 am">02:30 am</option>
+																						<option value="03:00 am">03:00 am</option>
+																						<option value="03:30 am">03:30 am</option>
+																						<option value="04:00 am">04:00 am</option>
+																						<option value="04:30 am">04:30 am</option>
+																						<option value="05:00 am">05:00 am</option>
+																						<option value="05:30 am">05:30 am</option>
+																						<option value="06:00 am">06:00 am</option>
+																						<option value="06:30 am">06:30 am</option>
+																						<option value="07:00 am">07:00 am</option>
+																						<option value="07:30 am">07:30 am</option>
+																						<option value="08:00 am">08:00 am</option>
+																						<option value="08:30 am">08:30 am</option>
+																						<option value="09:00 am">09:00 am</option>
+		                                                                                <option value="09:30 am">09:30 am</option>
+		                                                                                <option value="10:00 am">10:00 am</option>
+		                                                                                <option value="10:30 am">10:30 am</option>
+		                                                                                <option value="11:00 am">11:00 am</option>
+		                                                                                <option value="11:30 am">11:30 am</option>
+		                                                                                <option value="12:00 pm">12:00 pm</option>
+		                                                                                <option value="12:30 pm">12:30 pm</option>
+		                                                                                <option value="01:00 pm">01:00 pm</option>
+		                                                                                <option value="01:30 pm">01:30 pm</option>
+		                                                                                <option value="02:00 pm">02:00 pm</option>
+		                                                                                <option value="02:30 pm">02:30 pm</option>
+		                                                                                <option value="03:00 pm">03:00 pm</option>
+		                                                                                <option value="03:30 pm">03:30 pm</option>
+		                                                                                <option value="04:00 pm">04:00 pm</option>
+		                                                                                <option value="04:30 pm">04:30 pm</option>
+		                                                                                <option value="05:00 pm">05:00 pm</option>
+		                                                                                <option value="05:30 pm">05:30 pm</option>
+		                                                                                <option value="06:00 pm">06:00 pm</option>
+		                                                                                <option value="06:30 pm">06:30 pm</option>
+		                                                                                <option value="07:00 pm">07:00 pm</option>
+		                                                                                <option value="07:30 pm">07:30 pm</option>
+		                                                                                <option value="08:00 pm">08:00 pm</option>
+		                                                                                <option value="08:30 pm">08:30 pm</option>
+		                                                                                <option value="09:00 pm">09:00 pm</option>
+		                                                                                <option value="09:30 pm">09:30 pm</option>
+		                                                                                <option value="10:00 pm">10:00 pm</option>
+		                                                                                <option value="10:30 pm">10:30 pm</option>
+		                                                                                <option value="11:00 pm">11:00 pm</option>
+		                                                                                <option value="11:30 pm">11:30 pm</option>
+		                                                                                <option value="12:00 am">12:00 am</option>
 		                                                                                
                                                                         			</select>
 																				</div>
@@ -275,7 +364,6 @@
                                                     <div class="card">
                                                         <div class="card-header">
                                                             <div class="card-header-rigth">
-                                                                <i class="icofont icofont-spinner-alt-4"></i>
                                                             </div>
                                                         </div>
                                                         <div class="card-block">
@@ -291,6 +379,13 @@
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="nombre_banco_tab3"/>
 																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+						                                                        <div class="col-sm-6">
+						                                                        	<label class="col-form-label">Ventas al por Mayor:</label>
+						                                                        	<input type="checkbox" class="js-switch-blue" checked="" data-switchery="true" style="display: none;" id="cboxNombreComercial_Comercio">
+						                                                        </div>
 																				
 		                                                                    </div>
 		                                                                </div>
@@ -322,14 +417,10 @@
 		                                                                <div class="form-group row">
 		                                                                    <div class="col-sm-12">
 		                                                                    	<div class="col-sm-12">
-		                                                                    		<label>Cantidad de terminales Requeridos: </label>
+		                                                                    		<label>Cantidad de terminales Requeridos(*): </label>
 		                                                                    	</div>
-																				<div class="col-sm-12">
-																					<select name="select" id="cantidad_terminales_tab3" class="form-control">
-																						<option value="1">1</option>
-		                                                                                <option value="2">2</option>
-		                                                                                <option value="3">3</option>
-                                                                        			</select>
+		                                                                    	<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="cantidad_terminales_tab3"/>
 																				</div>
 																				
 		                                                                    </div>
@@ -384,7 +475,6 @@
                                                     <div class="card">
                                                         <div class="card-header">
                                                             <div class="card-header-rigth">
-                                                                <i class="icofont icofont-spinner-alt-4"></i>
                                                             </div>
                                                         </div>
                                                         <div class="card-block">
@@ -395,7 +485,7 @@
 		                                                                <div class="form-group row">
 		                                                                    <div class="col-sm-12">
 		                                                                    	<div class="col-sm-12">
-		                                                                    		<label>Tipo de Identificación: </label>
+		                                                                    		<label>Tipo de Identificación(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<select name="select" id="tipo_identificacion_tab4" class="form-control">
@@ -409,7 +499,7 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 		                                                                    
 		                                                                    	<div class="col-sm-12">
-		                                                                    		<label>Primer Nombre: </label>
+		                                                                    		<label>Primer Nombre(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="primer_nombre_tab4"/>
@@ -418,7 +508,7 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Primer Apellido: </label>
+		                                                                    		<label>Primer Apellido(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="primer_apellido_tab4"/>
@@ -450,7 +540,7 @@
 		                                                                <div class="form-group row">
 		                                                                    <div class="col-sm-12">
 		                                                                    	<div class="col-sm-12">
-		                                                                    		<label>Documento de identidad: </label>
+		                                                                    		<label>Documento de identidad(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="identificacion_tab4"/>
@@ -477,7 +567,7 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Teléfono Celular: </label>
+		                                                                    		<label>Teléfono Celular(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="telefono_celular_tab4"/>
@@ -507,7 +597,6 @@
                                                     <div class="card">
                                                         <div class="card-header">
                                                             <div class="card-header-rigth">
-                                                                <i class="icofont icofont-spinner-alt-4"></i>
                                                             </div>
                                                         </div>
                                                         <div class="card-block">
@@ -518,7 +607,7 @@
 		                                                                <div class="form-group row">
 		                                                                    <div class="col-sm-12">
 		                                                                    	<div class="col-sm-12">
-		                                                                    		<label>Estado: </label>
+		                                                                    		<label>Estado(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<select name="select" id="estado_tab5" class="form-control">
@@ -535,7 +624,7 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Municipio: </label>
+		                                                                    		<label>Municipio(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<select name="select" id="municipio_tab5" class="form-control">
@@ -546,7 +635,7 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Avenida / Calle: </label>
+		                                                                    		<label>Avenida / Calle(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="avenida_calle_tab5"/>
@@ -554,7 +643,7 @@
 																				
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				<div class="col-sm-12">
-		                                                                    		<label>Localidad: </label>
+		                                                                    		<label>Localidad(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="localidad_tab5"/>
@@ -562,7 +651,7 @@
 																				
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				<div class="col-sm-12">
-		                                                                    		<label>Punto de Referencia: </label>
+		                                                                    		<label>Punto de Referencia(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="punto_referencia_tab5"/>
@@ -577,7 +666,7 @@
 		                                                                <div class="form-group row">
 		                                                                    <div class="col-sm-12">
 																				<div class="col-sm-12">
-		                                                                    		<label>Ciudad: </label>
+		                                                                    		<label>Ciudad(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<select name="select" id="ciudad_tab5" class="form-control">
@@ -588,7 +677,7 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Sector / Urbanización: </label>
+		                                                                    		<label>Sector / Urbanización(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="sector_urbanizacion_tab5"/>
@@ -597,7 +686,7 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Código Postal: </label>
+		                                                                    		<label>Código Postal(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="codigo_postal_tab5"/>
@@ -606,7 +695,7 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Nombre del inmueble: </label>
+		                                                                    		<label>Nombre del inmueble(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="nombre_inmueble_tab5"/>
@@ -615,7 +704,7 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Geo Localización: </label>
+		                                                                    		<label>Geo Localización(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="geo_localizacion_tab5"/>
@@ -644,7 +733,6 @@
                                                     <div class="card">
                                                         <div class="card-header">
                                                             <div class="card-header-rigth">
-                                                                <i class="icofont icofont-spinner-alt-4"></i>
                                                             </div>
                                                         </div>
                                                         <div class="card-block">
@@ -655,7 +743,7 @@
 		                                                                <div class="form-group row">
 		                                                                    <div class="col-sm-12">
 		                                                                    	<div class="col-sm-12">
-		                                                                    		<label>Cargo: </label>
+		                                                                    		<label>Cargo(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="cargo_tab6"/>
@@ -664,7 +752,7 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Segundo Nombre: </label>
+		                                                                    		<label>Segundo Nombre(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="segundo_nombre_tab6"/>
@@ -673,7 +761,7 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Segundo Apellido: </label>
+		                                                                    		<label>Segundo Apellido(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="segundo_apellido_tab6"/>
@@ -682,10 +770,19 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Identificación: </label>
+		                                                                    		<label>Identificación(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="identificacion_tab6"/>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+		                                                                    		<label>Correo Electronico(*): </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="correo_electronico_tab6"/>
 																				</div>
 																				
 		                                                                    </div>
@@ -697,7 +794,7 @@
 		                                                                <div class="form-group row">
 		                                                                    <div class="col-sm-12">
 																				<div class="col-sm-12">
-		                                                                    		<label>Primer Nombre: </label>
+		                                                                    		<label>Primer Nombre(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="primer_nombre_tab6"/>
@@ -706,7 +803,7 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Primer Apellido: </label>
+		                                                                    		<label>Primer Apellido(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="primer_apellido_tab6"/>
@@ -715,7 +812,7 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Tipo Identificación: </label>
+		                                                                    		<label>Tipo Identificación(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<select name="select" id="tipo_identificacion_tab6" class="form-control">
@@ -728,7 +825,7 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Teléfono: </label>
+		                                                                    		<label>Teléfono(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="telefono_tab6"/>
@@ -757,18 +854,17 @@
                                                     <div class="card">
                                                         <div class="card-header">
                                                             <div class="card-header-rigth">
-                                                                <i class="icofont icofont-spinner-alt-4"></i>
                                                             </div>
                                                         </div>
                                                         <div class="card-block">
-                                                            <h4 class="sub-title">Información de otros Bancos</h4>
+                                                            <h4 class="sub-title">Información de otras procesadoras</h4>
                                                             <div class="row col-sm-12">
 	                                                            <div class="col-sm-6">
 	                                                            	<form id="miform">
 		                                                                <div class="form-group row">
 		                                                                    <div class="col-sm-12">
 		                                                                    	<div class="col-sm-12">
-		                                                                    		<label>Nombre del banco: </label>
+		                                                                    		<label>Nombre del Banco: </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="nombre_banco_tab7"/>
@@ -794,8 +890,10 @@
 																				<div class="col-sm-12">
 		                                                                    		<label>Tipo de POS: </label>
 		                                                                    	</div>
-																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="tipo_POS_tab7"/>
+		                                                                    	<div class="col-sm-12">
+																					<select name="select" id="tipo_POS_tab7" class="form-control">
+																						<option value="Tipo de POS">Tipo de POS</option>
+                                                                        			</select>
 																				</div>
 																				
 		                                                                    </div>
@@ -821,7 +919,6 @@
                                                     <div class="card">
                                                         <div class="card-header">
                                                             <div class="card-header-rigth">
-                                                                <i class="icofont icofont-spinner-alt-4"></i>
                                                             </div>
                                                         </div>
                                                         <div class="card-block">
@@ -832,7 +929,7 @@
 		                                                                <div class="form-group row">
 		                                                                    <div class="col-sm-12">
 		                                                                    	<div class="col-sm-12">
-		                                                                    		<label>Modo de Pago: </label>
+		                                                                    		<label>Modo de Pago(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<select name="select" id="tipo_pago_tab8" class="form-control">
@@ -846,7 +943,7 @@
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																				
 																				<div class="col-sm-12">
-		                                                                    		<label>Numero de Comprobante / Recibo: </label>
+		                                                                    		<label>Numero de Comprobante / Recibo(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<input type="text" class="form-control" placeholder="" id="comprobante_recibo_tab8"/>
@@ -861,12 +958,21 @@
 		                                                                <div class="form-group row">
 		                                                                    <div class="col-sm-12">
 																				<div class="col-sm-12">
-		                                                                    		<label>Banco: </label>
+		                                                                    		<label>Banco(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<select name="select" id="tipo_banco_tab8" class="form-control">
 																						<option value="BANCO 1">BANCO 1</option>
                                                                         			</select>
+																				</div>
+																				
+																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																				
+																				<div class="col-sm-12">
+		                                                                    		<label>Monto(*): </label>
+		                                                                    	</div>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control" placeholder="" id="monto_tab8"/>
 																				</div>
 																				
 		                                                                    </div>
@@ -884,182 +990,109 @@
                                         </div>
         </div>
         <div class="step-tab-panel" id="tab9">
-          <div class="page-body">
-                                            <div class="row">
+          <form name="divFiles" id="divFiles">
+                    <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="card">
-                                                        <div class="card-header">
-                                                            <div class="card-header-rigth">
-                                                                <i class="icofont icofont-spinner-alt-4"></i>
-                                                            </div>
-                                                        </div>
                                                         <div class="card-block">
-                                                            <h4 class="sub-title">Archivos adjuntos</h4>
-                                                            <div class="row col-sm-12">
-                                                            <div class="col-sm-8">
                                                             <form id="miform">
-	                                                                <div class="form-group row">
-	                                                                    <div class="col-sm-12">
-	                                                                        <div class="panel panel-default">
-	                                                                            <div class="panel-footer">
-	                                                                                <div class="row">
-	                                                                                    <label class="col-sm-9 col-form-label">Importante:</label>
-	                                                                                </div>
-	                                                                                <div class="row">
-	                                                                                    <div class="col-sm-9">
-	                                                                                        <ul class="col-sm-9">
-	                                                                                            <li>El tamaño máximo de un archivo adjunto está limitado a 1MB.</li> 
-	                                                                                            <li>Los archivos deben ser de tipo PDF y JPEG.</li>
-	                                                                                        </ul>
-	                                                                                    </div>
-	                                                                                </div>
-	                                                                            </div>
-	                                                                        </div>
-	                                                                    </div>
-	                                                                </div>
-	                                                                
-	                                                                <div class="form-group row">
-	                                                                	<div class="row col-sm-12">
-	                                                                        <div class="col-sm-4">
-	                                                                            <label class="col-sm-12 col-form-label">Tipo de adjunto</label>
-	                                                                            <div class="col-sm-12">
-	                                                                                <select name="select" id="" class="form-control">
-	                                                                                    <option value="PDF">PDF</option>
-	                                                                                    <option value="PDF">JPEG</option>
-	                                                                                </select>
-	                                                                            </div>
-	                                                                        </div>
-	                                                                        <div class="col-sm-8">
-	                                                                            <label for="file" class="col-sm-12 col-form-label">Cedula de Representante legal</label>
-	                                                                            <div class="col-sm-12">
-	                                                                                <input type="file" id="fileinput" name="file_financiera" class="form-control">
-	                                                                            </div>
-	                                                                        </div>
-	                                                                    </div>
-	                                                                </div>
-																		
-	                                                                <div class="form-group row">
-	                                                                	<div class="row col-sm-12">
-	                                                                        <div class="col-sm-4">
-	                                                                            <label class="col-sm-12 col-form-label">Tipo de adjunto(*)</label>
-	                                                                            <div class="col-sm-12">
-	                                                                                <select name="select" id="" class="form-control">
-	                                                                                    <option value="PDF">PDF</option>
-	                                                                                    <option value="PDF">JPEG</option>
-	                                                                                </select>
-	                                                                            </div>
-	                                                                        </div>
-	                                                                        <div class="col-sm-8">
-	                                                                            <label for="file" class="col-sm-12 col-form-label">Cedula del Contacto</label>
-	                                                                            <div class="col-sm-12">
-	                                                                                <input type="file" id="fileinput2" name="file_personal" class="form-control">
-	                                                                            </div>
-	                                                                        </div>
-	                                                                    </div>
-	                                                                </div>
-	                                                                
-	                                                                <div class="form-group row">
-	                                                                	<div class="row col-sm-12">
-	                                                                        <div class="col-sm-4">
-	                                                                            <label class="col-sm-12 col-form-label">Tipo de adjunto(*)</label>
-	                                                                            <div class="col-sm-12">
-	                                                                                <select name="select" id="" class="form-control">
-	                                                                                    <option value="PDF">PDF</option>
-	                                                                                    <option value="PDF">JPEG</option>
-	                                                                                </select>
-	                                                                            </div>
-	                                                                        </div>
-	                                                                        <div class="col-sm-8">
-	                                                                            <label for="file" class="col-sm-12 col-form-label">Fachada del Negocio</label>
-	                                                                            <div class="col-sm-12">
-	                                                                                <input type="file" id="fileinput2" name="file_personal" class="form-control">
-	                                                                            </div>
-	                                                                        </div>
-	                                                                    </div>
-	                                                                </div>
-	
-	                                                                
-	                                                                
-	
-	                                                                <i class="feather text-primary f-60 p-t-15 p-b-20 d-block"></i>
-	                                                                
-	                                                                <div class="row">
-	                                                                    <div class="col-sm-12">
-	                                                                        <button type="button" id="Cargar" class="btn btn-primary btn-md waves-effect text-center mb-20">
-	                                                                            Cargar
-	                                                                        </button>
-	                                                                    </div>
-	                                                                </div>
-	                                                            </form>
-                                                            </div>
-                                                            <div class="col-sm-4">
-                                                            	<div class="accordion" id="accordionExample">
-																	<div class="card z-depth-0 bordered">
+                                                                <div class="form-group row">
+                                                                    <div class="col-sm-12">
+                                                                        <div class="panel panel-default">
+                                                                            <div class="panel-footer">
+                                                                                <div class="row">
+                                                                                    <label class="col-sm-9 col-form-label">Importante:</label>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-9">
+                                                                                        <ul class="col-sm-9">
+                                                                                            <li>El tamaño máximo de un archivo adjunto está limitado a 5MB.</li> 
+                                                                                            <li>Los archivos deben ser de tipo pdf y jpeg.</li> 
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="form-group row">
+                                                                	<div class="row col-sm-12">
+                                                                        <div class="col-sm-6">
+                                                                            <label for="file" class="col-sm-12 col-form-label">Cedula de Representante Legal</label>
+                                                                            <div class="col-sm-12">
+                                                                                <input type="file" id="fileCedulaRepresentanteInformationName" name="fileCedulaRepresentanteInformationName" class="form-control" required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-4">
+                                                                        	<label for="file" class="col-sm-12 col-form-label">Visualizar Cedula de Representante Legal</label>
+                                                                        	<div class="col-sm-12">
+                                                                        		<button type="button" id="view_CedulaRepresentante" class="btn btn-primary btn-md waves-effect text-center mb-20"  data-toggle="modal" data-target="#exampleModalLong" disabled>
+	                                                                            	Visualizar
+	                                                                        	</button>
+                                                                        	</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
 																	
-			                                                       		<div class="card-header" id="headingOne">
-				                                                         	<h5 class="mb-0">
-                                                                        		<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
-																		          aria-expanded="true" aria-controls="collapseOne">
-																		          Visualizar Cedula de Representante Legal
-																		        </button>
-																	        </h5>
-																        </div>
-																        <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne"
-																	      data-parent="#accordionExample">
-																	      
-																			    <div class="popup">
-																			        <embed id="verte1"  src="" type="application/pdf" width="100%" height="600px" />
-																			        
-																			    </div>
-																			    
-																	    </div>
-																	    <!-- //////////////////////////////////////////////////////// -->
-																	    <div class="card-header" id="headingOne">
-                                                                       		<h5 class="mb-0">
-                                                                        		<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo"
-																		          aria-expanded="true" aria-controls="collapseTwo">
-																		          Visualizar Cedula del Contacto
-																		        </button>
-																	        </h5>
-																        </div>
-																        <div id="collapseTwo" class="collapse hide" aria-labelledby="headingOne"
-																	      data-parent="#accordionExample">
-																	      
-																			    <div class="popup">
-																			        <embed id="verte2"  src="" type="application/pdf" width="100%" height="600px" />
-																			        
-																			    </div>
-																			    
-																	    </div>
-																	    <!-- //////////////////////////////////////////////////////// -->
-																	    <div class="card-header" id="headingOne">
-                                                                       		<h5 class="mb-0">
-                                                                        		<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo"
-																		          aria-expanded="true" aria-controls="collapseTwo">
-																		          Visualizar Fachada del Negocio
-																		        </button>
-																	        </h5>
-																        </div>
-																        <div id="collapseTwo" class="collapse hide" aria-labelledby="headingOne"
-																	      data-parent="#accordionExample">
-																	      
-																			    <div class="popup">
-																			        <embed id="verte2"  src="" type="application/pdf" width="100%" height="600px" />
-																			        
-																			    </div>
-																			    
-																	    </div>
-																	    
-																	 </div>
-																</div>
+                                                                <div class="form-group row">
+                                                                	<div class="row col-sm-12">
+                                                                        <div class="col-sm-6">
+                                                                            <label for="file" class="col-sm-12 col-form-label">Cedula del Contacto</label>
+                                                                            <div class="col-sm-12">
+                                                                                <input type="file" id="fileCedulaContactoInformationName" name="fileCedulaContactoInformationName" class="form-control" required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-4">
+                                                                        	<label for="file" class="col-sm-12 col-form-label">Visualizar Cedula del Contacto</label>
+                                                                        	<div class="col-sm-12">
+                                                                        		<button type="button" id="view_CedulaContacto" class="btn btn-primary btn-md waves-effect text-center mb-20" data-toggle="modal" data-target="#exampleModalLong"  disabled>
+	                                                                            	Visualizar
+	                                                                        	</button>
+                                                                        	</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="form-group row">
+                                                                	<div class="row col-sm-12">
+                                                                        <div class="col-sm-6">
+                                                                            <label for="file" class="col-sm-12 col-form-label">Fachada del Negocio</label>
+                                                                            <div class="col-sm-12">
+                                                                                <input type="file" id="fileNegocioInformationName" name="fileNegocioInformationName" class="form-control" required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-4">
+                                                                        	<label for="file" class="col-sm-12 col-form-label">Visualizar Fachada del Negocio</label>
+                                                                        	<div class="col-sm-12">
+                                                                        		<button type="button" id="view_Negocio" class="btn btn-primary btn-md waves-effect text-center mb-20" data-toggle="modal" data-target="#exampleModalLong"  disabled>
+	                                                                            	Visualizar
+	                                                                        	</button>
+                                                                        	</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                                                                               
+
+                                                                <i class="feather text-primary f-60 p-t-15 p-b-20 d-block"></i>
+                                                                
+                                                            	<div class="row text-center" id="procesoGif2" hidden>
+                                                                <div class="col-sm-6">
+                                                                  
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                               	<img th:src="@{/gits/procc.gif}" alt="Funny image"  >
+                                                               	<span>  PROCESANDO LA SOLICITUD <span> 
+                                                                </div>
                                                             </div>
-                                                            </div>
-                                                            
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>                  
+       
+          </form>                
         </div>
         
        <!--//////////////////////////////////////////////-->  
@@ -1127,6 +1160,10 @@
     <script type="text/javascript" th:src="@{/js/jquery-ui.js}"></script>
     <script type="text/javascript" th:src="@{/js/dateFormat.js}"></script>
     <script type="text/javascript" th:src="@{/js/moment.js}"></script>
+    <!-- Para Switches -->
+    <script type="text/javascript" th:src="@{/js/switchery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap-tagsinput.js}"></script>
+    <script type="text/javascript" th:src="@{/js2/switches-johan.js}"></script>
  
 
 
