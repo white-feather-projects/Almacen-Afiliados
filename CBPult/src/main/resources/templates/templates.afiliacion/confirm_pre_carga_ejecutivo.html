@@ -106,9 +106,9 @@
                                                         </div>
                                                         <div class="card-block">
                                                             <h4 class="sub-title">Datos del Comercio</h4>
+                                                            <form id="comercio">
                                                             <div class="row col-sm-12">
 	                                                            <div class="col-sm-6">
-	                                                            	<form id="miform">
 		                                                                <div class="form-group row">
 		                                                                    <div class="col-sm-12">
 		                                                                    	<div class="col-sm-12">
@@ -129,7 +129,7 @@
 		                                                                    		<label>Nombre de la Empresa(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="nombre_empresa_tab2"/>
+																					<input type="text" class="form-control" placeholder="" id="nombre_empresa_tab2" required/>
 																				</div>
 																				
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -147,7 +147,7 @@
 		                                                                    		<label>Numero de IBAN(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="numero_iban_tab2"/>
+																					<input type="text" class="form-control" placeholder="" id="numero_iban_tab2" required/>
 																				</div>
 																				
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -173,17 +173,17 @@
 																				
 		                                                                    </div>
 		                                                                </div>
-		                                                            </form>
+		                                                            
 	                                                            </div>
 	                                                            <div class="col-sm-6">
-	                                                            	<form id="miform">
+	                                                            	
 		                                                                <div class="form-group row">
 		                                                                    <div class="col-sm-12">
 																				<div class="col-sm-12">
 		                                                                    		<label>Documento de Identidad(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="identificacion_tab2"/>
+																					<input type="text" class="form-control" placeholder="" id="identificacion_tab2" required/>
 																				</div>
 																				
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -192,7 +192,7 @@
 		                                                                    		<label>Nombre Comercial o Fantasía(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="nombre_comercial_tab2"/>
+																					<input type="text" class="form-control" placeholder="" id="nombre_comercial_tab2" required/>
 																				</div>
 																				
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -201,7 +201,7 @@
 		                                                                    		<label>Teléfono Local(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="telefono_local_tab2"/>
+																					<input type="text" class="form-control" placeholder="" id="telefono_local_tab2" required/>
 																				</div>
 																				
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -335,8 +335,10 @@
 																				
 		                                                                    </div>
 		                                                                </div>
-		                                                            </form>
+		                                                            
 	                                                            </div>
+	                                                            </div>
+	                                                            </form>
                                                             </div>
                                                             
                                                         </div>
@@ -346,10 +348,6 @@
                                                 
                                             </div>
                                         </div>
-        </div>
-        
-        
-        
         
           <!-- ---////////////////////////////////////////////////----------------------------------------- -->      
         
@@ -413,14 +411,14 @@
                                                             <h4 class="sub-title">Terminales Requeridos</h4>
                                                             <div class="row col-sm-12">
 	                                                            <div class="col-sm-6">
-	                                                            	<form id="miform">
+	                                                            	<form id="terminales">
 		                                                                <div class="form-group row">
 		                                                                    <div class="col-sm-12">
 		                                                                    	<div class="col-sm-12">
 		                                                                    		<label>Cantidad de terminales Requeridos(*): </label>
 		                                                                    	</div>
 		                                                                    	<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="cantidad_terminales_tab3"/>
+																					<input type="text" class="form-control" placeholder="" id="cantidad_terminales_tab3" required/>
 																				</div>
 																				
 		                                                                    </div>
@@ -479,10 +477,10 @@
                                                         </div>
                                                         <div class="card-block">
                                                             <h4 class="sub-title">Representante Legal</h4>
+                                                            <form id="representante">
+                                                            <div class="form-group row">
                                                             <div class="row col-sm-12">
 	                                                            <div class="col-sm-6">
-	                                                            	<form id="miform">
-		                                                                <div class="form-group row">
 		                                                                    <div class="col-sm-12">
 		                                                                    	<div class="col-sm-12">
 		                                                                    		<label>Tipo de Identificación(*): </label>
@@ -502,7 +500,7 @@
 		                                                                    		<label>Primer Nombre(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="primer_nombre_tab4"/>
+																					<input type="text" class="form-control" placeholder="" id="primer_nombre_tab4" required/>
 																				</div>
 																				
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -511,7 +509,7 @@
 		                                                                    		<label>Primer Apellido(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="primer_apellido_tab4"/>
+																					<input type="text" class="form-control" placeholder="" id="primer_apellido_tab4" required/>
 																				</div>
 																				
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -532,18 +530,14 @@
 																				</div>
 																				
 		                                                                    </div>
-		                                                                </div>
-		                                                            </form>
 	                                                            </div>
 	                                                            <div class="col-sm-6">
-	                                                            	<form id="miform">
-		                                                                <div class="form-group row">
 		                                                                    <div class="col-sm-12">
 		                                                                    	<div class="col-sm-12">
 		                                                                    		<label>Documento de identidad(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="identificacion_tab4"/>
+																					<input type="text" class="form-control" placeholder="" id="identificacion_tab4" required/>
 																				</div>
 																				
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -570,15 +564,14 @@
 		                                                                    		<label>Teléfono Celular(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="telefono_celular_tab4"/>
+																					<input type="text" class="form-control" placeholder="" id="telefono_celular_tab4" required/>
 																				</div>
 																				
 		                                                                    </div>
-		                                                                </div>
-		                                                            </form>
 	                                                            </div>
                                                             </div>
-                                                            
+                                                            </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1144,7 +1137,7 @@
 	</div>
 	</div>
 	</div>
-	<div id="styleSelector"></div>
+	<!-- <div id="styleSelector"></div> -->
 	</div>
 	</div>
 	</div>
