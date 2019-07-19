@@ -7,12 +7,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para crearComercioWS complex type.
+ * <p>Clase Java para modificarComercioWS complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="crearComercioWS">
+ * &lt;complexType name="modificarComercioWS">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -21,11 +21,9 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="nombreComercial" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="telefonoContacto" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="estadoComercioActivo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="telefonoLocal" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="numCuentaAsociado" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="afiliadoOtroBanco" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="tipoIdentificacionId" type="{http://service.cbp.ws.cbp3.com/}tipoidentificacion" minOccurs="0"/>
  *         &lt;element name="actividadComercial" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="horaInicio" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="horaFin" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -38,33 +36,29 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "crearComercioWS", propOrder = {
+@XmlType(name = "modificarComercioWS", propOrder = {
     "identificacionComercio",
     "nombreEmpresarial",
     "nombreComercial",
     "email",
     "telefonoContacto",
-    "estadoComercioActivo",
     "telefonoLocal",
     "numCuentaAsociado",
     "afiliadoOtroBanco",
-    "tipoIdentificacionId",
     "actividadComercial",
     "horaInicio",
     "horaFin"
 })
-public class CrearComercioWS {
+public class ModificarComercioWS {
 
     protected String identificacionComercio;
     protected String nombreEmpresarial;
     protected String nombreComercial;
     protected String email;
     protected String telefonoContacto;
-    protected String estadoComercioActivo;
     protected String telefonoLocal;
     protected String numCuentaAsociado;
     protected String afiliadoOtroBanco;
-    protected Tipoidentificacion tipoIdentificacionId;
     protected String actividadComercial;
     protected String horaInicio;
     protected String horaFin;
@@ -190,30 +184,6 @@ public class CrearComercioWS {
     }
 
     /**
-     * Obtiene el valor de la propiedad estadoComercioActivo.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getEstadoComercioActivo() {
-        return estadoComercioActivo;
-    }
-
-    /**
-     * Define el valor de la propiedad estadoComercioActivo.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setEstadoComercioActivo(String value) {
-        this.estadoComercioActivo = value;
-    }
-
-    /**
      * Obtiene el valor de la propiedad telefonoLocal.
      * 
      * @return
@@ -283,30 +253,6 @@ public class CrearComercioWS {
      */
     public void setAfiliadoOtroBanco(String value) {
         this.afiliadoOtroBanco = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad tipoIdentificacionId.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Tipoidentificacion }
-     *     
-     */
-    public Tipoidentificacion getTipoIdentificacionId() {
-        return tipoIdentificacionId;
-    }
-
-    /**
-     * Define el valor de la propiedad tipoIdentificacionId.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Tipoidentificacion }
-     *     
-     */
-    public void setTipoIdentificacionId(Tipoidentificacion value) {
-        this.tipoIdentificacionId = value;
     }
 
     /**

@@ -26,7 +26,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="fechaCargaDatos" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="fechaHoraModificacion" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="horarioComercial" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="horaFin" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="horaInicio" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="identificacionComercio" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="nombreComercial" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="nombreEmpresarial" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -54,7 +55,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "email",
     "fechaCargaDatos",
     "fechaHoraModificacion",
-    "horarioComercial",
+    "horaFin",
+    "horaInicio",
     "identificacionComercio",
     "nombreComercial",
     "nombreEmpresarial",
@@ -77,7 +79,8 @@ public class Comercio {
     protected XMLGregorianCalendar fechaCargaDatos;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fechaHoraModificacion;
-    protected String horarioComercial;
+    protected String horaFin;
+    protected String horaInicio;
     protected String identificacionComercio;
     protected String nombreComercial;
     protected String nombreEmpresarial;
@@ -281,27 +284,51 @@ public class Comercio {
     }
 
     /**
-     * Obtiene el valor de la propiedad horarioComercial.
+     * Obtiene el valor de la propiedad horaFin.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getHorarioComercial() {
-        return horarioComercial;
+    public String getHoraFin() {
+        return horaFin;
     }
 
     /**
-     * Define el valor de la propiedad horarioComercial.
+     * Define el valor de la propiedad horaFin.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setHorarioComercial(String value) {
-        this.horarioComercial = value;
+    public void setHoraFin(String value) {
+        this.horaFin = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad horaInicio.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getHoraInicio() {
+        return horaInicio;
+    }
+
+    /**
+     * Define el valor de la propiedad horaInicio.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setHoraInicio(String value) {
+        this.horaInicio = value;
     }
 
     /**

@@ -24,11 +24,17 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _ConsultaComercioPorComercioIdWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaComercioPorComercioIdWS");
     private final static QName _CrearComercioWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearComercioWS");
     private final static QName _Tipoidentificacion_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "tipoidentificacion");
     private final static QName _Comercio_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "comercio");
+    private final static QName _ModificarComercioWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarComercioWSResponse");
     private final static QName _CrearComercioWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearComercioWSResponse");
     private final static QName _ConsultaComercioPorIdentificacionComercioWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaComercioPorIdentificacionComercioWS");
+    private final static QName _ActualizaStatusComercioWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "actualizaStatusComercioWS");
+    private final static QName _ActualizaStatusComercioWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "actualizaStatusComercioWSResponse");
+    private final static QName _ConsultaComercioPorComercioIdWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaComercioPorComercioIdWSResponse");
+    private final static QName _ModificarComercioWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarComercioWS");
     private final static QName _ConsultaComercioPorIdentificacionComercioWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaComercioPorIdentificacionComercioWSResponse");
 
     /**
@@ -36,6 +42,14 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link ConsultaComercioPorComercioIdWS }
+     * 
+     */
+    public ConsultaComercioPorComercioIdWS createConsultaComercioPorComercioIdWS() {
+        return new ConsultaComercioPorComercioIdWS();
     }
 
     /**
@@ -55,11 +69,51 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ModificarComercioWSResponse }
+     * 
+     */
+    public ModificarComercioWSResponse createModificarComercioWSResponse() {
+        return new ModificarComercioWSResponse();
+    }
+
+    /**
      * Create an instance of {@link Comercio }
      * 
      */
     public Comercio createComercio() {
         return new Comercio();
+    }
+
+    /**
+     * Create an instance of {@link ActualizaStatusComercioWS }
+     * 
+     */
+    public ActualizaStatusComercioWS createActualizaStatusComercioWS() {
+        return new ActualizaStatusComercioWS();
+    }
+
+    /**
+     * Create an instance of {@link ActualizaStatusComercioWSResponse }
+     * 
+     */
+    public ActualizaStatusComercioWSResponse createActualizaStatusComercioWSResponse() {
+        return new ActualizaStatusComercioWSResponse();
+    }
+
+    /**
+     * Create an instance of {@link ConsultaComercioPorComercioIdWSResponse }
+     * 
+     */
+    public ConsultaComercioPorComercioIdWSResponse createConsultaComercioPorComercioIdWSResponse() {
+        return new ConsultaComercioPorComercioIdWSResponse();
+    }
+
+    /**
+     * Create an instance of {@link ModificarComercioWS }
+     * 
+     */
+    public ModificarComercioWS createModificarComercioWS() {
+        return new ModificarComercioWS();
     }
 
     /**
@@ -87,6 +141,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link RespuestaDTO }
+     * 
+     */
+    public RespuestaDTO createRespuestaDTO() {
+        return new RespuestaDTO();
+    }
+
+    /**
      * Create an instance of {@link ErroresDTO }
      * 
      */
@@ -103,11 +165,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RespuestaDTO }
+     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaComercioPorComercioIdWS }{@code >}}
      * 
      */
-    public RespuestaDTO createRespuestaDTO() {
-        return new RespuestaDTO();
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaComercioPorComercioIdWS")
+    public JAXBElement<ConsultaComercioPorComercioIdWS> createConsultaComercioPorComercioIdWS(ConsultaComercioPorComercioIdWS value) {
+        return new JAXBElement<ConsultaComercioPorComercioIdWS>(_ConsultaComercioPorComercioIdWS_QNAME, ConsultaComercioPorComercioIdWS.class, null, value);
     }
 
     /**
@@ -138,6 +201,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ModificarComercioWSResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "modificarComercioWSResponse")
+    public JAXBElement<ModificarComercioWSResponse> createModificarComercioWSResponse(ModificarComercioWSResponse value) {
+        return new JAXBElement<ModificarComercioWSResponse>(_ModificarComercioWSResponse_QNAME, ModificarComercioWSResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CrearComercioWSResponse }{@code >}}
      * 
      */
@@ -153,6 +225,42 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaComercioPorIdentificacionComercioWS")
     public JAXBElement<ConsultaComercioPorIdentificacionComercioWS> createConsultaComercioPorIdentificacionComercioWS(ConsultaComercioPorIdentificacionComercioWS value) {
         return new JAXBElement<ConsultaComercioPorIdentificacionComercioWS>(_ConsultaComercioPorIdentificacionComercioWS_QNAME, ConsultaComercioPorIdentificacionComercioWS.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ActualizaStatusComercioWS }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "actualizaStatusComercioWS")
+    public JAXBElement<ActualizaStatusComercioWS> createActualizaStatusComercioWS(ActualizaStatusComercioWS value) {
+        return new JAXBElement<ActualizaStatusComercioWS>(_ActualizaStatusComercioWS_QNAME, ActualizaStatusComercioWS.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ActualizaStatusComercioWSResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "actualizaStatusComercioWSResponse")
+    public JAXBElement<ActualizaStatusComercioWSResponse> createActualizaStatusComercioWSResponse(ActualizaStatusComercioWSResponse value) {
+        return new JAXBElement<ActualizaStatusComercioWSResponse>(_ActualizaStatusComercioWSResponse_QNAME, ActualizaStatusComercioWSResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaComercioPorComercioIdWSResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaComercioPorComercioIdWSResponse")
+    public JAXBElement<ConsultaComercioPorComercioIdWSResponse> createConsultaComercioPorComercioIdWSResponse(ConsultaComercioPorComercioIdWSResponse value) {
+        return new JAXBElement<ConsultaComercioPorComercioIdWSResponse>(_ConsultaComercioPorComercioIdWSResponse_QNAME, ConsultaComercioPorComercioIdWSResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ModificarComercioWS }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "modificarComercioWS")
+    public JAXBElement<ModificarComercioWS> createModificarComercioWS(ModificarComercioWS value) {
+        return new JAXBElement<ModificarComercioWS>(_ModificarComercioWS_QNAME, ModificarComercioWS.class, null, value);
     }
 
     /**
