@@ -7,13 +7,17 @@ import java.net.URL;
 import org.springframework.stereotype.Service;
 
 import com.cbp.web.dao.AfiliacionDAO;
+import com.cbp.web.dto.actualizaStatusComercioDTO;
 import com.cbp.web.dto.consultaComercioDTO;
 import com.cbp.web.dto.crearComercioDTO;
+import com.cbp.web.dto.modificarComercioDTO;
 import com.cbp.web.util.Util;
+import com.cbp3.ws.cbp.service.ActualizaStatusComercioWSResponse;
 import com.cbp3.ws.cbp.service.AfiliacionServiceWS;
 import com.cbp3.ws.cbp.service.AfiliacionServiceWS_Service;
 import com.cbp3.ws.cbp.service.ConsultaComercioPorIdentificacionComercioWSResponse;
 import com.cbp3.ws.cbp.service.CrearComercioWSResponse;
+import com.cbp3.ws.cbp.service.ModificarComercioWSResponse;
 
 @Service
 public class AfiliacionService extends Util implements AfiliacionDAO{
@@ -68,4 +72,56 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 		return respuestaConsultaComercio;
 	}
 	
+	////////////////////////////////////
+	//Methodo para Actualizar el status del Comercio...
+	public ActualizaStatusComercioWSResponse actualizarStatusComercio(actualizaStatusComercioDTO actualizaStatusComercioDTO) {
+	
+		//instanciar Objeto para retorno....
+		ActualizaStatusComercioWSResponse respuestaActualizarStatusComercio = new ActualizaStatusComercioWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL("http://18.223.203.6:8080/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaActualizarStatusComercio.setReturn(WSmethod.actualizaStatusComercioWS(actualizaStatusComercioDTO.getIdentificacionComercio(), actualizaStatusComercioDTO.getStatusComecio())); 
+		
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaActualizarStatusComercio;
+	}
+	
+	////////////////////////////////////
+	//Methodo para Modificar el Comercio...
+	public ModificarComercioWSResponse modificarComercio(modificarComercioDTO modificarComercioDTO) {
+	
+		//instanciar Objeto para retorno....
+		ModificarComercioWSResponse respuestaModificarComercio = new ModificarComercioWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL("http://18.223.203.6:8080/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaModificarComercio.setReturn(WSmethod.modificarComercioWS(modificarComercioDTO.getIdentificacionComercio(), modificarComercioDTO.getNombreEmpresarial(), modificarComercioDTO.getNombreComercial(), modificarComercioDTO.getEmail(), modificarComercioDTO.getTelefonoContacto(), modificarComercioDTO.getTelefonoLocal(), modificarComercioDTO.getNumCuentaAsociado(), modificarComercioDTO.getAfiliadoOtroBanco(), modificarComercioDTO.getActividadComercial(), modificarComercioDTO.getHoraInicio(), modificarComercioDTO.getHoraFin())); 
+		
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaModificarComercio;
+	}
+		
 }

@@ -53,12 +53,94 @@
  		         
  		         if(cont1 == 5){
  		        	 console.log(cont1);
- 		        	 valid = true;
+ 		        	 
+ 		        	 ////////////////
+ 		        	 
+ 		        	 var tipo_identificacion = $("#tipo_identificacion_tab2").val();
+ 		        	 var identificacion = $("#identificacion_tab2").val();
+ 		        	 var nombre_empresa = $("#nombre_empresa_tab2").val();
+ 		        	 var nombre_comercial = $("#nombre_comercial_tab2").val();
+ 		        	 var correo = $("#correo_tab2").val();
+ 		        	 var telefono_local = $("#telefono_local_tab2").val();
+ 		        	 var numero_IBAN = $("#numero_iban_tab2").val();
+ 		        	 var banco = $("#banco_tab2").val();
+ 		        	 var afiliado = $("#afiliado_tab2").val();
+ 		        	 var hora_inicio = $("#horario_inicio_tab2").val();
+ 		        	 var telefono_alternativo = $("#telefono_alternativo_tab2").val();
+ 		        	 var hora_final = $("#horario_fin_tab2").val();
+ 		        	 
+ 		        	 var afiliado_d;
+ 		        	 if(afiliado === "SI"){
+ 		        		afiliado_d = "Y";
+ 		        	 }else if(afiliado ==="NO"){
+ 		        		afiliado_d = "N";
+ 		        	 }
+ 		        	 
+ 		        	 console.log(tipo_identificacion+" "+identificacion+" "+nombre_empresa+" "+nombre_comercial+" "+correo+" "+telefono_local+" "+numero_IBAN+" "+banco+" "+afiliado_d+" "+hora_inicio+" "+telefono_alternativo+" "+hora_final);
+ 		        	 
+ 		        	 ////////////////
+ 		        	 
+ 		        	 var comercio_json = {
+ 		        			"identificacionComercio": identificacion,
+ 		        			"nombreEmpresarial": nombre_empresa,
+ 		        			"nombreComercial": nombre_comercial,
+ 		        			"email": correo,
+ 		        			"telefonoContacto": telefono_alternativo,
+ 		        			"estadoComercioActivo": "N",
+ 		        			"telefonoLocal": telefono_local,
+ 		        			"numCuentaAsociado": numero_IBAN,
+ 		        			"afiliadoOtroBanco": afiliado_d,
+ 		        			"tipoIdentificacionId": {
+ 		        				"nombre": tipo_identificacion,
+ 		        				"tipoIdentificacionId": "1"
+ 		        			},
+ 		        			"actividadComercial":  banco,
+ 		        			"horaInicio": hora_inicio,
+ 		        			"horaFin": hora_final
+ 		        	 };
+ 		        	 
+	 		        	$.ajax({
+	 		               type: "POST",
+	 		               url: '/crearClienteComercio',
+	 		               contentType: "application/json",
+	 		               dataType: "json",
+	 		               data: JSON.stringify(comercio_json),
+	 		               success: processSuccess,
+	 		               error: processError
+	 		           });
+	 		       	
+		 		       	function processSuccess(data, status, req) {
+		 		            //alert(req.responseText + " " + status);
+		 		       		console.log(data);
+		 		       		
+		 		           	if(data.return.descripcion === "FAIL"){
+		 		           		swal("Error al Crear Comercio", data.return.descripcion);
+		 		           		valid = false;
+		 		           		return valid;
+		 		           		
+		 		           	}else if(data.return.descripcion === "OK"){
+		 		           		swal("Comercio Creado", data.return.descripcion);
+		 		           		valid = true;
+		 		           		return valid;
+		 		           		swal("Comercio Creado", data.return.descripcion);
+		 		           	}
+		 		           } 
+		 		       	
+		 		       	function processError(data, status, req) {
+		 		            //alert(req.responseText + " " + status);
+		 		           	swal("Error al contacter el servicio", data);
+		 		           	valid = false;
+		 		           	return valid;
+		 		           } 
+		 		       	
+		 		     ////////////////
+		 		       	
  		         }else if(cont1 < 5){
  		        	 valid = false;
+ 		        	 return valid;
  		         }
  		         
- 		         return valid;
+ 		        
  	       }
  	       if (stepDirection === 'backward') {
  	    	   //clientValidator.resetForm();
@@ -356,6 +438,7 @@
       }
     });
     
+    ///////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////
     
     
