@@ -5,7 +5,7 @@
         
         // tab 1    
         if (currentIndex === 0) {
-        	valid = false;
+           valid = false;
     		
  	       if (stepDirection === 'forward') {
  	    	   var cont1 = 0;
