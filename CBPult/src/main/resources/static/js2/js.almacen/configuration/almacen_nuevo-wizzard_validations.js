@@ -1,7 +1,12 @@
-$('#demo').steps({
+var data_almacen;
+var data_zonas;
 
+$('#demo').steps({
+	
+	
+	
 	onChange: function (currentIndex, newIndex, stepDirection) {
-		/*
+		
 		// tab Almacen
 		if(currentIndex === 0){
 			
@@ -45,7 +50,18 @@ $('#demo').steps({
 				});				
 						
 				if(validated == 2){
+					data_almacen = {
+							'idAlmacen': $('#txtCodigo_almacen').val(),
+							'tipoAlmacen': $('#cboxTipo_almacen').val(),
+							'descripcionAlmacen': $('#txtDesc_almacen').val(),
+							'encargadoAlmacen': $('#cboxEncargado_almacen').val(),
+							'ubicacionAlmacen': $('#txtUbicacion_almacen').val(),
+							'zonasAlmacen': {},
+							'relacionesAlmacen': {}
+					};
+					console.log(data_almacen);
 					alert("Valido");
+					
 				}else if(validated != 2){
 					alert("invalido");
 					return false;
@@ -63,14 +79,21 @@ $('#demo').steps({
 		if(currentIndex === 1){
 			alert("Zonas");
 			if(stepDirection === 'forward'){
-				alert("Hola");
+				var zonas = $('.zona_zonas');
+				alert("Hola papu");
+				console.log(zonas.length);
+				for(i=0; i<zonas.length; i++){
+					var zona_id =zonas[i].getAttribute('id');
+					var id_actual = zona_id.substring(4,5); 
+					console.log(id_actual);
+					
+				}
 			}
 			if(stepDirection === 'backward'){
-				alert("atras");
-				
+				alert("atras");				
 			}
 		}
-		*/
+		
 		
     	
 		return true;        
