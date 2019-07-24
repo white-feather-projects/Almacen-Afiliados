@@ -8,6 +8,13 @@ var id = url.substring(url.lastIndexOf('&') + 1);
 //console.log("seleccion----", ver);
 //console.log("modificar----", modificar);
 //console.log("nuevo----", nuevo);
+$("#banco_label").hide();
+$("#nombre_banco_tab3").hide();
+$("#afiliacion_label").hide();
+$("#numero_afiliacion_tab3").hide();
+$("#card_operador").hide();
+$("#tab8").hide();
+$(".tb8").hide();
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////NUEVO////////////////////////////////////////
@@ -1590,7 +1597,7 @@ var id = url.substring(url.lastIndexOf('&') + 1);
 			    	   //clientValidator.resetForm();
 			       }
 			     }
-		        
+		        /*
 		     // tab 7
 		        if (currentIndex === 6) {
 		        	valid = false;
@@ -1628,7 +1635,7 @@ var id = url.substring(url.lastIndexOf('&') + 1);
 			    	   //clientValidator.resetForm();
 			       }
 			     }
-		        
+		        */
 
 		        return true;
 		        

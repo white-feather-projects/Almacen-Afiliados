@@ -69,7 +69,10 @@ function listarTabla1(){
 	                "class": "fecha_carga",
 	                "defaultContent": "",
 	                "render": function ( data ) {
-	            return '<center class="p6">'+data+'</center>';
+	                	var año = data.substring(0, 4);
+	                	var mes = data.substring(5, 7);
+	                	var dia = data.substring(8, 10);
+	            return '<center class="p6">'+año+"/"+mes+"/"+dia+'</center>';
 	              }
 	            },
 	            {
@@ -85,7 +88,13 @@ function listarTabla1(){
 	                "class": "estado_comercio",
 	                "defaultContent": "",
 	                "render": function ( data ) {
-	            return '<center class="p8">'+data+'</center>';
+	                	if(data === "Y"){
+	                		return '<center class="p8">APROBADO</center>';
+	                	}
+	                	if(data === "N"){
+	                		return '<center class="p8">PENDIENTE</center>';
+	                	}
+	            
 	              }
 	            },
 	            {
