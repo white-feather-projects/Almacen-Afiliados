@@ -401,8 +401,8 @@ public class LoginController{
 		return "templates.afiliacion/bandejas_ejecutivo";
 	}
 	
-	@RequestMapping(value = "/confirm_pre_carga", method = RequestMethod.GET)
-	public String confirm_pre_carga(Model model) {
+	@RequestMapping(value = "/confirm_pre_carga/{value1}&{value2}", method = RequestMethod.GET)
+	public String confirm_pre_carga(@PathVariable("value1") String value, @PathVariable("value2") String value2, Model model) {
 		
 		model.addAttribute("name", name);
 		model.addAttribute("link", link);
