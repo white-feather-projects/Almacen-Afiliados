@@ -17,6 +17,8 @@ public class crearComercioDTO {
     private String actividadComercial;
     private String hora_inicio;
     private String hora_finalizacion;
+    private String idCanal;
+    private String nombreCanal;
     
 	public crearComercioDTO() {
 		super();
@@ -126,6 +128,22 @@ public class crearComercioDTO {
 		this.hora_finalizacion = hora_finalizacion;
 	}
 
+	public String getIdCanal() {
+		return idCanal;
+	}
+
+	public void setIdCanal(String idCanal) {
+		this.idCanal = idCanal;
+	}
+
+	public String getNombreCanal() {
+		return nombreCanal;
+	}
+
+	public void setNombreCanal(String nombreCanal) {
+		this.nombreCanal = nombreCanal;
+	}
+
 	@Override
 	public String toString() {
 		return "crearComercioDTO [identificacionComercio=" + identificacionComercio + ", nombreEmpresarial="
@@ -134,8 +152,7 @@ public class crearComercioDTO {
 				+ ", telefonoLocal=" + telefonoLocal + ", numCuentaAsociado=" + numCuentaAsociado
 				+ ", afiliadoOtroBanco=" + afiliadoOtroBanco + ", tipoIdentificacionId=" + tipoIdentificacionId
 				+ ", actividadComercial=" + actividadComercial + ", hora_inicio=" + hora_inicio + ", hora_finalizacion="
-				+ hora_finalizacion + "]";
+				+ hora_finalizacion + ", idCanal=" + idCanal + ", nombreCanal=" + nombreCanal + "]";
 	}
-    
-    
+
 }
