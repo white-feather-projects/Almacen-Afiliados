@@ -8,13 +8,15 @@ var id = url.substring(url.lastIndexOf('&') + 1);
 //console.log("seleccion----", ver);
 //console.log("modificar----", modificar);
 //console.log("nuevo----", nuevo);
-$("#banco_label").hide();
-$("#nombre_banco_tab3").hide();
-$("#afiliacion_label").hide();
-$("#numero_afiliacion_tab3").hide();
-$("#card_operador").hide();
-$("#tab8").hide();
-$(".tb8").hide();
+//$("#banco_label").hide();
+//$("#nombre_banco_tab3").hide();
+//$("#afiliacion_label").hide();
+//$("#numero_afiliacion_tab3").hide();
+//$("#card_operador").hide();
+//$("#tab8").hide();
+//$(".tb8").hide();
+
+var identificacion_global;
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////NUEVO////////////////////////////////////////
@@ -93,6 +95,8 @@ $(".tb8").hide();
 		 		        	 var telefono_alternativo = $("#telefono_alternativo_tab2").val();
 		 		        	 var hora_final = $("#horario_fin_tab2").val();
 		 		        	 
+		 		        	identificacion_global = identificacion;
+		 		        	 
 		 		        	 var afiliado_d;
 		 		        	 if(afiliado === "SI"){
 		 		        		afiliado_d = "Y";
@@ -145,6 +149,10 @@ $(".tb8").hide();
 				 		           		return valid;
 				 		           		
 				 		           	}else if(data.return.descripcion === "OK"){
+				 		           		
+					 		           	document.getElementById("tipo_identificacion_tab2").disabled = true;
+					 		           	document.getElementById("identificacion_tab2").disabled = true;
+					 		           	
 				 		           		swal("Comercio Creado", data.return.descripcion);
 				 		           		valid = true;
 				 		           		return valid;
@@ -154,7 +162,7 @@ $(".tb8").hide();
 				 		       	
 				 		       	function processError(data, status, req) {
 				 		            //alert(req.responseText + " " + status);
-				 		           	swal("Error al contacter el servicio", data);
+				 		           	swal("Error al contactar el servicio", data);
 				 		           	valid = false;
 				 		           	return valid;
 				 		           } 
@@ -181,6 +189,9 @@ $(".tb8").hide();
 			    	   var cont1 = 0;
 			    	   
 			    	   var cantidad_terminales_tab3 = $("#cantidad_terminales_tab3").val();
+			    	   var nombre_banco_tab3 = $("#nombre_banco_tab3").val();
+			    	   var numero_afiliacion_tab3 = $().val("#numero_afiliacion_tab3");
+			    	   
 			    	   if(cantidad_terminales_tab3.length >= 1){
 				        	 cont1 = cont1 + 1;
 				         }else{
@@ -190,7 +201,55 @@ $(".tb8").hide();
 				         
 				         if(cont1 == 1){
 				        	 console.log(cont1);
-				        	 valid = true;
+				        	 ///////////////////////
+				        	 
+				        	 var asociar_banco_json = {
+				        			 "idEntityBanck": "1",
+				        			 "idComercio": identificacion_global,
+				        			 "numeroAfiliacion": numero_afiliacion_tab3,
+				        			 "numTerminalesComprar": cantidad_terminales_tab3
+				        	 }
+				        	 
+				        	 $.ajax({
+			 		               type: "POST",
+			 		               url: '/asociarBanco',
+			 		               contentType: "application/json",
+			 		               dataType: "json",
+			 		               data: JSON.stringify(asociar_banco_json),
+			 		               success: processSuccess,
+			 		               error: processError
+			 		           });
+			 		       	
+				 		       	function processSuccess(data, status, req) {
+				 		            //alert(req.responseText + " " + status);
+				 		       		console.log(data);
+				 		       		
+				 		           	if(data.return.descripcion === "FAIL"){
+				 		           		swal("Error al Asociar Banco de Afiliación", data.return.descripcion);
+				 		           		valid = false;
+				 		           		return valid;
+				 		           		
+				 		           	}else if(data.return.descripcion === "OK"){
+				 		           		
+				 		           		document.getElementById('nombre_banco_tab3').disabled = true;
+				 		           		document.getElementById('numero_afiliacion_tab3').disabled = true;
+				 		           		
+				 		           		swal("Asociación Creada", data.return.descripcion);
+				 		           		valid = true;
+				 		           		return valid;
+				 		           		swal("Asociación Creada", data.return.descripcion);
+				 		           	}
+				 		           } 
+				 		       	
+				 		       	function processError(data, status, req) {
+				 		            //alert(req.responseText + " " + status);
+				 		           	swal("Error al contactar el servicio", data);
+				 		           	valid = false;
+				 		           	return valid;
+				 		           } 
+				        	 
+				        	 //////////////////////
+
 				         }else if(cont1 == 0){
 				        	 valid = false;
 				         }
@@ -210,6 +269,12 @@ $(".tb8").hide();
 			    	   var cont1 = 0;
 			    	   
 			    	   var primer_nombre_tab4 = $("#primer_nombre_tab4").val();
+			    	   var tipo_identificacion_tab4 = $("#tipo_identificacion_tab4").val();
+			    	   var segundo_nombre_tab4 = $("#segundo_nombre_tab4").val();
+			    	   var segundo_apellido_tab4 = $("#segundo_apellido_tab4").val();
+			    	   var telefono_local_tab4 = $("#telefono_local_tab4").val();
+			    	   var correo_tab4 = $("#correo_tab4").val();
+			    	   
 			    	   if(primer_nombre_tab4.length >= 1){
 				        	 cont1 = cont1 + 1;
 				         }else{
@@ -243,7 +308,97 @@ $(".tb8").hide();
 				         
 				         if(cont1 == 4){
 				        	 console.log(cont1);
-				        	 valid = true;
+				        	 /////////////////////////
+				        	 
+				        	 var representante_legal_json = {
+				        			 "tipoIdentificacionId": {
+				        				 "nombre": tipo_identificacion_tab4,
+				        				 "tipoIdentificacionId": "1" 
+				        			 },
+				        			 "identificacionRepresentante": identificacion_tab4,
+				        			 "primerNombre": primer_nombre_tab4,
+				        			 "segundoNombre": segundo_nombre_tab4,
+				        			 "primerApellido": primer_apellido_tab4,
+				        			 "segundoApellido" : segundo_apellido_tab4,
+				        			 "telefonoLocal": telefono_local_tab4,
+				        			 "telefonoCelular": telefono_celular_tab4,
+				        			 "emailRepresentante": correo_tab4,
+				        			 "statusRepresentante": "Y"
+				        	 }
+				        	 
+				        	 $.ajax({
+			 		               type: "POST",
+			 		               url: '/crearRepresentanteLegal',
+			 		               contentType: "application/json",
+			 		               dataType: "json",
+			 		               data: JSON.stringify(representante_legal_json),
+			 		               success: processSuccess,
+			 		               error: processError
+			 		           });
+			 		       	
+				 		       	function processSuccess(data, status, req) {
+				 		            //alert(req.responseText + " " + status);
+				 		       		console.log(data);
+				 		       		
+				 		           	if(data.return.descripcion === "FAIL"){
+				 		           		swal("Error al Crear Representante Legal", data.return.descripcion);
+				 		           		valid = false;
+				 		           		return valid;
+				 		           		
+				 		           	}else if(data.return.descripcion === "OK"){
+				 		           		
+				 		           		//////////////////////////////////////////////////////////
+				 		           		var asociar_representante_legal_json = {
+				 		           				"comercioId": identificacion_global,
+				 		           				"representanteId": identificacion_tab4
+				 		           		};
+				 		           		
+					 		           	$.ajax({
+						 		               type: "POST",
+						 		               url: '/asociarComercioConRepresentanteLegal',
+						 		               contentType: "application/json",
+						 		               dataType: "json",
+						 		               data: JSON.stringify(asociar_representante_legal_json),
+						 		               success: processSuccess,
+						 		               error: processError
+						 		           });
+						 		       	
+							 		       	function processSuccess(data, status, req) {
+							 		            //alert(req.responseText + " " + status);
+							 		       		console.log(data);
+							 		       		
+							 		           	if(data.return.descripcion === "FAIL"){
+							 		           		swal("Error al Asociar Representante Legal", data.return.descripcion);
+							 		           		valid = false;
+							 		           		return valid;
+							 		           		
+							 		           	}else if(data.return.descripcion === "OK"){
+							 		           	swal("Asociación Creada", data.return.descripcion);
+						 		           		valid = true;
+						 		           		return valid;
+						 		           		swal("Asociación Creada", data.return.descripcion);
+							 		           	}
+							 		           } 
+							 		       	
+							 		       	function processError(data, status, req) {
+							 		            //alert(req.responseText + " " + status);
+							 		           	swal("Error al contactar el servicio", data);
+							 		           	valid = false;
+							 		           	return valid;
+							 		           } 
+							 		       	///////////////////////////////////////////////////////////
+							 		       	
+				 		           	}
+				 		           } 
+				 		       	
+				 		       	function processError(data, status, req) {
+				 		            //alert(req.responseText + " " + status);
+				 		           	swal("Error al contactar el servicio", data);
+				 		           	valid = false;
+				 		           	return valid;
+				 		           } 
+				        	 
+				        	 ////////////////////////
 				         }else if(cont1 == 0){
 				        	 valid = false;
 				         }
@@ -320,7 +475,11 @@ $(".tb8").hide();
 				         
 				         if(cont1 == 7){
 				        	 console.log(cont1);
-				        	 valid = true;
+				        	 //////////////////////////
+				        	 
+				        	 
+				        	 
+				        	 /////////////////////////
 				         }else if(cont1 == 0){
 				        	 valid = false;
 				         }
@@ -339,7 +498,9 @@ $(".tb8").hide();
 			       if (stepDirection === 'forward') {
 			    	   var cont1 = 0;
 			    	   
+			    	   var tipo_identificacion_tab6 = $("#tipo_identificacion_tab6").val();
 			    	   var cargo_tab6 = $("#cargo_tab6").val();
+			    	   
 			    	   if(cargo_tab6.length >= 1){
 				        	 cont1 = cont1 + 1;
 				         }else{
@@ -405,7 +566,97 @@ $(".tb8").hide();
 				         
 				         if(cont1 == 8){
 				        	 console.log(cont1);
-				        	 valid = true;
+				        	 ///////////////////////////////////////
+				        	 
+				        	 var contacto_json = {
+				        			 "tipoIdentificacionId": {
+				        				 "nombre": tipo_identificacion_tab6,
+				        				 "tipoIdentificacionId": "1"
+				        			 },
+				        			 "identificacionContacto": identificacion_tab6,
+				        			 "telefonoCelular": telefono_tab6,
+				        			 "primerNombre": primer_nombre_tab6,
+				        			 "segundoNombre": segundo_nombre_tab6,
+				        			 "primerApellido": primer_apellido_tab6,
+				        			 "segundoApellido": segundo_apellido_tab6,
+				        			 "cargoContacto": cargo_tab6,
+				        			 "telefonoLocal": telefono_tab6,
+				        			 "emailContacto": correo_electronico_tab6
+				        	 }
+				        	 
+				        	 $.ajax({
+			 		               type: "POST",
+			 		               url: '/crearContacto',
+			 		               contentType: "application/json",
+			 		               dataType: "json",
+			 		               data: JSON.stringify(contacto_json),
+			 		               success: processSuccess,
+			 		               error: processError
+			 		           });
+			 		       	
+				 		       	function processSuccess(data, status, req) {
+				 		            //alert(req.responseText + " " + status);
+				 		       		console.log(data);
+				 		       		
+				 		           	if(data.return.descripcion === "FAIL"){
+				 		           		swal("Error al Crear Persona Contacto", data.return.descripcion);
+				 		           		valid = false;
+				 		           		return valid;
+				 		           		
+				 		           	}else if(data.return.descripcion === "OK"){
+				 		           		//////////////////////////////////////////
+				 		           		
+				 		           		var asociar_contacto_json = {
+				 		           				"comercioId": identificacion_global,
+				 		           				"contactoId": identificacion_tab6
+				 		           		};
+				 		           		
+					 		           	$.ajax({
+						 		               type: "POST",
+						 		               url: '/asociarComercioConContacto',
+						 		               contentType: "application/json",
+						 		               dataType: "json",
+						 		               data: JSON.stringify(asociar_contacto_json),
+						 		               success: processSuccess,
+						 		               error: processError
+						 		           });
+						 		       	
+							 		       	function processSuccess(data, status, req) {
+							 		            //alert(req.responseText + " " + status);
+							 		       		console.log(data);
+							 		       		
+							 		           	if(data.return.descripcion === "FAIL"){
+							 		           		swal("Error al Asociar Persona Contacto", data.return.descripcion);
+							 		           		valid = false;
+							 		           		return valid;
+							 		           		
+							 		           	}else if(data.return.descripcion === "OK"){
+							 		           		swal("Persona Contacto Asociado", data.return.descripcion);
+							 		           		valid = true;
+							 		           		return valid;
+							 		           		swal("Persona Contacto Asociado", data.return.descripcion);
+							 		           	}
+							 		           } 
+							 		       	
+							 		       	function processError(data, status, req) {
+							 		            //alert(req.responseText + " " + status);
+							 		           	swal("Error al contactar el servicio", data);
+							 		           	valid = false;
+							 		           	return valid;
+							 		           } 
+				 		           		
+				 		           		//////////////////////////////////////////
+				 		           	}
+				 		           } 
+				 		       	
+				 		       	function processError(data, status, req) {
+				 		            //alert(req.responseText + " " + status);
+				 		           	swal("Error al contactar el servicio", data);
+				 		           	valid = false;
+				 		           	return valid;
+				 		           } 
+				        	 
+				        	 ///////////////////////////////////////
 				         }else if(cont1 == 0){
 				        	 valid = false;
 				         }
@@ -1281,6 +1532,12 @@ $(".tb8").hide();
 	           }
 	       	
 	    //////////////////////////////////////////////////////////
+	    //////////////////////////////////////////////////////////
+	       	
+
+	       	
+	    /////////////////////////////////////////////////////////
+	    /////////////////////////////////////////////////////////
 		       	
 		$('#demo').steps({
 		      onChange: function (currentIndex, newIndex, stepDirection) {

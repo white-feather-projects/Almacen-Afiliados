@@ -11,10 +11,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cbp.web.dao.AfiliacionDAO;
 import com.cbp.web.dto.ActiveOrInactiveOperadoraTelefonicaDTO;
 import com.cbp.web.dto.AsociarBancoComercioDTO;
+import com.cbp.web.dto.AsociarComercioConContactoDTO;
+import com.cbp.web.dto.AsociarComercioConRepresentanteLegalDTO;
 import com.cbp.web.dto.ClientDTO;
 import com.cbp.web.dto.ConsultaBancoAfiliacionIdDTO;
+import com.cbp.web.dto.ConsultaContactoByIdentificacionContactoDTO;
+import com.cbp.web.dto.ConsultaRepresentanteLegalByIdentificacionRepresentanteDTO;
+import com.cbp.web.dto.CrearContactoDTO;
 import com.cbp.web.dto.CrearOperadorTelefonicoDTO;
+import com.cbp.web.dto.CrearRepresentanteLegalDTO;
 import com.cbp.web.dto.EditarAsociacionBancoComercioDTO;
+import com.cbp.web.dto.EditarAsociacionComercioConContactoDTO;
+import com.cbp.web.dto.EditarAsociacionComercioConRepresentanteLegalDTO;
+import com.cbp.web.dto.EditarContactoDTO;
+import com.cbp.web.dto.EditarRepresentanteLegalDTO;
 import com.cbp.web.dto.ModificarOperadorTelefonicoDTO;
 import com.cbp.web.dto.RespuestaDTO;
 import com.cbp.web.dto.actualizaStatusComercioDTO;
@@ -24,12 +34,22 @@ import com.cbp.web.dto.modificarComercioDTO;
 import com.cbp3.ws.cbp.service.ActiveOrInactiveOperadoraTelefonicaWSResponse;
 import com.cbp3.ws.cbp.service.ActualizaStatusComercioWSResponse;
 import com.cbp3.ws.cbp.service.AsociarBancoComercioWSResponse;
+import com.cbp3.ws.cbp.service.AsociarComercioConContactoWSResponse;
+import com.cbp3.ws.cbp.service.AsociarComercioConRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.BancoAfiliacion;
 import com.cbp3.ws.cbp.service.ConsultaBancoAfiliacionByIdWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaComercioPorIdentificacionComercioWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaContactoByIdentificacionContactoWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse;
 import com.cbp3.ws.cbp.service.CrearComercioWSResponse;
+import com.cbp3.ws.cbp.service.CrearContactoWSResponse;
 import com.cbp3.ws.cbp.service.CrearOperadorTelefonicoWSResponse;
+import com.cbp3.ws.cbp.service.CrearRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.EditarAsociacionBancoComercioWSResponse;
+import com.cbp3.ws.cbp.service.EditarAsociacionComercioConContactoWSResponse;
+import com.cbp3.ws.cbp.service.EditarAsociacionComercioConRepresentanteLegalWSResponse;
+import com.cbp3.ws.cbp.service.EditarContactoWSResponse;
+import com.cbp3.ws.cbp.service.EditarRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.EntityBank;
 import com.cbp3.ws.cbp.service.ListaSolicitudesWSResponse;
 import com.cbp3.ws.cbp.service.ModificarComercioWSResponse;
@@ -147,6 +167,116 @@ public class AfiliacionController {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		ModificarOperadorTelefonicoWSResponse respuesta = new ModificarOperadorTelefonicoWSResponse();
 		respuesta = afiliacionMethods.modificarOperadorTelefonico(ModificarOperadorTelefonicoDTO);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/asociarComercioConContacto", produces = { "application/json" })
+	public @ResponseBody AsociarComercioConContactoWSResponse asociarComercioConContacto(@RequestBody AsociarComercioConContactoDTO AsociarComercioConContactoDTO) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		AsociarComercioConContactoWSResponse respuesta = new AsociarComercioConContactoWSResponse();
+		respuesta = afiliacionMethods.asociarComercioConContacto(AsociarComercioConContactoDTO);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/asociarComercioConRepresentanteLegal", produces = { "application/json" })
+	public @ResponseBody AsociarComercioConRepresentanteLegalWSResponse asociarComercioConRepresentanteLegal(@RequestBody AsociarComercioConRepresentanteLegalDTO AsociarComercioConRepresentanteLegalDTO) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		AsociarComercioConRepresentanteLegalWSResponse respuesta = new AsociarComercioConRepresentanteLegalWSResponse();
+		respuesta = afiliacionMethods.asociarComercioConRepresentanteLegal(AsociarComercioConRepresentanteLegalDTO);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/consultaContactoByIdentificacionContacto", produces = { "application/json" })
+	public @ResponseBody ConsultaContactoByIdentificacionContactoWSResponse consultaContactoByIdentificacionContacto(@RequestBody ConsultaContactoByIdentificacionContactoDTO ConsultaContactoByIdentificacionContactoDTO) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ConsultaContactoByIdentificacionContactoWSResponse respuesta = new ConsultaContactoByIdentificacionContactoWSResponse();
+		respuesta = afiliacionMethods.consultaContactoByIdentificacionContacto(ConsultaContactoByIdentificacionContactoDTO);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/consultaRepresentanteLegalByIdentificacionRepresentante", produces = { "application/json" })
+	public @ResponseBody ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse consultaRepresentanteLegalByIdentificacionRepresentante(@RequestBody ConsultaRepresentanteLegalByIdentificacionRepresentanteDTO ConsultaRepresentanteLegalByIdentificacionRepresentanteDTO) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse respuesta = new ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse();
+		respuesta = afiliacionMethods.consultaRepresentanteLegalByIdentificacionRepresentante(ConsultaRepresentanteLegalByIdentificacionRepresentanteDTO);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/crearContacto", produces = { "application/json" })
+	public @ResponseBody CrearContactoWSResponse crearContacto(@RequestBody CrearContactoDTO CrearContactoDTO) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		CrearContactoWSResponse respuesta = new CrearContactoWSResponse();
+		respuesta = afiliacionMethods.crearContacto(CrearContactoDTO);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/crearRepresentanteLegal", produces = { "application/json" })
+	public @ResponseBody CrearRepresentanteLegalWSResponse crearRepresentanteLegal(@RequestBody CrearRepresentanteLegalDTO CrearRepresentanteLegalDTO) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		CrearRepresentanteLegalWSResponse respuesta = new CrearRepresentanteLegalWSResponse();
+		respuesta = afiliacionMethods.crearRepresentanteLegal(CrearRepresentanteLegalDTO);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/editarAsociacionComercioConContacto", produces = { "application/json" })
+	public @ResponseBody EditarAsociacionComercioConContactoWSResponse editarAsociacionComercioConContacto(@RequestBody EditarAsociacionComercioConContactoDTO EditarAsociacionComercioConContactoDTO) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		EditarAsociacionComercioConContactoWSResponse respuesta = new EditarAsociacionComercioConContactoWSResponse();
+		respuesta = afiliacionMethods.editarAsociacionComercioConContacto(EditarAsociacionComercioConContactoDTO);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/editarAsociacionComercioConRepresentanteLegal", produces = { "application/json" })
+	public @ResponseBody EditarAsociacionComercioConRepresentanteLegalWSResponse editarAsociacionComercioConRepresentanteLegal(@RequestBody EditarAsociacionComercioConRepresentanteLegalDTO EditarAsociacionComercioConRepresentanteLegalDTO) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		EditarAsociacionComercioConRepresentanteLegalWSResponse respuesta = new EditarAsociacionComercioConRepresentanteLegalWSResponse();
+		respuesta = afiliacionMethods.editarAsociacionComercioConRepresentanteLegal(EditarAsociacionComercioConRepresentanteLegalDTO);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/editarContacto", produces = { "application/json" })
+	public @ResponseBody EditarContactoWSResponse editarContacto(@RequestBody EditarContactoDTO EditarContactoDTO) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		EditarContactoWSResponse respuesta = new EditarContactoWSResponse();
+		respuesta = afiliacionMethods.editarContacto(EditarContactoDTO);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/editarRepresentanteLegal", produces = { "application/json" })
+	public @ResponseBody EditarRepresentanteLegalWSResponse editarRepresentanteLegal(@RequestBody EditarRepresentanteLegalDTO EditarRepresentanteLegalDTO) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		EditarRepresentanteLegalWSResponse respuesta = new EditarRepresentanteLegalWSResponse();
+		respuesta = afiliacionMethods.editarRepresentanteLegal(EditarRepresentanteLegalDTO);
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
 	}

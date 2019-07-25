@@ -11,9 +11,19 @@ import org.springframework.stereotype.Service;
 import com.cbp.web.dao.AfiliacionDAO;
 import com.cbp.web.dto.ActiveOrInactiveOperadoraTelefonicaDTO;
 import com.cbp.web.dto.AsociarBancoComercioDTO;
+import com.cbp.web.dto.AsociarComercioConContactoDTO;
+import com.cbp.web.dto.AsociarComercioConRepresentanteLegalDTO;
 import com.cbp.web.dto.ConsultaBancoAfiliacionIdDTO;
+import com.cbp.web.dto.ConsultaContactoByIdentificacionContactoDTO;
+import com.cbp.web.dto.ConsultaRepresentanteLegalByIdentificacionRepresentanteDTO;
+import com.cbp.web.dto.CrearContactoDTO;
 import com.cbp.web.dto.CrearOperadorTelefonicoDTO;
+import com.cbp.web.dto.CrearRepresentanteLegalDTO;
 import com.cbp.web.dto.EditarAsociacionBancoComercioDTO;
+import com.cbp.web.dto.EditarAsociacionComercioConContactoDTO;
+import com.cbp.web.dto.EditarAsociacionComercioConRepresentanteLegalDTO;
+import com.cbp.web.dto.EditarContactoDTO;
+import com.cbp.web.dto.EditarRepresentanteLegalDTO;
 import com.cbp.web.dto.ModificarOperadorTelefonicoDTO;
 import com.cbp.web.dto.actualizaStatusComercioDTO;
 import com.cbp.web.dto.consultaComercioDTO;
@@ -25,12 +35,22 @@ import com.cbp3.ws.cbp.service.ActualizaStatusComercioWSResponse;
 import com.cbp3.ws.cbp.service.AfiliacionServiceWS;
 import com.cbp3.ws.cbp.service.AfiliacionServiceWS_Service;
 import com.cbp3.ws.cbp.service.AsociarBancoComercioWSResponse;
+import com.cbp3.ws.cbp.service.AsociarComercioConContactoWSResponse;
+import com.cbp3.ws.cbp.service.AsociarComercioConRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.BancoAfiliacion;
 import com.cbp3.ws.cbp.service.ConsultaBancoAfiliacionByIdWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaComercioPorIdentificacionComercioWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaContactoByIdentificacionContactoWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse;
 import com.cbp3.ws.cbp.service.CrearComercioWSResponse;
+import com.cbp3.ws.cbp.service.CrearContactoWSResponse;
 import com.cbp3.ws.cbp.service.CrearOperadorTelefonicoWSResponse;
+import com.cbp3.ws.cbp.service.CrearRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.EditarAsociacionBancoComercioWSResponse;
+import com.cbp3.ws.cbp.service.EditarAsociacionComercioConContactoWSResponse;
+import com.cbp3.ws.cbp.service.EditarAsociacionComercioConRepresentanteLegalWSResponse;
+import com.cbp3.ws.cbp.service.EditarContactoWSResponse;
+import com.cbp3.ws.cbp.service.EditarRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.EntityBank;
 import com.cbp3.ws.cbp.service.ListaSolicitudesWSResponse;
 import com.cbp3.ws.cbp.service.ModificarComercioWSResponse;
@@ -297,6 +317,266 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 		}
 		
 		return respuestaModificarOperadorTelefonico;
+	}
+	
+	////////////////////////////////////
+	//Methodo para Asociar comercio con Contacto...
+	public AsociarComercioConContactoWSResponse asociarComercioConContacto(AsociarComercioConContactoDTO AsociarComercioConContactoDTO) {
+	
+		//instanciar Objeto para retorno....
+		AsociarComercioConContactoWSResponse respuestaAsociarComercioConContacto = new AsociarComercioConContactoWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL("http://18.223.203.6:8080/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaAsociarComercioConContacto.setReturn(WSmethod.asociarComercioConContactoWS(AsociarComercioConContactoDTO.getComercioId(), AsociarComercioConContactoDTO.getContactoId()));
+		
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaAsociarComercioConContacto;
+	}
+	
+	////////////////////////////////////
+	//Methodo para Asociar comercio con Representante legal...
+	public AsociarComercioConRepresentanteLegalWSResponse asociarComercioConRepresentanteLegal(AsociarComercioConRepresentanteLegalDTO AsociarComercioConRepresentanteLegalDTO) {
+	
+		//instanciar Objeto para retorno....
+		AsociarComercioConRepresentanteLegalWSResponse respuestaAsociarComercioConRepresentanteLegal = new AsociarComercioConRepresentanteLegalWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL("http://18.223.203.6:8080/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaAsociarComercioConRepresentanteLegal.setReturn(WSmethod.asociarComercioConRepresentanteLegalWS(AsociarComercioConRepresentanteLegalDTO.getComercioId(), AsociarComercioConRepresentanteLegalDTO.getRepresentanteId()));
+		
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaAsociarComercioConRepresentanteLegal;
+	}
+	
+	////////////////////////////////////
+	//Methodo para consultar Contacto por Identificacion...
+	public ConsultaContactoByIdentificacionContactoWSResponse consultaContactoByIdentificacionContacto(ConsultaContactoByIdentificacionContactoDTO ConsultaContactoByIdentificacionContactoDTO) {
+	
+		//instanciar Objeto para retorno....
+		ConsultaContactoByIdentificacionContactoWSResponse respuestaConsultaByIdentificacionContacto = new ConsultaContactoByIdentificacionContactoWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL("http://18.223.203.6:8080/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaConsultaByIdentificacionContacto.setReturn(WSmethod.consultaContactoByIdentificacionContactoWS(ConsultaContactoByIdentificacionContactoDTO.getIdentificacionContacto()));
+		
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaConsultaByIdentificacionContacto;
+	}
+	
+	////////////////////////////////////
+	//Methodo para consultar Representante legal por Identificacion...
+	public ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse consultaRepresentanteLegalByIdentificacionRepresentante(ConsultaRepresentanteLegalByIdentificacionRepresentanteDTO ConsultaRepresentanteLegalByIdentificacionRepresentanteDTO) {
+	
+		//instanciar Objeto para retorno....
+		ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse respuestaConsultaRepresentanteLegalByIdentificacionRepresentante = new ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL("http://18.223.203.6:8080/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaConsultaRepresentanteLegalByIdentificacionRepresentante.setReturn(WSmethod.consultaRepresentanteLegalByIdentificacionRepresentanteWS(ConsultaRepresentanteLegalByIdentificacionRepresentanteDTO.getIdentificacionRepresentante()));
+		
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaConsultaRepresentanteLegalByIdentificacionRepresentante;
+	}
+	
+	////////////////////////////////////
+	//Methodo para Crear Contacto...
+	public CrearContactoWSResponse crearContacto(CrearContactoDTO CrearContactoDTO) {
+	
+		//instanciar Objeto para retorno....
+		CrearContactoWSResponse respuestaCrearContacto = new CrearContactoWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL("http://18.223.203.6:8080/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaCrearContacto.setReturn(WSmethod.crearContactoWS(CrearContactoDTO.getTipoIdentificacionId(), CrearContactoDTO.getIdentificacionContacto(), CrearContactoDTO.getTelefonoCelular(), CrearContactoDTO.getPrimerNombre(), CrearContactoDTO.getSegundoNombre(), CrearContactoDTO.getPrimerApellido(), CrearContactoDTO.getSegundoApellido(), CrearContactoDTO.getCargoContacto(), CrearContactoDTO.getTelefonoLocal(), CrearContactoDTO.getEmailContacto()));
+		
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaCrearContacto;
+	}
+	
+	////////////////////////////////////
+	//Methodo para Crear Representante Legal...
+	public CrearRepresentanteLegalWSResponse crearRepresentanteLegal(CrearRepresentanteLegalDTO CrearRepresentanteLegalDTO) {
+	
+		//instanciar Objeto para retorno....
+		CrearRepresentanteLegalWSResponse respuestaCrearRepresentanteLegal = new CrearRepresentanteLegalWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL("http://18.223.203.6:8080/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaCrearRepresentanteLegal.setReturn(WSmethod.crearRepresentanteLegalWS(CrearRepresentanteLegalDTO.getTipoIdentificacionId(), CrearRepresentanteLegalDTO.getIdentificacionRepresentante(), CrearRepresentanteLegalDTO.getPrimerNombre(), CrearRepresentanteLegalDTO.getSegundoNombre(), CrearRepresentanteLegalDTO.getPrimerApellido(), CrearRepresentanteLegalDTO.getSegundoApellido(), CrearRepresentanteLegalDTO.getTelefonoLocal(), CrearRepresentanteLegalDTO.getTelefonoCelular(), CrearRepresentanteLegalDTO.getEmailRepresentante(), CrearRepresentanteLegalDTO.getStatusRepresentante()));
+		
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaCrearRepresentanteLegal;
+	}
+	
+	////////////////////////////////////
+	//Methodo para Editar Asociacion Comercio con Contacto...
+	public EditarAsociacionComercioConContactoWSResponse editarAsociacionComercioConContacto(EditarAsociacionComercioConContactoDTO EditarAsociacionComercioConContactoDTO) {
+	
+		//instanciar Objeto para retorno....
+		EditarAsociacionComercioConContactoWSResponse respuestaEditarAsociacionComercioConContacto = new EditarAsociacionComercioConContactoWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL("http://18.223.203.6:8080/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaEditarAsociacionComercioConContacto.setReturn(WSmethod.editarAsociacionComercioConContactoWS(EditarAsociacionComercioConContactoDTO.getComercioId(), EditarAsociacionComercioConContactoDTO.getContactoId()));
+		
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaEditarAsociacionComercioConContacto;
+	}
+	
+	////////////////////////////////////
+	//Methodo para Editar Asociacion Comercio con Representante Legal...
+	public EditarAsociacionComercioConRepresentanteLegalWSResponse editarAsociacionComercioConRepresentanteLegal(EditarAsociacionComercioConRepresentanteLegalDTO EditarAsociacionComercioConRepresentanteLegalDTO) {
+	
+		//instanciar Objeto para retorno....
+		EditarAsociacionComercioConRepresentanteLegalWSResponse respuestaEditarAsociacionComercioConRepresentanteLegal = new EditarAsociacionComercioConRepresentanteLegalWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL("http://18.223.203.6:8080/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaEditarAsociacionComercioConRepresentanteLegal.setReturn(WSmethod.editarAsociacionComercioConRepresentanteLegalWS(EditarAsociacionComercioConRepresentanteLegalDTO.getComercioId(), EditarAsociacionComercioConRepresentanteLegalDTO.getRepresentanteId()));
+		
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaEditarAsociacionComercioConRepresentanteLegal;
+	}
+	
+	////////////////////////////////////
+	//Methodo para Editar Contacto...
+	public EditarContactoWSResponse editarContacto(EditarContactoDTO EditarContactoDTO) {
+	
+		//instanciar Objeto para retorno....
+		EditarContactoWSResponse respuestaEditarContacto = new EditarContactoWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL("http://18.223.203.6:8080/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaEditarContacto.setReturn(WSmethod.editarContactoWS(EditarContactoDTO.getIdentificacionContacto(), EditarContactoDTO.getTelefonoCelular(), EditarContactoDTO.getPrimerNombre(), EditarContactoDTO.getSegundoNombre(), EditarContactoDTO.getPrimerApellido(), EditarContactoDTO.getSegundoApellido(), EditarContactoDTO.getCargoContacto(), EditarContactoDTO.getTelefonoLocal(), EditarContactoDTO.getEmailContacto()));
+		
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaEditarContacto;
+	}
+	
+	////////////////////////////////////
+	//Methodo para Editar Representante Legal...
+	public EditarRepresentanteLegalWSResponse editarRepresentanteLegal(EditarRepresentanteLegalDTO EditarRepresentanteLegalDTO) {
+	
+		//instanciar Objeto para retorno....
+		EditarRepresentanteLegalWSResponse respuestaEditarRepresentanteLegal = new EditarRepresentanteLegalWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL("http://18.223.203.6:8080/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaEditarRepresentanteLegal.setReturn(WSmethod.editarRepresentanteLegalWS(EditarRepresentanteLegalDTO.getIdentificacionRepresentante(), EditarRepresentanteLegalDTO.getIdentificacionRepresentante(), EditarRepresentanteLegalDTO.getSegundoNombre(), EditarRepresentanteLegalDTO.getPrimerApellido(), EditarRepresentanteLegalDTO.getSegundoApellido(), EditarRepresentanteLegalDTO.getTelefonoLocal(), EditarRepresentanteLegalDTO.getTelefonoCelular(), EditarRepresentanteLegalDTO.getEmailRepresentante()));
+		
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaEditarRepresentanteLegal;
 	}
 
 	////////////////////////////////////
