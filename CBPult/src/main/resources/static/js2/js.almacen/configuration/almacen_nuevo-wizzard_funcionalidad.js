@@ -12,8 +12,10 @@ $(document).ready(function(){
 	var num_zonas=0;
 	
 	btnNuevaZona.click(function(){
-
-		var html_zona1 =`
+		
+		// Estas variables se usan simultaneamente con el mismo boton y crean Zonas en los 2 Tabs al mismo tempo
+		// Se usa para Crear una nueva Zona en el Tab de Zonas Cuando se presiona btnNuevaZona
+		var html_zona = `
 			<!-- Zona --> 
             <div id="zona`+contador_zonas+`" class="zona_zonas col-sm-12 card" style="border: none">
             	
@@ -60,7 +62,7 @@ $(document).ready(function(){
                                     <div class="col-sm-12 mobile-inputs">
                                     	<label class="col-sm-12 col-form-label">Descripción Zona</label>
                                     	<div class="col-sm-12">
-                                            <input type="text" id="txtDescripcion_zona`+contador_zonas+`" class="form-control" placeholder="">
+                                            <input type="text" id="txtDescripcion_zona`+contador_zonas+`" onblur="soloTexto(`+contador_zonas+`)" class="form-control solo_texto" placeholder="">
                                         </div>
                                     </div>	                                                        	
                                     
@@ -102,13 +104,13 @@ $(document).ready(function(){
                                             
                                             <div class="col-sm-5">														                                                                
                                                 <div class="col-sm-12">
-                                                    <input type="text" id="txtModulos_estanteria`+contador_zonas+`" class="form-control" placeholder="Módulos">
+                                                    <input type="text" id="txtModulos_estanteria`+contador_zonas+`" class="form-control solo_num" onblur="modulos(`+contador_zonas+`)" placeholder="Módulos">
                                                 </div>
                                         	</div>
                             			
                             				<div class="col-sm-5">														                                                                
                                                 <div class="col-sm-12">
-                                                    <input type="text" id="txtNiveles_estanteria`+contador_zonas+`" class="form-control" placeholder="Niveles">
+                                                    <input type="text" id="txtNiveles_estanteria`+contador_zonas+`" class="form-control solo_num"  onblur="niveles(`+contador_zonas+`)" placeholder="Niveles">
                                                 </div>
                                         	</div>
                                         	
@@ -153,6 +155,8 @@ $(document).ready(function(){
                 </div>
             </div>										                                            
             <!-- Zona -->`;
+		
+		// Se usa para Crear una nueva Zona en el Tab de Relaciones Cuando se presiona btnNuevaZona		
 		var html_relacion_zona = `
 			<!-- Zona Relacion -->
             <div id="" class="zona col-sm-12 card" style="border: none">
@@ -180,7 +184,7 @@ $(document).ready(function(){
                                     <div class="col-sm-12 mobile-inputs">
                                         <label class="col-sm-12 col-form-label">Tipo Zona</label>
                                         <div class="col-sm-12">
-                                            <select name="select" id="cboxTipo_zona" class="form-control">
+                                            <select name="select" id="cboxTipo_zona" class="form-control" disabled>
                                                 <option value="Recibo">Recibo</option>
                                                 <option value="Almacenaje">Almacenaje</option>
                                                 <option value="Almacenaje Restringido">Almacenaje Restringido</option>
@@ -192,14 +196,14 @@ $(document).ready(function(){
                                     <div class="col-sm-12 mobile-inputs">
                                     	<label class="col-sm-12 col-form-label">Descripción Zona</label>
                                     	<div class="col-sm-12">
-                                            <input type="text" id="txtDescripcion_zona" class="form-control" placeholder="">
+                                            <input type="text" id="txtDescripcion_zona" class="form-control" placeholder="" disabled>
                                         </div>
                                     </div>	                                                        	
                                     
                                     <div class="col-sm-12 mobile-inputs">
                                         <label class="col-sm-12 col-form-label">Encargado de Zona</label>
                                         <div class="col-sm-12">
-                                            <select name="select" id="cboxEncargado_zona" class="form-control">
+                                            <select name="select" id="cboxEncargado_zona" class="form-control" disabled>
                                                 <option value="Elon Musk">Elon Musk</option>
                                                 <option value="Einstein">Einstein</option>
                                                 <option value="Jack Ma">Jack Ma</option>
@@ -232,7 +236,7 @@ $(document).ready(function(){
                             			
                             			
                             			<div class="dt-responsive table-responsive">
-                                            <table id="simpletable" class="table-sm table-striped table-bordered display4 nowrap">
+                                            <table id="simpletable" class="table table-striped table-bordered displayrel`+contador_zonas+` nowrap">
                                                 <thead>
 													<tr>
 														<th>Relacionar</th>
@@ -242,10 +246,10 @@ $(document).ready(function(){
 														<th>Encargado</th>																																																																
 													 </tr>
 												</thead>
-												<tbody>
+												<tbody id="rel-zona`+contador_zonas+`">
 												    <tr>
 												    	<td>
-												    		<div><input type="checkbox" class="js-switch-blue" data-switchery="true" style="display: none;"></div>
+												    		<div><input type="checkbox" class="js-switch-blue-zona" data-switchery="true" style="display: none;"></div>
 												    	</td>
 												    	<td>R1 ( OBLIGATORIO )</td>
 												    	<td>Recibo</td>
@@ -254,7 +258,7 @@ $(document).ready(function(){
 												    </tr>
 												    <tr>
 												    	<td>
-												    		<div><input type="checkbox" class="js-switch-blue" data-switchery="true" style="display: none;"></div>
+												    		<div><input type="checkbox" class="js-switch-blue-zona" data-switchery="true" style="display: none;"></div>
 												    	</td>
 												    	<td>R2</td>
 												    	<td>Recibo</td>
@@ -263,7 +267,7 @@ $(document).ready(function(){
 												    </tr>
 												    <tr>
 												    	<td>
-												    		<div><input type="checkbox" class="js-switch-blue" data-switchery="true" style="display: none;"></div>
+												    		<div><input type="checkbox" class="js-switch-blue-zona" data-switchery="true" style="display: none;"></div>
 												    	</td>
 												    	<td>A1</td>
 												    	<td>Alcenaje</td>
@@ -272,7 +276,7 @@ $(document).ready(function(){
 												    </tr>
 												    <tr>
 												    	<td>
-												    		<div><input type="checkbox" class="js-switch-blue" data-switchery="true" style="display: none;"></div>
+												    		<div><input type="checkbox" class="js-switch-blue-zona" data-switchery="true" style="display: none;"></div>
 												    	</td>
 												    	<td>X1</td>
 												    	<td>Alcenaje Restringido</td>
@@ -281,7 +285,7 @@ $(document).ready(function(){
 												    </tr>
 												    <tr>
 												    	<td>
-												    		<div><input type="checkbox" class="js-switch-blue"  data-switchery="true" style="display: none;"></div>
+												    		<div><input type="checkbox" class="js-switch-blue-zona"  data-switchery="true" style="display: none;"></div>
 												    	</td>
 												    	<td>D1 ( OBLIGATORIO )</td>
 												    	<td>Despacho</td>
@@ -309,9 +313,11 @@ $(document).ready(function(){
 		`;
 
 		
-		contenedor_zonas.append(html_zona1);
+		contenedor_zonas.append(html_zona);
 		contenedor_relZonas.append(html_relacion_zona);
 		alert("nueva Zona "+contador_zonas);
+		
+		// tablas del Tab de Zonas
 		$('table.display'+contador_zonas).DataTable({ 
 	        "language": { // Configuración del Lenguaje de la Tabla
 	            "lengthMenu": "Mostrar _MENU_ registros",
@@ -328,46 +334,145 @@ $(document).ready(function(){
 	        "info": false,
 	        
 	    });
+		
+		// tablas del Tab de Relaciones
+		$("table.displayrel"+contador_zonas).DataTable({ 
+	        "language": { // Configuración del Lenguaje de la Tabla
+	            "lengthMenu": "Mostrar _MENU_ registros",
+	            "zeroRecords": false,
+	            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+	            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+	            "sSearch": "Buscar:",            
+	        },
+	        "scrollY": "200px", // Alto de la Tabla
+	        "scrollCollapse": true,
+	        "paging": false,
+	        "searching": false,
+	        "info": false,
+	        
+	    });
+		
+		// Para remover la fila de las tablas que aparece cuando no hay registros
 		var body = $('#simpletable'+contador_zonas);
-		body.find( 'tbody tr:eq(0)' ).remove();
-		contador_zonas++;		
-	});	
-	
-	btnContar.click(function(){
-		var zonas = $('.zona_zonas');		
-	});
-	
+		body.find( 'tbody tr:eq(0)').remove();
+		contador_zonas++;
+		
+	});		
 });
 	
 function crearTr(actual){
-	var niveles = $('#txtNiveles_estanteria'+actual).val();
-	var modulos = $('#txtModulos_estanteria'+actual).val();
 	
-	alert('modulos: '+modulos+', niveles: '+niveles);
-	console.log('modulos: '+modulos+', niveles: '+niveles);
+	var niveles = $('#txtNiveles_estanteria'+actual);
+	var modulos = $('#txtModulos_estanteria'+actual);
 	
-	var lol=0;
-	var body = $('#tbody'+actual+' tr');
-	console.log(body);
-	$('#tbody'+actual).append(`
-			<tr>
-		    	<td>1</td>
-		    	<td>`+modulos+`</td>
-		    	<td>`+niveles+`</td>																														    	
-		    	<td>
-		    		<a onclick="location.href = '/relacion-zona_nuevo-editar'">
-		    			<img alt="Editar" src="`+thEditar+`" width="30px">
-		    		</a>
-		    		<a onclick="alert('Relación Eliminada')">
-		    			<img alt="Eliminar" src="`+thEliminar+`" width="30px">
-		    		</a>
-		    	</td>
-		    </tr>
-	`);
+	if(niveles.val() != "" && modulos.val() != ""){
+		
+		var body = $('#tbody'+actual+' tr');
+		console.log(body);
+		$('#tbody'+actual).append(`
+				<tr>
+			    	<td>1</td>
+			    	<td>`+modulos.val()+`</td>
+			    	<td>`+niveles.val()+`</td>																														    	
+			    	<td>
+			    		<a onclick="location.href = '/relacion-zona_nuevo-editar'">
+			    			<img alt="Editar" src="`+thEditar+`" width="30px">
+			    		</a>
+			    		<a onclick="alert('Relación Eliminada')">
+			    			<img alt="Eliminar" src="`+thEliminar+`" width="30px">
+			    		</a>
+			    	</td>
+			    </tr>
+		`);		
+		niveles.val("");
+		modulos.val("");
+	}
+	else{
+		niveles.css("border", "1px solid red");
+		modulos.css("border", "1px solid red");
+		niveles.val("");
+		modulos.val("");
+		alert("llenar los campos de la Estanteria");
+	}
+	
+	
 }
 
 function eliminarZona(actual){
 	var zona = $('#zona'+actual).remove();
 }
+
+
+/* Todas estas funciones se disparan desde el "onBlur" de los inputs de las Zonas */
+
+function soloTexto(desc){
+	
+	var texto = $('#txtDescripcion_zona'+desc);
+	var patron = /^[A-Za-z \u00C0-\u017F]*$/;
+	
+	if(texto.val().length > 0){
+		if(texto.val().search(patron)){
+			texto.css("border", "1px solid red");
+			texto.val("");
+			swal("Solo Texto");
+		}
+		else{
+			texto.css("border", "1px solid #20c997");
+		}
+	}
+	else{
+		texto.css("border", "1px solid red");
+	}
+	
+}
+
+// Validaciones Modulos
+function modulos(_modulo){
+	console.log(_modulo);
+
+	var modulo = $('#txtModulos_estanteria'+_modulo);
+	var patron = /^([0-9])*$/;
+	
+	if(modulo.val().length > 0){
+		if(modulo.val().search(patron)){
+			modulo.css("border", "1px solid red");
+			modulo.val("");	
+			swal("Solo Numeros");			
+		}else{
+			modulo.css("border", "1px solid #20c997");
+		}
+	}
+	else{
+		modulo.css("border", "1px solid red");
+	}
+	
+}
+//Validaciones Modulos
+
+
+//Validaciones Niveles
+function niveles(_nivel){
+	console.log(_nivel);
+
+	var nivel = $('#txtNiveles_estanteria'+_nivel);
+	var patron = /^([0-9])*$/;
+	
+	if(nivel.val().length > 0){
+		if(nivel.val().search(patron)){
+			nivel.css("border", "1px solid red");
+			nivel.val("");	
+			swal("Solo Numeros");			
+		}else{
+			nivel.css("border", "1px solid #20c997");
+		}
+	}
+	else{
+		nivel.css("border", "1px solid red");
+	}
+	
+}
+//Validaciones Niveles
+
 	
 
