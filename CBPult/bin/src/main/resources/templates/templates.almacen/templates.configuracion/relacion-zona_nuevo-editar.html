@@ -25,20 +25,9 @@
         <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
         <script type="text/javascript" th:src="@{/js2/index.js}"></script>
         <script th:src="@{/js2/bandeja_ventas.js}"></script>       
-        <script th:src="@{/js-almacen/almacen_nuevo-editar.js}"></script>
+		
+		<link rel="stylesheet" type="text/css" th:href="@{/css2/css.almacen/GeneralForm.css}">
         
-        <style>
-    		.botonera .btn{
-    			width: 300px;
-    			font-size: 25px;
-    			
-    		}
-    		
-    		.botonera2 .btn{
-    			margin-left: 30px;
-    			float: right;
-    		}
-    	</style>
     	<style type="text/css">
     		.card-block{
     			border: 2px solid #01a9ac;
@@ -118,14 +107,14 @@
                                                         		<div class="col-sm-6">
 	                                                                <label class="col-sm-12 col-form-label">Código de Zona</label>
 	                                                                <div class="col-sm-12">
-	                                                                    <input type="text" id="txtCodigoActual_relacion-zona" class="form-control" placeholder="Codigo" disabled="false">
+	                                                                    <input type="text" id="txtCodigoActual_relacion-zona" class="form-control" placeholder="Codigo" disabled>
 	                                                                </div>
                                                             	</div>
                                                             
 	                                                            <div class="col-sm-6 mobile-inputs">
 	                                                                <label class="col-sm-12 col-form-label">Tipo Zona</label>
 	                                                                <div class="col-sm-12">
-		                                                                <select name="select" id="cboxTipoActual_relacion-zona" class="form-control" disabled="false">
+		                                                                <select name="select" id="cboxTipoActual_relacion-zona" class="form-control" disabled>
 		                                                                    <option value="Recibo">Recibo</option>
 		                                                                    <option value="Almacenaje">Almacenaje</option>
 		                                                                    <option value="Almacenaje Restringido">Almacenaje Restringido</option>
@@ -137,14 +126,14 @@
 	                                                            <div class="col-sm-12 mobile-inputs">
 	                                                            	<label class="col-sm-12 col-form-label">Descripción Zona</label>
 	                                                            	<div class="col-sm-12">
-	                                                                    <input type="text" id="txtDescripcionActual_relacion-zona" class="form-control" placeholder="Descripción de Zona" disabled="false">
+	                                                                    <input type="text" id="txtDescripcionActual_relacion-zona" class="form-control" placeholder="Descripción de Zona" disabled>
 	                                                                </div>
 	                                                            </div>	                                                        	
 	                                                            
 	                                                            <div class="col-sm-12 mobile-inputs">
 	                                                                <label class="col-sm-12 col-form-label">Encargado de Zona</label>
 	                                                                <div class="col-sm-12">
-		                                                                <select name="select" id="txtEncargadoActual_relacion-zona"class="form-control" disabled="false">
+		                                                                <select name="select" id="txtEncargadoActual_relacion-zona"class="form-control" disabled>
 		                                                                    <option value="Elon Musk">Elon Musk</option>
 		                                                                    <option value="Einstein">Einstein</option>
 		                                                                    <option value="Jack Ma">Jack Ma</option>
@@ -177,14 +166,14 @@
                                                         		<div class="col-sm-6">
 	                                                                <label class="col-sm-12 col-form-label">Código de Zona</label>
 	                                                                <div class="col-sm-12">
-	                                                                    <input type="text" id="txtCodigoDestino_relacion-zona" class="form-control" placeholder="Codigo" disabled="false">
+	                                                                    <input type="text" id="txtCodigoDestino_relacion-zona" class="form-control" placeholder="Codigo" disabled>
 	                                                                </div>
                                                             	</div>
                                                             
 	                                                            <div class="col-sm-6 mobile-inputs">
 	                                                                <label class="col-sm-12 col-form-label">Tipo Zona</label>
 	                                                                <div class="col-sm-12">
-		                                                                <select name="select" id="cboxTipoDestino_relacion-zona" class="form-control" disabled="false">		                                                                
+		                                                                <select name="select" id="cboxTipoDestino_relacion-zona" class="form-control" disabled>		                                                                
 		                                                                    <option value="Almacenaje">Almacenaje</option>
 		                                                                    <option value="Recibo">Recibo</option>
 		                                                                    <option value="Almacenaje Restringido">Almacenaje Restringido</option>
@@ -196,14 +185,14 @@
 	                                                            <div class="col-sm-12 mobile-inputs">
 	                                                            	<label class="col-sm-12 col-form-label">Descripción Zona</label>
 	                                                            	<div class="col-sm-12">
-	                                                                    <input type="text" id="txtDescripcionDestino_relacion-zona" class="form-control" placeholder="Descripción de Zona" disabled="false">
+	                                                                    <input type="text" id="txtDescripcionDestino_relacion-zona" class="form-control" placeholder="Descripción de Zona">
 	                                                                </div>
 	                                                            </div>	                                                        	
 	                                                            
 	                                                            <div class="col-sm-12 mobile-inputs">
 	                                                                <label class="col-sm-12 col-form-label">Encargado de Zona</label>
 	                                                                <div class="col-sm-12">
-		                                                                <select name="select" id="cboxEncargadoDestino_relacion-zona" class="form-control" disabled="false">
+		                                                                <select name="select" id="cboxEncargadoDestino_relacion-zona" class="form-control" disabled>
 		                                                                	<option value="Einstein">Einstein</option>
 		                                                                    <option value="Elon Musk">Elon Musk</option>		                                                                    
 		                                                                    <option value="Jack Ma">Jack Ma</option>
