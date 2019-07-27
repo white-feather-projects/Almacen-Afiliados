@@ -4,6 +4,9 @@ import com.cbp.web.dto.ActiveOrInactiveOperadoraTelefonicaDTO;
 import com.cbp.web.dto.AsociarBancoComercioDTO;
 import com.cbp.web.dto.AsociarComercioConContactoDTO;
 import com.cbp.web.dto.AsociarComercioConRepresentanteLegalDTO;
+import com.cbp.web.dto.CodigoPostalDTO;
+import com.cbp.web.dto.ConsultaAsociacionComercioContactoDTO;
+import com.cbp.web.dto.ConsultaAsociacionComercioRepresentanteDTO;
 import com.cbp.web.dto.ConsultaBancoAfiliacionIdDTO;
 import com.cbp.web.dto.ConsultaContactoByIdentificacionContactoDTO;
 import com.cbp.web.dto.ConsultaRepresentanteLegalByIdentificacionRepresentanteDTO;
@@ -27,6 +30,10 @@ import com.cbp3.ws.cbp.service.AsociarBancoComercioWSResponse;
 import com.cbp3.ws.cbp.service.AsociarComercioConContactoWSResponse;
 import com.cbp3.ws.cbp.service.AsociarComercioConRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.BancoAfiliacion;
+import com.cbp3.ws.cbp.service.Canton;
+import com.cbp3.ws.cbp.service.CodigoPostalWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioContactoWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioRepresentanteWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaBancoAfiliacionByIdWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaComercioPorIdentificacionComercioWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaContactoByIdentificacionContactoWSResponse;
@@ -35,6 +42,7 @@ import com.cbp3.ws.cbp.service.CrearComercioWSResponse;
 import com.cbp3.ws.cbp.service.CrearContactoWSResponse;
 import com.cbp3.ws.cbp.service.CrearOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.CrearRepresentanteLegalWSResponse;
+import com.cbp3.ws.cbp.service.Distrito;
 import com.cbp3.ws.cbp.service.EditarAsociacionBancoComercioWSResponse;
 import com.cbp3.ws.cbp.service.EditarAsociacionComercioConContactoWSResponse;
 import com.cbp3.ws.cbp.service.EditarAsociacionComercioConRepresentanteLegalWSResponse;
@@ -46,6 +54,7 @@ import com.cbp3.ws.cbp.service.ListaSolicitudesWSResponse;
 import com.cbp3.ws.cbp.service.ModificarComercioWSResponse;
 import com.cbp3.ws.cbp.service.ModificarOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.Operadortelefonico;
+import com.cbp3.ws.cbp.service.Provincia;
 import com.cbp3.ws.cbp.service.Solicitud;
 
 public interface AfiliacionDAO {
@@ -90,6 +99,10 @@ public interface AfiliacionDAO {
 	
 	public EditarRepresentanteLegalWSResponse editarRepresentanteLegal(EditarRepresentanteLegalDTO EditarRepresentanteLegalDTO);
 	
+	public ConsultaAsociacionComercioContactoWSResponse consultaAsociacionComercioContacto(ConsultaAsociacionComercioContactoDTO ConsultaAsociacionComercioContactoDTO);
+	
+	public ConsultaAsociacionComercioRepresentanteWSResponse consultaAsociacionComercioRepresentante(ConsultaAsociacionComercioRepresentanteDTO ConsultaAsociacionComercioRepresentanteDTO);
+	
 	public java.util.List<Solicitud> listaSolicitudes();
 	
 	public java.util.List<BancoAfiliacion> listaAsociacionBancoComercio();
@@ -97,4 +110,12 @@ public interface AfiliacionDAO {
 	public java.util.List<Operadortelefonico> listaOperadoresTelefonicos();
 	
 	public java.util.List<EntityBank> listaBanks();
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	public CodigoPostalWSResponse codigoPostal(CodigoPostalDTO CodigoPostalDTO);
+	
+	public java.util.List<Canton> listaCanton(Provincia Provincia);
+	
+	public java.util.List<Distrito> listaDistrito(Canton Canton);
 }

@@ -607,4 +607,34 @@ public interface AfiliacionServiceWS {
     @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/listBanksWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/listBanksWSResponse")
     public List<EntityBank> listBanksWS();
 
+    /**
+     * 
+     * @param comercioId
+     * @return
+     *     returns com.cbp3.ws.cbp.service.ComercioRepresentante
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "consultaAsociacionComercioRepresentanteWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaAsociacionComercioRepresentanteWS")
+    @ResponseWrapper(localName = "consultaAsociacionComercioRepresentanteWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaAsociacionComercioRepresentanteWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/consultaAsociacionComercioRepresentanteWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/consultaAsociacionComercioRepresentanteWSResponse")
+    public ComercioRepresentante consultaAsociacionComercioRepresentanteWS(
+        @WebParam(name = "comercioId", targetNamespace = "")
+        long comercioId);
+
+    /**
+     * 
+     * @param comercioId
+     * @return
+     *     returns com.cbp3.ws.cbp.service.ComercioContacto
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "consultaAsociacionComercioContactoWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaAsociacionComercioContactoWS")
+    @ResponseWrapper(localName = "consultaAsociacionComercioContactoWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaAsociacionComercioContactoWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/consultaAsociacionComercioContactoWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/consultaAsociacionComercioContactoWSResponse")
+    public ComercioContacto consultaAsociacionComercioContactoWS(
+        @WebParam(name = "comercioId", targetNamespace = "")
+        long comercioId);
+
 }
