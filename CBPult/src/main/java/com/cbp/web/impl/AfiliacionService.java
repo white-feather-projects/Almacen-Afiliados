@@ -13,6 +13,9 @@ import com.cbp.web.dto.ActiveOrInactiveOperadoraTelefonicaDTO;
 import com.cbp.web.dto.AsociarBancoComercioDTO;
 import com.cbp.web.dto.AsociarComercioConContactoDTO;
 import com.cbp.web.dto.AsociarComercioConRepresentanteLegalDTO;
+import com.cbp.web.dto.CodigoPostalDTO;
+import com.cbp.web.dto.ConsultaAsociacionComercioContactoDTO;
+import com.cbp.web.dto.ConsultaAsociacionComercioRepresentanteDTO;
 import com.cbp.web.dto.ConsultaBancoAfiliacionIdDTO;
 import com.cbp.web.dto.ConsultaContactoByIdentificacionContactoDTO;
 import com.cbp.web.dto.ConsultaRepresentanteLegalByIdentificacionRepresentanteDTO;
@@ -38,6 +41,10 @@ import com.cbp3.ws.cbp.service.AsociarBancoComercioWSResponse;
 import com.cbp3.ws.cbp.service.AsociarComercioConContactoWSResponse;
 import com.cbp3.ws.cbp.service.AsociarComercioConRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.BancoAfiliacion;
+import com.cbp3.ws.cbp.service.Canton;
+import com.cbp3.ws.cbp.service.CodigoPostalWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioContactoWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioRepresentanteWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaBancoAfiliacionByIdWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaComercioPorIdentificacionComercioWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaContactoByIdentificacionContactoWSResponse;
@@ -46,6 +53,7 @@ import com.cbp3.ws.cbp.service.CrearComercioWSResponse;
 import com.cbp3.ws.cbp.service.CrearContactoWSResponse;
 import com.cbp3.ws.cbp.service.CrearOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.CrearRepresentanteLegalWSResponse;
+import com.cbp3.ws.cbp.service.Distrito;
 import com.cbp3.ws.cbp.service.EditarAsociacionBancoComercioWSResponse;
 import com.cbp3.ws.cbp.service.EditarAsociacionComercioConContactoWSResponse;
 import com.cbp3.ws.cbp.service.EditarAsociacionComercioConRepresentanteLegalWSResponse;
@@ -56,7 +64,10 @@ import com.cbp3.ws.cbp.service.ListaSolicitudesWSResponse;
 import com.cbp3.ws.cbp.service.ModificarComercioWSResponse;
 import com.cbp3.ws.cbp.service.ModificarOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.Operadortelefonico;
+import com.cbp3.ws.cbp.service.Provincia;
 import com.cbp3.ws.cbp.service.Solicitud;
+import com.cbp3.ws.cbp.service.UbicacionGeograficaWS;
+import com.cbp3.ws.cbp.service.UbicacionGeograficaWS_Service;
 
 @Service
 public class AfiliacionService extends Util implements AfiliacionDAO{
@@ -578,6 +589,58 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 		
 		return respuestaEditarRepresentanteLegal;
 	}
+	
+	////////////////////////////////////
+	//Methodo para Consultar Asociacion COmercio COntacto...
+	public ConsultaAsociacionComercioContactoWSResponse consultaAsociacionComercioContacto(ConsultaAsociacionComercioContactoDTO ConsultaAsociacionComercioContactoDTO) {
+	
+		//instanciar Objeto para retorno....
+		ConsultaAsociacionComercioContactoWSResponse respuestaConsultaAsociacionComercioContacto = new ConsultaAsociacionComercioContactoWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL("http://18.223.203.6:8080/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaConsultaAsociacionComercioContacto.setReturn(WSmethod.consultaAsociacionComercioContactoWS(ConsultaAsociacionComercioContactoDTO.getComercioId()));
+		
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaConsultaAsociacionComercioContacto;
+	}
+	
+	////////////////////////////////////
+	//Methodo para Consultar Asociacion COmercio Representante...
+	public ConsultaAsociacionComercioRepresentanteWSResponse consultaAsociacionComercioRepresentante(ConsultaAsociacionComercioRepresentanteDTO ConsultaAsociacionComercioRepresentanteDTO) {
+	
+		//instanciar Objeto para retorno....
+		ConsultaAsociacionComercioRepresentanteWSResponse respuestaConsultaAsociacionComercioRepresentante = new ConsultaAsociacionComercioRepresentanteWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL("http://18.223.203.6:8080/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaConsultaAsociacionComercioRepresentante.setReturn(WSmethod.consultaAsociacionComercioRepresentanteWS(ConsultaAsociacionComercioRepresentanteDTO.getComercioId()));
+		
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaConsultaAsociacionComercioRepresentante;
+	}
 
 	////////////////////////////////////
 	//Methodo para listar los Comercios...
@@ -731,5 +794,103 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 		}
 		
 		return respuestaBancos;
+	}
+	
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	////////////////////////////////////
+	//Methodo para Codigo Postal...
+	public CodigoPostalWSResponse codigoPostal(CodigoPostalDTO CodigoPostalDTO) {
+	
+		//instanciar Objeto para retorno....
+		CodigoPostalWSResponse respuestaCodigoPostal = new CodigoPostalWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			UbicacionGeograficaWS_Service ws = new UbicacionGeograficaWS_Service(new URL("http://18.223.203.6:8080/CBP-3/UbicacionGeograficaWS?WSDL"));
+			UbicacionGeograficaWS WSmethod = ws.getUbicacionGeograficaWSPort();
+		
+			respuestaCodigoPostal.setReturn(WSmethod.codigoPostalWS(CodigoPostalDTO.getDistrito()));
+		
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaCodigoPostal;
+	}
+	
+	//////////////////////////////////////////////////////
+	//Methodo para listar Cantones...
+	public java.util.List<Canton> listaCanton(Provincia Provincia) {
+		
+		//instanciar Objeto para retorno....
+		java.util.List<Canton> respuestaCanton = new ArrayList<>();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			UbicacionGeograficaWS_Service ws = new UbicacionGeograficaWS_Service(new URL("http://18.223.203.6:8080/CBP-3/UbicacionGeograficaWS?WSDL"));
+			UbicacionGeograficaWS WSmethod = ws.getUbicacionGeograficaWSPort();
+		
+			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
+			for(int i = 0; i < WSmethod.listCantonWS(Provincia).size(); i++) {
+				
+				Canton objetoCanton = new Canton();
+				
+				objetoCanton.setIdCanton(WSmethod.listCantonWS(Provincia).get(i).getIdCanton());
+				objetoCanton.setNombreCanton(WSmethod.listCantonWS(Provincia).get(i).getNombreCanton());
+				objetoCanton.setProvinciaId(WSmethod.listCantonWS(Provincia).get(i).getProvinciaId());
+				
+				respuestaCanton.add(objetoCanton);
+			}
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaCanton;
+	}
+	
+	//////////////////////////////////////////////////////
+	//Methodo para listar Distritos...
+	public java.util.List<Distrito> listaDistrito(Canton Canton) {
+		
+		//instanciar Objeto para retorno....
+		java.util.List<Distrito> respuestaDistrito = new ArrayList<>();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			UbicacionGeograficaWS_Service ws = new UbicacionGeograficaWS_Service(new URL("http://18.223.203.6:8080/CBP-3/UbicacionGeograficaWS?WSDL"));
+			UbicacionGeograficaWS WSmethod = ws.getUbicacionGeograficaWSPort();
+		
+			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
+			for(int i = 0; i < WSmethod.listDistritoWS(Canton).size(); i++) {
+				
+				Distrito objetoDistrito = new Distrito();
+				
+				objetoDistrito.setCantonId(WSmethod.listDistritoWS(Canton).get(i).getCantonId());
+				objetoDistrito.setIdDistrito(WSmethod.listDistritoWS(Canton).get(i).getIdDistrito());
+				objetoDistrito.setNombreDistrito(WSmethod.listDistritoWS(Canton).get(i).getNombreDistrito());
+				
+				respuestaDistrito.add(objetoDistrito);
+			}
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaDistrito;
 	}
 }

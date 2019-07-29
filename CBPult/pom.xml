@@ -90,6 +90,7 @@
 						<wsdlUrl>http://18.223.203.6:8080/CBP-1/CardWS?wsdl</wsdlUrl>
 						<wsdlUrl>http://18.223.203.6:8080/CBP-1/AccountWS?wsdl</wsdlUrl>
 						<wsdlUrl>http://18.223.203.6:8080/CBP-3/AfiliacionServiceWS?WSDL</wsdlUrl>
+						<wsdlUrl>http://18.223.203.6:8080/CBP-3/UbicacionGeograficaWS?WSDL</wsdlUrl>
 					</wsdlUrls>
 				</configuration>
 			</plugin>

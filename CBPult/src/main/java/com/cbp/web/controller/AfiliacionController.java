@@ -14,6 +14,9 @@ import com.cbp.web.dto.AsociarBancoComercioDTO;
 import com.cbp.web.dto.AsociarComercioConContactoDTO;
 import com.cbp.web.dto.AsociarComercioConRepresentanteLegalDTO;
 import com.cbp.web.dto.ClientDTO;
+import com.cbp.web.dto.CodigoPostalDTO;
+import com.cbp.web.dto.ConsultaAsociacionComercioContactoDTO;
+import com.cbp.web.dto.ConsultaAsociacionComercioRepresentanteDTO;
 import com.cbp.web.dto.ConsultaBancoAfiliacionIdDTO;
 import com.cbp.web.dto.ConsultaContactoByIdentificacionContactoDTO;
 import com.cbp.web.dto.ConsultaRepresentanteLegalByIdentificacionRepresentanteDTO;
@@ -37,6 +40,10 @@ import com.cbp3.ws.cbp.service.AsociarBancoComercioWSResponse;
 import com.cbp3.ws.cbp.service.AsociarComercioConContactoWSResponse;
 import com.cbp3.ws.cbp.service.AsociarComercioConRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.BancoAfiliacion;
+import com.cbp3.ws.cbp.service.Canton;
+import com.cbp3.ws.cbp.service.CodigoPostalWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioContactoWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioRepresentanteWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaBancoAfiliacionByIdWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaComercioPorIdentificacionComercioWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaContactoByIdentificacionContactoWSResponse;
@@ -45,6 +52,7 @@ import com.cbp3.ws.cbp.service.CrearComercioWSResponse;
 import com.cbp3.ws.cbp.service.CrearContactoWSResponse;
 import com.cbp3.ws.cbp.service.CrearOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.CrearRepresentanteLegalWSResponse;
+import com.cbp3.ws.cbp.service.Distrito;
 import com.cbp3.ws.cbp.service.EditarAsociacionBancoComercioWSResponse;
 import com.cbp3.ws.cbp.service.EditarAsociacionComercioConContactoWSResponse;
 import com.cbp3.ws.cbp.service.EditarAsociacionComercioConRepresentanteLegalWSResponse;
@@ -55,6 +63,7 @@ import com.cbp3.ws.cbp.service.ListaSolicitudesWSResponse;
 import com.cbp3.ws.cbp.service.ModificarComercioWSResponse;
 import com.cbp3.ws.cbp.service.ModificarOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.Operadortelefonico;
+import com.cbp3.ws.cbp.service.Provincia;
 import com.cbp3.ws.cbp.service.Solicitud;
 
 @Controller
@@ -283,6 +292,28 @@ public class AfiliacionController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	@RequestMapping(value = "/consultaAsociacionComercioContacto", produces = { "application/json" })
+	public @ResponseBody ConsultaAsociacionComercioContactoWSResponse consultaAsociacionComercioContacto(@RequestBody ConsultaAsociacionComercioContactoDTO ConsultaAsociacionComercioContactoDTO) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ConsultaAsociacionComercioContactoWSResponse respuesta = new ConsultaAsociacionComercioContactoWSResponse();
+		respuesta = afiliacionMethods.consultaAsociacionComercioContacto(ConsultaAsociacionComercioContactoDTO);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/consultaAsociacionComercioRepresentante", produces = { "application/json" })
+	public @ResponseBody ConsultaAsociacionComercioRepresentanteWSResponse consultaAsociacionComercioRepresentante(@RequestBody ConsultaAsociacionComercioRepresentanteDTO ConsultaAsociacionComercioRepresentanteDTO) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ConsultaAsociacionComercioRepresentanteWSResponse respuesta = new ConsultaAsociacionComercioRepresentanteWSResponse();
+		respuesta = afiliacionMethods.consultaAsociacionComercioRepresentante(ConsultaAsociacionComercioRepresentanteDTO);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	@RequestMapping(value = "/listaSolicitudes", produces = { "application/json" })
 	public @ResponseBody java.util.List<Solicitud> listaSolicitudes() {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
@@ -324,4 +355,41 @@ public class AfiliacionController {
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
 	}
+	
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/codigoPosta", produces = { "application/json" })
+	public @ResponseBody CodigoPostalWSResponse codigoPosta(@RequestBody CodigoPostalDTO CodigoPostalDTO) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		CodigoPostalWSResponse respuesta = new CodigoPostalWSResponse();
+		respuesta = afiliacionMethods.codigoPostal(CodigoPostalDTO);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/listaCanton", produces = { "application/json" })
+	public @ResponseBody java.util.List<Canton> listaCanton(@RequestBody Provincia Provincia) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<Canton> respuesta = new ArrayList<>();
+		respuesta = afiliacionMethods.listaCanton(Provincia);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/listaDistrito", produces = { "application/json" })
+	public @ResponseBody java.util.List<Distrito> listaDistrito(@RequestBody Canton Canton) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<Distrito> respuesta = new ArrayList<>();
+		respuesta = afiliacionMethods.listaDistrito(Canton);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
 }

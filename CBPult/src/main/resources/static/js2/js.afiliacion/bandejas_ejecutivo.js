@@ -102,7 +102,7 @@ function listarTabla1(){
 	                "class": "ver",
 	                "defaultContent": "",
 	                "render": function ( data, type, full, meta ) {
-        		return '<center><a title="Ver" href="/confirm_pre_carga/ver&'+data+'"><i class="fa fa-search" style="font-size:30px" aria-hidden="true"></i></a><a title="Modificar" href="/confirm_pre_carga/modificar&'+data+'"><i class="fa fa-edit" style="font-size:30px" aria-hidden="true"></i></a></center>';
+        		return '<center><a title="Modificar" href="/confirm_pre_carga/modificar&'+data+'"><i class="fa fa-edit" style="font-size:30px" aria-hidden="true"></i></a></center>';
 	                		//return '<center><a class="ui blue button" href="/4track/api/devices?id=">Ver</a></center>';
 	                }
 	            }
