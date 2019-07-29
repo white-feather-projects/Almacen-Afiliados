@@ -4,20 +4,35 @@ h2{
 }
 
 /* Cards */
-.card-block{
+.card{
 	border: 2px solid #01a9ac;
 }
+
+.cardlimit{
+	height: 390px;
+	overflow: hidden;
+}
+/* Cards */
+ 
+ 
 /* Botoneras Grandes */
 
 .botonera .btn{
-	width: 300px;
-	font-size: 25px;   			
-}
-  		
-.botonera2 .btn{
-	margin-left: 30px;
+	width: 350px;
+	height: 50px;
+	font-size: 25px;
 	float: right;
+	margin-left: 20px;
 }
+
+.botonera2 .btn{
+	width: 350px;
+	height: 50px;
+	font-size: 25px;
+}
+
+
+
 
 /* Botoneras Grandes */
 
@@ -38,14 +53,3 @@ thead{
 	}
 	/* Botoneras Tablas */
 /* TABLAS */
-
-
-
- /* Tarjetas */
-.cardlimit{
-	height: 390px;
-	overflow: hidden;
-}
- /* Tarjetas */	
- 
- 

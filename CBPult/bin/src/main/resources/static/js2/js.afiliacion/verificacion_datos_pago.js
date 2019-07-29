@@ -28,7 +28,7 @@ window.addEventListener('load', function(){
 ////////////////////////////////////////////////////
 
 function soloTexto(texto){
-	var patron = /^[A-Za-z\u00C0-\u017F]*$/;
+	var patron = /^[A-Za-z \u00C0-\u017F]*$/;
 	if(texto.value.search(patron)){
 		swal("Solo Texto");
 		texto.value = "";

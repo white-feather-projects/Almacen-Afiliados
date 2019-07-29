@@ -301,4 +301,16 @@ public interface ClientWS {
         @WebParam(name = "canton", targetNamespace = "")
         Canton canton);
 
+    /**
+     * 
+     * @return
+     *     returns java.util.List<com.cbp1.ws.cbp.service.EntityBank>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listBanksWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ListBanksWS")
+    @ResponseWrapper(localName = "listBanksWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ListBanksWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/listBanksWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/listBanksWSResponse")
+    public List<EntityBank> listBanksWS();
+
 }

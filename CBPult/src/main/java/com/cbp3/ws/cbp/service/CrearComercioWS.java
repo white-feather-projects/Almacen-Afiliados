@@ -27,7 +27,10 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="afiliadoOtroBanco" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="tipoIdentificacionId" type="{http://service.cbp.ws.cbp3.com/}tipoidentificacion" minOccurs="0"/>
  *         &lt;element name="actividadComercial" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="horarioComercial" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="horaInicio" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="horaFin" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="idCanal" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="nombreCanal" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -49,7 +52,10 @@ import javax.xml.bind.annotation.XmlType;
     "afiliadoOtroBanco",
     "tipoIdentificacionId",
     "actividadComercial",
-    "horarioComercial"
+    "horaInicio",
+    "horaFin",
+    "idCanal",
+    "nombreCanal"
 })
 public class CrearComercioWS {
 
@@ -64,7 +70,10 @@ public class CrearComercioWS {
     protected String afiliadoOtroBanco;
     protected Tipoidentificacion tipoIdentificacionId;
     protected String actividadComercial;
-    protected String horarioComercial;
+    protected String horaInicio;
+    protected String horaFin;
+    protected String idCanal;
+    protected String nombreCanal;
 
     /**
      * Obtiene el valor de la propiedad identificacionComercio.
@@ -331,27 +340,99 @@ public class CrearComercioWS {
     }
 
     /**
-     * Obtiene el valor de la propiedad horarioComercial.
+     * Obtiene el valor de la propiedad horaInicio.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getHorarioComercial() {
-        return horarioComercial;
+    public String getHoraInicio() {
+        return horaInicio;
     }
 
     /**
-     * Define el valor de la propiedad horarioComercial.
+     * Define el valor de la propiedad horaInicio.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setHorarioComercial(String value) {
-        this.horarioComercial = value;
+    public void setHoraInicio(String value) {
+        this.horaInicio = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad horaFin.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getHoraFin() {
+        return horaFin;
+    }
+
+    /**
+     * Define el valor de la propiedad horaFin.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setHoraFin(String value) {
+        this.horaFin = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad idCanal.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIdCanal() {
+        return idCanal;
+    }
+
+    /**
+     * Define el valor de la propiedad idCanal.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIdCanal(String value) {
+        this.idCanal = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad nombreCanal.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNombreCanal() {
+        return nombreCanal;
+    }
+
+    /**
+     * Define el valor de la propiedad nombreCanal.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNombreCanal(String value) {
+        this.nombreCanal = value;
     }
 
 }

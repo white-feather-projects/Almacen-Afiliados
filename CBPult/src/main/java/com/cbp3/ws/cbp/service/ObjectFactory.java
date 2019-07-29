@@ -24,12 +24,21 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _CrearComercioWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearComercioWS");
-    private final static QName _Tipoidentificacion_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "tipoidentificacion");
-    private final static QName _Comercio_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "comercio");
-    private final static QName _CrearComercioWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearComercioWSResponse");
-    private final static QName _ConsultaComercioPorIdentificacionComercioWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaComercioPorIdentificacionComercioWS");
-    private final static QName _ConsultaComercioPorIdentificacionComercioWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaComercioPorIdentificacionComercioWSResponse");
+    private final static QName _CodigoPostalWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "codigoPostalWSResponse");
+    private final static QName _ListCantonWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listCantonWSResponse");
+    private final static QName _ListProvinciasWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listProvinciasWS");
+    private final static QName _Canton_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "canton");
+    private final static QName _ListPaisWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listPaisWSResponse");
+    private final static QName _CodigoPostalWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "codigoPostalWS");
+    private final static QName _ListDistritoWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listDistritoWSResponse");
+    private final static QName _ListDistritoWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listDistritoWS");
+    private final static QName _ListProvinciasWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listProvinciasWSResponse");
+    private final static QName _Distrito_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "distrito");
+    private final static QName _ListPaisWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listPaisWS");
+    private final static QName _CodigoPostal_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "codigoPostal");
+    private final static QName _ListCantonWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listCantonWS");
+    private final static QName _Pais_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "pais");
+    private final static QName _Provincia_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "provincia");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.cbp3.ws.cbp.service
@@ -39,129 +48,258 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CrearComercioWS }
+     * Create an instance of {@link Distrito }
      * 
      */
-    public CrearComercioWS createCrearComercioWS() {
-        return new CrearComercioWS();
+    public Distrito createDistrito() {
+        return new Distrito();
     }
 
     /**
-     * Create an instance of {@link Tipoidentificacion }
+     * Create an instance of {@link ListProvinciasWSResponse }
      * 
      */
-    public Tipoidentificacion createTipoidentificacion() {
-        return new Tipoidentificacion();
+    public ListProvinciasWSResponse createListProvinciasWSResponse() {
+        return new ListProvinciasWSResponse();
     }
 
     /**
-     * Create an instance of {@link Comercio }
+     * Create an instance of {@link ListDistritoWS }
      * 
      */
-    public Comercio createComercio() {
-        return new Comercio();
+    public ListDistritoWS createListDistritoWS() {
+        return new ListDistritoWS();
     }
 
     /**
-     * Create an instance of {@link ConsultaComercioPorIdentificacionComercioWS }
+     * Create an instance of {@link CodigoPostal }
      * 
      */
-    public ConsultaComercioPorIdentificacionComercioWS createConsultaComercioPorIdentificacionComercioWS() {
-        return new ConsultaComercioPorIdentificacionComercioWS();
+    public CodigoPostal createCodigoPostal() {
+        return new CodigoPostal();
     }
 
     /**
-     * Create an instance of {@link CrearComercioWSResponse }
+     * Create an instance of {@link ListPaisWS }
      * 
      */
-    public CrearComercioWSResponse createCrearComercioWSResponse() {
-        return new CrearComercioWSResponse();
+    public ListPaisWS createListPaisWS() {
+        return new ListPaisWS();
     }
 
     /**
-     * Create an instance of {@link ConsultaComercioPorIdentificacionComercioWSResponse }
+     * Create an instance of {@link ListCantonWS }
      * 
      */
-    public ConsultaComercioPorIdentificacionComercioWSResponse createConsultaComercioPorIdentificacionComercioWSResponse() {
-        return new ConsultaComercioPorIdentificacionComercioWSResponse();
+    public ListCantonWS createListCantonWS() {
+        return new ListCantonWS();
     }
 
     /**
-     * Create an instance of {@link ErroresDTO }
+     * Create an instance of {@link Provincia }
      * 
      */
-    public ErroresDTO createErroresDTO() {
-        return new ErroresDTO();
+    public Provincia createProvincia() {
+        return new Provincia();
     }
 
     /**
-     * Create an instance of {@link BdsUtil }
+     * Create an instance of {@link Pais }
      * 
      */
-    public BdsUtil createBdsUtil() {
-        return new BdsUtil();
+    public Pais createPais() {
+        return new Pais();
     }
 
     /**
-     * Create an instance of {@link RespuestaDTO }
+     * Create an instance of {@link ListProvinciasWS }
      * 
      */
-    public RespuestaDTO createRespuestaDTO() {
-        return new RespuestaDTO();
+    public ListProvinciasWS createListProvinciasWS() {
+        return new ListProvinciasWS();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CrearComercioWS }{@code >}}
+     * Create an instance of {@link CodigoPostalWSResponse }
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "crearComercioWS")
-    public JAXBElement<CrearComercioWS> createCrearComercioWS(CrearComercioWS value) {
-        return new JAXBElement<CrearComercioWS>(_CrearComercioWS_QNAME, CrearComercioWS.class, null, value);
+    public CodigoPostalWSResponse createCodigoPostalWSResponse() {
+        return new CodigoPostalWSResponse();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Tipoidentificacion }{@code >}}
+     * Create an instance of {@link ListCantonWSResponse }
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "tipoidentificacion")
-    public JAXBElement<Tipoidentificacion> createTipoidentificacion(Tipoidentificacion value) {
-        return new JAXBElement<Tipoidentificacion>(_Tipoidentificacion_QNAME, Tipoidentificacion.class, null, value);
+    public ListCantonWSResponse createListCantonWSResponse() {
+        return new ListCantonWSResponse();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Comercio }{@code >}}
+     * Create an instance of {@link ListPaisWSResponse }
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "comercio")
-    public JAXBElement<Comercio> createComercio(Comercio value) {
-        return new JAXBElement<Comercio>(_Comercio_QNAME, Comercio.class, null, value);
+    public ListPaisWSResponse createListPaisWSResponse() {
+        return new ListPaisWSResponse();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CrearComercioWSResponse }{@code >}}
+     * Create an instance of {@link Canton }
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "crearComercioWSResponse")
-    public JAXBElement<CrearComercioWSResponse> createCrearComercioWSResponse(CrearComercioWSResponse value) {
-        return new JAXBElement<CrearComercioWSResponse>(_CrearComercioWSResponse_QNAME, CrearComercioWSResponse.class, null, value);
+    public Canton createCanton() {
+        return new Canton();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaComercioPorIdentificacionComercioWS }{@code >}}
+     * Create an instance of {@link ListDistritoWSResponse }
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaComercioPorIdentificacionComercioWS")
-    public JAXBElement<ConsultaComercioPorIdentificacionComercioWS> createConsultaComercioPorIdentificacionComercioWS(ConsultaComercioPorIdentificacionComercioWS value) {
-        return new JAXBElement<ConsultaComercioPorIdentificacionComercioWS>(_ConsultaComercioPorIdentificacionComercioWS_QNAME, ConsultaComercioPorIdentificacionComercioWS.class, null, value);
+    public ListDistritoWSResponse createListDistritoWSResponse() {
+        return new ListDistritoWSResponse();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaComercioPorIdentificacionComercioWSResponse }{@code >}}
+     * Create an instance of {@link CodigoPostalWS }
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaComercioPorIdentificacionComercioWSResponse")
-    public JAXBElement<ConsultaComercioPorIdentificacionComercioWSResponse> createConsultaComercioPorIdentificacionComercioWSResponse(ConsultaComercioPorIdentificacionComercioWSResponse value) {
-        return new JAXBElement<ConsultaComercioPorIdentificacionComercioWSResponse>(_ConsultaComercioPorIdentificacionComercioWSResponse_QNAME, ConsultaComercioPorIdentificacionComercioWSResponse.class, null, value);
+    public CodigoPostalWS createCodigoPostalWS() {
+        return new CodigoPostalWS();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CodigoPostalWSResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "codigoPostalWSResponse")
+    public JAXBElement<CodigoPostalWSResponse> createCodigoPostalWSResponse(CodigoPostalWSResponse value) {
+        return new JAXBElement<CodigoPostalWSResponse>(_CodigoPostalWSResponse_QNAME, CodigoPostalWSResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListCantonWSResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listCantonWSResponse")
+    public JAXBElement<ListCantonWSResponse> createListCantonWSResponse(ListCantonWSResponse value) {
+        return new JAXBElement<ListCantonWSResponse>(_ListCantonWSResponse_QNAME, ListCantonWSResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListProvinciasWS }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listProvinciasWS")
+    public JAXBElement<ListProvinciasWS> createListProvinciasWS(ListProvinciasWS value) {
+        return new JAXBElement<ListProvinciasWS>(_ListProvinciasWS_QNAME, ListProvinciasWS.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Canton }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "canton")
+    public JAXBElement<Canton> createCanton(Canton value) {
+        return new JAXBElement<Canton>(_Canton_QNAME, Canton.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListPaisWSResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listPaisWSResponse")
+    public JAXBElement<ListPaisWSResponse> createListPaisWSResponse(ListPaisWSResponse value) {
+        return new JAXBElement<ListPaisWSResponse>(_ListPaisWSResponse_QNAME, ListPaisWSResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CodigoPostalWS }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "codigoPostalWS")
+    public JAXBElement<CodigoPostalWS> createCodigoPostalWS(CodigoPostalWS value) {
+        return new JAXBElement<CodigoPostalWS>(_CodigoPostalWS_QNAME, CodigoPostalWS.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListDistritoWSResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listDistritoWSResponse")
+    public JAXBElement<ListDistritoWSResponse> createListDistritoWSResponse(ListDistritoWSResponse value) {
+        return new JAXBElement<ListDistritoWSResponse>(_ListDistritoWSResponse_QNAME, ListDistritoWSResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListDistritoWS }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listDistritoWS")
+    public JAXBElement<ListDistritoWS> createListDistritoWS(ListDistritoWS value) {
+        return new JAXBElement<ListDistritoWS>(_ListDistritoWS_QNAME, ListDistritoWS.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListProvinciasWSResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listProvinciasWSResponse")
+    public JAXBElement<ListProvinciasWSResponse> createListProvinciasWSResponse(ListProvinciasWSResponse value) {
+        return new JAXBElement<ListProvinciasWSResponse>(_ListProvinciasWSResponse_QNAME, ListProvinciasWSResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Distrito }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "distrito")
+    public JAXBElement<Distrito> createDistrito(Distrito value) {
+        return new JAXBElement<Distrito>(_Distrito_QNAME, Distrito.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListPaisWS }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listPaisWS")
+    public JAXBElement<ListPaisWS> createListPaisWS(ListPaisWS value) {
+        return new JAXBElement<ListPaisWS>(_ListPaisWS_QNAME, ListPaisWS.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CodigoPostal }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "codigoPostal")
+    public JAXBElement<CodigoPostal> createCodigoPostal(CodigoPostal value) {
+        return new JAXBElement<CodigoPostal>(_CodigoPostal_QNAME, CodigoPostal.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListCantonWS }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listCantonWS")
+    public JAXBElement<ListCantonWS> createListCantonWS(ListCantonWS value) {
+        return new JAXBElement<ListCantonWS>(_ListCantonWS_QNAME, ListCantonWS.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Pais }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "pais")
+    public JAXBElement<Pais> createPais(Pais value) {
+        return new JAXBElement<Pais>(_Pais_QNAME, Pais.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Provincia }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "provincia")
+    public JAXBElement<Provincia> createProvincia(Provincia value) {
+        return new JAXBElement<Provincia>(_Provincia_QNAME, Provincia.class, null, value);
     }
 
 }

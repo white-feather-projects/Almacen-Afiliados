@@ -10,6 +10,7 @@ window.addEventListener('load', function(){
 	var codigo_postal = document.querySelector("#codigo_postal_tab5");
 	var localidad = document.querySelector("#localidad_tab5");
 	var nombre_inmueble = document.querySelector("#nombre_inmueble_tab5");
+	var geo_localizacion_tab5 = document.querySelector("#geo_localizacion_tab5");
 	var punto_referencia = document.querySelector("#punto_referencia_tab5");
 	
 	/////////////////////////////////////////////////////////////////////////
@@ -157,6 +158,8 @@ window.addEventListener('load', function(){
 				<option value='Guácimo'>Guácimo</option>`;
 			
 		}
+		
+		document.getElementById("estado_tab5").style.border = "1px solid black";
 	});
 	
 	ciudad.addEventListener('blur', ()=>{
@@ -878,41 +881,54 @@ window.addEventListener('load', function(){
 				<option value='Duacari'>Duacari</option>`;
 			
 		}
+		
+		document.getElementById("ciudad_tab5").style.border = "1px solid black";
 	});
 	
 	municipio_tab5.addEventListener('blur', ()=>{
 		console.log("municipio_tab5", municipio_tab5.value);
-		
+		document.getElementById("municipio_tab5").style.border = "1px solid black";
 	});
 	
 	sector_urbanizacion.addEventListener('blur', ()=>{
 		console.log("sector_urbanizacion", sector_urbanizacion.value);
 		soloTexto(sector_urbanizacion);
+		document.getElementById("sector_urbanizacion_tab5").style.border = "1px solid black";
 	});
 	
 	avenida_calle.addEventListener('blur', ()=>{
 		console.log("avenida_calle", avenida_calle.value);
 		soloNumeros(avenida_calle);
+		document.getElementById("avenida_calle_tab5").style.border = "1px solid black";
 	});
 	
 	codigo_postal.addEventListener('blur', ()=>{
 		console.log("codigo_postal", codigo_postal.value);
 		soloNumeros(codigo_postal);
+		document.getElementById("codigo_postal_tab5").style.border = "1px solid black";
 	});
 	
 	localidad.addEventListener('blur', ()=>{
 		console.log("localidad", localidad.value);
 		soloTexto(localidad);
+		document.getElementById("localidad_tab5").style.border = "1px solid black";
 	});
 	
 	nombre_inmueble.addEventListener('blur', ()=>{
 		console.log("nombre_inmueble", nombre_inmueble.value);
 		soloTexto(nombre_inmueble);
+		document.getElementById("nombre_inmueble_tab5").style.border = "1px solid black";
+	});
+	
+	geo_localizacion_tab5.addEventListener('blur', ()=>{
+		console.log("geo_localizacion_tab5", geo_localizacion_tab5.value);
+		document.getElementById("geo_localizacion_tab5").style.border = "1px solid black";
 	});
 	
 	punto_referencia.addEventListener('blur', ()=>{
 		console.log("punto_referencia", punto_referencia.value);
 		soloTexto(punto_referencia);
+		document.getElementById("punto_referencia_tab5").style.border = "1px solid black";
 	});
 
 });
@@ -920,7 +936,7 @@ window.addEventListener('load', function(){
 ////////////////////////////////////////////////////
 
 function soloTexto(texto){
-	var patron = /^[A-Za-z\u00C0-\u017F]*$/;
+	var patron = /^[A-Za-z \u00C0-\u017F]*$/;
 	if(texto.value.search(patron)){
 		swal("Solo Texto");
 		texto.value = "";

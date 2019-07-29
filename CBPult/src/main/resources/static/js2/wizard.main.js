@@ -13,7 +13,7 @@
     var divFiles = $('#divFiles');
     var divFilesValidator = divFiles.validate();
 
-    $('#demo').steps({/*
+    $('#demo').steps({
       onChange: function (currentIndex, newIndex, stepDirection) {
         console.log('onChange', currentIndex, newIndex, stepDirection);
         // tab1
@@ -83,7 +83,7 @@
       },
       onFinish: function () {
         alert('Wizard Completed');
-      }*/
+      }
     });
     
     
