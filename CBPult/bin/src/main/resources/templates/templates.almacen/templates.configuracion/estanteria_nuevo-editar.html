@@ -28,24 +28,7 @@
         
         <script th:src="@{/js-almacen/zona_nuevo-editar.js}"></script>
         
-        <style>
-    		.botonera .btn{
-    			width: 300px;
-    			font-size: 25px;
-    			
-    		}
-    		
-    		.botonera2 .btn{
-    			margin-left: 30px;
-    			float: right;
-    		}
-    	</style>
-    	
-    	<style type="text/css">
-    		.card-block{
-    			border: 2px solid #01a9ac;
-    		}
-    	</style>
+        <link rel="stylesheet" type="text/css" th:href="@{/css2/css.almacen/GeneralForm.css}">
     </head>
     <body themebg-pattern="pattern4">
     		<!--/////////////////////////////////////////////////-->
@@ -119,7 +102,7 @@
                                                         		<div class="col-sm-12">
 	                                                                <label class="col-sm-12 col-form-label">Código de Estanteria</label>
 	                                                                <div class="col-sm-12">
-	                                                                    <input type="text" id="txtCodigo_estanteria" class="form-control" placeholder="Codigo" disabled="false">
+	                                                                    <input type="text" id="txtCodigo_estanteria" class="form-control" placeholder="Codigo" disabled>
 	                                                                </div>
                                                             	</div>	                                                            
 	                                                            
@@ -156,14 +139,14 @@
                                                         		<div class="col-sm-12">
 	                                                                <label class="col-sm-12 col-form-label">Módulos</label>
 	                                                                <div class="col-sm-12">
-	                                                                    <input type="text" id="txtModulos_estanteria" class="form-control" placeholder="Módulos" disabled="false">
+	                                                                    <input type="text" id="txtModulos_estanteria" class="form-control" placeholder="Módulos" disabled>
 	                                                                </div>
                                                             	</div>	                                                            
 	                                                            
 	                                                            <div class="col-sm-12 mobile-inputs">
 	                                                            	<label class="col-sm-12 col-form-label">Niveles</label>
 	                                                            	<div class="col-sm-12">
-	                                                                    <input type="text" id="txtNiveles_estanteria" class="form-control" placeholder="Niveles" disabled="false">
+	                                                                    <input type="text" id="txtNiveles_estanteria" class="form-control" placeholder="Niveles" disabled>
 	                                                                </div>
 	                                                            </div>	                                                        	
 	                                                            

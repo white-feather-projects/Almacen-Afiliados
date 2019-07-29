@@ -569,8 +569,19 @@ public class LoginController{
      return "templates.almacen/templates.configuracion/configuration_almacen";
 	}
 	
-	//+////////////// Almacen ///////////////
 	
+	//+////////////// Almacen ///////////////
+		
+		//+////////////// Nuevo Almacen Wizzard ///////////////
+		@RequestMapping(value = "/almacen_nuevo-wizzard", method = RequestMethod.GET)
+	    public String almacen_nuevo_wizzard(Model model) {
+			model.addAttribute("name", name);
+			model.addAttribute("link", link);
+			
+	     return "templates.almacen/templates.configuracion/almacen_nuevo-wizzard";
+		}
+		//-////////////// Nuevo Almacen Wizzard///////////////
+		
 		//+////////////// Nuevo/Editar Almacen ///////////////
 		@RequestMapping(value = "/almacen_nuevo-editar", method = RequestMethod.GET)
 	    public String almacen_nuevo_editar(Model model) {

@@ -1,3 +1,4 @@
+
 var url = window.location.pathname;
 var ver = url.substring(19,22);
 var modificar = url.substring(19,28);

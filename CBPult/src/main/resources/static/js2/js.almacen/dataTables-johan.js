@@ -31,5 +31,37 @@ $(document).ready(function(){
         "scrollCollapse": true,
         "paging": true 
     });
+    
+    $('table.display3').DataTable({ 
+        "language": { // Configuración del Lenguaje de la Tabla
+            "lengthMenu": "Mostrar _MENU_ registros",
+            "zeroRecords": "No se encontararon resultados",
+            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sSearch": "Buscar:",            
+        },
+        "scrollY": "200px", // Alto de la Tabla
+        "scrollCollapse": true,
+        "paging": false,
+        "searching": false,
+        "info": false
+    });
+    
+    $('table.display4').DataTable({ 
+        "language": { // Configuración del Lenguaje de la Tabla
+            "lengthMenu": "Mostrar _MENU_ registros",
+            "zeroRecords": "No se encontararon resultados",
+            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sSearch": "Buscar:",            
+        },
+        "scrollY": "160px", // Alto de la Tabla
+        "scrollCollapse": true,
+        "paging": true,
+        "searching": true,
+        "info": true
+    });
 	
 });
