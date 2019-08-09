@@ -4,9 +4,9 @@ window.addEventListener('load', function(){
 	
 	document.getElementById("si").checked = true;
 	
-	//$(".wrapper").hide();
+	$(".wrapper").hide();
 	
-	document.getElementById("aprobada_analisis").disabled = true;
+	document.getElementById("documento1_analisis").disabled = true;
 	
 	var data_json = JSON.parse(localStorage.getItem("data2"));
 	var data_fint = JSON.parse(localStorage.getItem("finantial"));
@@ -98,7 +98,7 @@ window.addEventListener('load', function(){
 	$("#fileinput").change(function(){
 			file1 = document.getElementById('fileinput').files[0];
 			
-	    	//document.getElementById("documento1_analisis").disabled = false;
+	    	document.getElementById("documento1_analisis").disabled = false;
 	    	
 			console.log(this.files.length);
 			console.log("getFile: "+file1);
@@ -106,14 +106,88 @@ window.addEventListener('load', function(){
 			if(file1.type != 'application/pdf'){
 				document.getElementById('fileinput').value = "";
 				swal('Solo PDF');
-			}else if(file1.type == 'application/pdf'){
-				getBase64_1(document.getElementById('fileinput').files[0]);
-				document.getElementById("aprobada_analisis").disabled = false;
 			}
     });
 	
 	//////////////////////////////////////////////
 	
+	
+	$("#documento1_analisis").on('click', function(){
+		
+		if(cont1 == 0){
+			
+			var formData = new FormData($('#miform')[0]);
+        	formData.append('financiero', data_fint.uno);
+			formData.append('personal', data_fint.dos);
+			formData.append('buro', file1);
+        	formData.append('documento', data_json.documento_identidad);
+        	console.log(formData);
+        	
+	          $.ajax( {
+	            url: '/uploadDocumentsRiesgos',
+	            type: 'POST',
+	            data: formData,
+	            processData: false,
+	            contentType: false,
+	            success: proccessSuccess,
+	            error: proccessError
+	          });
+	          
+	          function proccessSuccess(){
+	        	  swal("Subida Exitosa");
+	        	  
+	        	  cont1 = cont1 + 1;
+	        	  
+	        	  $.ajax({          
+	     		     
+	    			  type: "GET",
+	    			  dataType: "json",
+	    			  url: "/consultClient/"+id+"",
+	    			  success: function(data)
+	    		    {
+	    		   console.log(data);
+	    		   var fileburot = data.fileBurot;
+	    			
+	    	    	console.log('boton1');
+	    	    	$(".wrapper").show();
+	    	    	document.getElementById("embed").src = '/viewPdf/'+fileburot+'';
+	    	    	$("#close").on('click', function(){
+	    	    		$(".wrapper").hide();
+	    	    	})
+	    		              
+	    		  }
+	    	      
+	    		});
+	          }
+	          
+	          function proccessError(){
+	        	  swal("Error al contactar el Servicio");
+	          }
+		}else if(cont1 == 1){
+			$.ajax({          
+    		     
+  			  type: "GET",
+  			  dataType: "json",
+  			  url: "/consultClient/"+id+"",
+  			  success: function(data)
+  		    {
+  		   console.log(data);
+  		   var fileburot = data.fileBurot;
+  			
+  	    	console.log('boton1');
+  	    	$(".wrapper").show();
+  	    	document.getElementById("embed").src = '/viewPdf/'+fileburot+'';
+  	    	$("#close").on('click', function(){
+  	    		$(".wrapper").hide();
+  	    	})
+  		              
+  		  }
+  	      
+  		});
+		}
+            	
+    	          
+    });
 	////////////////////////////////////////////////
 
     $("#atras_analisis").on('click', function(){
@@ -161,96 +235,70 @@ window.addEventListener('load', function(){
 
     $("#aprobada_analisis").on('click', function(){
     	
-    	var formData = new FormData($('#miform')[0]);
-    	formData.append('financiero', data_fint.uno);
-		formData.append('personal', data_fint.dos);
-		formData.append('buro', file1);
-    	formData.append('documento', data_json.documento_identidad);
-    	console.log(formData);
-    	
-          $.ajax( {
-            url: '/uploadDocumentsRiesgos',
-            type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: proccessSuccess,
-            error: proccessError
-          });
-          
-          function proccessSuccess(){
-        	  swal("Subida Exitosa");
-        	  if(document.getElementById("limit").value == 0){
-              	document.getElementById("limit").style.border = "1px solid Red";
-              	swal("Campo Obligatorio");
-              }else{
-              	var limitesi = document.querySelector("#limit").value;
-              	
-              	var birth = data_json.fecha_nacimiento.split("-");
-              	console.log(birth[2]+"/"+birth[1]+"/"+birth[0]);
-              	
-              	var updateClientData = {
-                  		"clientBirthday": birth[2]+"/"+birth[1]+"/"+birth[0],
-                  	    "clientCellPhone": data_json.celular,
-                  	    "clientCivilStatus": data_json.estado_civil,
-                  	    "clientDocumentId": data_json.documento_identidad,
-                  	    "clientEconomicActivity": data_json.actividad_economica,
-                  	    "clientEmail": data_json.correo,
-                  	    "clientFirstName": data_json.primer_nombre,
-                  	    "clientGender": data_json.genero,
-                  	    "clientHomePhone": data_json.cellhome,
-                  	    "clientLaborRelationship": data_json.tipo_laboral,
-                  	    "clientLastName": data_json.segundo_nombre,
-                  	    "clientOcupation": data_json.ocupacion,
-                  	    "clientPreaprovedAmount": limitesi,
-                  	    "clientProfession": data_json.profesion,
-                  	    "clientSalary": data_json.sueldo,
-                  	    "clientSurname": data_json.primer_apellido+` `+data_json.segundo_apellido,
-                  	    "clientTypeId": data_json.tipo_documento,
-                  	    "idClient": data_fint.tres
-                  };
-                  
-                      $.ajax({
-                          type: "POST",
-                          url: '/updateClient',
-                          contentType: "application/json",
-                          dataType: "json",
-                          data: JSON.stringify(updateClientData),
-                          success: processSuccess,
-                          error: processError
-                      });
+    	if(document.getElementById("limit").value == 0){
+        	document.getElementById("limit").style.border = "1px solid Red";
+        	swal("Campo Obligatorio");
+        }else{
+        	var limitesi = document.querySelector("#limit").value;
+        	
+        	var birth = data_json.fecha_nacimiento.split("-");
+        	console.log(birth[2]+"/"+birth[1]+"/"+birth[0]);
+        	
+        	var updateClientData = {
+            		"clientBirthday": birth[2]+"/"+birth[1]+"/"+birth[0],
+            	    "clientCellPhone": data_json.celular,
+            	    "clientCivilStatus": data_json.estado_civil,
+            	    "clientDocumentId": data_json.documento_identidad,
+            	    "clientEconomicActivity": data_json.actividad_economica,
+            	    "clientEmail": data_json.correo,
+            	    "clientFirstName": data_json.primer_nombre,
+            	    "clientGender": data_json.genero,
+            	    "clientHomePhone": data_json.cellhome,
+            	    "clientLaborRelationship": data_json.tipo_laboral,
+            	    "clientLastName": data_json.segundo_nombre,
+            	    "clientOcupation": data_json.ocupacion,
+            	    "clientPreaprovedAmount": limitesi,
+            	    "clientProfession": data_json.profesion,
+            	    "clientSalary": data_json.sueldo,
+            	    "clientSurname": data_json.primer_apellido+` `+data_json.segundo_apellido,
+            	    "clientTypeId": data_json.tipo_documento,
+            	    "idClient": data_fint.tres
+            };
+            
+                $.ajax({
+                    type: "POST",
+                    url: '/updateClient',
+                    contentType: "application/json",
+                    dataType: "json",
+                    data: JSON.stringify(updateClientData),
+                    success: processSuccess,
+                    error: processError
+                });
 
-                      function processSuccess(data, status, req) {
-                      	//alert("Exitoso");
-                      	swal({
-                      	    title: 'Actualización Exitosa',
-                      	    text: 'Redirigiendo...',
-                      	    icon: 'Exitoso',
-                      	    timer: 1000,
-                      	    buttons: false,
-                      	},
-                      	function() {
-                      	    location.href = "/bandeja_riesgos";
-                      	})
-                      }
+                function processSuccess(data, status, req) {
+                	//alert("Exitoso");
+                	swal({
+                	    title: 'Actualización Exitosa',
+                	    text: 'Redirigiendo...',
+                	    icon: 'Exitoso',
+                	    timer: 1000,
+                	    buttons: false,
+                	},
+                	function() {
+                	    location.href = "/bandeja_riesgos";
+                	})
+                }
 
-                      function processError(data, status, req) {
-                          //alert(req.responseText + " " + status);
-                      	swal("Error al actualizar", status);
+                function processError(data, status, req) {
+                    //alert(req.responseText + " " + status);
+                	swal("Error al actualizar", status);
 
-                      }
-              }
-    	
-    	////////////////////////////////////////////////
-    	
-    	
+                }
         	
         	//////////////////////////////////////////////////////
         }
     	
-          function proccessError(){
-        	  swal("Error al contactar el Servicio");
-          }
+    	
     })
 
 })
@@ -264,17 +312,3 @@ function soloNumeros(numero){
 		return true;
 	}
 }
-
-function getBase64_1(file) {
-	   var reader = new FileReader();
-	   reader.readAsDataURL(file);
-	   reader.onload = function () {
-	     //alert(reader.result);
-	     //console.log(reader.result);
-	     $("#verte1").attr('src', reader.result);
-	     
-	   };
-	   reader.onerror = function (error) {
-	     console.log('Error: ', error);
-	   };
-	}

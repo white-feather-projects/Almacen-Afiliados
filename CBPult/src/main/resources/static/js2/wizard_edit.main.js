@@ -95,24 +95,24 @@ var cliente = $('#cliente');
         	
      
         	
-            location.href = "/bandeja_riesgos";
+            location.href = "/CBPult/Solicitudes/bandeja_riesgos";
         });
     	
     	
     	///obtener valor del monto pre-aprobado para setearlo en el monto aprobado
-    	var aprobado =  $('#preAprobado').val();
-        $('#montoAprobado').val(aprobado);
+    	//var aprobado =  $('#preAprobado').val();
+        //$('#montoAprobado').val(aprobado);
         
-     	 $("#preAprobado").blur(function(){
+     	/* $("#preAprobado").blur(function(){
              var montoPreAprobado =  $('#preAprobado').val();
              $('#montoAprobado').val(montoPreAprobado);
              });
-    	
+    	*/
     	///obtener valor del monto aprobado para setearlo en el monto preaprobado
-    	 $("#montoAprobado").blur(function(){
+    	/* $("#montoAprobado").blur(function(){
          var montoAprobado =  $('#montoAprobado').val();
          $('#preAprobado').val(montoAprobado);
-         });
+         });*/
     	
     $("#primer_nombre").blur(function(){
 
@@ -148,7 +148,7 @@ var cliente = $('#cliente');
     	
     	$.ajax({
             type: "POST",
-            url: '/updateStatusAccountClientWS',
+            url: '/CBPult/Solicitudes/updateStatusAccountClientWS',
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(cuenta_json),
@@ -160,7 +160,7 @@ var cliente = $('#cliente');
             //alert(req.responseText + " " + status);
     		console.log(data);
     		localStorage.clear();
-    		location.href = "/bandeja_riesgos";
+    		location.href = "/CBPult/Solicitudes/bandeja_riesgos";
         	swal("Cuenta Negada");
         }  
     	
@@ -194,11 +194,13 @@ var cliente = $('#cliente');
     //select dinamicos
     getPais();
     getCatOcupacional();
+    getBanks();
+    //getProvincias();
     validatClientPre();
     function getPais() {
   	$.ajax({
   		type : "GET",
-  		url : '/listPaises',
+  		url : '/CBPult/Solicitudes/listPaises',
   		dataType : "json",
   		success : function(data) {
   			paisActual(data);
@@ -227,7 +229,7 @@ var cliente = $('#cliente');
     function getCatOcupacional() {
   		$.ajax({
   			type : "GET",
-  			url : '/listCatOpaciobal',
+  			url : '/CBPult/Solicitudes/listCatOpaciobal',
   			dataType : "json",
   			success : function(data) {
   				
@@ -243,21 +245,45 @@ var cliente = $('#cliente');
   		});
   	  }
     
-   $("#pais_vivienda").change(function() {
+/*Lista de bancos*/
+    
+    function getBanks() {
+  		$.ajax({
+  			type : "GET",
+  			url : '/CBPult/Solicitudes/listBanks',
+  			dataType : "json",
+  			success : function(data) {
+  				
+  				$("#banco").append('<option value="0">Selecione Banco</option>');
+  				$.each(data, function(key, banks) {
+  					$("#banco").append('<option value=' + banks.entityBankCod + '>' + banks.entityBankName+ '</option>');
+  				});
+  				
+  			},
+  			error : function(data) {
+  				swal(errorSolicitud);
+  			}
+  		});
+  	  }
+    
+    /*Fin codigo*/
+    
+ /*  $("#pais_vivienda").change(function() {
       var idPais= $("#pais_vivienda option:selected").val();
       if(idPais!=0){
       	getProvincias(idPais);
       	
       }
     
-    });
+    });*/
        
     function getProvincias(idPais) {
   		$.ajax({
   			type : "GET",
-  			url : '/listProvincia/'+idPais,
+  			url : '/CBPult/Solicitudes/listProvincia/'+idPais,
   			dataType : "json",
   			success : function(data) {
+  				console.log("dataprovincia",data);
   				getproviciaTrabajo(data);
   				getproviciaTrabajo(data);//referecias
   				$("#provinciaVivienda").find('option').remove();
@@ -288,7 +314,7 @@ var cliente = $('#cliente');
     function getCanton(idProvincia) {
   		$.ajax({
   			type : "GET",
-  			url : '/listCanton/'+idProvincia,
+  			url : '/CBPult/Solicitudes/listCanton/'+idProvincia,
   			dataType : "json",
   			success : function(data) {
   				$("#cantonVivienda").find('option').remove();
@@ -317,7 +343,7 @@ var cliente = $('#cliente');
     function getDistrito(idCanton) {
   		$.ajax({
   			type : "GET",
-  			url : '/listDistrito/'+idCanton,
+  			url : '/CBPult/Solicitudes/listDistrito/'+idCanton,
   			dataType : "json",
   			success : function(data) {
   				$("#distritoVivienda").find('option').remove();
@@ -350,7 +376,7 @@ var cliente = $('#cliente');
     function getCodigoPostal(idDistrito) {
   		$.ajax({
   			type : "GET",
-  			url : '/codigoPostal/'+idDistrito,
+  			url : '/CBPult/Solicitudes/codigoPostal/'+idDistrito,
   			dataType : "json",
   			success : function(data) {
   				console.log("data",data);
@@ -373,7 +399,7 @@ var cliente = $('#cliente');
 	   
  		$.ajax({
   			type : "GET",
-  			url : '/listProvincia/'+idPais,
+  			url : '/CBPult/Solicitudes/listProvincia/'+idPais,
   			dataType : "json",
   			success : function(data) {
   				$("#provinciaTrabajo").find('option').remove();
@@ -401,7 +427,7 @@ var cliente = $('#cliente');
     function getcantonTrabajo(idProvincia){
   	  $.ajax({
   			type : "GET",
-  			url : '/listCanton/'+idProvincia,
+  			url : '/CBPult/Solicitudes/listCanton/'+idProvincia,
   			dataType : "json",
   			success : function(data) {
   				$("#cantonTrabajo").find('option').remove();
@@ -420,7 +446,7 @@ var cliente = $('#cliente');
     function getDistritoTrabajo(idCanton){
   	  $.ajax({
   			type : "GET",
-  			url : '/listDistrito/'+idCanton,
+  			url : '/CBPult/Solicitudes/listDistrito/'+idCanton,
   			dataType : "json",
   			success : function(data) {
   				$("#distritoTrabajo").find('option').remove();
@@ -519,7 +545,7 @@ var cliente = $('#cliente');
     
     
     //formulario 1cliente
-    var fieldClient = ['primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido','tipo_identificador', 'documento_identidad', 'radio_genero', 'example-datetime-local-input', 'pais_nacimiento', 'radio_estado', 'correo', 'correo_confirm', 'profesion', 'celular', 'personaEP','tell_home', 'CatOcupacion','preAprobado'];
+    var fieldClient = ['primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido_cliente','tipo_identificador', 'documento_identidad', 'radio_genero', 'example-datetime-local-input', 'pais_nacimiento', 'radio_estado', 'correo', 'correo_confirm', 'profesion', 'celular', 'personaEP','tell_home', 'CatOcupacion','preAprobado'];
       
     $("#validateClient").click(function() {    	 
       	 var fieldClientConten=[];
@@ -563,9 +589,9 @@ var cliente = $('#cliente');
 				          			  case 'primer_apellido':
 				          				  sinV+="<span class='red'>El campo Primer Apellido Esta Vacio</b></span></br>"
 				          			    break;
-				          			   case 'segundo_apellido':
+				          			   /*case 'segundo_apellido_cliente':
 				          				  sinV+="<span class='red'>El campo Segundo Apellido Esta Vacio</b></span></br>"
-				          			    break;
+				          			    break;*/
 				          			  case 'documento_identidad':
 				          				  sinV+="<span class='red'>El campo Documento de Identidad Esta Vacio</b></span></br>"
 				          			    break;
@@ -675,9 +701,9 @@ var cliente = $('#cliente');
 	          			  case 'primer_apellido':
 	          				  sinV+="<span class='red'>El campo Primer Apellido Esta Vacio</b></span></br>"
 	          			    break;
-	          			   case 'segundo_apellido':
+	          			   /*case 'segundo_apellido_cliente':
 	          				  sinV+="<span class='red'>El campo Segundo Apellido Esta Vacio</b></span></br>"
-	          			    break;
+	          			    break;*/
 	          			  case 'documento_identidad':
 	          				  sinV+="<span class='red'>El campo Documento de Identidad Esta Vacio</b></span></br>"
 	          			    break;
@@ -777,7 +803,7 @@ var cliente = $('#cliente');
   	  if(ident.length != 0){
   		 $.ajax({
   			type : "GET",
-  			url : '/validateIdent/'+ident,
+  			url : '/CBPult/Solicitudes/validateIdent/'+ident,
   			dataType : "json",
   			success : function(data) {
   				
@@ -833,7 +859,7 @@ var cliente = $('#cliente');
   			    clientNationality:$('#pais_nacimiento').val(),
   			    clientPreaprovedAmount:$('#preAprobado').val(),
   			    clientProfession:$('#profesion').val(),
-  			    clientSurname:$('#primer_apellido').val()+'-'+$('#segundo_apellido').val(),
+  			    clientSurname:$('#primer_apellido').val()+'-'+$('#segundo_apellido_cliente').val(),
   			    clientTypeId:$('#tipo_identificador').val(),
   			    comentariosPersonaExpuesta:$('#personaEP').val(),
   			    paisId:$('#pais_nacimiento').val(),   
@@ -842,7 +868,7 @@ var cliente = $('#cliente');
   	 // $("#validateClient").prop("disabled",true);
   	  $.ajax({
   			type : "POST",
-  			url : '/createNewClient',
+  			url : '/CBPult/Solicitudes/createNewClient',
   			dataType : "json",
   			data:json,
   			success : function(data) {
@@ -877,7 +903,7 @@ var cliente = $('#cliente');
   		if(this.files.length==1){
   			//$("#viwePDFnombre").prop('disabled', false);
   			//var formato=$(this).val().split('.');//validaciond del formato del file
-  			if($(this).val().indexOf("pdf") > -1==true){			
+  			if($(this).val().indexOf("pdf") > -1==true || $(this).val().indexOf("jpg") > -1==true){			
   				if($('#fileFinantialInformationName')[0].files[0].size <=1000000){//validacion del tamaño
   			      $("#view_identificacion").prop('disabled', false);
 				   $('#fileFinantial_f').val('0');
@@ -888,7 +914,7 @@ var cliente = $('#cliente');
   				}
   		
   			}else{
-  				swal('El Archivo Seleccionado no tiene formato PDF!!');
+  				swal('El Archivo Seleccionado no tiene formato PDF o JPG!!');
   				$("#view_identificacion").prop('disabled', true);
   				$("#fileFinantialInformationName").val('');
   			}
@@ -912,7 +938,7 @@ var cliente = $('#cliente');
   			//$("#viwePDFnombre").prop('disabled', false);
   			//var formato=$(this).val().split('.');//validaciond del formato del file
   			//alert($(this).val().indexOf("pdf") > -1);
-  			if($(this).val().indexOf("pdf") > -1==true){
+  			if($(this).val().indexOf("pdf") > -1==true || $(this).val().indexOf("jpg") > -1==true){
   				if($('#filePersonalInformationName')[0].files[0].size <=1000000){//validacion del tamaño
   				      $("#view_personal").prop('disabled', false);
   				      $('#filePersonal_f').val('0');
@@ -924,7 +950,7 @@ var cliente = $('#cliente');
   					}
   		
   			}else{
-  				swal('El Archivo Seleccionado no tiene formato PDF!!');
+  				swal('El Archivo Seleccionado no tiene formato PDF o JPG!!');
   				$("#view_personal").prop('disabled', true);
   				$("#filePersonalInformationName").val('');
   			}
@@ -1014,14 +1040,14 @@ var cliente = $('#cliente');
     	
     	 var campos=['client','tenenciaVivienda','cuotaMensual', 'provinciaVivienda', 
         	 'cantonVivienda','distritoVivienda', 'ciudad', 'sector', 'ptoReferencia', 
-        	 'codPostal' ,'client','nombreEmpresa','actividadEmpresa', 'cargo','sueldoMensual',
-        	 'provinciaTrabajo', 'cantonTrabajo', 'distritoTrabajo', 'telefonoEmpresa','email', 
+        	 'codPostal' ,'client','idClientRespose','nombreEmpresa','actividadEmpresa', 'cargo','sueldoMensual',
+        	 'provinciaTrabajo', 'cantonTrabajo', 'distritoTrabajo', 'telefonoEmpresa','email', 'usuarioCreadorSolicitud',
         	 'antiguedad', 'cargoOtraEmpresa', 'ultimoSueldo','primerNombre','segundoNombre',
-        	 'apellidos', 'tipoDocumento', 'numeroDocumento','genero', 'telefonoCelular', 
+        	 'apellidos','segundo_apellido', 'tipoDocumento', 'numeroDocumento','genero', 'telefonoCelular', 
         	 'telefonoFijo', 'emailReferencia', 'banco', 'ctaAhorro', 'ctaCorriente', 
-        	 'TDC','filePersonalInformationName','fileFinantialInformationName',
+        	 /*'TDC',*/'filePersonalInformationName','fileFinantialInformationName',
         	 'documentsBurotSupport','bancoEmisor', 'nombreOtraEmpresa','documentsCreditSupport','fileFinantial_f', 'filePersonal_f',
-        	 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido','tipo_identificador', 'documento_identidad', 'radio_genero', 'example-datetime-local-input', 'pais_nacimiento', 'radio_estado',  'correo_confirm', 'profesion', 'celular', 'personaEP','tell_home', 'CatOcupacion','preAprobado'
+        	 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido_cliente','tipo_identificador', 'documento_identidad', 'radio_genero', 'example-datetime-local-input', 'pais_nacimiento', 'radio_estado',  'correo_confirm', 'profesion', 'celular', 'personaEP','tell_home', 'CatOcupacion','preAprobado'
         	 
         	 ];
      
@@ -1048,6 +1074,9 @@ var cliente = $('#cliente');
   		   }else if(field=='segundoNombre'){
   			 camposValidate.push('segundoNombre'); 
   			 
+  		 }else if(field=='segundo_apellido'){
+  			 camposValidate.push('segundo_apellido');
+  			 
   		   }else if(field=='banco'){
   			 camposValidate.push('banco'); 
 
@@ -1055,8 +1084,8 @@ var cliente = $('#cliente');
   			 camposValidate.push('ctaAhorro'); 
   		   }else if(field=='ctaCorriente'){
   			 camposValidate.push('ctaCorriente'); 
-  		   }else if(field=='TDC'){
-  			 camposValidate.push('TDC'); 
+  		  /* }else if(field=='TDC'){
+  			 camposValidate.push('TDC');*/
   		   }else if(field=='bancoEmisor'){
   			 camposValidate.push('bancoEmisor'); 
   		   }else if(field=='nombreOtraEmpresa'){
@@ -1086,6 +1115,8 @@ var cliente = $('#cliente');
 				  camposValidate.push('personaEP');
 			  }else if(field=='tell_home'){
 				  camposValidate.push('tell_home');
+			  }else if(field=='segundo_apellido_cliente'){
+				  camposValidate.push('segundo_apellido_cliente');
 			  }
   		 
   		
@@ -1094,9 +1125,9 @@ var cliente = $('#cliente');
   			  if(field=='filePersonalInformationName'||field=='fileFinantialInformationName' || field=='documentsBurotSupport'){
   					form.append(field , $('#'+field)[0].files[0]);    
   					//validacion de documento de analisis, como tiene el archivo se guarda 
-  					if(field=='documentsBurotSupport'){
+  					/*if(field=='documentsBurotSupport'){
  						 camposValidate.push(field);
- 					}
+ 					}*/
   			   }
   			  
   			  camposValidate.push(field);
@@ -1108,6 +1139,9 @@ var cliente = $('#cliente');
   	  
   	 var res=camposVacios(campos , camposValidate)
   	 console.log(res);
+     
+     var montoAprobado =  $('#montoAprobado').val();
+     $('#preAprobado').val(montoAprobado);
   	  
   	  //insertar en formdata los campos ya validada
   	//  alert(jQuery.compare(camposValidate, campos));
@@ -1124,38 +1158,31 @@ var cliente = $('#cliente');
   		  })
   		  
   		  $.ajax({
-  			    url:'/asoosiateClientAnaliteTdc',
+  			    url:'/CBPult/Solicitudes/asoosiateClientAnaliteTdc',
   			    data: form,
   			    dataType: 'json',
   			    processData: false,
   			    contentType: false,
   			    type: 'POST',
   			    success: function(data){
+  			    console.log("dataLista",data);
   			    //$('#saveComplet').prop("disabled",false);
   			  // $('#procesoGif2').prop("hidden",true);
   			   // alert(data.descripcion);
   			    	 if(data.descripcion=='OK'){
+  			    		 //alert("hola");
   			    		//para validar el paso
   			    		$("#validateClient").val('1');
-  			    		/* swal({
-  			    			  title: "Cliente Generado",
-  			    			  text: "El registo fue Exitoso!",
-  			    			  type: "warning",
-  			    			  showCancelButton: true,
-  			    			  confirmButtonClass: "btn-danger",
-  			    			  confirmButtonText: "Asigar TDC",
-  			    			  cancelButtonText: "Salir",
-  			    			  closeOnConfirm: false,
-  			    			  closeOnCancel: false
-  			    			},
-  			    			function(isConfirm) {
-  			    			  if (isConfirm) {
-  			    				  location.href = "/impresion_tarjetas/"+$('#documento_identidad').val();
-  			    			  } else {
-  			    				 location.href = "/newClientTdc";
-  			    			  }
-  			    			});
-  			    			*/
+  			    		swal({
+  			        	    title: 'Solicitud aprobada con exito',
+  			        	    text: 'Redirigiendo...',
+  			        	    icon: 'Exitoso',
+  			        	    timer: 1000,
+  			        	    buttons: false,
+  			        	},
+  			        	function() {
+  			        	    location.href = "/CBPult/Solicitudes/bandeja_riesgos";
+  			        	})
   	
   			    	 }else{
   			    		 swal('Registro No Exitoso'); 
@@ -1194,22 +1221,23 @@ var cliente = $('#cliente');
      var id=$('#idClientRespose').val();
   	  $.ajax({
   			type : "GET",
-  			url : '/querycustomerAnalysisTdc/'+id,
+  			url : '/CBPult/Solicitudes/querycustomerAnalysisTdc/'+id,
   			dataType : "json",
   			success : function(data) {
-  				
+  			console.log("datalista",data);
   				if(data.idClient!=0){
   					//PASO1
   					 $('#siguiente').prop("hidden",false);
 					 $("#validateClient").attr('data-direction','next');
 					 $('#documento_identidad').prop("disabled",true);
 					  var ape=data.clientSurname.split('-');
+					  //alert(ape);
 					  $('#client').val(data.idClient);
 					  $('#primer_nombre').val(data.clientFirstName);
 					  $('#documento_identidad').val(data.clientDocumentId);		
 					  $('#segundo_nombre').val(data.clientLastName);
 					  $('#primer_apellido').val(ape[0]);
-					  $('#segundo_apellido').val(ape[1]);//revisar
+					  $('#segundo_apellido_cliente').val(ape[1]);//revisar
 					  $('#tipo_identificador').val(data.clientTypeId);	  
 					  $('#correo_c').val(data.clientEmail);
 					  $('#correo_confirm').val(data.clientEmail);
@@ -1268,7 +1296,7 @@ var cliente = $('#cliente');
 					  $('#cuotaMensual').val(data.cuotaMensual); //revisar con vielma
 					  
 					  $("#pais_vivienda option[value="+data.paisId.idPais+"]").attr("selected",true);
-					  	//
+					  
 					  
 				
 					  	var strx='x';
@@ -1282,8 +1310,11 @@ var cliente = $('#cliente');
 					  $('#ptoReferencia').val(data.ptoReferencia);
 					  $('#codPostal').val(data.codPostal);
 					  $('#sector').val(data.sector);
+					
+					
 					  
 					//PASO3
+					
 					  $('#nombreEmpresa').val(data.nombreEmpresa);
 					  $('#actividadEmpresa').val(data.actividadEmpresa);
 					  $('#cargo').val(data.cargo);
@@ -1301,9 +1332,9 @@ var cliente = $('#cliente');
 					   $('#nombreOtraEmpresa').val(data.nombreOtraEmpresa);
 					   $('#antiguedad').val(data.antiguedad);
 					   $('#cargoOtraEmpresa').val(data.cargoOtraEmpresa);
-					   $('#ultimoSueldo').val(data.ultimoSueldo);
-					   
-					   
+					   //$('#ultimoSueldo').val(data.ultimoSueldo);
+					
+					   $("#ultimoSueldo option[value="+data.ultimoSueldo+"]").attr("selected",true);
 					   //PASO3 CIERRE
 					   
 					   //PASO 4
@@ -1313,37 +1344,43 @@ var cliente = $('#cliente');
 						var apelli_ref=data.apellidos.split('-');
 						
 						$('.primer_apellido_referencia').val(apelli_ref[0]);
-						$('#segundo_apellido_trabajo').val(apelli_ref[1]);
+						$('#segundo_apellido').val(apelli_ref[1]);
+						
+					   $('#tipoDocumento').prop("disabled",true);
+					   $('#numeroDocumento').prop("disabled",true);
 					   
 					   $('#tipoDocumento').val(data.tipoDocumento);
 					   $('#numeroDocumento').val(data.numeroDocumento);
 					 
 					   $('#tipoDocumento').val(data.tipoDocumento);
-					   $("input[name=radio_genero][value='"+data.genero+"']").prop("checked",true);
+					   $("input[name=genero][value='"+data.genero+"']").prop("checked",true);
 					   $('#correo_referencia').val(data.emailReferencia);
 					   $('#emailReferencia').val(data.emailReferencia);
 					   $('#telefonoFijo').val(data.telefonoFijo);
 					   $('#telefonoCelular').val(data.telefonoCelular);
-					   $('#banco').val(data.banco);
+					   $("#banco option[value="+data.banco+"]").attr("selected",true); 
+					  // $('#banco').val(data.banco);
 					  
-					   if(data.tdc==null){
-						   $("input[name=radio_genero][value='No']").prop("checked",true);
+					   if(data.bancoEmisor==null){
+						   $("input[name=tarjeta_credito][value='No']").prop("checked",true);
 					   }else{
-						   $("input[name=radio_genero][value='Si']").prop("checked",true);
+						   //alert(data.bancoEmisor);
+						   $("input[name=tarjeta_credito][value='Si']").prop("checked",true);
 						   $('#emisor').show();
 						   $('#poseeTarjeta').show();
 						   
 						   $('#bancoEmisor').val(data.bancoEmisor);
-						   $('#TDC').val(data.tdc);
+						   //$('#TDC').val(data.tdc);
 					   }
 					   
 					   $("input[name=ctaAhorro][value='"+data.ctaAhorro+"']").prop("checked",true);
 					   $("input[name=ctaCorriente][value='"+data.ctaCorriente+"']").prop("checked",true);
 					   $("input[name=radio_genero][value='"+data.tarjetaCredito+"']").prop("checked",true);
-					   
+					
 					   //PASO5 
 					   
 					   var finantial=data.fileFinantialInformationName.split('_');
+					  
 					   $('#view_fileFinantial_save').attr('value', data.fileFinantialInformationName);
 					   $('#view_fileFinantial_save').prop("disabled",false);
 					   
@@ -1357,7 +1394,7 @@ var cliente = $('#cliente');
 					   	//validacion de campos
 					   $('#filePersonal_f').val(data.filePersonalInformationName);
 					   $('#fileFinantial_f').val(data.fileFinantialInformationName);
-					
+					  
 					  
 					   
 					   
@@ -1388,10 +1425,14 @@ var cliente = $('#cliente');
     	  if($(this).val()=='Si'){
     		  $('.infoUpload').show();
     		  $('.fielBuro').show();
-    		  
+    		  //alert("si");
     	  }else if($(this).val()=='No'){
+    	
     		 $('.infoUpload').hide();
     		 $('.fielBuro').hide();
+    		 document.getElementById('documentsBurotSupport').value = "";
+    		 //alert("no");
+    		 
     	  }	 
       });
    
@@ -1410,6 +1451,8 @@ var cliente = $('#cliente');
         $("#pais_vivienda option").attr("selected",false);
         $('#codPostal').val('');
     }
+    
+    $('#usuarioCreadorSolicitud').val(data.usuarioCreadorSolicitud);
     
    function cleanAddressTrabajo(){
 	      $("#distritoTrabajo").find('option').remove();
@@ -1439,7 +1482,7 @@ var cliente = $('#cliente');
     			    clientNationality:$('#pais_nacimiento').val(),
     			    clientPreaprovedAmount:$('#preAprobado').val(),
     			    clientProfession:$('#profesion').val(),
-    			    clientSurname:$('#primer_apellido').val()+'-'+$('#segundo_apellido').val(),
+    			    clientSurname:$('#primer_apellido').val()+'-'+$('#segundo_apellido_cliente').val(),
     			    clientTypeId:$('#tipo_identificador').val(),
     			    comentariosPersonaExpuesta:$('#personaEP').val(),
     			    paisId:$('#pais_nacimiento').val(),   
@@ -1448,7 +1491,7 @@ var cliente = $('#cliente');
     	 // $("#validateClient").prop("disabled",true);
     	  $.ajax({
     			type : "POST",
-    			url : '/updateNewClient',
+    			url : '/CBPult/Solicitudes/updateNewClient',
     			dataType : "json",
     			data:json,
     			success : function(data) {

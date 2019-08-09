@@ -6,44 +6,9 @@
 	class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
 <head>
 <th:block th:replace="fragments/header :: headlayout"></th:block>
-<script type="text/javascript" src="../js2/viewDetailPurchase.js"></script>
-<script type="text/javascript" src="../js2/plasticConsultation.js"></script>
-<link rel="stylesheet" type="text/css" href="../css2/modalPlasticConsultation.css">
-
-<style>
-.vmodal {
-height: 400px;
-width: 100% !important;
-overflow: scroll;
-}
-
-
-
-
-     .checkeable input {
-  display: none;
-}
-.checkeable i {
-  
- border:none;
- margin-right: 20px;
-}
-
-#uno{
-margin-left: 20px !important;
- margin: 0px;
-}
-
-#dos{
-margin-left: 42px !important;
-margin: 0px;
-}
-
-
-
-</style>
-
-
+<script type="text/javascript" th:src="@{/js2/viewDetailPurchase.js}"></script>
+<script type="text/javascript" th:src="@{/js2/plasticConsultation.js}"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css2/modalPlasticConsultation.css}">
 
 </head>
 

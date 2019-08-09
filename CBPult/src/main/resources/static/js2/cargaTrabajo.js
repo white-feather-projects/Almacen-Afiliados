@@ -17,7 +17,7 @@ window.addEventListener('load', ()=>{
     var cantonTrabajo = document.querySelector("#cantonTrabajo");
     var distritoTrabajo = document.querySelector("#distritoTrabajo");
     
-    var correo_trabajo = document.querySelector(".correo_trabajo");
+   // var correo_trabajo = document.querySelector(".correo_trabajo");
     var correo_trabajo_confirm = document.querySelector(".correo_trabajo_confirm");
     
     var antiguedad = document.querySelector("#antiguedad");
@@ -27,9 +27,9 @@ window.addEventListener('load', ()=>{
  
   /*Campos Trabajo*/  
     
-    
+   
     nombreEmpresa.addEventListener('keyup', ()=>{
-    	soloTexto(nombreEmpresa);
+    	soloTextoNumeros(nombreEmpresa);
         document.getElementById("nombreEmpresa").style.border = "1px solid black";
     }); 
     
@@ -76,13 +76,13 @@ window.addEventListener('load', ()=>{
     }); 
     
     /////////////////////////////////////////////////
-    /*
+    
     antiguedad.addEventListener('keyup', ()=>{
-    	alfaNumerico(antiguedad);
+    	soloTextoNumeros(antiguedad);
         document.getElementById("antiguedad").style.border = "1px solid black";
     }); 
     
-    */
+    
     
     cargoOtraEmpresa.addEventListener('keyup', ()=>{
         soloTexto(cargoOtraEmpresa);

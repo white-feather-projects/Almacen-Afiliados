@@ -77,10 +77,13 @@ cantidad.addEventListener('keyup', ()=>{
 
     $("#cancelar").click(function(){
         localStorage.clear();
-        location.href = "/listpurchaseorder";
+        location.href = "/CBPult/Gestion_Compras/listpurchaseorder";
     });
 
 });
+
+
+/////////////////////////////Mostrar ultima orden de compra////////////////////////////////////////
 
 
 $(document).ready(function() {	
@@ -94,36 +97,32 @@ $.ajax({
              
 		  type: "GET",
 		  dataType: "json",
-		  url: "/listLastPurchaseOrderRequest",
+		  url: "/CBPult/Gestion_Compras/listLastPurchaseOrderRequest",
 		  success: function(data)
 	    {
+         console.log(data);
           
-        $("#tbodyProducto").html('');
-        /* Vemos que la respuesta no este vacía y sea una arreglo */
-         
-         console.log(data.quantity);
+		 var fecha = data.fechaCarga;
          var quantity = data.quantity;
-         var fecha = data.fechaCarga;
-         console.log(fecha);
          var descriptionOrder = data.descriptionOrder;
          var numberOrder = data.numberOrder;
-        
-         var number = parseInt(numberOrder);
-         var loteSiguiente = number+1;
-         console.log(loteSiguiente);
-         console.log(number);
-         console.log(numberOrder);
+         var producto = data.productDTO;
+         var productoId = producto.idProduct;
+         var productoName= producto.productName;
+         
+         console.log("producto",productoId);
+         console.log("producto",productoName);
+      
         document.getElementById('cantidadTarjetasAnterior').value = quantity;
-           document.getElementById('descripcionAnterior').value = descriptionOrder;
-            document.getElementById('anteriorLote').value = number;
-            document.getElementById('fecha').value = fecha;
-             document.getElementById('lote').value = loteSiguiente;
-          console.log(data);
+        document.getElementById('descripcionAnterior').value = descriptionOrder;
+        document.getElementById('anteriorLote').value = numberOrder;
+        document.getElementById('fecha').value = fecha;
+        $("#productoAnterior").append('<option value=' + productoId + '>' + productoName+ '</option>');
                 
                              
             }
             
-              },);  
+      },);  
               
 }   
 
@@ -136,22 +135,28 @@ function mostrarDatos() {
 		     
 			  type: "GET",
 			  dataType: "json",
-			  url: "/consultId/"+id,
+			  url: "/CBPult/Gestion_Compras/consultId/"+id,
 			  success: function(data)
 		    {
-	          console.log(data);
+	         
 	         
 	         console.log(data.quantity);
 	         var quantity = data.quantity;
 	         var descriptionOrder = data.descriptionOrder;
 	         var status = data.statusOrder;
-	         //console.log("status"+status);
+	         var producto = data.productDTO;
+	         var productoId = producto.idProduct;
+	         var productoName= producto.productName;
+	         var lote = data.numberOrder; 
+	         
+	        
 	         
 	        document.getElementById('cantidadTarjetasSolicitar').value = quantity;
-	           document.getElementById('descripcionOrden').value = descriptionOrder;
-	           document.getElementById('status').value = status;
-	          
-	          console.log(data);
+	        document.getElementById('descripcionOrden').value = descriptionOrder;
+	        document.getElementById('status').value = status;
+	        $("#producto").append('<option value=' + productoId + '>' + productoName+ '</option>');
+	        document.getElementById('lote_confirmacion').value = lote;
+	  
 	              
 	                             
 	            }

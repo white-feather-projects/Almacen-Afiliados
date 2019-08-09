@@ -6,20 +6,19 @@ window.addEventListener('load', ()=>{
 
     var data_json = JSON.parse(localStorage.getItem("data"));
 
-    $("#lote_confirmacion").val(data_json.lote).prop("disabled", true);
-    $("#cantidadTarjetasSolicitar_confirmacion").val(data_json.cantidadTarjetasSolicitar).prop("disabled", true);
-    $("#producto_confirmacion").val(data_json.producto).prop("disabled", true);
-    $("#descripcionOrden_confirmacion").val(data_json.descripcionOrden).prop("disabled", true);
-   
+
+    $("#cantidadTarjetasSolicitar_confirmacion").val(data_json.cantidadTarjetasSolicitar);
+    $("#producto_confirmacion").val(data_json.producto);
+    $("#descripcionOrden_confirmacion").val(data_json.descripcionOrden);
+    $("#lote_confirmacion").val(data_json.ordenNumero);
+    $(".productConfirmation").append('<option selected value=' + data_json.producto + '>' + data_json.proName+ '</option>');
 
 
 // ////////////////////////////////////////////////////////////////////
 	
  
 
-var lo =  document.querySelector("#lote_confirmacion");
-console.log(lo);
-      var cantidad= document.querySelector("#cantidadTarjetasSolicitar_confirmacion");
+    var cantidad= document.querySelector("#cantidadTarjetasSolicitar_confirmacion");
     var prod = document.querySelector("#producto_confirmacion");
 
     var descripcion = document.querySelector("#descripcionOrden_confirmacion");
@@ -81,7 +80,7 @@ console.log(lo);
     			"cantidad": cantidad
     			}
     	      
-        var url='/changePurchaceOrder';
+        var url='/CBPult/Gestion_Compras/changePurchaceOrder';
     	
         $.ajax({
     	    url:url,
@@ -100,7 +99,7 @@ console.log(lo);
             	    buttons: false,
             	},
             	function() {
-            	    location.href = "/listpurchaseorder";
+            	    location.href = "/CBPult/Gestion_Compras/listpurchaseorder";
             	}) 
 	  
 	    
@@ -130,7 +129,7 @@ console.log(lo);
     	    buttons: false,
     	},
     	function() {
-    	    location.href = "/listpurchaseorder";
+    	    location.href = "/CBPult/Gestion_Compras/listpurchaseorder";
     	}) 
     });
 
@@ -138,10 +137,12 @@ console.log(lo);
 });
 
 
-// ////////////////////////////////////Listar ultima orden de
-// compra/////////////////////////
+/////////////////////////////Mostrar ultima orden de compra////////////////////////////////////////
+
+
 $(document).ready(function() {	
 	listarLastOrder();
+
 });
 
 function listarLastOrder() {
@@ -150,29 +151,31 @@ $.ajax({
              
 		  type: "GET",
 		  dataType: "json",
-		  url: "/listLastPurchaseOrderRequest",
+		  url: "/CBPult/Gestion_Compras/listLastPurchaseOrderRequest",
 		  success: function(data)
 	    {
+         console.log(data);
           
-         console.log(data.quantity);
+		 var fecha = data.fechaCarga;
          var quantity = data.quantity;
          var descriptionOrder = data.descriptionOrder;
          var numberOrder = data.numberOrder;
-         var number = parseInt(numberOrder);
-         var loteSiguiente = number+1;
-         console.log(loteSiguiente);
-         console.log(number);
-         console.log(numberOrder);
+         var producto = data.productDTO;
+         var productoId = producto.idProduct;
+         var productoName= producto.productName;
+         
+         console.log("producto",productoId);
+         console.log("producto",productoName);
+      
         document.getElementById('cantidadTarjetasAnterior').value = quantity;
-           document.getElementById('descripcionAnterior').value = descriptionOrder;
-            document.getElementById('anteriorLote').value = number;
-             document.getElementById('lote_confirmacion').value = loteSiguiente;
-          console.log(data);
+        document.getElementById('descripcionAnterior').value = descriptionOrder;
+        document.getElementById('anteriorLote').value = numberOrder;
+        document.getElementById('fecha').value = fecha;
+        $("#productoAnterior").append('<option value=' + productoId + '>' + productoName+ '</option>');
                 
                              
             }
             
-              },);  
+      },);  
               
 }   
-

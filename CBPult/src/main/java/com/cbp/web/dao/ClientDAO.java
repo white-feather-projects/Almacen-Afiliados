@@ -15,6 +15,7 @@ import com.cbp1.ws.cbp.service.CategoriaOcupacional;
 import com.cbp1.ws.cbp.service.Client;
 import com.cbp1.ws.cbp.service.CodigoPostal;
 import com.cbp1.ws.cbp.service.Distrito;
+import com.cbp1.ws.cbp.service.EntityBank;
 import com.cbp1.ws.cbp.service.InformacionAdicionalClienteDTO;
 import com.cbp1.ws.cbp.service.NewClientDTO;
 import com.cbp1.ws.cbp.service.Pais;
@@ -55,6 +56,8 @@ public interface ClientDAO {
 	public CodigoPostal codigoPostal(Distrito distrito);
 	
 	public List<CategoriaOcupacional>queryCatOcup();
+	
+	public List<EntityBank> listBanksWS();
 	
     public com.cbp1.ws.cbp.service.RespuestaDTO createNewClient(NewClientDTO client, String userLogger);
     

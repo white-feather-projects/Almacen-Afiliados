@@ -12,7 +12,7 @@ window.addEventListener('load', ()=>{
 	     
 		  type: "GET",
 		  dataType: "json",
-		  url: "/consultClient/"+id+"",
+		  url: "/CBPult/Solicitudes/consultClient/"+id+"",
 		  success: function(data)
 	    {
    console.log(data);
@@ -84,7 +84,7 @@ window.addEventListener('load', ()=>{
     ///////////////////////////////////////////////
 
     $("#menu_confirm").click(function(){
-        location.href = "/bandeja_ventas";
+        location.href = "/CBPult/Solicitudes/bandeja_ventas";
     });
 
 });

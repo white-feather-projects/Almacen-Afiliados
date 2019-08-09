@@ -6,6 +6,7 @@ import com.cbp.web.dto.AsociarComercioConContactoDTO;
 import com.cbp.web.dto.AsociarComercioConRepresentanteLegalDTO;
 import com.cbp.web.dto.CodigoPostalDTO;
 import com.cbp.web.dto.ConsultaAsociacionComercioContactoDTO;
+import com.cbp.web.dto.ConsultaAsociacionComercioOtroBancoDTO;
 import com.cbp.web.dto.ConsultaAsociacionComercioRepresentanteDTO;
 import com.cbp.web.dto.ConsultaBancoAfiliacionIdDTO;
 import com.cbp.web.dto.ConsultaContactoByIdentificacionContactoDTO;
@@ -29,18 +30,34 @@ import com.cbp3.ws.cbp.service.ActualizaStatusComercioWSResponse;
 import com.cbp3.ws.cbp.service.AsociarBancoComercioWSResponse;
 import com.cbp3.ws.cbp.service.AsociarComercioConContactoWSResponse;
 import com.cbp3.ws.cbp.service.AsociarComercioConRepresentanteLegalWSResponse;
+import com.cbp3.ws.cbp.service.AsociarComercioOtroBancoWS;
+import com.cbp3.ws.cbp.service.AsociarComercioOtroBancoWSResponse;
+import com.cbp3.ws.cbp.service.AsociarComercioRecaudoWS;
+import com.cbp3.ws.cbp.service.AsociarComercioRecaudoWSResponse;
 import com.cbp3.ws.cbp.service.BancoAfiliacion;
 import com.cbp3.ws.cbp.service.Canton;
 import com.cbp3.ws.cbp.service.CodigoPostalWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioContactoWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioOtroBancoWS;
+import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioOtroBancoWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioRepresentanteWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaBancoAfiliacionByIdWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaComercioPorComercioIdWS;
+import com.cbp3.ws.cbp.service.ConsultaComercioPorComercioIdWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaComercioPorIdentificacionComercioWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaContactoByIdentificacionContactoWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaEntityBankByIdEntityBankWS;
+import com.cbp3.ws.cbp.service.ConsultaEntityBankByIdEntityBankWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaPagoByNumComprobanteReciboWS;
+import com.cbp3.ws.cbp.service.ConsultaPagoByNumComprobanteReciboWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWS;
+import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWSResponse;
 import com.cbp3.ws.cbp.service.CrearComercioWSResponse;
 import com.cbp3.ws.cbp.service.CrearContactoWSResponse;
 import com.cbp3.ws.cbp.service.CrearOperadorTelefonicoWSResponse;
+import com.cbp3.ws.cbp.service.CrearPagoComercioWS;
+import com.cbp3.ws.cbp.service.CrearPagoComercioWSResponse;
 import com.cbp3.ws.cbp.service.CrearRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.Distrito;
 import com.cbp3.ws.cbp.service.EditarAsociacionBancoComercioWSResponse;
@@ -49,13 +66,23 @@ import com.cbp3.ws.cbp.service.EditarAsociacionComercioConRepresentanteLegalWSRe
 import com.cbp3.ws.cbp.service.EditarContactoWSResponse;
 import com.cbp3.ws.cbp.service.EditarRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.EntityBank;
+import com.cbp3.ws.cbp.service.ListPagosByIdentificacionComercioWS;
+import com.cbp3.ws.cbp.service.ListRecaudosByComercioWS;
 import com.cbp3.ws.cbp.service.ListaSolicitudesWS;
 import com.cbp3.ws.cbp.service.ListaSolicitudesWSResponse;
+import com.cbp3.ws.cbp.service.ModificarAsociacionComercioOtroBancoWS;
+import com.cbp3.ws.cbp.service.ModificarAsociacionComercioOtroBancoWSResponse;
+import com.cbp3.ws.cbp.service.ModificarAsociarComercioRecaudoWS;
+import com.cbp3.ws.cbp.service.ModificarAsociarComercioRecaudoWSResponse;
 import com.cbp3.ws.cbp.service.ModificarComercioWSResponse;
 import com.cbp3.ws.cbp.service.ModificarOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.Operadortelefonico;
+import com.cbp3.ws.cbp.service.Pago;
+import com.cbp3.ws.cbp.service.Pais;
 import com.cbp3.ws.cbp.service.Provincia;
+import com.cbp3.ws.cbp.service.Recaudo;
 import com.cbp3.ws.cbp.service.Solicitud;
+import com.cbp3.ws.cbp.service.TipoRecaudo;
 
 public interface AfiliacionDAO {
 
@@ -103,6 +130,26 @@ public interface AfiliacionDAO {
 	
 	public ConsultaAsociacionComercioRepresentanteWSResponse consultaAsociacionComercioRepresentante(ConsultaAsociacionComercioRepresentanteDTO ConsultaAsociacionComercioRepresentanteDTO);
 	
+	public AsociarComercioOtroBancoWSResponse asociarComercioOtroBanco(AsociarComercioOtroBancoWS AsociarComercioOtroBancoWS);
+	
+	public ConsultaAsociacionComercioOtroBancoWSResponse consultaAsociacionComercioOtroBanco(ConsultaAsociacionComercioOtroBancoWS ConsultaAsociacionComercioOtroBancoWS);
+	
+	public ModificarAsociacionComercioOtroBancoWSResponse modificarAsociacionComercioOtroBanco(ModificarAsociacionComercioOtroBancoWS ModificarAsociacionComercioOtroBancoWS);
+	
+	public AsociarComercioRecaudoWSResponse asociarComercioRecaudo(AsociarComercioRecaudoWS AsociarComercioRecaudoWS);
+	
+	public ConsultaComercioPorComercioIdWSResponse consultaComercioPorComercioId(ConsultaComercioPorComercioIdWS ConsultaComercioPorComercioIdWS);
+	
+	public ConsultaPagoByNumComprobanteReciboWSResponse consultaPagoByNumComprobanteRecibo(ConsultaPagoByNumComprobanteReciboWS ConsultaPagoByNumComprobanteReciboWS);
+	
+	public ConsultaTipoRecaudoByIdTipoRecaudoWSResponse consultaTipoRecaudoByIdTipoRecaudo(ConsultaTipoRecaudoByIdTipoRecaudoWS ConsultaTipoRecaudoByIdTipoRecaudoWS);
+	
+	public CrearPagoComercioWSResponse crearPagoComercio(CrearPagoComercioWS CrearPagoComercioWS);
+	
+	public ModificarAsociarComercioRecaudoWSResponse modificarAsociarComercioRecaudo(ModificarAsociarComercioRecaudoWS ModificarAsociarComercioRecaudoWS);
+	
+	public ConsultaEntityBankByIdEntityBankWSResponse consultaEntityBankByIdEntityBank(ConsultaEntityBankByIdEntityBankWS ConsultaEntityBankByIdEntityBankWS);
+	
 	public java.util.List<Solicitud> listaSolicitudes();
 	
 	public java.util.List<BancoAfiliacion> listaAsociacionBancoComercio();
@@ -111,6 +158,12 @@ public interface AfiliacionDAO {
 	
 	public java.util.List<EntityBank> listaBanks();
 	
+	public java.util.List<TipoRecaudo> listaTipoRecaudos();
+	
+	public java.util.List<Pago> listaPagosPorIdentificacionComercio(ListPagosByIdentificacionComercioWS ListPagosByIdentificacionComercioWS);
+	
+	public java.util.List<Recaudo> listaRecaudosByComercio(ListRecaudosByComercioWS ListRecaudosByComercioWS);
+	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public CodigoPostalWSResponse codigoPostal(CodigoPostalDTO CodigoPostalDTO);
@@ -118,4 +171,8 @@ public interface AfiliacionDAO {
 	public java.util.List<Canton> listaCanton(Provincia Provincia);
 	
 	public java.util.List<Distrito> listaDistrito(Canton Canton);
+	
+	public java.util.List<Pais> listaPais();
+	
+	public java.util.List<Provincia> listaProvincias(Pais Pais);
 }

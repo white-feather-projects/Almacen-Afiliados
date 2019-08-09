@@ -35,7 +35,7 @@ window.addEventListener('load', function(){
     //////////////////////////////////////////////////////////////////
     
     $("#aceptar").on('click', function(){
-    	location.href="datos_comercio";
+    	location.href="/Afiliacion/datos_comercio";
     })
 
 });

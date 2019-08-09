@@ -172,6 +172,135 @@ public interface AfiliacionServiceWS {
     /**
      * 
      * @param comercioId
+     * @param pagoStatus
+     * @param numComprobanteRecibo
+     * @param entityBankName
+     * @param modoPago
+     * @return
+     *     returns com.cbp3.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "crearPagoComercioWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.CrearPagoComercioWS")
+    @ResponseWrapper(localName = "crearPagoComercioWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.CrearPagoComercioWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/crearPagoComercioWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/crearPagoComercioWSResponse")
+    public RespuestaDTO crearPagoComercioWS(
+        @WebParam(name = "modoPago", targetNamespace = "")
+        String modoPago,
+        @WebParam(name = "numComprobanteRecibo", targetNamespace = "")
+        String numComprobanteRecibo,
+        @WebParam(name = "pagoStatus", targetNamespace = "")
+        String pagoStatus,
+        @WebParam(name = "comercioId", targetNamespace = "")
+        Comercio comercioId,
+        @WebParam(name = "entityBankName", targetNamespace = "")
+        String entityBankName);
+
+    /**
+     * 
+     * @param ubicacion
+     * @param fechaVigencia
+     * @param idRecaudo
+     * @param recaudoNombre
+     * @param tipoRecaudoId
+     * @param recaudoVerificado
+     * @return
+     *     returns com.cbp3.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "modificarAsociarComercioRecaudoWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ModificarAsociarComercioRecaudoWS")
+    @ResponseWrapper(localName = "modificarAsociarComercioRecaudoWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ModificarAsociarComercioRecaudoWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/modificarAsociarComercioRecaudoWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/modificarAsociarComercioRecaudoWSResponse")
+    public RespuestaDTO modificarAsociarComercioRecaudoWS(
+        @WebParam(name = "idRecaudo", targetNamespace = "")
+        long idRecaudo,
+        @WebParam(name = "recaudoNombre", targetNamespace = "")
+        String recaudoNombre,
+        @WebParam(name = "ubicacion", targetNamespace = "")
+        String ubicacion,
+        @WebParam(name = "recaudoVerificado", targetNamespace = "")
+        String recaudoVerificado,
+        @WebParam(name = "fechaVigencia", targetNamespace = "")
+        String fechaVigencia,
+        @WebParam(name = "tipoRecaudoId", targetNamespace = "")
+        TipoRecaudo tipoRecaudoId);
+
+    /**
+     * 
+     * @param tipoRecaudoId
+     * @return
+     *     returns com.cbp3.ws.cbp.service.TipoRecaudo
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "consultaTipoRecaudoByIdTipoRecaudoWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWS")
+    @ResponseWrapper(localName = "consultaTipoRecaudoByIdTipoRecaudoWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/consultaTipoRecaudoByIdTipoRecaudoWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/consultaTipoRecaudoByIdTipoRecaudoWSResponse")
+    public TipoRecaudo consultaTipoRecaudoByIdTipoRecaudoWS(
+        @WebParam(name = "tipoRecaudoId", targetNamespace = "")
+        long tipoRecaudoId);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<com.cbp3.ws.cbp.service.TipoRecaudo>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listaTipoRecaudosWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListaTipoRecaudosWS")
+    @ResponseWrapper(localName = "listaTipoRecaudosWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListaTipoRecaudosWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/listaTipoRecaudosWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/listaTipoRecaudosWSResponse")
+    public List<TipoRecaudo> listaTipoRecaudosWS();
+
+    /**
+     * 
+     * @param ubicacion
+     * @param fechaVigencia
+     * @param comercioId
+     * @param recaudoNombre
+     * @param tipoRecaudoId
+     * @param recaudoVerificado
+     * @return
+     *     returns com.cbp3.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "asociarComercioRecaudoWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.AsociarComercioRecaudoWS")
+    @ResponseWrapper(localName = "asociarComercioRecaudoWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.AsociarComercioRecaudoWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/asociarComercioRecaudoWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/asociarComercioRecaudoWSResponse")
+    public RespuestaDTO asociarComercioRecaudoWS(
+        @WebParam(name = "recaudoNombre", targetNamespace = "")
+        String recaudoNombre,
+        @WebParam(name = "ubicacion", targetNamespace = "")
+        String ubicacion,
+        @WebParam(name = "recaudoVerificado", targetNamespace = "")
+        String recaudoVerificado,
+        @WebParam(name = "fechaVigencia", targetNamespace = "")
+        String fechaVigencia,
+        @WebParam(name = "comercioId", targetNamespace = "")
+        Comercio comercioId,
+        @WebParam(name = "tipoRecaudoId", targetNamespace = "")
+        TipoRecaudo tipoRecaudoId);
+
+    /**
+     * 
+     * @param comercioId
+     * @return
+     *     returns java.util.List<com.cbp3.ws.cbp.service.Recaudo>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listRecaudosByComercioWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListRecaudosByComercioWS")
+    @ResponseWrapper(localName = "listRecaudosByComercioWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListRecaudosByComercioWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/listRecaudosByComercioWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/listRecaudosByComercioWSResponse")
+    public List<Recaudo> listRecaudosByComercioWS(
+        @WebParam(name = "comercioId", targetNamespace = "")
+        long comercioId);
+
+    /**
+     * 
+     * @param comercioId
      * @param representanteId
      * @return
      *     returns com.cbp3.ws.cbp.service.RespuestaDTO
@@ -393,6 +522,21 @@ public interface AfiliacionServiceWS {
 
     /**
      * 
+     * @param entityBankId
+     * @return
+     *     returns com.cbp3.ws.cbp.service.EntityBank
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "consultaEntityBankByIdEntityBankWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaEntityBankByIdEntityBankWS")
+    @ResponseWrapper(localName = "consultaEntityBankByIdEntityBankWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaEntityBankByIdEntityBankWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/consultaEntityBankByIdEntityBankWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/consultaEntityBankByIdEntityBankWSResponse")
+    public EntityBank consultaEntityBankByIdEntityBankWS(
+        @WebParam(name = "entityBankId", targetNamespace = "")
+        long entityBankId);
+
+    /**
+     * 
      * @param codOperador
      * @param nombreOperador
      * @param active
@@ -444,6 +588,54 @@ public interface AfiliacionServiceWS {
         long operadortelfId,
         @WebParam(name = "active", targetNamespace = "")
         Integer active);
+
+    /**
+     * 
+     * @param nombreBanco
+     * @param comercioId
+     * @param tipoPos
+     * @param cantidadPos
+     * @return
+     *     returns com.cbp3.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "asociarComercioOtroBancoWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.AsociarComercioOtroBancoWS")
+    @ResponseWrapper(localName = "asociarComercioOtroBancoWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.AsociarComercioOtroBancoWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/asociarComercioOtroBancoWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/asociarComercioOtroBancoWSResponse")
+    public RespuestaDTO asociarComercioOtroBancoWS(
+        @WebParam(name = "nombreBanco", targetNamespace = "")
+        String nombreBanco,
+        @WebParam(name = "tipoPos", targetNamespace = "")
+        String tipoPos,
+        @WebParam(name = "cantidadPos", targetNamespace = "")
+        Long cantidadPos,
+        @WebParam(name = "comercioId", targetNamespace = "")
+        Comercio comercioId);
+
+    /**
+     * 
+     * @param nombreBanco
+     * @param comercioId
+     * @param tipoPos
+     * @param cantidadPos
+     * @return
+     *     returns com.cbp3.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "modificarAsociacionComercioOtroBancoWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ModificarAsociacionComercioOtroBancoWS")
+    @ResponseWrapper(localName = "modificarAsociacionComercioOtroBancoWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ModificarAsociacionComercioOtroBancoWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/modificarAsociacionComercioOtroBancoWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/modificarAsociacionComercioOtroBancoWSResponse")
+    public RespuestaDTO modificarAsociacionComercioOtroBancoWS(
+        @WebParam(name = "nombreBanco", targetNamespace = "")
+        String nombreBanco,
+        @WebParam(name = "tipoPos", targetNamespace = "")
+        String tipoPos,
+        @WebParam(name = "cantidadPos", targetNamespace = "")
+        Long cantidadPos,
+        @WebParam(name = "comercioId", targetNamespace = "")
+        Comercio comercioId);
 
     /**
      * 
@@ -525,6 +717,21 @@ public interface AfiliacionServiceWS {
 
     /**
      * 
+     * @param comercioId
+     * @return
+     *     returns com.cbp3.ws.cbp.service.OtroBanco
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "consultaAsociacionComercioOtroBancoWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaAsociacionComercioOtroBancoWS")
+    @ResponseWrapper(localName = "consultaAsociacionComercioOtroBancoWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaAsociacionComercioOtroBancoWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/consultaAsociacionComercioOtroBancoWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/consultaAsociacionComercioOtroBancoWSResponse")
+    public OtroBanco consultaAsociacionComercioOtroBancoWS(
+        @WebParam(name = "comercioId", targetNamespace = "")
+        long comercioId);
+
+    /**
+     * 
      * @param afiliadoOtroBanco
      * @param nombreCanal
      * @param identificacionComercio
@@ -584,6 +791,21 @@ public interface AfiliacionServiceWS {
      * 
      * @param identificacionComercio
      * @return
+     *     returns java.util.List<com.cbp3.ws.cbp.service.Pago>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listPagosByIdentificacionComercioWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListPagosByIdentificacionComercioWS")
+    @ResponseWrapper(localName = "listPagosByIdentificacionComercioWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListPagosByIdentificacionComercioWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/listPagosByIdentificacionComercioWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/listPagosByIdentificacionComercioWSResponse")
+    public List<Pago> listPagosByIdentificacionComercioWS(
+        @WebParam(name = "identificacionComercio", targetNamespace = "")
+        String identificacionComercio);
+
+    /**
+     * 
+     * @param identificacionComercio
+     * @return
      *     returns com.cbp3.ws.cbp.service.Comercio
      */
     @WebMethod
@@ -594,6 +816,21 @@ public interface AfiliacionServiceWS {
     public Comercio consultaComercioPorIdentificacionComercioWS(
         @WebParam(name = "identificacionComercio", targetNamespace = "")
         String identificacionComercio);
+
+    /**
+     * 
+     * @param numComprobanteRecibo
+     * @return
+     *     returns com.cbp3.ws.cbp.service.Pago
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "consultaPagoByNumComprobanteReciboWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaPagoByNumComprobanteReciboWS")
+    @ResponseWrapper(localName = "consultaPagoByNumComprobanteReciboWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaPagoByNumComprobanteReciboWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/consultaPagoByNumComprobanteReciboWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/consultaPagoByNumComprobanteReciboWSResponse")
+    public Pago consultaPagoByNumComprobanteReciboWS(
+        @WebParam(name = "numComprobanteRecibo", targetNamespace = "")
+        String numComprobanteRecibo);
 
     /**
      * 

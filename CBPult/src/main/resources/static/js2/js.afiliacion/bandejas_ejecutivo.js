@@ -16,10 +16,10 @@ function listarTabla1(){
 	    destroy: true,
 	    searching: true,
 	    language: {
-    		url: '/js2/Spanish.json'
+    		url: '/CBPult/js2/Spanish.json'
         },
 	        ajax: {
-	              url: "/listaSolicitudes",
+	              url: "/CBPult/Afiliacion/listaSolicitudes",
 	            dataSrc: ''
 	        },
 	        columns: [ 
@@ -102,7 +102,7 @@ function listarTabla1(){
 	                "class": "ver",
 	                "defaultContent": "",
 	                "render": function ( data, type, full, meta ) {
-        		return '<center><a title="Modificar" href="/confirm_pre_carga/modificar&'+data+'"><i class="fa fa-edit" style="font-size:30px" aria-hidden="true"></i></a></center>';
+        		return '<center><a title="Modificar" href="/CBPult/Afiliacion/confirm_pre_carga/modificar&'+data+'"><i class="fa fa-edit" style="font-size:30px" aria-hidden="true"></i></a></center>';
 	                		//return '<center><a class="ui blue button" href="/4track/api/devices?id=">Ver</a></center>';
 	                }
 	            }

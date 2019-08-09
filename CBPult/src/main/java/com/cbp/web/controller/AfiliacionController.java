@@ -3,9 +3,13 @@ package com.cbp.web.controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cbp.web.dao.AfiliacionDAO;
@@ -16,6 +20,7 @@ import com.cbp.web.dto.AsociarComercioConRepresentanteLegalDTO;
 import com.cbp.web.dto.ClientDTO;
 import com.cbp.web.dto.CodigoPostalDTO;
 import com.cbp.web.dto.ConsultaAsociacionComercioContactoDTO;
+import com.cbp.web.dto.ConsultaAsociacionComercioOtroBancoDTO;
 import com.cbp.web.dto.ConsultaAsociacionComercioRepresentanteDTO;
 import com.cbp.web.dto.ConsultaBancoAfiliacionIdDTO;
 import com.cbp.web.dto.ConsultaContactoByIdentificacionContactoDTO;
@@ -39,18 +44,34 @@ import com.cbp3.ws.cbp.service.ActualizaStatusComercioWSResponse;
 import com.cbp3.ws.cbp.service.AsociarBancoComercioWSResponse;
 import com.cbp3.ws.cbp.service.AsociarComercioConContactoWSResponse;
 import com.cbp3.ws.cbp.service.AsociarComercioConRepresentanteLegalWSResponse;
+import com.cbp3.ws.cbp.service.AsociarComercioOtroBancoWS;
+import com.cbp3.ws.cbp.service.AsociarComercioOtroBancoWSResponse;
+import com.cbp3.ws.cbp.service.AsociarComercioRecaudoWS;
+import com.cbp3.ws.cbp.service.AsociarComercioRecaudoWSResponse;
 import com.cbp3.ws.cbp.service.BancoAfiliacion;
 import com.cbp3.ws.cbp.service.Canton;
 import com.cbp3.ws.cbp.service.CodigoPostalWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioContactoWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioOtroBancoWS;
+import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioOtroBancoWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioRepresentanteWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaBancoAfiliacionByIdWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaComercioPorComercioIdWS;
+import com.cbp3.ws.cbp.service.ConsultaComercioPorComercioIdWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaComercioPorIdentificacionComercioWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaContactoByIdentificacionContactoWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaEntityBankByIdEntityBankWS;
+import com.cbp3.ws.cbp.service.ConsultaEntityBankByIdEntityBankWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaPagoByNumComprobanteReciboWS;
+import com.cbp3.ws.cbp.service.ConsultaPagoByNumComprobanteReciboWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWS;
+import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWSResponse;
 import com.cbp3.ws.cbp.service.CrearComercioWSResponse;
 import com.cbp3.ws.cbp.service.CrearContactoWSResponse;
 import com.cbp3.ws.cbp.service.CrearOperadorTelefonicoWSResponse;
+import com.cbp3.ws.cbp.service.CrearPagoComercioWS;
+import com.cbp3.ws.cbp.service.CrearPagoComercioWSResponse;
 import com.cbp3.ws.cbp.service.CrearRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.Distrito;
 import com.cbp3.ws.cbp.service.EditarAsociacionBancoComercioWSResponse;
@@ -59,15 +80,30 @@ import com.cbp3.ws.cbp.service.EditarAsociacionComercioConRepresentanteLegalWSRe
 import com.cbp3.ws.cbp.service.EditarContactoWSResponse;
 import com.cbp3.ws.cbp.service.EditarRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.EntityBank;
+import com.cbp3.ws.cbp.service.ListPagosByIdentificacionComercioWS;
+import com.cbp3.ws.cbp.service.ListRecaudosByComercioWS;
 import com.cbp3.ws.cbp.service.ListaSolicitudesWSResponse;
+import com.cbp3.ws.cbp.service.ModificarAsociacionComercioOtroBancoWS;
+import com.cbp3.ws.cbp.service.ModificarAsociacionComercioOtroBancoWSResponse;
+import com.cbp3.ws.cbp.service.ModificarAsociarComercioRecaudoWS;
+import com.cbp3.ws.cbp.service.ModificarAsociarComercioRecaudoWSResponse;
 import com.cbp3.ws.cbp.service.ModificarComercioWSResponse;
 import com.cbp3.ws.cbp.service.ModificarOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.Operadortelefonico;
+import com.cbp3.ws.cbp.service.Pago;
+import com.cbp3.ws.cbp.service.Pais;
 import com.cbp3.ws.cbp.service.Provincia;
+import com.cbp3.ws.cbp.service.Recaudo;
 import com.cbp3.ws.cbp.service.Solicitud;
+import com.cbp3.ws.cbp.service.TipoRecaudo;
 
 @Controller
+@RequestMapping("/Afiliacion")
 public class AfiliacionController {
+	
+	private String name;
+	private String link;
+	Authentication auth = null;
 
 	@Autowired
 	AfiliacionDAO afiliacionMethods;
@@ -314,6 +350,116 @@ public class AfiliacionController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	@RequestMapping(value = "/asociarComercioOtroBanco", produces = { "application/json" })
+	public @ResponseBody AsociarComercioOtroBancoWSResponse asociarComercioOtroBanco(@RequestBody AsociarComercioOtroBancoWS AsociarComercioOtroBancoWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		AsociarComercioOtroBancoWSResponse respuesta = new AsociarComercioOtroBancoWSResponse();
+		respuesta = afiliacionMethods.asociarComercioOtroBanco(AsociarComercioOtroBancoWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/consultaAsociacionComercioOtroBanco", produces = { "application/json" })
+	public @ResponseBody ConsultaAsociacionComercioOtroBancoWSResponse consultaAsociacionComercioOtroBanco(@RequestBody ConsultaAsociacionComercioOtroBancoWS ConsultaAsociacionComercioOtroBancoWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ConsultaAsociacionComercioOtroBancoWSResponse respuesta = new ConsultaAsociacionComercioOtroBancoWSResponse();
+		respuesta = afiliacionMethods.consultaAsociacionComercioOtroBanco(ConsultaAsociacionComercioOtroBancoWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/modificarAsociacionComercioOtroBanco", produces = { "application/json" })
+	public @ResponseBody ModificarAsociacionComercioOtroBancoWSResponse modificarAsociacionComercioOtroBanco(@RequestBody ModificarAsociacionComercioOtroBancoWS ModificarAsociacionComercioOtroBancoWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ModificarAsociacionComercioOtroBancoWSResponse respuesta = new ModificarAsociacionComercioOtroBancoWSResponse();
+		respuesta = afiliacionMethods.modificarAsociacionComercioOtroBanco(ModificarAsociacionComercioOtroBancoWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/asociarComercioRecaudo", produces = { "application/json" })
+	public @ResponseBody AsociarComercioRecaudoWSResponse asociarComercioRecaudo(@RequestBody AsociarComercioRecaudoWS AsociarComercioRecaudoWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		AsociarComercioRecaudoWSResponse respuesta = new AsociarComercioRecaudoWSResponse();
+		respuesta = afiliacionMethods.asociarComercioRecaudo(AsociarComercioRecaudoWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/consultaComercioPorComercioId", produces = { "application/json" })
+	public @ResponseBody ConsultaComercioPorComercioIdWSResponse consultaComercioPorComercioId(@RequestBody ConsultaComercioPorComercioIdWS ConsultaComercioPorComercioIdWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ConsultaComercioPorComercioIdWSResponse respuesta = new ConsultaComercioPorComercioIdWSResponse();
+		respuesta = afiliacionMethods.consultaComercioPorComercioId(ConsultaComercioPorComercioIdWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/consultaPagoByNumComprobanteRecibo", produces = { "application/json" })
+	public @ResponseBody ConsultaPagoByNumComprobanteReciboWSResponse consultaPagoByNumComprobanteRecibo(@RequestBody ConsultaPagoByNumComprobanteReciboWS ConsultaPagoByNumComprobanteReciboWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ConsultaPagoByNumComprobanteReciboWSResponse respuesta = new ConsultaPagoByNumComprobanteReciboWSResponse();
+		respuesta = afiliacionMethods.consultaPagoByNumComprobanteRecibo(ConsultaPagoByNumComprobanteReciboWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/consultaTipoRecaudoByIdTipoRecaudo", produces = { "application/json" })
+	public @ResponseBody ConsultaTipoRecaudoByIdTipoRecaudoWSResponse consultaTipoRecaudoByIdTipoRecaudo(@RequestBody ConsultaTipoRecaudoByIdTipoRecaudoWS ConsultaTipoRecaudoByIdTipoRecaudoWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ConsultaTipoRecaudoByIdTipoRecaudoWSResponse respuesta = new ConsultaTipoRecaudoByIdTipoRecaudoWSResponse();
+		respuesta = afiliacionMethods.consultaTipoRecaudoByIdTipoRecaudo(ConsultaTipoRecaudoByIdTipoRecaudoWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/crearPagoComercio", produces = { "application/json" })
+	public @ResponseBody CrearPagoComercioWSResponse crearPagoComercio(@RequestBody CrearPagoComercioWS CrearPagoComercioWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		CrearPagoComercioWSResponse respuesta = new CrearPagoComercioWSResponse();
+		respuesta = afiliacionMethods.crearPagoComercio(CrearPagoComercioWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/modificarAsociarComercioRecaudo", produces = { "application/json" })
+	public @ResponseBody ModificarAsociarComercioRecaudoWSResponse modificarAsociarComercioRecaudo(@RequestBody ModificarAsociarComercioRecaudoWS ModificarAsociarComercioRecaudoWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ModificarAsociarComercioRecaudoWSResponse respuesta = new ModificarAsociarComercioRecaudoWSResponse();
+		respuesta = afiliacionMethods.modificarAsociarComercioRecaudo(ModificarAsociarComercioRecaudoWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/consultaEntityBankByIdEntityBank", produces = { "application/json" })
+	public @ResponseBody ConsultaEntityBankByIdEntityBankWSResponse consultaEntityBankByIdEntityBank(@RequestBody ConsultaEntityBankByIdEntityBankWS ConsultaEntityBankByIdEntityBankWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ConsultaEntityBankByIdEntityBankWSResponse respuesta = new ConsultaEntityBankByIdEntityBankWSResponse();
+		respuesta = afiliacionMethods.consultaEntityBankByIdEntityBank(ConsultaEntityBankByIdEntityBankWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	@RequestMapping(value = "/listaSolicitudes", produces = { "application/json" })
 	public @ResponseBody java.util.List<Solicitud> listaSolicitudes() {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
@@ -356,6 +502,39 @@ public class AfiliacionController {
 		return respuesta;
 	}
 	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/listaTipoRecaudos", produces = { "application/json" })
+	public @ResponseBody java.util.List<TipoRecaudo> listaTipoRecaudos() {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<TipoRecaudo> respuesta = new ArrayList<>();
+		respuesta = afiliacionMethods.listaTipoRecaudos();
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/listaPagosPorIdentificacionComercio", produces = { "application/json" })
+	public @ResponseBody java.util.List<Pago> listaPagosPorIdentificacionComercio(@RequestBody ListPagosByIdentificacionComercioWS ListPagosByIdentificacionComercioWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<Pago> respuesta = new ArrayList<>();
+		respuesta = afiliacionMethods.listaPagosPorIdentificacionComercio(ListPagosByIdentificacionComercioWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/listaRecaudosByComercio", produces = { "application/json" })
+	public @ResponseBody java.util.List<Recaudo> listaRecaudosByComercio(@RequestBody ListRecaudosByComercioWS ListRecaudosByComercioWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<Recaudo> respuesta = new ArrayList<>();
+		respuesta = afiliacionMethods.listaRecaudosByComercio(ListRecaudosByComercioWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -390,6 +569,212 @@ public class AfiliacionController {
 		respuesta = afiliacionMethods.listaDistrito(Canton);
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/listaPais", produces = { "application/json" })
+	public @ResponseBody java.util.List<Pais> listaPais() {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<Pais> respuesta = new ArrayList<>();
+		respuesta = afiliacionMethods.listaPais();
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/listaProvincias", produces = { "application/json" })
+	public @ResponseBody java.util.List<Provincia> listaProvincias(@RequestBody Pais Pais) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<Provincia> respuesta = new ArrayList<>();
+		respuesta = afiliacionMethods.listaProvincias(Pais);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////Afiliacion, Almacen /////////////////////////////////////////////////////  
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/menu_afiliacion_ejecutivo", method = RequestMethod.GET)
+	public String menu_afiliacion_ejecutivo(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/menu_afiliacion_ejecutivo";
+	}
+	
+	@RequestMapping(value = "/pre_carga_ejecutivo", method = RequestMethod.GET)
+	public String pre_carga_ejecutivo(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/pre_carga_ejecutivo";
+	}
+	
+	@RequestMapping(value = "/bandejas_ejecutivo", method = RequestMethod.GET)
+	public String bandejas_ejecutivo(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/bandejas_ejecutivo";
+	}
+	
+	@RequestMapping(value = "/confirm_pre_carga/{value1}&{value2}", method = RequestMethod.GET)
+	public String confirm_pre_carga(@PathVariable("value1") String value, @PathVariable("value2") String value2, Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/confirm_pre_carga_ejecutivo";
+	}
+	
+	@RequestMapping(value = "/compra", method = RequestMethod.GET)
+	public String compra(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/compra_ejecutivo";
+	}
+	
+	@RequestMapping(value = "/datos_comercio", method = RequestMethod.GET)
+	public String datos_comercio(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/datos_comercio";
+	}
+	
+	@RequestMapping(value = "/representante_legal", method = RequestMethod.GET)
+	public String representante_legal(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/representante_legal";
+	}
+	
+	@RequestMapping(value = "/direccion_establecimiento", method = RequestMethod.GET)
+	public String direccion_establecimiento(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/direccion_establecimiento";
+	}
+	
+	@RequestMapping(value = "/datos_contacto", method = RequestMethod.GET)
+	public String datos_contacto(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/datos_contacto";
+	}
+	
+	@RequestMapping(value = "/informacion_bancos", method = RequestMethod.GET)
+	public String informacion_bancos(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/informacion_bancos";
+	}
+	
+	@RequestMapping(value = "/datos_pago", method = RequestMethod.GET)
+	public String datos_pago(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/datos_pago";
+	}
+	
+	@RequestMapping(value = "/carga_archivos_ejecutivo", method = RequestMethod.GET)
+	public String carga_archivos_ejecutivo(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/carga_archivos_ejecutivo";
+	}
+	
+	@RequestMapping(value = "/bandeja_administrativo", method = RequestMethod.GET)
+	public String bandeja_administrativo(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/bandeja_administrativo";
+	}
+	
+	@RequestMapping(value = "/visualizar_administrativo", method = RequestMethod.GET)
+	public String visualizar_administrativo(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/visualizar_administrativo";
+	}
+	
+	@RequestMapping(value = "/bandeja_comercial", method = RequestMethod.GET)
+	public String bandeja_comercial(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/bandeja_comercial";
+	}
+	
+	@RequestMapping(value = "/verificacion_pago", method = RequestMethod.GET)
+	public String verificacion_pago(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/verificacion_datos_pago";
+	}
+	
+	@RequestMapping(value = "/pre_carga_autogestion", method = RequestMethod.GET)
+	public String pre_carga_autogestion(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/pre_carga_autogestion";
+	}
+	
+	@RequestMapping(value = "/menu_operador", method = RequestMethod.GET)
+	public String menu_operador(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/menu_operador";
+	}
+	
+	@RequestMapping(value = "/pre_carga_operador", method = RequestMethod.GET)
+	public String pre_carga_operador(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/pre_carga_operador";
+	}
+	
+	@RequestMapping(value = "/menu_afiliacion", method = RequestMethod.GET)
+	public String menu_afiliacion(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/menu_afiliacion";
+	}
+	
+	
+	
+	/**
+	 * Url Gestion de configuracion
+	 */
+	
+	
+	
+	//////////////// Configuración Afiliados ///////////////
+	@RequestMapping(value = "/configuration_afiliados", method = RequestMethod.GET)
+    public String configuration_afiliados(Model model) {
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		
+     return "templates.configuration/configuration_afiliados";
 	}
 	
 }

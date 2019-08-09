@@ -36,17 +36,35 @@
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
-		<dependency>
+		
+			<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		
+		
+
+
+<dependency>
+    <groupId>com.jcraft</groupId>
+    <artifactId>jsch</artifactId>
+    <version>0.1.55</version>
+</dependency>
+
+
+	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -89,8 +107,10 @@
 						<wsdlUrl>http://18.223.203.6:8080/CBP-1/ClientsWs?WSDL</wsdlUrl>
 						<wsdlUrl>http://18.223.203.6:8080/CBP-1/CardWS?wsdl</wsdlUrl>
 						<wsdlUrl>http://18.223.203.6:8080/CBP-1/AccountWS?wsdl</wsdlUrl>
+						<wsdlUrl>http://ec2-18-216-122-153.us-east-2.compute.amazonaws.com/Service1.asmx?WSDL</wsdlUrl>
 						<wsdlUrl>http://18.223.203.6:8080/CBP-3/AfiliacionServiceWS?WSDL</wsdlUrl>
 						<wsdlUrl>http://18.223.203.6:8080/CBP-3/UbicacionGeograficaWS?WSDL</wsdlUrl>
+						<wsdlUrl>http://18.223.203.6:8080/CBP-3/AlmacenServiceWS?WSDL</wsdlUrl>
 					</wsdlUrls>
 				</configuration>
 			</plugin>

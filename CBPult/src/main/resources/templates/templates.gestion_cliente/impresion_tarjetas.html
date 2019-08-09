@@ -104,6 +104,7 @@
                                                     <div class="card-block">
                                                         <h4 class="sub-title">Impresión de tarjeta de crédito</h4>
                                                             <form id="miform">
+                                                            <input type="text"  value="" title="Debe asignar la tarjeta" class="asignada"  name="asignada" id="asignada" style="visibility:hidden" required>
 															<input type="hidden"  id="documentId" th:value="${document}" placeholder="">
                                                                 <div class="form-group row">
                                                                     <div class="col-sm-12">
@@ -186,9 +187,7 @@
                                                                 <div class="row text-center">
                                                                     <div class="col-sm-12">
                                                                     
-                                                                        <button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="imprimirButton">
-                                                                            Asignar
-                                                                        </button>
+                                                                 
                                                                     </div>
                                                                 </div>
 
@@ -282,7 +281,7 @@
        
         <button data-direction="prev" class="btn btn-secondary" id="atrasWizard">Atras</button>
         <button  type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="atrasButton">Salir</button>
-         <button class="btn btn-primary" value="0" id="validateClient" >Siguiente</button>
+        <button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="imprimirButton">Asignar</button>
         <button data-direction="next" class="btn btn-primary" value="0" id="siguiente" hidden>Siguiente</button>
         <button data-direction="finish" class="btn btn-success" id="saveComplet">Imprimir</button>
      </div>
@@ -339,7 +338,7 @@ if (currentIndex === 0) {
 
    if (stepDirection === 'forward') {
      var valid = miform.valid();
-    	$('#validateClient').prop("hidden",true);
+    	$('#imprimirButton').prop("hidden",true);
 	    $('#siguiente').prop("hidden",false);
      return valid;
    }
@@ -369,7 +368,24 @@ if (currentIndex === 0) {
   }
 });
 
-
+$(".tb2").click(function() {
+	var varl=$(".tb1").attr('class').split(' ');
+	//alert($(".tb1").attr('class'));
+	if(varl[1]=='done'){
+		
+	}else if(varl[2]=='error'){
+		//alert($(".tb1").attr('class'));
+		$('#siguiente').prop("hidden",true);
+		$('#imprimirButton').prop("hidden",false);
+	}else{
+		
+		$(".tb1").removeClass('active');
+    	$("#siguiente").val('1');
+    	$('#imprimirButton').text("Actualizar Cliente");
+    	$('#imprimirButton').prop("hidden",false);
+	    $('#siguiente').prop("hidden",true);
+	}
+})
 
 </script>
 

@@ -21,6 +21,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="bancoId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="codigoUsuarioModifica" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="comercioId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="entityBank" type="{http://service.cbp.ws.cbp3.com/}entityBank" minOccurs="0"/>
  *         &lt;element name="fechaCargaDatos" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="fechaHoraModificacion" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="idEntityBank" type="{http://www.w3.org/2001/XMLSchema}long"/>
@@ -39,6 +40,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "bancoId",
     "codigoUsuarioModifica",
     "comercioId",
+    "entityBank",
     "fechaCargaDatos",
     "fechaHoraModificacion",
     "idEntityBank",
@@ -50,6 +52,7 @@ public class BancoAfiliacion {
     protected Long bancoId;
     protected Long codigoUsuarioModifica;
     protected long comercioId;
+    protected EntityBank entityBank;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fechaCargaDatos;
     @XmlSchemaType(name = "dateTime")
@@ -120,6 +123,30 @@ public class BancoAfiliacion {
      */
     public void setComercioId(long value) {
         this.comercioId = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad entityBank.
+     * 
+     * @return
+     *     possible object is
+     *     {@link EntityBank }
+     *     
+     */
+    public EntityBank getEntityBank() {
+        return entityBank;
+    }
+
+    /**
+     * Define el valor de la propiedad entityBank.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link EntityBank }
+     *     
+     */
+    public void setEntityBank(EntityBank value) {
+        this.entityBank = value;
     }
 
     /**
