@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -137,6 +138,24 @@ public class AlmacenController {
 	//+////////////// Configuración Almacen ///////////////
 	@RequestMapping(value = "/configuration_almacen", method = RequestMethod.GET)
     public String configuration_almacen(Model model) {
+		auth = SecurityContextHolder.getContext().getAuthentication();
+		name=auth.getName();
+		String roleUser = "";
+		roleUser = auth.getAuthorities().iterator().next().getAuthority();
+			
+		if (auth.getName().equals("esteban")) {
+			link="/CBPult/img/esteban.jpeg";
+			
+		} else if (auth.getName().equals("karla")) {
+			link="/CBPult/img/karla.jpeg";
+		} else if (auth.getName().equals("admin")) {
+			link="/CBPult/img/logo_purple.png";
+
+		} else if (auth.getName().equals("victor")) {
+			link="/CBPult/img/logo_purple.png";
+		}
+		
+		model.addAttribute("roleUser", roleUser);
 		model.addAttribute("name", name);
 		model.addAttribute("link", link);
 		
@@ -230,6 +249,25 @@ public class AlmacenController {
 	//+////////////// Menu Movimiento de Mercancia ///////////////
 	@RequestMapping(value = "/menu_movimiento-mercancia", method = RequestMethod.GET)
 	public String menu_movimiento_mercancia(Model model) {
+		
+		auth = SecurityContextHolder.getContext().getAuthentication();
+		name=auth.getName();
+		String roleUser = "";
+		roleUser = auth.getAuthorities().iterator().next().getAuthority();
+			
+		if (auth.getName().equals("esteban")) {
+			link="/CBPult/img/esteban.jpeg";
+			
+		} else if (auth.getName().equals("karla")) {
+			link="/CBPult/img/karla.jpeg";
+		} else if (auth.getName().equals("admin")) {
+			link="/CBPult/img/logo_purple.png";
+
+		} else if (auth.getName().equals("victor")) {
+			link="/CBPult/img/logo_purple.png";
+		}
+		
+		model.addAttribute("roleUser", roleUser);
 		model.addAttribute("name", name);
 		model.addAttribute("link", link);
 		

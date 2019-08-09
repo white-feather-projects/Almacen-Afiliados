@@ -9,13 +9,13 @@ console.log("id---", id);
 console.log("seleccion----", ver);
 console.log("modificar----", modificar);
 console.log("nuevo----", nuevo);
-//$("#banco_label").hide();
-//$("#nombre_banco_tab3").hide();
-//$("#afiliacion_label").hide();
-//$("#numero_afiliacion_tab3").hide();
-//$("#card_operador").hide();
-//$("#tab8").hide();
-//$(".tb8").hide();
+$("#banco_label").hide();
+$("#nombre_banco_tab3").hide();
+$("#afiliacion_label").hide();
+$("#numero_afiliacion_tab3").hide();
+$("#card_operador").hide();
+$("#tab8").hide();
+$(".tb8").hide();
 
 var identificacion_global;
 
@@ -285,9 +285,9 @@ var identificacion_global;
 						 		           		
 						 		           		///////////////////////////////////////
 							 		           	var asociar_banco_json = {
-								        				"idEntityBanck": id_banco,
+								        				"idEntityBanck": "1",
 								        				"idComercio": id_comercio,
-								        				"numeroAfiliacion": $("#numero_afiliacion_tab3").val(),
+								        				"numeroAfiliacion": id_comercio,
 								        				"numTerminalesComprar": $("#cantidad_terminales_tab3").val()
 								        		};
 							 		           	
@@ -311,11 +311,11 @@ var identificacion_global;
 								 		           		return valid;
 								 		           		
 								 		           	}else if(data.return.descripcion === "OK"){
-								 		           		document.getElementById("numero_afiliacion_tab3").disabled = true;
+								 		           		//document.getElementById("numero_afiliacion_tab3").disabled = true;
 								 		           		document.getElementById("cantidad_terminales_tab3").disabled = true;
-								 		           		document.getElementById("cantidad_claro_tab3").disabled = true;
+								 		           		//document.getElementById("cantidad_claro_tab3").disabled = true;
 								 		           		
-								 		           		swal("Banco Asociado", data.return.descripcion);
+								 		           		swal("Cantidad Terminales Registrados", data.return.descripcion);
 								 		           		valid = true;
 								 		           		return valid;
 								 		           		
@@ -430,7 +430,7 @@ var identificacion_global;
 							 		       		
 							 		           	if(typeof(data.return.identificacionRepresentante) == "object"){
 								 		           	
-							 		           		swal("No existe el Representante Legal, Registrelo Porfavor...");
+							 		           		//swal("No existe el Representante Legal, Registrelo Porfavor...");
 							 		           		
 								 		           	document.getElementById("tipo_identificacion_tab4").disabled = false;
 										        	document.getElementById("primer_nombre_tab4").disabled = false;
@@ -837,15 +837,8 @@ var identificacion_global;
 				        	document.getElementById("nombre_inmueble_tab5").style.border = "1px solid red";
 				         }
 			    	   
-			    	   var geo_localizacion_tab5 = $("#geo_localizacion_tab5").val();
-			    	   if(geo_localizacion_tab5.length >= 1){
-				        	 cont1 = cont1 + 1;
-				         }else{
-				        	 cont1 = cont1;
-				        	document.getElementById("geo_localizacion_tab5").style.border = "1px solid red";
-				         }
 				         
-				         if(cont1 == 7){
+				         if(cont1 == 6){
 				        	 console.log(cont1);
 				        	 //////////////////////////
 				        	 
@@ -853,7 +846,7 @@ var identificacion_global;
 				        	 	return valid;
 				        	 
 				        	 /////////////////////////
-				         }else if(cont1 < 7){
+				         }else if(cont1 < 6){
 				        	 valid = false;
 				        	 return valid;
 				         }
@@ -1428,7 +1421,7 @@ var identificacion_global;
 			    	   //clientValidator.resetForm();
 			       }
 			     }
-		        
+		        /*
 		     // tab 7
 		        if (currentIndex === 6) {
 		        	valid = false;
@@ -1594,7 +1587,7 @@ var identificacion_global;
 			    	   //clientValidator.resetForm();
 			       }
 			     }
-		        
+		        */
 
 		        return true;
 		        
