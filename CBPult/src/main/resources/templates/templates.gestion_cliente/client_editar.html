@@ -62,7 +62,7 @@
      <div class="col-lg-8">
      <div class="page-header-title">
 	 <div class="d-inline">
-	 <h4>Proceso de Carga</h4>
+	 <h4>Analisis de la Solicitud</h4>
 	 
 	 </div>
 	 </div>
@@ -114,7 +114,7 @@
                                                     </div>
                                                     <div class="card-block">
                                                         <h4 class="sub-title">Datos del Cliente</h4>
-                                                         
+                                                         <input type="hidden" id="usuarioCreadorSolicitud" th:value="${name}">
                                                         <form name="cliente" id="cliente">
                                                         <input type="text"  value="" title="Debe crear el cliente" class="client"  name="client" id="client" style="visibility:hidden" required>
                                                         <input type="text"  th:value="${idClient}" class="client"  name="client" id="idClientRespose" style="visibility:hidden" >
@@ -126,9 +126,10 @@
                                                                      <label class="col-sm-12 col-form-label">Tipo de identificador(*)</label>
                                                                     <div class="col-sm-12">
                                                                       
-                                                                        <select title="El campo no puede estar vacio" name="select" id="tipo_identificador" class="form-control" onchange="addMajorList()">
+                                                                        <select title="El campo no puede estar vacio" name="select" id="tipo_identificador" class="form-control" onchange="addMajorList()" disabled>
+                                                                                <option value="0" selected disabled>Seleccione Tipo de identificador</option>
                                                                                 <option value="Cedula">Cedula Nacional</option>
-                                                                                <option value="Cedula Residencia">Cedula Residencia</option>
+                                                                                <option value="DIMEX">DIMEX</option>
                                                                             
                                
                                                                         </select>
@@ -175,7 +176,7 @@
                                                                 <div class="col-sm-4 mobile-inputs">
                                                                    <label class="col-sm-12 col-form-label">Segundo apellido(*)</label>
                                                                     <div class="col-sm-12">
-                                                                         <input type="text" title="El campo no puede estar vacio" class="form-control" placeholder="" name="segundo_apellido" id="segundo_apellido" required>
+                                                                         <input type="text" title="El campo no puede estar vacio" class="form-control" placeholder="" name="segundo_apellido" id=segundo_apellido_cliente>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-sm-4 mobile-inputs">
@@ -185,7 +186,7 @@
                                                                      
                                                                                 <div class="radio radio-inline">
                                                                                     <label>
-                                                                                        <input type="radio" name="radio_genero" id="radio_genero" value="Femenino" checked>
+                                                                                        <input type="radio" name="radio_genero" id="radio_genero" value="Femenino">
                                                                                         <i class="helper">
                                                                                         </i>
                                                                                         Femenino
@@ -193,7 +194,7 @@
                                                                                 </div>
                                                                                 <div class="radio radio-inline">
                                                                                     <label>
-                                                                                        <input type="radio" name="radio_genero" id="radio_genero	" value="Masculino">
+                                                                                        <input type="radio" name="radio_genero" id="radio_genero" value="Masculino">
                                                                                         <i class="helper">
                                                                                         </i>
                                                                                         Masculino
@@ -213,7 +214,7 @@
                                                                     <div class="col-sm-12">
                                                                     <!--input  type='text' id="example-datetime-local-input"  value="" class="form-control datepicker-here" data-timepicker="false" data-language='es' min="1919-01-01" max="2001-01-01" data-date-format="dd/mm/yyyy"/-->
                                                                         <!--input class="form-control" type="date" value="1919-01-01" id="example-datetime-local-input" min="1919-01-01" max="2001-01-01"-->
-                                                                        <input class="form-control" type="text"  value="05" id="example-datetime-local-input">
+                                                                        <input class="form-control" type="text"   id="example-datetime-local-input">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-sm-6 mobile-inputs">
@@ -378,7 +379,7 @@
                                                             	  <div class="col-sm-6">
                                                                     <label class="col-sm-12 col-form-label">Monto Pre-Aprobado</label>
                                                                     <div class="col-sm-12">
-                                                                        <input type="text" class="form-control input1" value="2000" name="primer_nombre" id="preAprobado" hidden>
+                                                                        <input type="text" class="form-control input1" value="2000" name="primer_nombre" id="preAprobado" readonly>
                                                                          <div class="colones">₡</div>
                                                                     </div>
                                                                 </div>
@@ -449,6 +450,7 @@
                                                                                 <option value="PROPIA">Propia</option>
                                                                                 <option value="ALQUILADA">Alquilada</option>
                                                                                   <option value="DE UN FAMILIAR">De un Familiar</option>
+                                                                                  <option value="OTROS">Otros</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -467,15 +469,15 @@
 
                                                             <!--//////////////////////////////////////////////-->
                                                             <div class="row">
-                                                              <div class="col-sm-6">
+                                                              <!--div class="col-sm-6">
                                                                     <label class="col-sm-12 col-form-label">Pais de Actual(*)</label>
                                                                     <div class="col-sm-12">
                                                                         <select title="El campo no puede estar vacio" name="pais_vivienda" id="pais_vivienda" class="form-control" required>
                                                                                 
                                                                         </select>
                                                                     </div>
-                                                                </div>
-                                                                <div class="col-sm-6">
+                                                                </div-->
+                                                                <div class="col-sm-4">
                                                                     <label class="col-sm-12 col-form-label">Provincia(*)</label>
                                                                     <div class="col-sm-12">
                                                                         <select title="El campo no puede estar vacio" name="provincia" id="provinciaVivienda" class="form-control" required>
@@ -483,10 +485,7 @@
                                                                         </select>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            
-                                                          <div class="row">
-                                                               <div class="col-sm-6">
+                                                                  <div class="col-sm-4">
                                                                     <label class="col-sm-12 col-form-label">Canton(*)</label>
                                                                     <div class="col-sm-12">
                                                                         <select title="El campo no puede estar vacio" name="canton" id="cantonVivienda" class="form-control" required>
@@ -494,7 +493,8 @@
                                                                         </select>
                                                                     </div>
                                                                 </div>
-                                                           <div class="col-sm-6">
+                                                                
+                                                                      <div class="col-sm-4">
                                                                     <label class="col-sm-12 col-form-label">Distrito</label>
                                                                     <div class="col-sm-12">
                                                                         <select title="El campo no puede estar vacio" name="distrito" id="distritoVivienda" class="form-control" required>
@@ -502,8 +502,10 @@
                                                                         </select>
                                                                     </div>
                                                              </div>
+                                                                
                                                             </div>
-
+                                                            
+              
                                                             <!--//////////////////////////////////////////////-->
 
                                                      
@@ -526,13 +528,18 @@
                                                             <!--//////////////////////////////////////////////-->
                                                             
                                                              <div class="row">
-                                                                <div class="col-sm-8">
+                                                                <div class="col-sm-12">
                                                                     <label class="col-sm-12 col-form-label">Punto de referencia(*)</label>
                                                                     <div class="col-sm-12">
-                                                                        <input  class="form-control" title="El campo no puede estar vacio" type="textarea" name="punto_referencia" id="ptoReferencia" required>
+                                                                     <textarea rows="8" cols="50" class="form-control" title="El campo no puede estar vacio" placeholder="" name="punto_referencia" id="ptoReferencia" maxlength="500" required></textarea>
+                                                                    
                                                                     </div>
                                                                 </div>
-                                                                 <div class="col-sm-4">
+                                                                
+                                                            </div>
+                                                            
+                                                            <div class="row">
+                                                             <div class="col-sm-4">
                                                                     <label class="col-sm-12 col-form-label">Codigo Postal(*)</label>
                                                                     <div class="col-sm-12">
                                                                    <input class="form-control" title="El campo no puede estar vacio" type="text" name="codigo_postal" id="codPostal" readonly required>
@@ -595,7 +602,7 @@
                                            
                                                                 
                                                                 <div class="col-sm-6 mobile-inputs">
-                                                                    <label class="col-sm-12 col-form-label">Tipo Fijo de la Empresa</label>
+                                                                    <label class="col-sm-12 col-form-label">Actividad de la empresa</label>
                                                                     <div class="col-sm-12">
                                                                         <input type="text" class="form-control" title="El campo no puede estar vacio" placeholder="" name="actividadEmpresa" id="actividadEmpresa" required>
                                                                     </div>
@@ -623,7 +630,7 @@
                                                                     <label class="col-sm-12 col-form-label">Sueldo</label>
                                                                     <div class="col-sm-12">
                                                                            <select title="El campo no puede estar vacio" name="sueldoMensual" id="sueldoMensual" class="form-control" required>
-                                                                                <option value="400">Menos a 400.000 Colonos</option>
+                                                                                <option value="200">Menos a 400.000 Colones</option>
                                                                                 <option value="400">De 400.000 a 850.000 Colones</option>
                                                                                 <option value="850">De 850.001 a 2.000.000 Colones</option>
                                                                                 <option value="2000">De 2.000.000 a 3.000.000 Colones</option>
@@ -670,14 +677,14 @@
                                                      
                                                             
                                                                  <div class="row">
-                                                                <div class="col-sm-6">
+                                                                <!--div class="col-sm-6">
                                                                     <label class="col-sm-12 col-form-label">Correo electronico personal(*)</label>
                                                                     <div class="col-sm-12">
                                                                         <input title="El campo no puede estar vacio" type="email" class="form-control correo_trabajo" placeholder="" name="correo" id="correo_ref" oncopy="return false" onpaste="return false" required>
                                                                     </div>
-                                                                </div>
+                                                                </div-->
                                                                 <div class="col-sm-6 mobile-inputs">
-                                                                    <label class="col-sm-12 col-form-label">Confirmar correo electronico personal(*)</label>
+                                                                    <label class="col-sm-12 col-form-label">Correo Electrónico(*)</label>
                                                                     <div class="col-sm-12">
                                                                         <input title="El campo no puede estar vacio" type="email" class="form-control correo_trabajo_confirm" placeholder="" name="email" id="email" oncopy="return false" onpaste="return false" required >
                                                                     </div>
@@ -720,8 +727,14 @@
                                                                 <div class="col-sm-6 mobile-inputs">
                                                                       <label class="col-sm-12 col-form-label">Ultimo Sueldo Mensual</label>
                                                                     <div class="col-sm-12">
-                                                                         <input type="text"  class="form-control input1" placeholder="" value="0" name="ultimoSueldo" id="ultimoSueldo">
-                                                                     <div class="colones">₡</div>
+                                                                  
+                                                                        <select title="El campo no puede estar vacio" name="ultimoSueldo" id="ultimoSueldo" class="form-control" required>
+                                                                                <option value="200">Menos a 400.000 Colones</option>
+                                                                                <option value="400">De 400.000 a 850.000 Colones</option>
+                                                                                <option value="850">De 850.001 a 2.000.000 Colones</option>
+                                                                                <option value="2000">De 2.000.000 a 3.000.000 Colones</option>
+                                                                                <option value="3000">De 3.000.000 Colones en adelante</option>
+                                                                        </select>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -797,7 +810,7 @@
                                                                 <div class="col-sm-6 mobile-inputs">
                                                                     <label class="col-sm-12 col-form-label">Segundo apellido(*)</label>
                                                                     <div class="col-sm-12">
-                                                                        <input type="text" title="El campo no puede estar vacio"  class="form-control segundo_apellido_referencia" placeholder="" name="segundo_apellido_referencia" id="segundo_apellido_trabajo" required>
+                                                                        <input type="text" title="El campo no puede estar vacio"  class="form-control segundo_apellido_referencia" placeholder="" name="segundo_apellido_referencia" id="segundo_apellido">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -809,8 +822,9 @@
                                                                     <label class="col-sm-12 col-form-label">Tipo de identificador(*)</label>
                                                                     <div class="col-sm-12">
                                                                         <select title="El campo no puede estar vacio"  name="tipo_identificador_referencia" id="tipoDocumento" class="form-control" onChange="addCedulaReferencia()" required>
+                                                                                <option value="0" selected disabled>Seleccione Tipo de identificador</option>
                                                                                 <option value="Cedula">Cedula Nacional</option>
-                                                                                <option value="Cedula Residencia">Cedula Residencia</option>
+                                                                                <option value="DIMEX">DIMEX</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -827,7 +841,7 @@
                                                                       
                                                                                 <div class="radio radio-inline">
                                                                                     <label>
-                                                                                        <input type="radio" name="radio_genero" id="genero" value="Femenino" checked>
+                                                                                        <input type="radio" name="genero" id="genero" value="Femenino" checked>
                                                                                         <i class="helper">
                                                                                         </i>
                                                                                         Femenino
@@ -835,7 +849,7 @@
                                                                                 </div>
                                                                                 <div class="radio radio-inline">
                                                                                     <label>
-                                                                                        <input type="radio" name="radio_genero" id="genero" value="Masculino">
+                                                                                        <input type="radio" name="genero" id="genero" value="Masculino">
                                                                                         <i class="helper">
                                                                                         </i>
                                                                                         Masculino
@@ -893,7 +907,9 @@
                                                                 <div class="col-sm-3">
                                                                     <label class="col-sm-12 col-form-label">Nombre del Banco</label>
                                                                     <div class="col-sm-12">
-                                                                        <input type="text"   class="form-control" placeholder=""  name="banco" id="banco">
+                                                                <select title="El campo no puede estar vacio" name="banco" id="banco" class="form-control" required>
+                                                                   
+                                                                        </select>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-sm-3">
@@ -911,7 +927,7 @@
                                                                                 </div>
                                                                                 <div class="radio radio-inline col-sm-4">
                                                                                     <label>
-                                                                                         <input type="radio" name="ctaAhorro" id="ctaAhorro" value="No" checked>
+                                                                                         <input type="radio" name="ctaAhorro" id="ctaAhorro" value="No">
                                                                                         <i class="helper">
                                                                                         </i>
                                                                                         No
@@ -939,7 +955,7 @@
                                                                                 </div>
                                                                                 <div class="radio radio-inline col-sm-4">
                                                                                     <label>
-                                                                                         <input type="radio" name="ctaCorriente" id="ctaCorriente" value="No" checked>
+                                                                                         <input type="radio" name="ctaCorriente" id="ctaCorriente" value="No">
                                                                                         <i class="helper">
                                                                                         </i>
                                                                                         No
@@ -972,7 +988,7 @@
                                                                                 </div>
                                                                                 <div class="radio radio-inline col-sm-4">
                                                                                     <label>
-                                                                                         <input type="radio" name="tarjeta_credito" id="tarjetaCredito" value="No" checked>
+                                                                                         <input type="radio" name="tarjeta_credito" id="tarjetaCredito" value="No">
                                                                                         <i class="helper">
                                                                                         </i>
                                                                                         No
@@ -986,20 +1002,20 @@
                                                              	
                                                              	
                                                              	 <div class="col-sm-3" id="emisor">
-                                                                    <label class="col-sm-12 col-form-label">Banco emisor</label>
+                                                                    <label class="col-sm-12 col-form-label">Emisor</label>
                                                                     <div class="col-sm-12">
                                                                      <input type="text"   class="form-control" title="Introducir banco emisor" placeholder=""  name="bancoEmisor" id="bancoEmisor" minlength="2" maxlength="16">
                                                                         
                                                                     </div>
                                                                 </div>
                                                              	
-                                                               <div class="col-sm-3" id="poseeTarjeta">
+                                                               <!--div class="col-sm-3" id="poseeTarjeta">
                                                                     <label class="col-sm-12 col-form-label">Tarjeta de credito</label>
                                                                     <div class="col-sm-12">
                                                                      <input type="text"   class="form-control" title="Debe ingresar 16 digitos" placeholder=""  name="TDC" id="TDC" minlength="16" maxlength="16">
                                                                         
                                                                     </div>
-                                                                </div>
+                                                                </div-->
                                                                 
                                                                 
                                                             </div>
@@ -1056,6 +1072,34 @@
                                                                     </div>
                                                                 </div>
                                                                 
+                                                                 <div class="form-group row">
+                                                                	<div class="row col-sm-12">
+                                                                        <div class="col-sm-6">
+                                                                            <label for="file" class="col-sm-12 col-form-label">Documento de Identificación Personal</label>
+                                                                            <div class="col-sm-12">
+                                                                                <input type="file" id="filePersonalInformationName" name="filePersonalInformationName" class="form-control" required>
+                                                                                 <input type="text" id="filePersonal_f" value="" class="form-control" hidden>
+                                                                            </div>
+                                                                        </div>
+                                                                         <div class="col-sm-3">
+                                                                        	<label for="file" class="col-sm-12 col-form-label">Visualizar Documento Cargado</label>
+                                                                        	<div class="col-sm-12">
+                                                                        		<button type="button" id="view_filePersonal_save"   class="btn btn-success btn-md waves-effect text-center mb-20"  data-toggle="modal" data-target="#exampleModalLong" disabled >
+	                                                                            	Ver Cargado
+	                                                                        	</button>
+                                                                        	</div>
+                                                                        </div>
+                                                                        <div class="col-sm-3">
+                                                                        	<label for="file" class="col-sm-12 col-form-label">Documento de Identificación Financiero</label>
+                                                                        	<div class="col-sm-12">
+                                                                        		<button type="button" id="view_personal" class="btn btn-primary btn-md waves-effect text-center mb-20" data-toggle="modal" data-target="#exampleModalLong"  disabled>
+	                                                                            	Nuevo archivo Visualizar
+	                                                                        	</button>
+                                                                        	</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
                                                                 <div class="form-group row">
                                                                 	<div class="row col-sm-12">
                                                                 		
@@ -1085,33 +1129,7 @@
                                                                     </div>
                                                                 </div>
 																	
-                                                                <div class="form-group row">
-                                                                	<div class="row col-sm-12">
-                                                                        <div class="col-sm-6">
-                                                                            <label for="file" class="col-sm-12 col-form-label">Documento de Identificación Personal</label>
-                                                                            <div class="col-sm-12">
-                                                                                <input type="file" id="filePersonalInformationName" name="filePersonalInformationName" class="form-control" required>
-                                                                                 <input type="text" id="filePersonal_f" value="" class="form-control" hidden>
-                                                                            </div>
-                                                                        </div>
-                                                                         <div class="col-sm-3">
-                                                                        	<label for="file" class="col-sm-12 col-form-label">Visualizar Documento Cargado</label>
-                                                                        	<div class="col-sm-12">
-                                                                        		<button type="button" id="view_filePersonal_save"   class="btn btn-success btn-md waves-effect text-center mb-20"  data-toggle="modal" data-target="#exampleModalLong" disabled >
-	                                                                            	Ver Cargado
-	                                                                        	</button>
-                                                                        	</div>
-                                                                        </div>
-                                                                        <div class="col-sm-3">
-                                                                        	<label for="file" class="col-sm-12 col-form-label">Documento de Identificación Financiero</label>
-                                                                        	<div class="col-sm-12">
-                                                                        		<button type="button" id="view_personal" class="btn btn-primary btn-md waves-effect text-center mb-20" data-toggle="modal" data-target="#exampleModalLong"  disabled>
-	                                                                            	Nuevo archivo Visualizar
-	                                                                        	</button>
-                                                                        	</div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                               
                                                                 
                                                                                                                                
 
@@ -1205,7 +1223,7 @@
                                                                 	<div class="row col-sm-12">
 	                                                                    <label class="col-sm-12 col-form-label">Obseravciones</label>
 	                                                                    <div class="col-sm-12">
-	                                                                        <textarea rows="4" cols="50" class="form-control" title="El campo no puede estar vacio" placeholder="" name="documentsCreditSupport" id="documentsCreditSupport" required></textarea>
+	                                                                        <textarea rows="12" cols="50" class="form-control" title="El campo no puede estar vacio" placeholder="" name="documentsCreditSupport" id="documentsCreditSupport" required  maxlength="1000"></textarea>
 	                                                                     
 	                                                                    </div>
                                                                     </div>
@@ -1215,7 +1233,7 @@
                                                             	  <div class="col-sm-6">
                                                                     <label class="col-sm-12 col-form-label">Monto Aprobado</label>
                                                                     <div class="col-sm-12">
-                                                                        <input type="text" class="form-control input1" name="montoAprobado" id="montoAprobado">
+                                                                        <input type="text" class="form-control input1" value="300000" name="montoAprobado" id="montoAprobado">
                                                                          <div class="colones">₡</div>
                                                                     </div>
                                                                 </div>

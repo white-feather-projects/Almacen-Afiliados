@@ -21,6 +21,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="codigoUsuarioModifica" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="comercioContactoId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="comercioId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="contacto" type="{http://service.cbp.ws.cbp3.com/}contacto" minOccurs="0"/>
  *         &lt;element name="contactoId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="fechaCargaDatos" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="fechaHoraModificacion" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
@@ -37,6 +38,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "codigoUsuarioModifica",
     "comercioContactoId",
     "comercioId",
+    "contacto",
     "contactoId",
     "fechaCargaDatos",
     "fechaHoraModificacion"
@@ -46,6 +48,7 @@ public class ComercioContacto {
     protected Long codigoUsuarioModifica;
     protected Long comercioContactoId;
     protected long comercioId;
+    protected Contacto contacto;
     protected long contactoId;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fechaCargaDatos;
@@ -114,6 +117,30 @@ public class ComercioContacto {
      */
     public void setComercioId(long value) {
         this.comercioId = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad contacto.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Contacto }
+     *     
+     */
+    public Contacto getContacto() {
+        return contacto;
+    }
+
+    /**
+     * Define el valor de la propiedad contacto.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Contacto }
+     *     
+     */
+    public void setContacto(Contacto value) {
+        this.contacto = value;
     }
 
     /**

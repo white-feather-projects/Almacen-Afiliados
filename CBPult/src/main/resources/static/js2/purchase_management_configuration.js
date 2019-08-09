@@ -65,7 +65,7 @@ var contenido = {
             
   		  type: "POST",
   		  
-  		  url: "/guardar",
+  		  url: "/CBPult/Gestion_Compras/guardar",
   		  data: JSON.stringify(contenido),
   		dataType: "json",
   		  success: function(data)
@@ -79,7 +79,7 @@ var contenido = {
         	    buttons: false,
         	},
         	function() {
-        	    location.href = "/listpurchaseorder";
+        	    location.href = "/CBPult/dashborad";
         	})   
                                
               }
@@ -93,7 +93,7 @@ var contenido = {
    $("#cancelar").click(function(){
   
  	   localStorage.clear();
-        location.href = "/dashborad";
+        location.href = "/CBPult/dashborad";
     });
     
     

@@ -77,10 +77,10 @@ $(document).ready(function(){
 				console.log("validar",validarEdad);
 				var years = moment().diff(validarEdad, 'years');
 			    if(years >= 21){
-				alert(years);
+				//alert(years);
 			    }else{
 			   document.getElementById('example-datetime-local-input').value = " ";
-			   swal("No tiene la edad suficiente para solicitar una tarjeta de credito");
+			   swal("No tiene la edad suficiente para solicitar una tarjeta de credito!");
 			    }
 			}
 		  });

@@ -24,7 +24,6 @@ window.addEventListener('load', function(){
 	
 	nombre_empresa_tab2.addEventListener('blur', ()=>{
 		console.log("nombre empresa", nombre_empresa_tab2.value);
-		soloTexto(nombre_empresa_tab2);
 		document.getElementById("nombre_empresa_tab2").style.border = "1px solid black";
 	});
 	

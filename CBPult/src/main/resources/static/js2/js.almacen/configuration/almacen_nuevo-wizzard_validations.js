@@ -11,7 +11,7 @@ $(document).ready(function(){
 	// tab Almacen
 	txtDescAlmacen.blur(function(){
 		if(txtDescAlmacen.val().length > 0){
-			soloTexto1(txtDescAlmacen);
+			
 		}else{
 			txtDescAlmacen.css("border", "1px solid red");
 		}		
@@ -19,7 +19,7 @@ $(document).ready(function(){
 	
 	txtUbicacionAlmacen.blur(function(){
 		if(txtUbicacionAlmacen.val().length > 0){
-			soloTexto1(txtUbicacionAlmacen);
+			
 		}else{
 			txtUbicacionAlmacen.css("border" , "1px solid red");
 		}
@@ -63,10 +63,10 @@ $('#demo').steps({
 							'relacionesAlmacen': {}
 					};
 					console.log(data_almacen);
-					alert("Valido");
+					//swal("Valido");
 					
 				}else if(validated != 2){
-					alert("invalido");
+					//swal("invalido");
 					return false;
 				}				
 				
@@ -106,7 +106,8 @@ $('#demo').steps({
 		return true;        
 	},
 	onFinish: function () {
-		alert('Wizard Completed');
+		//alert('Wizard Completed');
+		location.href = "/CBPult/Almacen/configuration_almacen";
 	}
 
 });
@@ -135,7 +136,7 @@ function soloNumeros(numero){
 }
 
 function recorrerswitch(){
-	alert("dentro Switches");
+	//alert("dentro Switches");
 	var blue_switches = $('.js-switch-blue-zona');
 	console.log(blue_switches);
 	
@@ -145,4 +146,19 @@ function recorrerswitch(){
 		});
 	});
 
+}
+
+function soloLetrasYNum(campo) {
+	 var validos = " abcdefghijklmnopqrstuvwxyz0123456789";
+	 var letra;
+	 var bien = true;
+	 for (var i=0; i<campo.value.length; i++) {
+		  letra=campo.value.charAt(i).toLowerCase()
+		  if (validos.indexOf(letra) == -1){bien=false;};
+		  }
+		  if (!bien) {
+			  campo.value = "";
+			  swal("Campo Alfanumerico");
+			  //campo.focus();
+		  }
 }

@@ -1,7 +1,7 @@
 'use strict'
 
-var thEditar = "/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico";
-var thEliminar = "/img2/bin_delete_file_garbage_recycle_remove_trash_icon_123192.ico";
+var thEditar = "../img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico";
+var thEliminar = "../img2/bin_delete_file_garbage_recycle_remove_trash_icon_123192.ico";
 
 $(document).ready(function(){	
 	var contador_zonas = 1;
@@ -62,7 +62,7 @@ $(document).ready(function(){
                                     <div class="col-sm-12 mobile-inputs">
                                     	<label class="col-sm-12 col-form-label">Descripción Zona</label>
                                     	<div class="col-sm-12">
-                                            <input type="text" id="txtDescripcion_zona`+contador_zonas+`" onblur="soloTexto(`+contador_zonas+`)" class="form-control solo_texto" placeholder="">
+                                            <input type="text" id="txtDescripcion_zona`+contador_zonas+`" onblur="lleno(`+contador_zonas+`)" class="form-control solo_texto" placeholder="">
                                         </div>
                                     </div>	                                                        	
                                     
@@ -315,7 +315,7 @@ $(document).ready(function(){
 		
 		contenedor_zonas.append(html_zona);
 		contenedor_relZonas.append(html_relacion_zona);
-		alert("nueva Zona "+contador_zonas);
+		swal("nueva Zona "+contador_zonas);
 		
 		// tablas del Tab de Zonas
 		$('table.display'+contador_zonas).DataTable({ 
@@ -376,7 +376,7 @@ function crearTr(actual){
 			    	<td>`+modulos.val()+`</td>
 			    	<td>`+niveles.val()+`</td>																														    	
 			    	<td>
-			    		<a onclick="location.href = '/relacion-zona_nuevo-editar'">
+			    		<a onclick="location.href = '/CBPult/Almacen/relacion-zona_nuevo-editar'">
 			    			<img alt="Editar" src="`+thEditar+`" width="30px">
 			    		</a>
 			    		<a onclick="alert('Relación Eliminada')">
@@ -393,7 +393,7 @@ function crearTr(actual){
 		modulos.css("border", "1px solid red");
 		niveles.val("");
 		modulos.val("");
-		alert("llenar los campos de la Estanteria");
+		swal("llenar los campos de la Estanteria");
 	}
 	
 	
@@ -420,6 +420,19 @@ function soloTexto(desc){
 		else{
 			texto.css("border", "1px solid #20c997");
 		}
+	}
+	else{
+		texto.css("border", "1px solid red");
+	}
+	
+}
+
+function lleno(desc){
+	
+	var texto = $('#txtDescripcion_zona'+desc);
+	
+	if(texto.val().length > 0){
+		
 	}
 	else{
 		texto.css("border", "1px solid red");

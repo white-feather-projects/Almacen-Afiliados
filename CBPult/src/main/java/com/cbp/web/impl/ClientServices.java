@@ -30,6 +30,7 @@ import com.cbp1.ws.cbp.service.ClientWS;
 import com.cbp1.ws.cbp.service.ClientsWs;
 import com.cbp1.ws.cbp.service.CodigoPostal;
 import com.cbp1.ws.cbp.service.Distrito;
+import com.cbp1.ws.cbp.service.EntityBank;
 import com.cbp1.ws.cbp.service.InformacionAdicionalClienteDTO;
 import com.cbp1.ws.cbp.service.NewClientDTO;
 import com.cbp1.ws.cbp.service.Pais;
@@ -474,6 +475,25 @@ public class ClientServices extends Util implements ClientDAO {
 		}
 		return list;
 	}
+	
+	@Override
+	public List<EntityBank> listBanksWS() {
+		List<EntityBank> list= new ArrayList<>();
+		ClientsWs ws;
+		try {
+			ws = new ClientsWs(new URL(readProperties("IP.AMBIENTE")+"/CBP-1/ClientsWs?WSDL"));
+			ClientWS wl = ws.getClientWSPort();
+			list=wl.listBanksWS();
+
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
 
 	@Override
 	public com.cbp1.ws.cbp.service.RespuestaDTO createNewClient(NewClientDTO clientDTO, String userLogeeado) {
@@ -526,6 +546,8 @@ public class ClientServices extends Util implements ClientDAO {
 			ClientWS wl = ws.getClientWSPort();
 			client=wl.saveAditionaInformationClient(info,idclient);
 		
+
+			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -535,6 +557,7 @@ public class ClientServices extends Util implements ClientDAO {
 		}
 
 
+		System.out.printf("infoAdicional{ }"+ info.toString());
 
 
 		return client;
@@ -586,7 +609,7 @@ public class ClientServices extends Util implements ClientDAO {
 		InformacionAdicionalClienteDTO client= new InformacionAdicionalClienteDTO();
 		ClientsWs ws;
 		try {
-			ws = new ClientsWs(new URL("http://18.223.203.6:8080/CBP-1/ClientsWs?WSDL"));
+			ws = new ClientsWs(new URL(readProperties("IP.AMBIENTE")+"/CBP-1/ClientsWs?WSDL"));
 			ClientWS wl = ws.getClientWSPort();
 			client=wl.consultAllClientByIdClientWS(id);
 			
@@ -608,7 +631,8 @@ public class ClientServices extends Util implements ClientDAO {
 		com.cbp1.ws.cbp.service.RespuestaDTO client= new com.cbp1.ws.cbp.service.RespuestaDTO();
 		ClientsWs ws;
 		try {
-			ws = new ClientsWs(new URL("http://18.223.203.6:8080/CBP-1/ClientsWs?WSDL"));
+			ws = new ClientsWs(new URL(readProperties("IP.AMBIENTE")+"/CBP-1/ClientsWs?WSDL"));
+			//ws = new ClientsWs(new URL("http://192.168.1.7:8080/CBP-1/ClientsWs?WSDL"));
 			ClientWS wl = ws.getClientWSPort();
 			client=wl.actualizaClienteConInformacionAdicionalWS(info);
 		
@@ -622,6 +646,8 @@ public class ClientServices extends Util implements ClientDAO {
 
 		return client;
 	}
+
+	
 	
 	
 

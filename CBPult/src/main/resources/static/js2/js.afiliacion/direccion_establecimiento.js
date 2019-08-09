@@ -898,7 +898,6 @@ window.addEventListener('load', function(){
 	
 	avenida_calle.addEventListener('blur', ()=>{
 		console.log("avenida_calle", avenida_calle.value);
-		soloNumeros(avenida_calle);
 		document.getElementById("avenida_calle_tab5").style.border = "1px solid black";
 	});
 	
@@ -910,13 +909,13 @@ window.addEventListener('load', function(){
 	
 	localidad.addEventListener('blur', ()=>{
 		console.log("localidad", localidad.value);
-		soloTexto(localidad);
+		soloLetrasYNum(localidad);
 		document.getElementById("localidad_tab5").style.border = "1px solid black";
 	});
 	
 	nombre_inmueble.addEventListener('blur', ()=>{
 		console.log("nombre_inmueble", nombre_inmueble.value);
-		soloTexto(nombre_inmueble);
+		soloLetrasYNum(nombre_inmueble);
 		document.getElementById("nombre_inmueble_tab5").style.border = "1px solid black";
 	});
 	
@@ -927,7 +926,7 @@ window.addEventListener('load', function(){
 	
 	punto_referencia.addEventListener('blur', ()=>{
 		console.log("punto_referencia", punto_referencia.value);
-		soloTexto(punto_referencia);
+		soloLetrasYNum(punto_referencia);
 		document.getElementById("punto_referencia_tab5").style.border = "1px solid black";
 	});
 
@@ -953,4 +952,19 @@ function soloNumeros(numero){
 	}else{
 		return true;
 	}
+}
+
+function soloLetrasYNum(campo) {
+	 var validos = " abcdefghijklmnopqrstuvwxyz0123456789";
+	 var letra;
+	 var bien = true;
+	 for (var i=0; i<campo.value.length; i++) {
+		  letra=campo.value.charAt(i).toLowerCase()
+		  if (validos.indexOf(letra) == -1){bien=false;};
+		  }
+		  if (!bien) {
+			  campo.value = "";
+			  swal("Campo Alfanumerico");
+			  //campo.focus();
+		  }
 }

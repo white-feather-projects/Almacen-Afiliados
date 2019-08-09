@@ -64,14 +64,14 @@
 															    <div class="step-app">
 															      <ul class="step-steps">
 															        <!-- <li class="tb1"><a href="#tab1"><span class="number"></span> <i class="fa fa-user" style="font-size:30px"></i></a></li> -->
-															        <li class="tb2"><a href="#tab2" id="verificar"><span class="number"></span> <i class="fa fa-home" style="font-size:30px"></i></a></li>
-															        <li class="tb3"><a href="#tab3"><span class="number"></span> <i class="fa fa-suitcase" style="font-size:30px"></i></a></li>
-															        <li class="tb4"><a href="#tab4"><span class="number"></span><i class="fa fa-id-card-o" style="font-size:30px"></i></a></li>
-															        <li class="tb5"><a href="#tab5"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
-															        <li class="tb6"><a href="#tab6"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
-															        <li class="tb7"><a href="#tab7"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
-															        <li class="tb8"><a href="#tab8"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
-															        <li class="tb9"><a href="#tab9"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
+															        <li class="tb2"><a th:href="@{#tab2}" id="verificar"><span class="number"></span> <i class="fa fa-home" style="font-size:30px"></i></a></li>
+															        <li class="tb3"><a th:href="@{#tab3}"><span class="number"></span><i class="fa fa-suitcase" style="font-size:30px"></i></a></li>
+															        <li class="tb4"><a th:href="@{#tab4}"><span class="number"></span><i class="fa fa-id-card-o" style="font-size:30px"></i></a></li>
+															        <li class="tb5"><a th:href="@{#tab5}"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
+															        <li class="tb6"><a th:href="@{#tab6}"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
+															        <li class="tb7"><a th:href="@{#tab7}"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
+															        <li class="tb8"><a th:href="@{#tab8}"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
+															        <li class="tb9"><a th:href="@{#tab9}"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
 															      </ul>
 															      <div class="step-content">
 															      	<div class="step-tab-panel" id="tab2">
@@ -96,10 +96,9 @@
 										                                                                    	</div>
 																												<div class="col-sm-12">
 																													<select name="select" id="tipo_identificacion_tab2" class="form-control">
-																														<option value="RIF">RIF</option>
-										                                                                                <option value="C.I.">C.I.</option>
-										                                                                                <option value="Pasaporte">Pasaporte</option>
-										                                                                                <option value="Cedula de persona jurídica">Cedula de persona jurídica</option>
+																														<option value="Cedula de Residente">Cedula de Residente</option>
+										                                                                                <option value="DIMEX">DIMEX</option>
+										                                                                                <option value="Cedula de Persona Jurídica">Cedula de Persona Jurídica</option>
 								                                                                        			</select>
 																												</div>
 																												
@@ -163,7 +162,7 @@
 										                                                                    		<label>Documento de Identidad(*): </label>
 										                                                                    	</div>
 																												<div class="col-sm-12">
-																													<input type="text" class="form-control" placeholder="" id="identificacion_tab2" required/>
+																													<input type="text" class="form-control" placeholder="" id="identificacion_tab2" maxlength="9" required/>
 																												</div>
 																												
 																												<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -352,6 +351,7 @@
 									                                                                    	</div>
 																											<div class="col-sm-12">
 																												<input type="text" class="form-control" placeholder="" id="nombre_banco_tab3"/>
+																												<input type="text" class="form-control" placeholder="" id="idbanco" style="visibility:hidden"/>
 																											</div>
 																											
 																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -507,7 +507,7 @@
 										                                                                    		<label>Documento de identidad(*): </label>
 										                                                                    	</div>
 																												<div class="col-sm-12">
-																													<input type="text" class="form-control" placeholder="" id="identificacion_tab4" required/>
+																													<input type="text" class="form-control" placeholder="" id="identificacion_tab4" maxlength="9" required/>
 																												</div>
 																												
 																												<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -665,7 +665,7 @@
 																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																											
 																											<div class="col-sm-12">
-									                                                                    		<label>Geo Localización(*): </label>
+									                                                                    		<label>Geo Localización: </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
 																												<input type="text" class="form-control" placeholder="" id="geo_localizacion_tab5"/>
@@ -696,8 +696,9 @@
 						                                                        </div>
 						                                                        <div class="card-block">
 						                                                            <h4 class="sub-title">Datos de Persona Contacto</h4>
-						                                                            	<div class="row col-sm-12">
-								                                                            <div class="col-sm-6">
+						                                                            <div class="row col-sm-12">
+						                                                            	
+								                                                            <div class="col-sm-12">
 								                                                            	<form id="miform">
 									                                                                <div class="form-group row">
 									                                                                    <div class="col-sm-12">
@@ -708,46 +709,14 @@
 																												<input type="text" class="form-control" placeholder="" id="cargo_tab6"/>
 																											</div>
 																											
-																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
-																											
-																											<div class="col-sm-12">
-									                                                                    		<label>Segundo Nombre(*): </label>
-									                                                                    	</div>
-																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="segundo_nombre_tab6"/>
-																											</div>
-																											
-																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
-																											
-																											<div class="col-sm-12">
-									                                                                    		<label>Segundo Apellido(*): </label>
-									                                                                    	</div>
-																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="segundo_apellido_tab6"/>
-																											</div>
-																											
-																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
-																											
-																											<div class="col-sm-12">
-									                                                                    		<label>Identificación(*): </label>
-									                                                                    	</div>
-																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="identificacion_tab6"/>
-																											</div>
-																											
-																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
-																											
-																											<div class="col-sm-12">
-									                                                                    		<label>Correo Electronico(*): </label>
-									                                                                    	</div>
-																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="correo_electronico_tab6"/>
-																											</div>
 																											
 									                                                                    </div>
 									                                                                </div>
 									                                                            </form>
 								                                                            </div>
+						                                                            	</div>
+						                                                            	<div class="row col-sm-12">
+						                                                            	
 								                                                            <div class="col-sm-6">
 								                                                            	<form id="miform">
 									                                                                <div class="form-group row">
@@ -775,9 +744,9 @@
 									                                                                    	</div>
 																											<div class="col-sm-12">
 																												<select name="select" id="tipo_identificacion_tab6" class="form-control">
-																													<option value="RIF">RIF</option>
-									                                                                                <option value="C.I.">C.I.</option>
-									                                                                                <option value="Pasaporte">Pasaporte</option>
+																													<option value="Cedula de Residente">Cedula de Residente</option>
+									                                                                                <option value="DIMEX">DIMEX</option>
+									                                                                                <option value="Cedula de Persona Jurídica">Cedula de Persona Jurídica</option>
 							                                                                        			</select>
 																											</div>
 																											
@@ -788,6 +757,48 @@
 									                                                                    	</div>
 																											<div class="col-sm-12">
 																												<input type="text" class="form-control" placeholder="" id="telefono_tab6"/>
+																											</div>
+																											
+									                                                                    </div>
+									                                                                </div>
+									                                                            </form>
+								                                                            </div>
+								                                                            <div class="col-sm-6">
+								                                                            	<form id="miform">
+									                                                                <div class="form-group row">
+									                                                                    <div class="col-sm-12">
+																											<div class="col-sm-12">
+									                                                                    		<label>Segundo Nombre: </label>
+									                                                                    	</div>
+																											<div class="col-sm-12">
+																												<input type="text" class="form-control" placeholder="" id="segundo_nombre_tab6"/>
+																											</div>
+																											
+																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																											
+																											<div class="col-sm-12">
+									                                                                    		<label>Segundo Apellido: </label>
+									                                                                    	</div>
+																											<div class="col-sm-12">
+																												<input type="text" class="form-control" placeholder="" id="segundo_apellido_tab6"/>
+																											</div>
+																											
+																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																											
+																											<div class="col-sm-12">
+									                                                                    		<label>Identificación(*): </label>
+									                                                                    	</div>
+																											<div class="col-sm-12">
+																												<input type="text" class="form-control" placeholder="" id="identificacion_tab6" maxlength="9"/>
+																											</div>
+																											
+																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																											
+																											<div class="col-sm-12">
+									                                                                    		<label>Correo Electronico(*): </label>
+									                                                                    	</div>
+																											<div class="col-sm-12">
+																												<input type="text" class="form-control" placeholder="" id="correo_electronico_tab6"/>
 																											</div>
 																											
 									                                                                    </div>
@@ -822,7 +833,9 @@
 									                                                                    		<label>Nombre del Banco: </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="nombre_banco_tab7"/>
+																												<select name="select" id="nombre_banco_tab7" class="form-control">
+																												
+							                                                                        			</select>
 																											</div>
 																											
 																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -912,7 +925,7 @@
 									                                                                    	</div>
 																											<div class="col-sm-12">
 																												<select name="select" id="tipo_banco_tab8" class="form-control">
-																													<option value="BANCO 1">BANCO 1</option>
+																													
 							                                                                        			</select>
 																											</div>
 																											
@@ -1053,7 +1066,7 @@
 																        </button>
 																      </div>
 																      <div class="modal-body">
-																       <embed id="viweFiles"  src="" type="application/pdf" width="100%" height="600px" />
+																       <embed id="viweFiles" src="" type="application/pdf" width="100%" height="600px" />
 																      </div>
 																      <div class="modal-footer">
 																        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

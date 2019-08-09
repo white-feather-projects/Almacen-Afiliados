@@ -9,7 +9,8 @@
 	    <!-- DataTables -->
 	    <link rel="stylesheet" type="text/css" th:href="@{/css/datatables.min.css}">
 	    <link rel="stylesheet" type="text/css" th:href="@{/css/dataTables.bootstrap4.min.css}">	
-        
+	    <script type="text/javascript" th:src="@{/js2/js.almacen/configuration/listConfigurationWarehouse.js}"></script>
+
     </head>
     <body themebg-pattern="pattern4">
     		<!--/////////////////////////////////////////////////-->
@@ -69,12 +70,12 @@
                                                         	<div class="row">
                                                         		<div class="col-sm-12">
 	                                                        		<div class="column" align="right">																
-																		<a id="btnNuevoAlmacen_config" href="/almacen_nuevo-wizzard" style="margin-right: 5px;" title="Nueva Zona">
+																		<a id="btnNuevoAlmacen_config" href="/CBPult/Almacen/almacen_nuevo-wizzard" style="margin-right: 5px;" title="Nueva Zona">
 																			<i class="fa fa-plus-square agregaryasignar" style="font-size: 50px"></i>
 																		</a>
 																	</div>
                                                         			<div class="dt-responsive table-responsive">
-					                                                    <table id="simpletable" class="table table-striped table-bordered display2 nowrap">
+					                                                    <table id="configuracionAlmacen" class="table table-striped table-bordered  nowrap">
 					                                                        <thead>
 						                                                        <tr>
 							                                                        <th>Código</th>
@@ -86,246 +87,7 @@
 						                                                        </tr>						                                                        
 					                                                        </thead>
 					                                                        <tbody>
-					                                                            <tr>
-					                                                            	<td>1</td>
-					                                                            	<td>Almacén Puma</td>
-					                                                            	<td>Centro, Bogotá</td>
-					                                                            	<td>Almacén</td>
-					                                                            	<td>Elon Musk</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>2</td>
-					                                                            	<td>Laboratorio Raphson</td>
-					                                                            	<td>Caracas, Venezuela</td>
-					                                                            	<td>Laboratorio</td>
-					                                                            	<td>Javier Murillo</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>					                                                           
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>3</td>
-					                                                            	<td>Reparaciones Electrónicas</td>
-					                                                            	<td>Maracaibo, Venezuela</td>
-					                                                            	<td>Almacén / Técnico</td>
-					                                                            	<td>Carlos Posada</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>4</td>
-					                                                            	<td>Electrónicas y Mecatrónicos</td>
-					                                                            	<td>San José, Costa Rica</td>
-					                                                            	<td>Almacén / Técnico</td>
-					                                                            	<td>Jhon Ladurne</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>1</td>
-					                                                            	<td>Almacén Puma</td>
-					                                                            	<td>Centro, Bogotá</td>
-					                                                            	<td>Almacén</td>
-					                                                            	<td>Elon Musk</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>2</td>
-					                                                            	<td>Laboratorio Raphson</td>
-					                                                            	<td>Caracas, Venezuela</td>
-					                                                            	<td>Laboratorio</td>
-					                                                            	<td>Javier Murillo</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>					                                                           
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>3</td>
-					                                                            	<td>Reparaciones Electrónicas</td>
-					                                                            	<td>Maracaibo, Venezuela</td>
-					                                                            	<td>Almacén / Técnico</td>
-					                                                            	<td>Carlos Posada</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>4</td>
-					                                                            	<td>Electrónicas y Mecatrónicos</td>
-					                                                            	<td>San José, Costa Rica</td>
-					                                                            	<td>Almacén / Técnico</td>
-					                                                            	<td>Jhon Ladurne</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>1</td>
-					                                                            	<td>Almacén Puma</td>
-					                                                            	<td>Centro, Bogotá</td>
-					                                                            	<td>Almacén</td>
-					                                                            	<td>Elon Musk</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>2</td>
-					                                                            	<td>Laboratorio Raphson</td>
-					                                                            	<td>Caracas, Venezuela</td>
-					                                                            	<td>Laboratorio</td>
-					                                                            	<td>Javier Murillo</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>					                                                           
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>3</td>
-					                                                            	<td>Reparaciones Electrónicas</td>
-					                                                            	<td>Maracaibo, Venezuela</td>
-					                                                            	<td>Almacén / Técnico</td>
-					                                                            	<td>Carlos Posada</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>4</td>
-					                                                            	<td>Electrónicas y Mecatrónicos</td>
-					                                                            	<td>San José, Costa Rica</td>
-					                                                            	<td>Almacén / Técnico</td>
-					                                                            	<td>Jhon Ladurne</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>1</td>
-					                                                            	<td>Almacén Puma</td>
-					                                                            	<td>Centro, Bogotá</td>
-					                                                            	<td>Almacén</td>
-					                                                            	<td>Elon Musk</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>2</td>
-					                                                            	<td>Laboratorio Raphson</td>
-					                                                            	<td>Caracas, Venezuela</td>
-					                                                            	<td>Laboratorio</td>
-					                                                            	<td>Javier Murillo</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>					                                                           
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>3</td>
-					                                                            	<td>Reparaciones Electrónicas</td>
-					                                                            	<td>Maracaibo, Venezuela</td>
-					                                                            	<td>Almacén / Técnico</td>
-					                                                            	<td>Carlos Posada</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>4</td>
-					                                                            	<td>Electrónicas y Mecatrónicos</td>
-					                                                            	<td>San José, Costa Rica</td>
-					                                                            	<td>Almacén / Técnico</td>
-					                                                            	<td>Jhon Ladurne</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>1</td>
-					                                                            	<td>Almacén Puma</td>
-					                                                            	<td>Centro, Bogotá</td>
-					                                                            	<td>Almacén</td>
-					                                                            	<td>Elon Musk</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>2</td>
-					                                                            	<td>Laboratorio Raphson</td>
-					                                                            	<td>Caracas, Venezuela</td>
-					                                                            	<td>Laboratorio</td>
-					                                                            	<td>Javier Murillo</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>					                                                           
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>3</td>
-					                                                            	<td>Reparaciones Electrónicas</td>
-					                                                            	<td>Maracaibo, Venezuela</td>
-					                                                            	<td>Almacén / Técnico</td>
-					                                                            	<td>Carlos Posada</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>
-					                                                            </tr>
-					                                                            <tr>
-					                                                            	<td>4</td>
-					                                                            	<td>Electrónicas y Mecatrónicos</td>
-					                                                            	<td>San José, Costa Rica</td>
-					                                                            	<td>Almacén / Técnico</td>
-					                                                            	<td>Jhon Ladurne</td>
-					                                                            	<td>
-					                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
-					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
-					                                                            		</a>					                                                            		
-					                                                            	</td>
-					                                                            </tr>
+					                                                            
 					                                                        </tbody>
 					                                                    </table>
 				                                                   	</div>
