@@ -27,108 +27,6 @@ public interface ClientWS {
 
     /**
      * 
-     * @param idClient
-     * @return
-     *     returns com.cbp1.ws.cbp.service.InformacionAdicionalClienteDTO
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "consultAllClientByIdClientWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ConsultAllClientByIdClientWS")
-    @ResponseWrapper(localName = "consultAllClientByIdClientWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ConsultAllClientByIdClientWSResponse")
-    @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/consultAllClientByIdClientWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/consultAllClientByIdClientWSResponse")
-    public InformacionAdicionalClienteDTO consultAllClientByIdClientWS(
-        @WebParam(name = "idClient", targetNamespace = "")
-        long idClient);
-
-    /**
-     * 
-     * @param dto
-     * @return
-     *     returns com.cbp1.ws.cbp.service.RespuestaDTO
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "actualizaClienteConInformacionAdicionalWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ActualizaClienteConInformacionAdicionalWS")
-    @ResponseWrapper(localName = "actualizaClienteConInformacionAdicionalWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ActualizaClienteConInformacionAdicionalWSResponse")
-    @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/actualizaClienteConInformacionAdicionalWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/actualizaClienteConInformacionAdicionalWSResponse")
-    public RespuestaDTO actualizaClienteConInformacionAdicionalWS(
-        @WebParam(name = "dto", targetNamespace = "")
-        InformacionAdicionalClienteDTO dto);
-
-    /**
-     * 
-     * @param distrito
-     * @return
-     *     returns com.cbp1.ws.cbp.service.CodigoPostal
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "codigoPostalWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.CodigoPostalWS")
-    @ResponseWrapper(localName = "codigoPostalWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.CodigoPostalWSResponse")
-    @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/codigoPostalWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/codigoPostalWSResponse")
-    public CodigoPostal codigoPostalWS(
-        @WebParam(name = "distrito", targetNamespace = "")
-        Distrito distrito);
-
-    /**
-     * 
-     * @param idClient
-     * @param dto
-     * @return
-     *     returns com.cbp1.ws.cbp.service.RespuestaDTO
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "saveAditionaInformationClient", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.SaveAditionaInformationClient")
-    @ResponseWrapper(localName = "saveAditionaInformationClientResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.SaveAditionaInformationClientResponse")
-    @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/saveAditionaInformationClientRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/saveAditionaInformationClientResponse")
-    public RespuestaDTO saveAditionaInformationClient(
-        @WebParam(name = "dto", targetNamespace = "")
-        InformacionAdicionalClienteDTO dto,
-        @WebParam(name = "idClient", targetNamespace = "")
-        long idClient);
-
-    /**
-     * 
-     * @param nombreUsuario
-     * @return
-     *     returns com.cbp1.ws.cbp.service.ValidaClientDTO
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "consultClientByUsersFpWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ConsultClientByUsersFpWS")
-    @ResponseWrapper(localName = "consultClientByUsersFpWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ConsultClientByUsersFpWSResponse")
-    @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/consultClientByUsersFpWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/consultClientByUsersFpWSResponse")
-    public ValidaClientDTO consultClientByUsersFpWS(
-        @WebParam(name = "nombreUsuario", targetNamespace = "")
-        String nombreUsuario);
-
-    /**
-     * 
-     * @param idCanal
-     * @param nombreCanal
-     * @param clientDTO
-     * @param nombreUsuario
-     * @return
-     *     returns com.cbp1.ws.cbp.service.RespuestaDTO
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "createClientsWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.CreateClientsWS")
-    @ResponseWrapper(localName = "createClientsWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.CreateClientsWSResponse")
-    @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/createClientsWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/createClientsWSResponse")
-    public RespuestaDTO createClientsWS(
-        @WebParam(name = "clientDTO", targetNamespace = "")
-        NewClientDTO clientDTO,
-        @WebParam(name = "nombreUsuario", targetNamespace = "")
-        String nombreUsuario,
-        @WebParam(name = "idCanal", targetNamespace = "")
-        String idCanal,
-        @WebParam(name = "nombreCanal", targetNamespace = "")
-        String nombreCanal);
-
-    /**
-     * 
      * @param clientId
      * @return
      *     returns com.cbp1.ws.cbp.service.Documents
@@ -219,18 +117,15 @@ public interface ClientWS {
 
     /**
      * 
-     * @param idDocumentClient
      * @return
-     *     returns com.cbp1.ws.cbp.service.ValidaClientDTO
+     *     returns java.util.List<com.cbp1.ws.cbp.service.CategoriaOcupacional>
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "validaClientbyDocumentIdWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ValidaClientbyDocumentIdWS")
-    @ResponseWrapper(localName = "validaClientbyDocumentIdWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ValidaClientbyDocumentIdWSResponse")
-    @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/validaClientbyDocumentIdWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/validaClientbyDocumentIdWSResponse")
-    public ValidaClientDTO validaClientbyDocumentIdWS(
-        @WebParam(name = "idDocumentClient", targetNamespace = "")
-        String idDocumentClient);
+    @RequestWrapper(localName = "listCatOcupacionalWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ListCatOcupacionalWS")
+    @ResponseWrapper(localName = "listCatOcupacionalWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ListCatOcupacionalWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/listCatOcupacionalWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/listCatOcupacionalWSResponse")
+    public List<CategoriaOcupacional> listCatOcupacionalWS();
 
     /**
      * 
@@ -243,18 +138,6 @@ public interface ClientWS {
     @ResponseWrapper(localName = "listPaisWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ListPaisWSResponse")
     @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/listPaisWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/listPaisWSResponse")
     public List<Pais> listPaisWS();
-
-    /**
-     * 
-     * @return
-     *     returns java.util.List<com.cbp1.ws.cbp.service.CategoriaOcupacional>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listCatOcupacionalWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ListCatOcupacionalWS")
-    @ResponseWrapper(localName = "listCatOcupacionalWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ListCatOcupacionalWSResponse")
-    @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/listCatOcupacionalWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/listCatOcupacionalWSResponse")
-    public List<CategoriaOcupacional> listCatOcupacionalWS();
 
     /**
      * 
@@ -303,6 +186,99 @@ public interface ClientWS {
 
     /**
      * 
+     * @param idClient
+     * @param dto
+     * @return
+     *     returns com.cbp1.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "saveAditionaInformationClient", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.SaveAditionaInformationClient")
+    @ResponseWrapper(localName = "saveAditionaInformationClientResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.SaveAditionaInformationClientResponse")
+    @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/saveAditionaInformationClientRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/saveAditionaInformationClientResponse")
+    public RespuestaDTO saveAditionaInformationClient(
+        @WebParam(name = "dto", targetNamespace = "")
+        InformacionAdicionalClienteDTO dto,
+        @WebParam(name = "idClient", targetNamespace = "")
+        long idClient);
+
+    /**
+     * 
+     * @param idDocumentClient
+     * @return
+     *     returns com.cbp1.ws.cbp.service.ValidaClientDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "validaClientbyDocumentIdWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ValidaClientbyDocumentIdWS")
+    @ResponseWrapper(localName = "validaClientbyDocumentIdWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ValidaClientbyDocumentIdWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/validaClientbyDocumentIdWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/validaClientbyDocumentIdWSResponse")
+    public ValidaClientDTO validaClientbyDocumentIdWS(
+        @WebParam(name = "idDocumentClient", targetNamespace = "")
+        String idDocumentClient);
+
+    /**
+     * 
+     * @param nombreUsuario
+     * @return
+     *     returns com.cbp1.ws.cbp.service.ValidaClientDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "consultClientByUsersFpWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ConsultClientByUsersFpWS")
+    @ResponseWrapper(localName = "consultClientByUsersFpWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ConsultClientByUsersFpWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/consultClientByUsersFpWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/consultClientByUsersFpWSResponse")
+    public ValidaClientDTO consultClientByUsersFpWS(
+        @WebParam(name = "nombreUsuario", targetNamespace = "")
+        String nombreUsuario);
+
+    /**
+     * 
+     * @param idClient
+     * @return
+     *     returns com.cbp1.ws.cbp.service.InformacionAdicionalClienteDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "consultAllClientByIdClientWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ConsultAllClientByIdClientWS")
+    @ResponseWrapper(localName = "consultAllClientByIdClientWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ConsultAllClientByIdClientWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/consultAllClientByIdClientWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/consultAllClientByIdClientWSResponse")
+    public InformacionAdicionalClienteDTO consultAllClientByIdClientWS(
+        @WebParam(name = "idClient", targetNamespace = "")
+        long idClient);
+
+    /**
+     * 
+     * @param dto
+     * @return
+     *     returns com.cbp1.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "actualizaClienteConInformacionAdicionalWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ActualizaClienteConInformacionAdicionalWS")
+    @ResponseWrapper(localName = "actualizaClienteConInformacionAdicionalWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ActualizaClienteConInformacionAdicionalWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/actualizaClienteConInformacionAdicionalWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/actualizaClienteConInformacionAdicionalWSResponse")
+    public RespuestaDTO actualizaClienteConInformacionAdicionalWS(
+        @WebParam(name = "dto", targetNamespace = "")
+        InformacionAdicionalClienteDTO dto);
+
+    /**
+     * 
+     * @param distrito
+     * @return
+     *     returns com.cbp1.ws.cbp.service.CodigoPostal
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "codigoPostalWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.CodigoPostalWS")
+    @ResponseWrapper(localName = "codigoPostalWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.CodigoPostalWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/codigoPostalWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/codigoPostalWSResponse")
+    public CodigoPostal codigoPostalWS(
+        @WebParam(name = "distrito", targetNamespace = "")
+        Distrito distrito);
+
+    /**
+     * 
      * @return
      *     returns java.util.List<com.cbp1.ws.cbp.service.EntityBank>
      */
@@ -312,5 +288,29 @@ public interface ClientWS {
     @ResponseWrapper(localName = "listBanksWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ListBanksWSResponse")
     @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/listBanksWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/listBanksWSResponse")
     public List<EntityBank> listBanksWS();
+
+    /**
+     * 
+     * @param idCanal
+     * @param nombreCanal
+     * @param clientDTO
+     * @param nombreUsuario
+     * @return
+     *     returns com.cbp1.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "createClientsWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.CreateClientsWS")
+    @ResponseWrapper(localName = "createClientsWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.CreateClientsWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/createClientsWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/createClientsWSResponse")
+    public RespuestaDTO createClientsWS(
+        @WebParam(name = "clientDTO", targetNamespace = "")
+        NewClientDTO clientDTO,
+        @WebParam(name = "nombreUsuario", targetNamespace = "")
+        String nombreUsuario,
+        @WebParam(name = "idCanal", targetNamespace = "")
+        String idCanal,
+        @WebParam(name = "nombreCanal", targetNamespace = "")
+        String nombreCanal);
 
 }

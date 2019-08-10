@@ -19,17 +19,30 @@ import com.cbp.web.dto.ConsultaAlmacenPorNumeroAlmacenDTO;
 import com.cbp.web.dto.SaveAditionalInformationAlmacenDTO;
 import com.cbp3.ws.cbp.service.ConsultaAlmacenPorAlmacenIdWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaAlmacenPorNumeroAlmacenWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaEstanteriaPorEstanteriaIdWS;
+import com.cbp3.ws.cbp.service.ConsultaEstanteriaPorEstanteriaIdWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaZonaPorZonaIdWS;
+import com.cbp3.ws.cbp.service.ConsultaZonaPorZonaIdWSResponse;
 import com.cbp3.ws.cbp.service.CrearAlmacenWS;
 import com.cbp3.ws.cbp.service.CrearAlmacenWSResponse;
 import com.cbp3.ws.cbp.service.CrearEstanteriaWS;
 import com.cbp3.ws.cbp.service.CrearEstanteriaWSResponse;
 import com.cbp3.ws.cbp.service.CrearListaZonaWizzardWS;
 import com.cbp3.ws.cbp.service.CrearListaZonaWizzardWSResponse;
+import com.cbp3.ws.cbp.service.CrearRelacionZonasWS;
+import com.cbp3.ws.cbp.service.CrearRelacionZonasWSResponse;
+import com.cbp3.ws.cbp.service.Estanteria;
 import com.cbp3.ws.cbp.service.ModificarAlmacenWS;
 import com.cbp3.ws.cbp.service.ModificarAlmacenWSResponse;
+import com.cbp3.ws.cbp.service.ModificarEstanteriaWS;
+import com.cbp3.ws.cbp.service.ModificarEstanteriaWSResponse;
+import com.cbp3.ws.cbp.service.ModificarRelacionZonasWS;
+import com.cbp3.ws.cbp.service.ModificarRelacionZonasWSResponse;
+import com.cbp3.ws.cbp.service.RelacionZonas;
 import com.cbp3.ws.cbp.service.SaveAditionaInformationAlmacenWSResponse;
 import com.cbp3.ws.cbp.service.Solicitud;
 import com.cbp3.ws.cbp.service.Warehouse;
+import com.cbp3.ws.cbp.service.Zona;
 
 @Controller
 @RequestMapping("/Almacen")
@@ -123,11 +136,104 @@ public class AlmacenController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	@RequestMapping(value = "/consultaEstanteriaPorEstanteriaId", produces = { "application/json" })
+	public @ResponseBody ConsultaEstanteriaPorEstanteriaIdWSResponse consultaEstanteriaPorEstanteriaId(@RequestBody ConsultaEstanteriaPorEstanteriaIdWS ConsultaEstanteriaPorEstanteriaIdWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ConsultaEstanteriaPorEstanteriaIdWSResponse respuesta = new ConsultaEstanteriaPorEstanteriaIdWSResponse();
+		respuesta = almacenMethods.consultaEstanteriaPorEstanteriaId(ConsultaEstanteriaPorEstanteriaIdWS);
+		//System.out.println(ModificarAlmacenDTO.toString());
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/consultaZonaPorZonaId", produces = { "application/json" })
+	public @ResponseBody ConsultaZonaPorZonaIdWSResponse consultaZonaPorZonaId(@RequestBody ConsultaZonaPorZonaIdWS ConsultaZonaPorZonaIdWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ConsultaZonaPorZonaIdWSResponse respuesta = new ConsultaZonaPorZonaIdWSResponse();
+		respuesta = almacenMethods.consultaZonaPorZonaId(ConsultaZonaPorZonaIdWS);
+		//System.out.println(ModificarAlmacenDTO.toString());
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/crearRelacionZonas", produces = { "application/json" })
+	public @ResponseBody CrearRelacionZonasWSResponse crearRelacionZonas(@RequestBody CrearRelacionZonasWS CrearRelacionZonasWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		CrearRelacionZonasWSResponse respuesta = new CrearRelacionZonasWSResponse();
+		respuesta = almacenMethods.crearRelacionZonas(CrearRelacionZonasWS);
+		//System.out.println(ModificarAlmacenDTO.toString());
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/modificarEstanteria", produces = { "application/json" })
+	public @ResponseBody ModificarEstanteriaWSResponse modificarEstanteria(@RequestBody ModificarEstanteriaWS ModificarEstanteriaWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ModificarEstanteriaWSResponse respuesta = new ModificarEstanteriaWSResponse();
+		respuesta = almacenMethods.modificarEstanteria(ModificarEstanteriaWS);
+		//System.out.println(ModificarAlmacenDTO.toString());
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/modificarRelacionZonas", produces = { "application/json" })
+	public @ResponseBody ModificarRelacionZonasWSResponse modificarRelacionZonas(@RequestBody ModificarRelacionZonasWS ModificarRelacionZonasWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ModificarRelacionZonasWSResponse respuesta = new ModificarRelacionZonasWSResponse();
+		respuesta = almacenMethods.modificarRelacionZonas(ModificarRelacionZonasWS);
+		//System.out.println(ModificarAlmacenDTO.toString());
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	@RequestMapping(value = "/listaAlmacenes", produces = { "application/json" })
 	public @ResponseBody java.util.List<Warehouse> listaAlmacenes() {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		java.util.List<Warehouse> respuesta = new ArrayList<>();
 		respuesta = almacenMethods.listaAlmacenes();
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/listaEstanterias", produces = { "application/json" })
+	public @ResponseBody java.util.List<Estanteria> listaEstanterias() {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<Estanteria> respuesta = new ArrayList<>();
+		respuesta = almacenMethods.listaEstanterias();
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/listaRelacionZonas", produces = { "application/json" })
+	public @ResponseBody java.util.List<RelacionZonas> listaRelacionZonas() {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<RelacionZonas> respuesta = new ArrayList<>();
+		respuesta = almacenMethods.listaRelacionZonas();
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/listaZonas", produces = { "application/json" })
+	public @ResponseBody java.util.List<Zona> listaZonas() {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<Zona> respuesta = new ArrayList<>();
+		respuesta = almacenMethods.listaZonas();
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
 	}

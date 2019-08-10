@@ -41,6 +41,14 @@ window.addEventListener('load', function(){
 	tipo_identificacion.addEventListener('blur', ()=>{
 		console.log("tipo_identificacion", tipo_identificacion.value);
 		document.getElementById("tipo_identificacion_tab4").style.border = "1px solid black";
+		
+		if(tipo_identificacion.value === "Cedula de Residente"){
+			document.getElementById("identificacion_tab4").setAttribute("maxlength", "9");
+		}else if(tipo_identificacion.value === "DIMEX"){
+			document.getElementById("identificacion_tab4").setAttribute("maxlength", "11");
+		}else if(tipo_identificacion.value === "Cedula de Persona Jurídica"){
+			document.getElementById("identificacion_tab4").setAttribute("maxlength", "10");
+		}
 	});
 	
 	identificacion.addEventListener('blur', ()=>{

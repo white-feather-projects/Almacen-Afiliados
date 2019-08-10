@@ -13,7 +13,7 @@ $("#banco_label").hide();
 $("#nombre_banco_tab3").hide();
 $("#afiliacion_label").hide();
 $("#numero_afiliacion_tab3").hide();
-$("#card_operador").hide();
+//$("#card_operador").hide();
 $("#tab8").hide();
 $(".tb8").hide();
 
@@ -141,8 +141,8 @@ var identificacion_global;
 		 		        				"tipoIdentificacionId": "1"
 		 		        			},
 		 		        			"actividadComercial":  banco,
-		 		        			"horaInicio": hora_inicio,
-		 		        			"horaFin": hora_final,
+		 		        			"hora_inicio": hora_inicio,
+		 		        			"hora_finalizacion": hora_final,
 		 		        			"idCanal": "2",
 		 		        			"nombreCanal": "EJECUTIVO_VENTAS" 
 		 		        	 };
@@ -1941,7 +1941,7 @@ var identificacion_global;
 															       		$("#cantidad_tab7").val(data.return.cantidadPos);
 															       		
 															       		//////////////////Consulta Datos del Pago///////////////////
-															       		
+															       		/*
 															       		var consulta_Datos_Pago = {
 																				"comercioId": comercioid
 																			}
@@ -1955,7 +1955,7 @@ var identificacion_global;
 																	           success: processSuccess,
 																	           error: processError
 																	       });
-															       		
+															       		*/
 															       	} 
 															       	
 															       	function processError(data, status, req) {
@@ -2153,8 +2153,8 @@ var identificacion_global;
 				        	 
 				        	 	var modificar_banco_afiliacion = {
 				        	 			"idAsociacion":id,
-				        	 			"idEntityBanck":$("#idbanco").val(),
-				        	 			"numeroAfiliacion":$("#numero_afiliacion_tab3").val(),
+				        	 			"idEntityBanck":"1",
+				        	 			"numeroAfiliacion":$("#identificacion_tab2").val(),
 				        	 			"numTerminalesComprar":$("#cantidad_terminales_tab3").val()
 			 			    	};
 			 			    	
@@ -2625,7 +2625,7 @@ var identificacion_global;
 			    	   //clientValidator.resetForm();
 			       }
 			     }
-		        
+		        /*
 		     // tab 7
 		        if (currentIndex === 6) {
 		        	valid = false;
@@ -2664,7 +2664,7 @@ var identificacion_global;
 			       }
 			     }
 		        
-
+*/
 		        return true;
 		        
 		      },
