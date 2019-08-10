@@ -20,6 +20,14 @@ window.addEventListener('load', function(){
 	tipo_identificacion_tab2.addEventListener('blur', ()=>{
 		console.log("tipo identificacion", tipo_identificacion_tab2.value);
 		document.getElementById("tipo_identificacion_tab2").style.border = "1px solid black";
+		
+		if(tipo_identificacion_tab2.value === "Cedula de Residente"){
+			document.getElementById("identificacion_tab2").setAttribute("maxlength", "9");
+		}else if(tipo_identificacion_tab2.value === "DIMEX"){
+			document.getElementById("identificacion_tab2").setAttribute("maxlength", "11");
+		}else if(tipo_identificacion_tab2.value === "Cedula de Persona Jurídica"){
+			document.getElementById("identificacion_tab2").setAttribute("maxlength", "10");
+		}
 	});
 	
 	nombre_empresa_tab2.addEventListener('blur', ()=>{
@@ -45,8 +53,15 @@ window.addEventListener('load', function(){
 	
 	numero_iban_tab2.addEventListener('blur', ()=>{
 		console.log("numero iban", numero_iban_tab2.value)
-		soloNumeros(numero_iban_tab2);
+		soloLetrasYNum(numero_iban_tab2);
 		document.getElementById("numero_iban_tab2").style.border = "1px solid black";
+		
+		var primeros = numero_iban_tab2.value.substring(0, 2);
+		//console.log("primeros----", primeros);
+		if(primeros != "CR"){
+			swal("Formato Incorrecto");
+			numero_iban_tab2.value = "CR";
+		}
 	});
 	
 	afiliado_tab2.addEventListener('blur', ()=>{
@@ -68,7 +83,7 @@ window.addEventListener('load', function(){
 	
 	nombre_comercial_tab2.addEventListener('blur', ()=>{
 		console.log("nombre comercial", nombre_comercial_tab2.value);
-		soloTexto(nombre_comercial_tab2);
+		soloLetrasYNum(nombre_comercial_tab2);
 		document.getElementById("nombre_comercial_tab2").style.border = "1px solid black";
 	});
 	
@@ -115,4 +130,19 @@ function soloNumeros(numero){
 	}else{
 		return true;
 	}
+}
+
+function soloLetrasYNum(campo) {
+	 var validos = " abcdefghijklmnopqrstuvwxyz0123456789";
+	 var letra;
+	 var bien = true;
+	 for (var i=0; i<campo.value.length; i++) {
+		  letra=campo.value.charAt(i).toLowerCase()
+		  if (validos.indexOf(letra) == -1){bien=false;};
+		  }
+		  if (!bien) {
+			  campo.value = "";
+			  swal("Campo Alfanumerico");
+			  //campo.focus();
+		  }
 }

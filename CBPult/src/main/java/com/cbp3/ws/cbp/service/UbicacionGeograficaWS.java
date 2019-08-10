@@ -27,21 +27,6 @@ public interface UbicacionGeograficaWS {
 
     /**
      * 
-     * @param distrito
-     * @return
-     *     returns com.cbp3.ws.cbp.service.CodigoPostal
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "codigoPostalWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.CodigoPostalWS")
-    @ResponseWrapper(localName = "codigoPostalWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.CodigoPostalWSResponse")
-    @Action(input = "http://service.cbp.ws.cbp3.com/UbicacionGeograficaWS/codigoPostalWSRequest", output = "http://service.cbp.ws.cbp3.com/UbicacionGeograficaWS/codigoPostalWSResponse")
-    public CodigoPostal codigoPostalWS(
-        @WebParam(name = "distrito", targetNamespace = "")
-        Distrito distrito);
-
-    /**
-     * 
      * @return
      *     returns java.util.List<com.cbp3.ws.cbp.service.Pais>
      */
@@ -96,5 +81,20 @@ public interface UbicacionGeograficaWS {
     public List<Distrito> listDistritoWS(
         @WebParam(name = "canton", targetNamespace = "")
         Canton canton);
+
+    /**
+     * 
+     * @param distrito
+     * @return
+     *     returns com.cbp3.ws.cbp.service.CodigoPostal
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "codigoPostalWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.CodigoPostalWS")
+    @ResponseWrapper(localName = "codigoPostalWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.CodigoPostalWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/UbicacionGeograficaWS/codigoPostalWSRequest", output = "http://service.cbp.ws.cbp3.com/UbicacionGeograficaWS/codigoPostalWSResponse")
+    public CodigoPostal codigoPostalWS(
+        @WebParam(name = "distrito", targetNamespace = "")
+        Distrito distrito);
 
 }

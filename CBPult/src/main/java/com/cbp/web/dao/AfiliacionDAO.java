@@ -55,6 +55,8 @@ import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWS;
 import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWSResponse;
 import com.cbp3.ws.cbp.service.CrearComercioWSResponse;
 import com.cbp3.ws.cbp.service.CrearContactoWSResponse;
+import com.cbp3.ws.cbp.service.CrearEstablecimientoWS;
+import com.cbp3.ws.cbp.service.CrearEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.CrearOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.CrearPagoComercioWS;
 import com.cbp3.ws.cbp.service.CrearPagoComercioWSResponse;
