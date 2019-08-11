@@ -32,7 +32,8 @@ import javax.xml.bind.annotation.XmlType;
     "listZonaDTO"
 })
 public class CrearListaZonaWizzardWS {
-
+	
+	
     protected List<ZonaDTO> listZonaDTO;
 
     /**

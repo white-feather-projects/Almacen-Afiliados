@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class ConsultaZonaPorZonaIdWS {
 
+	// una Zona única se debería consultar por medio de: IdAlmacen + IdZona (Las Zonas Deberian tener una llave primaria compuesta por estos Atributos)
     protected long zonaId;
 
     /**

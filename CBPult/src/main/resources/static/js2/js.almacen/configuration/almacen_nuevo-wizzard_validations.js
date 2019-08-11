@@ -52,18 +52,118 @@ $('#demo').steps({
 					txtUbicacionAlmacen.css("border" , "1px solid red");
 				}
 				///
+				
+				// Validacion Encargado
+				var Encargado = $('#cboxEncargado_almacen').val(); // lo necesito porque el servicio de Crear me pide el IdTipo Almacen, mas no el Tipo en si
+				var idEncargado;
+				if(Encargado === 'Elon Musk'){
+					idEncargado = 1;
+				}
+				else if(Encargado === 'Einstein'){
+					idEncargado = 2;
+				}
+				else if(Encargado === 'Jack Ma'){
+					idEncargado = 3;
+				}
+				else{
+					console.log("Encargado no Existente");
+					idEncargado = null;
+				}
+				// Validacion Encargado
+				
+				// Validacion Tipo Almacen
+				var tipoAlmacen = $('#cboxTipo_almacen').val(); // lo necesito porque el servicio de Crear me pide el IdTipo Almacen, mas no el Tipo en si
+				var idTipoAlmacen;
+				if(tipoAlmacen === 'Almacén'){
+					idTipoAlmacen = 1;
+				}
+				else if(tipoAlmacen === 'Laboratorio'){
+					idTipoAlmacen = 2;
+				}
+				else if(tipoAlmacen === 'Sucursal'){
+					idTipoAlmacen = 3;
+				}
+				else{
+					console.log("Tipo de Almacén no Existente");
+					idTipoAlmacen = null;
+				}
+				// Validacion Tipo Almacen
+				
+				
+				// Validacion y Creacion Id Almacen
+				var warehouseText;
+				var IdAlmacen = $('#txtCodigo_almacen').val();
+				if(idTipoAlmacen == 1){
+					warehouseText = "Almacen-"+IdAlmacen;
+				}		
+				else if(idTipoAlmacen == 2){
+					warehouseText = "Laboratorio-"+IdAlmacen;
+				}
+				else if(idTipoAlmacen == 3){
+					warehouseText = "Sucursal-"+IdAlmacen;
+				}
+				else{
+					console.log("No se puede Enviar Id, Tipo de Almacén no Existente");
+					warehouseText = null;
+				}
+				// Validacion y Creacion Id Almacen
+				
 				if(validated == 2){
+					
+					// Creacion del Almacén
+					
 					data_almacen = {
-							'idAlmacen': $('#txtCodigo_almacen').val(),
-							'tipoAlmacen': $('#cboxTipo_almacen').val(),
-							'descripcionAlmacen': $('#txtDesc_almacen').val(),
-							'encargadoAlmacen': $('#cboxEncargado_almacen').val(),
-							'ubicacionAlmacen': $('#txtUbicacion_almacen').val(),
-							'zonasAlmacen': {},
-							'relacionesAlmacen': {}
+						"direccion": $('#txtUbicacion_almacen').val(),
+					    "gerenteSucursal": idEncargado,
+					    "officeId": 1,
+					    "productId": 1,
+					    "tipoAlmacenId": idTipoAlmacen,
+					    "warehouseName": $('#txtDesc_almacen').val(),
+					    "warehouseNumber": warehouseText
 					};
 					console.log(data_almacen);
-					//swal("Valido");
+					/* Consumo 
+					$.ajax({
+ 		               type: "POST",
+ 		               url: '/CBPult/Afiliacion/crearAlmacen',
+ 		               contentType: "application/json",
+ 		               dataType: "json",
+ 		               data: JSON.stringify(data_almacen),
+ 		               success: processSuccess,
+ 		               error: processError
+	 		        });
+					function processSuccess(data, status, req) {
+	 		            //alert(req.responseText + " " + status);
+	 		       		console.log(data);
+	 		       		
+		 		       	if(data.return.descripcion === "FAIL"){
+	 		           		swal("Error al Crear Almacén", data.return.descripcion);
+	 		           		return false;	 		           		
+	 		           	}else if(data.return.descripcion === "OK"){
+		 		           	document.getElementById("txtUbicacion_almacen").disabled = true;
+		 		            document.getElementById("cboxEncargado_almacen").disabled = true;
+		 		            document.getElementById("cboxTipo_almacen").disabled = true;
+		 		            document.getElementById("txtDesc_almacen").disabled = true;
+		 		            document.getElementById("txtCodigo_almacen").disabled = true;
+		 		           	
+		 		           	swal("Almacén Creado", data.return.descripcion);
+	 		           		return true;	 		           		
+	 		           	}else if(data.return.descripcion === "Almacen ya existe"){
+	 		           		valid = false;
+	 		           		return valid;	 		           		
+	 		           	}
+ 		       		}
+ 		       	
+ 		       		function processError(data, status, req) {
+	 		            //alert(req.responseText + " " + status);
+	 		       		swal("Error al contactar el servicio", data);
+	 		           	valid = false;
+	 		           	return valid;
+ 		       		}*/
+					// Creacion del Almacén
+					
+					console.log(data_almacen);
+					swal("Valido");
 					
 				}else if(validated != 2){
 					//swal("invalido");

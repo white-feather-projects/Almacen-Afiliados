@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class ConsultaEstanteriaPorEstanteriaIdWS {
 
+	// Las Estanterias se deberían consultar por medio de: IdAlmacen + IdZona + IdEstanteria (Las Estanterias Deberian tener una llave primaria compuesta por estos Atributos)
     protected long estanteriaId;
 
     /**

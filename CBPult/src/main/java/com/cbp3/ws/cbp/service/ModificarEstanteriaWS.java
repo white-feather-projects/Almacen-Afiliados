@@ -47,7 +47,7 @@ public class ModificarEstanteriaWS {
 
     protected long estanteriaId;
     protected String descripcion;
-    protected long zonaId;
+    protected long zonaId; // faltaria el IdAlmacen para ubicar exactamente la Estanteria a Modificar
     protected long modulos;
     protected long niveles;
     protected long codigoUsuarioModifica;
