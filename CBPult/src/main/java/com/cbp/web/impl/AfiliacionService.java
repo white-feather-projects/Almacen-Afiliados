@@ -49,6 +49,7 @@ import com.cbp3.ws.cbp.service.BancoAfiliacion;
 import com.cbp3.ws.cbp.service.Canton;
 import com.cbp3.ws.cbp.service.CodigoPostalWSResponse;
 import com.cbp3.ws.cbp.service.Comercio;
+import com.cbp3.ws.cbp.service.ComercioEstabl;
 import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioContactoWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioOtroBancoWS;
 import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioOtroBancoWSResponse;
@@ -65,6 +66,8 @@ import com.cbp3.ws.cbp.service.ConsultaPagoByNumComprobanteReciboWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWS;
 import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWSResponse;
+import com.cbp3.ws.cbp.service.CrearComercioEstablecimientoWS;
+import com.cbp3.ws.cbp.service.CrearComercioEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.CrearComercioWSResponse;
 import com.cbp3.ws.cbp.service.CrearContactoWSResponse;
 import com.cbp3.ws.cbp.service.CrearEstablecimientoWS;
@@ -80,6 +83,7 @@ import com.cbp3.ws.cbp.service.EditarAsociacionComercioConRepresentanteLegalWSRe
 import com.cbp3.ws.cbp.service.EditarContactoWSResponse;
 import com.cbp3.ws.cbp.service.EditarRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.EntityBank;
+import com.cbp3.ws.cbp.service.Establecimiento;
 import com.cbp3.ws.cbp.service.ListPagosByIdentificacionComercioWS;
 import com.cbp3.ws.cbp.service.ListRecaudosByComercioWS;
 import com.cbp3.ws.cbp.service.ListaSolicitudesWSResponse;
@@ -323,7 +327,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
-			respuestaEditarAsociacionBancoComercio.setReturn(WSmethod.editarAsociacionBancoComercioWS(EditarAsociacionBancoComercioDTO.getIdAsociacion(), EditarAsociacionBancoComercioDTO.getIdEntityBanck(), EditarAsociacionBancoComercioDTO.getNumeroAfiliacion(), EditarAsociacionBancoComercioDTO.getNumTerminalesComprar(), EditarAsociacionBancoComercioDTO.getOperadorTelefonicoId())); 
+			respuestaEditarAsociacionBancoComercio.setReturn(WSmethod.editarAsociacionBancoComercioWS(EditarAsociacionBancoComercioDTO.getIdAsociacion(), EditarAsociacionBancoComercioDTO.getIdEntityBanck(), EditarAsociacionBancoComercioDTO.getNumeroAfiliacion(), EditarAsociacionBancoComercioDTO.getNumTerminalesComprar(), EditarAsociacionBancoComercioDTO.getOperadorTelefonicoId(), EditarAsociacionBancoComercioDTO.getCantidadLineasOperador())); 
 		
 		
 		} catch (MalformedURLException e) {
@@ -949,7 +953,6 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 		
 			respuestaCrearEstablecimiento.setReturn(WSmethod.crearEstablecimientoWS(CrearEstablecimientoWS.getIdPais(), CrearEstablecimientoWS.getIdProvincia(), CrearEstablecimientoWS.getIdCanton(), CrearEstablecimientoWS.getIdDistrito(), CrearEstablecimientoWS.getCiudad(), CrearEstablecimientoWS.getSectorUrbanizacion(), CrearEstablecimientoWS.getAvenidaCalle(), CrearEstablecimientoWS.getCodigoPostal(), CrearEstablecimientoWS.getLocalidad(), CrearEstablecimientoWS.getNombreInmueble(), CrearEstablecimientoWS.getPuntoReferencia(), CrearEstablecimientoWS.getGeoLocalizacion()));
 		
-		
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -959,6 +962,31 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 		}
 		
 		return respuestaCrearEstablecimiento;
+	}
+	
+	////////////////////////////////////
+	//Methodo para Crear Comercio Establecimiento...
+	public CrearComercioEstablecimientoWSResponse CrearComercioEstablecimiento(CrearComercioEstablecimientoWS CrearComercioEstablecimientoWS) {
+	
+		//instanciar Objeto para retorno....
+		CrearComercioEstablecimientoWSResponse respuestaCrearComercioEstablecimiento = new CrearComercioEstablecimientoWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaCrearComercioEstablecimiento.setReturn(WSmethod.crearComercioEstablecimientoWS(CrearComercioEstablecimientoWS.getComercioId(), CrearComercioEstablecimientoWS.getEstablecimientoId()));
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaCrearComercioEstablecimiento;
 	}
 	
 	////////////////////////////////////
@@ -1239,6 +1267,88 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 		}
 		
 		return respuestaPago;
+	}
+	
+	//////////////////////////////////////////////////////
+	//Methodo para listar Comercio Establecimiento...
+	public java.util.List<ComercioEstabl> listaComercioEstablecimiento(com.cbp3.ws.cbp.service.ListaComercioEstablecimientosWS ListaComercioEstablecimientosWS) {
+		
+		//instanciar Objeto para retorno....
+		java.util.List<ComercioEstabl> respuestaComercioEstabl = new ArrayList<>();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
+			for(int i = 0; i < WSmethod.listaComercioEstablecimientosWS(ListaComercioEstablecimientosWS.getIdComercio()).size(); i++) {
+				
+				ComercioEstabl objetoComercioEstabl = new ComercioEstabl();
+				
+				objetoComercioEstabl.setComercio(WSmethod.listaComercioEstablecimientosWS(ListaComercioEstablecimientosWS.getIdComercio()).get(i).getComercio());
+				objetoComercioEstabl.setComercioEstablId(WSmethod.listaComercioEstablecimientosWS(ListaComercioEstablecimientosWS.getIdComercio()).get(i).getComercioEstablId());
+				objetoComercioEstabl.setComercioId(WSmethod.listaComercioEstablecimientosWS(ListaComercioEstablecimientosWS.getIdComercio()).get(i).getComercioId());
+				objetoComercioEstabl.setEstablecimiento(WSmethod.listaComercioEstablecimientosWS(ListaComercioEstablecimientosWS.getIdComercio()).get(i).getEstablecimiento());
+				objetoComercioEstabl.setEstablecimientoId(WSmethod.listaComercioEstablecimientosWS(ListaComercioEstablecimientosWS.getIdComercio()).get(i).getEstablecimientoId());
+				
+				respuestaComercioEstabl.add(objetoComercioEstabl);
+			}
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaComercioEstabl;
+	}
+	
+	//////////////////////////////////////////////////////
+	//Methodo para listar Establecimientos...
+	public java.util.List<Establecimiento> listaEstablecimientos() {
+		
+		//instanciar Objeto para retorno....
+		java.util.List<Establecimiento> respuestaEstablecimiento = new ArrayList<>();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
+			for(int i = 0; i < WSmethod.listaEstablecimientosWS().size(); i++) {
+				
+				Establecimiento objetoEstablecimiento = new Establecimiento();
+				
+				objetoEstablecimiento.setAvenidaCalle(WSmethod.listaEstablecimientosWS().get(i).getAvenidaCalle());
+				objetoEstablecimiento.setCiudad(WSmethod.listaEstablecimientosWS().get(i).getCiudad());
+				objetoEstablecimiento.setCodigoPostal(WSmethod.listaEstablecimientosWS().get(i).getCodigoPostal());
+				objetoEstablecimiento.setEstablecimientoId(WSmethod.listaEstablecimientosWS().get(i).getEstablecimientoId());
+				objetoEstablecimiento.setGeoLocalizacion(WSmethod.listaEstablecimientosWS().get(i).getGeoLocalizacion());
+				objetoEstablecimiento.setIdCanton(WSmethod.listaEstablecimientosWS().get(i).getIdCanton());
+				objetoEstablecimiento.setIdDistrito(WSmethod.listaEstablecimientosWS().get(i).getIdDistrito());
+				objetoEstablecimiento.setIdPais(WSmethod.listaEstablecimientosWS().get(i).getIdPais());
+				objetoEstablecimiento.setIdProvincia(WSmethod.listaEstablecimientosWS().get(i).getIdProvincia());
+				objetoEstablecimiento.setLocalidad(WSmethod.listaEstablecimientosWS().get(i).getLocalidad());
+				objetoEstablecimiento.setNombreInmueble(WSmethod.listaEstablecimientosWS().get(i).getNombreInmueble());
+				objetoEstablecimiento.setPuntoReferencia(WSmethod.listaEstablecimientosWS().get(i).getPuntoReferencia());
+				objetoEstablecimiento.setSectorUrbanizacion(WSmethod.listaEstablecimientosWS().get(i).getSectorUrbanizacion());
+				
+				respuestaEstablecimiento.add(objetoEstablecimiento);
+			}
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaEstablecimiento;
 	}
 	
 	//////////////////////////////////////////////////////

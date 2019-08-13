@@ -47,6 +47,8 @@ var identificacion_global;
 		    	  
 		        console.log('onChange', currentIndex, newIndex, stepDirection);
 		        
+		        
+		        
 		        // tab 1    
 		        if (currentIndex === 0) {
 		        	valid = false;
@@ -785,7 +787,8 @@ var identificacion_global;
 		        if (currentIndex === 3) {
 		        	valid = false;
 		        	
-				
+		        	var cont_establecimiento = 0;
+		        	
 			       if (stepDirection === 'forward') {
 			    	   var cont1 = 0;
 			    	   
@@ -840,14 +843,302 @@ var identificacion_global;
 				         
 				         if(cont1 == 6){
 				        	 console.log(cont1);
-				        	 //////////////////////////
 				        	 
 				        	 
-				        	 
-				        	 	valid = true;
-				        	 	return valid;
-				        	 
-				        	 /////////////////////////
+				        		 var consulta_comercio_json = {
+				 		           			"identificacionComercio": $("#identificacion_tab2").val()
+				 		           		}
+					 		           		
+					 		           	$.ajax({
+						 		               type: "POST",
+						 		               url: '/CBPult/Afiliacion/consultaComercio',
+						 		               contentType: "application/json",
+						 		               dataType: "json",
+						 		               data: JSON.stringify(consulta_comercio_json),
+						 		               success: processSuccess,
+						 		               error: processError
+						 		           });
+						        	 	
+						        	 	function processSuccess(data, status, req) {
+						 		            //alert(req.responseText + " " + status);
+						 		       		console.log("consulta comercio----", data);
+						 		       		
+						 		       		if(data.return.identificacionComercio != $("#identificacion_tab2").val()){
+							 		       		swal("Error al encontrar comercio", data.return.descripcion);
+						 		           		valid = false;
+						 		           		return valid;
+						 		           		
+						 		       		}else if(data.return.identificacionComercio == $("#identificacion_tab2").val()){
+						 		       			
+						 		       			var actividadComercial = data.return.actividadComercial;
+						 		       			var afiliadoOtroBanco = data.return.afiliadoOtroBanco;
+						 		       			var codigoUsuarioCarga =  data.return.codigoUsuarioCarga;
+						 		       			var codigoUsuarioModifica = data.return.codigoUsuarioModifica;
+						 		       			var comercioId = data.return.comercioId;
+						 		       			var email = data.return.email;
+						 		       			var fechaCargaDatos = data.return.fechaCargaDatos;
+						 		       			var fechaHoraModificacion = data.return.fechaHoraModificacion;
+						 		       			var horaFin = data.return.horaFin;
+						 		       			var horaInicio = data.return.horaInicio;
+						 		       			var identificacionComercio = data.return.identificacionComercio;
+						 		       			var nombreComercial = data.return.nombreComercial;
+						 		       			var nombreEmpresarial = data.return.nombreEmpresarial;
+						 		       			var numCuentaAsociado = data.return.numCuentaAsociado;
+						 		       			var statusComercio = data.return.statusComercio;
+						 		       			var telefonoAlternativo = data.return.telefonoAlternativo;
+						 		       			var telefonoContacto = data.return.telefonoContacto;
+						 		       			var telefonoLocal = data.return.telefonoLocal;
+						 		       			var tipoIdentificacionId_nombre = data.return.tipoIdentificacionId.nombre;
+						 		       			var tipoIdentificacionId_tipoIdentificacionId = data.return.tipoIdentificacionId.tipoIdentificacionId;
+
+						 		       			
+						 		       			var crear_establecimiento_json = {
+						 		           			"idPais": {
+						 		           				"idPais": 1,
+						 		           				"nombrePais": "Costa Rica" 
+						 		           			},
+						 		           			"idProvincia": {
+						 		           				"idProvincia": $("#estado_tab5").val(),
+						 		           				"nombreProvincia": $("#estado_tab5").text(),
+						 		           				"paisId": {
+							 		           				"idPais": 1,
+							 		           				"nombrePais": "Costa Rica" 
+						 		           				}
+						 		           			},
+						 		           			"idCanton": {
+						 		           				"idCanton": $("#municipio_tab5").val(),
+						 		           				"nombreCanton": $("#municipio_tab5").text(),
+						 		           				"provinciaId": {
+							 		           				"idProvincia": $("#estado_tab5").val(),
+							 		           				"nombreProvincia": $("#estado_tab5").text(),
+							 		           				"paisId": {
+								 		           				"idPais": 1,
+								 		           				"nombrePais": "Costa Rica" 
+							 		           				}
+						 		           				}
+						 		           			},
+						 		           			"idDistrito": {
+						 		           				"cantonId": {
+							 		           				"idCanton": $("#municipio_tab5").val(),
+							 		           				"nombreCanton": $("#municipio_tab5").text(),
+							 		           				"provinciaId": {
+								 		           				"idProvincia": $("#estado_tab5").val(),
+								 		           				"nombreProvincia": $("#estado_tab5").text(),
+								 		           				"paisId": {
+									 		           				"idPais": 1,
+									 		           				"nombrePais": "Costa Rica" 
+								 		           				}
+							 		           				}
+						 		           				},
+						 		           				"idDistrito": $("#ciudad_tab5").val(),
+						 		           				"nombreDistrito": $("#ciudad_tab5").text()
+						 		           			},
+						 		           			"ciudad": $("#ciudad_tab5").text(),
+						 		           			"sectorUrbanizacion": $("#sector_urbanizacion_tab5").val(),
+						 		           			"avenidaCalle": $("#avenida_calle_tab5").val(),
+						 		           			"codigoPostal": $("#codigo_postal_tab5").val(),
+						 		           			"localidad": $("#localidad_tab5").val(),
+						 		           			"nombreInmueble": $("#nombre_inmueble_tab5").val(),
+						 		           			"puntoReferencia": $("#punto_referencia_tab5").val(),
+						 		           			"geoLocalizacion": $("#geo_localizacion_tab5").val()
+						 		           		}
+							 		           		
+							 		           	$.ajax({
+								 		               type: "POST",
+								 		               url: '/CBPult/Afiliacion/crearEstablecimiento',
+								 		               contentType: "application/json",
+								 		               dataType: "json",
+								 		               data: JSON.stringify(crear_establecimiento_json),
+								 		               success: processSuccess,
+								 		               error: processError
+								 		           });
+						 		       			
+							 		       		function processSuccess(data, status, req) {
+								 		            //alert(req.responseText + " " + status);
+								 		       		console.log("crear contacto----", data);
+								 		       		
+								 		           	if(data.return.descripcion === "OK"){
+								 		           		
+								 		           	$.get( "/CBPult/Afiliacion/listaEstablecimientos", function( data ) {
+								 		   			console.log("data------", data);
+								 		   			  console.log("data1------", data[1]);
+								 		   			  
+								 		   			  for(var i=0; i<data.length; i++){
+								 		   				  
+								 		   				  if(data[i].nombreInmueble === $("#nombre_inmueble_tab5").val() && data[i].codigoPostal === $("#codigo_postal_tab5").val() && data[i].puntoReferencia === $("#punto_referencia_tab5").val()){
+								 		   					  
+								 		   					  var crear_comercio_establecimiento_json = {
+												 		       		"comercioId": {
+												 		       			"actividadComercial": actividadComercial,
+												 		       			"afiliadoOtroBanco": afiliadoOtroBanco,
+												 		       			"codigoUsuarioCarga": codigoUsuarioCarga,
+												 		       			"codigoUsuarioModifica": codigoUsuarioModifica,
+												 		       			"comercioId": comercioId,
+												 		       			"email": email,
+												 		       			"fechaCargaDatos": fechaCargaDatos,
+												 		       			"fechaHoraModificacion": fechaHoraModificacion,
+												 		       			"horaFin": horaFin,
+												 		       			"horaInicio": horaInicio,
+												 		       			"identificacionComercio": identificacionComercio,
+												 		       			"nombreComercial": nombreComercial,
+												 		       			"nombreEmpresarial": nombreEmpresarial,
+												 		       			"numCuentaAsociado": numCuentaAsociado,
+												 		       			"statusComercio": statusComercio,
+												 		       			"telefonoAlternativo": telefonoAlternativo,
+												 		       			"telefonoContacto": telefonoContacto,
+												 		       			"telefonoLocal": telefonoLocal,
+												 		       			"tipoIdentificacionId": {
+												 		       				"nombre": tipoIdentificacionId_nombre,
+												 		       				"tipoIdentificacionId": tipoIdentificacionId_tipoIdentificacionId
+												 		       			}
+												 		       		},
+												 		       		"establecimientoId": {
+												 		       			"avenidaCalle": data[i].avenidaCalle,
+												 		       			"ciudad": data[i].ciudad,
+												 		       			"codigoPostal": data[i].codigoPostal,
+												 		       			"establecimientoId": data[i].establecimientoId,
+												 		       			"geoLocalizacion": data[i].geoLocalizacion,
+												 		       			"idCanton":{
+												 		       				"idCanton": data[i].idCanton.idCanton,
+												 		       				"nombreCanton": data[i].idCanton.nombreCanton,
+												 		       				"provinciaId": {
+													 		                   "idProvincia": data[i].idCanton.provinciaId.idProvincia,
+													 		                   "nombreProvincia": data[i].idCanton.provinciaId.nombreProvincia,
+													 		                   "paisId": {
+													 		                       "idPais": data[i].idCanton.provinciaId.paisId.idPais,
+													 		                       "nombrePais": data[i].idCanton.provinciaId.paisId.nombrePais
+													 		                   }
+												 		       				}
+												 		       			},
+												 		       			"idDistrito": {
+													 		       			"cantonId": {
+													 		                   "idCanton": data[i].idDistrito.cantonId.idCanton,
+													 		                   "nombreCanton": data[i].idDistrito.cantonId.nombreCanton,
+													 		                   "provinciaId": {
+													 		                       "idProvincia": data[i].idDistrito.cantonId.provinciaId.idProvincia,
+													 		                       "nombreProvincia": data[i].idDistrito.cantonId.provinciaId.nombreProvincia,
+													 		                       "paisId": {
+													 		                           "idPais": data[i].idDistrito.cantonId.provinciaId.paisId.idPais,
+													 		                           "nombrePais": data[i].idDistrito.cantonId.provinciaId.paisId.nombrePais
+													 		                       }
+													 		                   }
+													 		               },
+													 		               "idDistrito": data[i].idDistrito.idDistrito,
+													 		               "nombreDistrito": data[i].idDistrito.nombreDistrito
+												 		       			},
+												 		       			"idPais": {
+													 		       			"idPais": data[i].idPais.idPais,
+													 		       			"nombrePais": data[i].idPais.nombrePais
+												 		       			},
+												 		       			"idProvincia": {
+													 		       			"idProvincia": data[i].idProvincia.idProvincia,
+													 		       			"nombreProvincia": data[i].idProvincia.nombreProvincia,
+													 		       			"paisId": {
+													 		                   "idPais": data[i].idProvincia.paisId.idPais,
+													 		                   "nombrePais": data[i].idProvincia.paisId.nombrePais
+													 		       			}
+												 		       			},
+												 		       			"localidad": data[i].localidad,
+												 		       			"nombreInmueble": data[i].nombreInmueble,
+												 		       			"puntoReferencia": data[i].puntoReferencia,
+												 		       			"sectorUrbanizacion": data[i].sectorUrbanizacion
+												 		       		}
+												 		       	};
+												 		       	
+												 		       $.ajax({
+											 		               type: "POST",
+											 		               url: "/CBPult/Afiliacion/CrearComercioEstablecimiento",
+											 		               contentType: "application/json",
+											 		               dataType: "json",
+											 		               data: JSON.stringify(crear_comercio_establecimiento_json),
+											 		               success: processSuccess,
+											 		               error: processError
+											 		           });
+											 		       	
+												 		       	function processSuccess(data, status, req) {
+												 		            //alert(req.responseText + " " + status);
+												 		       		console.log("crear contacto----", data);
+												 		       		
+												 		           	if(data.return.descripcion === "OK"){
+												 		           		
+												 		           		
+												 		           		document.getElementById("estado_tab5").disabled = true;
+												 		           		document.getElementById("municipio_tab5").disabled = true;
+												 		           		document.getElementById("ciudad_tab5").disabled = true;
+												 		           		document.getElementById("sector_urbanizacion_tab5").disabled = true;
+												 		           		document.getElementById("avenida_calle_tab5").disabled = true;
+												 		           		document.getElementById("codigo_postal_tab5").disabled = true;
+												 		           		document.getElementById("localidad_tab5").disabled = true;
+												 		           		document.getElementById("nombre_inmueble_tab5").disabled = true;
+												 		           		document.getElementById("punto_referencia_tab5").disabled = true;
+												 		           		document.getElementById("geo_localizacion_tab5").disabled = true;
+												 		           		
+												 		           		if(cont_establecimiento == 1){
+														 		           	valid = true;
+														 		           	return valid;
+														 		           	
+												 		           		}else if(cont_establecimiento == 0){
+													 		           		swal("Establecimiento Asociadoo");
+													 		           		cont_establecimiento = 1;
+														 		           	valid = true;
+														 		           	return valid;
+														 		           	
+												 		           		}
+												 		           		
+													 		           
+													 		           	
+												 		           	}else if(data.return.descripcion === "FAIL"){
+												 		           		swal("Error al Asociar Establecimiento");
+													 		           	valid = false;
+													 		           	return valid;
+												 		           	
+												 		           	}
+												 		       	} 
+												 		       	
+												 		       	function processError(data, status, req) {
+												 		            //alert(req.responseText + " " + status);
+												 		           	swal("Error al contactar el servicio", data);
+												 		           	valid = false;
+												 		           	return valid;
+												 		       	} 
+								 		   					  
+								 		   				  }
+								 		   				  
+								 		   			  }
+								 		   			  
+								 		   			});
+								 		           		
+								 		           		
+								 		           		
+								 		           	}else if(data.return.descripcion != "FAIL"){
+								 		           		swal("Error al Crear Establecimiento");
+								 		           		valid = false;
+								 		           		return valid;
+								 		           	}
+								 		       	} 
+								 		       	
+								 		       	function processError(data, status, req) {
+								 		            //alert(req.responseText + " " + status);
+								 		           	swal("Error al contactar el servicio", data);
+								 		           	valid = false;
+								 		           	return valid;
+								 		       	} 
+
+						 		       		}
+						 		       		
+							 		       	
+						 		           	
+						 		       	} 
+						 		       	
+						 		       	function processError(data, status, req) {
+						 		            //alert(req.responseText + " " + status);
+						 		           	swal("Error al contactar el servicio", data);
+						 		           	valid = false;
+						 		           	return valid;
+						 		       	} 
+				        	 	
+
+				 		       
 				         }else if(cont1 < 6){
 				        	 valid = false;
 				        	 return valid;
@@ -2028,94 +2319,140 @@ var identificacion_global;
 								       		$("#telefono_local_tab4").val(data.return.representanteLegal.telefonoLocal);
 								       		$("#telefono_celular_tab4").val(data.return.representanteLegal.telefonoCelular);
 								       		$("#correo_tab4").val(data.return.representanteLegal.emailRepresentante);
-										       		
-										    /////////Consulta Datos Persona Contacto/////////////////////
-											       	
-											       	var consulta_asociacion_persona_contacto = {
-															"comercioId": comercioid
-														}
-											    	
-												    	$.ajax({
-												           type: "POST",
-												           url: '/CBPult/Afiliacion/consultaAsociacionComercioContacto',
-												           contentType: "application/json",
-												           dataType: "json",
-												           data: JSON.stringify(consulta_asociacion_persona_contacto),
-												           success: processSuccess,
-												           error: processError
-												       });
-											   	
-												       	function processSuccess(data, status, req) {
-												            //alert(req.responseText + " " + status);
-												       		console.log("consulta asociacion contacto-----", data);
-												       		
-												       		$("#cargo_tab6").val(data.return.contacto.cargoContacto).prop('disabled', true);
-												       		$("#primer_nombre_tab6").val(data.return.contacto.primerNombre);
-												       		$("#segundo_nombre_tab6").val(data.return.contacto.segundoNombre);
-												       		$("#primer_apellido_tab6").val(data.return.contacto.primerApellido);
-												       		$("#segundo_apellido_tab6").val(data.return.contacto.segundoApellido);
-												       		$("#tipo_identificacion_tab6").val(data.return.contacto.tipoIdentificacionId.nombre).prop('disabled', true);
-												       		$("#identificacion_tab6").val(data.return.contacto.identificacionContacto).prop('disabled', true);
-												       		$("#telefono_tab6").val(data.return.contacto.telefonoLocal);
-												       		$("#correo_electronico_tab6").val(data.return.contacto.emailContacto);
-												       		
-												       		//////////////////Consulta Informacion Otro Bancos(Procesadoras)///////////////////
-												       		
-													       			var consulta_asociacion_otro_banco = {
-																		"comercioId": comercioid
-																	}
-														    	
-															    	$.ajax({
-															           type: "POST",
-															           url: '/CBPult/Afiliacion/consultaAsociacionComercioOtroBanco',
-															           contentType: "application/json",
-															           dataType: "json",
-															           data: JSON.stringify(consulta_asociacion_otro_banco),
-															           success: processSuccess,
-															           error: processError
-															       });
-														   	
-															       	function processSuccess(data, status, req) {
-															            //alert(req.responseText + " " + status);
-															       		console.log("consulta asociacion procesadora-----", data);
-															       		
-															       		$("#nombre_banco_tab7").val(data.return.nombreBanco);
-															       		$("#tipo_POS_tab7").val(data.return.tipoPos);
-															       		$("#cantidad_tab7").val(data.return.cantidadPos);
-															       		
-															       		//////////////////Consulta Datos del Pago///////////////////
-															       		/*
-															       		var consulta_Datos_Pago = {
-																				"comercioId": comercioid
-																			}
-																    	
-																	    	$.ajax({
-																	           type: "POST",
-																	           url: '/CBPult/Afiliacion/consultaAsociacionComercioOtroBanco',
-																	           contentType: "application/json",
-																	           dataType: "json",
-																	           data: JSON.stringify(consulta_Datos_Pago),
-																	           success: processSuccess,
-																	           error: processError
-																	       });
-															       		*/
-															       	} 
-															       	
-															       	function processError(data, status, req) {
-															            //alert(req.responseText + " " + status);
-															           	swal("Error al contacter el servicio", data);
-															           	valid = false;
-															           	return valid;
-														       		}
-												       		
-												       	} 
+								       		
+								       		//////////Consulta Establecimiento//////////////////////////
+								       		
+								       				var consulta_establecimiento_comercio = {
+						       							"idComercio": comercioid
+								       				}
+								       				
+								       				$.ajax({
+											           type: "POST",
+											           url: '/CBPult/Afiliacion/listaComercioEstablecimiento',
+											           contentType: "application/json",
+											           dataType: "json",
+											           data: JSON.stringify(consulta_establecimiento_comercio),
+											           success: processSuccess,
+											           error: processError
+								       				});
+								       				
+								       				function processSuccess(data, status, req) {
+											            //alert(req.responseText + " " + status);
+											       		console.log("consulta_establecimiento_comercio-----", data);
+											       		
+											       		var provincia = '<option value="'+data[1].establecimientoId.idProvincia.idProvincia+'">'+data[1].establecimientoId.idProvincia.nombreProvincia+'</option>';
+											       		var canton = '<option value="'+data[1].establecimientoId.idCanton.idCanton+'">'+data[1].establecimientoId.idCanton.nombreCanton+'</option>';
+											       		var distrito = '<option value="'+data[1].establecimientoId.idDistrito.idDistrito+'">'+data[1].establecimientoId.idDistrito.nombreDistrito+'</option>';
+											       		
+											       		$("#estado_tab5").append(provincia);
+											       		$("#municipio_tab5").append(canton);
+											       		$("#ciudad_tab5").append(distrito);
+											       		$("#sector_urbanizacion_tab5").val(data[1].establecimientoId.sectorUrbanizacion);
+											       		$("#avenida_calle_tab5").val(data[1].establecimientoId.avenidaCalle);
+											       		$("#codigo_postal_tab5").val(data[1].establecimientoId.codigoPostal).prop('disabled', true);
+											       		$("#localidad_tab5").val(data[1].establecimientoId.localidad);
+											       		$("#nombre_inmueble_tab5").val(data[1].establecimientoId.nombreInmueble);
+											       		$("#punto_referencia_tab5").val(data[1].establecimientoId.puntoReferencia);
+											       		$("#geo_localizacion_tab5").val(data[1].establecimientoId.geoLocalizacion);
+											       		
+											       		/////////Consulta Datos Persona Contacto/////////////////////
 												       	
-												       	function processError(data, status, req) {
-												            //alert(req.responseText + " " + status);
-												           	swal("Error al contacter el servicio", data);
-												           	valid = false;
-												           	return valid;
-											       		}
+												       	var consulta_asociacion_persona_contacto = {
+																"comercioId": comercioid
+															}
+												    	
+													    	$.ajax({
+													           type: "POST",
+													           url: '/CBPult/Afiliacion/consultaAsociacionComercioContacto',
+													           contentType: "application/json",
+													           dataType: "json",
+													           data: JSON.stringify(consulta_asociacion_persona_contacto),
+													           success: processSuccess,
+													           error: processError
+													       });
+												   	
+													       	function processSuccess(data, status, req) {
+													            //alert(req.responseText + " " + status);
+													       		console.log("consulta asociacion contacto-----", data);
+													       		
+													       		$("#cargo_tab6").val(data.return.contacto.cargoContacto).prop('disabled', true);
+													       		$("#primer_nombre_tab6").val(data.return.contacto.primerNombre);
+													       		$("#segundo_nombre_tab6").val(data.return.contacto.segundoNombre);
+													       		$("#primer_apellido_tab6").val(data.return.contacto.primerApellido);
+													       		$("#segundo_apellido_tab6").val(data.return.contacto.segundoApellido);
+													       		$("#tipo_identificacion_tab6").val(data.return.contacto.tipoIdentificacionId.nombre).prop('disabled', true);
+													       		$("#identificacion_tab6").val(data.return.contacto.identificacionContacto).prop('disabled', true);
+													       		$("#telefono_tab6").val(data.return.contacto.telefonoLocal);
+													       		$("#correo_electronico_tab6").val(data.return.contacto.emailContacto);
+													       		
+													       		//////////////////Consulta Informacion Otro Bancos(Procesadoras)///////////////////
+													       		
+														       			var consulta_asociacion_otro_banco = {
+																			"comercioId": comercioid
+																		}
+															    	
+																    	$.ajax({
+																           type: "POST",
+																           url: '/CBPult/Afiliacion/consultaAsociacionComercioOtroBanco',
+																           contentType: "application/json",
+																           dataType: "json",
+																           data: JSON.stringify(consulta_asociacion_otro_banco),
+																           success: processSuccess,
+																           error: processError
+																       });
+															   	
+																       	function processSuccess(data, status, req) {
+																            //alert(req.responseText + " " + status);
+																       		console.log("consulta asociacion procesadora-----", data);
+																       		
+																       		$("#nombre_banco_tab7").val(data.return.nombreBanco);
+																       		$("#tipo_POS_tab7").val(data.return.tipoPos);
+																       		$("#cantidad_tab7").val(data.return.cantidadPos);
+																       		
+																       		//////////////////Consulta Datos del Pago///////////////////
+																       		/*
+																       		var consulta_Datos_Pago = {
+																					"comercioId": comercioid
+																				}
+																	    	
+																		    	$.ajax({
+																		           type: "POST",
+																		           url: '/CBPult/Afiliacion/consultaAsociacionComercioOtroBanco',
+																		           contentType: "application/json",
+																		           dataType: "json",
+																		           data: JSON.stringify(consulta_Datos_Pago),
+																		           success: processSuccess,
+																		           error: processError
+																		       });
+																       		*/
+																       	} 
+																       	
+																       	function processError(data, status, req) {
+																            //alert(req.responseText + " " + status);
+																           	swal("Error al contacter el servicio", data);
+																           	valid = false;
+																           	return valid;
+															       		}
+													       		
+													       	} 
+													       	
+													       	function processError(data, status, req) {
+													            //alert(req.responseText + " " + status);
+													           	swal("Error al contacter el servicio", data);
+													           	valid = false;
+													           	return valid;
+												       		}
+											       		
+											       	} 
+											       	
+											       	function processError(data, status, req) {
+											            //alert(req.responseText + " " + status);
+											           	swal("Error al contacter el servicio", data);
+											           	valid = false;
+											           	return valid;
+										       		}
+										       		
+										    
 										       		
 								       	} 
 								       	
@@ -2503,12 +2840,207 @@ var identificacion_global;
 				         
 				         if(cont1 == 6){
 				        	 console.log(cont1);
-				        	 valid = true;
+				        	 
+				        	 	var consulta_comercio = {
+						    			"identificacionComercio":id
+						    	};
+					    	
+						    	$.ajax({
+						           type: "POST",
+						           url: '/CBPult/Afiliacion/consultaComercio',
+						           contentType: "application/json",
+						           dataType: "json",
+						           data: JSON.stringify(consulta_comercio),
+						           success: processSuccess,
+						           error: processError
+						       });
+					   	
+						       	function processSuccess(data, status, req) {
+						            //alert(req.responseText + " " + status);
+						       		console.log(data);
+						       		
+						       		var comercioid = data.return.comercioId;
+						       		
+						       		var actividadComercial = data.return.actividadComercial;
+			 		       			var afiliadoOtroBanco = data.return.afiliadoOtroBanco;
+			 		       			var codigoUsuarioCarga =  data.return.codigoUsuarioCarga;
+			 		       			var codigoUsuarioModifica = data.return.codigoUsuarioModifica;
+			 		       			var comercioId = data.return.comercioId;
+			 		       			var email = data.return.email;
+			 		       			var fechaCargaDatos = data.return.fechaCargaDatos;
+			 		       			var fechaHoraModificacion = data.return.fechaHoraModificacion;
+			 		       			var horaFin = data.return.horaFin;
+			 		       			var horaInicio = data.return.horaInicio;
+			 		       			var identificacionComercio = data.return.identificacionComercio;
+			 		       			var nombreComercial = data.return.nombreComercial;
+			 		       			var nombreEmpresarial = data.return.nombreEmpresarial;
+			 		       			var numCuentaAsociado = data.return.numCuentaAsociado;
+			 		       			var statusComercio = data.return.statusComercio;
+			 		       			var telefonoAlternativo = data.return.telefonoAlternativo;
+			 		       			var telefonoContacto = data.return.telefonoContacto;
+			 		       			var telefonoLocal = data.return.telefonoLocal;
+			 		       			var tipoIdentificacionId_nombre = data.return.tipoIdentificacionId.nombre;
+			 		       			var tipoIdentificacionId_tipoIdentificacionId = data.return.tipoIdentificacionId.tipoIdentificacionId;
+			 		       			
+			 		       			var lista_comercio_establecimiento = {
+			 		       				"idComercio": comercioid
+			 		       			};
+			 		       			
+				 		       		$.ajax({
+								           type: "POST",
+								           url: '/CBPult/Afiliacion/listaComercioEstablecimiento',
+								           contentType: "application/json",
+								           dataType: "json",
+								           data: JSON.stringify(lista_comercio_establecimiento),
+								           success: processSuccess,
+								           error: processError
+								       });
+				 		       		
+						 		       	function processSuccess(data, status, req) {
+					 			            //alert(req.responseText + " " + status);
+					 			       		console.log("lista establecimiento", data);
+					 			       		
+					 			       	var comercioEstablId = data[0].comercioEstablId;
+					 			       	var establecimientoId = data[0].establecimientoId.establecimientoId;
+					 			       		
+					 			       		////////modificar establecimiento/////////
+								       		
+							       			var modificar_comercio_establecimiento = {
+				       							"comercioEstablId": comercioEstablId,
+				       							"comercioId": {
+							 		       			"actividadComercial": actividadComercial,
+							 		       			"afiliadoOtroBanco": afiliadoOtroBanco,
+							 		       			"codigoUsuarioCarga": codigoUsuarioCarga,
+							 		       			"codigoUsuarioModifica": codigoUsuarioModifica,
+							 		       			"comercioId": comercioId,
+							 		       			"email": email,
+							 		       			"fechaCargaDatos": fechaCargaDatos,
+							 		       			"fechaHoraModificacion": fechaHoraModificacion,
+							 		       			"horaFin": horaFin,
+							 		       			"horaInicio": horaInicio,
+							 		       			"identificacionComercio": identificacionComercio,
+							 		       			"nombreComercial": nombreComercial,
+							 		       			"nombreEmpresarial": nombreEmpresarial,
+							 		       			"numCuentaAsociado": numCuentaAsociado,
+							 		       			"statusComercio": statusComercio,
+							 		       			"telefonoAlternativo": telefonoAlternativo,
+							 		       			"telefonoContacto": telefonoContacto,
+							 		       			"telefonoLocal": telefonoLocal,
+							 		       			"tipoIdentificacionId": {
+							 		       				"nombre": tipoIdentificacionId_nombre,
+							 		       				"tipoIdentificacionId": tipoIdentificacionId_tipoIdentificacionId
+							 		       			}
+							 		       		},
+							 		       		"establecimientoId": {
+							 		       			"avenidaCalle": $("#avenida_calle_tab5").val(),
+							 		       			"ciudad": $("#ciudad_tab5").text(),
+							 		       			"codigoPostal": $("#codigo_postal_tab5").val(),
+							 		       			"establecimientoId": establecimientoId,
+							 		       			"geoLocalizacion": $("#geo_localizacion_tab5").val(),
+							 		       			"idCanton":{
+							 		       				"idCanton": $("#municipio_tab5").val(),
+							 		       				"nombreCanton": $("#municipio_tab5").text(),
+							 		       				"provinciaId": {
+							 		                	   	"idProvincia": $("#estado_tab5").val(),
+									 		       			"nombreProvincia": $("#estado_tab5").text(),
+									 		       			"paisId": {
+										 		       			"idPais": 1,
+										 		       			"nombrePais": "Costa Rica"
+									 		       			}
+							 		       				}
+							 		       			},
+							 		       			"idDistrito": {
+								 		       			"cantonId": {
+								 		                   "idCanton": $("#municipio_tab5").val(),
+								 		                   "nombreCanton": $("#municipio_tab5").text(),
+								 		                   "provinciaId": {
+								 		                	   	"idProvincia": $("#estado_tab5").val(),
+										 		       			"nombreProvincia": $("#estado_tab5").text(),
+										 		       			"paisId": {
+											 		       			"idPais": 1,
+											 		       			"nombrePais": "Costa Rica"
+										 		       			}
+								 		                   }
+								 		               },
+								 		               "idDistrito": $("#ciudad_tab5").val(),
+								 		               "nombreDistrito": $("#ciudad_tab5").text()
+							 		       			},
+							 		       			"idPais": {
+								 		       			"idPais": 1,
+								 		       			"nombrePais": "Costa Rica"
+							 		       			},
+							 		       			"idProvincia": {
+								 		       			"idProvincia": $("#estado_tab5").val(),
+								 		       			"nombreProvincia": $("#estado_tab5").text(),
+								 		       			"paisId": {
+									 		       			"idPais": 1,
+									 		       			"nombrePais": "Costa Rica"
+								 		       			}
+							 		       			},
+							 		       			"localidad": $("#localidad_tab5").val(),
+							 		       			"nombreInmueble": $("#nombre_inmueble_tab5").val(),
+							 		       			"puntoReferencia": $("#punto_referencia_tab5").val(),
+							 		       			"sectorUrbanizacion": $("#sector_urbanizacion_tab5").val()
+							 		       		}
+						       				}
+						       				
+						       				$.ajax({
+									           type: "POST",
+									           url: '/CBPult/Afiliacion/modificarComercioEstablecimiento',
+									           contentType: "application/json",
+									           dataType: "json",
+									           data: JSON.stringify(modificar_comercio_establecimiento),
+									           success: processSuccess,
+									           error: processError
+						       				});
+						        	 		
+						        	 		function processSuccess(data, status, req) {
+						 			            //alert(req.responseText + " " + status);
+						 			       		console.log("modificacion establecimiento", data);
+						 			       		if(data.return.descripcion === "OK"){
+						 			       			valid = true;
+						 			       			return valid;
+						 			       			
+						 			       		}else if(data.return.descripcion === "FALSE"){
+						 			       			swal("Error al modificar");
+						 			       			valid = false;
+						 			       			return valid;
+						 			       		}
+						 			           	
+						 			       	} 
+						 			       	
+						 			       	function processError(data, status, req) {
+						 			            //alert(req.responseText + " " + status);
+						 			           	swal("Error al contacter el servicio", data);
+						 			           	valid = false;
+						 			           	return valid;
+						 			       	}
+					 			           	
+					 			       	} 
+					 			       	
+					 			       	function processError(data, status, req) {
+					 			            //alert(req.responseText + " " + status);
+					 			           	swal("Error al contacter el servicio", data);
+					 			           	valid = false;
+					 			           	return valid;
+					 			       	}
+						       		
+						       		
+						       	}
+						       	
+						       	function processError(data, status, req) {
+			 			            //alert(req.responseText + " " + status);
+			 			           	swal("Error al contacter el servicio", data);
+			 			           	valid = false;
+			 			           	return valid;
+			 			       	}
+
+				        	 
 				         }else if(cont1 == 0){
 				        	 valid = false;
+				        	 return valid;
 				         }
 				         
-				         return valid;
 			       }
 			       if (stepDirection === 'backward') {
 			    	   //clientValidator.resetForm();

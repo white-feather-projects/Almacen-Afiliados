@@ -9,6 +9,7 @@ public class EditarAsociacionBancoComercioDTO {
     private String numeroAfiliacion;
     private long numTerminalesComprar;
     private Operadortelefonico operadorTelefonicoId;
+    private long cantidadLineasOperador;
     
 	public EditarAsociacionBancoComercioDTO() {
 		super();
@@ -54,13 +55,20 @@ public class EditarAsociacionBancoComercioDTO {
 		this.operadorTelefonicoId = operadorTelefonicoId;
 	}
 
+	public long getCantidadLineasOperador() {
+		return cantidadLineasOperador;
+	}
+
+	public void setCantidadLineasOperador(long cantidadLineasOperador) {
+		this.cantidadLineasOperador = cantidadLineasOperador;
+	}
+
 	@Override
 	public String toString() {
 		return "EditarAsociacionBancoComercioDTO [idAsociacion=" + idAsociacion + ", idEntityBanck=" + idEntityBanck
 				+ ", numeroAfiliacion=" + numeroAfiliacion + ", numTerminalesComprar=" + numTerminalesComprar
-				+ ", operadorTelefonicoId=" + operadorTelefonicoId + "]";
+				+ ", operadorTelefonicoId=" + operadorTelefonicoId + ", cantidadLineasOperador="
+				+ cantidadLineasOperador + "]";
 	}
-
-	
     
 }

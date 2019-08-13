@@ -67,6 +67,7 @@ import com.cbp3.ws.cbp.service.BancoAfiliacion;
 import com.cbp3.ws.cbp.service.Canton;
 import com.cbp3.ws.cbp.service.CodigoPostalWSResponse;
 import com.cbp3.ws.cbp.service.Comercio;
+import com.cbp3.ws.cbp.service.ComercioEstabl;
 import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioContactoWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioOtroBancoWS;
 import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioOtroBancoWSResponse;
@@ -83,6 +84,8 @@ import com.cbp3.ws.cbp.service.ConsultaPagoByNumComprobanteReciboWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWS;
 import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWSResponse;
+import com.cbp3.ws.cbp.service.CrearComercioEstablecimientoWS;
+import com.cbp3.ws.cbp.service.CrearComercioEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.CrearComercioWSResponse;
 import com.cbp3.ws.cbp.service.CrearContactoWSResponse;
 import com.cbp3.ws.cbp.service.CrearEstablecimientoWS;
@@ -98,6 +101,7 @@ import com.cbp3.ws.cbp.service.EditarAsociacionComercioConRepresentanteLegalWSRe
 import com.cbp3.ws.cbp.service.EditarContactoWSResponse;
 import com.cbp3.ws.cbp.service.EditarRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.EntityBank;
+import com.cbp3.ws.cbp.service.Establecimiento;
 import com.cbp3.ws.cbp.service.ListPagosByIdentificacionComercioWS;
 import com.cbp3.ws.cbp.service.ListRecaudosByComercioWS;
 import com.cbp3.ws.cbp.service.ListaSolicitudesWSResponse;
@@ -497,6 +501,17 @@ public class AfiliacionController extends Util{
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	@RequestMapping(value = "/CrearComercioEstablecimiento", produces = { "application/json" })
+	public @ResponseBody CrearComercioEstablecimientoWSResponse CrearComercioEstablecimiento(@RequestBody CrearComercioEstablecimientoWS CrearComercioEstablecimientoWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		CrearComercioEstablecimientoWSResponse respuesta = new CrearComercioEstablecimientoWSResponse();
+		respuesta = afiliacionMethods.CrearComercioEstablecimiento(CrearComercioEstablecimientoWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	@RequestMapping(value = "/modificarComercioEstablecimiento", produces = { "application/json" })
 	public @ResponseBody ModificarComercioEstablecimientoWSResponse modificarComercioEstablecimiento(@RequestBody ModificarComercioEstablecimientoWS ModificarComercioEstablecimientoWS) {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
@@ -568,6 +583,28 @@ public class AfiliacionController extends Util{
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		java.util.List<Pago> respuesta = new ArrayList<>();
 		respuesta = afiliacionMethods.listaPagosPorIdentificacionComercio(ListPagosByIdentificacionComercioWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/listaEstablecimientos", produces = { "application/json" })
+	public @ResponseBody java.util.List<Establecimiento> listaEstablecimientos() {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<Establecimiento> respuesta = new ArrayList<>();
+		respuesta = afiliacionMethods.listaEstablecimientos();
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/listaComercioEstablecimiento", produces = { "application/json" })
+	public @ResponseBody java.util.List<ComercioEstabl> listaComercioEstablecimiento(@RequestBody com.cbp3.ws.cbp.service.ListaComercioEstablecimientosWS ListaComercioEstablecimientosWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<ComercioEstabl> respuesta = new ArrayList<>();
+		respuesta = afiliacionMethods.listaComercioEstablecimiento(ListaComercioEstablecimientosWS);
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
 	}

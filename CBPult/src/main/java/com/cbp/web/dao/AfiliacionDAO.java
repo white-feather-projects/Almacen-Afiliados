@@ -54,6 +54,8 @@ import com.cbp3.ws.cbp.service.ConsultaPagoByNumComprobanteReciboWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWS;
 import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWSResponse;
+import com.cbp3.ws.cbp.service.CrearComercioEstablecimientoWS;
+import com.cbp3.ws.cbp.service.CrearComercioEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.CrearComercioWSResponse;
 import com.cbp3.ws.cbp.service.CrearContactoWSResponse;
 import com.cbp3.ws.cbp.service.CrearEstablecimientoWS;
@@ -69,6 +71,7 @@ import com.cbp3.ws.cbp.service.EditarAsociacionComercioConRepresentanteLegalWSRe
 import com.cbp3.ws.cbp.service.EditarContactoWSResponse;
 import com.cbp3.ws.cbp.service.EditarRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.EntityBank;
+import com.cbp3.ws.cbp.service.Establecimiento;
 import com.cbp3.ws.cbp.service.ListPagosByIdentificacionComercioWS;
 import com.cbp3.ws.cbp.service.ListRecaudosByComercioWS;
 import com.cbp3.ws.cbp.service.ListaComercioEstablecimientosWS;
@@ -159,6 +162,8 @@ public interface AfiliacionDAO {
 	
 	public CrearEstablecimientoWSResponse crearEstablecimiento(CrearEstablecimientoWS CrearEstablecimientoWS);
 	
+	public CrearComercioEstablecimientoWSResponse CrearComercioEstablecimiento(CrearComercioEstablecimientoWS CrearComercioEstablecimientoWS);
+	
 	public ModificarComercioEstablecimientoWSResponse modificarComercioEstablecimiento(ModificarComercioEstablecimientoWS ModificarComercioEstablecimientoWS);
 	
 	public java.util.List<Solicitud> listaSolicitudes();
@@ -172,6 +177,10 @@ public interface AfiliacionDAO {
 	public java.util.List<TipoRecaudo> listaTipoRecaudos();
 	
 	public java.util.List<Pago> listaPagosPorIdentificacionComercio(ListPagosByIdentificacionComercioWS ListPagosByIdentificacionComercioWS);
+	
+	public java.util.List<Establecimiento> listaEstablecimientos();
+	
+	public java.util.List<ComercioEstabl> listaComercioEstablecimiento(com.cbp3.ws.cbp.service.ListaComercioEstablecimientosWS ListaComercioEstablecimientosWS);
 	
 	public java.util.List<Recaudo> listaRecaudosByComercio(ListRecaudosByComercioWS ListRecaudosByComercioWS);
 	
