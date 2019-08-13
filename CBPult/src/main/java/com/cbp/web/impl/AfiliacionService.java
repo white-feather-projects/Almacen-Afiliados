@@ -67,6 +67,8 @@ import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWS;
 import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWSResponse;
 import com.cbp3.ws.cbp.service.CrearComercioWSResponse;
 import com.cbp3.ws.cbp.service.CrearContactoWSResponse;
+import com.cbp3.ws.cbp.service.CrearEstablecimientoWS;
+import com.cbp3.ws.cbp.service.CrearEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.CrearOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.CrearPagoComercioWS;
 import com.cbp3.ws.cbp.service.CrearPagoComercioWSResponse;
@@ -85,6 +87,8 @@ import com.cbp3.ws.cbp.service.ModificarAsociacionComercioOtroBancoWS;
 import com.cbp3.ws.cbp.service.ModificarAsociacionComercioOtroBancoWSResponse;
 import com.cbp3.ws.cbp.service.ModificarAsociarComercioRecaudoWS;
 import com.cbp3.ws.cbp.service.ModificarAsociarComercioRecaudoWSResponse;
+import com.cbp3.ws.cbp.service.ModificarComercioEstablecimientoWS;
+import com.cbp3.ws.cbp.service.ModificarComercioEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.ModificarComercioWSResponse;
 import com.cbp3.ws.cbp.service.ModificarOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.Operadortelefonico;
@@ -241,7 +245,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
-			respuestaAsociarBancoComercio.setReturn(WSmethod.asociarBancoComercioWS(AsociarBancoComercioDTO.getIdEntityBanck(), AsociarBancoComercioDTO.getIdComercio(), AsociarBancoComercioDTO.getNumeroAfiliacion(), AsociarBancoComercioDTO.getNumTerminalesComprar())); 
+			respuestaAsociarBancoComercio.setReturn(WSmethod.asociarBancoComercioWS(AsociarBancoComercioDTO.getIdEntityBanck(), AsociarBancoComercioDTO.getIdComercio(), AsociarBancoComercioDTO.getNumeroAfiliacion(), AsociarBancoComercioDTO.getNumTerminalesComprar(), AsociarBancoComercioDTO.getOperadorTelefonicoId(), AsociarBancoComercioDTO.getCantidadLineasOperador())); 
 		
 		
 		} catch (MalformedURLException e) {
@@ -319,7 +323,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
-			respuestaEditarAsociacionBancoComercio.setReturn(WSmethod.editarAsociacionBancoComercioWS(EditarAsociacionBancoComercioDTO.getIdAsociacion(), EditarAsociacionBancoComercioDTO.getIdEntityBanck(), EditarAsociacionBancoComercioDTO.getNumeroAfiliacion(), EditarAsociacionBancoComercioDTO.getNumTerminalesComprar())); 
+			respuestaEditarAsociacionBancoComercio.setReturn(WSmethod.editarAsociacionBancoComercioWS(EditarAsociacionBancoComercioDTO.getIdAsociacion(), EditarAsociacionBancoComercioDTO.getIdEntityBanck(), EditarAsociacionBancoComercioDTO.getNumeroAfiliacion(), EditarAsociacionBancoComercioDTO.getNumTerminalesComprar(), EditarAsociacionBancoComercioDTO.getOperadorTelefonicoId())); 
 		
 		
 		} catch (MalformedURLException e) {
@@ -929,6 +933,58 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 		}
 		
 		return respuestaConsultaEntityBankByIdEntityBank;
+	}
+	
+	////////////////////////////////////
+	//Methodo para Crear Establecimiento...
+	public CrearEstablecimientoWSResponse crearEstablecimiento(CrearEstablecimientoWS CrearEstablecimientoWS) {
+	
+		//instanciar Objeto para retorno....
+		CrearEstablecimientoWSResponse respuestaCrearEstablecimiento = new CrearEstablecimientoWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaCrearEstablecimiento.setReturn(WSmethod.crearEstablecimientoWS(CrearEstablecimientoWS.getIdPais(), CrearEstablecimientoWS.getIdProvincia(), CrearEstablecimientoWS.getIdCanton(), CrearEstablecimientoWS.getIdDistrito(), CrearEstablecimientoWS.getCiudad(), CrearEstablecimientoWS.getSectorUrbanizacion(), CrearEstablecimientoWS.getAvenidaCalle(), CrearEstablecimientoWS.getCodigoPostal(), CrearEstablecimientoWS.getLocalidad(), CrearEstablecimientoWS.getNombreInmueble(), CrearEstablecimientoWS.getPuntoReferencia(), CrearEstablecimientoWS.getGeoLocalizacion()));
+		
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaCrearEstablecimiento;
+	}
+	
+	////////////////////////////////////
+	//Methodo para Modificar Establecimiento...
+	public ModificarComercioEstablecimientoWSResponse modificarComercioEstablecimiento(ModificarComercioEstablecimientoWS ModificarComercioEstablecimientoWS) {
+	
+		//instanciar Objeto para retorno....
+		ModificarComercioEstablecimientoWSResponse respuestaModificarComercioEstablecimiento = new ModificarComercioEstablecimientoWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaModificarComercioEstablecimiento.setReturn(WSmethod.modificarComercioEstablecimientoWS(ModificarComercioEstablecimientoWS.getComercioEstablId(), ModificarComercioEstablecimientoWS.getComercioId(), ModificarComercioEstablecimientoWS.getEstablecimientoId()));
+		
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaModificarComercioEstablecimiento;
 	}
 
 	////////////////////////////////////

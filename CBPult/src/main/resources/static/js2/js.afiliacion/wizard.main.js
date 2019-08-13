@@ -238,7 +238,7 @@ var identificacion_global;
 				    	   
 				    	   var cantidad_terminales_tab3 = $("#cantidad_terminales_tab3").val();
 				    	   var nombre_banco_tab3 = $("#nombre_banco_tab3").val();
-				    	   var numero_afiliacion_tab3 = $().val("#numero_afiliacion_tab3");
+				    	   var numero_afiliacion_tab3 = $("#numero_afiliacion_tab3").val();
 				    	   
 				    	   if(cantidad_terminales_tab3.length >= 1){
 					        	 cont1 = cont1 + 1;
@@ -288,7 +288,14 @@ var identificacion_global;
 								        				"idEntityBanck": "1",
 								        				"idComercio": id_comercio,
 								        				"numeroAfiliacion": id_comercio,
-								        				"numTerminalesComprar": $("#cantidad_terminales_tab3").val()
+								        				"numTerminalesComprar": $("#cantidad_terminales_tab3").val(),
+								        				"operadorTelefonicoId": {
+								        					"active": 0,
+								        					"codOperadora": "Claro",
+								        					"operadortelfId": 13,
+								        					"operadortelfNombre": "Claro"
+								        				},
+								        				"cantidadLineasOperador": $("#cantidad_claro_tab3").val()
 								        		};
 							 		           	
 							 		           $.ajax({
@@ -313,7 +320,7 @@ var identificacion_global;
 								 		           	}else if(data.return.descripcion === "OK"){
 								 		           		//document.getElementById("numero_afiliacion_tab3").disabled = true;
 								 		           		document.getElementById("cantidad_terminales_tab3").disabled = true;
-								 		           		//document.getElementById("cantidad_claro_tab3").disabled = true;
+								 		           		document.getElementById("cantidad_claro_tab3").disabled = true;
 								 		           		
 								 		           		swal("Cantidad Terminales Registrados", data.return.descripcion);
 								 		           		valid = true;
@@ -778,13 +785,6 @@ var identificacion_global;
 		        if (currentIndex === 3) {
 		        	valid = false;
 		        	
-		        	////////Consulta Provincia////////////
-		        	
-		        		
-		        	
-		        	/////////////////////////////////////	
-		        	
-		        	/////////////////////////////////////
 				
 			       if (stepDirection === 'forward') {
 			    	   var cont1 = 0;
@@ -842,6 +842,8 @@ var identificacion_global;
 				        	 console.log(cont1);
 				        	 //////////////////////////
 				        	 
+				        	 
+				        	 
 				        	 	valid = true;
 				        	 	return valid;
 				        	 
@@ -873,7 +875,7 @@ var identificacion_global;
 				        	 cont1 = cont1;
 				        	document.getElementById("cargo_tab6").style.border = "1px solid red";
 				         }
-			    	   
+			    	   /*
 			    	   var segundo_nombre_tab6 = $("#segundo_nombre_tab6").val();
 			    	   if(segundo_nombre_tab6.length >= 1){
 				        	 cont1 = cont1 + 1;
@@ -889,7 +891,7 @@ var identificacion_global;
 				        	 cont1 = cont1;
 				        	document.getElementById("segundo_apellido_tab6").style.border = "1px solid red";
 				         }
-			    	   
+			    	   */
 			    	   var identificacion_tab6 = $("#identificacion_tab6").val();
 			    	   if(identificacion_tab6.length >= 1){
 				        	 cont1 = cont1 + 1;
@@ -930,7 +932,7 @@ var identificacion_global;
 				        	document.getElementById("telefono_tab6").style.border = "1px solid red";
 				         }
 				         
-				         if(cont1 == 8){
+				         if(cont1 == 6){
 				        	 console.log(cont1);
 				        	 
 				        	 ///////////////////////////////////////
@@ -1267,7 +1269,7 @@ var identificacion_global;
 				        	 
 				        	 ///////////////////////////////////////
 				 		       	
-				         }else if(cont1 < 8){
+				         }else if(cont1 < 6){
 				        	 valid = false;
 				        	 return valid;
 				         }
@@ -1594,8 +1596,148 @@ var identificacion_global;
 		      },
 		      onFinish: function () {
 		        //alert('Wizard Completed');
-		    	 
-		    	  location.href = "/CBPult/dashborad";
+		    	  
+		    	  var file1;
+		          var file2;
+		          
+		          file1 = document.getElementById('fileCedulaRepresentanteInformationName').files[0];
+		          file2 = document.getElementById('fileCedulaContactoInformationName').files[0];
+		          file3 = document.getElementById('fileNegocioInformationName').files[0];
+		    	  
+		    	  if(file1 != null && file2 != null && file3 != null){
+		    		  var consulta_comercio = {
+			        	 		"identificacionComercio": $("#identificacion_tab2").val()
+				    	  	}
+				        	 	
+			    	 		$.ajax({
+				               type: "POST",
+				               url: '/CBPult/Afiliacion/consultaComercio',
+				               contentType: "application/json",
+				               dataType: "json",
+				               data: JSON.stringify(consulta_comercio),
+				               success: processSuccess,
+				               error: processError
+			    	 		});
+				    	  	
+				    	  	function processSuccess(data, status, req) {
+			 		            //alert(req.responseText + " " + status);
+			 		       		console.log("consulta comercio tab7------", data);
+			 		       		
+			 		           	if(data.return.identificacionComercio != $("#identificacion_tab2").val()){
+			 		           		swal("Error al encontrar comercio", data.return.descripcion);
+			 		           		valid = false;
+			 		           		return valid;
+			 		           		
+			 		           	}else if(data.return.identificacionComercio == $("#identificacion_tab2").val()){
+			 		           		
+			 		           		var actividadComercial = data.return.actividadComercial;
+			 		           		var afiliadoOtroBanco = data.return.afiliadoOtroBanco;
+			 		           		var codigoUsuarioCarga = 0;
+			 		           		var codigoUsuarioModifica = 0;
+			 		           		var comercioId = data.return.comercioId;
+			 		           		var email = data.return.email;
+			 		           		var fechaCargaDatos = data.return.fechaCargaDatos;
+			 		           		var fechaHoraModificacion = data.return.fechaCargaDatos;
+			 		           		var horaFin = data.return.horaFin;
+			 		           		var horaInicio = data.return.horaInicio;
+			 		           		var identificacionComercio = data.return.identificacionComercio;
+			 		           		var nombreComercial = data.return.nombreComercial;
+			 		           		var nombreEmpresarial = data.return.nombreEmpresarial;
+			 		           		var numCuentaAsociado = data.return.numCuentaAsociado;
+			 		           		var statusComercio = data.return.statusComercio;
+			 		           		var telefonoAlternativo = data.return.telefonoAlternativo;
+			 		           		var telefonoContacto = data.return.telefonoContacto;
+			 		           		var telefonoLocal = data.return.telefonoLocal;
+			 		           		var Tipoidentificacion_nombre = data.return.tipoIdentificacionId.nombre;
+			 		           		var Tipoidentificacion_tipoIdentificacionId = data.return.tipoIdentificacionId.tipoIdentificacionId;
+			 		           		
+			 		           		var recaudoVerificado = "0";
+			 		           		var fechaVigencia = "0";
+			 		           		
+				 		           	var formData = new FormData($('#divFiles')[0]);
+						    	  	
+						    	  	formData.append('recaudoVerificado', recaudoVerificado);
+						    	  	formData.append('fechaVigencia', fechaVigencia);
+						    	  	
+						    	  	formData.append('actividadComercial', actividadComercial);
+						    	  	formData.append('afiliadoOtroBanco', afiliadoOtroBanco);
+						    	  	formData.append('codigoUsuarioCarga', codigoUsuarioCarga);
+						    	  	formData.append('codigoUsuarioModifica', codigoUsuarioModifica);
+						    	  	formData.append('comercioId', comercioId);
+						    	  	formData.append('email', email);
+						    	  	formData.append('fechaCargaDatos', fechaCargaDatos);
+						    	  	formData.append('fechaHoraModificacion', fechaHoraModificacion);
+						    	  	formData.append('horaFin', horaFin);
+						    	  	formData.append('horaInicio', horaInicio);
+						    	  	formData.append('identificacionComercio', identificacionComercio);
+						    	  	formData.append('nombreComercial', nombreComercial);
+						    	  	formData.append('nombreEmpresarial', nombreEmpresarial);
+						    	  	formData.append('numCuentaAsociado', numCuentaAsociado);
+						    	  	formData.append('statusComercio', statusComercio);
+						    	  	formData.append('telefonoAlternativo', telefonoAlternativo);
+						    	  	formData.append('telefonoContacto', telefonoContacto);
+						    	  	formData.append('telefonoLocal', telefonoLocal);
+						    	  	formData.append('Tipoidentificacion_nombre', Tipoidentificacion_nombre);
+						    	  	formData.append('Tipoidentificacion_tipoIdentificacionId', Tipoidentificacion_tipoIdentificacionId);
+						    	  	
+					              	console.log("formData----", formData);
+					              	console.log("form----", $('#divFiles')[0]);
+					              	
+					      	          $.ajax( {
+					      	            url: '/CBPult/Afiliacion/uploadDocuments',
+					      	            type: 'POST',
+					      	            data: formData,
+					      	            processData: false,
+					      	            contentType: false,
+					      	            dataType: 'text',
+					      	            success: success,
+					      	            error: processError
+					      	            
+					      	          });
+					      	          
+					      	          function success(data, status, req){
+					      	        	  console.log(JSON.parse(data));
+					      	        	  var data1 = JSON.parse(data);
+					      	        	  
+					      	        	  if(data1.return.descripcion === "OK"){
+					      	        		swal({
+					      	        		     title: "EXITO!",
+					      	        		     text: "Recaudos Registrados",
+					      	        		     type: "success",
+					      	        		     timer: 3000
+					      	        		     },
+					      	        		     function () {
+					      	        		            location.href = "../bandejas_ejecutivo"
+					      	        		     });
+					      	        		  
+					      	        	  }else if(data1.return.descripcion === "FALSE"){
+					      	        		  swal("Error al Registrar, Recaudos....");
+					      	        		  
+					      	        	  }
+					      	          }
+					      	          
+					      	          function processError(data, status, req) {
+					      	                //alert(req.responseText + " " + status);
+					      	            	swal("Error al contactar con el servicio", status);
+					
+					      	          }
+					 		           	
+			 		           	}
+		 		           	} 
+			 		       	
+			       			function processError(data, status, req) {
+			 		            //alert(req.responseText + " " + status);
+			 		           	swal("Error al contactar el servicio", data);
+			 		           	valid = false;
+			 		           	return valid;
+			       			} 
+		    	  }else{
+		    		  swal("Documentos Obligatorios");
+		    	  }
+		    	  
+		    	  	
+
+		    	  //location.href = "/CBPult/dashborad";
 		      }
 		    });
 		    
@@ -1855,6 +1997,7 @@ var identificacion_global;
 					       		$("#idbanco").val(data.return.entityBank.idEntityBank);
 					       		$("#numero_afiliacion_tab3").val(data.return.numAfiliacionBanco).prop('disabled', true);
 					       		$("#cantidad_terminales_tab3").val(data.return.numTerminalesComprar);
+					       		$("#cantidad_claro_tab3").val(data.return.cantidadLineasOperador);
 					       		
 							    /////////Consulta Representante Legal//////////////
 										
@@ -2155,7 +2298,13 @@ var identificacion_global;
 				        	 			"idAsociacion":id,
 				        	 			"idEntityBanck":"1",
 				        	 			"numeroAfiliacion":$("#identificacion_tab2").val(),
-				        	 			"numTerminalesComprar":$("#cantidad_terminales_tab3").val()
+				        	 			"numTerminalesComprar":$("#cantidad_terminales_tab3").val(),
+				        	 			"operadorTelefonicoId": {
+				        					"active": 0,
+				        					"codOperadora": "Claro",
+				        					"operadortelfId": 13,
+				        					"operadortelfNombre": "Claro"
+				        	 			}
 			 			    	};
 			 			    	
 			 			    	$.ajax({
@@ -2351,16 +2500,8 @@ var identificacion_global;
 				        	 cont1 = cont1;
 				        	document.getElementById("nombre_inmueble_tab5").style.border = "1px solid red";
 				         }
-			    	   
-			    	   var geo_localizacion_tab5 = $("#geo_localizacion_tab5").val();
-			    	   if(geo_localizacion_tab5.length >= 1){
-				        	 cont1 = cont1 + 1;
-				         }else{
-				        	 cont1 = cont1;
-				        	document.getElementById("geo_localizacion_tab5").style.border = "1px solid red";
-				         }
 				         
-				         if(cont1 == 7){
+				         if(cont1 == 6){
 				        	 console.log(cont1);
 				        	 valid = true;
 				         }else if(cont1 == 0){
@@ -2388,7 +2529,7 @@ var identificacion_global;
 				        	 cont1 = cont1;
 				        	document.getElementById("cargo_tab6").style.border = "1px solid red";
 				         }
-			    	   
+			    	   /*
 			    	   var segundo_nombre_tab6 = $("#segundo_nombre_tab6").val();
 			    	   if(segundo_nombre_tab6.length >= 1){
 				        	 cont1 = cont1 + 1;
@@ -2404,7 +2545,7 @@ var identificacion_global;
 				        	 cont1 = cont1;
 				        	document.getElementById("segundo_apellido_tab6").style.border = "1px solid red";
 				         }
-			    	   
+			    	   */
 			    	   var identificacion_tab6 = $("#identificacion_tab6").val();
 			    	   if(identificacion_tab6.length >= 1){
 				        	 cont1 = cont1 + 1;

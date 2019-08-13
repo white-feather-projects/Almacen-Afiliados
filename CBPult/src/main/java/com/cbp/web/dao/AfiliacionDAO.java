@@ -37,6 +37,7 @@ import com.cbp3.ws.cbp.service.AsociarComercioRecaudoWSResponse;
 import com.cbp3.ws.cbp.service.BancoAfiliacion;
 import com.cbp3.ws.cbp.service.Canton;
 import com.cbp3.ws.cbp.service.CodigoPostalWSResponse;
+import com.cbp3.ws.cbp.service.ComercioEstabl;
 import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioContactoWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioOtroBancoWS;
 import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioOtroBancoWSResponse;
@@ -70,13 +71,17 @@ import com.cbp3.ws.cbp.service.EditarRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.EntityBank;
 import com.cbp3.ws.cbp.service.ListPagosByIdentificacionComercioWS;
 import com.cbp3.ws.cbp.service.ListRecaudosByComercioWS;
+import com.cbp3.ws.cbp.service.ListaComercioEstablecimientosWS;
 import com.cbp3.ws.cbp.service.ListaSolicitudesWS;
 import com.cbp3.ws.cbp.service.ListaSolicitudesWSResponse;
 import com.cbp3.ws.cbp.service.ModificarAsociacionComercioOtroBancoWS;
 import com.cbp3.ws.cbp.service.ModificarAsociacionComercioOtroBancoWSResponse;
 import com.cbp3.ws.cbp.service.ModificarAsociarComercioRecaudoWS;
 import com.cbp3.ws.cbp.service.ModificarAsociarComercioRecaudoWSResponse;
+import com.cbp3.ws.cbp.service.ModificarComercioEstablecimientoWS;
+import com.cbp3.ws.cbp.service.ModificarComercioEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.ModificarComercioWSResponse;
+import com.cbp3.ws.cbp.service.ModificarEstablecimientoWS;
 import com.cbp3.ws.cbp.service.ModificarOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.Operadortelefonico;
 import com.cbp3.ws.cbp.service.Pago;
@@ -151,6 +156,10 @@ public interface AfiliacionDAO {
 	public ModificarAsociarComercioRecaudoWSResponse modificarAsociarComercioRecaudo(ModificarAsociarComercioRecaudoWS ModificarAsociarComercioRecaudoWS);
 	
 	public ConsultaEntityBankByIdEntityBankWSResponse consultaEntityBankByIdEntityBank(ConsultaEntityBankByIdEntityBankWS ConsultaEntityBankByIdEntityBankWS);
+	
+	public CrearEstablecimientoWSResponse crearEstablecimiento(CrearEstablecimientoWS CrearEstablecimientoWS);
+	
+	public ModificarComercioEstablecimientoWSResponse modificarComercioEstablecimiento(ModificarComercioEstablecimientoWS ModificarComercioEstablecimientoWS);
 	
 	public java.util.List<Solicitud> listaSolicitudes();
 	
