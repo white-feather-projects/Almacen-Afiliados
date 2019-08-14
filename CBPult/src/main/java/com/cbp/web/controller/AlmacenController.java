@@ -55,7 +55,7 @@ public class AlmacenController {
 	@Autowired
 	AlmacenDAO almacenMethods;
 	
-	@RequestMapping(value = "/consultarAlmacenPorAlmacenId", produces = { "application/json" })// No lo usaré y no se si es necesario
+	@RequestMapping(value = "/consultarAlmacenPorAlmacenId", produces = { "application/json" }) // No lo usaré y no se si es necesario
 	public @ResponseBody ConsultaAlmacenPorAlmacenIdWSResponse consultaAlmacenPorAlmacenId(@RequestBody ConsultaAlmacenPorAlmacenIdDTO ConsultaAlmacenPorAlmacenIdDTO) {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		ConsultaAlmacenPorAlmacenIdWSResponse respuesta = new ConsultaAlmacenPorAlmacenIdWSResponse();
