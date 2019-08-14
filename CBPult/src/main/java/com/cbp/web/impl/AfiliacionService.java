@@ -1002,7 +1002,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
 			respuestaModificarComercioEstablecimiento.setReturn(WSmethod.modificarComercioEstablecimientoWS(ModificarComercioEstablecimientoWS.getComercioEstablId(), ModificarComercioEstablecimientoWS.getComercioId(), ModificarComercioEstablecimientoWS.getEstablecimientoId()));
-		
+			//respuestaModificarComercioEstablecimiento = ModificarComercioEstablecimientoWS;
 		
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block

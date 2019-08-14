@@ -51,6 +51,7 @@ import com.cbp.web.dto.consultaComercioDTO;
 import com.cbp.web.dto.crearComercioDTO;
 import com.cbp.web.dto.modificarComercioDTO;
 import com.cbp.web.impl.UploadFileServiceImpl;
+import com.cbp.web.impl.UploadFileServiceImplAfiliacion;
 import com.cbp.web.util.Util;
 import com.cbp3.ws.cbp.service.ActiveOrInactiveOperadoraTelefonicaWSResponse;
 import com.cbp3.ws.cbp.service.ActualizaStatusComercioWSResponse;
@@ -133,7 +134,7 @@ public class AfiliacionController extends Util{
 	Authentication auth = null;
 	
 	@Autowired
-	private UploadFileServiceImpl upload;	
+	private UploadFileServiceImplAfiliacion upload;	
 
 	@Autowired
 	AfiliacionDAO afiliacionMethods;
@@ -826,6 +827,303 @@ public class AfiliacionController extends Util{
 		   }
 		   
 	*/
+		  
+		return  respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
+	@RequestMapping(value = "/modificarDocumentsRepresentante", method = RequestMethod.POST, consumes = { "multipart/form-data" })
+	public @ResponseBody ModificarAsociarComercioRecaudoWSResponse modificarRepresentante(MultipartHttpServletRequest files , HttpServletResponse response, HttpServletRequest reques){
+		
+		ModificarAsociarComercioRecaudoWSResponse respuesta = new ModificarAsociarComercioRecaudoWSResponse();
+		ModificarAsociarComercioRecaudoWS modificarComercioRecaudo = new ModificarAsociarComercioRecaudoWS();
+		Map<String, String[]> map = reques.getParameterMap();
+		
+		TipoRecaudo tipoRecaudo = new TipoRecaudo();
+		
+		  for (Map.Entry<String,  String[]> entry : map.entrySet()) {
+			  
+			    String key = entry.getKey();
+			    String[] value = entry.getValue();
+			    // ...
+			    
+			    if(key.equals("tipoRecaudoId")){
+			    	System.out.println("tipoRecaudoId "+value[0]);
+			    	tipoRecaudo.setTipoRecaudoId(Long.parseLong(value[0]));
+			    	
+			    }else if(key.equals("tipoRecaudoNombre")) {
+			    	System.out.println("tipoRecaudoNombre "+value[0]);
+			    	tipoRecaudo.setTipoRecaudoNombre(value[0]);
+			    	
+			    }else if(key.equals("idRecaudo")) {
+			    	System.out.println("idRecaudo "+value[0]);
+			    	modificarComercioRecaudo.setIdRecaudo(Long.parseLong(value[0]));
+			    	
+			    }else if(key.equals("ubicacion")) {
+			    	System.out.println("ubicacion "+value[0]);
+			    	modificarComercioRecaudo.setUbicacion(value[0]);
+			    	
+			    }else if(key.equals("recaudoVerificado")) {
+			    	System.out.println("recaudoVerificado "+value[0]);
+			    	modificarComercioRecaudo.setRecaudoVerificado(value[0]);
+			    	
+			    }else if(key.equals("fechaVigencia")) {
+			    	System.out.println("fechaVigencia "+value[0]);
+			    	modificarComercioRecaudo.setFechaVigencia(value[0]);
+			    	
+			    }
+
+			}
+
+		  modificarComercioRecaudo.setTipoRecaudoId(tipoRecaudo);
+		  
+			Iterator<String> itr =  files.getFileNames();
+			MultipartFile mpf=null;
+		  	String statusFile="";
+		  	
+		   while(itr.hasNext()) {	
+			  mpf = files.getFile(itr.next());
+			  System.out.println("mpf "+mpf.getName());
+			
+				try {
+			
+					if(mpf.getName().equals("fileCedulaRepresentanteInformationName")){
+						statusFile=upload.copy(mpf);
+						System.out.println(statusFile);
+						modificarComercioRecaudo.setRecaudoNombre(statusFile);
+						
+						respuesta = afiliacionMethods.modificarAsociarComercioRecaudo(modificarComercioRecaudo);
+						
+					}/*else if(mpf.getName().equals("fileCedulaContactoInformationName")){
+						statusFile=upload.copy(mpf);
+						System.out.println(statusFile);
+						asociarComercioRecaudo.setRecaudoNombre(statusFile);
+						
+						TipoRecaudo tipoRecaudo = new TipoRecaudo();
+						tipoRecaudo.setTipoRecaudoId(Long.parseLong("2"));
+						tipoRecaudo.setTipoRecaudoNombre("CEDULA CONTACTO");
+						
+						asociarComercioRecaudo.setTipoRecaudoId(tipoRecaudo);
+						asociarComercioRecaudo.setUbicacion("C:\\pnp\\");
+						
+						respuesta = afiliacionMethods.asociarComercioRecaudo(asociarComercioRecaudo);
+						
+					}else if(mpf.getName().equals("fileNegocioInformationName")){
+						statusFile=upload.copy(mpf);
+						System.out.println(statusFile);
+						asociarComercioRecaudo.setRecaudoNombre(statusFile);
+						
+						TipoRecaudo tipoRecaudo = new TipoRecaudo();
+						tipoRecaudo.setTipoRecaudoId(Long.parseLong("3"));
+						tipoRecaudo.setTipoRecaudoNombre("FACHADA DEL NEGOCIO");
+						
+						asociarComercioRecaudo.setTipoRecaudoId(tipoRecaudo);
+						asociarComercioRecaudo.setUbicacion("C:\\pnp\\");
+						
+						respuesta = afiliacionMethods.asociarComercioRecaudo(asociarComercioRecaudo);
+						
+					}*/
+			
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+		  }
+		  
+		return  respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
+	@RequestMapping(value = "/modificarDocumentsContacto", method = RequestMethod.POST, consumes = { "multipart/form-data" })
+	public @ResponseBody ModificarAsociarComercioRecaudoWSResponse modificarContacto(MultipartHttpServletRequest files , HttpServletResponse response, HttpServletRequest reques){
+		
+		ModificarAsociarComercioRecaudoWSResponse respuesta = new ModificarAsociarComercioRecaudoWSResponse();
+		ModificarAsociarComercioRecaudoWS modificarComercioRecaudo = new ModificarAsociarComercioRecaudoWS();
+		Map<String, String[]> map = reques.getParameterMap();
+		
+		TipoRecaudo tipoRecaudo = new TipoRecaudo();
+		
+		  for (Map.Entry<String,  String[]> entry : map.entrySet()) {
+			  
+			    String key = entry.getKey();
+			    String[] value = entry.getValue();
+			    // ...
+			    
+			    if(key.equals("tipoRecaudoId")){
+			    	System.out.println("tipoRecaudoId "+value[0]);
+			    	tipoRecaudo.setTipoRecaudoId(Long.parseLong(value[0]));
+			    	
+			    }else if(key.equals("tipoRecaudoNombre")) {
+			    	System.out.println("tipoRecaudoNombre "+value[0]);
+			    	tipoRecaudo.setTipoRecaudoNombre(value[0]);
+			    	
+			    }else if(key.equals("idRecaudo")) {
+			    	System.out.println("idRecaudo "+value[0]);
+			    	modificarComercioRecaudo.setIdRecaudo(Long.parseLong(value[0]));
+			    	
+			    }else if(key.equals("ubicacion")) {
+			    	System.out.println("ubicacion "+value[0]);
+			    	modificarComercioRecaudo.setUbicacion(value[0]);
+			    	
+			    }else if(key.equals("recaudoVerificado")) {
+			    	System.out.println("recaudoVerificado "+value[0]);
+			    	modificarComercioRecaudo.setRecaudoVerificado(value[0]);
+			    	
+			    }else if(key.equals("fechaVigencia")) {
+			    	System.out.println("fechaVigencia "+value[0]);
+			    	modificarComercioRecaudo.setFechaVigencia(value[0]);
+			    	
+			    }
+
+			}
+
+		  modificarComercioRecaudo.setTipoRecaudoId(tipoRecaudo);
+		  
+			Iterator<String> itr =  files.getFileNames();
+			MultipartFile mpf=null;
+		  	String statusFile="";
+		  	
+		   while(itr.hasNext()) {	
+			  mpf = files.getFile(itr.next());
+			  System.out.println("mpf "+mpf.getName());
+			
+				try {
+					/*
+					if(mpf.getName().equals("fileCedulaRepresentanteInformationName")){
+						statusFile=upload.copy(mpf);
+						System.out.println(statusFile);
+						modificarComercioRecaudo.setRecaudoNombre(statusFile);
+						
+						respuesta = afiliacionMethods.modificarAsociarComercioRecaudo(modificarComercioRecaudo);
+						
+					}*/
+					if(mpf.getName().equals("fileCedulaContactoInformationName")){
+						statusFile=upload.copy(mpf);
+						System.out.println(statusFile);
+						modificarComercioRecaudo.setRecaudoNombre(statusFile);
+						
+						respuesta = afiliacionMethods.modificarAsociarComercioRecaudo(modificarComercioRecaudo);
+						
+					}
+					/*
+					if(mpf.getName().equals("fileNegocioInformationName")){
+						statusFile=upload.copy(mpf);
+						System.out.println(statusFile);
+						asociarComercioRecaudo.setRecaudoNombre(statusFile);
+						
+						TipoRecaudo tipoRecaudo = new TipoRecaudo();
+						tipoRecaudo.setTipoRecaudoId(Long.parseLong("3"));
+						tipoRecaudo.setTipoRecaudoNombre("FACHADA DEL NEGOCIO");
+						
+						asociarComercioRecaudo.setTipoRecaudoId(tipoRecaudo);
+						asociarComercioRecaudo.setUbicacion("C:\\pnp\\");
+						
+						respuesta = afiliacionMethods.asociarComercioRecaudo(asociarComercioRecaudo);
+						
+					}*/
+			
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+		  }
+		  
+		return  respuesta;
+	}
+	
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
+	@RequestMapping(value = "/modificarDocumentsFachada", method = RequestMethod.POST, consumes = { "multipart/form-data" })
+	public @ResponseBody ModificarAsociarComercioRecaudoWSResponse modificarFachada(MultipartHttpServletRequest files , HttpServletResponse response, HttpServletRequest reques){
+		
+		ModificarAsociarComercioRecaudoWSResponse respuesta = new ModificarAsociarComercioRecaudoWSResponse();
+		ModificarAsociarComercioRecaudoWS modificarComercioRecaudo = new ModificarAsociarComercioRecaudoWS();
+		Map<String, String[]> map = reques.getParameterMap();
+		
+		TipoRecaudo tipoRecaudo = new TipoRecaudo();
+		
+		  for (Map.Entry<String,  String[]> entry : map.entrySet()) {
+			  
+			    String key = entry.getKey();
+			    String[] value = entry.getValue();
+			    // ...
+			    
+			    if(key.equals("tipoRecaudoId")){
+			    	System.out.println("tipoRecaudoId "+value[0]);
+			    	tipoRecaudo.setTipoRecaudoId(Long.parseLong(value[0]));
+			    	
+			    }else if(key.equals("tipoRecaudoNombre")) {
+			    	System.out.println("tipoRecaudoNombre "+value[0]);
+			    	tipoRecaudo.setTipoRecaudoNombre(value[0]);
+			    	
+			    }else if(key.equals("idRecaudo")) {
+			    	System.out.println("idRecaudo "+value[0]);
+			    	modificarComercioRecaudo.setIdRecaudo(Long.parseLong(value[0]));
+			    	
+			    }else if(key.equals("ubicacion")) {
+			    	System.out.println("ubicacion "+value[0]);
+			    	modificarComercioRecaudo.setUbicacion(value[0]);
+			    	
+			    }else if(key.equals("recaudoVerificado")) {
+			    	System.out.println("recaudoVerificado "+value[0]);
+			    	modificarComercioRecaudo.setRecaudoVerificado(value[0]);
+			    	
+			    }else if(key.equals("fechaVigencia")) {
+			    	System.out.println("fechaVigencia "+value[0]);
+			    	modificarComercioRecaudo.setFechaVigencia(value[0]);
+			    	
+			    }
+
+			}
+
+		  modificarComercioRecaudo.setTipoRecaudoId(tipoRecaudo);
+		  
+			Iterator<String> itr =  files.getFileNames();
+			MultipartFile mpf=null;
+		  	String statusFile="";
+		  	
+		   while(itr.hasNext()) {	
+			  mpf = files.getFile(itr.next());
+			  System.out.println("mpf "+mpf.getName());
+			
+				try {
+					/*
+					if(mpf.getName().equals("fileCedulaRepresentanteInformationName")){
+						statusFile=upload.copy(mpf);
+						System.out.println(statusFile);
+						modificarComercioRecaudo.setRecaudoNombre(statusFile);
+						
+						respuesta = afiliacionMethods.modificarAsociarComercioRecaudo(modificarComercioRecaudo);
+						
+					}*/
+					/*
+					if(mpf.getName().equals("fileCedulaContactoInformationName")){
+						statusFile=upload.copy(mpf);
+						System.out.println(statusFile);
+						modificarComercioRecaudo.setRecaudoNombre(statusFile);
+						
+						respuesta = afiliacionMethods.modificarAsociarComercioRecaudo(modificarComercioRecaudo);
+						
+					}
+					*/
+					
+					if(mpf.getName().equals("fileNegocioInformationName")){
+						statusFile=upload.copy(mpf);
+						System.out.println(statusFile);
+						modificarComercioRecaudo.setRecaudoNombre(statusFile);
+						
+						respuesta = afiliacionMethods.modificarAsociarComercioRecaudo(modificarComercioRecaudo);
+						
+					}
+			
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+		  }
 		  
 		return  respuesta;
 	}

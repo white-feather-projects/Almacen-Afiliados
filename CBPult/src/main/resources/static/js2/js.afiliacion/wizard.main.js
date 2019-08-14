@@ -19,11 +19,23 @@ $(".tb8").hide();
 
 var identificacion_global;
 
+$(".wrapper").hide();
+$("#modificar_Representante_legal").prop('disabled', true);
+$("#modificar_Cedula_contacto").prop('disabled', true);
+$("#modificar_Fachada_negocio").prop('disabled', true);
+
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////NUEVO////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 
 	if(nuevo === "nuevo"){
+		
+		$("#Cedula_Representante_confirm").hide();
+		$("#modificar_Representante_legal").hide();
+		$("#Cedula_Contacto_confirm").hide();
+		$("#modificar_Cedula_contacto").hide();
+		$("#Fachada_confirm").hide();
+		$("#modificar_Fachada_negocio").hide();
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////////
 		
@@ -2409,22 +2421,133 @@ var identificacion_global;
 																       		$("#tipo_POS_tab7").val(data.return.tipoPos);
 																       		$("#cantidad_tab7").val(data.return.cantidadPos);
 																       		
-																       		//////////////////Consulta Datos del Pago///////////////////
-																       		/*
-																       		var consulta_Datos_Pago = {
-																					"comercioId": comercioid
-																				}
-																	    	
-																		    	$.ajax({
-																		           type: "POST",
-																		           url: '/CBPult/Afiliacion/consultaAsociacionComercioOtroBanco',
-																		           contentType: "application/json",
-																		           dataType: "json",
-																		           data: JSON.stringify(consulta_Datos_Pago),
-																		           success: processSuccess,
-																		           error: processError
-																		       });
-																       		*/
+																       		//////////////////Consulta Recaudos Subidos ///////////////////
+																       		
+																	       		$('#Cedula_Representante_confirm').on('click', function(){
+																	       			
+																       				var lista_recaudos = {
+																						"comercioId": comercioid
+																					}
+																		    	
+																			    	$.ajax({
+																			           type: "POST",
+																			           url: '/CBPult/Afiliacion/listaRecaudosByComercio',
+																			           contentType: "application/json",
+																			           dataType: "json",
+																			           data: JSON.stringify(lista_recaudos),
+																			           success: processSuccess,
+																			           error: processError
+																			    	});
+																       				
+																       				function processSuccess(data, status, req) {
+																			            //alert(req.responseText + " " + status);
+																			       		console.log("consulta recaudos comercio-----", data);
+																			       		
+																			       			console.log(data);
+																			       			var uno = data[0].recaudoNombre;
+																					    	   
+																					       	console.log('boton1');
+																					    	$(".wrapper").show();
+																					    		document.getElementById("embed").src = 'C:/pnp/'+uno+'';
+																					    		$("#close").on('click', function(){
+																					    		$(".wrapper").hide();
+																				    		})
+																       				}
+																       				
+																       				function processError(data, status, req) {
+																			            //alert(req.responseText + " " + status);
+																			           	swal("Error al contacter el servicio", data);
+																			           	valid = false;
+																			           	return valid;
+																		       		}
+																		    	
+																	       		});
+																	       		
+																	       		///////
+																	       		
+																	       		$('#Cedula_Contacto_confirm').on('click', function(){
+																	       			
+																       				var lista_recaudos = {
+																						"comercioId": comercioid
+																					}
+																		    	
+																			    	$.ajax({
+																			           type: "POST",
+																			           url: '/CBPult/Afiliacion/listaRecaudosByComercio',
+																			           contentType: "application/json",
+																			           dataType: "json",
+																			           data: JSON.stringify(lista_recaudos),
+																			           success: processSuccess,
+																			           error: processError
+																			    	});
+																       				
+																       				function processSuccess(data, status, req) {
+																			            //alert(req.responseText + " " + status);
+																			       		console.log("consulta cedula contacto-----", data);
+																			       		
+																			       			console.log(data);
+																			       			var uno = data[1].recaudoNombre;
+																					    	   
+																					       	console.log('boton1');
+																					    	$(".wrapper").show();
+																					    		document.getElementById("embed").src = 'C:/pnp/'+uno+'';
+																					    		$("#close").on('click', function(){
+																					    		$(".wrapper").hide();
+																				    		})
+																       				}
+																       				
+																       				function processError(data, status, req) {
+																			            //alert(req.responseText + " " + status);
+																			           	swal("Error al contacter el servicio", data);
+																			           	valid = false;
+																			           	return valid;
+																		       		}
+																		    	
+																	       		});
+																	       		
+																	       		///////
+																	       		
+																	       		$('#Fachada_confirm').on('click', function(){
+																	       			
+																       				var lista_recaudos = {
+																						"comercioId": comercioid
+																					}
+																		    	
+																			    	$.ajax({
+																			           type: "POST",
+																			           url: '/CBPult/Afiliacion/listaRecaudosByComercio',
+																			           contentType: "application/json",
+																			           dataType: "json",
+																			           data: JSON.stringify(lista_recaudos),
+																			           success: processSuccess,
+																			           error: processError
+																			    	});
+																       				
+																       				function processSuccess(data, status, req) {
+																			            //alert(req.responseText + " " + status);
+																			       		console.log("consulta fachada-----", data);
+																			       		
+																			       			console.log(data);
+																			       			var uno = data[1].recaudoNombre;
+																					    	   
+																					       	console.log('boton1');
+																					    	$(".wrapper").show();
+																					    		document.getElementById("embed").src = 'C:/pnp/'+uno+'';
+																					    		$("#close").on('click', function(){
+																					    		$(".wrapper").hide();
+																				    		})
+																       				}
+																       				
+																       				function processError(data, status, req) {
+																			            //alert(req.responseText + " " + status);
+																			           	swal("Error al contacter el servicio", data);
+																			           	valid = false;
+																			           	return valid;
+																		       		}
+																		    	
+																	       		});
+																	       		
+																	       		
 																       	} 
 																       	
 																       	function processError(data, status, req) {
@@ -2902,8 +3025,14 @@ var identificacion_global;
 					 			       		
 					 			       	var comercioEstablId = data[0].comercioEstablId;
 					 			       	var establecimientoId = data[0].establecimientoId.establecimientoId;
+					 			       	
+					 			       	console.log("comercioEstablecimiento id---", comercioEstablId);
 					 			       		
 					 			       		////////modificar establecimiento/////////
+					 			       	
+					 			       	console.log("provincia----", $('select[id="estado_tab5"] option:selected').text());
+					 			       	console.log("canton----", $('select[id="municipio_tab5"] option:selected').text());
+					 			       	console.log("distrito----", $('select[id="ciudad_tab5"] option:selected').text());
 								       		
 							       			var modificar_comercio_establecimiento = {
 				       							"comercioEstablId": comercioEstablId,
@@ -2933,16 +3062,16 @@ var identificacion_global;
 							 		       		},
 							 		       		"establecimientoId": {
 							 		       			"avenidaCalle": $("#avenida_calle_tab5").val(),
-							 		       			"ciudad": $("#ciudad_tab5").text(),
+							 		       			"ciudad": $('select[id="ciudad_tab5"] option:selected').text(),
 							 		       			"codigoPostal": $("#codigo_postal_tab5").val(),
 							 		       			"establecimientoId": establecimientoId,
 							 		       			"geoLocalizacion": $("#geo_localizacion_tab5").val(),
 							 		       			"idCanton":{
-							 		       				"idCanton": $("#municipio_tab5").val(),
-							 		       				"nombreCanton": $("#municipio_tab5").text(),
+							 		       				"idCanton": $('select[id="municipio_tab5"] option:selected').val(),
+							 		       				"nombreCanton": $('select[id="municipio_tab5"] option:selected').text(),
 							 		       				"provinciaId": {
-							 		                	   	"idProvincia": $("#estado_tab5").val(),
-									 		       			"nombreProvincia": $("#estado_tab5").text(),
+							 		                	   	"idProvincia": $('select[id="estado_tab5"] option:selected').val(),
+									 		       			"nombreProvincia": $('select[id="estado_tab5"] option:selected').text(),
 									 		       			"paisId": {
 										 		       			"idPais": 1,
 										 		       			"nombrePais": "Costa Rica"
@@ -2951,27 +3080,27 @@ var identificacion_global;
 							 		       			},
 							 		       			"idDistrito": {
 								 		       			"cantonId": {
-								 		                   "idCanton": $("#municipio_tab5").val(),
-								 		                   "nombreCanton": $("#municipio_tab5").text(),
+								 		                   "idCanton": $('select[id="municipio_tab5"] option:selected').val(),
+								 		                   "nombreCanton": $('select[id="municipio_tab5"] option:selected').text(),
 								 		                   "provinciaId": {
-								 		                	   	"idProvincia": $("#estado_tab5").val(),
-										 		       			"nombreProvincia": $("#estado_tab5").text(),
+								 		                	   	"idProvincia": $('select[id="estado_tab5"] option:selected').val(),
+										 		       			"nombreProvincia": $('select[id="estado_tab5"] option:selected').text(),
 										 		       			"paisId": {
 											 		       			"idPais": 1,
 											 		       			"nombrePais": "Costa Rica"
 										 		       			}
 								 		                   }
 								 		               },
-								 		               "idDistrito": $("#ciudad_tab5").val(),
-								 		               "nombreDistrito": $("#ciudad_tab5").text()
+								 		               "idDistrito": $('select[id="ciudad_tab5"] option:selected').val(),
+								 		               "nombreDistrito": $('select[id="ciudad_tab5"] option:selected').text()
 							 		       			},
 							 		       			"idPais": {
 								 		       			"idPais": 1,
 								 		       			"nombrePais": "Costa Rica"
 							 		       			},
 							 		       			"idProvincia": {
-								 		       			"idProvincia": $("#estado_tab5").val(),
-								 		       			"nombreProvincia": $("#estado_tab5").text(),
+								 		       			"idProvincia": $('select[id="estado_tab5"] option:selected').val(),
+								 		       			"nombreProvincia": $('select[id="estado_tab5"] option:selected').text(),
 								 		       			"paisId": {
 									 		       			"idPais": 1,
 									 		       			"nombrePais": "Costa Rica"
@@ -3337,7 +3466,7 @@ var identificacion_global;
 			       }
 			     }
 		        
-*/
+		         */
 		        return true;
 		        
 		      },
@@ -3350,7 +3479,341 @@ var identificacion_global;
 		    ///////////////////////////////////////////////////////////////////////////
 		    ///////////////////////////////////////////////////////////////////////////
 		    
+		    $("#modificar_Representante_legal").on('click', function(){
+		    		
+		    		var consulta_comercio = {
+		    				"identificacionComercio": id
+		    		};
+		    		
+		    		$.ajax({
+	 			           type: "POST",
+	 			           url: '/CBPult/Afiliacion/consultaComercio',
+	 			           contentType: "application/json",
+	 			           dataType: "json",
+	 			           data: JSON.stringify(consulta_comercio),
+	 			           success: processSuccess,
+	 			           error: processError
+	 			    	});
+		    		
+		    		function processSuccess(data, status, req) {
+ 			            //alert(req.responseText + " " + status);
+ 			       		console.log(data);
+ 			       		
+ 			       		if(data.return.identificacionComercio === $("#identificacion_tab2").val()){
+ 			       			
+ 			       			var comercioid = data.return.comercioId;
+ 			       			
+ 			       			var listaRecaudos = {
+ 			       				"comercioId": comercioid
+ 			       			};
+ 			       			
+	 			       		$.ajax({
+	 	 			           type: "POST",
+	 	 			           url: '/CBPult/Afiliacion/listaRecaudosByComercio',
+	 	 			           contentType: "application/json",
+	 	 			           dataType: "json",
+	 	 			           data: JSON.stringify(listaRecaudos),
+	 	 			           success: processSuccess,
+	 	 			           error: processError
+	 	 			    	});
+	 			       		
+		 			       	function processSuccess(data, status, req) {
+		 			            //alert(req.responseText + " " + status);
+		 			       		console.log(data);
+		 			       		
+		 			           	var idrecaudo = data[0].recaudoId;
+		 			           	
+		 			    		
+			 			           	var formData = new FormData($('#divFiles')[0]);
+						    	  	
+						    	  	formData.append('idRecaudo', idrecaudo);
+						    	  	formData.append('ubicacion', "C:\\pnp\\");
+						    	  	formData.append('recaudoVerificado', "N");
+						    	  	formData.append('fechaVigencia', "0");
+						    	  	formData.append('tipoRecaudoId', 1);
+						    	  	formData.append('tipoRecaudoNombre', "CEDULA REPRESENTANTE LEGAL");
+						    	  	
+					              	console.log("formData----", formData);
+					              	console.log("form----", $('#divFiles')[0]);
+					              	
+					      	          $.ajax( {
+					      	            url: '/CBPult/Afiliacion/modificarDocumentsRepresentante',
+					      	            type: 'POST',
+					      	            data: formData,
+					      	            processData: false,
+					      	            contentType: false,
+					      	            dataType: 'text',
+					      	            success: success,
+					      	            error: processError
+					      	            
+					      	          });
+					      	          
+					      	          function success(data, status, req){
+					      	        	  console.log(JSON.parse(data));
+					      	        	  var data1 = JSON.parse(data);
+					      	        	  
+					      	        	  if(data1.return.descripcion === "OK"){
+					      	        		swal("Modificado");
+					      	        		  
+					      	        	  }else if(data1.return.descripcion === "FALSE"){
+					      	        		  swal("Error al Registrar, Recaudos....");
+					      	        		  
+					      	        	  }
+					      	          }
+					      	          
+					      	          function processError(data, status, req) {
+					      	                //alert(req.responseText + " " + status);
+					      	            	swal("Error al contactar con el servicio", status);
+					
+					      	          }
+		 			       	} 
+		 			       	
+		 			       	function processError(data, status, req) {
+		 			            //alert(req.responseText + " " + status);
+		 			           	swal("Error al contacter el servicio", data);
+		 			           	valid = false;
+		 			           	return valid;
+		 			       	}
+ 			       			
+ 			       		}else if(data.return.identificacionComercio != $("#identificacion_tab2").val()){
+ 			       			swal("Comercio no encontrado");
+ 			       		}
+ 			       		
+ 			           
+ 			       	} 
+ 			       	
+ 			       	function processError(data, status, req) {
+ 			            //alert(req.responseText + " " + status);
+ 			           	swal("Error al contacter el servicio", data);
+ 			           	valid = false;
+ 			           	return valid;
+ 			       	}
+		    		
+		    });
 		    
+		    $("#modificar_Cedula_contacto").on('click', function(){
+		    	
+		    	var consulta_comercio = {
+	    				"identificacionComercio": id
+	    		};
+	    		
+	    		$.ajax({
+ 			           type: "POST",
+ 			           url: '/CBPult/Afiliacion/consultaComercio',
+ 			           contentType: "application/json",
+ 			           dataType: "json",
+ 			           data: JSON.stringify(consulta_comercio),
+ 			           success: processSuccess,
+ 			           error: processError
+ 			    	});
+	    		
+	    		function processSuccess(data, status, req) {
+			            //alert(req.responseText + " " + status);
+			       		console.log(data);
+			       		
+			       		if(data.return.identificacionComercio === $("#identificacion_tab2").val()){
+			       			
+			       			var comercioid = data.return.comercioId;
+			       			
+			       			var listaRecaudos = {
+			       				"comercioId": comercioid
+			       			};
+			       			
+ 			       		$.ajax({
+ 	 			           type: "POST",
+ 	 			           url: '/CBPult/Afiliacion/listaRecaudosByComercio',
+ 	 			           contentType: "application/json",
+ 	 			           dataType: "json",
+ 	 			           data: JSON.stringify(listaRecaudos),
+ 	 			           success: processSuccess,
+ 	 			           error: processError
+ 	 			    	});
+ 			       		
+	 			       	function processSuccess(data, status, req) {
+	 			            //alert(req.responseText + " " + status);
+	 			       		console.log(data);
+	 			       		
+	 			           	var idrecaudo = data[1].recaudoId;
+	 			           	
+	 			    		
+		 			           	var formData = new FormData($('#divFiles')[0]);
+					    	  	
+					    	  	formData.append('idRecaudo', idrecaudo);
+					    	  	formData.append('ubicacion', "C:\\pnp\\");
+					    	  	formData.append('recaudoVerificado', "N");
+					    	  	formData.append('fechaVigencia', "0");
+					    	  	formData.append('tipoRecaudoId', 2);
+					    	  	formData.append('tipoRecaudoNombre', "CEDULA CONTACTO");
+					    	  	
+				              	console.log("formData----", formData);
+				              	console.log("form----", $('#divFiles')[0]);
+				              	
+				      	          $.ajax( {
+				      	            url: '/CBPult/Afiliacion/modificarDocumentsContacto',
+				      	            type: 'POST',
+				      	            data: formData,
+				      	            processData: false,
+				      	            contentType: false,
+				      	            dataType: 'text',
+				      	            success: success,
+				      	            error: processError
+				      	            
+				      	          });
+				      	          
+				      	          function success(data, status, req){
+				      	        	  console.log(JSON.parse(data));
+				      	        	  var data1 = JSON.parse(data);
+				      	        	  
+				      	        	  if(data1.return.descripcion === "OK"){
+				      	        		swal("Modificado");
+				      	        		  
+				      	        	  }else if(data1.return.descripcion === "FALSE"){
+				      	        		  swal("Error al Registrar, Recaudos....");
+				      	        		  
+				      	        	  }
+				      	          }
+				      	          
+				      	          function processError(data, status, req) {
+				      	                //alert(req.responseText + " " + status);
+				      	            	swal("Error al contactar con el servicio", status);
+				
+				      	          }
+	 			       	} 
+	 			       	
+	 			       	function processError(data, status, req) {
+	 			            //alert(req.responseText + " " + status);
+	 			           	swal("Error al contacter el servicio", data);
+	 			           	valid = false;
+	 			           	return valid;
+	 			       	}
+			       			
+			       		}else if(data.return.identificacionComercio != $("#identificacion_tab2").val()){
+			       			swal("Comercio no encontrado");
+			       		}
+			       		
+			           
+			       	} 
+			       	
+			       	function processError(data, status, req) {
+			            //alert(req.responseText + " " + status);
+			           	swal("Error al contacter el servicio", data);
+			           	valid = false;
+			           	return valid;
+			       	}
+		    	
+		    });
+		    
+		    $("#modificar_Fachada_negocio").on('click', function(){
+		    	
+		    	var consulta_comercio = {
+	    				"identificacionComercio": id
+	    		};
+	    		
+	    		$.ajax({
+ 			           type: "POST",
+ 			           url: '/CBPult/Afiliacion/consultaComercio',
+ 			           contentType: "application/json",
+ 			           dataType: "json",
+ 			           data: JSON.stringify(consulta_comercio),
+ 			           success: processSuccess,
+ 			           error: processError
+ 			    	});
+	    		
+	    		function processSuccess(data, status, req) {
+			            //alert(req.responseText + " " + status);
+			       		console.log(data);
+			       		
+			       		if(data.return.identificacionComercio === $("#identificacion_tab2").val()){
+			       			
+			       			var comercioid = data.return.comercioId;
+			       			
+			       			var listaRecaudos = {
+			       				"comercioId": comercioid
+			       			};
+			       			
+ 			       		$.ajax({
+ 	 			           type: "POST",
+ 	 			           url: '/CBPult/Afiliacion/listaRecaudosByComercio',
+ 	 			           contentType: "application/json",
+ 	 			           dataType: "json",
+ 	 			           data: JSON.stringify(listaRecaudos),
+ 	 			           success: processSuccess,
+ 	 			           error: processError
+ 	 			    	});
+ 			       		
+	 			       	function processSuccess(data, status, req) {
+	 			            //alert(req.responseText + " " + status);
+	 			       		console.log(data);
+	 			       		
+	 			           	var idrecaudo = data[2].recaudoId;
+	 			           	
+	 			    		
+		 			           	var formData = new FormData($('#divFiles')[0]);
+					    	  	
+					    	  	formData.append('idRecaudo', idrecaudo);
+					    	  	formData.append('ubicacion', "C:\\pnp\\");
+					    	  	formData.append('recaudoVerificado', "N");
+					    	  	formData.append('fechaVigencia', "0");
+					    	  	formData.append('tipoRecaudoId', 3);
+					    	  	formData.append('tipoRecaudoNombre', "FACHADA DEL NEGOCIO");
+					    	  	
+				              	console.log("formData----", formData);
+				              	console.log("form----", $('#divFiles')[0]);
+				              	
+				      	          $.ajax( {
+				      	            url: '/CBPult/Afiliacion/modificarDocumentsFachada',
+				      	            type: 'POST',
+				      	            data: formData,
+				      	            processData: false,
+				      	            contentType: false,
+				      	            dataType: 'text',
+				      	            success: success,
+				      	            error: processError
+				      	            
+				      	          });
+				      	          
+				      	          function success(data, status, req){
+				      	        	  console.log(JSON.parse(data));
+				      	        	  var data1 = JSON.parse(data);
+				      	        	  
+				      	        	  if(data1.return.descripcion === "OK"){
+				      	        		swal("Modificado");
+				      	        		  
+				      	        	  }else if(data1.return.descripcion === "FALSE"){
+				      	        		  swal("Error al Registrar, Recaudos....");
+				      	        		  
+				      	        	  }
+				      	          }
+				      	          
+				      	          function processError(data, status, req) {
+				      	                //alert(req.responseText + " " + status);
+				      	            	swal("Error al contactar con el servicio", status);
+				
+				      	          }
+	 			       	} 
+	 			       	
+	 			       	function processError(data, status, req) {
+	 			            //alert(req.responseText + " " + status);
+	 			           	swal("Error al contacter el servicio", data);
+	 			           	valid = false;
+	 			           	return valid;
+	 			       	}
+			       			
+			       		}else if(data.return.identificacionComercio != $("#identificacion_tab2").val()){
+			       			swal("Comercio no encontrado");
+			       		}
+			       		
+			           
+			       	} 
+			       	
+			       	function processError(data, status, req) {
+			            //alert(req.responseText + " " + status);
+			           	swal("Error al contacter el servicio", data);
+			           	valid = false;
+			           	return valid;
+			       	}
+		    	
+		    });
 		    
 		    /////////////////////////////////////////////////////////////////////////
 		  /////////////////////////validacion de pasos/////////////////////////////////
@@ -3363,6 +3826,7 @@ var identificacion_global;
 		  			if($(this).val().indexOf("pdf") > -1==true){			
 		  				if($('#fileCedulaRepresentanteInformationName')[0].files[0].size <=5000000){//validacion del tamaño
 		  			      $("#view_CedulaRepresentante").prop('disabled', false);
+		  			      $("#modificar_Representante_legal").prop('disabled', false);
 		  				}else{
 		  					swal('El Archivo Seleccionado supera el tamaño permitido!!');
 		  					$("#view_CedulaRepresentante").prop('disabled', true);
@@ -3372,6 +3836,7 @@ var identificacion_global;
 		  			}else if($(this).val().indexOf("jpeg") > -1==true){
 		  				if($('#fileCedulaRepresentanteInformationName')[0].files[0].size <=5000000){//validacion del tamaño
 		    			      $("#view_CedulaRepresentante").prop('disabled', false);
+		    			      $("#modificar_Representante_legal").prop('disabled', false);
 		    				}else{
 		    					swal('El Archivo Seleccionado supera el tamaño permitido!!');
 		    					$("#view_CedulaRepresentante").prop('disabled', true);
@@ -3404,6 +3869,7 @@ var identificacion_global;
 		  			if($(this).val().indexOf("pdf") > -1==true){
 		  				if($('#fileCedulaContactoInformationName')[0].files[0].size <=5000000){//validacion del tamaño
 		  				      $("#view_CedulaContacto").prop('disabled', false);
+		  				      $("#modificar_Cedula_contacto").prop('disabled', false);
 		  					}else{
 		  						swal('El Archivo Seleccionado supera el tamaño permitido!!');
 		  						$("#view_CedulaContacto").prop('disabled', true);
@@ -3413,6 +3879,7 @@ var identificacion_global;
 		  			}else if($(this).val().indexOf("jpeg") > -1==true){
 		  				if($('#fileCedulaContactoInformationName')[0].files[0].size <=5000000){//validacion del tamaño
 						      $("#view_CedulaContacto").prop('disabled', false);
+						      $("#modificar_Cedula_contacto").prop('disabled', false);
 							}else{
 								swal('El Archivo Seleccionado supera el tamaño permitido!!');
 								$("#view_CedulaContacto").prop('disabled', true);
@@ -3445,6 +3912,7 @@ var identificacion_global;
 		  			if($(this).val().indexOf("pdf") > -1==true){
 		  				if($('#fileNegocioInformationName')[0].files[0].size <=5000000){//validacion del tamaño
 		  				      $("#view_Negocio").prop('disabled', false);
+		  				      $("#modificar_Fachada_negocio").prop('disabled', false);
 		  					}else{
 		  						swal('El Archivo Seleccionado supera el tamaño permitido!!');
 		  						$("#view_Negocio").prop('disabled', true);
@@ -3454,6 +3922,7 @@ var identificacion_global;
 		  			}else if($(this).val().indexOf("jpeg") > -1==true){
 		  				if($('#fileNegocioInformationName')[0].files[0].size <=5000000){//validacion del tamaño
 						      $("#view_Negocio").prop('disabled', false);
+						      $("#modificar_Fachada_negocio").prop('disabled', false);
 							}else{
 								swal('El Archivo Seleccionado supera el tamaño permitido!!');
 								$("#view_Negocio").prop('disabled', true);
