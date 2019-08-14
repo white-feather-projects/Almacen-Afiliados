@@ -48,18 +48,18 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "zonaNombre"
 })
 public class ZonaDTO {
-	
+
     protected Long codigoUsuarioModifica;
     protected String descripcion;
-    protected Empleado encargadoZona; // esto no debería ser un ID de Empleado?
-    @XmlSchemaType(name = "dateTime")  
-    protected XMLGregorianCalendar fechaCargaDatos; // enviar string vacio
+    protected Empleado encargadoZona;
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar fechaHoraModificacion; // enviar string vacio
+    protected XMLGregorianCalendar fechaCargaDatos;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar fechaHoraModificacion;
     protected long idWarehouse;
-    protected TipoZona tipoZonaId; // para que se mnecesita el objeto del tipo de la zona en los registros? no seria solo con el ID?
+    protected TipoZona tipoZonaId;
     protected long zonaId;
-    protected String zonaNombre; // la zona ya no tiene este campo, esto va en la misma descripción
+    protected String zonaNombre;
 
     /**
      * Obtiene el valor de la propiedad codigoUsuarioModifica.

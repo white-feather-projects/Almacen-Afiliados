@@ -19,6 +19,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="bancoId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="cantidadLineasOperador" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="codigoUsuarioModifica" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="comercioId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="entityBank" type="{http://service.cbp.ws.cbp3.com/}entityBank" minOccurs="0"/>
@@ -27,6 +28,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="idEntityBank" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="numAfiliacionBanco" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="numTerminalesComprar" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="operadorTelefonicoId" type="{http://service.cbp.ws.cbp3.com/}operadortelefonico" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,6 +40,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "bancoAfiliacion", propOrder = {
     "bancoId",
+    "cantidadLineasOperador",
     "codigoUsuarioModifica",
     "comercioId",
     "entityBank",
@@ -45,11 +48,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "fechaHoraModificacion",
     "idEntityBank",
     "numAfiliacionBanco",
-    "numTerminalesComprar"
+    "numTerminalesComprar",
+    "operadorTelefonicoId"
 })
 public class BancoAfiliacion {
 
     protected Long bancoId;
+    protected long cantidadLineasOperador;
     protected Long codigoUsuarioModifica;
     protected long comercioId;
     protected EntityBank entityBank;
@@ -60,6 +65,7 @@ public class BancoAfiliacion {
     protected long idEntityBank;
     protected String numAfiliacionBanco;
     protected long numTerminalesComprar;
+    protected Operadortelefonico operadorTelefonicoId;
 
     /**
      * Obtiene el valor de la propiedad bancoId.
@@ -83,6 +89,22 @@ public class BancoAfiliacion {
      */
     public void setBancoId(Long value) {
         this.bancoId = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad cantidadLineasOperador.
+     * 
+     */
+    public long getCantidadLineasOperador() {
+        return cantidadLineasOperador;
+    }
+
+    /**
+     * Define el valor de la propiedad cantidadLineasOperador.
+     * 
+     */
+    public void setCantidadLineasOperador(long value) {
+        this.cantidadLineasOperador = value;
     }
 
     /**
@@ -251,6 +273,30 @@ public class BancoAfiliacion {
      */
     public void setNumTerminalesComprar(long value) {
         this.numTerminalesComprar = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad operadorTelefonicoId.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Operadortelefonico }
+     *     
+     */
+    public Operadortelefonico getOperadorTelefonicoId() {
+        return operadorTelefonicoId;
+    }
+
+    /**
+     * Define el valor de la propiedad operadorTelefonicoId.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Operadortelefonico }
+     *     
+     */
+    public void setOperadorTelefonicoId(Operadortelefonico value) {
+        this.operadorTelefonicoId = value;
     }
 
 }

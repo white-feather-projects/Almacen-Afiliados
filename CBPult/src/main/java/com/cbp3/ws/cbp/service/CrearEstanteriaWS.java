@@ -36,8 +36,7 @@ import javax.xml.bind.annotation.XmlType;
     "niveles"
 })
 public class CrearEstanteriaWS {
-	
-	// No hace falta un Id de Estanteria? Es Autoincrementable en Base de Datos?
+
     protected String descripcion;
     protected long zonaId;
     protected long modulos;

@@ -39,11 +39,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class CrearRelacionZonasWS {
 
-    protected Zona zonaActualId; // Deberia ser tipo long no Zona puesto que son IDs
-    protected Zona zonaDestinoId; // Deberia ser tipo long no Zona puesto que son IDs
-    protected String comentarios; // Este campo no está en los formularios, debería ser agregado?
+    protected Zona zonaActualId;
+    protected Zona zonaDestinoId;
+    protected String comentarios;
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar fechaCargaDatos; // cargar string vacio
+    protected XMLGregorianCalendar fechaCargaDatos;
 
     /**
      * Obtiene el valor de la propiedad zonaActualId.

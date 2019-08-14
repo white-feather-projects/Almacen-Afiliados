@@ -5,20 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para crearListaZonaWizzardWS complex type.
+ * <p>Clase Java para listaComercioEstablecimientosWSResponse complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="crearListaZonaWizzardWS">
+ * &lt;complexType name="listaComercioEstablecimientosWSResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="listZonaDTO" type="{http://service.cbp.ws.cbp3.com/}zonaDTO" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://service.cbp.ws.cbp3.com/}comercioEstabl" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,40 +29,41 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "crearListaZonaWizzardWS", propOrder = {
-    "listZonaDTO"
+@XmlType(name = "listaComercioEstablecimientosWSResponse", propOrder = {
+    "_return"
 })
-public class CrearListaZonaWizzardWS {
+public class ListaComercioEstablecimientosWSResponse {
 
-    protected List<ZonaDTO> listZonaDTO;
+    @XmlElement(name = "return")
+    protected List<ComercioEstabl> _return;
 
     /**
-     * Gets the value of the listZonaDTO property.
+     * Gets the value of the return property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the listZonaDTO property.
+     * This is why there is not a <CODE>set</CODE> method for the return property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getListZonaDTO().add(newItem);
+     *    getReturn().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link ZonaDTO }
+     * {@link ComercioEstabl }
      * 
      * 
      */
-    public List<ZonaDTO> getListZonaDTO() {
-        if (listZonaDTO == null) {
-            listZonaDTO = new ArrayList<ZonaDTO>();
+    public List<ComercioEstabl> getReturn() {
+        if (_return == null) {
+            _return = new ArrayList<ComercioEstabl>();
         }
-        return this.listZonaDTO;
+        return this._return;
     }
 
 }

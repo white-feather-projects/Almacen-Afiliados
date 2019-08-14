@@ -358,41 +358,66 @@ $('#demo').steps({
 					}
 					
 					return {
+						"id": zona.zona.id,
 						"tipoZona": $('#cboxTipo_zona'+zona.zona.id).val(),
 						"descripcionZona": $('#txtDescripcion_zona'+zona.zona.id).val(),
 						"encargadoZona": $('#cboxEncargado_zona'+zona.zona.id).val(),
 						"estanteriasZona": estanterias_json
 					}
 				});				
-				console.log("el map: ", data_zonas);
-				/*
-				// Capturar los ids de las Zonas
-				recorrerswitch(); // para recargar los switches de las tablas en relaciones de Zonas
-				pasosRelaciones++;
-				console.log(zonaListTemp);
-				*/
+				console.log("Pasan a Relaciones: ", data_zonas);
+				
 			}			
 			
 		}		
 		// tab Zonas
 		
 		if(currentIndex === 2){
-			
+			// $('#tbodyrel_'+i+).append();
 			for (var i = 0; i < data_zonas.length; i++) {
-				var rel_zona = `
+				console.log("Zona Actual", data_zonas[i]);
+				console.log('Relaciones de Zona '+i);
 				
-				`;
-				contenedor_relZonas.append("");
+				// Llenado de los campos de las Zonas en Relaciones
+				$('#cboxTipo_zonarel'+data_zonas[i].id).val(data_zonas[i].tipoZona);
+				$('#txtDescripcion_zonarel'+data_zonas[i].id).val(data_zonas[i].descripcionZona);
+				$('#cboxEncargado_zonarel'+data_zonas[i].id).val(data_zonas[i].encargadoZona);
+				// Llenado de los campos de las Zonas en Relaciones
+				
+				for (var j = 0; j < data_zonas.length; j++) {
+					
+					if(j != i){
+						console.log(data_zonas[j]);
+						$('#tbodyrel_'+data_zonas[i].id).append(`
+							<tr>
+								<td>
+									<div class="row">
+		                                <div class="col-sm-4"><input type="checkbox" class="js-switch-blue_rel" checked="" data-switchery="true" style="display: none;" id="cboxSegundoNombre_RepLegal"></div>
+		                            </div>
+								</td>							
+								<td>`+data_zonas[j].tipoZona+`</td>
+								<td>`+data_zonas[j].descripcionZona+`</td>
+								<td>`+data_zonas[j].encargadoZona+`</td>
+							</tr>
+						`);
+					}					
+					
+				}				
+				
 			}
-			/*
-			contenedor_relZonas.append();
-			data_zonas
-			*/
+			
+			// Cargar Switches
+			Array.prototype.forEach.call($('.js-switch-blue_rel'), (item, i)=>{
+				var actual_switch = new Switchery(item, {
+					color: '#17a2b8'
+				});
+			});
 			
 			if(stepDirection === 'backward'){
-				
-				$('#relaciones_zonas *').remove();
-				
+				// para limpiar los registros de las Tablas en Relaciones
+				for (var i = 0; i < data_zonas.length; i++) {					
+					$('#tbodyrel_'+data_zonas[i].id+' *').remove();					
+				}				
 			}
 			
 		}

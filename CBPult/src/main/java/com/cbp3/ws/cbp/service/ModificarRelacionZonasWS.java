@@ -41,12 +41,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class ModificarRelacionZonasWS {
 
-    protected Zona zonaActualId; // Id foranea
-    protected Zona zonaDestinoId; // Id foranea
-    protected String comentarios; // Este campo no existe
-    protected long codigoUsuarioModifica; // quemado
+    protected Zona zonaActualId;
+    protected Zona zonaDestinoId;
+    protected String comentarios;
+    protected long codigoUsuarioModifica;
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar fechaHoraModifica; // string vacio
+    protected XMLGregorianCalendar fechaHoraModifica;
 
     /**
      * Obtiene el valor de la propiedad zonaActualId.

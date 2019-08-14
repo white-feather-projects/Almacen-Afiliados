@@ -221,6 +221,18 @@ public interface AlmacenServiceWS {
     /**
      * 
      * @return
+     *     returns java.util.List<com.cbp3.ws.cbp.service.TipoZona>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listTipoZonaWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListTipoZonaWS")
+    @ResponseWrapper(localName = "listTipoZonaWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListTipoZonaWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/listTipoZonaWSRequest", output = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/listTipoZonaWSResponse")
+    public List<TipoZona> listTipoZonaWS();
+
+    /**
+     * 
+     * @return
      *     returns java.util.List<com.cbp3.ws.cbp.service.Zona>
      */
     @WebMethod

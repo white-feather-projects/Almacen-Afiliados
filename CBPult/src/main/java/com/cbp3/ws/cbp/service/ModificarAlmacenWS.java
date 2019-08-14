@@ -52,7 +52,7 @@ public class ModificarAlmacenWS {
     protected String numeroAlmacen;
     protected String nombreAlmacen;
     protected long identificacionOficina;
-    protected long identificacionProducto; // Debe ser eliminado este atrubuto
+    protected long identificacionProducto;
     protected long codigoUsuarioModifica;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fechaHoraModifica;
