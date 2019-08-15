@@ -1,0 +1,25 @@
+
+.vmodal {
+height: 400px;
+width: 100% !important;
+overflow: scroll;
+}
+
+.checkeable input {
+  display: none;
+}
+.checkeable i {
+  
+ border:none;
+ margin-right: 20px;
+}
+
+#uno{
+margin-left: 20px !important;
+ margin: 0px;
+}
+
+#dos{
+margin-left: 48px !important;
+margin: 0px;
+}

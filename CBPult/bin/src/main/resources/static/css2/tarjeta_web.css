@@ -1,0 +1,296 @@
+/*Cara Delantera*/
+/*Primer Texto*/
+/*Resolucion: 1601 a 1920*/
+@media all and (min-width: 1601px) and (max-width: 1920px)
+{
+    .texto1_1{
+        position: absolute;
+        top: 35%;
+        left: 60%;
+        color: white;
+        font-size: 140%;
+        font-family: Concert One;
+    }
+
+    .texto1_21{
+        position: absolute;
+        top: 57%;
+        left: 40%;
+        color: white;
+        font-family: Concert One;
+        font-size: 225%;
+        letter-spacing: 7px;
+        transform: translate(-50%, -50%);
+    }
+    
+    .texto1_2{
+        position: absolute;
+        top: 57%;
+        left: 47%;
+        color: white;
+        font-family: Concert One;
+        font-size: 225%;
+        letter-spacing: 7px;
+        transform: translate(-50%, -50%);
+    }
+    
+    .texto1_3{
+        position: absolute;
+        top: 57%;
+        left: 54%;
+        color: white;
+        font-family: Concert One;
+        font-size: 225%;
+        letter-spacing: 7px;
+        transform: translate(-50%, -50%);
+    }
+    
+    .texto1_4{
+        position: absolute;
+        top: 57%;
+        left: 61%;
+        color: white;
+        font-family: Concert One;
+        font-size: 225%;
+        letter-spacing: 7px;
+        transform: translate(-50%, -50%);
+    }
+    
+    /*Segundo Texto*/
+    .texto2_1{
+        position: absolute;
+        top: 68%;
+        left: 42%;
+        color: white;
+        font-family: Concert One;
+        font-size: 185%;
+        letter-spacing: 1px;
+        transform: translate(-50%, -50%);
+    }
+    
+    /*Tercer Texto*/
+    .texto3{
+        position: absolute;
+        top: 78%;
+        left: 50.2%;
+        color: white;
+        font-family: Concert One;
+        font-size: 147%;
+        letter-spacing: 7px;
+        transform: translate(-50%, -50%);
+    }
+    
+    /*Cara Trasera*/
+    /*Primer Texto*/
+    .texto1_1a{
+        position: absolute;
+        top: 40%;
+        left: 50.8%;
+        font-weight: bold;
+    }
+    
+    .texto1_2a{
+        position: absolute;
+        top: 40%;
+        left: 53.8%;
+        font-weight: bold;
+    }
+}
+
+/*Resolucion: 1367 a 1600*/
+@media all and (min-width: 1367px) and (max-width: 1600px)
+{
+    .texto1_1{
+        position: absolute;
+        top: 35%;
+        left: 60%;
+        color: white;
+        font-size: 95%;
+        font-family: Concert One;
+    }
+
+    .texto1_21{
+        position: absolute;
+        top: 57%;
+        left: 40%;
+        color: white;
+        font-family: Concert One;
+        font-size: 150%;
+        letter-spacing: 7px;
+        transform: translate(-50%, -50%);
+    }
+    
+    .texto1_2{
+        position: absolute;
+        top: 57%;
+        left: 47%;
+        color: white;
+        font-family: Concert One;
+        font-size: 150%;
+        letter-spacing: 7px;
+        transform: translate(-50%, -50%);
+    }
+    
+    .texto1_3{
+        position: absolute;
+        top: 57%;
+        left: 54%;
+        color: white;
+        font-family: Concert One;
+        font-size: 150%;
+        letter-spacing: 7px;
+        transform: translate(-50%, -50%);
+    }
+    
+    .texto1_4{
+        position: absolute;
+        top: 57%;
+        left: 61%;
+        color: white;
+        font-family: Concert One;
+        font-size: 150%;
+        letter-spacing: 7px;
+        transform: translate(-50%, -50%);
+    }
+    
+    /*Segundo Texto*/
+    .texto2_1{
+        position: absolute;
+        top: 68%;
+        left: 42%;
+        color: white;
+        font-family: Concert One;
+        font-size: 135%;
+        letter-spacing: 1px;
+        transform: translate(-50%, -50%);
+    }
+    
+    /*Tercer Texto*/
+    .texto3{
+        position: absolute;
+        top: 78%;
+        left: 50.2%;
+        color: white;
+        font-family: Concert One;
+        font-size: 100%;
+        letter-spacing: 7px;
+        transform: translate(-50%, -50%);
+    }
+    
+    /*Cara Trasera*/
+    /*Primer Texto*/
+    .texto1_1a{
+        position: absolute;
+        top: 40%;
+        left: 49.8%;
+        font-weight: bold;
+        font-size: 90%;
+    }
+    
+    .texto1_2a{
+        position: absolute;
+        top: 40%;
+        left: 53.8%;
+        font-weight: bold;
+        font-size: 90%;
+    }
+}
+
+/*Resolucion: 1025 a 1366*/
+@media all and (min-width: 1025px) and (max-width: 1366px)
+{
+    .texto1_1{
+        position: absolute;
+        top: 35%;
+        left: 60%;
+        color: white;
+        font-size: 62%;
+        font-family: Concert One;
+    }
+
+    .texto1_21{
+        position: absolute;
+        top: 57%;
+        left: 40%;
+        color: white;
+        font-family: Concert One;
+        font-size: 92%;
+        letter-spacing: 5px;
+        transform: translate(-50%, -50%);
+    }
+    
+    .texto1_2{
+        position: absolute;
+        top: 57%;
+        left: 47%;
+        color: white;
+        font-family: Concert One;
+        font-size: 92%;
+        letter-spacing: 5px;
+        transform: translate(-50%, -50%);
+    }
+    
+    .texto1_3{
+        position: absolute;
+        top: 57%;
+        left: 54%;
+        color: white;
+        font-family: Concert One;
+        font-size: 92%;
+        letter-spacing: 5px;
+        transform: translate(-50%, -50%);
+    }
+    
+    .texto1_4{
+        position: absolute;
+        top: 57%;
+        left: 61%;
+        color: white;
+        font-family: Concert One;
+        font-size: 92%;
+        letter-spacing: 5px;
+        transform: translate(-50%, -50%);
+    }
+    
+    /*Segundo Texto*/
+    .texto2_1{
+        position: absolute;
+        top: 68%;
+        left: 42.5%;
+        color: white;
+        font-family: Concert One;
+        font-size: 88%;
+        letter-spacing: 1px;
+        transform: translate(-50%, -50%);
+    }
+    
+    /*Tercer Texto*/
+    .texto3{
+        position: absolute;
+        top: 78%;
+        left: 50.2%;
+        color: white;
+        font-family: Concert One;
+        font-size: 50%;
+        letter-spacing: 5px;
+        transform: translate(-50%, -50%);
+    }
+    
+    /*Cara Trasera*/
+    /*Primer Texto*/
+    .texto1_1a{
+        position: absolute;
+        top: 39%;
+        left: 50%;
+        font-weight: bold;
+        font-size: 65%;
+    }
+    
+    .texto1_2a{
+        position: absolute;
+        top: 39%;
+        left: 53.3%;
+        font-weight: bold;
+        font-size: 65%;
+    }
+}
