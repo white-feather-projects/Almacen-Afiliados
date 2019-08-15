@@ -33,7 +33,7 @@ function evtNuevaZona(){
                 	<div class="card">                                                   
                     	<div class="card-block">
                     		<!-- Titulo de Card -->
-                        	<h4 class="sub-title">Información de Zona `+contador_zonas+1+`</h4>
+                        	<h4 class="sub-title">Información de Zona `+(contador_zonas+1)+`</h4>
                         	
                         	<!-- Row -->                                                        	
                         	<div class="row">
@@ -167,7 +167,7 @@ function evtNuevaZona(){
                 	<div class="card">                                                   
                     	<div class="card-block">
                     		<!-- Titulo de Card -->
-                        	<h4 class="sub-title">Información de Zona `+contador_zonas+1+`</h4>
+                        	<h4 class="sub-title">Información de Zona `+(contador_zonas+1)+`</h4>
                         	
                         	<!-- Row -->                                                        	
                         	<div class="row">
@@ -335,19 +335,19 @@ function crearTr(actual){
 	if(niveles.val() != "" && modulos.val() != ""){
 		
 		$('#tbody'+actual).append(`
-				<tr>
-			    	<td>1</td>
-			    	<td>`+modulos.val()+`</td>
-			    	<td>`+niveles.val()+`</td>																														    	
-			    	<td>
-			    		<a onclick="location.href = '/CBPult/Almacen/relacion-zona_nuevo-editar'">
-			    			<img alt="Editar" src="`+thEditar+`" width="30px">
-			    		</a>
-			    		<a onclick="alert('Relación Eliminada')">
-			    			<img alt="Eliminar" src="`+thEliminar+`" width="30px">
-			    		</a>
-			    	</td>
-			    </tr>
+			<tr>
+		    	<td>1</td>
+		    	<td>`+modulos.val()+`</td>
+		    	<td>`+niveles.val()+`</td>																														    	
+		    	<td>
+		    		<a onclick="location.href = '/CBPult/Almacen/relacion-zona_nuevo-editar'">
+		    			<img alt="Editar" src="`+thEditar+`" width="30px">
+		    		</a>
+		    		<a onclick="alert('Relación Eliminada')">
+		    			<img alt="Eliminar" src="`+thEliminar+`" width="30px">
+		    		</a>
+		    	</td>
+		    </tr>
 		`);		
 		niveles.val("");
 		modulos.val("");

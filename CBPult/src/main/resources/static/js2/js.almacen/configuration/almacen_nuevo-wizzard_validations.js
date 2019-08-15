@@ -3,165 +3,10 @@ var data_zonas;// se usa para capturar las Zonas i se incrusta en "data_almacen"
 
 var txtDescAlmacen = $('#txtDesc_almacen');
 var txtUbicacionAlmacen = $('#txtUbicacion_almacen');
-var contenedor_relZonas = $('#relaciones_zonas');
 
-//Se usa para Crear una nueva Zona en el Tab de Relaciones
-/*
-var html_relacion_zona = `
-	<!-- Zona Relacion -->
-    <div id="" class="zona col-sm-12 card" style="border: none">
-    	
-    	<div class="row">
-    		
-    		<!-- Card 1 -->
-        	<div class="col-sm-4">											                                            	                                   
-            	<div class="card">                                                   
-                	<div class="card-block">
-                		<!-- Titulo de Card -->
-                    	<h4 class="sub-title">Información de Zona</h4>
-                    	
-                    	<!-- Row -->                                                        	
-                    	<div class="row">
-                    		
-                    		<!-- Contenido de Card -->  
-                    		<div class="col-sm-12">
-                                <label class="col-sm-12 col-form-label">Código de Zona</label>
-                                <div class="col-sm-12">
-                                    <input type="text" id="txtCodigo_zona" class="form-control" placeholder="Codigo" disabled>
-                                </div>
-                        	</div>
-                        
-                            <div class="col-sm-12 mobile-inputs">
-                                <label class="col-sm-12 col-form-label">Tipo Zona</label>
-                                <div class="col-sm-12">
-                                    <select name="select" id="cboxTipo_zona" class="form-control" disabled>
-                                        <option value="Recibo">Recibo</option>
-                                        <option value="Almacenaje">Almacenaje</option>
-                                        <option value="Almacenaje Restringido">Almacenaje Restringido</option>
-                                        <option value="Despacho">Despacho</option>
-                                    </select>
-                         		</div>
-                            </div>
-                            
-                            <div class="col-sm-12 mobile-inputs">
-                            	<label class="col-sm-12 col-form-label">Descripción Zona</label>
-                            	<div class="col-sm-12">
-                                    <input type="text" id="txtDescripcion_zona" class="form-control" placeholder="" disabled>
-                                </div>
-                            </div>	                                                        	
-                            
-                            <div class="col-sm-12 mobile-inputs">
-                                <label class="col-sm-12 col-form-label">Encargado de Zona</label>
-                                <div class="col-sm-12">
-                                    <select name="select" id="cboxEncargado_zona" class="form-control" disabled>
-                                        <option value="Elon Musk">Elon Musk</option>
-                                        <option value="Einstein">Einstein</option>
-                                        <option value="Jack Ma">Jack Ma</option>
-                                    </select>
-                         		</div>
-                            </div>
-                            <!-- Contenido de Card -->  
-                            
-                    	</div>
-                    	<!-- Row -->                                                      		                                                        	
-                                                                  
-                	</div>
-            	</div> 
-        	                                
-            </div>
-            <!-- Card 1 -->											                                            
-            
-            <!-- Card 2 -->
-        	<div class="col-sm-8"> 
-        	                                           
-            	<div class="card">                                                   
-                	<div class="card-block">
-                		<!-- Titulo de Card -->
-                    	<h4 class="sub-title">Zonas Relacionadas</h4>
-                    	
-                    	<!-- Fila 1 -->                                      
-                    	<div class="row">
-                    		<div class="col-sm-12">
-                    		
-                    			
-                    			
-                    			<div class="dt-responsive table-responsive">
-                                    <table id="simpletable" class="table table-striped table-bordered displayrel`+contador_zonas+` nowrap">
-                                        <thead>
-											<tr>
-												<th>Relacionar</th>
-												<th>Código de Zona</th>
-												<th>Tipo de Zona</th>
-												<th>Descripción</th>							                                                        
-												<th>Encargado</th>																																																																
-											 </tr>
-										</thead>
-										<tbody id="rel-zona`+contador_zonas+`">
-										    <tr>
-										    	<td>
-										    		<div><input type="checkbox" class="js-switch-blue-zona" data-switchery="true" style="display: none;"></div>
-										    	</td>
-										    	<td>R1 ( OBLIGATORIO )</td>
-										    	<td>Recibo</td>
-										    	<td>Recibo de Nueva Mercancia</td>
-										    	<td>Alfred Newman</td>																														    																														    	
-										    </tr>
-										    <tr>
-										    	<td>
-										    		<div><input type="checkbox" class="js-switch-blue-zona" data-switchery="true" style="display: none;"></div>
-										    	</td>
-										    	<td>R2</td>
-										    	<td>Recibo</td>
-										    	<td>Recibo de Mercancia en Reparaciones</td>
-										    	<td>Carlos Rater</td>																														    	
-										    </tr>
-										    <tr>
-										    	<td>
-										    		<div><input type="checkbox" class="js-switch-blue-zona" data-switchery="true" style="display: none;"></div>
-										    	</td>
-										    	<td>A1</td>
-										    	<td>Alcenaje</td>
-										    	<td>Almacenaje General</td>
-										    	<td>Carlos Rater</td>																														    	
-										    </tr>
-										    <tr>
-										    	<td>
-										    		<div><input type="checkbox" class="js-switch-blue-zona" data-switchery="true" style="display: none;"></div>
-										    	</td>
-										    	<td>X1</td>
-										    	<td>Alcenaje Restringido</td>
-										    	<td>Almacenaje de Mercancia de alto valor</td>
-										    	<td>Empleado X</td>																														    	
-										    </tr>
-										    <tr>
-										    	<td>
-										    		<div><input type="checkbox" class="js-switch-blue-zona"  data-switchery="true" style="display: none;"></div>
-										    	</td>
-										    	<td>D1 ( OBLIGATORIO )</td>
-										    	<td>Despacho</td>
-										    	<td>Despacho de Mercancias</td>
-										    	<td>Stiven Rutherford</td>																														    	
-										    </tr>
-										    
-										</tbody>
-                                    </table>
-                               	</div>                                                        			
-                               	
-                               	
-                    		</div> 
-                    	</div>                                                                                                                           
-                	</div>
-                	<!-- Fila 1 -->                                                   	
-                	                                                         
-            	</div>
-        	</div>
-        	<!-- Card 2 -->
-    	                                
-        </div>
-    </div>										                                            
-    <!-- Zona Relacion -->
-`;
-*/
+var contenedor_relZonas = $('#relaciones_zonas');
+var listar = 0;
+
 $(document).ready(function(){
 
 	// Validaciones de contenido
@@ -336,6 +181,8 @@ $('#demo').steps({
 		/// Las valla parte de Zonas está en "almacen_nuevo-wizzard_funcionalidad.js"
 		if(currentIndex === 1){
 			
+			
+			
 			if(stepDirection === 'forward'){
 				
 				// Armando el Json de listZonas		
@@ -373,7 +220,13 @@ $('#demo').steps({
 		// tab Zonas
 		
 		if(currentIndex === 2){
-			// $('#tbodyrel_'+i+).append();
+			
+			// para no cargar a cada rato la Tabla de Relaciones
+			if(listar == 0){
+				listarAlmacenesRelServ();
+				listar++;
+			}
+			
 			for (var i = 0; i < data_zonas.length; i++) {
 				console.log("Zona Actual", data_zonas[i]);
 				console.log('Relaciones de Zona '+i);
@@ -390,9 +243,9 @@ $('#demo').steps({
 						console.log(data_zonas[j]);
 						$('#tbodyrel_'+data_zonas[i].id).append(`
 							<tr>
-								<td>
-									<div class="row">
-		                                <div class="col-sm-4"><input type="checkbox" class="js-switch-blue_rel" checked="" data-switchery="true" style="display: none;" id="cboxSegundoNombre_RepLegal"></div>
+								<td style="text-align:center">
+									<div class="row" style="display: inline-block">
+		                                <div class="col-sm-4"><input type="checkbox" class="js-switch-blue_rel" checked="" data-switchery="true" style="display: none;"></div>
 		                            </div>
 								</td>							
 								<td>`+data_zonas[j].tipoZona+`</td>
@@ -404,9 +257,8 @@ $('#demo').steps({
 					
 				}				
 				
-			}
-			
-			// Cargar Switches
+			}			
+			// Cargar Switches de las Tablas de Relación de las Zonas
 			Array.prototype.forEach.call($('.js-switch-blue_rel'), (item, i)=>{
 				var actual_switch = new Switchery(item, {
 					color: '#17a2b8'
@@ -425,7 +277,6 @@ $('#demo').steps({
 		return true;        
 	},
 	onFinish: function () {
-		//alert('Wizard Completed');
 		location.href = "/CBPult/Almacen/configuration_almacen";
 	}
 
