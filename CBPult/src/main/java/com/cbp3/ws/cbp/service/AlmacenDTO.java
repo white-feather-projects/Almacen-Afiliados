@@ -46,10 +46,10 @@ public class AlmacenDTO {
     protected String direccion;
     protected long gerenteSucursal;
     protected long officeId;
-    protected long productId; // 
+    protected long productId;
     protected long tipoAlmacenId;
     protected String warehouseName;
-    protected String warehouseNumber; // si va a ser un id único not null
+    protected String warehouseNumber;
 
     /**
      * Obtiene el valor de la propiedad direccion.
