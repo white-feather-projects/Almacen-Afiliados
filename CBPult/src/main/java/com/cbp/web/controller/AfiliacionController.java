@@ -14,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -150,12 +151,10 @@ public class AfiliacionController extends Util{
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaComercio", produces = { "application/json" })
-	public @ResponseBody ConsultaComercioPorIdentificacionComercioWSResponse consultaComercio(@RequestBody consultaComercioDTO consultaComercio) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaComercio/{identificacionComercio}", produces = { "application/json" })
+	public @ResponseBody ConsultaComercioPorIdentificacionComercioWSResponse consultaComercio(@PathVariable(value = "identificacionComercio") String identificacionComercio) {
 		ConsultaComercioPorIdentificacionComercioWSResponse respuesta = new ConsultaComercioPorIdentificacionComercioWSResponse();
-		respuesta = afiliacionMethods.consultaComercio(consultaComercio);
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		respuesta = afiliacionMethods.consultaComercio(identificacionComercio);
 		return respuesta;
 	}
 	
@@ -205,12 +204,10 @@ public class AfiliacionController extends Util{
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaBancoAfiliacionId", produces = { "application/json" })
-	public @ResponseBody ConsultaBancoAfiliacionByIdWSResponse consultaBancoAfiliacionId(@RequestBody ConsultaBancoAfiliacionIdDTO ConsultaBancoAfiliacionIdDTO) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaBancoAfiliacionId/{idAsociacion}", produces = { "application/json" })
+	public @ResponseBody ConsultaBancoAfiliacionByIdWSResponse consultaBancoAfiliacionId(@PathVariable(value = "idAsociacion") String idAsociacion) {
 		ConsultaBancoAfiliacionByIdWSResponse respuesta = new ConsultaBancoAfiliacionByIdWSResponse();
-		respuesta = afiliacionMethods.consultaBancoAfiliacionId(ConsultaBancoAfiliacionIdDTO);
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		respuesta = afiliacionMethods.consultaBancoAfiliacionId(idAsociacion);
 		return respuesta;
 	}
 	
@@ -271,23 +268,19 @@ public class AfiliacionController extends Util{
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaContactoByIdentificacionContacto", produces = { "application/json" })
-	public @ResponseBody ConsultaContactoByIdentificacionContactoWSResponse consultaContactoByIdentificacionContacto(@RequestBody ConsultaContactoByIdentificacionContactoDTO ConsultaContactoByIdentificacionContactoDTO) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaContactoByIdentificacionContacto/{identificacionContacto}", produces = { "application/json" })
+	public @ResponseBody ConsultaContactoByIdentificacionContactoWSResponse consultaContactoByIdentificacionContacto(@PathVariable(value = "identificacionContacto") String identificacionContacto) {
 		ConsultaContactoByIdentificacionContactoWSResponse respuesta = new ConsultaContactoByIdentificacionContactoWSResponse();
-		respuesta = afiliacionMethods.consultaContactoByIdentificacionContacto(ConsultaContactoByIdentificacionContactoDTO);
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		respuesta = afiliacionMethods.consultaContactoByIdentificacionContacto(identificacionContacto);
 		return respuesta;
-	}
+	}	
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaRepresentanteLegalByIdentificacionRepresentante", produces = { "application/json" })
-	public @ResponseBody ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse consultaRepresentanteLegalByIdentificacionRepresentante(@RequestBody ConsultaRepresentanteLegalByIdentificacionRepresentanteDTO ConsultaRepresentanteLegalByIdentificacionRepresentanteDTO) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaRepresentanteLegalByIdentificacionRepresentante/{identificacionRepresentante}", produces = { "application/json" })
+	public @ResponseBody ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse consultaRepresentanteLegalByIdentificacionRepresentante(@PathVariable(value = "identificacionRepresentante") String identificacionRepresentante) {
 		ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse respuesta = new ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse();
-		respuesta = afiliacionMethods.consultaRepresentanteLegalByIdentificacionRepresentante(ConsultaRepresentanteLegalByIdentificacionRepresentanteDTO);
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		respuesta = afiliacionMethods.consultaRepresentanteLegalByIdentificacionRepresentante(identificacionRepresentante);
 		return respuesta;
 	}
 	
@@ -359,23 +352,19 @@ public class AfiliacionController extends Util{
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaAsociacionComercioContacto", produces = { "application/json" })
-	public @ResponseBody ConsultaAsociacionComercioContactoWSResponse consultaAsociacionComercioContacto(@RequestBody ConsultaAsociacionComercioContactoDTO ConsultaAsociacionComercioContactoDTO) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaAsociacionComercioContacto/{comercioId}", produces = { "application/json" })
+	public @ResponseBody ConsultaAsociacionComercioContactoWSResponse consultaAsociacionComercioContacto(@PathVariable(value = "comercioId") String comercioId) {
 		ConsultaAsociacionComercioContactoWSResponse respuesta = new ConsultaAsociacionComercioContactoWSResponse();
-		respuesta = afiliacionMethods.consultaAsociacionComercioContacto(ConsultaAsociacionComercioContactoDTO);
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		respuesta = afiliacionMethods.consultaAsociacionComercioContacto(comercioId);
 		return respuesta;
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaAsociacionComercioRepresentante", produces = { "application/json" })
-	public @ResponseBody ConsultaAsociacionComercioRepresentanteWSResponse consultaAsociacionComercioRepresentante(@RequestBody ConsultaAsociacionComercioRepresentanteDTO ConsultaAsociacionComercioRepresentanteDTO) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaAsociacionComercioRepresentante/{comercioId}", produces = { "application/json" })
+	public @ResponseBody ConsultaAsociacionComercioRepresentanteWSResponse consultaAsociacionComercioRepresentante(@PathVariable(value = "comercioId") String comercioId) {
 		ConsultaAsociacionComercioRepresentanteWSResponse respuesta = new ConsultaAsociacionComercioRepresentanteWSResponse();
-		respuesta = afiliacionMethods.consultaAsociacionComercioRepresentante(ConsultaAsociacionComercioRepresentanteDTO);
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		respuesta = afiliacionMethods.consultaAsociacionComercioRepresentante(comercioId);
 		return respuesta;
 	}
 	
@@ -392,12 +381,10 @@ public class AfiliacionController extends Util{
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaAsociacionComercioOtroBanco", produces = { "application/json" })
-	public @ResponseBody ConsultaAsociacionComercioOtroBancoWSResponse consultaAsociacionComercioOtroBanco(@RequestBody ConsultaAsociacionComercioOtroBancoWS ConsultaAsociacionComercioOtroBancoWS) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaAsociacionComercioOtroBanco/{comercioId}", produces = { "application/json" })
+	public @ResponseBody ConsultaAsociacionComercioOtroBancoWSResponse consultaAsociacionComercioOtroBanco(@PathVariable(value = "comercioId") String comercioId) {
 		ConsultaAsociacionComercioOtroBancoWSResponse respuesta = new ConsultaAsociacionComercioOtroBancoWSResponse();
-		respuesta = afiliacionMethods.consultaAsociacionComercioOtroBanco(ConsultaAsociacionComercioOtroBancoWS);
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		respuesta = afiliacionMethods.consultaAsociacionComercioOtroBanco(comercioId);
 		return respuesta;
 	}
 	
@@ -425,34 +412,28 @@ public class AfiliacionController extends Util{
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaComercioPorComercioId", produces = { "application/json" })
-	public @ResponseBody ConsultaComercioPorComercioIdWSResponse consultaComercioPorComercioId(@RequestBody ConsultaComercioPorComercioIdWS ConsultaComercioPorComercioIdWS) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaComercioPorComercioId/{comercioId}", produces = { "application/json" })
+	public @ResponseBody ConsultaComercioPorComercioIdWSResponse consultaComercioPorComercioId(@PathVariable(value = "comercioId") String comercioId) {
 		ConsultaComercioPorComercioIdWSResponse respuesta = new ConsultaComercioPorComercioIdWSResponse();
-		respuesta = afiliacionMethods.consultaComercioPorComercioId(ConsultaComercioPorComercioIdWS);
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		respuesta = afiliacionMethods.consultaComercioPorComercioId(comercioId);
 		return respuesta;
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaPagoByNumComprobanteRecibo", produces = { "application/json" })
-	public @ResponseBody ConsultaPagoByNumComprobanteReciboWSResponse consultaPagoByNumComprobanteRecibo(@RequestBody ConsultaPagoByNumComprobanteReciboWS ConsultaPagoByNumComprobanteReciboWS) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaPagoByNumComprobanteRecibo/{numComprobanteRecibo}", produces = { "application/json" })
+	public @ResponseBody ConsultaPagoByNumComprobanteReciboWSResponse consultaPagoByNumComprobanteRecibo(@PathVariable(value = "numComprobanteRecibo") String numComprobanteRecibo) {
 		ConsultaPagoByNumComprobanteReciboWSResponse respuesta = new ConsultaPagoByNumComprobanteReciboWSResponse();
-		respuesta = afiliacionMethods.consultaPagoByNumComprobanteRecibo(ConsultaPagoByNumComprobanteReciboWS);
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		respuesta = afiliacionMethods.consultaPagoByNumComprobanteRecibo(numComprobanteRecibo);
 		return respuesta;
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaTipoRecaudoByIdTipoRecaudo", produces = { "application/json" })
-	public @ResponseBody ConsultaTipoRecaudoByIdTipoRecaudoWSResponse consultaTipoRecaudoByIdTipoRecaudo(@RequestBody ConsultaTipoRecaudoByIdTipoRecaudoWS ConsultaTipoRecaudoByIdTipoRecaudoWS) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaTipoRecaudoByIdTipoRecaudo/{tipoRecaudoId}", produces = { "application/json" })
+	public @ResponseBody ConsultaTipoRecaudoByIdTipoRecaudoWSResponse consultaTipoRecaudoByIdTipoRecaudo(@PathVariable(value = "tipoRecaudoId") String tipoRecaudoId) {
 		ConsultaTipoRecaudoByIdTipoRecaudoWSResponse respuesta = new ConsultaTipoRecaudoByIdTipoRecaudoWSResponse();
-		respuesta = afiliacionMethods.consultaTipoRecaudoByIdTipoRecaudo(ConsultaTipoRecaudoByIdTipoRecaudoWS);
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		respuesta = afiliacionMethods.consultaTipoRecaudoByIdTipoRecaudo(tipoRecaudoId);
 		return respuesta;
 	}
 	
@@ -480,12 +461,10 @@ public class AfiliacionController extends Util{
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaEntityBankByIdEntityBank", produces = { "application/json" })
-	public @ResponseBody ConsultaEntityBankByIdEntityBankWSResponse consultaEntityBankByIdEntityBank(@RequestBody ConsultaEntityBankByIdEntityBankWS ConsultaEntityBankByIdEntityBankWS) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaEntityBankByIdEntityBank/{entityBankId}", produces = { "application/json" })
+	public @ResponseBody ConsultaEntityBankByIdEntityBankWSResponse consultaEntityBankByIdEntityBank(@PathVariable(value = "entityBankId") String entityBankId) {
 		ConsultaEntityBankByIdEntityBankWSResponse respuesta = new ConsultaEntityBankByIdEntityBankWSResponse();
-		respuesta = afiliacionMethods.consultaEntityBankByIdEntityBank(ConsultaEntityBankByIdEntityBankWS);
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		respuesta = afiliacionMethods.consultaEntityBankByIdEntityBank(entityBankId);
 		return respuesta;
 	}
 	

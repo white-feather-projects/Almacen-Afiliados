@@ -26,6 +26,7 @@ public class ObjectFactory {
 
     private final static QName _CrearAlmacenWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearAlmacenWSResponse");
     private final static QName _RelacionAlmacenes_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "relacionAlmacenes");
+    private final static QName _ListTipoZonaWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listTipoZonaWS");
     private final static QName _CrearRelacionZonasWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearRelacionZonasWS");
     private final static QName _ModificarRelacionZonasWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarRelacionZonasWSResponse");
     private final static QName _Empresa_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "empresa");
@@ -60,6 +61,7 @@ public class ObjectFactory {
     private final static QName _CrearEstanteriaWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearEstanteriaWS");
     private final static QName _ModificarRelacionAlmacenesWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarRelacionAlmacenesWS");
     private final static QName _ConsultaAlmacenPorNumeroAlmacenWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaAlmacenPorNumeroAlmacenWS");
+    private final static QName _ListTipoZonaWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listTipoZonaWSResponse");
     private final static QName _Tipoidentificacion_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "tipoidentificacion");
     private final static QName _Estanteria_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "estanteria");
     private final static QName _ConsultaZonaPorZonaIdWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaZonaPorZonaIdWS");
@@ -283,6 +285,14 @@ public class ObjectFactory {
      */
     public CrearAlmacenWSResponse createCrearAlmacenWSResponse() {
         return new CrearAlmacenWSResponse();
+    }
+
+    /**
+     * Create an instance of {@link ListTipoZonaWS }
+     * 
+     */
+    public ListTipoZonaWS createListTipoZonaWS() {
+        return new ListTipoZonaWS();
     }
 
     /**
@@ -510,6 +520,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ListTipoZonaWSResponse }
+     * 
+     */
+    public ListTipoZonaWSResponse createListTipoZonaWSResponse() {
+        return new ListTipoZonaWSResponse();
+    }
+
+    /**
      * Create an instance of {@link ErroresDTO }
      * 
      */
@@ -565,6 +583,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "relacionAlmacenes")
     public JAXBElement<RelacionAlmacenes> createRelacionAlmacenes(RelacionAlmacenes value) {
         return new JAXBElement<RelacionAlmacenes>(_RelacionAlmacenes_QNAME, RelacionAlmacenes.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListTipoZonaWS }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listTipoZonaWS")
+    public JAXBElement<ListTipoZonaWS> createListTipoZonaWS(ListTipoZonaWS value) {
+        return new JAXBElement<ListTipoZonaWS>(_ListTipoZonaWS_QNAME, ListTipoZonaWS.class, null, value);
     }
 
     /**
@@ -871,6 +898,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaAlmacenPorNumeroAlmacenWS")
     public JAXBElement<ConsultaAlmacenPorNumeroAlmacenWS> createConsultaAlmacenPorNumeroAlmacenWS(ConsultaAlmacenPorNumeroAlmacenWS value) {
         return new JAXBElement<ConsultaAlmacenPorNumeroAlmacenWS>(_ConsultaAlmacenPorNumeroAlmacenWS_QNAME, ConsultaAlmacenPorNumeroAlmacenWS.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListTipoZonaWSResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listTipoZonaWSResponse")
+    public JAXBElement<ListTipoZonaWSResponse> createListTipoZonaWSResponse(ListTipoZonaWSResponse value) {
+        return new JAXBElement<ListTipoZonaWSResponse>(_ListTipoZonaWSResponse_QNAME, ListTipoZonaWSResponse.class, null, value);
     }
 
     /**

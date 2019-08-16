@@ -27,6 +27,54 @@ public interface ClientWS {
 
     /**
      * 
+     * @param idCanal
+     * @param nombreCanal
+     * @param clientDTO
+     * @param nombreUsuario
+     * @return
+     *     returns com.cbp1.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "createClientsWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.CreateClientsWS")
+    @ResponseWrapper(localName = "createClientsWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.CreateClientsWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/createClientsWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/createClientsWSResponse")
+    public RespuestaDTO createClientsWS(
+        @WebParam(name = "clientDTO", targetNamespace = "")
+        NewClientDTO clientDTO,
+        @WebParam(name = "nombreUsuario", targetNamespace = "")
+        String nombreUsuario,
+        @WebParam(name = "idCanal", targetNamespace = "")
+        String idCanal,
+        @WebParam(name = "nombreCanal", targetNamespace = "")
+        String nombreCanal);
+
+    /**
+     * 
+     * @param idCanal
+     * @param cargaArchivosDTO
+     * @param nombreCanal
+     * @param clientDocumentId
+     * @return
+     *     returns com.cbp1.ws.cbp.service.CargaArchivosDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "procesarArchivosClienteWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ProcesarArchivosClienteWS")
+    @ResponseWrapper(localName = "procesarArchivosClienteWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ProcesarArchivosClienteWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/procesarArchivosClienteWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/procesarArchivosClienteWSResponse")
+    public CargaArchivosDTO procesarArchivosClienteWS(
+        @WebParam(name = "cargaArchivosDTO", targetNamespace = "")
+        CargaArchivosDTO cargaArchivosDTO,
+        @WebParam(name = "clientDocumentId", targetNamespace = "")
+        String clientDocumentId,
+        @WebParam(name = "idCanal", targetNamespace = "")
+        String idCanal,
+        @WebParam(name = "nombreCanal", targetNamespace = "")
+        String nombreCanal);
+
+    /**
+     * 
      * @param clientId
      * @return
      *     returns com.cbp1.ws.cbp.service.Documents
@@ -54,30 +102,6 @@ public interface ClientWS {
     public RespuestaDTO updateClientWS(
         @WebParam(name = "clientDTO", targetNamespace = "")
         NewClientDTO clientDTO);
-
-    /**
-     * 
-     * @param idCanal
-     * @param cargaArchivosDTO
-     * @param nombreCanal
-     * @param clientDocumentId
-     * @return
-     *     returns com.cbp1.ws.cbp.service.CargaArchivosDTO
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "procesarArchivosClienteWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ProcesarArchivosClienteWS")
-    @ResponseWrapper(localName = "procesarArchivosClienteWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ProcesarArchivosClienteWSResponse")
-    @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/procesarArchivosClienteWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/procesarArchivosClienteWSResponse")
-    public CargaArchivosDTO procesarArchivosClienteWS(
-        @WebParam(name = "cargaArchivosDTO", targetNamespace = "")
-        CargaArchivosDTO cargaArchivosDTO,
-        @WebParam(name = "clientDocumentId", targetNamespace = "")
-        String clientDocumentId,
-        @WebParam(name = "idCanal", targetNamespace = "")
-        String idCanal,
-        @WebParam(name = "nombreCanal", targetNamespace = "")
-        String nombreCanal);
 
     /**
      * 
@@ -288,29 +312,5 @@ public interface ClientWS {
     @ResponseWrapper(localName = "listBanksWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ListBanksWSResponse")
     @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/listBanksWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/listBanksWSResponse")
     public List<EntityBank> listBanksWS();
-
-    /**
-     * 
-     * @param idCanal
-     * @param nombreCanal
-     * @param clientDTO
-     * @param nombreUsuario
-     * @return
-     *     returns com.cbp1.ws.cbp.service.RespuestaDTO
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "createClientsWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.CreateClientsWS")
-    @ResponseWrapper(localName = "createClientsWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.CreateClientsWSResponse")
-    @Action(input = "http://service.cbp.ws.cbp1.com/ClientWS/createClientsWSRequest", output = "http://service.cbp.ws.cbp1.com/ClientWS/createClientsWSResponse")
-    public RespuestaDTO createClientsWS(
-        @WebParam(name = "clientDTO", targetNamespace = "")
-        NewClientDTO clientDTO,
-        @WebParam(name = "nombreUsuario", targetNamespace = "")
-        String nombreUsuario,
-        @WebParam(name = "idCanal", targetNamespace = "")
-        String idCanal,
-        @WebParam(name = "nombreCanal", targetNamespace = "")
-        String nombreCanal);
 
 }

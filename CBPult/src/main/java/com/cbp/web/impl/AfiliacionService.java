@@ -135,7 +135,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 	
 	////////////////////////////////////
 	//Methodo para Consultar Comercio...
-	public ConsultaComercioPorIdentificacionComercioWSResponse consultaComercio(consultaComercioDTO consultaComercio) {
+	public ConsultaComercioPorIdentificacionComercioWSResponse consultaComercio(String identificacionComercio) {
 		
 		//instanciar Objeto para retorno....
 		ConsultaComercioPorIdentificacionComercioWSResponse respuestaConsultaComercio = new ConsultaComercioPorIdentificacionComercioWSResponse();
@@ -145,7 +145,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 			
-			respuestaConsultaComercio.setReturn(WSmethod.consultaComercioPorIdentificacionComercioWS(consultaComercio.getIdentificacionComercio())); 
+			respuestaConsultaComercio.setReturn(WSmethod.consultaComercioPorIdentificacionComercioWS(identificacionComercio)); 
 			
 			
 		} catch (MalformedURLException e) {
@@ -265,7 +265,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 	
 	////////////////////////////////////
 	//Methodo para consultar banco afiliado...
-	public ConsultaBancoAfiliacionByIdWSResponse consultaBancoAfiliacionId(ConsultaBancoAfiliacionIdDTO ConsultaBancoAfiliacionIdDTO) {
+	public ConsultaBancoAfiliacionByIdWSResponse consultaBancoAfiliacionId(String idAsociacion) {
 	
 		//instanciar Objeto para retorno....
 		ConsultaBancoAfiliacionByIdWSResponse respuestaConsultaBancoAfiliacion = new ConsultaBancoAfiliacionByIdWSResponse();
@@ -275,7 +275,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
-			respuestaConsultaBancoAfiliacion.setReturn(WSmethod.consultaBancoAfiliacionByIdWS(ConsultaBancoAfiliacionIdDTO.getIdAsociacion())); 
+			respuestaConsultaBancoAfiliacion.setReturn(WSmethod.consultaBancoAfiliacionByIdWS(Long.parseLong(idAsociacion))); 
 		
 		
 		} catch (MalformedURLException e) {
@@ -421,7 +421,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 	
 	////////////////////////////////////
 	//Methodo para consultar Contacto por Identificacion...
-	public ConsultaContactoByIdentificacionContactoWSResponse consultaContactoByIdentificacionContacto(ConsultaContactoByIdentificacionContactoDTO ConsultaContactoByIdentificacionContactoDTO) {
+	public ConsultaContactoByIdentificacionContactoWSResponse consultaContactoByIdentificacionContacto(String identificacionContacto) {
 	
 		//instanciar Objeto para retorno....
 		ConsultaContactoByIdentificacionContactoWSResponse respuestaConsultaByIdentificacionContacto = new ConsultaContactoByIdentificacionContactoWSResponse();
@@ -431,7 +431,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
-			respuestaConsultaByIdentificacionContacto.setReturn(WSmethod.consultaContactoByIdentificacionContactoWS(ConsultaContactoByIdentificacionContactoDTO.getIdentificacionContacto()));
+			respuestaConsultaByIdentificacionContacto.setReturn(WSmethod.consultaContactoByIdentificacionContactoWS(identificacionContacto));
 		
 		
 		} catch (MalformedURLException e) {
@@ -447,7 +447,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 	
 	////////////////////////////////////
 	//Methodo para consultar Representante legal por Identificacion...
-	public ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse consultaRepresentanteLegalByIdentificacionRepresentante(ConsultaRepresentanteLegalByIdentificacionRepresentanteDTO ConsultaRepresentanteLegalByIdentificacionRepresentanteDTO) {
+	public ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse consultaRepresentanteLegalByIdentificacionRepresentante(String identificacionRepresentante) {
 	
 		//instanciar Objeto para retorno....
 		ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse respuestaConsultaRepresentanteLegalByIdentificacionRepresentante = new ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse();
@@ -457,7 +457,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
-			respuestaConsultaRepresentanteLegalByIdentificacionRepresentante.setReturn(WSmethod.consultaRepresentanteLegalByIdentificacionRepresentanteWS(ConsultaRepresentanteLegalByIdentificacionRepresentanteDTO.getIdentificacionRepresentante()));
+			respuestaConsultaRepresentanteLegalByIdentificacionRepresentante.setReturn(WSmethod.consultaRepresentanteLegalByIdentificacionRepresentanteWS(identificacionRepresentante));
 		
 		
 		} catch (MalformedURLException e) {
@@ -629,7 +629,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 	
 	////////////////////////////////////
 	//Methodo para Consultar Asociacion COmercio COntacto...
-	public ConsultaAsociacionComercioContactoWSResponse consultaAsociacionComercioContacto(ConsultaAsociacionComercioContactoDTO ConsultaAsociacionComercioContactoDTO) {
+	public ConsultaAsociacionComercioContactoWSResponse consultaAsociacionComercioContacto(String comercioId) {
 	
 		//instanciar Objeto para retorno....
 		ConsultaAsociacionComercioContactoWSResponse respuestaConsultaAsociacionComercioContacto = new ConsultaAsociacionComercioContactoWSResponse();
@@ -639,7 +639,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
-			respuestaConsultaAsociacionComercioContacto.setReturn(WSmethod.consultaAsociacionComercioContactoWS(ConsultaAsociacionComercioContactoDTO.getComercioId()));
+			respuestaConsultaAsociacionComercioContacto.setReturn(WSmethod.consultaAsociacionComercioContactoWS(Long.parseLong(comercioId)));
 		
 		
 		} catch (MalformedURLException e) {
@@ -655,7 +655,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 	
 	////////////////////////////////////
 	//Methodo para Consultar Asociacion COmercio Representante...
-	public ConsultaAsociacionComercioRepresentanteWSResponse consultaAsociacionComercioRepresentante(ConsultaAsociacionComercioRepresentanteDTO ConsultaAsociacionComercioRepresentanteDTO) {
+	public ConsultaAsociacionComercioRepresentanteWSResponse consultaAsociacionComercioRepresentante(String comercioId) {
 	
 		//instanciar Objeto para retorno....
 		ConsultaAsociacionComercioRepresentanteWSResponse respuestaConsultaAsociacionComercioRepresentante = new ConsultaAsociacionComercioRepresentanteWSResponse();
@@ -665,7 +665,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
-			respuestaConsultaAsociacionComercioRepresentante.setReturn(WSmethod.consultaAsociacionComercioRepresentanteWS(ConsultaAsociacionComercioRepresentanteDTO.getComercioId()));
+			respuestaConsultaAsociacionComercioRepresentante.setReturn(WSmethod.consultaAsociacionComercioRepresentanteWS(Long.parseLong(comercioId)));
 		
 		
 		} catch (MalformedURLException e) {
@@ -707,7 +707,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 	
 	////////////////////////////////////
 	//Methodo para Consultar Asociacion Comercio con Otro Banco...
-	public ConsultaAsociacionComercioOtroBancoWSResponse consultaAsociacionComercioOtroBanco(ConsultaAsociacionComercioOtroBancoWS ConsultaAsociacionComercioOtroBancoWS) {
+	public ConsultaAsociacionComercioOtroBancoWSResponse consultaAsociacionComercioOtroBanco(String comercioId) {
 	
 		//instanciar Objeto para retorno....
 		ConsultaAsociacionComercioOtroBancoWSResponse respuestaConsultaAsociacionComercioOtroBanco = new ConsultaAsociacionComercioOtroBancoWSResponse();
@@ -717,7 +717,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
-			respuestaConsultaAsociacionComercioOtroBanco.setReturn(WSmethod.consultaAsociacionComercioOtroBancoWS(ConsultaAsociacionComercioOtroBancoWS.getComercioId()));
+			respuestaConsultaAsociacionComercioOtroBanco.setReturn(WSmethod.consultaAsociacionComercioOtroBancoWS(Long.parseLong(comercioId)));
 		
 		
 		} catch (MalformedURLException e) {
@@ -785,7 +785,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 	
 	////////////////////////////////////
 	//Methodo para Consultar Comercio por ComercioId...
-	public ConsultaComercioPorComercioIdWSResponse consultaComercioPorComercioId(ConsultaComercioPorComercioIdWS ConsultaComercioPorComercioIdWS) {
+	public ConsultaComercioPorComercioIdWSResponse consultaComercioPorComercioId(String comercioId) {
 	
 		//instanciar Objeto para retorno....
 		ConsultaComercioPorComercioIdWSResponse respuestaConsultaComercioPorComercioId = new ConsultaComercioPorComercioIdWSResponse();
@@ -795,7 +795,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
-			respuestaConsultaComercioPorComercioId.setReturn(WSmethod.consultaComercioPorComercioIdWS(ConsultaComercioPorComercioIdWS.getComercioId()));
+			respuestaConsultaComercioPorComercioId.setReturn(WSmethod.consultaComercioPorComercioIdWS(comercioId));
 		
 		
 		} catch (MalformedURLException e) {
@@ -811,7 +811,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 	
 	////////////////////////////////////
 	//Methodo para Consultar Pago por Numero Comprobante Recibo...
-	public ConsultaPagoByNumComprobanteReciboWSResponse consultaPagoByNumComprobanteRecibo(ConsultaPagoByNumComprobanteReciboWS ConsultaPagoByNumComprobanteReciboWS) {
+	public ConsultaPagoByNumComprobanteReciboWSResponse consultaPagoByNumComprobanteRecibo(String numComprobanteRecibo) {
 	
 		//instanciar Objeto para retorno....
 		ConsultaPagoByNumComprobanteReciboWSResponse respuestaConsultaPagoByNumComprobanteRecibo = new ConsultaPagoByNumComprobanteReciboWSResponse();
@@ -821,7 +821,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
-			respuestaConsultaPagoByNumComprobanteRecibo.setReturn(WSmethod.consultaPagoByNumComprobanteReciboWS(ConsultaPagoByNumComprobanteReciboWS.getNumComprobanteRecibo()));
+			respuestaConsultaPagoByNumComprobanteRecibo.setReturn(WSmethod.consultaPagoByNumComprobanteReciboWS(numComprobanteRecibo));
 		
 		
 		} catch (MalformedURLException e) {
@@ -837,7 +837,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 	
 	////////////////////////////////////
 	//Methodo para Consultar Tipo Recaudo por Id Tipo Recaudo...
-	public ConsultaTipoRecaudoByIdTipoRecaudoWSResponse consultaTipoRecaudoByIdTipoRecaudo(ConsultaTipoRecaudoByIdTipoRecaudoWS ConsultaTipoRecaudoByIdTipoRecaudoWS) {
+	public ConsultaTipoRecaudoByIdTipoRecaudoWSResponse consultaTipoRecaudoByIdTipoRecaudo(String tipoRecaudoId) {
 	
 		//instanciar Objeto para retorno....
 		ConsultaTipoRecaudoByIdTipoRecaudoWSResponse respuestaConsultaTipoRecaudoByIdTipoRecaudo = new ConsultaTipoRecaudoByIdTipoRecaudoWSResponse();
@@ -847,7 +847,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
-			respuestaConsultaTipoRecaudoByIdTipoRecaudo.setReturn(WSmethod.consultaTipoRecaudoByIdTipoRecaudoWS(ConsultaTipoRecaudoByIdTipoRecaudoWS.getTipoRecaudoId()));
+			respuestaConsultaTipoRecaudoByIdTipoRecaudo.setReturn(WSmethod.consultaTipoRecaudoByIdTipoRecaudoWS(Long.parseLong(tipoRecaudoId)));
 		
 		
 		} catch (MalformedURLException e) {
@@ -915,7 +915,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 	
 	////////////////////////////////////
 	//Methodo para Consultar Banco por IdBank...
-	public ConsultaEntityBankByIdEntityBankWSResponse consultaEntityBankByIdEntityBank(ConsultaEntityBankByIdEntityBankWS ConsultaEntityBankByIdEntityBankWS) {
+	public ConsultaEntityBankByIdEntityBankWSResponse consultaEntityBankByIdEntityBank(String entityBankId) {
 	
 		//instanciar Objeto para retorno....
 		ConsultaEntityBankByIdEntityBankWSResponse respuestaConsultaEntityBankByIdEntityBank = new ConsultaEntityBankByIdEntityBankWSResponse();
@@ -925,7 +925,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
-			respuestaConsultaEntityBankByIdEntityBank.setReturn(WSmethod.consultaEntityBankByIdEntityBankWS(ConsultaEntityBankByIdEntityBankWS.getEntityBankId()));
+			respuestaConsultaEntityBankByIdEntityBank.setReturn(WSmethod.consultaEntityBankByIdEntityBankWS(Long.parseLong(entityBankId)));
 		
 		
 		} catch (MalformedURLException e) {
@@ -1028,20 +1028,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
 			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
-			for(int i = 0; i < WSmethod.listaSolicitudesWS().size(); i++) {
-				
-				Solicitud objetoSolicitud = new Solicitud();
-				
-				objetoSolicitud.setCodigoUsuarioModifica(WSmethod.listaSolicitudesWS().get(i).getCodigoUsuarioModifica());
-				objetoSolicitud.setComercioId(WSmethod.listaSolicitudesWS().get(i).getComercioId());
-				objetoSolicitud.setFechaCargaDatos(WSmethod.listaSolicitudesWS().get(i).getFechaCargaDatos());
-				objetoSolicitud.setFechaHoraModificacion(WSmethod.listaSolicitudesWS().get(i).getFechaHoraModificacion());
-				objetoSolicitud.setIdChannel(WSmethod.listaSolicitudesWS().get(i).getIdChannel());
-				objetoSolicitud.setSolicitudId(WSmethod.listaSolicitudesWS().get(i).getSolicitudId());
-				objetoSolicitud.setStatusSolicitud(WSmethod.listaSolicitudesWS().get(i).getStatusSolicitud());
-				
-				respuestaSolicitudes.add(objetoSolicitud);
-			}
+			respuestaSolicitudes = WSmethod.listaSolicitudesWS();
 		
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -1067,21 +1054,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
 			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
-			for(int i = 0; i < WSmethod.listaAsociacionBancoComercioWS().size(); i++) {
-				
-				BancoAfiliacion objetoBancoAfiliacion = new BancoAfiliacion();
-				
-				objetoBancoAfiliacion.setBancoId(WSmethod.listaAsociacionBancoComercioWS().get(i).getBancoId());
-				objetoBancoAfiliacion.setCodigoUsuarioModifica(WSmethod.listaAsociacionBancoComercioWS().get(i).getCodigoUsuarioModifica());
-				objetoBancoAfiliacion.setComercioId(WSmethod.listaAsociacionBancoComercioWS().get(i).getComercioId());
-				objetoBancoAfiliacion.setFechaCargaDatos(WSmethod.listaAsociacionBancoComercioWS().get(i).getFechaCargaDatos());
-				objetoBancoAfiliacion.setFechaHoraModificacion(WSmethod.listaAsociacionBancoComercioWS().get(i).getFechaHoraModificacion());
-				objetoBancoAfiliacion.setIdEntityBank(WSmethod.listaAsociacionBancoComercioWS().get(i).getIdEntityBank());
-				objetoBancoAfiliacion.setNumAfiliacionBanco(WSmethod.listaAsociacionBancoComercioWS().get(i).getNumAfiliacionBanco());
-				objetoBancoAfiliacion.setNumTerminalesComprar(WSmethod.listaAsociacionBancoComercioWS().get(i).getNumTerminalesComprar());
-				
-				respuestaBancoAfiliacion.add(objetoBancoAfiliacion);
-			}
+			respuestaBancoAfiliacion = WSmethod.listaAsociacionBancoComercioWS();
 		
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -1107,18 +1080,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
 			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
-			for(int i = 0; i < WSmethod.listaOperadoresTelefonicosWS().size(); i++) {
-				
-				Operadortelefonico objetoOperadorTelefonico = new Operadortelefonico();
-				
-				objetoOperadorTelefonico.setActive(WSmethod.listaOperadoresTelefonicosWS().get(i).getActive());
-				objetoOperadorTelefonico.setCodOperadora(WSmethod.listaOperadoresTelefonicosWS().get(i).getCodOperadora());
-				objetoOperadorTelefonico.setOperadortelfId(WSmethod.listaOperadoresTelefonicosWS().get(i).getOperadortelfId());
-				objetoOperadorTelefonico.setOperadortelfNombre(WSmethod.listaOperadoresTelefonicosWS().get(i).getOperadortelfNombre());
-				
-				
-				respuestaOperadoresTelefonicos.add(objetoOperadorTelefonico);
-			}
+			respuestaOperadoresTelefonicos = WSmethod.listaOperadoresTelefonicosWS();
 		
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -1144,19 +1106,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
 			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
-			for(int i = 0; i < WSmethod.listBanksWS().size(); i++) {
-				
-				EntityBank objetoBanks = new EntityBank();
-				
-				objetoBanks.setCodigoUsuarioModifica(WSmethod.listBanksWS().get(i).getCodigoUsuarioModifica());
-				objetoBanks.setEntityBankCod(WSmethod.listBanksWS().get(i).getEntityBankCod());
-				objetoBanks.setEntityBankName(WSmethod.listBanksWS().get(i).getEntityBankName());
-				objetoBanks.setFechaHoraCarga(WSmethod.listBanksWS().get(i).getFechaHoraCarga());
-				objetoBanks.setFechaHoraModificacion(WSmethod.listBanksWS().get(i).getFechaHoraModificacion());
-				objetoBanks.setIdEntityBank(WSmethod.listBanksWS().get(i).getIdEntityBank());
-				
-				respuestaBancos.add(objetoBanks);
-			}
+			respuestaBancos = WSmethod.listBanksWS();
 		
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -1182,15 +1132,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
 			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
-			for(int i = 0; i < WSmethod.listaTipoRecaudosWS().size(); i++) {
-				
-				TipoRecaudo objetoRecaudos = new TipoRecaudo();
-				
-				objetoRecaudos.setTipoRecaudoId(WSmethod.listaTipoRecaudosWS().get(i).getTipoRecaudoId());
-				objetoRecaudos.setTipoRecaudoNombre(WSmethod.listaTipoRecaudosWS().get(i).getTipoRecaudoNombre());
-				
-				respuestaRecaudos.add(objetoRecaudos);
-			}
+			respuestaRecaudos = WSmethod.listaTipoRecaudosWS();
 		
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -1216,47 +1158,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
 			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
-			for(int i = 0; i < WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).size(); i++) {
-				
-				Pago objetoPago = new Pago();
-				//////////////////////////////////////////
-				Tipoidentificacion objetoTipoIdentificacion = new Tipoidentificacion();
-				objetoTipoIdentificacion.setNombre(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getComercioId().getTipoIdentificacionId().getNombre());
-				objetoTipoIdentificacion.setTipoIdentificacionId(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getComercioId().getTipoIdentificacionId().getTipoIdentificacionId());
-				//////////////////////////////////////////
-				Comercio objetoComercio = new Comercio();
-				objetoComercio.setActividadComercial(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getComercioId().getActividadComercial());
-				objetoComercio.setAfiliadoOtroBanco(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getComercioId().getAfiliadoOtroBanco());
-				objetoComercio.setCodigoUsuarioCarga(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getComercioId().getCodigoUsuarioCarga());
-				objetoComercio.setCodigoUsuarioModifica(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getComercioId().getCodigoUsuarioModifica());
-				objetoComercio.setComercioId(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getComercioId().getComercioId());
-				objetoComercio.setEmail(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getComercioId().getEmail());
-				objetoComercio.setFechaCargaDatos(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getComercioId().getFechaCargaDatos());
-				objetoComercio.setFechaHoraModificacion(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getComercioId().getFechaHoraModificacion());
-				objetoComercio.setHoraFin(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getComercioId().getHoraFin());
-				objetoComercio.setHoraInicio(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getComercioId().getHoraInicio());
-				objetoComercio.setIdentificacionComercio(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getComercioId().getIdentificacionComercio());
-				objetoComercio.setNombreComercial(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getComercioId().getNombreComercial());
-				objetoComercio.setNombreEmpresarial(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getComercioId().getNombreEmpresarial());
-				objetoComercio.setNumCuentaAsociado(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getComercioId().getNumCuentaAsociado());
-				objetoComercio.setStatusComercio(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getComercioId().getStatusComercio());
-				objetoComercio.setTelefonoAlternativo(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getComercioId().getTelefonoAlternativo());
-				objetoComercio.setTelefonoContacto(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getComercioId().getTelefonoContacto());
-				objetoComercio.setTelefonoLocal(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getComercioId().getTelefonoLocal());
-				objetoComercio.setTipoIdentificacionId(objetoTipoIdentificacion);
-				
-				////////////////////////////////////////////
-				
-				objetoPago.setComercioId(objetoComercio);
-				objetoPago.setIdBank(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getIdBank());
-				objetoPago.setIdComercio(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getIdComercio());
-				objetoPago.setModoPago(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getModoPago());
-				objetoPago.setNumComprobanteRecibo(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getNumComprobanteRecibo());
-				objetoPago.setPagoId(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getPagoId());
-				objetoPago.setPagoStatus(WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio()).get(i).getPagoStatus());
-				
-				respuestaPago.add(objetoPago);
-			}
+			respuestaPago = WSmethod.listPagosByIdentificacionComercioWS(ListPagosByIdentificacionComercioWS.getIdentificacionComercio());
 		
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -1282,18 +1184,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
 			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
-			for(int i = 0; i < WSmethod.listaComercioEstablecimientosWS(ListaComercioEstablecimientosWS.getIdComercio()).size(); i++) {
-				
-				ComercioEstabl objetoComercioEstabl = new ComercioEstabl();
-				
-				objetoComercioEstabl.setComercio(WSmethod.listaComercioEstablecimientosWS(ListaComercioEstablecimientosWS.getIdComercio()).get(i).getComercio());
-				objetoComercioEstabl.setComercioEstablId(WSmethod.listaComercioEstablecimientosWS(ListaComercioEstablecimientosWS.getIdComercio()).get(i).getComercioEstablId());
-				objetoComercioEstabl.setComercioId(WSmethod.listaComercioEstablecimientosWS(ListaComercioEstablecimientosWS.getIdComercio()).get(i).getComercioId());
-				objetoComercioEstabl.setEstablecimiento(WSmethod.listaComercioEstablecimientosWS(ListaComercioEstablecimientosWS.getIdComercio()).get(i).getEstablecimiento());
-				objetoComercioEstabl.setEstablecimientoId(WSmethod.listaComercioEstablecimientosWS(ListaComercioEstablecimientosWS.getIdComercio()).get(i).getEstablecimientoId());
-				
-				respuestaComercioEstabl.add(objetoComercioEstabl);
-			}
+			respuestaComercioEstabl = WSmethod.listaComercioEstablecimientosWS(ListaComercioEstablecimientosWS.getIdComercio());
 		
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -1319,26 +1210,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
 			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
-			for(int i = 0; i < WSmethod.listaEstablecimientosWS().size(); i++) {
-				
-				Establecimiento objetoEstablecimiento = new Establecimiento();
-				
-				objetoEstablecimiento.setAvenidaCalle(WSmethod.listaEstablecimientosWS().get(i).getAvenidaCalle());
-				objetoEstablecimiento.setCiudad(WSmethod.listaEstablecimientosWS().get(i).getCiudad());
-				objetoEstablecimiento.setCodigoPostal(WSmethod.listaEstablecimientosWS().get(i).getCodigoPostal());
-				objetoEstablecimiento.setEstablecimientoId(WSmethod.listaEstablecimientosWS().get(i).getEstablecimientoId());
-				objetoEstablecimiento.setGeoLocalizacion(WSmethod.listaEstablecimientosWS().get(i).getGeoLocalizacion());
-				objetoEstablecimiento.setIdCanton(WSmethod.listaEstablecimientosWS().get(i).getIdCanton());
-				objetoEstablecimiento.setIdDistrito(WSmethod.listaEstablecimientosWS().get(i).getIdDistrito());
-				objetoEstablecimiento.setIdPais(WSmethod.listaEstablecimientosWS().get(i).getIdPais());
-				objetoEstablecimiento.setIdProvincia(WSmethod.listaEstablecimientosWS().get(i).getIdProvincia());
-				objetoEstablecimiento.setLocalidad(WSmethod.listaEstablecimientosWS().get(i).getLocalidad());
-				objetoEstablecimiento.setNombreInmueble(WSmethod.listaEstablecimientosWS().get(i).getNombreInmueble());
-				objetoEstablecimiento.setPuntoReferencia(WSmethod.listaEstablecimientosWS().get(i).getPuntoReferencia());
-				objetoEstablecimiento.setSectorUrbanizacion(WSmethod.listaEstablecimientosWS().get(i).getSectorUrbanizacion());
-				
-				respuestaEstablecimiento.add(objetoEstablecimiento);
-			}
+			respuestaEstablecimiento = WSmethod.listaEstablecimientosWS();
 		
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -1364,23 +1236,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
 		
 			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
-			for(int i = 0; i < WSmethod.listRecaudosByComercioWS(ListRecaudosByComercioWS.getComercioId()).size(); i++) {
-				
-				Recaudo objetoRecaudo = new Recaudo();
-				
-				objetoRecaudo.setComercioId(WSmethod.listRecaudosByComercioWS(ListRecaudosByComercioWS.getComercioId()).get(i).getComercioId());
-				objetoRecaudo.setFechaCarga(WSmethod.listRecaudosByComercioWS(ListRecaudosByComercioWS.getComercioId()).get(i).getFechaCarga());
-				objetoRecaudo.setFechaVigencia(WSmethod.listRecaudosByComercioWS(ListRecaudosByComercioWS.getComercioId()).get(i).getFechaVigencia());
-				objetoRecaudo.setIdComercioConsulta(WSmethod.listRecaudosByComercioWS(ListRecaudosByComercioWS.getComercioId()).get(i).getIdComercioConsulta());
-				objetoRecaudo.setIdTipoRecaudo(WSmethod.listRecaudosByComercioWS(ListRecaudosByComercioWS.getComercioId()).get(i).getIdTipoRecaudo());
-				objetoRecaudo.setRecaudoId(WSmethod.listRecaudosByComercioWS(ListRecaudosByComercioWS.getComercioId()).get(i).getRecaudoId());
-				objetoRecaudo.setRecaudoNombre(WSmethod.listRecaudosByComercioWS(ListRecaudosByComercioWS.getComercioId()).get(i).getRecaudoNombre());
-				objetoRecaudo.setRecaudoVerificado(WSmethod.listRecaudosByComercioWS(ListRecaudosByComercioWS.getComercioId()).get(i).getRecaudoVerificado());
-				objetoRecaudo.setTipoRecaudoId(WSmethod.listRecaudosByComercioWS(ListRecaudosByComercioWS.getComercioId()).get(i).getTipoRecaudoId());
-				objetoRecaudo.setUbicacion(WSmethod.listRecaudosByComercioWS(ListRecaudosByComercioWS.getComercioId()).get(i).getUbicacion());
-				
-				respuestaRecaudos.add(objetoRecaudo);
-			}
+			respuestaRecaudos = WSmethod.listRecaudosByComercioWS(ListRecaudosByComercioWS.getComercioId());
 		
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -1434,16 +1290,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			UbicacionGeograficaWS WSmethod = ws.getUbicacionGeograficaWSPort();
 		
 			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
-			for(int i = 0; i < WSmethod.listCantonWS(Provincia).size(); i++) {
-				
-				Canton objetoCanton = new Canton();
-				
-				objetoCanton.setIdCanton(WSmethod.listCantonWS(Provincia).get(i).getIdCanton());
-				objetoCanton.setNombreCanton(WSmethod.listCantonWS(Provincia).get(i).getNombreCanton());
-				objetoCanton.setProvinciaId(WSmethod.listCantonWS(Provincia).get(i).getProvinciaId());
-				
-				respuestaCanton.add(objetoCanton);
-			}
+			respuestaCanton = WSmethod.listCantonWS(Provincia);
 		
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -1469,16 +1316,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			UbicacionGeograficaWS WSmethod = ws.getUbicacionGeograficaWSPort();
 		
 			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
-			for(int i = 0; i < WSmethod.listDistritoWS(Canton).size(); i++) {
-				
-				Distrito objetoDistrito = new Distrito();
-				
-				objetoDistrito.setCantonId(WSmethod.listDistritoWS(Canton).get(i).getCantonId());
-				objetoDistrito.setIdDistrito(WSmethod.listDistritoWS(Canton).get(i).getIdDistrito());
-				objetoDistrito.setNombreDistrito(WSmethod.listDistritoWS(Canton).get(i).getNombreDistrito());
-				
-				respuestaDistrito.add(objetoDistrito);
-			}
+			respuestaDistrito = WSmethod.listDistritoWS(Canton);
 		
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -1504,15 +1342,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			UbicacionGeograficaWS WSmethod = ws.getUbicacionGeograficaWSPort();
 		
 			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
-			for(int i = 0; i < WSmethod.listPaisWS().size(); i++) {
-				
-				Pais objetoPais = new Pais();
-				
-				objetoPais.setIdPais(WSmethod.listPaisWS().get(i).getIdPais());
-				objetoPais.setNombrePais(WSmethod.listPaisWS().get(i).getNombrePais());
-				
-				respuestaPais.add(objetoPais);
-			}
+			respuestaPais = WSmethod.listPaisWS();
 		
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -1538,16 +1368,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 			UbicacionGeograficaWS WSmethod = ws.getUbicacionGeograficaWSPort();
 		
 			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
-			for(int i = 0; i < WSmethod.listProvinciasWS(Pais).size(); i++) {
-				
-				Provincia objetoProvincia = new Provincia();
-				
-				objetoProvincia.setIdProvincia(WSmethod.listProvinciasWS(Pais).get(i).getIdProvincia());
-				objetoProvincia.setNombreProvincia(WSmethod.listProvinciasWS(Pais).get(i).getNombreProvincia());
-				objetoProvincia.setPaisId(WSmethod.listProvinciasWS(Pais).get(i).getPaisId());
-				
-				respuestaProvincia.add(objetoProvincia);
-			}
+			respuestaProvincia = WSmethod.listProvinciasWS(Pais);
 		
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block

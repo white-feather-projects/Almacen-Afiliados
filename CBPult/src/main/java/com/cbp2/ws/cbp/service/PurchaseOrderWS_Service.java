@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "PurchaseOrderWS", targetNamespace = "http://service.cbp.ws.cbp2.com/", wsdlLocation = "http://18.223.203.6:8080/CBP-2/PurchaseOrderWS?WSDL")
+@WebServiceClient(name = "PurchaseOrderWS", targetNamespace = "http://service.cbp.ws.cbp2.com/", wsdlLocation = "http://18.222.73.208:8080/CBP-2/PurchaseOrderWS?WSDL")
 public class PurchaseOrderWS_Service
     extends Service
 {
@@ -30,7 +30,7 @@ public class PurchaseOrderWS_Service
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://18.223.203.6:8080/CBP-2/PurchaseOrderWS?WSDL");
+            url = new URL("http://18.222.73.208:8080/CBP-2/PurchaseOrderWS?WSDL");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
