@@ -49,13 +49,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class ModificarAlmacenWS {
 
-    protected String numeroAlmacen;
-    protected String nombreAlmacen;
-    protected long identificacionOficina;
-    protected long identificacionProducto;
-    protected long codigoUsuarioModifica;
+    protected String numeroAlmacen; 
+    protected String nombreAlmacen; // enviar Descripción
+    protected long identificacionOficina; // enviar quemado valor 1
+    protected long identificacionProducto; // no es necesario este atributo (va a ser eliminado)
+    protected long codigoUsuarioModifica; // no enviar valor (null)
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar fechaHoraModifica;
+    protected XMLGregorianCalendar fechaHoraModifica; // null
     protected long tipoAlmacen;
     protected String direccion;
     protected long gerenteSucursal;

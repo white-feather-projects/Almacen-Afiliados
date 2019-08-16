@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
+    <head>
+        <th:block th:replace="fragments/header :: headlayout"></th:block>
+        <!-- switches -->
+        <link rel="stylesheet" type="text/css" th:href="@{/css/switchery.min.css}">        
+        <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-tagsinput.css}">
+        
+        <link rel="stylesheet" type="text/css" th:href="@{/css2/css.almacen/configuration_afiliados.css}">
+       
+    </head>
+    <body themebg-pattern="pattern4">
+        <!--/////////////////////////////////////////////////-->
+            <th:block th:replace="fragments/theme_loader :: theme_loader"></th:block>
+            <!--/////////////////////////////////////////////////-->
+        	<div id="pcoded" class="pcoded iscollapsed" nav-type="st6" theme-layout="vertical" vertical-placement="left" vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded" vertical-effect="shrink" vnavigation-view="view1" fream-type="theme1" sidebar-img="false" sidebar-img-type="img1" layout-type="light">
+            <div class="pcoded-overlay-box"></div>
+            <div class="pcoded-container navbar-wrapper">
+               <!--/////////////////////////////////////////////////-->
+            <th:block th:replace="fragments/nav :: nav_notification"></th:block>
+            <!--/////////////////////////////////////////////////-->
+                <div id="sidebar" class="users p-chat-user showChat"></div>                                        
+                <div class="showChat_inner"></div>
+                <div class="pcoded-main-container" style="margin-top: 56px;">
+                    <div class="pcoded-wrapper">
+                        <nav class="pcoded-navbar" navbar-theme="theme1" active-item-theme="theme1" sub-item-theme="theme2" active-item-style="style0" pcoded-navbar-position="fixed">
+                            <div class="pcoded-inner-navbar main-menu mCustomScrollbar _mCS_1" style="height: calc(100% - 80px);">
+                                <div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical_horizontal mCSB_inside" tabindex="0"></div>
+                            </div>
+                        </nav>
+                        <!-- Contenido del Form -->
+                        <div class="pcoded-content">
+                            <div class="pcoded-inner-content">                                
+                                <div class="main-body">
+                                    <!-- Header deL Form -->
+                                    <div class="page-wrapper">                                    
+                                        <div class="page-header">
+                                            <div class="row align-items-end">
+                                                <div class="col-lg-8">
+                                                    <div class="page-header-title">
+                                                        <div class="d-inline">
+                                                            <h4>Configuración de Afiliados</h4>
+                                                            <span>Personaliza tu proceso de <code>Afiliación</code></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+	                                                <div class="page-header-breadcrumb">
+	                                                    <ul class="breadcrumb-title">
+	                                                    	<!-- 
+	                                                    	<li class="breadcrumb-item"><a href="#"> <i class="feather icon-home"></i> </a></li>
+	                                                        <li class="breadcrumb-item"><a href="#!">Forms</a></li>
+	                                                        <li class="breadcrumb-item"><a href="#!">Basic Form</a></li>	                                                    	
+	                                                    	 -->	                                                        
+	                                                    </ul>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>   
+	                                    <!-- Header deL Form -->
+	                                    <!--  Body del Form-->
+	                                    <div class="page-body">
+	                                        <!-- Row1 Forms-Obligartorios --> 
+	                                        <div class="row cardlimit">
+	                                                             
+	                                            <div class="col-sm-4" style="height:100%;">
+                                            		
+	                                                <div class="card blueCard"> 
+	                                                      	                                                    
+	                                                    <div class="card-block">
+	                                                    	
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Correo Electronico</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-blue" checked="" data-switchery="true" style="display: none;" id="cboxCorreo_Electronico_Comercio"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Telefono Alternativo</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-blue" checked="" data-switchery="true" style="display: none;" id="cboxTelAlternativo_Comercio"></div>
+	                                                        </div>                                                     
+	                                                    </div>
+	                                                    <div class="card-footer">
+                                                            <p class="text-white m-b-0">Datos del Comercio</p>
+                                                        </div>
+	                                                </div>
+	                                            </div>
+	                                            <div class="col-sm-4">
+	                                                <div class="card greenCard">                                                        
+	                                                    
+	                                                    <div class="card-block">
+                                                    		
+                                                    		<div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Segundo Nombre</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-green" checked="" data-switchery="true" style="display: none;" id="cboxSegundoNombre_RepLegal"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Segundo Apellido</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-green" checked="" data-switchery="true" style="display: none;" id="cboxSegundoApellido_RepLegal"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Telefono Local</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-green" checked="" data-switchery="true" style="display: none;" id="cboxTelLocal_RepLegal"></div>
+	                                                        </div>
+	                                                        <div class="row">
+	                                                            <div class="col-sm-8"><label class="col-form-label">Correo Electronico</label></div>
+	                                                            <div class="col-sm-4"><input type="checkbox" class="js-switch-green" checked="" data-switchery="true" style="display: none;" id="cboxEmail_RepLegal"></div>
+	                                                        </div>	                                                                                              
+	                                                    </div>
+	                                                    <div class="card-footer">
+                                                            <p class="text-white m-b-0">Representante Legal</p>
+                                                        </div>
+	                                                </div>
+	                                            </div>
+	                                            <div class="col-sm-4">
+	                                                <div class="card redCard">                                                        
+	                                                    
+	                                                    
+	                                                    <!-- tarjeta para tabla de listas -->
+	                                                    <div class="card-block">
+	                                                    	<div class="row">
+	                                                    	
+	                                                    		
+                                                        		<div class="col-sm-12">
+                                                        			<div class="row">
+                                                        				<div class="col-sm-10">
+			                                                    			<input type="text" class="form-control" placeholder="" id="nombre_empresa_tab2"/>
+			                                                    		</div>
+		                                                        		<div class="col-sm-2">																
+																			<a id="btnNweType_POS" style="margin-right: 5px;" title="Nuevo Almacén">
+																				<i class="fa fa-plus-square agregaryasignar" style="font-size: 50px"></i>
+																			</a>
+																		</div>
+																	</div>
+																	<div class="col-sm-12" style="height:15px"></div>
+	                                                        			<div class="dt-responsive table-responsive">
+						                                                    <table id="simpletable" class="table table-striped table-bordered display2 nowrap">
+						                                                        <thead>
+							                                                        <tr>
+								                                                        <th>POS</th>
+								                                                        <th>Acciones</th>							                                                       
+							                                                        </tr>						                                                        
+						                                                        </thead>
+						                                                        <tbody>
+						                                                            <tr>					                                                            	
+						                                                            	<td>Terminal</td>					                                                            	
+						                                                            	<td>
+						                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
+						                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
+						                                                            		</a>	
+						                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
+						                                                            			<img alt="Consultar" th:src="@{/img2/bin_delete_file_garbage_recycle_remove_trash_icon_123192.ico}" width="30px">
+						                                                            		</a>				                                                            		
+						                                                            	</td>
+						                                                            </tr>
+						                                                            
+						                                                        </tbody>
+						                                                    </table>
+					                                                   	</div>
+                                                        			
+	                                                        		
+                                                        		</div>                                                                                                                            
+                                                        	</div>
+	                                                                                                                
+	                                                    </div>
+	                                                    <div class="card-footer">
+                                                            <p class="text-white m-b-0">Información de Otras Procesadoras</p>
+                                                        </div>
+	                                                </div>
+	                                            </div>
+	                                            <div class="col-sm-4">
+	                                                <div class="card redCard">                                                        
+	                                                    
+	                                                    <div class="card-block">
+	                                                    	<div class="row">
+	                                                    	
+	                                                    		
+                                                        		<div class="col-sm-12">
+                                                        			<div class="row">
+                                                        				<div class="col-sm-10">
+			                                                    			<input type="text" class="form-control" placeholder="" id="nombre_empresa_tab2"/>
+			                                                    		</div>
+		                                                        		<div class="col-sm-2">																
+																			<a id="btnNweType_POS" style="margin-right: 5px;" title="Nuevo Almacén">
+																				<i class="fa fa-plus-square agregaryasignar" style="font-size: 50px"></i>
+																			</a>
+																		</div>
+																	</div>
+																	<div class="col-sm-12" style="height:15px"></div>
+	                                                        			<div class="dt-responsive table-responsive">
+						                                                    <table id="simpletable" class="table table-striped table-bordered display2 nowrap">
+						                                                        <thead>
+							                                                        <tr>
+								                                                        <th>Recaudo</th>
+								                                                        <th>Acciones</th>							                                                       
+							                                                        </tr>						                                                        
+						                                                        </thead>
+						                                                        <tbody>
+						                                                            <tr>					                                                            	
+						                                                            	<td>Cedula de Representante Legal</td>				                                                            	
+						                                                            	<td>
+						                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
+						                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
+						                                                            		</a>	
+						                                                            		<a class="editar-relacion" onclick="location.href='/almacen_nuevo-editar'">
+						                                                            			<img alt="Consultar" th:src="@{/img2/bin_delete_file_garbage_recycle_remove_trash_icon_123192.ico}" width="30px">
+						                                                            		</a>	
+						                                                            		<input type="checkbox" class="js-switch-blue" checked="" data-switchery="true" style="" id="cbox_BancoAfiliacion">			                                                            		
+						                                                            	</td>
+						                                                            </tr>
+						                                                            
+						                                                        </tbody>
+						                                                    </table>
+					                                                   	</div>
+                                                        			
+	                                                        		
+                                                        		</div>                                                                                                                            
+                                                        	</div>
+	                                                                                                                
+	                                                    </div>
+	                                                    <div class="card-footer">
+                                                            <p class="text-white m-b-0">Archivos Adjuntos</p>
+                                                        </div>
+	                                                </div>
+	                                            </div>
+	                                            <div class="col-sm-4">
+	                                                <div class="card redCard">                                                        
+	                                                    
+	                                                    <div class="card-block">
+	                                                    	<div class="row">
+	                                                    	
+	                                                    		
+                                                        		<div class="col-sm-12">
+                                                        			<div class="row">
+                                                        				<div class="col-sm-10">
+			                                                    			<input type="text" class="form-control" placeholder="" id="nombre_operador"/>
+			                                                    		</div>
+		                                                        		<div class="col-sm-2">																
+																			<a id="btnNweOperador" style="margin-right: 5px;" title="Nuevo Operador">
+																				<i class="fa fa-plus-square agregaryasignar" style="font-size: 50px"></i>
+																			</a>
+																		</div>
+																	</div>
+																	<div class="col-sm-12" style="height:15px"></div>
+	                                                        			<div class="dt-responsive table-responsive">
+						                                                    <table id="simpletable" class="table table-striped table-bordered display2 nowrap">
+						                                                        <thead>
+							                                                        <tr>
+								                                                        <th>Operador</th>
+								                                                        <th>Acciones</th>							                                                       
+							                                                        </tr>						                                                        
+						                                                        </thead>
+						                                                        <tbody id="body_table">
+						                                                            
+						                                                            
+						                                                        </tbody>
+						                                                    </table>
+					                                                   	</div>
+                                                        			
+	                                                        		
+                                                        		</div>                                                                                                                            
+                                                        	</div>
+	                                                                                                                
+	                                                    </div>
+	                                                    <div class="card-footer">
+                                                            <p class="text-white m-b-0">Datos Banco Afiliación</p>
+                                                        </div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                        <!-- Row1 Forms-Obligartorios -->
+	                                        <div class="page-header">
+	                                            <div class="row align-items-end">
+	                                                <div class="col-lg-8">
+	                                                    <div class="page-header-title">
+	                                                        <div class="d-inline">
+	                                                            <h4>Formularios Opcionales</h4>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>                                                
+	                                            </div>
+	                                        </div>                                     
+	                                        <!-- Row2 Forms-Opcionales-->
+	                                        <div class="row">
+	                                            <div class="col-sm-4">
+	                                                <div class="card">
+	                                                    <div class="card-header col-sm-12">
+	                                                        <div class="row">
+	                                                            <h5 class="sub-title col-sm-8">Banco de Afiliación</h5>
+	                                                            <div class="col-sm-3"><input type="checkbox" class="js-switch-blue" checked="" data-switchery="true" style="display: none;" id="cbox_BancoAfiliacion"></div>
+	                                                        </div>                                                    
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                        <!-- Row2 Forms-Opcionales-->
+	                                    </div>
+	                                </div>
+                                </div>
+                            </div>
+                            <div id="styleSelector"></div>
+                        </div>
+                        <!-- Contenido deL Form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/jquery-ui.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/jquery.slimscroll.js}"></script>
+        <script type="text/javascript" th:src="@{/js/modernizr.js}"></script>
+        <script type="text/javascript" th:src="@{/js/Chart.js}"></script>
+        <script type="text/javascript" th:src="@{/js/amcharts.js}"></script>
+        <script type="text/javascript" th:src="@{/js/serial.js}"></script>
+        <script type="text/javascript" th:src="@{/js/light.js}"></script>
+        <script type="text/javascript" th:src="@{/js/SmoothScroll.js}"></script>
+        <script type="text/javascript" th:src="@{/js/pcoded.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/vartical-layout.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js2/script.min2.js}"></script>
+        <script type="text/javascript" th:src="@{/js/sweetalert.min.js}"></script>
+
+        <!-- Para Switches -->
+        <script type="text/javascript" th:src="@{/js/switchery.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/bootstrap-tagsinput.js}"></script>
+        <!-- <script type="text/javascript" th:src="@{/js/swithces.js}"></script> -->
+        <script type="text/javascript" th:src="@{/js2/switches-johan.js}"></script>
+        
+       	<script type="text/javascript" th:src="@{/js2/js.afiliacion/configuracion/configuracion_afiliados.js}"></script>
+    </body>
+</html>

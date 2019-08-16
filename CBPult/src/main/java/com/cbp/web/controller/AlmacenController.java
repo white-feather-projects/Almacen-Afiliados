@@ -55,7 +55,7 @@ public class AlmacenController {
 	@Autowired
 	AlmacenDAO almacenMethods;
 	
-	@RequestMapping(value = "/consultarAlmacenPorAlmacenId", produces = { "application/json" })
+	@RequestMapping(value = "/consultarAlmacenPorAlmacenId", produces = { "application/json" }) // No lo usaré y no se si es necesario
 	public @ResponseBody ConsultaAlmacenPorAlmacenIdWSResponse consultaAlmacenPorAlmacenId(@RequestBody ConsultaAlmacenPorAlmacenIdDTO ConsultaAlmacenPorAlmacenIdDTO) {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		ConsultaAlmacenPorAlmacenIdWSResponse respuesta = new ConsultaAlmacenPorAlmacenIdWSResponse();
@@ -66,7 +66,7 @@ public class AlmacenController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaAlmacenPorNumeroAlmacen", produces = { "application/json" })
+	@RequestMapping(value = "/consultaAlmacenPorNumeroAlmacen", produces = { "application/json" }) // Consulta Real por warehouseNumber
 	public @ResponseBody ConsultaAlmacenPorNumeroAlmacenWSResponse consultaAlmacenPorNumeroAlmacen(@RequestBody ConsultaAlmacenPorNumeroAlmacenDTO ConsultaAlmacenPorNumeroAlmacenDTO) {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		ConsultaAlmacenPorNumeroAlmacenWSResponse respuesta = new ConsultaAlmacenPorNumeroAlmacenWSResponse();
@@ -77,7 +77,7 @@ public class AlmacenController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/saveAditionalInformationAlmacen", produces = { "application/json" })
+	@RequestMapping(value = "/saveAditionalInformationAlmacen", produces = { "application/json" }) // Crear Almacen Repetido
 	public @ResponseBody SaveAditionaInformationAlmacenWSResponse saveAditionalInformationAlmacen(@RequestBody SaveAditionalInformationAlmacenDTO SaveAditionalInformationAlmacenDTO) {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		SaveAditionaInformationAlmacenWSResponse respuesta = new SaveAditionaInformationAlmacenWSResponse();
@@ -87,6 +87,9 @@ public class AlmacenController {
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// identificacionProducto; // Debe ser eliminado este atrubuto
+	// Solo se Cambian: Codigo, Tipo, Descripción, Encargado, Ubicación (el resto va quemado)
 	
 	@RequestMapping(value = "/modificarAlmacen", produces = { "application/json" })
 	public @ResponseBody ModificarAlmacenWSResponse modificarAlmacen(@RequestBody ModificarAlmacenWS ModificarAlmacenDTO) {
@@ -112,6 +115,8 @@ public class AlmacenController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	// No hace falta un Id de Estanteria? o Es Autoincrementable en Base de Datos?
+	
 	@RequestMapping(value = "/crearEstanteria", produces = { "application/json" })
 	public @ResponseBody CrearEstanteriaWSResponse crearEstanteria(@RequestBody CrearEstanteriaWS CrearEstanteriaWS) {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
@@ -123,6 +128,10 @@ public class AlmacenController {
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// Las Zonas no deberían pedir un ID de Empleado en ves de el objeto entero?
+	// Las Zonas no deberían pedir un ID de TipoZona en ves de el objeto entero?
+	// la zona ya no tiene el campo de NombreZona, esto va en la misma descripción de la Zona
 	
 	@RequestMapping(value = "/crearListaZonaWizzard", produces = { "application/json" })
 	public @ResponseBody CrearListaZonaWizzardWSResponse crearListaZonaWizzard(@RequestBody CrearListaZonaWizzardWS CrearListaZonaWizzardWS) {
@@ -136,6 +145,8 @@ public class AlmacenController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	// Las Estanterias se deberían consultar por medio de: IdAlmacen + IdZona + IdEstanteria (Las Estanterias Deberian tener una llave primaria compuesta por estos Atributos)
+	
 	@RequestMapping(value = "/consultaEstanteriaPorEstanteriaId", produces = { "application/json" })
 	public @ResponseBody ConsultaEstanteriaPorEstanteriaIdWSResponse consultaEstanteriaPorEstanteriaId(@RequestBody ConsultaEstanteriaPorEstanteriaIdWS ConsultaEstanteriaPorEstanteriaIdWS) {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
@@ -147,6 +158,8 @@ public class AlmacenController {
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// una Zona única se debería consultar por medio de: IdAlmacen + IdZona (Las Zonas Deberian tener una llave primaria compuesta por estos Atributos)
 	
 	@RequestMapping(value = "/consultaZonaPorZonaId", produces = { "application/json" })
 	public @ResponseBody ConsultaZonaPorZonaIdWSResponse consultaZonaPorZonaId(@RequestBody ConsultaZonaPorZonaIdWS ConsultaZonaPorZonaIdWS) {
@@ -160,6 +173,8 @@ public class AlmacenController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	// zonaActualId y zonaDestinoId Deberian ser tipo long no Zona puesto que son IDs de Zonas que ya están en la tabla de Zonas
+	
 	@RequestMapping(value = "/crearRelacionZonas", produces = { "application/json" })
 	public @ResponseBody CrearRelacionZonasWSResponse crearRelacionZonas(@RequestBody CrearRelacionZonasWS CrearRelacionZonasWS) {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
@@ -171,6 +186,8 @@ public class AlmacenController {
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// faltaria el IdAlmacen para ubicar exactamente la Estanteria a Modificar
 	
 	@RequestMapping(value = "/modificarEstanteria", produces = { "application/json" })
 	public @ResponseBody ModificarEstanteriaWSResponse modificarEstanteria(@RequestBody ModificarEstanteriaWS ModificarEstanteriaWS) {
@@ -184,6 +201,8 @@ public class AlmacenController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	// Falta consula de una única Relacion
+	
 	@RequestMapping(value = "/modificarRelacionZonas", produces = { "application/json" })
 	public @ResponseBody ModificarRelacionZonasWSResponse modificarRelacionZonas(@RequestBody ModificarRelacionZonasWS ModificarRelacionZonasWS) {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
@@ -196,6 +215,8 @@ public class AlmacenController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	
+	
 	@RequestMapping(value = "/listaAlmacenes", produces = { "application/json" })
 	public @ResponseBody java.util.List<Warehouse> listaAlmacenes() {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
@@ -207,7 +228,9 @@ public class AlmacenController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/listaEstanterias", produces = { "application/json" })
+	// La consulta de la Lista de Estanterias de una Zona me debe pedir el Id de una Zona (para listar las Estanterias de esta especificamente)
+	
+	@RequestMapping(value = "/listaEstanterias", produces = { "application/json" }) 
 	public @ResponseBody java.util.List<Estanteria> listaEstanterias() {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		java.util.List<Estanteria> respuesta = new ArrayList<>();
@@ -218,7 +241,9 @@ public class AlmacenController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/listaRelacionZonas", produces = { "application/json" })
+	// La consulta de la Lista de Relaciones de una Zona me debe pedir el Id de una Zona (para listar las Relaciones de esta especificamente)
+	
+	@RequestMapping(value = "/listaRelacionZonas", produces = { "application/json" }) 
 	public @ResponseBody java.util.List<RelacionZonas> listaRelacionZonas() {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		java.util.List<RelacionZonas> respuesta = new ArrayList<>();
@@ -229,7 +254,9 @@ public class AlmacenController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/listaZonas", produces = { "application/json" })
+	// la consulta de la Lista de Zonas debe pedir un Id de Almacén (para listar las zonas de este especificamente)
+	
+	@RequestMapping(value = "/listaZonas", produces = { "application/json" }) 
 	public @ResponseBody java.util.List<Zona> listaZonas() {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		java.util.List<Zona> respuesta = new ArrayList<>();

@@ -1,0 +1,178 @@
+@charset "ISO-8859-1";
+
+.contenedor{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+ 
+.texto-numeroCard-1{
+    position: absolute;
+    top: 50%;
+    left:36%;
+    color: #FDFEFE;
+    font-size: 1.2vw;
+    font-family:Century Gothic;
+    
+}
+
+.texto-numeroCard-2{
+    position: absolute;
+    top: 50%;
+    left: 42%;
+    color: #FDFEFE;
+    font-size: 1.2vw;
+    font-family:Century Gothic;
+    
+}
+
+.texto-numeroCard-3{
+    position: absolute;
+    top: 50%;
+    left: 48%;
+    color: #FDFEFE;
+     font-size: 1.2vw;
+    font-family:Century Gothic;
+    
+}
+
+.texto-numeroCard-4{
+    position: absolute;
+    top: 50%;
+    left: 54%;
+    color: #FDFEFE;
+    font-size: 1.2vw;
+    font-family:Century Gothic;
+    
+}
+
+.texto-dateEmison{
+    position: absolute;
+    top: 63.5%;
+    left: 37.8%;
+    color: #FDFEFE;
+    font-size: 1vw !important;
+    font-family:Century Gothic;
+    
+}
+
+.texto-dateExperition{
+    position: absolute;
+    top: 35%;
+    left: 59.7%;
+    color: #FDFEFE;
+   	font-size: 1vw;
+    font-family:Century Gothic;
+    
+}
+
+.texto-dataTh{
+    position: absolute;
+    top: 70.5%;
+    left: 36.5%;
+    color: #FDFEFE;
+    font-size: 1.2vw;
+    font-family:Century Gothic;
+    
+}
+
+.texto-accountIban{
+    position: absolute;
+    top: 81%;
+    left: 42.5%;
+    color: #FDFEFE;
+    font-size: 1vw;
+    font-family:Century Gothic;
+     
+}
+
+.texto-dateEmisonName-1{
+    position: absolute;
+    top: 65%;
+    left: 35%;
+    color: #FDFEFE;
+    font-size: 60%;
+    font-family:Century Gothic; 
+    
+}
+
+.texto-dateEmisonName-2{
+    position: absolute;
+    top: 67.3%;
+    left: 35.5%;
+    color: #FDFEFE;
+   font-size: 60%;
+    font-family:Century Gothic;
+     
+}
+
+.texto-dateExpirateName-1{
+    position: absolute;
+    top: 65%;
+    left: 45.5%;
+    color: #FDFEFE;
+    font-size: 60%;
+    font-family:Century Gothic;
+    
+}
+
+.texto-dateExpirateName-2{
+    position: absolute;
+    top: 67.3%;
+    left: 45.8%;
+    color: #FDFEFE;
+    font-size: 60%;
+    font-family:Century Gothic;    
+    
+  
+}
+
+.texto-numeroCvv{
+	
+	position: absolute;
+    top: 38.5%;
+    color: #212F3D;
+    left: 54%;
+   	font-family: Arial Black;
+    font-size: 1vw;
+    
+
+}
+
+.texto-numeroUltimos{
+	
+	position: absolute;
+    top: 39%;
+    color: #212F3D;
+    left: 50%;
+   	font-size: 1vw;
+    font-family:Century Gothic;
+    
+
+}
+
+
+
+.centrado{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* jquery validation */
+label.error {
+    color: #e7505a;
+    margin-left: 10px;
+    padding: 7px;
+}
+input.error {
+    border: 2px solid #e7505a;
+}
+
+#asignada-error {
+    color: white !important;
+    margin-left: 0px !important;
+    padding: 0px !important;
+    font-style:0px !important;
+}
