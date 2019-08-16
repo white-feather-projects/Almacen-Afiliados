@@ -1,11 +1,15 @@
 package com.cbp.web.dto;
 
+import com.cbp3.ws.cbp.service.Operadortelefonico;
+
 public class AsociarBancoComercioDTO {
 
 	private long idEntityBanck;
 	private long idComercio;
 	private String numeroAfiliacion;
-	private long numTerminalesComprar;
+	private long numTerminalesComprar;	
+	private Operadortelefonico operadorTelefonicoId;
+	private long cantidadLineasOperador;
 	
 	public AsociarBancoComercioDTO() {
 		super();
@@ -43,10 +47,22 @@ public class AsociarBancoComercioDTO {
 		this.numTerminalesComprar = numTerminalesComprar;
 	}
 
-	@Override
-	public String toString() {
-		return "AsociarBancoComercioDTO [idEntityBanck=" + idEntityBanck + ", idComercio=" + idComercio
-				+ ", numeroAfiliacion=" + numeroAfiliacion + ", numTerminalesComprar=" + numTerminalesComprar + "]";
+	public Operadortelefonico getOperadorTelefonicoId() {
+		return operadorTelefonicoId;
 	}
+
+	public void setOperadorTelefonicoId(Operadortelefonico operadorTelefonicoId) {
+		this.operadorTelefonicoId = operadorTelefonicoId;
+	}
+
+	public long getCantidadLineasOperador() {
+		return cantidadLineasOperador;
+	}
+
+	public void setCantidadLineasOperador(long cantidadLineasOperador) {
+		this.cantidadLineasOperador = cantidadLineasOperador;
+	}
+
+	
     
 }

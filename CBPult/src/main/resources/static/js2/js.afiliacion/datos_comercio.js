@@ -21,12 +21,17 @@ window.addEventListener('load', function(){
 		console.log("tipo identificacion", tipo_identificacion_tab2.value);
 		document.getElementById("tipo_identificacion_tab2").style.border = "1px solid black";
 		
+		
+		
 		if(tipo_identificacion_tab2.value === "Cedula de Residente"){
 			document.getElementById("identificacion_tab2").setAttribute("maxlength", "9");
+			
 		}else if(tipo_identificacion_tab2.value === "DIMEX"){
 			document.getElementById("identificacion_tab2").setAttribute("maxlength", "11");
+			
 		}else if(tipo_identificacion_tab2.value === "Cedula de Persona Jurídica"){
 			document.getElementById("identificacion_tab2").setAttribute("maxlength", "10");
+			
 		}
 	});
 	
@@ -62,6 +67,14 @@ window.addEventListener('load', function(){
 			swal("Formato Incorrecto");
 			numero_iban_tab2.value = "CR";
 		}
+		
+		if($("#numero_iban_tab2").attr("maxlength") === "22"){
+			if($("#numero_iban_tab2").val().length < 22){
+				swal("Longitud debe ser de 22");
+				document.getElementById("numero_iban_tab2").style.border = "1px solid red";
+				$("#numero_iban_tab2").val("CR");
+			}
+		}
 	});
 	
 	afiliado_tab2.addEventListener('blur', ()=>{
@@ -79,6 +92,30 @@ window.addEventListener('load', function(){
 		console.log("identificacion", identificacion_tab2.value);
 		soloNumeros(identificacion_tab2);
 		document.getElementById("identificacion_tab2").style.border = "1px solid black";
+		
+		if($("#identificacion_tab2").attr("maxlength") === "9"){
+			if($("#identificacion_tab2").val().length < 9){
+				swal("Longitud debe ser de 9");
+				document.getElementById("identificacion_tab2").style.border = "1px solid red";
+				$("#identificacion_tab2").val("");
+			}
+		}
+		
+		if($("#identificacion_tab2").attr("maxlength") === "11"){
+			if($("#identificacion_tab2").val().length < 11){
+				swal("Longitud debe ser de 11");
+				document.getElementById("identificacion_tab2").style.border = "1px solid red";
+				$("#identificacion_tab2").val("");
+			}
+		}
+		
+		if($("#identificacion_tab2").attr("maxlength") === "10"){
+			if($("#identificacion_tab2").val().length < 10){
+				swal("Longitud debe ser de 10");
+				document.getElementById("identificacion_tab2").style.border = "1px solid red";
+				$("#identificacion_tab2").val("");
+			}
+		}
 	});
 	
 	nombre_comercial_tab2.addEventListener('blur', ()=>{

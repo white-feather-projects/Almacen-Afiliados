@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://service.cbp.ws.cbp3.com/}respuestaDTO" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://service.cbp.ws.cbp3.com/}establecimiento" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -33,17 +33,17 @@ import javax.xml.bind.annotation.XmlType;
 public class CrearEstablecimientoWSResponse {
 
     @XmlElement(name = "return")
-    protected RespuestaDTO _return;
+    protected Establecimiento _return;
 
     /**
      * Obtiene el valor de la propiedad return.
      * 
      * @return
      *     possible object is
-     *     {@link RespuestaDTO }
+     *     {@link Establecimiento }
      *     
      */
-    public RespuestaDTO getReturn() {
+    public Establecimiento getReturn() {
         return _return;
     }
 
@@ -52,10 +52,10 @@ public class CrearEstablecimientoWSResponse {
      * 
      * @param value
      *     allowed object is
-     *     {@link RespuestaDTO }
+     *     {@link Establecimiento }
      *     
      */
-    public void setReturn(RespuestaDTO value) {
+    public void setReturn(Establecimiento value) {
         this._return = value;
     }
 

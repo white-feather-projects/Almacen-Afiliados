@@ -1,23 +1,34 @@
 package com.cbp.web.controller;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.cbp.web.dao.AfiliacionDAO;
 import com.cbp.web.dto.ActiveOrInactiveOperadoraTelefonicaDTO;
 import com.cbp.web.dto.AsociarBancoComercioDTO;
 import com.cbp.web.dto.AsociarComercioConContactoDTO;
 import com.cbp.web.dto.AsociarComercioConRepresentanteLegalDTO;
+import com.cbp.web.dto.CargaArchivosDTO;
 import com.cbp.web.dto.ClientDTO;
 import com.cbp.web.dto.CodigoPostalDTO;
 import com.cbp.web.dto.ConsultaAsociacionComercioContactoDTO;
@@ -40,8 +51,13 @@ import com.cbp.web.dto.actualizaStatusComercioDTO;
 import com.cbp.web.dto.consultaComercioDTO;
 import com.cbp.web.dto.crearComercioDTO;
 import com.cbp.web.dto.modificarComercioDTO;
+import com.cbp.web.impl.UploadFileServiceImpl;
+import com.cbp.web.impl.UploadFileServiceImplAfiliacion;
+import com.cbp.web.util.Util;
 import com.cbp3.ws.cbp.service.ActiveOrInactiveOperadoraTelefonicaWSResponse;
 import com.cbp3.ws.cbp.service.ActualizaStatusComercioWSResponse;
+import com.cbp3.ws.cbp.service.AfiliacionServiceWS;
+import com.cbp3.ws.cbp.service.AfiliacionServiceWS_Service;
 import com.cbp3.ws.cbp.service.AsociarBancoComercioWSResponse;
 import com.cbp3.ws.cbp.service.AsociarComercioConContactoWSResponse;
 import com.cbp3.ws.cbp.service.AsociarComercioConRepresentanteLegalWSResponse;
@@ -52,6 +68,8 @@ import com.cbp3.ws.cbp.service.AsociarComercioRecaudoWSResponse;
 import com.cbp3.ws.cbp.service.BancoAfiliacion;
 import com.cbp3.ws.cbp.service.Canton;
 import com.cbp3.ws.cbp.service.CodigoPostalWSResponse;
+import com.cbp3.ws.cbp.service.Comercio;
+import com.cbp3.ws.cbp.service.ComercioEstabl;
 import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioContactoWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioOtroBancoWS;
 import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioOtroBancoWSResponse;
@@ -68,8 +86,12 @@ import com.cbp3.ws.cbp.service.ConsultaPagoByNumComprobanteReciboWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWS;
 import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWSResponse;
+import com.cbp3.ws.cbp.service.CrearComercioEstablecimientoWS;
+import com.cbp3.ws.cbp.service.CrearComercioEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.CrearComercioWSResponse;
 import com.cbp3.ws.cbp.service.CrearContactoWSResponse;
+import com.cbp3.ws.cbp.service.CrearEstablecimientoWS;
+import com.cbp3.ws.cbp.service.CrearEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.CrearOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.CrearPagoComercioWS;
 import com.cbp3.ws.cbp.service.CrearPagoComercioWSResponse;
@@ -81,6 +103,7 @@ import com.cbp3.ws.cbp.service.EditarAsociacionComercioConRepresentanteLegalWSRe
 import com.cbp3.ws.cbp.service.EditarContactoWSResponse;
 import com.cbp3.ws.cbp.service.EditarRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.EntityBank;
+import com.cbp3.ws.cbp.service.Establecimiento;
 import com.cbp3.ws.cbp.service.ListPagosByIdentificacionComercioWS;
 import com.cbp3.ws.cbp.service.ListRecaudosByComercioWS;
 import com.cbp3.ws.cbp.service.ListaSolicitudesWSResponse;
@@ -88,7 +111,11 @@ import com.cbp3.ws.cbp.service.ModificarAsociacionComercioOtroBancoWS;
 import com.cbp3.ws.cbp.service.ModificarAsociacionComercioOtroBancoWSResponse;
 import com.cbp3.ws.cbp.service.ModificarAsociarComercioRecaudoWS;
 import com.cbp3.ws.cbp.service.ModificarAsociarComercioRecaudoWSResponse;
+import com.cbp3.ws.cbp.service.ModificarComercioEstablecimientoWS;
+import com.cbp3.ws.cbp.service.ModificarComercioEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.ModificarComercioWSResponse;
+import com.cbp3.ws.cbp.service.ModificarEstablecimientoWS;
+import com.cbp3.ws.cbp.service.ModificarEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.ModificarOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.Operadortelefonico;
 import com.cbp3.ws.cbp.service.Pago;
@@ -97,16 +124,20 @@ import com.cbp3.ws.cbp.service.Provincia;
 import com.cbp3.ws.cbp.service.Recaudo;
 import com.cbp3.ws.cbp.service.Solicitud;
 import com.cbp3.ws.cbp.service.TipoRecaudo;
+import com.cbp3.ws.cbp.service.Tipoidentificacion;
+
+import sun.rmi.runtime.Log;
 
 @Controller
 @RequestMapping("/Afiliacion")
-public class AfiliacionController {
+public class AfiliacionController extends Util{
 	
 	private String name;
 	private String link;
 	Authentication auth = null;
 	
-	
+	@Autowired
+	private UploadFileServiceImplAfiliacion upload;	
 
 	@Autowired
 	AfiliacionDAO afiliacionMethods;
@@ -122,12 +153,10 @@ public class AfiliacionController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaComercio", produces = { "application/json" })
-	public @ResponseBody ConsultaComercioPorIdentificacionComercioWSResponse consultaComercio(@RequestBody consultaComercioDTO consultaComercio) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaComercio/{identificacionComercio}", produces = { "application/json" })
+	public @ResponseBody ConsultaComercioPorIdentificacionComercioWSResponse consultaComercio(@PathVariable(value = "identificacionComercio") String identificacionComercio) {
 		ConsultaComercioPorIdentificacionComercioWSResponse respuesta = new ConsultaComercioPorIdentificacionComercioWSResponse();
-		respuesta = afiliacionMethods.consultaComercio(consultaComercio);
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		respuesta = afiliacionMethods.consultaComercio(identificacionComercio);
 		return respuesta;
 	}
 	
@@ -177,12 +206,10 @@ public class AfiliacionController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaBancoAfiliacionId", produces = { "application/json" })
-	public @ResponseBody ConsultaBancoAfiliacionByIdWSResponse consultaBancoAfiliacionId(@RequestBody ConsultaBancoAfiliacionIdDTO ConsultaBancoAfiliacionIdDTO) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaBancoAfiliacionId/{idAsociacion}", produces = { "application/json" })
+	public @ResponseBody ConsultaBancoAfiliacionByIdWSResponse consultaBancoAfiliacionId(@PathVariable(value = "idAsociacion") String idAsociacion) {
 		ConsultaBancoAfiliacionByIdWSResponse respuesta = new ConsultaBancoAfiliacionByIdWSResponse();
-		respuesta = afiliacionMethods.consultaBancoAfiliacionId(ConsultaBancoAfiliacionIdDTO);
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		respuesta = afiliacionMethods.consultaBancoAfiliacionId(idAsociacion);
 		return respuesta;
 	}
 	
@@ -243,23 +270,19 @@ public class AfiliacionController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaContactoByIdentificacionContacto", produces = { "application/json" })
-	public @ResponseBody ConsultaContactoByIdentificacionContactoWSResponse consultaContactoByIdentificacionContacto(@RequestBody ConsultaContactoByIdentificacionContactoDTO ConsultaContactoByIdentificacionContactoDTO) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaContactoByIdentificacionContacto/{identificacionContacto}", produces = { "application/json" })
+	public @ResponseBody ConsultaContactoByIdentificacionContactoWSResponse consultaContactoByIdentificacionContacto(@PathVariable(value = "identificacionContacto") String identificacionContacto) {
 		ConsultaContactoByIdentificacionContactoWSResponse respuesta = new ConsultaContactoByIdentificacionContactoWSResponse();
-		respuesta = afiliacionMethods.consultaContactoByIdentificacionContacto(ConsultaContactoByIdentificacionContactoDTO);
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		respuesta = afiliacionMethods.consultaContactoByIdentificacionContacto(identificacionContacto);
 		return respuesta;
-	}
+	}	
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaRepresentanteLegalByIdentificacionRepresentante", produces = { "application/json" })
-	public @ResponseBody ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse consultaRepresentanteLegalByIdentificacionRepresentante(@RequestBody ConsultaRepresentanteLegalByIdentificacionRepresentanteDTO ConsultaRepresentanteLegalByIdentificacionRepresentanteDTO) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaRepresentanteLegalByIdentificacionRepresentante/{identificacionRepresentante}", produces = { "application/json" })
+	public @ResponseBody ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse consultaRepresentanteLegalByIdentificacionRepresentante(@PathVariable(value = "identificacionRepresentante") String identificacionRepresentante) {
 		ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse respuesta = new ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse();
-		respuesta = afiliacionMethods.consultaRepresentanteLegalByIdentificacionRepresentante(ConsultaRepresentanteLegalByIdentificacionRepresentanteDTO);
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		respuesta = afiliacionMethods.consultaRepresentanteLegalByIdentificacionRepresentante(identificacionRepresentante);
 		return respuesta;
 	}
 	
@@ -331,23 +354,19 @@ public class AfiliacionController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaAsociacionComercioContacto", produces = { "application/json" })
-	public @ResponseBody ConsultaAsociacionComercioContactoWSResponse consultaAsociacionComercioContacto(@RequestBody ConsultaAsociacionComercioContactoDTO ConsultaAsociacionComercioContactoDTO) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaAsociacionComercioContacto/{comercioId}", produces = { "application/json" })
+	public @ResponseBody ConsultaAsociacionComercioContactoWSResponse consultaAsociacionComercioContacto(@PathVariable(value = "comercioId") String comercioId) {
 		ConsultaAsociacionComercioContactoWSResponse respuesta = new ConsultaAsociacionComercioContactoWSResponse();
-		respuesta = afiliacionMethods.consultaAsociacionComercioContacto(ConsultaAsociacionComercioContactoDTO);
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		respuesta = afiliacionMethods.consultaAsociacionComercioContacto(comercioId);
 		return respuesta;
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaAsociacionComercioRepresentante", produces = { "application/json" })
-	public @ResponseBody ConsultaAsociacionComercioRepresentanteWSResponse consultaAsociacionComercioRepresentante(@RequestBody ConsultaAsociacionComercioRepresentanteDTO ConsultaAsociacionComercioRepresentanteDTO) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaAsociacionComercioRepresentante/{comercioId}", produces = { "application/json" })
+	public @ResponseBody ConsultaAsociacionComercioRepresentanteWSResponse consultaAsociacionComercioRepresentante(@PathVariable(value = "comercioId") String comercioId) {
 		ConsultaAsociacionComercioRepresentanteWSResponse respuesta = new ConsultaAsociacionComercioRepresentanteWSResponse();
-		respuesta = afiliacionMethods.consultaAsociacionComercioRepresentante(ConsultaAsociacionComercioRepresentanteDTO);
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		respuesta = afiliacionMethods.consultaAsociacionComercioRepresentante(comercioId);
 		return respuesta;
 	}
 	
@@ -364,12 +383,10 @@ public class AfiliacionController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaAsociacionComercioOtroBanco", produces = { "application/json" })
-	public @ResponseBody ConsultaAsociacionComercioOtroBancoWSResponse consultaAsociacionComercioOtroBanco(@RequestBody ConsultaAsociacionComercioOtroBancoWS ConsultaAsociacionComercioOtroBancoWS) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaAsociacionComercioOtroBanco/{comercioId}", produces = { "application/json" })
+	public @ResponseBody ConsultaAsociacionComercioOtroBancoWSResponse consultaAsociacionComercioOtroBanco(@PathVariable(value = "comercioId") String comercioId) {
 		ConsultaAsociacionComercioOtroBancoWSResponse respuesta = new ConsultaAsociacionComercioOtroBancoWSResponse();
-		respuesta = afiliacionMethods.consultaAsociacionComercioOtroBanco(ConsultaAsociacionComercioOtroBancoWS);
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		respuesta = afiliacionMethods.consultaAsociacionComercioOtroBanco(comercioId);
 		return respuesta;
 	}
 	
@@ -397,34 +414,28 @@ public class AfiliacionController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaComercioPorComercioId", produces = { "application/json" })
-	public @ResponseBody ConsultaComercioPorComercioIdWSResponse consultaComercioPorComercioId(@RequestBody ConsultaComercioPorComercioIdWS ConsultaComercioPorComercioIdWS) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaComercioPorComercioId/{comercioId}", produces = { "application/json" })
+	public @ResponseBody ConsultaComercioPorComercioIdWSResponse consultaComercioPorComercioId(@PathVariable(value = "comercioId") String comercioId) {
 		ConsultaComercioPorComercioIdWSResponse respuesta = new ConsultaComercioPorComercioIdWSResponse();
-		respuesta = afiliacionMethods.consultaComercioPorComercioId(ConsultaComercioPorComercioIdWS);
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		respuesta = afiliacionMethods.consultaComercioPorComercioId(comercioId);
 		return respuesta;
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaPagoByNumComprobanteRecibo", produces = { "application/json" })
-	public @ResponseBody ConsultaPagoByNumComprobanteReciboWSResponse consultaPagoByNumComprobanteRecibo(@RequestBody ConsultaPagoByNumComprobanteReciboWS ConsultaPagoByNumComprobanteReciboWS) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaPagoByNumComprobanteRecibo/{numComprobanteRecibo}", produces = { "application/json" })
+	public @ResponseBody ConsultaPagoByNumComprobanteReciboWSResponse consultaPagoByNumComprobanteRecibo(@PathVariable(value = "numComprobanteRecibo") String numComprobanteRecibo) {
 		ConsultaPagoByNumComprobanteReciboWSResponse respuesta = new ConsultaPagoByNumComprobanteReciboWSResponse();
-		respuesta = afiliacionMethods.consultaPagoByNumComprobanteRecibo(ConsultaPagoByNumComprobanteReciboWS);
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		respuesta = afiliacionMethods.consultaPagoByNumComprobanteRecibo(numComprobanteRecibo);
 		return respuesta;
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaTipoRecaudoByIdTipoRecaudo", produces = { "application/json" })
-	public @ResponseBody ConsultaTipoRecaudoByIdTipoRecaudoWSResponse consultaTipoRecaudoByIdTipoRecaudo(@RequestBody ConsultaTipoRecaudoByIdTipoRecaudoWS ConsultaTipoRecaudoByIdTipoRecaudoWS) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaTipoRecaudoByIdTipoRecaudo/{tipoRecaudoId}", produces = { "application/json" })
+	public @ResponseBody ConsultaTipoRecaudoByIdTipoRecaudoWSResponse consultaTipoRecaudoByIdTipoRecaudo(@PathVariable(value = "tipoRecaudoId") String tipoRecaudoId) {
 		ConsultaTipoRecaudoByIdTipoRecaudoWSResponse respuesta = new ConsultaTipoRecaudoByIdTipoRecaudoWSResponse();
-		respuesta = afiliacionMethods.consultaTipoRecaudoByIdTipoRecaudo(ConsultaTipoRecaudoByIdTipoRecaudoWS);
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		respuesta = afiliacionMethods.consultaTipoRecaudoByIdTipoRecaudo(tipoRecaudoId);
 		return respuesta;
 	}
 	
@@ -452,11 +463,53 @@ public class AfiliacionController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/consultaEntityBankByIdEntityBank", produces = { "application/json" })
-	public @ResponseBody ConsultaEntityBankByIdEntityBankWSResponse consultaEntityBankByIdEntityBank(@RequestBody ConsultaEntityBankByIdEntityBankWS ConsultaEntityBankByIdEntityBankWS) {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
+	@GetMapping(value = "/consultaEntityBankByIdEntityBank/{entityBankId}", produces = { "application/json" })
+	public @ResponseBody ConsultaEntityBankByIdEntityBankWSResponse consultaEntityBankByIdEntityBank(@PathVariable(value = "entityBankId") String entityBankId) {
 		ConsultaEntityBankByIdEntityBankWSResponse respuesta = new ConsultaEntityBankByIdEntityBankWSResponse();
-		respuesta = afiliacionMethods.consultaEntityBankByIdEntityBank(ConsultaEntityBankByIdEntityBankWS);
+		respuesta = afiliacionMethods.consultaEntityBankByIdEntityBank(entityBankId);
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/crearEstablecimiento", produces = { "application/json" })
+	public @ResponseBody CrearEstablecimientoWSResponse crearEstablecimiento(@RequestBody CrearEstablecimientoWS CrearEstablecimientoWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		CrearEstablecimientoWSResponse respuesta = new CrearEstablecimientoWSResponse();
+		respuesta = afiliacionMethods.crearEstablecimiento(CrearEstablecimientoWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/CrearComercioEstablecimiento", produces = { "application/json" })
+	public @ResponseBody CrearComercioEstablecimientoWSResponse CrearComercioEstablecimiento(@RequestBody CrearComercioEstablecimientoWS CrearComercioEstablecimientoWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		CrearComercioEstablecimientoWSResponse respuesta = new CrearComercioEstablecimientoWSResponse();
+		respuesta = afiliacionMethods.CrearComercioEstablecimiento(CrearComercioEstablecimientoWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/modificarComercioEstablecimiento", produces = { "application/json" })
+	public @ResponseBody ModificarComercioEstablecimientoWSResponse modificarComercioEstablecimiento(@RequestBody ModificarComercioEstablecimientoWS ModificarComercioEstablecimientoWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ModificarComercioEstablecimientoWSResponse respuesta = new ModificarComercioEstablecimientoWSResponse();
+		respuesta = afiliacionMethods.modificarComercioEstablecimiento(ModificarComercioEstablecimientoWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/modificarEstablecimiento", produces = { "application/json" })
+	public @ResponseBody ModificarEstablecimientoWSResponse modificarEstablecimiento(@RequestBody ModificarEstablecimientoWS ModificarEstablecimientoWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ModificarEstablecimientoWSResponse respuesta = new ModificarEstablecimientoWSResponse();
+		respuesta = afiliacionMethods.modificarEstablecimiento(ModificarEstablecimientoWS);
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
 	}
@@ -529,6 +582,28 @@ public class AfiliacionController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	@RequestMapping(value = "/listaEstablecimientos", produces = { "application/json" })
+	public @ResponseBody java.util.List<Establecimiento> listaEstablecimientos() {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<Establecimiento> respuesta = new ArrayList<>();
+		respuesta = afiliacionMethods.listaEstablecimientos();
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/listaComercioEstablecimiento", produces = { "application/json" })
+	public @ResponseBody java.util.List<ComercioEstabl> listaComercioEstablecimiento(@RequestBody com.cbp3.ws.cbp.service.ListaComercioEstablecimientosWS ListaComercioEstablecimientosWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<ComercioEstabl> respuesta = new ArrayList<>();
+		respuesta = afiliacionMethods.listaComercioEstablecimiento(ListaComercioEstablecimientosWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	@RequestMapping(value = "/listaRecaudosByComercio", produces = { "application/json" })
 	public @ResponseBody java.util.List<Recaudo> listaRecaudosByComercio(@RequestBody ListRecaudosByComercioWS ListRecaudosByComercioWS) {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
@@ -536,6 +611,513 @@ public class AfiliacionController {
 		respuesta = afiliacionMethods.listaRecaudosByComercio(ListRecaudosByComercioWS);
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
+	@RequestMapping(value = "/uploadDocuments", method = RequestMethod.POST, consumes = { "multipart/form-data" })
+	public @ResponseBody AsociarComercioRecaudoWSResponse guardar(MultipartHttpServletRequest files , HttpServletResponse response, HttpServletRequest reques){
+		
+		AsociarComercioRecaudoWSResponse respuesta = new AsociarComercioRecaudoWSResponse();
+		AsociarComercioRecaudoWS asociarComercioRecaudo = new AsociarComercioRecaudoWS();
+		Map<String, String[]> map = reques.getParameterMap();
+		//System.out.println("reques-- "+map);
+		
+		Comercio comercio = new Comercio();
+		Tipoidentificacion tipo = new Tipoidentificacion();
+		
+		  for (Map.Entry<String,  String[]> entry : map.entrySet()) {
+			  
+			    String key = entry.getKey();
+			    String[] value = entry.getValue();
+			    // ...
+			    
+			    //System.out.println(key);
+			    
+			    if(key.equals("recaudoVerificado")){
+			    	System.out.println("recaudoVerificado "+value[0]);
+			    	asociarComercioRecaudo.setRecaudoVerificado(value[0]);
+			    	
+			    }else if(key.equals("fechaVigencia")) {
+			    	System.out.println("fechaVigencia "+value[0]);
+			    	asociarComercioRecaudo.setFechaVigencia(value[0]);
+			    	
+			    }else if(key.equals("actividadComercial")) {
+			    	System.out.println("actividadComercial "+value[0]);
+			    	comercio.setActividadComercial(value[0]);
+			    	
+			    }else if(key.equals("afiliadoOtroBanco")) {
+			    	System.out.println("afiliadoOtroBanco "+value[0]);
+			    	comercio.setAfiliadoOtroBanco(value[0]);
+			    	
+			    }else if(key.equals("codigoUsuarioCarga")) {
+			    	System.out.println("codigoUsuarioCarga "+value[0]);
+			    	comercio.setCodigoUsuarioCarga(Long.parseLong(value[0]));
+			    	
+			    }else if(key.equals("codigoUsuarioModifica")) {
+			    	System.out.println("codigoUsuarioModifica "+value[0]);
+			    	comercio.setCodigoUsuarioModifica(Long.parseLong(value[0]));
+			    	
+			    }else if(key.equals("comercioId")) {
+			    	System.out.println("comercioId "+value[0]);
+			    	comercio.setComercioId(Long.parseLong(value[0]));
+			    	
+			    }else if(key.equals("email")) {
+			    	System.out.println("email "+value[0]);
+			    	comercio.setEmail(value[0]);
+			    	
+			    }else if(key.equals("fechaCargaDatos")) {
+			    	System.out.println("fechaCargaDatos "+value[0]);
+			    	String valor = value[0];
+			    	try {
+						comercio.setFechaCargaDatos(formatStringToXmlGregorianCalendar(valor));
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			    	
+			    }else if(key.equals("fechaHoraModificacion")) {
+			    	System.out.println("fechaHoraModificacion "+value[0]);
+			    	String valor = value[0];
+			    	try {
+						comercio.setFechaHoraModificacion(formatStringToXmlGregorianCalendar(valor));
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			    	
+			    }else if(key.equals("horaFin")) {
+			    	System.out.println("horaFin "+value[0]);
+			    	comercio.setHoraFin(value[0]);
+			    	
+			    }else if(key.equals("horaInicio")) {
+			    	System.out.println("horaInicio "+value[0]);
+			    	comercio.setHoraInicio(value[0]);
+			    	
+			    }else if(key.equals("identificacionComercio")) {
+			    	System.out.println("identificacionComercio "+value[0]);
+			    	comercio.setIdentificacionComercio(value[0]);
+			    	
+			    }else if(key.equals("nombreComercial")) {
+			    	System.out.println("nombreComercial "+value[0]);
+			    	comercio.setNombreComercial(value[0]);
+			    	
+			    }else if(key.equals("nombreEmpresarial")) {
+			    	System.out.println("nombreEmpresarial "+value[0]);
+			    	comercio.setNombreEmpresarial(value[0]);
+			    	
+			    }else if(key.equals("numCuentaAsociado")) {
+			    	System.out.println("numCuentaAsociado "+value[0]);
+			    	comercio.setNumCuentaAsociado(value[0]);
+			    	
+			    }else if(key.equals("statusComercio")) {
+			    	System.out.println("statusComercio "+value[0]);
+			    	comercio.setStatusComercio(value[0]);
+			    	
+			    }else if(key.equals("telefonoAlternativo")) {
+			    	System.out.println("telefonoAlternativo "+value[0]);
+			    	comercio.setTelefonoAlternativo(value[0]);
+			    	
+			    }else if(key.equals("telefonoContacto")) {
+			    	System.out.println("telefonoContacto "+value[0]);
+			    	comercio.setTelefonoContacto(value[0]);
+			    	
+			    }else if(key.equals("telefonoLocal")) {
+			    	System.out.println("telefonoLocal "+value[0]);
+			    	comercio.setTelefonoLocal(value[0]);
+			    	
+			    }else if(key.equals("Tipoidentificacion_nombre")) {
+			    	System.out.println("Tipoidentificacion_nombre "+value[0]);
+			    	tipo.setNombre(value[0]);
+			    	
+			    }else if(key.equals("Tipoidentificacion_tipoIdentificacionId")) {
+			    	System.out.println("Tipoidentificacion_tipoIdentificacionId "+value[0]);
+			    	tipo.setTipoIdentificacionId(Long.parseLong(value[0]));
+			    	
+			    }
+			    
+			    //log.info("Varieables: {}","key:"+key+"="+value[0]);
+			}
+		  
+		  comercio.setTipoIdentificacionId(tipo);
+		  asociarComercioRecaudo.setComercioId(comercio);
+		  
+			Iterator<String> itr =  files.getFileNames();
+			MultipartFile mpf=null;
+		  	String statusFile="";
+		  	
+		   while(itr.hasNext()) {	
+			  mpf = files.getFile(itr.next());
+			  System.out.println("mpf "+mpf.getName());
+			   //log.info("files que llego: {}",mpf.getOriginalFilename());
+			   //log.info("filesInput que llego: {}",mpf.getName());
+			
+				try {
+			
+					if(mpf.getName().equals("fileCedulaRepresentanteInformationName")){
+						statusFile=upload.copy(mpf);
+						System.out.println(statusFile);
+						asociarComercioRecaudo.setRecaudoNombre(statusFile);
+						
+						TipoRecaudo tipoRecaudo = new TipoRecaudo();
+						tipoRecaudo.setTipoRecaudoId(Long.parseLong("1"));
+						tipoRecaudo.setTipoRecaudoNombre("CEDULA REPRESENTANTE LEGAL");
+						
+						asociarComercioRecaudo.setTipoRecaudoId(tipoRecaudo);
+						asociarComercioRecaudo.setUbicacion("/home/ubuntu/documentosAdquiriencia");
+						
+						respuesta = afiliacionMethods.asociarComercioRecaudo(asociarComercioRecaudo);
+						
+					}else if(mpf.getName().equals("fileCedulaContactoInformationName")){
+						statusFile=upload.copy(mpf);
+						System.out.println(statusFile);
+						asociarComercioRecaudo.setRecaudoNombre(statusFile);
+						
+						TipoRecaudo tipoRecaudo = new TipoRecaudo();
+						tipoRecaudo.setTipoRecaudoId(Long.parseLong("2"));
+						tipoRecaudo.setTipoRecaudoNombre("CEDULA CONTACTO");
+						
+						asociarComercioRecaudo.setTipoRecaudoId(tipoRecaudo);
+						asociarComercioRecaudo.setUbicacion("/home/ubuntu/documentosAdquiriencia");
+						
+						respuesta = afiliacionMethods.asociarComercioRecaudo(asociarComercioRecaudo);
+						
+					}else if(mpf.getName().equals("fileNegocioInformationName")){
+						statusFile=upload.copy(mpf);
+						System.out.println(statusFile);
+						asociarComercioRecaudo.setRecaudoNombre(statusFile);
+						
+						TipoRecaudo tipoRecaudo = new TipoRecaudo();
+						tipoRecaudo.setTipoRecaudoId(Long.parseLong("3"));
+						tipoRecaudo.setTipoRecaudoNombre("FACHADA DEL NEGOCIO");
+						
+						asociarComercioRecaudo.setTipoRecaudoId(tipoRecaudo);
+						asociarComercioRecaudo.setUbicacion("/home/ubuntu/documentosAdquiriencia");
+						
+						respuesta = afiliacionMethods.asociarComercioRecaudo(asociarComercioRecaudo);
+						
+					}
+			
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+		  }
+		   
+		   
+		   /*
+		   RespuestaDTO res= new RespuestaDTO();
+		  
+		   if(statusFile.equals("")) {
+			   //no se subio el archivo
+			   res.setDescripcion("upload File fail");
+		   }else {
+			   
+			   res=clienteSer.procesarArchivosCliente(car);
+			   //log.info("Carga de Datos: {}",car.toString());
+			   //log.info("Resultado de solicitud: {}",res.getDescripcion());
+		   }
+		   
+	*/
+		  
+		return  respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
+	@RequestMapping(value = "/modificarDocumentsRepresentante", method = RequestMethod.POST, consumes = { "multipart/form-data" })
+	public @ResponseBody ModificarAsociarComercioRecaudoWSResponse modificarRepresentante(MultipartHttpServletRequest files , HttpServletResponse response, HttpServletRequest reques){
+		
+		ModificarAsociarComercioRecaudoWSResponse respuesta = new ModificarAsociarComercioRecaudoWSResponse();
+		ModificarAsociarComercioRecaudoWS modificarComercioRecaudo = new ModificarAsociarComercioRecaudoWS();
+		Map<String, String[]> map = reques.getParameterMap();
+		
+		TipoRecaudo tipoRecaudo = new TipoRecaudo();
+		
+		  for (Map.Entry<String,  String[]> entry : map.entrySet()) {
+			  
+			    String key = entry.getKey();
+			    String[] value = entry.getValue();
+			    // ...
+			    
+			    if(key.equals("tipoRecaudoId")){
+			    	System.out.println("tipoRecaudoId "+value[0]);
+			    	tipoRecaudo.setTipoRecaudoId(Long.parseLong(value[0]));
+			    	
+			    }else if(key.equals("tipoRecaudoNombre")) {
+			    	System.out.println("tipoRecaudoNombre "+value[0]);
+			    	tipoRecaudo.setTipoRecaudoNombre(value[0]);
+			    	
+			    }else if(key.equals("idRecaudo")) {
+			    	System.out.println("idRecaudo "+value[0]);
+			    	modificarComercioRecaudo.setIdRecaudo(Long.parseLong(value[0]));
+			    	
+			    }else if(key.equals("ubicacion")) {
+			    	System.out.println("ubicacion "+value[0]);
+			    	modificarComercioRecaudo.setUbicacion(value[0]);
+			    	
+			    }else if(key.equals("recaudoVerificado")) {
+			    	System.out.println("recaudoVerificado "+value[0]);
+			    	modificarComercioRecaudo.setRecaudoVerificado(value[0]);
+			    	
+			    }else if(key.equals("fechaVigencia")) {
+			    	System.out.println("fechaVigencia "+value[0]);
+			    	modificarComercioRecaudo.setFechaVigencia(value[0]);
+			    	
+			    }
+
+			}
+
+		  modificarComercioRecaudo.setTipoRecaudoId(tipoRecaudo);
+		  
+			Iterator<String> itr =  files.getFileNames();
+			MultipartFile mpf=null;
+		  	String statusFile="";
+		  	
+		   while(itr.hasNext()) {	
+			  mpf = files.getFile(itr.next());
+			  System.out.println("mpf "+mpf.getName());
+			
+				try {
+			
+					if(mpf.getName().equals("fileCedulaRepresentanteInformationName")){
+						statusFile=upload.copy(mpf);
+						System.out.println(statusFile);
+						modificarComercioRecaudo.setRecaudoNombre(statusFile);
+						
+						respuesta = afiliacionMethods.modificarAsociarComercioRecaudo(modificarComercioRecaudo);
+						
+					}/*else if(mpf.getName().equals("fileCedulaContactoInformationName")){
+						statusFile=upload.copy(mpf);
+						System.out.println(statusFile);
+						asociarComercioRecaudo.setRecaudoNombre(statusFile);
+						
+						TipoRecaudo tipoRecaudo = new TipoRecaudo();
+						tipoRecaudo.setTipoRecaudoId(Long.parseLong("2"));
+						tipoRecaudo.setTipoRecaudoNombre("CEDULA CONTACTO");
+						
+						asociarComercioRecaudo.setTipoRecaudoId(tipoRecaudo);
+						asociarComercioRecaudo.setUbicacion("C:\\pnp\\");
+						
+						respuesta = afiliacionMethods.asociarComercioRecaudo(asociarComercioRecaudo);
+						
+					}else if(mpf.getName().equals("fileNegocioInformationName")){
+						statusFile=upload.copy(mpf);
+						System.out.println(statusFile);
+						asociarComercioRecaudo.setRecaudoNombre(statusFile);
+						
+						TipoRecaudo tipoRecaudo = new TipoRecaudo();
+						tipoRecaudo.setTipoRecaudoId(Long.parseLong("3"));
+						tipoRecaudo.setTipoRecaudoNombre("FACHADA DEL NEGOCIO");
+						
+						asociarComercioRecaudo.setTipoRecaudoId(tipoRecaudo);
+						asociarComercioRecaudo.setUbicacion("C:\\pnp\\");
+						
+						respuesta = afiliacionMethods.asociarComercioRecaudo(asociarComercioRecaudo);
+						
+					}*/
+			
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+		  }
+		  
+		return  respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
+	@RequestMapping(value = "/modificarDocumentsContacto", method = RequestMethod.POST, consumes = { "multipart/form-data" })
+	public @ResponseBody ModificarAsociarComercioRecaudoWSResponse modificarContacto(MultipartHttpServletRequest files , HttpServletResponse response, HttpServletRequest reques){
+		
+		ModificarAsociarComercioRecaudoWSResponse respuesta = new ModificarAsociarComercioRecaudoWSResponse();
+		ModificarAsociarComercioRecaudoWS modificarComercioRecaudo = new ModificarAsociarComercioRecaudoWS();
+		Map<String, String[]> map = reques.getParameterMap();
+		
+		TipoRecaudo tipoRecaudo = new TipoRecaudo();
+		
+		  for (Map.Entry<String,  String[]> entry : map.entrySet()) {
+			  
+			    String key = entry.getKey();
+			    String[] value = entry.getValue();
+			    // ...
+			    
+			    if(key.equals("tipoRecaudoId")){
+			    	System.out.println("tipoRecaudoId "+value[0]);
+			    	tipoRecaudo.setTipoRecaudoId(Long.parseLong(value[0]));
+			    	
+			    }else if(key.equals("tipoRecaudoNombre")) {
+			    	System.out.println("tipoRecaudoNombre "+value[0]);
+			    	tipoRecaudo.setTipoRecaudoNombre(value[0]);
+			    	
+			    }else if(key.equals("idRecaudo")) {
+			    	System.out.println("idRecaudo "+value[0]);
+			    	modificarComercioRecaudo.setIdRecaudo(Long.parseLong(value[0]));
+			    	
+			    }else if(key.equals("ubicacion")) {
+			    	System.out.println("ubicacion "+value[0]);
+			    	modificarComercioRecaudo.setUbicacion(value[0]);
+			    	
+			    }else if(key.equals("recaudoVerificado")) {
+			    	System.out.println("recaudoVerificado "+value[0]);
+			    	modificarComercioRecaudo.setRecaudoVerificado(value[0]);
+			    	
+			    }else if(key.equals("fechaVigencia")) {
+			    	System.out.println("fechaVigencia "+value[0]);
+			    	modificarComercioRecaudo.setFechaVigencia(value[0]);
+			    	
+			    }
+
+			}
+
+		  modificarComercioRecaudo.setTipoRecaudoId(tipoRecaudo);
+		  
+			Iterator<String> itr =  files.getFileNames();
+			MultipartFile mpf=null;
+		  	String statusFile="";
+		  	
+		   while(itr.hasNext()) {	
+			  mpf = files.getFile(itr.next());
+			  System.out.println("mpf "+mpf.getName());
+			
+				try {
+					/*
+					if(mpf.getName().equals("fileCedulaRepresentanteInformationName")){
+						statusFile=upload.copy(mpf);
+						System.out.println(statusFile);
+						modificarComercioRecaudo.setRecaudoNombre(statusFile);
+						
+						respuesta = afiliacionMethods.modificarAsociarComercioRecaudo(modificarComercioRecaudo);
+						
+					}*/
+					if(mpf.getName().equals("fileCedulaContactoInformationName")){
+						statusFile=upload.copy(mpf);
+						System.out.println(statusFile);
+						modificarComercioRecaudo.setRecaudoNombre(statusFile);
+						
+						respuesta = afiliacionMethods.modificarAsociarComercioRecaudo(modificarComercioRecaudo);
+						
+					}
+					/*
+					if(mpf.getName().equals("fileNegocioInformationName")){
+						statusFile=upload.copy(mpf);
+						System.out.println(statusFile);
+						asociarComercioRecaudo.setRecaudoNombre(statusFile);
+						
+						TipoRecaudo tipoRecaudo = new TipoRecaudo();
+						tipoRecaudo.setTipoRecaudoId(Long.parseLong("3"));
+						tipoRecaudo.setTipoRecaudoNombre("FACHADA DEL NEGOCIO");
+						
+						asociarComercioRecaudo.setTipoRecaudoId(tipoRecaudo);
+						asociarComercioRecaudo.setUbicacion("C:\\pnp\\");
+						
+						respuesta = afiliacionMethods.asociarComercioRecaudo(asociarComercioRecaudo);
+						
+					}*/
+			
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+		  }
+		  
+		return  respuesta;
+	}
+	
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
+	@RequestMapping(value = "/modificarDocumentsFachada", method = RequestMethod.POST, consumes = { "multipart/form-data" })
+	public @ResponseBody ModificarAsociarComercioRecaudoWSResponse modificarFachada(MultipartHttpServletRequest files , HttpServletResponse response, HttpServletRequest reques){
+		
+		ModificarAsociarComercioRecaudoWSResponse respuesta = new ModificarAsociarComercioRecaudoWSResponse();
+		ModificarAsociarComercioRecaudoWS modificarComercioRecaudo = new ModificarAsociarComercioRecaudoWS();
+		Map<String, String[]> map = reques.getParameterMap();
+		
+		TipoRecaudo tipoRecaudo = new TipoRecaudo();
+		
+		  for (Map.Entry<String,  String[]> entry : map.entrySet()) {
+			  
+			    String key = entry.getKey();
+			    String[] value = entry.getValue();
+			    // ...
+			    
+			    if(key.equals("tipoRecaudoId")){
+			    	System.out.println("tipoRecaudoId "+value[0]);
+			    	tipoRecaudo.setTipoRecaudoId(Long.parseLong(value[0]));
+			    	
+			    }else if(key.equals("tipoRecaudoNombre")) {
+			    	System.out.println("tipoRecaudoNombre "+value[0]);
+			    	tipoRecaudo.setTipoRecaudoNombre(value[0]);
+			    	
+			    }else if(key.equals("idRecaudo")) {
+			    	System.out.println("idRecaudo "+value[0]);
+			    	modificarComercioRecaudo.setIdRecaudo(Long.parseLong(value[0]));
+			    	
+			    }else if(key.equals("ubicacion")) {
+			    	System.out.println("ubicacion "+value[0]);
+			    	modificarComercioRecaudo.setUbicacion(value[0]);
+			    	
+			    }else if(key.equals("recaudoVerificado")) {
+			    	System.out.println("recaudoVerificado "+value[0]);
+			    	modificarComercioRecaudo.setRecaudoVerificado(value[0]);
+			    	
+			    }else if(key.equals("fechaVigencia")) {
+			    	System.out.println("fechaVigencia "+value[0]);
+			    	modificarComercioRecaudo.setFechaVigencia(value[0]);
+			    	
+			    }
+
+			}
+
+		  modificarComercioRecaudo.setTipoRecaudoId(tipoRecaudo);
+		  
+			Iterator<String> itr =  files.getFileNames();
+			MultipartFile mpf=null;
+		  	String statusFile="";
+		  	
+		   while(itr.hasNext()) {	
+			  mpf = files.getFile(itr.next());
+			  System.out.println("mpf "+mpf.getName());
+			
+				try {
+					/*
+					if(mpf.getName().equals("fileCedulaRepresentanteInformationName")){
+						statusFile=upload.copy(mpf);
+						System.out.println(statusFile);
+						modificarComercioRecaudo.setRecaudoNombre(statusFile);
+						
+						respuesta = afiliacionMethods.modificarAsociarComercioRecaudo(modificarComercioRecaudo);
+						
+					}*/
+					/*
+					if(mpf.getName().equals("fileCedulaContactoInformationName")){
+						statusFile=upload.copy(mpf);
+						System.out.println(statusFile);
+						modificarComercioRecaudo.setRecaudoNombre(statusFile);
+						
+						respuesta = afiliacionMethods.modificarAsociarComercioRecaudo(modificarComercioRecaudo);
+						
+					}
+					*/
+					
+					if(mpf.getName().equals("fileNegocioInformationName")){
+						statusFile=upload.copy(mpf);
+						System.out.println(statusFile);
+						modificarComercioRecaudo.setRecaudoNombre(statusFile);
+						
+						respuesta = afiliacionMethods.modificarAsociarComercioRecaudo(modificarComercioRecaudo);
+						
+					}
+			
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+		  }
+		  
+		return  respuesta;
 	}
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

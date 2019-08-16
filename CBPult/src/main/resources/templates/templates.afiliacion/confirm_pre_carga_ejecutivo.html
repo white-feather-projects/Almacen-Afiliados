@@ -70,7 +70,7 @@
 															        <li class="tb5"><a th:href="@{#tab5}"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
 															        <li class="tb6"><a th:href="@{#tab6}"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
 															        <li class="tb7"><a th:href="@{#tab7}"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
-															        <li class="tb8"><a th:href="@{#tab8}"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
+															        <!-- <li class="tb8"><a th:href="@{#tab8}"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li> -->
 															        <li class="tb9"><a th:href="@{#tab9}"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
 															      </ul>
 															      <div class="step-content">
@@ -671,6 +671,7 @@
 							                                                            </div>
 							                                                            
 							                                                        </div>
+							                                                        <input type="hidden" class="form-control" placeholder="" id="contEstablecimiento" value="0"/>
 							                                                    </div>
 							                                                </div>
 							                                            </div>
@@ -867,6 +868,7 @@
 					                                            		</div>
 							                                        </div>
 														        </div>
+														        <!-- 
 														        <div class="step-tab-panel" id="tab8">
 														          <div class="page-body">
 						                                            <div class="row">
@@ -942,6 +944,8 @@
 					                                            		</div>
 							                                        </div>
 														        </div>
+														         -->
+														        
 														        <div class="step-tab-panel" id="tab9">
 														          <form name="divFiles" id="divFiles">
 												                    <div class="row">
@@ -983,6 +987,8 @@
 						                                                                        		<button type="button" id="view_CedulaRepresentante" class="btn btn-primary btn-md waves-effect text-center mb-20"  data-toggle="modal" data-target="#exampleModalLong" disabled>
 							                                                                            	Visualizar
 							                                                                        	</button>
+							                                                                        	<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="Cedula_Representante_confirm">Visualización Existente</button>
+							                                                                        	<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="modificar_Representante_legal">Modificar Representante Legal</button>
 						                                                                        	</div>
 						                                                                        </div>
 						                                                                    </div>
@@ -1002,6 +1008,8 @@
 						                                                                        		<button type="button" id="view_CedulaContacto" class="btn btn-primary btn-md waves-effect text-center mb-20" data-toggle="modal" data-target="#exampleModalLong"  disabled>
 							                                                                            	Visualizar
 							                                                                        	</button>
+							                                                                        	<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="Cedula_Contacto_confirm">Visualización Existente</button>
+							                                                                        	<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="modificar_Cedula_contacto">Modificar Cedula del Contacto</button>
 						                                                                        	</div>
 						                                                                        </div>
 						                                                                    </div>
@@ -1021,6 +1029,8 @@
 						                                                                        		<button type="button" id="view_Negocio" class="btn btn-primary btn-md waves-effect text-center mb-20" data-toggle="modal" data-target="#exampleModalLong"  disabled>
 							                                                                            	Visualizar
 							                                                                        	</button>
+							                                                                        	<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="Fachada_confirm">Visualización Existente</button>
+							                                                                        	<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="modificar_Fachada_negocio">Modificar Fachada del Negocio</button>
 						                                                                        	</div>
 						                                                                        </div>
 						                                                                    </div>
@@ -1066,6 +1076,14 @@
 																      </div>
 																    </div>
 																  </div>
+																</div>
+																
+																<div class="wrapper text-center">
+																    <div class="popup">
+																        <embed type="application/pdf" width="800" height="600" id="embed" src=""></embed>
+																        
+																    </div>
+																    <button id="close" class="btn btn-primary btn-md waves-effect text-center mb-20">Cerrar Pop Up</button>
 																</div>
 														      	<!--//////////////////////////////////////////////--> 
 														    </div>

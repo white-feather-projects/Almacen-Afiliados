@@ -2,7 +2,7 @@
 
 window.addEventListener('load', function(){
 	
-	document.getElementById("tipo_banco_tab8").disabled = true;
+	//document.getElementById("tipo_banco_tab8").disabled = true;
 	
 	var tipo_pago = document.querySelector("#tipo_pago_tab8");
 	var tipo_banco = document.querySelector("#tipo_banco_tab8");
@@ -10,7 +10,7 @@ window.addEventListener('load', function(){
 	var monto_tab8 = document.querySelector("#monto_tab8");
 	
 	///////////////////////////////////////////////////////////////////////
-	
+	/*
 	tipo_pago.addEventListener('blur', ()=>{
 		if(tipo_pago.value === "Efectivo"){
 			document.getElementById("tipo_banco_tab8").disabled = true;
@@ -18,9 +18,9 @@ window.addEventListener('load', function(){
 			document.getElementById("tipo_banco_tab8").disabled = false;
 		}
 	});
-	
+	*/
 	//////////////////////////////////////////////////////////////////////
-	
+	/*
 	tipo_pago.addEventListener('blur', ()=>{
 		console.log("tipo_pago", tipo_pago.value);
 		document.getElementById("tipo_pago_tab8").style.border = "1px solid black";
@@ -42,7 +42,7 @@ window.addEventListener('load', function(){
 		soloNumeros(monto_tab8);
 		document.getElementById("monto_tab8").style.border = "1px solid black";
 	});
-
+ */
 });
 
 ////////////////////////////////////////////////////

@@ -61,6 +61,30 @@ window.addEventListener('load', function(){
 		console.log("identificacion", identificacion.value);
 		soloNumeros(identificacion);
 		document.getElementById("identificacion_tab6").style.border = "1px solid black";
+		
+		if($("#identificacion_tab6").attr("maxlength") === "9"){
+			if($("#identificacion_tab6").val().length < 9){
+				swal("Longitud debe ser de 9");
+				document.getElementById("identificacion_tab6").style.border = "1px solid red";
+				$("#identificacion_tab6").val("");
+			}
+		}
+		
+		if($("#identificacion_tab6").attr("maxlength") === "11"){
+			if($("#identificacion_tab6").val().length < 11){
+				swal("Longitud debe ser de 11");
+				document.getElementById("identificacion_tab6").style.border = "1px solid red";
+				$("#identificacion_tab6").val("");
+			}
+		}
+		
+		if($("#identificacion_tab6").attr("maxlength") === "10"){
+			if($("#identificacion_tab6").val().length < 10){
+				swal("Longitud debe ser de 10");
+				document.getElementById("identificacion_tab6").style.border = "1px solid red";
+				$("#identificacion_tab6").val("");
+			}
+		}
 	});
 	
 	telefono.addEventListener('blur', ()=>{
