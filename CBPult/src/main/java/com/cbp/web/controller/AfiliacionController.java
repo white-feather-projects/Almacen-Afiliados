@@ -114,6 +114,8 @@ import com.cbp3.ws.cbp.service.ModificarAsociarComercioRecaudoWSResponse;
 import com.cbp3.ws.cbp.service.ModificarComercioEstablecimientoWS;
 import com.cbp3.ws.cbp.service.ModificarComercioEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.ModificarComercioWSResponse;
+import com.cbp3.ws.cbp.service.ModificarEstablecimientoWS;
+import com.cbp3.ws.cbp.service.ModificarEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.ModificarOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.Operadortelefonico;
 import com.cbp3.ws.cbp.service.Pago;
@@ -500,6 +502,17 @@ public class AfiliacionController extends Util{
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
 	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/modificarEstablecimiento", produces = { "application/json" })
+	public @ResponseBody ModificarEstablecimientoWSResponse modificarEstablecimiento(@RequestBody ModificarEstablecimientoWS ModificarEstablecimientoWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ModificarEstablecimientoWSResponse respuesta = new ModificarEstablecimientoWSResponse();
+		respuesta = afiliacionMethods.modificarEstablecimiento(ModificarEstablecimientoWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -751,7 +764,7 @@ public class AfiliacionController extends Util{
 						tipoRecaudo.setTipoRecaudoNombre("CEDULA REPRESENTANTE LEGAL");
 						
 						asociarComercioRecaudo.setTipoRecaudoId(tipoRecaudo);
-						asociarComercioRecaudo.setUbicacion("C:\\pnp\\");
+						asociarComercioRecaudo.setUbicacion("/home/ubuntu/documentosAdquiriencia");
 						
 						respuesta = afiliacionMethods.asociarComercioRecaudo(asociarComercioRecaudo);
 						
@@ -765,7 +778,7 @@ public class AfiliacionController extends Util{
 						tipoRecaudo.setTipoRecaudoNombre("CEDULA CONTACTO");
 						
 						asociarComercioRecaudo.setTipoRecaudoId(tipoRecaudo);
-						asociarComercioRecaudo.setUbicacion("C:\\pnp\\");
+						asociarComercioRecaudo.setUbicacion("/home/ubuntu/documentosAdquiriencia");
 						
 						respuesta = afiliacionMethods.asociarComercioRecaudo(asociarComercioRecaudo);
 						
@@ -779,7 +792,7 @@ public class AfiliacionController extends Util{
 						tipoRecaudo.setTipoRecaudoNombre("FACHADA DEL NEGOCIO");
 						
 						asociarComercioRecaudo.setTipoRecaudoId(tipoRecaudo);
-						asociarComercioRecaudo.setUbicacion("C:\\pnp\\");
+						asociarComercioRecaudo.setUbicacion("/home/ubuntu/documentosAdquiriencia");
 						
 						respuesta = afiliacionMethods.asociarComercioRecaudo(asociarComercioRecaudo);
 						

@@ -94,6 +94,8 @@ import com.cbp3.ws.cbp.service.ModificarAsociarComercioRecaudoWSResponse;
 import com.cbp3.ws.cbp.service.ModificarComercioEstablecimientoWS;
 import com.cbp3.ws.cbp.service.ModificarComercioEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.ModificarComercioWSResponse;
+import com.cbp3.ws.cbp.service.ModificarEstablecimientoWS;
+import com.cbp3.ws.cbp.service.ModificarEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.ModificarOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.Operadortelefonico;
 import com.cbp3.ws.cbp.service.Pago;
@@ -990,7 +992,7 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 	}
 	
 	////////////////////////////////////
-	//Methodo para Modificar Establecimiento...
+	//Methodo para Modificar Comercio Establecimiento...
 	public ModificarComercioEstablecimientoWSResponse modificarComercioEstablecimiento(ModificarComercioEstablecimientoWS ModificarComercioEstablecimientoWS) {
 	
 		//instanciar Objeto para retorno....
@@ -1013,6 +1015,32 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 		}
 		
 		return respuestaModificarComercioEstablecimiento;
+	}
+	
+	////////////////////////////////////
+	//Methodo para Modificar Establecimiento...
+	public ModificarEstablecimientoWSResponse modificarEstablecimiento(ModificarEstablecimientoWS ModificarEstablecimientoWS) {
+	
+		//instanciar Objeto para retorno....
+		ModificarEstablecimientoWSResponse respuestaModificarEstablecimientoWSResponse = new ModificarEstablecimientoWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaModificarEstablecimientoWSResponse.setReturn(WSmethod.modificarEstablecimientoWS(ModificarEstablecimientoWS.getEstablecimientoId(), ModificarEstablecimientoWS.getIdPais(), ModificarEstablecimientoWS.getIdProvincia(), ModificarEstablecimientoWS.getIdCanton(), ModificarEstablecimientoWS.getIdDistrito(), ModificarEstablecimientoWS.getCiudad(), ModificarEstablecimientoWS.getSectorUrbanizacion(), ModificarEstablecimientoWS.getAvenidaCalle(), ModificarEstablecimientoWS.getCodigoPostal(), ModificarEstablecimientoWS.getLocalidad(), ModificarEstablecimientoWS.getNombreInmueble(), ModificarEstablecimientoWS.getPuntoReferencia(), ModificarEstablecimientoWS.getGeoLocalizacion()));
+			//respuestaModificarComercioEstablecimiento = ModificarComercioEstablecimientoWS;
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaModificarEstablecimientoWSResponse;
 	}
 
 	////////////////////////////////////

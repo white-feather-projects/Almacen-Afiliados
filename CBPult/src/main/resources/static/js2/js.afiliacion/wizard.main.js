@@ -1964,77 +1964,118 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		          file3 = document.getElementById('fileNegocioInformationName').files[0];
 		    	  
 		    	  if(file1 != null && file2 != null && file3 != null){
+		    		  
+		    		  $.ajax({
+				           type: "GET",
+				           url: '/CBPult/Afiliacion/consultaComercio/'+$("#identificacion_tab2").val()+'',
+				           dataType: "json",
+				           success: processSuccess,
+				           error: processError
+				       });
+		    		  
+		    		  function processSuccess(data, status, req){
+	      	        	  console.log(data);
+	      	        	  
+	      	        	var actividadComercial = data.return.actividadComercial;
+						var afiliadoOtroBanco = data.return.afiliadoOtroBanco;
+						var codigoUsuarioCarga = data.return.codigoUsuarioCarga;
+						var codigoUsuarioModifica = data.return.codigoUsuarioModifica;
+						var comercioId = data.return.comercioId;
+						var email = data.return.email;
+						var fechaCargaDatos = data.return.fechaCargaDatos;
+						var fechaHoraModificacion = data.return.fechaHoraModificacion;
+						var horaFin = data.return.horaFin;
+						var horaInicio = data.return.horaInicio;
+						var identificacionComercio = data.return.identificacionComercio;
+						var nombreComercial = data.return.nombreComercial;
+						var nombreEmpresarial = data.return.nombreEmpresarial;
+						var numCuentaAsociado = data.return.numCuentaAsociado;
+						var statusComercio = data.return.statusComercio;
+						var telefonoAlternativo = data.return.telefonoAlternativo;
+						var telefonoContacto = data.return.telefonoContacto;
+						var telefonoLocal = data.return.telefonoLocal;
+						var tipoIdentificacionId_nombre = data.return.tipoIdentificacionId.nombre;
+						var tipoIdentificacionId_tipoIdentificacionId = data.return.tipoIdentificacionId.tipoIdentificacionId;
+						
+						var recaudoVerificado = "0";
+ 		           		var fechaVigencia = "0";
+ 		           		
+	 		           	var formData = new FormData($('#divFiles')[0]);
+			    	  	
+			    	  	formData.append('recaudoVerificado', recaudoVerificado);
+			    	  	formData.append('fechaVigencia', fechaVigencia);
+			    	  	
+			    	  	formData.append('actividadComercial', actividadComercial);
+			    	  	formData.append('afiliadoOtroBanco', afiliadoOtroBanco);
+			    	  	formData.append('codigoUsuarioCarga', "0");
+			    	  	formData.append('codigoUsuarioModifica', "0");
+			    	  	formData.append('comercioId', comercioId);
+			    	  	formData.append('email', email);
+			    	  	formData.append('fechaCargaDatos', fechaCargaDatos);
+			    	  	formData.append('fechaHoraModificacion', "0");
+			    	  	formData.append('horaFin', horaFin);
+			    	  	formData.append('horaInicio', horaInicio);
+			    	  	formData.append('identificacionComercio', identificacionComercio);
+			    	  	formData.append('nombreComercial', nombreComercial);
+			    	  	formData.append('nombreEmpresarial', nombreEmpresarial);
+			    	  	formData.append('numCuentaAsociado', numCuentaAsociado);
+			    	  	formData.append('statusComercio', statusComercio);
+			    	  	formData.append('telefonoAlternativo', telefonoAlternativo);
+			    	  	formData.append('telefonoContacto', telefonoContacto);
+			    	  	formData.append('telefonoLocal', telefonoLocal);
+			    	  	formData.append('Tipoidentificacion_nombre', tipoIdentificacionId_nombre);
+			    	  	formData.append('Tipoidentificacion_tipoIdentificacionId', tipoIdentificacionId_tipoIdentificacionId);
+			    	  	
+		              	console.log("formData----", formData);
+		              	console.log("form----", $('#divFiles')[0]);
+		              	
+		      	          $.ajax( {
+		      	            url: '/CBPult/Afiliacion/uploadDocuments',
+		      	            type: 'POST',
+		      	            data: formData,
+		      	            processData: false,
+		      	            contentType: false,
+		      	            dataType: 'text',
+		      	            success: success,
+		      	            error: processError
+		      	            
+		      	          });
+		      	          
+		      	          function success(data, status, req){
+		      	        	  console.log(JSON.parse(data));
+		      	        	  var data1 = JSON.parse(data);
+		      	        	  
+		      	        	  if(data1.return.descripcion === "OK"){
+		      	        		swal({
+		      	        		     title: "EXITO!",
+		      	        		     text: "Recaudos Registrados",
+		      	        		     type: "success",
+		      	        		     timer: 3000
+		      	        		     },
+		      	        		     function () {
+		      	        		            location.href = "../bandejas_ejecutivo"
+		      	        		     });
+		      	        		  
+		      	        	  }else if(data1.return.descripcion === "FALSE"){
+		      	        		  swal("Error al Registrar, Recaudos....");
+		      	        		  
+		      	        	  }
+		      	          }
+		      	          
+		      	          function processError(data, status, req) {
+		      	                //alert(req.responseText + " " + status);
+		      	            	swal("Error al contactar con el servicio", status);
+		
+		      	          }
+	      	          }
+	      	          
+	      	          function processError(data, status, req) {
+	      	                //alert(req.responseText + " " + status);
+	      	            	swal("Error al contactar con el servicio", status);
+	
+	      	          }
 			 		           		
-			 		           		var recaudoVerificado = "0";
-			 		           		var fechaVigencia = "0";
 			 		           		
-				 		           	var formData = new FormData($('#divFiles')[0]);
-						    	  	
-						    	  	formData.append('recaudoVerificado', recaudoVerificado);
-						    	  	formData.append('fechaVigencia', fechaVigencia);
-						    	  	
-						    	  	formData.append('actividadComercial', actividadComercial);
-						    	  	formData.append('afiliadoOtroBanco', afiliadoOtroBanco);
-						    	  	formData.append('codigoUsuarioCarga', codigoUsuarioCarga);
-						    	  	formData.append('codigoUsuarioModifica', codigoUsuarioModifica);
-						    	  	formData.append('comercioId', comercioId);
-						    	  	formData.append('email', email);
-						    	  	formData.append('fechaCargaDatos', fechaCargaDatos);
-						    	  	formData.append('fechaHoraModificacion', fechaHoraModificacion);
-						    	  	formData.append('horaFin', horaFin);
-						    	  	formData.append('horaInicio', horaInicio);
-						    	  	formData.append('identificacionComercio', identificacionComercio);
-						    	  	formData.append('nombreComercial', nombreComercial);
-						    	  	formData.append('nombreEmpresarial', nombreEmpresarial);
-						    	  	formData.append('numCuentaAsociado', numCuentaAsociado);
-						    	  	formData.append('statusComercio', statusComercio);
-						    	  	formData.append('telefonoAlternativo', telefonoAlternativo);
-						    	  	formData.append('telefonoContacto', telefonoContacto);
-						    	  	formData.append('telefonoLocal', telefonoLocal);
-						    	  	formData.append('Tipoidentificacion_nombre', tipoIdentificacionId_nombre);
-						    	  	formData.append('Tipoidentificacion_tipoIdentificacionId', tipoIdentificacionId_tipoIdentificacionId);
-						    	  	
-					              	console.log("formData----", formData);
-					              	console.log("form----", $('#divFiles')[0]);
-					              	
-					      	          $.ajax( {
-					      	            url: '/CBPult/Afiliacion/uploadDocuments',
-					      	            type: 'POST',
-					      	            data: formData,
-					      	            processData: false,
-					      	            contentType: false,
-					      	            dataType: 'text',
-					      	            success: success,
-					      	            error: processError
-					      	            
-					      	          });
-					      	          
-					      	          function success(data, status, req){
-					      	        	  console.log(JSON.parse(data));
-					      	        	  var data1 = JSON.parse(data);
-					      	        	  
-					      	        	  if(data1.return.descripcion === "OK"){
-					      	        		swal({
-					      	        		     title: "EXITO!",
-					      	        		     text: "Recaudos Registrados",
-					      	        		     type: "success",
-					      	        		     timer: 3000
-					      	        		     },
-					      	        		     function () {
-					      	        		            location.href = "../bandejas_ejecutivo"
-					      	        		     });
-					      	        		  
-					      	        	  }else if(data1.return.descripcion === "FALSE"){
-					      	        		  swal("Error al Registrar, Recaudos....");
-					      	        		  
-					      	        	  }
-					      	          }
-					      	          
-					      	          function processError(data, status, req) {
-					      	                //alert(req.responseText + " " + status);
-					      	            	swal("Error al contactar con el servicio", status);
-					
-					      	          }
 					 		           	
 		    	  }else{
 		    		  swal("Documentos Obligatorios");
@@ -2421,7 +2462,7 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 																					    	   
 																					       	console.log('boton1');
 																					    	$(".wrapper").show();
-																					    		document.getElementById("embed").src = 'C:/pnp/'+uno+'';
+																					    		document.getElementById("embed").src = '/home/ubuntu/documentosAdquiriencia/'+uno+'';
 																					    		$("#close").on('click', function(){
 																					    		$(".wrapper").hide();
 																				    		})
@@ -2463,7 +2504,7 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 																					    	   
 																					       	console.log('boton1');
 																					    	$(".wrapper").show();
-																					    		document.getElementById("embed").src = 'C:/pnp/'+uno+'';
+																					    		document.getElementById("embed").src = '/home/ubuntu/documentosAdquiriencia/'+uno+'';
 																					    		$("#close").on('click', function(){
 																					    		$(".wrapper").hide();
 																				    		})
@@ -2505,7 +2546,7 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 																					    	   
 																					       	console.log('boton1');
 																					    	$(".wrapper").show();
-																					    		document.getElementById("embed").src = 'C:/pnp/'+uno+'';
+																					    		document.getElementById("embed").src = '/home/ubuntu/documentosAdquiriencia/'+uno+'';
 																					    		$("#close").on('click', function(){
 																					    		$(".wrapper").hide();
 																				    		})
@@ -3001,91 +3042,64 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 						 			       	console.log("canton----", $('select[id="municipio_tab5"] option:selected').text());
 						 			       	console.log("distrito----", $('select[id="ciudad_tab5"] option:selected').text());
 									       		
-								       			var modificar_comercio_establecimiento = {
-					       							"comercioEstablId": comercioEstablId,
-					       							"comercioId": {
-								 		       			"actividadComercial": actividadComercial,
-								 		       			"afiliadoOtroBanco": afiliadoOtroBanco,
-								 		       			"codigoUsuarioCarga": codigoUsuarioCarga,
-								 		       			"codigoUsuarioModifica": codigoUsuarioModifica,
-								 		       			"comercioId": comercioId,
-								 		       			"email": email,
-								 		       			"fechaCargaDatos": fechaCargaDatos,
-								 		       			"fechaHoraModificacion": fechaHoraModificacion,
-								 		       			"horaFin": horaFin,
-								 		       			"horaInicio": horaInicio,
-								 		       			"identificacionComercio": identificacionComercio,
-								 		       			"nombreComercial": nombreComercial,
-								 		       			"nombreEmpresarial": nombreEmpresarial,
-								 		       			"numCuentaAsociado": numCuentaAsociado,
-								 		       			"statusComercio": statusComercio,
-								 		       			"telefonoAlternativo": telefonoAlternativo,
-								 		       			"telefonoContacto": telefonoContacto,
-								 		       			"telefonoLocal": telefonoLocal,
-								 		       			"tipoIdentificacionId": {
-								 		       				"nombre": tipoIdentificacionId_nombre,
-								 		       				"tipoIdentificacionId": tipoIdentificacionId_tipoIdentificacionId
-								 		       			}
-								 		       		},
-								 		       		"establecimientoId": {
-								 		       			"avenidaCalle": $("#avenida_calle_tab5").val(),
-								 		       			"ciudad": $('select[id="ciudad_tab5"] option:selected').text(),
-								 		       			"codigoPostal": $("#codigo_postal_tab5").val(),
-								 		       			"establecimientoId": establecimientoId,
-								 		       			"geoLocalizacion": $("#geo_localizacion_tab5").val(),
-								 		       			"idCanton":{
-								 		       				"idCanton": $('select[id="municipio_tab5"] option:selected').val(),
-								 		       				"nombreCanton": $('select[id="municipio_tab5"] option:selected').text(),
-								 		       				"provinciaId": {
-								 		                	   	"idProvincia": $('select[id="estado_tab5"] option:selected').val(),
-										 		       			"nombreProvincia": $('select[id="estado_tab5"] option:selected').text(),
-										 		       			"paisId": {
-											 		       			"idPais": 1,
-											 		       			"nombrePais": "Costa Rica"
-										 		       			}
-								 		       				}
-								 		       			},
-								 		       			"idDistrito": {
-									 		       			"cantonId": {
-									 		                   "idCanton": $('select[id="municipio_tab5"] option:selected').val(),
-									 		                   "nombreCanton": $('select[id="municipio_tab5"] option:selected').text(),
-									 		                   "provinciaId": {
-									 		                	   	"idProvincia": $('select[id="estado_tab5"] option:selected').val(),
-											 		       			"nombreProvincia": $('select[id="estado_tab5"] option:selected').text(),
-											 		       			"paisId": {
-												 		       			"idPais": 1,
-												 		       			"nombrePais": "Costa Rica"
-											 		       			}
-									 		                   }
-									 		               },
-									 		               "idDistrito": $('select[id="ciudad_tab5"] option:selected').val(),
-									 		               "nombreDistrito": $('select[id="ciudad_tab5"] option:selected').text()
-								 		       			},
-								 		       			"idPais": {
-									 		       			"idPais": 1,
-									 		       			"nombrePais": "Costa Rica"
-								 		       			},
-								 		       			"idProvincia": {
-									 		       			"idProvincia": $('select[id="estado_tab5"] option:selected').val(),
-									 		       			"nombreProvincia": $('select[id="estado_tab5"] option:selected').text(),
-									 		       			"paisId": {
-										 		       			"idPais": 1,
-										 		       			"nombrePais": "Costa Rica"
-									 		       			}
-								 		       			},
-								 		       			"localidad": $("#localidad_tab5").val(),
-								 		       			"nombreInmueble": $("#nombre_inmueble_tab5").val(),
-								 		       			"puntoReferencia": $("#punto_referencia_tab5").val(),
-								 		       			"sectorUrbanizacion": $("#sector_urbanizacion_tab5").val()
-								 		       		}
-							       				}
+								       			var modificar_establecimiento = {
+					       							"establecimientoId": establecimientoId,
+					       							"idPais": {
+					       								"idPais": 1,
+					       								"nombrePais": "Costa Rica" 
+					       							},
+					       							"idProvincia": {
+					       								"idProvincia": $('select[id="estado_tab5"] option:selected').val(),
+					       								"nombreProvincia": $('select[id="estado_tab5"] option:selected').text(),
+					       								"paisId": {
+					       									"idPais": 1,
+						       								"nombrePais": "Costa Rica" 
+					       								}
+					       							},
+					       							"idCanton": {
+					       								"idCanton": $('select[id="municipio_tab5"] option:selected').val(),
+					       								"nombreCanton": $('select[id="municipio_tab5"] option:selected').text(),
+					       								"provinciaId": {
+					       									"idProvincia": $('select[id="estado_tab5"] option:selected').val(),
+						       								"nombreProvincia": $('select[id="estado_tab5"] option:selected').text(),
+						       								"paisId": {
+						       									"idPais": 1,
+							       								"nombrePais": "Costa Rica" 
+						       								}
+					       								}
+					       							},
+					       							"idDistrito": {
+					       								"cantonId": {
+					       									"idCanton": $('select[id="municipio_tab5"] option:selected').val(),
+						       								"nombreCanton": $('select[id="municipio_tab5"] option:selected').text(),
+						       								"provinciaId": {
+						       									"idProvincia": $('select[id="estado_tab5"] option:selected').val(),
+							       								"nombreProvincia": $('select[id="estado_tab5"] option:selected').text(),
+							       								"paisId": {
+							       									"idPais": 1,
+								       								"nombrePais": "Costa Rica" 
+							       								}
+						       								}
+					       								},
+					       								"idDistrito": $('select[id="ciudad_tab5"] option:selected').val(),
+					       								"nombreDistrito": $('select[id="ciudad_tab5"] option:selected').text()
+					       							},
+					       							"ciudad": $('select[id="ciudad_tab5"] option:selected').text(),
+					       							"sectorUrbanizacion": $("#sector_urbanizacion_tab5").val(),
+					       							"avenidaCalle": $("#avenida_calle_tab5").val(),
+					       							"codigoPostal": $("#codigo_postal_tab5").val(),
+					       							"localidad": $("#localidad_tab5").val(),
+					       							"nombreInmueble": $("#nombre_inmueble_tab5").val(),
+					       							"puntoReferencia": $("#punto_referencia_tab5").val(),
+					       							"geoLocalizacion": $("#geo_localizacion_tab5").val()
+							       				};
 							       				
 							       				$.ajax({
 										           type: "POST",
-										           url: '/CBPult/Afiliacion/modificarComercioEstablecimiento',
+										           url: '/CBPult/Afiliacion/modificarEstablecimiento',
 										           contentType: "application/json",
 										           dataType: "json",
-										           data: JSON.stringify(modificar_comercio_establecimiento),
+										           data: JSON.stringify(modificar_establecimiento),
 										           success: processSuccess,
 										           error: processError
 							       				});
@@ -3278,65 +3292,108 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		        	valid = false;
 				
 			       if (stepDirection === 'forward') {
+			    	   
+			    	   $.ajax({
+				           type: "GET",
+				           url: '/CBPult/Afiliacion/consultaComercio/'+id+'',
+				           dataType: "json",
+				           success: processSuccess,
+				           error: processError
+				       });
+			    	   
+			    	   function processSuccess(data, status, req) {
+	 			            //alert(req.responseText + " " + status);
+	 			       		console.log(data);
+	 			       		
+		 			       	var actividadComercial = data.return.actividadComercial;
+							var afiliadoOtroBanco = data.return.afiliadoOtroBanco;
+							var codigoUsuarioCarga = data.return.codigoUsuarioCarga;
+							var codigoUsuarioModifica = data.return.codigoUsuarioModifica;
+							var comercioId = data.return.comercioId;
+							var email = data.return.email;
+							var fechaCargaDatos = data.return.fechaCargaDatos;
+							var fechaHoraModificacion = data.return.fechaHoraModificacion;
+							var horaFin = data.return.horaFin;
+							var horaInicio = data.return.horaInicio;
+							var identificacionComercio = data.return.identificacionComercio;
+							var nombreComercial = data.return.nombreComercial;
+							var nombreEmpresarial = data.return.nombreEmpresarial;
+							var numCuentaAsociado = data.return.numCuentaAsociado;
+							var statusComercio = data.return.statusComercio;
+							var telefonoAlternativo = data.return.telefonoAlternativo;
+							var telefonoContacto = data.return.telefonoContacto;
+							var telefonoLocal = data.return.telefonoLocal;
+							var tipoIdentificacionId_nombre = data.return.tipoIdentificacionId.nombre;
+							var tipoIdentificacionId_tipoIdentificacionId = data.return.tipoIdentificacionId.tipoIdentificacionId;
+	 			       		
+	 			       		var modificar_otro_banco = {
+		        	 			"nombreBanco": $("#nombre_banco_tab7").val(),
+		        	 			"tipoPos": $("#tipo_POS_tab7").val(),
+		        	 			"cantidadPos": $("#cantidad_tab7").val(),
+		        	 			"comercioId":{
+		        	 				"actividadComercial": actividadComercial,
+		        	 				"afiliadoOtroBanco": afiliadoOtroBanco,
+		        	 				"codigoUsuarioCarga": codigoUsuarioCarga,
+		        	 				"codigoUsuarioModifica": codigoUsuarioModifica,
+		        	 				"comercioId": comercioId,
+		        	 				"email": email,
+		        	 				"fechaCargaDatos": fechaCargaDatos,
+		        	 				"fechaHoraModificacion": fechaHoraModificacion,
+		        	 				"horaFin": horaFin,
+		        	 				"horaInicio": horaInicio,
+		        	 				"identificacionComercio": identificacionComercio,
+		        	 				"nombreComercial": nombreComercial,
+		        	 				"nombreEmpresarial": nombreEmpresarial,
+		        	 				"numCuentaAsociado": numCuentaAsociado,
+		        	 				"statusComercio": statusComercio,
+		        	 				"telefonoAlternativo": telefonoAlternativo,
+		        	 				"telefonoContacto": telefonoContacto,
+		        	 				"telefonoLocal": telefonoLocal,
+		        	 				"tipoIdentificacionId":{
+		        	 					"nombre": tipoIdentificacionId_nombre,
+		        	 					"tipoIdentificacionId": tipoIdentificacionId_tipoIdentificacionId
+		        	 				}
+		        	 			}
+		 			    	};
+		 			    	
+		 			    	$.ajax({
+		 			           type: "POST",
+		 			           url: '/CBPult/Afiliacion/modificarAsociacionComercioOtroBanco',
+		 			           contentType: "application/json",
+		 			           dataType: "json",
+		 			           data: JSON.stringify(modificar_otro_banco),
+		 			           success: processSuccess,
+		 			           error: processError
+		 			    	});
+		 			   	
+		 			       	function processSuccess(data, status, req) {
+		 			            //alert(req.responseText + " " + status);
+		 			       		console.log(data);
+		 			       		
+		 			           	if(data.return.descripcion === "FAIL"){
+		 			           		swal("FAIL");
+		 			           	}
+		 			           	if(data.return.descripcion === "OK"){
+		 			           		//swal("MODIFICADO");
+		 			           	}
+		 			       	} 
+		 			       	
+		 			       	function processError(data, status, req) {
+		 			            //alert(req.responseText + " " + status);
+		 			           	swal("Error al contacter el servicio", data);
+		 			           	valid = false;
+		 			           	return valid;
+		 			       	}
+	 			       	} 
+	 			       	
+	 			       	function processError(data, status, req) {
+	 			            //alert(req.responseText + " " + status);
+	 			           	swal("Error al contacter el servicio", data);
+	 			           	valid = false;
+	 			           	return valid;
+	 			       	}
 				        	 
-				        	 	var modificar_otro_banco = {
-				        	 			"nombreBanco": $("#nombre_banco_tab7").val(),
-				        	 			"tipoPos": $("#tipo_POS_tab7").val(),
-				        	 			"cantidadPos": $("#cantidad_tab7").val(),
-				        	 			"comercioId":{
-				        	 				"actividadComercial": actividadComercial,
-				        	 				"afiliadoOtroBanco": afiliadoOtroBanco,
-				        	 				"codigoUsuarioCarga": codigoUsuarioCarga,
-				        	 				"codigoUsuarioModifica": codigoUsuarioModifica,
-				        	 				"comercioId": comercioId,
-				        	 				"email": email,
-				        	 				"fechaCargaDatos": fechaCargaDatos,
-				        	 				"fechaHoraModificacion": fechaHoraModificacion,
-				        	 				"horaFin": horaFin,
-				        	 				"horaInicio": horaInicio,
-				        	 				"identificacionComercio": identificacionComercio,
-				        	 				"nombreComercial": nombreComercial,
-				        	 				"nombreEmpresarial": nombreEmpresarial,
-				        	 				"numCuentaAsociado": numCuentaAsociado,
-				        	 				"statusComercio": statusComercio,
-				        	 				"telefonoAlternativo": telefonoAlternativo,
-				        	 				"telefonoContacto": telefonoContacto,
-				        	 				"telefonoLocal": telefonoLocal,
-				        	 				"tipoIdentificacionId":{
-				        	 					"nombre": tipoIdentificacionId_nombre,
-				        	 					"tipoIdentificacionId": tipoIdentificacionId_tipoIdentificacionId
-				        	 				}
-				        	 			}
-			 			    	};
-			 			    	
-			 			    	$.ajax({
-			 			           type: "POST",
-			 			           url: '/CBPult/Afiliacion/modificarAsociacionComercioOtroBanco',
-			 			           contentType: "application/json",
-			 			           dataType: "json",
-			 			           data: JSON.stringify(modificar_otro_banco),
-			 			           success: processSuccess,
-			 			           error: processError
-			 			    	});
-			 			   	
-			 			       	function processSuccess(data, status, req) {
-			 			            //alert(req.responseText + " " + status);
-			 			       		console.log(data);
-			 			       		
-			 			           	if(data.return.descripcion === "FAIL"){
-			 			           		swal("FAIL");
-			 			           	}
-			 			           	if(data.return.descripcion === "OK"){
-			 			           		//swal("MODIFICADO");
-			 			           	}
-			 			       	} 
-			 			       	
-			 			       	function processError(data, status, req) {
-			 			            //alert(req.responseText + " " + status);
-			 			           	swal("Error al contacter el servicio", data);
-			 			           	valid = false;
-			 			           	return valid;
-			 			       	}
+				        	 	
 				        	 
 			    	   	
 			       }
@@ -3398,19 +3455,13 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		    
 		    $("#modificar_Representante_legal").on('click', function(){
 		    		
-		    		var consulta_comercio = {
-		    				"identificacionComercio": id
-		    		};
-		    		
 		    		$.ajax({
-	 			           type: "POST",
-	 			           url: '/CBPult/Afiliacion/consultaComercio',
-	 			           contentType: "application/json",
-	 			           dataType: "json",
-	 			           data: JSON.stringify(consulta_comercio),
-	 			           success: processSuccess,
-	 			           error: processError
-	 			    	});
+			           type: "GET",
+			           url: '/CBPult/Afiliacion/consultaComercio/'+id+'',
+			           dataType: "json",
+			           success: processSuccess,
+			           error: processError
+		    		});
 		    		
 		    		function processSuccess(data, status, req) {
  			            //alert(req.responseText + " " + status);
@@ -3510,21 +3561,15 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		    
 		    $("#modificar_Cedula_contacto").on('click', function(){
 		    	
-		    	var consulta_comercio = {
-	    				"identificacionComercio": id
-	    		};
+		    		$.ajax({
+			           type: "GET",
+			           url: '/CBPult/Afiliacion/consultaComercio/'+id+'',
+			           dataType: "json",
+			           success: processSuccess,
+			           error: processError
+		    		});
 	    		
-	    		$.ajax({
- 			           type: "POST",
- 			           url: '/CBPult/Afiliacion/consultaComercio',
- 			           contentType: "application/json",
- 			           dataType: "json",
- 			           data: JSON.stringify(consulta_comercio),
- 			           success: processSuccess,
- 			           error: processError
- 			    	});
-	    		
-	    		function processSuccess(data, status, req) {
+		    		function processSuccess(data, status, req) {
 			            //alert(req.responseText + " " + status);
 			       		console.log(data);
 			       		
@@ -3622,19 +3667,13 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		    
 		    $("#modificar_Fachada_negocio").on('click', function(){
 		    	
-		    	var consulta_comercio = {
-	    				"identificacionComercio": id
-	    		};
-	    		
-	    		$.ajax({
- 			           type: "POST",
- 			           url: '/CBPult/Afiliacion/consultaComercio',
- 			           contentType: "application/json",
- 			           dataType: "json",
- 			           data: JSON.stringify(consulta_comercio),
- 			           success: processSuccess,
- 			           error: processError
- 			    	});
+		    	$.ajax({
+			           type: "GET",
+			           url: '/CBPult/Afiliacion/consultaComercio/'+id+'',
+			           dataType: "json",
+			           success: processSuccess,
+			           error: processError
+			       });
 	    		
 	    		function processSuccess(data, status, req) {
 			            //alert(req.responseText + " " + status);

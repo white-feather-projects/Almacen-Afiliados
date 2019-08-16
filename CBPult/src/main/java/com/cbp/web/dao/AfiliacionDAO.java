@@ -85,6 +85,7 @@ import com.cbp3.ws.cbp.service.ModificarComercioEstablecimientoWS;
 import com.cbp3.ws.cbp.service.ModificarComercioEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.ModificarComercioWSResponse;
 import com.cbp3.ws.cbp.service.ModificarEstablecimientoWS;
+import com.cbp3.ws.cbp.service.ModificarEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.ModificarOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.Operadortelefonico;
 import com.cbp3.ws.cbp.service.Pago;
@@ -165,6 +166,8 @@ public interface AfiliacionDAO {
 	public CrearComercioEstablecimientoWSResponse CrearComercioEstablecimiento(CrearComercioEstablecimientoWS CrearComercioEstablecimientoWS);
 	
 	public ModificarComercioEstablecimientoWSResponse modificarComercioEstablecimiento(ModificarComercioEstablecimientoWS ModificarComercioEstablecimientoWS);
+	
+	public ModificarEstablecimientoWSResponse modificarEstablecimiento(ModificarEstablecimientoWS ModificarEstablecimientoWS);
 	
 	public java.util.List<Solicitud> listaSolicitudes();
 	
