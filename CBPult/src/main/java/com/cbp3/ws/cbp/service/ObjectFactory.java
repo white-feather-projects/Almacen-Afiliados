@@ -24,64 +24,47 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _CrearAlmacenWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearAlmacenWSResponse");
-    private final static QName _RelacionAlmacenes_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "relacionAlmacenes");
-    private final static QName _ListTipoZonaWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listTipoZonaWS");
-    private final static QName _CrearRelacionZonasWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearRelacionZonasWS");
-    private final static QName _ModificarRelacionZonasWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarRelacionZonasWSResponse");
-    private final static QName _Empresa_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "empresa");
-    private final static QName _CrearRelacionAlmacenesWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearRelacionAlmacenesWS");
-    private final static QName _TipoZona_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "tipoZona");
-    private final static QName _ModificarEstanteriaWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarEstanteriaWS");
-    private final static QName _CrearListaZonaWizzardWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearListaZonaWizzardWSResponse");
-    private final static QName _ListaRelacionZonasWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listaRelacionZonasWSResponse");
-    private final static QName _Warehouse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "warehouse");
-    private final static QName _CrearRelacionAlmacenesWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearRelacionAlmacenesWSResponse");
-    private final static QName _Zona_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "zona");
-    private final static QName _ListaRelacionZonasWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listaRelacionZonasWS");
-    private final static QName _CrearZonaWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearZonaWSResponse");
-    private final static QName _ListaAlmacenesWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listaAlmacenesWSResponse");
-    private final static QName _ListaRelacionAlmacenesWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listaRelacionAlmacenesWSResponse");
-    private final static QName _ModificarZonaWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarZonaWS");
-    private final static QName _Cargo_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "cargo");
-    private final static QName _SaveAditionaInformationAlmacenWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "saveAditionaInformationAlmacenWSResponse");
-    private final static QName _ConsultaAlmacenPorNumeroAlmacenWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaAlmacenPorNumeroAlmacenWSResponse");
-    private final static QName _CrearEstanteriaWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearEstanteriaWSResponse");
-    private final static QName _ModificarRelacionZonasWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarRelacionZonasWS");
-    private final static QName _SaveAditionaInformationAlmacenWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "saveAditionaInformationAlmacenWS");
-    private final static QName _ConsultaEstanteriaPorEstanteriaIdWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaEstanteriaPorEstanteriaIdWS");
-    private final static QName _CrearListaZonaWizzardWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearListaZonaWizzardWS");
-    private final static QName _CrearZonaWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearZonaWS");
-    private final static QName _ListaZonasWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listaZonasWSResponse");
-    private final static QName _ListaAlmacenesWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listaAlmacenesWS");
-    private final static QName _ModificarEstanteriaWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarEstanteriaWSResponse");
-    private final static QName _ModificarZonaWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarZonaWSResponse");
+    private final static QName _ConsultaPurchaseOrderPorPurchaseOrderIdWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaPurchaseOrderPorPurchaseOrderIdWSResponse");
+    private final static QName _ProductoUbicacion_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "productoUbicacion");
+    private final static QName _Movimiento_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "movimiento");
+    private final static QName _ListTipoMovimientoWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listTipoMovimientoWSResponse");
+    private final static QName _TipoMovimiento_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "tipoMovimiento");
     private final static QName _Departamento_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "departamento");
-    private final static QName _ConsultaEstanteriaPorEstanteriaIdWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaEstanteriaPorEstanteriaIdWSResponse");
-    private final static QName _CrearEstanteriaWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearEstanteriaWS");
-    private final static QName _ModificarRelacionAlmacenesWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarRelacionAlmacenesWS");
-    private final static QName _ConsultaAlmacenPorNumeroAlmacenWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaAlmacenPorNumeroAlmacenWS");
-    private final static QName _ListTipoZonaWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listTipoZonaWSResponse");
+    private final static QName _GenerarMovimientoWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "generarMovimientoWSResponse");
+    private final static QName _PurchaseOrder_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "purchaseOrder");
+    private final static QName _ListMovimientosByTipoMovimientoWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listMovimientosByTipoMovimientoWSResponse");
+    private final static QName _Empresa_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "empresa");
+    private final static QName _ModificarTerceroWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarTerceroWS");
+    private final static QName _ConsultaTerceroPorTerceroIdWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaTerceroPorTerceroIdWSResponse");
     private final static QName _Tipoidentificacion_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "tipoidentificacion");
-    private final static QName _ListaAlmacenesRelacionadosByAlmacenIdIdWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listaAlmacenesRelacionadosByAlmacenIdIdWS");
+    private final static QName _Product_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "product");
+    private final static QName _Tercero_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "tercero");
+    private final static QName _TipoZona_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "tipoZona");
+    private final static QName _ConsultaProveedorPorProveedorIdWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaProveedorPorProveedorIdWSResponse");
     private final static QName _Estanteria_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "estanteria");
-    private final static QName _ConsultaZonaPorZonaIdWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaZonaPorZonaIdWS");
-    private final static QName _ModificarRelacionAlmacenesWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarRelacionAlmacenesWSResponse");
-    private final static QName _ConsultaAlmacenPorAlmacenIdWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaAlmacenPorAlmacenIdWS");
-    private final static QName _ListaEstanteriasWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listaEstanteriasWS");
-    private final static QName _ListaEstanteriasWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listaEstanteriasWSResponse");
+    private final static QName _CrearProductoUbicacionWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearProductoUbicacionWS");
+    private final static QName _ConsultaProductoUbicacionsByIdProductoUbicacionWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaProductoUbicacionsByIdProductoUbicacionWSResponse");
+    private final static QName _Catalogue_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "catalogue");
+    private final static QName _CrearProductoUbicacionWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearProductoUbicacionWSResponse");
+    private final static QName _Warehouse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "warehouse");
+    private final static QName _CrearTerceroWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearTerceroWSResponse");
+    private final static QName _GenerarMovimientoWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "generarMovimientoWS");
+    private final static QName _Zona_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "zona");
+    private final static QName _ConsultaPurchaseOrderPorPurchaseOrderIdWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaPurchaseOrderPorPurchaseOrderIdWS");
     private final static QName _Empleado_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "empleado");
-    private final static QName _ConsultaZonaPorZonaIdWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaZonaPorZonaIdWSResponse");
-    private final static QName _ListaRelacionAlmacenesWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listaRelacionAlmacenesWS");
-    private final static QName _TipoAlmacen_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "tipoAlmacen");
-    private final static QName _RelacionZonas_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "relacionZonas");
-    private final static QName _ConsultaAlmacenPorAlmacenIdWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaAlmacenPorAlmacenIdWSResponse");
-    private final static QName _CrearAlmacenWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearAlmacenWS");
-    private final static QName _ListaZonasWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listaZonasWS");
-    private final static QName _CrearRelacionZonasWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearRelacionZonasWSResponse");
-    private final static QName _ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listaAlmacenesRelacionadosByAlmacenIdIdWSResponse");
-    private final static QName _ModificarAlmacenWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarAlmacenWS");
-    private final static QName _ModificarAlmacenWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarAlmacenWSResponse");
+    private final static QName _Provider_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "provider");
+    private final static QName _ConsultaProveedorPorProveedorIdWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaProveedorPorProveedorIdWS");
+    private final static QName _ConsultaTerceroPorTerceroIdWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaTerceroPorTerceroIdWS");
+    private final static QName _Cargo_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "cargo");
+    private final static QName _ModificarProductoUbicacionWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarProductoUbicacionWSResponse");
+    private final static QName _CrearTerceroWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearTerceroWS");
+    private final static QName _ModificarProductoUbicacionWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarProductoUbicacionWS");
+    private final static QName _ListProductoUbicacionWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listProductoUbicacionWS");
+    private final static QName _ListMovimientosByTipoMovimientoWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listMovimientosByTipoMovimientoWS");
+    private final static QName _ListProductoUbicacionWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listProductoUbicacionWSResponse");
+    private final static QName _ListTipoMovimientoWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listTipoMovimientoWS");
+    private final static QName _ConsultaProductoUbicacionsByIdProductoUbicacionWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaProductoUbicacionsByIdProductoUbicacionWS");
+    private final static QName _ModificarTerceroWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarTerceroWSResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.cbp3.ws.cbp.service
@@ -91,83 +74,67 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SaveAditionaInformationAlmacenWS }
+     * Create an instance of {@link CrearTerceroWS }
      * 
      */
-    public SaveAditionaInformationAlmacenWS createSaveAditionaInformationAlmacenWS() {
-        return new SaveAditionaInformationAlmacenWS();
+    public CrearTerceroWS createCrearTerceroWS() {
+        return new CrearTerceroWS();
     }
 
     /**
-     * Create an instance of {@link ConsultaAlmacenPorNumeroAlmacenWSResponse }
+     * Create an instance of {@link ModificarProductoUbicacionWS }
      * 
      */
-    public ConsultaAlmacenPorNumeroAlmacenWSResponse createConsultaAlmacenPorNumeroAlmacenWSResponse() {
-        return new ConsultaAlmacenPorNumeroAlmacenWSResponse();
+    public ModificarProductoUbicacionWS createModificarProductoUbicacionWS() {
+        return new ModificarProductoUbicacionWS();
     }
 
     /**
-     * Create an instance of {@link CrearEstanteriaWSResponse }
+     * Create an instance of {@link ListProductoUbicacionWS }
      * 
      */
-    public CrearEstanteriaWSResponse createCrearEstanteriaWSResponse() {
-        return new CrearEstanteriaWSResponse();
+    public ListProductoUbicacionWS createListProductoUbicacionWS() {
+        return new ListProductoUbicacionWS();
     }
 
     /**
-     * Create an instance of {@link ModificarRelacionZonasWS }
+     * Create an instance of {@link ConsultaProductoUbicacionsByIdProductoUbicacionWS }
      * 
      */
-    public ModificarRelacionZonasWS createModificarRelacionZonasWS() {
-        return new ModificarRelacionZonasWS();
+    public ConsultaProductoUbicacionsByIdProductoUbicacionWS createConsultaProductoUbicacionsByIdProductoUbicacionWS() {
+        return new ConsultaProductoUbicacionsByIdProductoUbicacionWS();
     }
 
     /**
-     * Create an instance of {@link CrearListaZonaWizzardWS }
+     * Create an instance of {@link ModificarTerceroWSResponse }
      * 
      */
-    public CrearListaZonaWizzardWS createCrearListaZonaWizzardWS() {
-        return new CrearListaZonaWizzardWS();
+    public ModificarTerceroWSResponse createModificarTerceroWSResponse() {
+        return new ModificarTerceroWSResponse();
     }
 
     /**
-     * Create an instance of {@link ConsultaEstanteriaPorEstanteriaIdWS }
+     * Create an instance of {@link ListProductoUbicacionWSResponse }
      * 
      */
-    public ConsultaEstanteriaPorEstanteriaIdWS createConsultaEstanteriaPorEstanteriaIdWS() {
-        return new ConsultaEstanteriaPorEstanteriaIdWS();
+    public ListProductoUbicacionWSResponse createListProductoUbicacionWSResponse() {
+        return new ListProductoUbicacionWSResponse();
     }
 
     /**
-     * Create an instance of {@link ListaZonasWSResponse }
+     * Create an instance of {@link ListTipoMovimientoWS }
      * 
      */
-    public ListaZonasWSResponse createListaZonasWSResponse() {
-        return new ListaZonasWSResponse();
+    public ListTipoMovimientoWS createListTipoMovimientoWS() {
+        return new ListTipoMovimientoWS();
     }
 
     /**
-     * Create an instance of {@link CrearZonaWS }
+     * Create an instance of {@link ListMovimientosByTipoMovimientoWS }
      * 
      */
-    public CrearZonaWS createCrearZonaWS() {
-        return new CrearZonaWS();
-    }
-
-    /**
-     * Create an instance of {@link ListaAlmacenesWS }
-     * 
-     */
-    public ListaAlmacenesWS createListaAlmacenesWS() {
-        return new ListaAlmacenesWS();
-    }
-
-    /**
-     * Create an instance of {@link CrearRelacionAlmacenesWSResponse }
-     * 
-     */
-    public CrearRelacionAlmacenesWSResponse createCrearRelacionAlmacenesWSResponse() {
-        return new CrearRelacionAlmacenesWSResponse();
+    public ListMovimientosByTipoMovimientoWS createListMovimientosByTipoMovimientoWS() {
+        return new ListMovimientosByTipoMovimientoWS();
     }
 
     /**
@@ -179,203 +146,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ListaRelacionZonasWS }
+     * Create an instance of {@link GenerarMovimientoWS }
      * 
      */
-    public ListaRelacionZonasWS createListaRelacionZonasWS() {
-        return new ListaRelacionZonasWS();
+    public GenerarMovimientoWS createGenerarMovimientoWS() {
+        return new GenerarMovimientoWS();
     }
 
     /**
-     * Create an instance of {@link CrearZonaWSResponse }
+     * Create an instance of {@link CrearTerceroWSResponse }
      * 
      */
-    public CrearZonaWSResponse createCrearZonaWSResponse() {
-        return new CrearZonaWSResponse();
-    }
-
-    /**
-     * Create an instance of {@link ListaAlmacenesWSResponse }
-     * 
-     */
-    public ListaAlmacenesWSResponse createListaAlmacenesWSResponse() {
-        return new ListaAlmacenesWSResponse();
-    }
-
-    /**
-     * Create an instance of {@link Cargo }
-     * 
-     */
-    public Cargo createCargo() {
-        return new Cargo();
-    }
-
-    /**
-     * Create an instance of {@link SaveAditionaInformationAlmacenWSResponse }
-     * 
-     */
-    public SaveAditionaInformationAlmacenWSResponse createSaveAditionaInformationAlmacenWSResponse() {
-        return new SaveAditionaInformationAlmacenWSResponse();
-    }
-
-    /**
-     * Create an instance of {@link ModificarZonaWS }
-     * 
-     */
-    public ModificarZonaWS createModificarZonaWS() {
-        return new ModificarZonaWS();
-    }
-
-    /**
-     * Create an instance of {@link ListaRelacionAlmacenesWSResponse }
-     * 
-     */
-    public ListaRelacionAlmacenesWSResponse createListaRelacionAlmacenesWSResponse() {
-        return new ListaRelacionAlmacenesWSResponse();
-    }
-
-    /**
-     * Create an instance of {@link CrearRelacionAlmacenesWS }
-     * 
-     */
-    public CrearRelacionAlmacenesWS createCrearRelacionAlmacenesWS() {
-        return new CrearRelacionAlmacenesWS();
-    }
-
-    /**
-     * Create an instance of {@link TipoZona }
-     * 
-     */
-    public TipoZona createTipoZona() {
-        return new TipoZona();
-    }
-
-    /**
-     * Create an instance of {@link ModificarEstanteriaWS }
-     * 
-     */
-    public ModificarEstanteriaWS createModificarEstanteriaWS() {
-        return new ModificarEstanteriaWS();
-    }
-
-    /**
-     * Create an instance of {@link CrearListaZonaWizzardWSResponse }
-     * 
-     */
-    public CrearListaZonaWizzardWSResponse createCrearListaZonaWizzardWSResponse() {
-        return new CrearListaZonaWizzardWSResponse();
-    }
-
-    /**
-     * Create an instance of {@link ListaRelacionZonasWSResponse }
-     * 
-     */
-    public ListaRelacionZonasWSResponse createListaRelacionZonasWSResponse() {
-        return new ListaRelacionZonasWSResponse();
-    }
-
-    /**
-     * Create an instance of {@link Warehouse }
-     * 
-     */
-    public Warehouse createWarehouse() {
-        return new Warehouse();
-    }
-
-    /**
-     * Create an instance of {@link CrearAlmacenWSResponse }
-     * 
-     */
-    public CrearAlmacenWSResponse createCrearAlmacenWSResponse() {
-        return new CrearAlmacenWSResponse();
-    }
-
-    /**
-     * Create an instance of {@link ListTipoZonaWS }
-     * 
-     */
-    public ListTipoZonaWS createListTipoZonaWS() {
-        return new ListTipoZonaWS();
-    }
-
-    /**
-     * Create an instance of {@link RelacionAlmacenes }
-     * 
-     */
-    public RelacionAlmacenes createRelacionAlmacenes() {
-        return new RelacionAlmacenes();
-    }
-
-    /**
-     * Create an instance of {@link CrearRelacionZonasWS }
-     * 
-     */
-    public CrearRelacionZonasWS createCrearRelacionZonasWS() {
-        return new CrearRelacionZonasWS();
-    }
-
-    /**
-     * Create an instance of {@link Empresa }
-     * 
-     */
-    public Empresa createEmpresa() {
-        return new Empresa();
-    }
-
-    /**
-     * Create an instance of {@link ModificarRelacionZonasWSResponse }
-     * 
-     */
-    public ModificarRelacionZonasWSResponse createModificarRelacionZonasWSResponse() {
-        return new ModificarRelacionZonasWSResponse();
-    }
-
-    /**
-     * Create an instance of {@link ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse }
-     * 
-     */
-    public ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse createListaAlmacenesRelacionadosByAlmacenIdIdWSResponse() {
-        return new ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse();
-    }
-
-    /**
-     * Create an instance of {@link CrearRelacionZonasWSResponse }
-     * 
-     */
-    public CrearRelacionZonasWSResponse createCrearRelacionZonasWSResponse() {
-        return new CrearRelacionZonasWSResponse();
-    }
-
-    /**
-     * Create an instance of {@link ListaZonasWS }
-     * 
-     */
-    public ListaZonasWS createListaZonasWS() {
-        return new ListaZonasWS();
-    }
-
-    /**
-     * Create an instance of {@link ModificarAlmacenWS }
-     * 
-     */
-    public ModificarAlmacenWS createModificarAlmacenWS() {
-        return new ModificarAlmacenWS();
-    }
-
-    /**
-     * Create an instance of {@link ModificarAlmacenWSResponse }
-     * 
-     */
-    public ModificarAlmacenWSResponse createModificarAlmacenWSResponse() {
-        return new ModificarAlmacenWSResponse();
-    }
-
-    /**
-     * Create an instance of {@link ConsultaZonaPorZonaIdWSResponse }
-     * 
-     */
-    public ConsultaZonaPorZonaIdWSResponse createConsultaZonaPorZonaIdWSResponse() {
-        return new ConsultaZonaPorZonaIdWSResponse();
+    public CrearTerceroWSResponse createCrearTerceroWSResponse() {
+        return new CrearTerceroWSResponse();
     }
 
     /**
@@ -387,43 +170,83 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link TipoAlmacen }
+     * Create an instance of {@link Provider }
      * 
      */
-    public TipoAlmacen createTipoAlmacen() {
-        return new TipoAlmacen();
+    public Provider createProvider() {
+        return new Provider();
     }
 
     /**
-     * Create an instance of {@link ListaRelacionAlmacenesWS }
+     * Create an instance of {@link ConsultaPurchaseOrderPorPurchaseOrderIdWS }
      * 
      */
-    public ListaRelacionAlmacenesWS createListaRelacionAlmacenesWS() {
-        return new ListaRelacionAlmacenesWS();
+    public ConsultaPurchaseOrderPorPurchaseOrderIdWS createConsultaPurchaseOrderPorPurchaseOrderIdWS() {
+        return new ConsultaPurchaseOrderPorPurchaseOrderIdWS();
     }
 
     /**
-     * Create an instance of {@link CrearAlmacenWS }
+     * Create an instance of {@link ConsultaProveedorPorProveedorIdWS }
      * 
      */
-    public CrearAlmacenWS createCrearAlmacenWS() {
-        return new CrearAlmacenWS();
+    public ConsultaProveedorPorProveedorIdWS createConsultaProveedorPorProveedorIdWS() {
+        return new ConsultaProveedorPorProveedorIdWS();
     }
 
     /**
-     * Create an instance of {@link ConsultaAlmacenPorAlmacenIdWSResponse }
+     * Create an instance of {@link ConsultaTerceroPorTerceroIdWS }
      * 
      */
-    public ConsultaAlmacenPorAlmacenIdWSResponse createConsultaAlmacenPorAlmacenIdWSResponse() {
-        return new ConsultaAlmacenPorAlmacenIdWSResponse();
+    public ConsultaTerceroPorTerceroIdWS createConsultaTerceroPorTerceroIdWS() {
+        return new ConsultaTerceroPorTerceroIdWS();
     }
 
     /**
-     * Create an instance of {@link RelacionZonas }
+     * Create an instance of {@link Cargo }
      * 
      */
-    public RelacionZonas createRelacionZonas() {
-        return new RelacionZonas();
+    public Cargo createCargo() {
+        return new Cargo();
+    }
+
+    /**
+     * Create an instance of {@link ModificarProductoUbicacionWSResponse }
+     * 
+     */
+    public ModificarProductoUbicacionWSResponse createModificarProductoUbicacionWSResponse() {
+        return new ModificarProductoUbicacionWSResponse();
+    }
+
+    /**
+     * Create an instance of {@link TipoZona }
+     * 
+     */
+    public TipoZona createTipoZona() {
+        return new TipoZona();
+    }
+
+    /**
+     * Create an instance of {@link Tercero }
+     * 
+     */
+    public Tercero createTercero() {
+        return new Tercero();
+    }
+
+    /**
+     * Create an instance of {@link Product }
+     * 
+     */
+    public Product createProduct() {
+        return new Product();
+    }
+
+    /**
+     * Create an instance of {@link ConsultaTerceroPorTerceroIdWSResponse }
+     * 
+     */
+    public ConsultaTerceroPorTerceroIdWSResponse createConsultaTerceroPorTerceroIdWSResponse() {
+        return new ConsultaTerceroPorTerceroIdWSResponse();
     }
 
     /**
@@ -443,91 +266,91 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ListaAlmacenesRelacionadosByAlmacenIdIdWS }
+     * Create an instance of {@link ConsultaProveedorPorProveedorIdWSResponse }
      * 
      */
-    public ListaAlmacenesRelacionadosByAlmacenIdIdWS createListaAlmacenesRelacionadosByAlmacenIdIdWS() {
-        return new ListaAlmacenesRelacionadosByAlmacenIdIdWS();
+    public ConsultaProveedorPorProveedorIdWSResponse createConsultaProveedorPorProveedorIdWSResponse() {
+        return new ConsultaProveedorPorProveedorIdWSResponse();
     }
 
     /**
-     * Create an instance of {@link ConsultaAlmacenPorAlmacenIdWS }
+     * Create an instance of {@link CrearProductoUbicacionWS }
      * 
      */
-    public ConsultaAlmacenPorAlmacenIdWS createConsultaAlmacenPorAlmacenIdWS() {
-        return new ConsultaAlmacenPorAlmacenIdWS();
+    public CrearProductoUbicacionWS createCrearProductoUbicacionWS() {
+        return new CrearProductoUbicacionWS();
     }
 
     /**
-     * Create an instance of {@link ModificarRelacionAlmacenesWSResponse }
+     * Create an instance of {@link Warehouse }
      * 
      */
-    public ModificarRelacionAlmacenesWSResponse createModificarRelacionAlmacenesWSResponse() {
-        return new ModificarRelacionAlmacenesWSResponse();
+    public Warehouse createWarehouse() {
+        return new Warehouse();
     }
 
     /**
-     * Create an instance of {@link ConsultaZonaPorZonaIdWS }
+     * Create an instance of {@link Catalogue }
      * 
      */
-    public ConsultaZonaPorZonaIdWS createConsultaZonaPorZonaIdWS() {
-        return new ConsultaZonaPorZonaIdWS();
+    public Catalogue createCatalogue() {
+        return new Catalogue();
     }
 
     /**
-     * Create an instance of {@link ListaEstanteriasWSResponse }
+     * Create an instance of {@link CrearProductoUbicacionWSResponse }
      * 
      */
-    public ListaEstanteriasWSResponse createListaEstanteriasWSResponse() {
-        return new ListaEstanteriasWSResponse();
+    public CrearProductoUbicacionWSResponse createCrearProductoUbicacionWSResponse() {
+        return new CrearProductoUbicacionWSResponse();
     }
 
     /**
-     * Create an instance of {@link ListaEstanteriasWS }
+     * Create an instance of {@link ConsultaProductoUbicacionsByIdProductoUbicacionWSResponse }
      * 
      */
-    public ListaEstanteriasWS createListaEstanteriasWS() {
-        return new ListaEstanteriasWS();
+    public ConsultaProductoUbicacionsByIdProductoUbicacionWSResponse createConsultaProductoUbicacionsByIdProductoUbicacionWSResponse() {
+        return new ConsultaProductoUbicacionsByIdProductoUbicacionWSResponse();
     }
 
     /**
-     * Create an instance of {@link ModificarEstanteriaWSResponse }
+     * Create an instance of {@link Movimiento }
      * 
      */
-    public ModificarEstanteriaWSResponse createModificarEstanteriaWSResponse() {
-        return new ModificarEstanteriaWSResponse();
+    public Movimiento createMovimiento() {
+        return new Movimiento();
     }
 
     /**
-     * Create an instance of {@link ModificarZonaWSResponse }
+     * Create an instance of {@link ProductoUbicacion }
      * 
      */
-    public ModificarZonaWSResponse createModificarZonaWSResponse() {
-        return new ModificarZonaWSResponse();
+    public ProductoUbicacion createProductoUbicacion() {
+        return new ProductoUbicacion();
     }
 
     /**
-     * Create an instance of {@link ConsultaEstanteriaPorEstanteriaIdWSResponse }
+     * Create an instance of {@link ConsultaPurchaseOrderPorPurchaseOrderIdWSResponse }
      * 
      */
-    public ConsultaEstanteriaPorEstanteriaIdWSResponse createConsultaEstanteriaPorEstanteriaIdWSResponse() {
-        return new ConsultaEstanteriaPorEstanteriaIdWSResponse();
+    public ConsultaPurchaseOrderPorPurchaseOrderIdWSResponse createConsultaPurchaseOrderPorPurchaseOrderIdWSResponse() {
+        return new ConsultaPurchaseOrderPorPurchaseOrderIdWSResponse();
     }
 
     /**
-     * Create an instance of {@link CrearEstanteriaWS }
+     * Create an instance of {@link GenerarMovimientoWSResponse }
      * 
      */
-    public CrearEstanteriaWS createCrearEstanteriaWS() {
-        return new CrearEstanteriaWS();
+    public GenerarMovimientoWSResponse createGenerarMovimientoWSResponse() {
+        return new GenerarMovimientoWSResponse();
     }
 
     /**
-     * Create an instance of {@link ModificarRelacionAlmacenesWS }
+     * Create an instance of {@link PurchaseOrder }
      * 
      */
-    public ModificarRelacionAlmacenesWS createModificarRelacionAlmacenesWS() {
-        return new ModificarRelacionAlmacenesWS();
+    public PurchaseOrder createPurchaseOrder() {
+        return new PurchaseOrder();
     }
 
     /**
@@ -539,19 +362,43 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ConsultaAlmacenPorNumeroAlmacenWS }
+     * Create an instance of {@link ListTipoMovimientoWSResponse }
      * 
      */
-    public ConsultaAlmacenPorNumeroAlmacenWS createConsultaAlmacenPorNumeroAlmacenWS() {
-        return new ConsultaAlmacenPorNumeroAlmacenWS();
+    public ListTipoMovimientoWSResponse createListTipoMovimientoWSResponse() {
+        return new ListTipoMovimientoWSResponse();
     }
 
     /**
-     * Create an instance of {@link ListTipoZonaWSResponse }
+     * Create an instance of {@link TipoMovimiento }
      * 
      */
-    public ListTipoZonaWSResponse createListTipoZonaWSResponse() {
-        return new ListTipoZonaWSResponse();
+    public TipoMovimiento createTipoMovimiento() {
+        return new TipoMovimiento();
+    }
+
+    /**
+     * Create an instance of {@link Empresa }
+     * 
+     */
+    public Empresa createEmpresa() {
+        return new Empresa();
+    }
+
+    /**
+     * Create an instance of {@link ModificarTerceroWS }
+     * 
+     */
+    public ModificarTerceroWS createModificarTerceroWS() {
+        return new ModificarTerceroWS();
+    }
+
+    /**
+     * Create an instance of {@link ListMovimientosByTipoMovimientoWSResponse }
+     * 
+     */
+    public ListMovimientosByTipoMovimientoWSResponse createListMovimientosByTipoMovimientoWSResponse() {
+        return new ListMovimientosByTipoMovimientoWSResponse();
     }
 
     /**
@@ -563,30 +410,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RespuestaDTO }
-     * 
-     */
-    public RespuestaDTO createRespuestaDTO() {
-        return new RespuestaDTO();
-    }
-
-    /**
-     * Create an instance of {@link AlmacenDTO }
-     * 
-     */
-    public AlmacenDTO createAlmacenDTO() {
-        return new AlmacenDTO();
-    }
-
-    /**
-     * Create an instance of {@link ZonaDTO }
-     * 
-     */
-    public ZonaDTO createZonaDTO() {
-        return new ZonaDTO();
-    }
-
-    /**
      * Create an instance of {@link BdsUtil }
      * 
      */
@@ -595,291 +418,56 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CrearAlmacenWSResponse }{@code >}}
+     * Create an instance of {@link RespuestaDTO }
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "crearAlmacenWSResponse")
-    public JAXBElement<CrearAlmacenWSResponse> createCrearAlmacenWSResponse(CrearAlmacenWSResponse value) {
-        return new JAXBElement<CrearAlmacenWSResponse>(_CrearAlmacenWSResponse_QNAME, CrearAlmacenWSResponse.class, null, value);
+    public RespuestaDTO createRespuestaDTO() {
+        return new RespuestaDTO();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RelacionAlmacenes }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaPurchaseOrderPorPurchaseOrderIdWSResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "relacionAlmacenes")
-    public JAXBElement<RelacionAlmacenes> createRelacionAlmacenes(RelacionAlmacenes value) {
-        return new JAXBElement<RelacionAlmacenes>(_RelacionAlmacenes_QNAME, RelacionAlmacenes.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaPurchaseOrderPorPurchaseOrderIdWSResponse")
+    public JAXBElement<ConsultaPurchaseOrderPorPurchaseOrderIdWSResponse> createConsultaPurchaseOrderPorPurchaseOrderIdWSResponse(ConsultaPurchaseOrderPorPurchaseOrderIdWSResponse value) {
+        return new JAXBElement<ConsultaPurchaseOrderPorPurchaseOrderIdWSResponse>(_ConsultaPurchaseOrderPorPurchaseOrderIdWSResponse_QNAME, ConsultaPurchaseOrderPorPurchaseOrderIdWSResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ListTipoZonaWS }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ProductoUbicacion }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listTipoZonaWS")
-    public JAXBElement<ListTipoZonaWS> createListTipoZonaWS(ListTipoZonaWS value) {
-        return new JAXBElement<ListTipoZonaWS>(_ListTipoZonaWS_QNAME, ListTipoZonaWS.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "productoUbicacion")
+    public JAXBElement<ProductoUbicacion> createProductoUbicacion(ProductoUbicacion value) {
+        return new JAXBElement<ProductoUbicacion>(_ProductoUbicacion_QNAME, ProductoUbicacion.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CrearRelacionZonasWS }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Movimiento }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "crearRelacionZonasWS")
-    public JAXBElement<CrearRelacionZonasWS> createCrearRelacionZonasWS(CrearRelacionZonasWS value) {
-        return new JAXBElement<CrearRelacionZonasWS>(_CrearRelacionZonasWS_QNAME, CrearRelacionZonasWS.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "movimiento")
+    public JAXBElement<Movimiento> createMovimiento(Movimiento value) {
+        return new JAXBElement<Movimiento>(_Movimiento_QNAME, Movimiento.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ModificarRelacionZonasWSResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListTipoMovimientoWSResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "modificarRelacionZonasWSResponse")
-    public JAXBElement<ModificarRelacionZonasWSResponse> createModificarRelacionZonasWSResponse(ModificarRelacionZonasWSResponse value) {
-        return new JAXBElement<ModificarRelacionZonasWSResponse>(_ModificarRelacionZonasWSResponse_QNAME, ModificarRelacionZonasWSResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listTipoMovimientoWSResponse")
+    public JAXBElement<ListTipoMovimientoWSResponse> createListTipoMovimientoWSResponse(ListTipoMovimientoWSResponse value) {
+        return new JAXBElement<ListTipoMovimientoWSResponse>(_ListTipoMovimientoWSResponse_QNAME, ListTipoMovimientoWSResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Empresa }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TipoMovimiento }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "empresa")
-    public JAXBElement<Empresa> createEmpresa(Empresa value) {
-        return new JAXBElement<Empresa>(_Empresa_QNAME, Empresa.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CrearRelacionAlmacenesWS }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "crearRelacionAlmacenesWS")
-    public JAXBElement<CrearRelacionAlmacenesWS> createCrearRelacionAlmacenesWS(CrearRelacionAlmacenesWS value) {
-        return new JAXBElement<CrearRelacionAlmacenesWS>(_CrearRelacionAlmacenesWS_QNAME, CrearRelacionAlmacenesWS.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TipoZona }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "tipoZona")
-    public JAXBElement<TipoZona> createTipoZona(TipoZona value) {
-        return new JAXBElement<TipoZona>(_TipoZona_QNAME, TipoZona.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ModificarEstanteriaWS }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "modificarEstanteriaWS")
-    public JAXBElement<ModificarEstanteriaWS> createModificarEstanteriaWS(ModificarEstanteriaWS value) {
-        return new JAXBElement<ModificarEstanteriaWS>(_ModificarEstanteriaWS_QNAME, ModificarEstanteriaWS.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CrearListaZonaWizzardWSResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "crearListaZonaWizzardWSResponse")
-    public JAXBElement<CrearListaZonaWizzardWSResponse> createCrearListaZonaWizzardWSResponse(CrearListaZonaWizzardWSResponse value) {
-        return new JAXBElement<CrearListaZonaWizzardWSResponse>(_CrearListaZonaWizzardWSResponse_QNAME, CrearListaZonaWizzardWSResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ListaRelacionZonasWSResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listaRelacionZonasWSResponse")
-    public JAXBElement<ListaRelacionZonasWSResponse> createListaRelacionZonasWSResponse(ListaRelacionZonasWSResponse value) {
-        return new JAXBElement<ListaRelacionZonasWSResponse>(_ListaRelacionZonasWSResponse_QNAME, ListaRelacionZonasWSResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Warehouse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "warehouse")
-    public JAXBElement<Warehouse> createWarehouse(Warehouse value) {
-        return new JAXBElement<Warehouse>(_Warehouse_QNAME, Warehouse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CrearRelacionAlmacenesWSResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "crearRelacionAlmacenesWSResponse")
-    public JAXBElement<CrearRelacionAlmacenesWSResponse> createCrearRelacionAlmacenesWSResponse(CrearRelacionAlmacenesWSResponse value) {
-        return new JAXBElement<CrearRelacionAlmacenesWSResponse>(_CrearRelacionAlmacenesWSResponse_QNAME, CrearRelacionAlmacenesWSResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Zona }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "zona")
-    public JAXBElement<Zona> createZona(Zona value) {
-        return new JAXBElement<Zona>(_Zona_QNAME, Zona.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ListaRelacionZonasWS }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listaRelacionZonasWS")
-    public JAXBElement<ListaRelacionZonasWS> createListaRelacionZonasWS(ListaRelacionZonasWS value) {
-        return new JAXBElement<ListaRelacionZonasWS>(_ListaRelacionZonasWS_QNAME, ListaRelacionZonasWS.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CrearZonaWSResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "crearZonaWSResponse")
-    public JAXBElement<CrearZonaWSResponse> createCrearZonaWSResponse(CrearZonaWSResponse value) {
-        return new JAXBElement<CrearZonaWSResponse>(_CrearZonaWSResponse_QNAME, CrearZonaWSResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ListaAlmacenesWSResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listaAlmacenesWSResponse")
-    public JAXBElement<ListaAlmacenesWSResponse> createListaAlmacenesWSResponse(ListaAlmacenesWSResponse value) {
-        return new JAXBElement<ListaAlmacenesWSResponse>(_ListaAlmacenesWSResponse_QNAME, ListaAlmacenesWSResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ListaRelacionAlmacenesWSResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listaRelacionAlmacenesWSResponse")
-    public JAXBElement<ListaRelacionAlmacenesWSResponse> createListaRelacionAlmacenesWSResponse(ListaRelacionAlmacenesWSResponse value) {
-        return new JAXBElement<ListaRelacionAlmacenesWSResponse>(_ListaRelacionAlmacenesWSResponse_QNAME, ListaRelacionAlmacenesWSResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ModificarZonaWS }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "modificarZonaWS")
-    public JAXBElement<ModificarZonaWS> createModificarZonaWS(ModificarZonaWS value) {
-        return new JAXBElement<ModificarZonaWS>(_ModificarZonaWS_QNAME, ModificarZonaWS.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Cargo }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "cargo")
-    public JAXBElement<Cargo> createCargo(Cargo value) {
-        return new JAXBElement<Cargo>(_Cargo_QNAME, Cargo.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SaveAditionaInformationAlmacenWSResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "saveAditionaInformationAlmacenWSResponse")
-    public JAXBElement<SaveAditionaInformationAlmacenWSResponse> createSaveAditionaInformationAlmacenWSResponse(SaveAditionaInformationAlmacenWSResponse value) {
-        return new JAXBElement<SaveAditionaInformationAlmacenWSResponse>(_SaveAditionaInformationAlmacenWSResponse_QNAME, SaveAditionaInformationAlmacenWSResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaAlmacenPorNumeroAlmacenWSResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaAlmacenPorNumeroAlmacenWSResponse")
-    public JAXBElement<ConsultaAlmacenPorNumeroAlmacenWSResponse> createConsultaAlmacenPorNumeroAlmacenWSResponse(ConsultaAlmacenPorNumeroAlmacenWSResponse value) {
-        return new JAXBElement<ConsultaAlmacenPorNumeroAlmacenWSResponse>(_ConsultaAlmacenPorNumeroAlmacenWSResponse_QNAME, ConsultaAlmacenPorNumeroAlmacenWSResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CrearEstanteriaWSResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "crearEstanteriaWSResponse")
-    public JAXBElement<CrearEstanteriaWSResponse> createCrearEstanteriaWSResponse(CrearEstanteriaWSResponse value) {
-        return new JAXBElement<CrearEstanteriaWSResponse>(_CrearEstanteriaWSResponse_QNAME, CrearEstanteriaWSResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ModificarRelacionZonasWS }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "modificarRelacionZonasWS")
-    public JAXBElement<ModificarRelacionZonasWS> createModificarRelacionZonasWS(ModificarRelacionZonasWS value) {
-        return new JAXBElement<ModificarRelacionZonasWS>(_ModificarRelacionZonasWS_QNAME, ModificarRelacionZonasWS.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SaveAditionaInformationAlmacenWS }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "saveAditionaInformationAlmacenWS")
-    public JAXBElement<SaveAditionaInformationAlmacenWS> createSaveAditionaInformationAlmacenWS(SaveAditionaInformationAlmacenWS value) {
-        return new JAXBElement<SaveAditionaInformationAlmacenWS>(_SaveAditionaInformationAlmacenWS_QNAME, SaveAditionaInformationAlmacenWS.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaEstanteriaPorEstanteriaIdWS }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaEstanteriaPorEstanteriaIdWS")
-    public JAXBElement<ConsultaEstanteriaPorEstanteriaIdWS> createConsultaEstanteriaPorEstanteriaIdWS(ConsultaEstanteriaPorEstanteriaIdWS value) {
-        return new JAXBElement<ConsultaEstanteriaPorEstanteriaIdWS>(_ConsultaEstanteriaPorEstanteriaIdWS_QNAME, ConsultaEstanteriaPorEstanteriaIdWS.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CrearListaZonaWizzardWS }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "crearListaZonaWizzardWS")
-    public JAXBElement<CrearListaZonaWizzardWS> createCrearListaZonaWizzardWS(CrearListaZonaWizzardWS value) {
-        return new JAXBElement<CrearListaZonaWizzardWS>(_CrearListaZonaWizzardWS_QNAME, CrearListaZonaWizzardWS.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CrearZonaWS }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "crearZonaWS")
-    public JAXBElement<CrearZonaWS> createCrearZonaWS(CrearZonaWS value) {
-        return new JAXBElement<CrearZonaWS>(_CrearZonaWS_QNAME, CrearZonaWS.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ListaZonasWSResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listaZonasWSResponse")
-    public JAXBElement<ListaZonasWSResponse> createListaZonasWSResponse(ListaZonasWSResponse value) {
-        return new JAXBElement<ListaZonasWSResponse>(_ListaZonasWSResponse_QNAME, ListaZonasWSResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ListaAlmacenesWS }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listaAlmacenesWS")
-    public JAXBElement<ListaAlmacenesWS> createListaAlmacenesWS(ListaAlmacenesWS value) {
-        return new JAXBElement<ListaAlmacenesWS>(_ListaAlmacenesWS_QNAME, ListaAlmacenesWS.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ModificarEstanteriaWSResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "modificarEstanteriaWSResponse")
-    public JAXBElement<ModificarEstanteriaWSResponse> createModificarEstanteriaWSResponse(ModificarEstanteriaWSResponse value) {
-        return new JAXBElement<ModificarEstanteriaWSResponse>(_ModificarEstanteriaWSResponse_QNAME, ModificarEstanteriaWSResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ModificarZonaWSResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "modificarZonaWSResponse")
-    public JAXBElement<ModificarZonaWSResponse> createModificarZonaWSResponse(ModificarZonaWSResponse value) {
-        return new JAXBElement<ModificarZonaWSResponse>(_ModificarZonaWSResponse_QNAME, ModificarZonaWSResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "tipoMovimiento")
+    public JAXBElement<TipoMovimiento> createTipoMovimiento(TipoMovimiento value) {
+        return new JAXBElement<TipoMovimiento>(_TipoMovimiento_QNAME, TipoMovimiento.class, null, value);
     }
 
     /**
@@ -892,48 +480,57 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaEstanteriaPorEstanteriaIdWSResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GenerarMovimientoWSResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaEstanteriaPorEstanteriaIdWSResponse")
-    public JAXBElement<ConsultaEstanteriaPorEstanteriaIdWSResponse> createConsultaEstanteriaPorEstanteriaIdWSResponse(ConsultaEstanteriaPorEstanteriaIdWSResponse value) {
-        return new JAXBElement<ConsultaEstanteriaPorEstanteriaIdWSResponse>(_ConsultaEstanteriaPorEstanteriaIdWSResponse_QNAME, ConsultaEstanteriaPorEstanteriaIdWSResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "generarMovimientoWSResponse")
+    public JAXBElement<GenerarMovimientoWSResponse> createGenerarMovimientoWSResponse(GenerarMovimientoWSResponse value) {
+        return new JAXBElement<GenerarMovimientoWSResponse>(_GenerarMovimientoWSResponse_QNAME, GenerarMovimientoWSResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CrearEstanteriaWS }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link PurchaseOrder }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "crearEstanteriaWS")
-    public JAXBElement<CrearEstanteriaWS> createCrearEstanteriaWS(CrearEstanteriaWS value) {
-        return new JAXBElement<CrearEstanteriaWS>(_CrearEstanteriaWS_QNAME, CrearEstanteriaWS.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "purchaseOrder")
+    public JAXBElement<PurchaseOrder> createPurchaseOrder(PurchaseOrder value) {
+        return new JAXBElement<PurchaseOrder>(_PurchaseOrder_QNAME, PurchaseOrder.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ModificarRelacionAlmacenesWS }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListMovimientosByTipoMovimientoWSResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "modificarRelacionAlmacenesWS")
-    public JAXBElement<ModificarRelacionAlmacenesWS> createModificarRelacionAlmacenesWS(ModificarRelacionAlmacenesWS value) {
-        return new JAXBElement<ModificarRelacionAlmacenesWS>(_ModificarRelacionAlmacenesWS_QNAME, ModificarRelacionAlmacenesWS.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listMovimientosByTipoMovimientoWSResponse")
+    public JAXBElement<ListMovimientosByTipoMovimientoWSResponse> createListMovimientosByTipoMovimientoWSResponse(ListMovimientosByTipoMovimientoWSResponse value) {
+        return new JAXBElement<ListMovimientosByTipoMovimientoWSResponse>(_ListMovimientosByTipoMovimientoWSResponse_QNAME, ListMovimientosByTipoMovimientoWSResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaAlmacenPorNumeroAlmacenWS }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Empresa }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaAlmacenPorNumeroAlmacenWS")
-    public JAXBElement<ConsultaAlmacenPorNumeroAlmacenWS> createConsultaAlmacenPorNumeroAlmacenWS(ConsultaAlmacenPorNumeroAlmacenWS value) {
-        return new JAXBElement<ConsultaAlmacenPorNumeroAlmacenWS>(_ConsultaAlmacenPorNumeroAlmacenWS_QNAME, ConsultaAlmacenPorNumeroAlmacenWS.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "empresa")
+    public JAXBElement<Empresa> createEmpresa(Empresa value) {
+        return new JAXBElement<Empresa>(_Empresa_QNAME, Empresa.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ListTipoZonaWSResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ModificarTerceroWS }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listTipoZonaWSResponse")
-    public JAXBElement<ListTipoZonaWSResponse> createListTipoZonaWSResponse(ListTipoZonaWSResponse value) {
-        return new JAXBElement<ListTipoZonaWSResponse>(_ListTipoZonaWSResponse_QNAME, ListTipoZonaWSResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "modificarTerceroWS")
+    public JAXBElement<ModificarTerceroWS> createModificarTerceroWS(ModificarTerceroWS value) {
+        return new JAXBElement<ModificarTerceroWS>(_ModificarTerceroWS_QNAME, ModificarTerceroWS.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaTerceroPorTerceroIdWSResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaTerceroPorTerceroIdWSResponse")
+    public JAXBElement<ConsultaTerceroPorTerceroIdWSResponse> createConsultaTerceroPorTerceroIdWSResponse(ConsultaTerceroPorTerceroIdWSResponse value) {
+        return new JAXBElement<ConsultaTerceroPorTerceroIdWSResponse>(_ConsultaTerceroPorTerceroIdWSResponse_QNAME, ConsultaTerceroPorTerceroIdWSResponse.class, null, value);
     }
 
     /**
@@ -946,12 +543,39 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ListaAlmacenesRelacionadosByAlmacenIdIdWS }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Product }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listaAlmacenesRelacionadosByAlmacenIdIdWS")
-    public JAXBElement<ListaAlmacenesRelacionadosByAlmacenIdIdWS> createListaAlmacenesRelacionadosByAlmacenIdIdWS(ListaAlmacenesRelacionadosByAlmacenIdIdWS value) {
-        return new JAXBElement<ListaAlmacenesRelacionadosByAlmacenIdIdWS>(_ListaAlmacenesRelacionadosByAlmacenIdIdWS_QNAME, ListaAlmacenesRelacionadosByAlmacenIdIdWS.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "product")
+    public JAXBElement<Product> createProduct(Product value) {
+        return new JAXBElement<Product>(_Product_QNAME, Product.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Tercero }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "tercero")
+    public JAXBElement<Tercero> createTercero(Tercero value) {
+        return new JAXBElement<Tercero>(_Tercero_QNAME, Tercero.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link TipoZona }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "tipoZona")
+    public JAXBElement<TipoZona> createTipoZona(TipoZona value) {
+        return new JAXBElement<TipoZona>(_TipoZona_QNAME, TipoZona.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaProveedorPorProveedorIdWSResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaProveedorPorProveedorIdWSResponse")
+    public JAXBElement<ConsultaProveedorPorProveedorIdWSResponse> createConsultaProveedorPorProveedorIdWSResponse(ConsultaProveedorPorProveedorIdWSResponse value) {
+        return new JAXBElement<ConsultaProveedorPorProveedorIdWSResponse>(_ConsultaProveedorPorProveedorIdWSResponse_QNAME, ConsultaProveedorPorProveedorIdWSResponse.class, null, value);
     }
 
     /**
@@ -964,48 +588,84 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaZonaPorZonaIdWS }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link CrearProductoUbicacionWS }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaZonaPorZonaIdWS")
-    public JAXBElement<ConsultaZonaPorZonaIdWS> createConsultaZonaPorZonaIdWS(ConsultaZonaPorZonaIdWS value) {
-        return new JAXBElement<ConsultaZonaPorZonaIdWS>(_ConsultaZonaPorZonaIdWS_QNAME, ConsultaZonaPorZonaIdWS.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "crearProductoUbicacionWS")
+    public JAXBElement<CrearProductoUbicacionWS> createCrearProductoUbicacionWS(CrearProductoUbicacionWS value) {
+        return new JAXBElement<CrearProductoUbicacionWS>(_CrearProductoUbicacionWS_QNAME, CrearProductoUbicacionWS.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ModificarRelacionAlmacenesWSResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaProductoUbicacionsByIdProductoUbicacionWSResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "modificarRelacionAlmacenesWSResponse")
-    public JAXBElement<ModificarRelacionAlmacenesWSResponse> createModificarRelacionAlmacenesWSResponse(ModificarRelacionAlmacenesWSResponse value) {
-        return new JAXBElement<ModificarRelacionAlmacenesWSResponse>(_ModificarRelacionAlmacenesWSResponse_QNAME, ModificarRelacionAlmacenesWSResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaProductoUbicacionsByIdProductoUbicacionWSResponse")
+    public JAXBElement<ConsultaProductoUbicacionsByIdProductoUbicacionWSResponse> createConsultaProductoUbicacionsByIdProductoUbicacionWSResponse(ConsultaProductoUbicacionsByIdProductoUbicacionWSResponse value) {
+        return new JAXBElement<ConsultaProductoUbicacionsByIdProductoUbicacionWSResponse>(_ConsultaProductoUbicacionsByIdProductoUbicacionWSResponse_QNAME, ConsultaProductoUbicacionsByIdProductoUbicacionWSResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaAlmacenPorAlmacenIdWS }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Catalogue }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaAlmacenPorAlmacenIdWS")
-    public JAXBElement<ConsultaAlmacenPorAlmacenIdWS> createConsultaAlmacenPorAlmacenIdWS(ConsultaAlmacenPorAlmacenIdWS value) {
-        return new JAXBElement<ConsultaAlmacenPorAlmacenIdWS>(_ConsultaAlmacenPorAlmacenIdWS_QNAME, ConsultaAlmacenPorAlmacenIdWS.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "catalogue")
+    public JAXBElement<Catalogue> createCatalogue(Catalogue value) {
+        return new JAXBElement<Catalogue>(_Catalogue_QNAME, Catalogue.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ListaEstanteriasWS }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link CrearProductoUbicacionWSResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listaEstanteriasWS")
-    public JAXBElement<ListaEstanteriasWS> createListaEstanteriasWS(ListaEstanteriasWS value) {
-        return new JAXBElement<ListaEstanteriasWS>(_ListaEstanteriasWS_QNAME, ListaEstanteriasWS.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "crearProductoUbicacionWSResponse")
+    public JAXBElement<CrearProductoUbicacionWSResponse> createCrearProductoUbicacionWSResponse(CrearProductoUbicacionWSResponse value) {
+        return new JAXBElement<CrearProductoUbicacionWSResponse>(_CrearProductoUbicacionWSResponse_QNAME, CrearProductoUbicacionWSResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ListaEstanteriasWSResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Warehouse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listaEstanteriasWSResponse")
-    public JAXBElement<ListaEstanteriasWSResponse> createListaEstanteriasWSResponse(ListaEstanteriasWSResponse value) {
-        return new JAXBElement<ListaEstanteriasWSResponse>(_ListaEstanteriasWSResponse_QNAME, ListaEstanteriasWSResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "warehouse")
+    public JAXBElement<Warehouse> createWarehouse(Warehouse value) {
+        return new JAXBElement<Warehouse>(_Warehouse_QNAME, Warehouse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CrearTerceroWSResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "crearTerceroWSResponse")
+    public JAXBElement<CrearTerceroWSResponse> createCrearTerceroWSResponse(CrearTerceroWSResponse value) {
+        return new JAXBElement<CrearTerceroWSResponse>(_CrearTerceroWSResponse_QNAME, CrearTerceroWSResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GenerarMovimientoWS }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "generarMovimientoWS")
+    public JAXBElement<GenerarMovimientoWS> createGenerarMovimientoWS(GenerarMovimientoWS value) {
+        return new JAXBElement<GenerarMovimientoWS>(_GenerarMovimientoWS_QNAME, GenerarMovimientoWS.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Zona }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "zona")
+    public JAXBElement<Zona> createZona(Zona value) {
+        return new JAXBElement<Zona>(_Zona_QNAME, Zona.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaPurchaseOrderPorPurchaseOrderIdWS }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaPurchaseOrderPorPurchaseOrderIdWS")
+    public JAXBElement<ConsultaPurchaseOrderPorPurchaseOrderIdWS> createConsultaPurchaseOrderPorPurchaseOrderIdWS(ConsultaPurchaseOrderPorPurchaseOrderIdWS value) {
+        return new JAXBElement<ConsultaPurchaseOrderPorPurchaseOrderIdWS>(_ConsultaPurchaseOrderPorPurchaseOrderIdWS_QNAME, ConsultaPurchaseOrderPorPurchaseOrderIdWS.class, null, value);
     }
 
     /**
@@ -1018,102 +678,120 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaZonaPorZonaIdWSResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Provider }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaZonaPorZonaIdWSResponse")
-    public JAXBElement<ConsultaZonaPorZonaIdWSResponse> createConsultaZonaPorZonaIdWSResponse(ConsultaZonaPorZonaIdWSResponse value) {
-        return new JAXBElement<ConsultaZonaPorZonaIdWSResponse>(_ConsultaZonaPorZonaIdWSResponse_QNAME, ConsultaZonaPorZonaIdWSResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "provider")
+    public JAXBElement<Provider> createProvider(Provider value) {
+        return new JAXBElement<Provider>(_Provider_QNAME, Provider.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ListaRelacionAlmacenesWS }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaProveedorPorProveedorIdWS }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listaRelacionAlmacenesWS")
-    public JAXBElement<ListaRelacionAlmacenesWS> createListaRelacionAlmacenesWS(ListaRelacionAlmacenesWS value) {
-        return new JAXBElement<ListaRelacionAlmacenesWS>(_ListaRelacionAlmacenesWS_QNAME, ListaRelacionAlmacenesWS.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaProveedorPorProveedorIdWS")
+    public JAXBElement<ConsultaProveedorPorProveedorIdWS> createConsultaProveedorPorProveedorIdWS(ConsultaProveedorPorProveedorIdWS value) {
+        return new JAXBElement<ConsultaProveedorPorProveedorIdWS>(_ConsultaProveedorPorProveedorIdWS_QNAME, ConsultaProveedorPorProveedorIdWS.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TipoAlmacen }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaTerceroPorTerceroIdWS }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "tipoAlmacen")
-    public JAXBElement<TipoAlmacen> createTipoAlmacen(TipoAlmacen value) {
-        return new JAXBElement<TipoAlmacen>(_TipoAlmacen_QNAME, TipoAlmacen.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaTerceroPorTerceroIdWS")
+    public JAXBElement<ConsultaTerceroPorTerceroIdWS> createConsultaTerceroPorTerceroIdWS(ConsultaTerceroPorTerceroIdWS value) {
+        return new JAXBElement<ConsultaTerceroPorTerceroIdWS>(_ConsultaTerceroPorTerceroIdWS_QNAME, ConsultaTerceroPorTerceroIdWS.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RelacionZonas }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Cargo }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "relacionZonas")
-    public JAXBElement<RelacionZonas> createRelacionZonas(RelacionZonas value) {
-        return new JAXBElement<RelacionZonas>(_RelacionZonas_QNAME, RelacionZonas.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "cargo")
+    public JAXBElement<Cargo> createCargo(Cargo value) {
+        return new JAXBElement<Cargo>(_Cargo_QNAME, Cargo.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaAlmacenPorAlmacenIdWSResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ModificarProductoUbicacionWSResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaAlmacenPorAlmacenIdWSResponse")
-    public JAXBElement<ConsultaAlmacenPorAlmacenIdWSResponse> createConsultaAlmacenPorAlmacenIdWSResponse(ConsultaAlmacenPorAlmacenIdWSResponse value) {
-        return new JAXBElement<ConsultaAlmacenPorAlmacenIdWSResponse>(_ConsultaAlmacenPorAlmacenIdWSResponse_QNAME, ConsultaAlmacenPorAlmacenIdWSResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "modificarProductoUbicacionWSResponse")
+    public JAXBElement<ModificarProductoUbicacionWSResponse> createModificarProductoUbicacionWSResponse(ModificarProductoUbicacionWSResponse value) {
+        return new JAXBElement<ModificarProductoUbicacionWSResponse>(_ModificarProductoUbicacionWSResponse_QNAME, ModificarProductoUbicacionWSResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CrearAlmacenWS }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link CrearTerceroWS }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "crearAlmacenWS")
-    public JAXBElement<CrearAlmacenWS> createCrearAlmacenWS(CrearAlmacenWS value) {
-        return new JAXBElement<CrearAlmacenWS>(_CrearAlmacenWS_QNAME, CrearAlmacenWS.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "crearTerceroWS")
+    public JAXBElement<CrearTerceroWS> createCrearTerceroWS(CrearTerceroWS value) {
+        return new JAXBElement<CrearTerceroWS>(_CrearTerceroWS_QNAME, CrearTerceroWS.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ListaZonasWS }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ModificarProductoUbicacionWS }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listaZonasWS")
-    public JAXBElement<ListaZonasWS> createListaZonasWS(ListaZonasWS value) {
-        return new JAXBElement<ListaZonasWS>(_ListaZonasWS_QNAME, ListaZonasWS.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "modificarProductoUbicacionWS")
+    public JAXBElement<ModificarProductoUbicacionWS> createModificarProductoUbicacionWS(ModificarProductoUbicacionWS value) {
+        return new JAXBElement<ModificarProductoUbicacionWS>(_ModificarProductoUbicacionWS_QNAME, ModificarProductoUbicacionWS.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CrearRelacionZonasWSResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListProductoUbicacionWS }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "crearRelacionZonasWSResponse")
-    public JAXBElement<CrearRelacionZonasWSResponse> createCrearRelacionZonasWSResponse(CrearRelacionZonasWSResponse value) {
-        return new JAXBElement<CrearRelacionZonasWSResponse>(_CrearRelacionZonasWSResponse_QNAME, CrearRelacionZonasWSResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listProductoUbicacionWS")
+    public JAXBElement<ListProductoUbicacionWS> createListProductoUbicacionWS(ListProductoUbicacionWS value) {
+        return new JAXBElement<ListProductoUbicacionWS>(_ListProductoUbicacionWS_QNAME, ListProductoUbicacionWS.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListMovimientosByTipoMovimientoWS }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listaAlmacenesRelacionadosByAlmacenIdIdWSResponse")
-    public JAXBElement<ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse> createListaAlmacenesRelacionadosByAlmacenIdIdWSResponse(ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse value) {
-        return new JAXBElement<ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse>(_ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse_QNAME, ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listMovimientosByTipoMovimientoWS")
+    public JAXBElement<ListMovimientosByTipoMovimientoWS> createListMovimientosByTipoMovimientoWS(ListMovimientosByTipoMovimientoWS value) {
+        return new JAXBElement<ListMovimientosByTipoMovimientoWS>(_ListMovimientosByTipoMovimientoWS_QNAME, ListMovimientosByTipoMovimientoWS.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ModificarAlmacenWS }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListProductoUbicacionWSResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "modificarAlmacenWS")
-    public JAXBElement<ModificarAlmacenWS> createModificarAlmacenWS(ModificarAlmacenWS value) {
-        return new JAXBElement<ModificarAlmacenWS>(_ModificarAlmacenWS_QNAME, ModificarAlmacenWS.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listProductoUbicacionWSResponse")
+    public JAXBElement<ListProductoUbicacionWSResponse> createListProductoUbicacionWSResponse(ListProductoUbicacionWSResponse value) {
+        return new JAXBElement<ListProductoUbicacionWSResponse>(_ListProductoUbicacionWSResponse_QNAME, ListProductoUbicacionWSResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ModificarAlmacenWSResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListTipoMovimientoWS }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "modificarAlmacenWSResponse")
-    public JAXBElement<ModificarAlmacenWSResponse> createModificarAlmacenWSResponse(ModificarAlmacenWSResponse value) {
-        return new JAXBElement<ModificarAlmacenWSResponse>(_ModificarAlmacenWSResponse_QNAME, ModificarAlmacenWSResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listTipoMovimientoWS")
+    public JAXBElement<ListTipoMovimientoWS> createListTipoMovimientoWS(ListTipoMovimientoWS value) {
+        return new JAXBElement<ListTipoMovimientoWS>(_ListTipoMovimientoWS_QNAME, ListTipoMovimientoWS.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaProductoUbicacionsByIdProductoUbicacionWS }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "consultaProductoUbicacionsByIdProductoUbicacionWS")
+    public JAXBElement<ConsultaProductoUbicacionsByIdProductoUbicacionWS> createConsultaProductoUbicacionsByIdProductoUbicacionWS(ConsultaProductoUbicacionsByIdProductoUbicacionWS value) {
+        return new JAXBElement<ConsultaProductoUbicacionsByIdProductoUbicacionWS>(_ConsultaProductoUbicacionsByIdProductoUbicacionWS_QNAME, ConsultaProductoUbicacionsByIdProductoUbicacionWS.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ModificarTerceroWSResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "modificarTerceroWSResponse")
+    public JAXBElement<ModificarTerceroWSResponse> createModificarTerceroWSResponse(ModificarTerceroWSResponse value) {
+        return new JAXBElement<ModificarTerceroWSResponse>(_ModificarTerceroWSResponse_QNAME, ModificarTerceroWSResponse.class, null, value);
     }
 
 }
