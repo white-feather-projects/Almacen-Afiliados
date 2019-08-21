@@ -44,6 +44,7 @@ import com.cbp3.ws.cbp.service.RelacionAlmacenes;
 import com.cbp3.ws.cbp.service.RelacionZonas;
 import com.cbp3.ws.cbp.service.SaveAditionaInformationAlmacenWSResponse;
 import com.cbp3.ws.cbp.service.Solicitud;
+import com.cbp3.ws.cbp.service.TipoZona;
 import com.cbp3.ws.cbp.service.Warehouse;
 import com.cbp3.ws.cbp.service.Zona;
 
@@ -463,6 +464,32 @@ public class AlmacenService extends Util implements AlmacenDAO{
 		}
 		
 		return respuestaZona;
+	}
+	
+	////////////////////////////////////
+	//Methodo para listar Zonas...
+	public java.util.List<TipoZona> listaTipoZonas() {
+		
+		//instanciar Objeto para retorno....
+		java.util.List<TipoZona> respuestaTipoZona = new ArrayList<>();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AlmacenServiceWS_Service ws = new AlmacenServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AlmacenServiceWS?WSDL"));
+			AlmacenServiceWS WSmethod = ws.getAlmacenServiceWSPort();
+		
+			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
+			respuestaTipoZona = WSmethod.listTipoZonaWS();
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaTipoZona;
 	}
 	
 	////////////////////////////////////
