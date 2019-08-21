@@ -30,7 +30,9 @@ import javax.xml.bind.annotation.XmlType;
     "estanteriaId"
 })
 public class ConsultaEstanteriaPorEstanteriaIdWS {
-
+	
+	// para consultar una Estanteria por ID, debería pedirme: (ID_Almacén + ID_Zona + ID_estanteria) que serian los campos que identificarian las Estanterias
+	
     protected long estanteriaId;
 
     /**

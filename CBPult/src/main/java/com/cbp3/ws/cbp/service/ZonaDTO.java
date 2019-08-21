@@ -49,17 +49,17 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class ZonaDTO {
 
-    protected Long codigoUsuarioModifica;
+    protected Long codigoUsuarioModifica; // vacio
     protected String descripcion;
-    protected Empleado encargadoZona;
+    protected Empleado encargadoZona; // quemar el objeto que me dió Jose
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar fechaCargaDatos;
+    protected XMLGregorianCalendar fechaCargaDatos; // vacio
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar fechaHoraModificacion;
-    protected long idWarehouse;
-    protected TipoZona tipoZonaId;
-    protected long zonaId;
-    protected String zonaNombre;
+    protected XMLGregorianCalendar fechaHoraModificacion; //vacio
+    protected long idWarehouse; // lo traigo de la creación del Almacén que retornará un OK + el ID en la Tabla
+    protected TipoZona tipoZonaId; 
+    protected long zonaId; // este ID debería ser Automático
+    protected String zonaNombre; // Descripción de la Zona
 
     /**
      * Obtiene el valor de la propiedad codigoUsuarioModifica.

@@ -49,14 +49,14 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class ModificarAlmacenWS {
 
-    protected String numeroAlmacen;
-    protected String nombreAlmacen;
-    protected long identificacionOficina;
-    protected long identificacionProducto;
-    protected long codigoUsuarioModifica;
+    protected String numeroAlmacen;  // no va, deberia hacer el cambio desde Backend
+    protected String nombreAlmacen; // esto es la Descripción
+    protected long identificacionOficina; // va en 1 para pruebas
+    protected long identificacionProducto; // no va
+    protected long codigoUsuarioModifica; // vacio
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar fechaHoraModifica;
-    protected long tipoAlmacen;
+    protected XMLGregorianCalendar fechaHoraModifica; // vacio
+    protected long tipoAlmacen; 
     protected String direccion;
     protected long gerenteSucursal;
 

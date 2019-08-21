@@ -44,12 +44,12 @@ import javax.xml.bind.annotation.XmlType;
 public class AlmacenDTO {
 
     protected String direccion;
-    protected long gerenteSucursal;
-    protected long officeId;
-    protected long productId;
+    protected long gerenteSucursal; // id gerente
+    protected long officeId; // enviar 1
+    protected long productId; // no va
     protected long tipoAlmacenId;
-    protected String warehouseName;
-    protected String warehouseNumber;
+    protected String warehouseName; // Descripción
+    protected String warehouseNumber; // Auto Generado (no se envía desde aquí, se define desde Backend)
 
     /**
      * Obtiene el valor de la propiedad direccion.

@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class CrearEstanteriaWS {
 
-    protected String descripcion;
+    protected String descripcion; // pasar Status a inactivo por si este campo se usa despúes
     protected long zonaId;
     protected long modulos;
     protected long niveles;

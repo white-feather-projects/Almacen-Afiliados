@@ -41,9 +41,9 @@ public class CrearRelacionZonasWS {
 
     protected Zona zonaActualId;
     protected Zona zonaDestinoId;
-    protected String comentarios;
+    protected String comentarios; // no lo voy a usar aún, se puede enviar Null?
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar fechaCargaDatos;
+    protected XMLGregorianCalendar fechaCargaDatos; // vacio
 
     /**
      * Obtiene el valor de la propiedad zonaActualId.

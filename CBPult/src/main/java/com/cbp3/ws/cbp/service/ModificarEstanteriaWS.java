@@ -45,14 +45,16 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class ModificarEstanteriaWS {
 
+	// Tambien deberia pedirme el ID_Almacén
+	
     protected long estanteriaId;
     protected String descripcion;
     protected long zonaId;
     protected long modulos;
     protected long niveles;
-    protected long codigoUsuarioModifica;
+    protected long codigoUsuarioModifica; // vacio
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar fechaHoraModificacion;
+    protected XMLGregorianCalendar fechaHoraModificacion; // vacio
 
     /**
      * Obtiene el valor de la propiedad estanteriaId.

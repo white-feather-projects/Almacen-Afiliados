@@ -86,7 +86,7 @@ public class AlmacenController {
 		return respuesta;
 	}
 	
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////*
 	
 	// identificacionProducto; // Debe ser eliminado este atrubuto
 	// Solo se Cambian: Codigo, Tipo, Descripción, Encargado, Ubicación (el resto va quemado)
@@ -101,8 +101,9 @@ public class AlmacenController {
 		return respuesta;
 	}
 	
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////*
 	
+	// Retornará el Id en la Tabla del Almacén
 	@RequestMapping(value = "/crearAlmacen", produces = { "application/json" })
 	public @ResponseBody CrearAlmacenWSResponse crearAlmacen(@RequestBody CrearAlmacenWS CrearAlmacenWS) {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
@@ -114,8 +115,6 @@ public class AlmacenController {
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	// No hace falta un Id de Estanteria? o Es Autoincrementable en Base de Datos?
 	
 	@RequestMapping(value = "/crearEstanteria", produces = { "application/json" })
 	public @ResponseBody CrearEstanteriaWSResponse crearEstanteria(@RequestBody CrearEstanteriaWS CrearEstanteriaWS) {
@@ -215,8 +214,6 @@ public class AlmacenController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	
-	
 	@RequestMapping(value = "/listaAlmacenes", produces = { "application/json" })
 	public @ResponseBody java.util.List<Warehouse> listaAlmacenes() {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
@@ -228,7 +225,7 @@ public class AlmacenController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	// La consulta de la Lista de Estanterias de una Zona me debe pedir el Id de una Zona (para listar las Estanterias de esta especificamente)
+	// La consulta de la Lista de Estanterias de una Zona me debe pedir el Id de una Zona y del Almacén (para listar las Estanterias de esta Zona especificamente)
 	
 	@RequestMapping(value = "/listaEstanterias", produces = { "application/json" }) 
 	public @ResponseBody java.util.List<Estanteria> listaEstanterias() {

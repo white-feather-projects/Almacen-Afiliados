@@ -43,10 +43,10 @@ public class ModificarRelacionZonasWS {
 
     protected Zona zonaActualId;
     protected Zona zonaDestinoId;
-    protected String comentarios;
-    protected long codigoUsuarioModifica;
+    protected String comentarios; // No se va a usar por ahora
+    protected long codigoUsuarioModifica; // vacio
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar fechaHoraModifica;
+    protected XMLGregorianCalendar fechaHoraModifica; // vacio
 
     /**
      * Obtiene el valor de la propiedad zonaActualId.
