@@ -279,18 +279,6 @@ public class AlmacenController {
 		return respuesta;
 	}
 	
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	// la consulta de la Lista de Tipo Zonas
-	
-	@RequestMapping(value = "/listaZonas", produces = { "application/json" }) 
-	public @ResponseBody java.util.List<TipoZona> listaTipoZonas() {
-		//System.out.println("Entro createCient: " + client.getClientFirstName());
-		java.util.List<TipoZona> respuesta = new ArrayList<>();
-		respuesta = almacenMethods.listaTipoZonas();
-		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
-		return respuesta;
-	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
