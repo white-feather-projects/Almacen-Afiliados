@@ -21,8 +21,10 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="codigo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="idClientCreado" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="idObjetoCreadoCreado" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="listErroresDTO" type="{http://service.cbp.ws.cbp3.com/}erroresDTO" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="listZonas" type="{http://service.cbp.ws.cbp3.com/}zona" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="nombreObjetoCreadoCreado" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -35,8 +37,10 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "respuestaDTO", propOrder = {
     "codigo",
     "descripcion",
-    "idClientCreado",
-    "listErroresDTO"
+    "idObjetoCreadoCreado",
+    "listErroresDTO",
+    "listZonas",
+    "nombreObjetoCreadoCreado"
 })
 public class RespuestaDTO
     extends BdsUtil
@@ -44,9 +48,12 @@ public class RespuestaDTO
 
     protected String codigo;
     protected String descripcion;
-    protected long idClientCreado;
+    protected long idObjetoCreadoCreado;
     @XmlElement(nillable = true)
     protected List<ErroresDTO> listErroresDTO;
+    @XmlElement(nillable = true)
+    protected List<Zona> listZonas;
+    protected String nombreObjetoCreadoCreado;
 
     /**
      * Obtiene el valor de la propiedad codigo.
@@ -97,19 +104,19 @@ public class RespuestaDTO
     }
 
     /**
-     * Obtiene el valor de la propiedad idClientCreado.
+     * Obtiene el valor de la propiedad idObjetoCreadoCreado.
      * 
      */
-    public long getIdClientCreado() {
-        return idClientCreado;
+    public long getIdObjetoCreadoCreado() {
+        return idObjetoCreadoCreado;
     }
 
     /**
-     * Define el valor de la propiedad idClientCreado.
+     * Define el valor de la propiedad idObjetoCreadoCreado.
      * 
      */
-    public void setIdClientCreado(long value) {
-        this.idClientCreado = value;
+    public void setIdObjetoCreadoCreado(long value) {
+        this.idObjetoCreadoCreado = value;
     }
 
     /**
@@ -139,6 +146,59 @@ public class RespuestaDTO
             listErroresDTO = new ArrayList<ErroresDTO>();
         }
         return this.listErroresDTO;
+    }
+
+    /**
+     * Gets the value of the listZonas property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the listZonas property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getListZonas().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Zona }
+     * 
+     * 
+     */
+    public List<Zona> getListZonas() {
+        if (listZonas == null) {
+            listZonas = new ArrayList<Zona>();
+        }
+        return this.listZonas;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad nombreObjetoCreadoCreado.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNombreObjetoCreadoCreado() {
+        return nombreObjetoCreadoCreado;
+    }
+
+    /**
+     * Define el valor de la propiedad nombreObjetoCreadoCreado.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNombreObjetoCreadoCreado(String value) {
+        this.nombreObjetoCreadoCreado = value;
     }
 
 }

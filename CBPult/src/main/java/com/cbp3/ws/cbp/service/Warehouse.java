@@ -25,7 +25,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="gerenteSucursal" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="idWarehouse" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="officeId" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="productId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="tipoAlmacenId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="warehouseName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="warehouseNumber" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -46,7 +45,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "gerenteSucursal",
     "idWarehouse",
     "officeId",
-    "productId",
     "tipoAlmacenId",
     "warehouseName",
     "warehouseNumber"
@@ -62,7 +60,6 @@ public class Warehouse {
     protected long gerenteSucursal;
     protected Long idWarehouse;
     protected long officeId;
-    protected long productId;
     protected long tipoAlmacenId;
     protected String warehouseName;
     protected String warehouseNumber;
@@ -217,22 +214,6 @@ public class Warehouse {
      */
     public void setOfficeId(long value) {
         this.officeId = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad productId.
-     * 
-     */
-    public long getProductId() {
-        return productId;
-    }
-
-    /**
-     * Define el valor de la propiedad productId.
-     * 
-     */
-    public void setProductId(long value) {
-        this.productId = value;
     }
 
     /**

@@ -40,6 +40,21 @@ public interface AlmacenServiceWS {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns java.util.List<com.cbp3.ws.cbp.service.RelacionAlmacenes>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listaAlmacenesRelacionadosByAlmacenIdIdWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListaAlmacenesRelacionadosByAlmacenIdIdWS")
+    @ResponseWrapper(localName = "listaAlmacenesRelacionadosByAlmacenIdIdWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/listaAlmacenesRelacionadosByAlmacenIdIdWSRequest", output = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/listaAlmacenesRelacionadosByAlmacenIdIdWSResponse")
+    public List<RelacionAlmacenes> listaAlmacenesRelacionadosByAlmacenIdIdWS(
+        @WebParam(name = "arg0", targetNamespace = "")
+        long arg0);
+
+    /**
+     * 
      * @return
      *     returns java.util.List<com.cbp3.ws.cbp.service.RelacionZonas>
      */
@@ -68,7 +83,6 @@ public interface AlmacenServiceWS {
     /**
      * 
      * @param numeroAlmacen
-     * @param identificacionProducto
      * @param codigoUsuarioModifica
      * @param tipoAlmacen
      * @param direccion
@@ -91,8 +105,6 @@ public interface AlmacenServiceWS {
         String nombreAlmacen,
         @WebParam(name = "identificacionOficina", targetNamespace = "")
         long identificacionOficina,
-        @WebParam(name = "identificacionProducto", targetNamespace = "")
-        long identificacionProducto,
         @WebParam(name = "codigoUsuarioModifica", targetNamespace = "")
         long codigoUsuarioModifica,
         @WebParam(name = "fechaHoraModifica", targetNamespace = "")
@@ -358,7 +370,6 @@ public interface AlmacenServiceWS {
 
     /**
      * 
-     * @param descripcion
      * @param modulos
      * @param niveles
      * @param zonaId
@@ -371,10 +382,8 @@ public interface AlmacenServiceWS {
     @ResponseWrapper(localName = "crearEstanteriaWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.CrearEstanteriaWSResponse")
     @Action(input = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/crearEstanteriaWSRequest", output = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/crearEstanteriaWSResponse")
     public RespuestaDTO crearEstanteriaWS(
-        @WebParam(name = "descripcion", targetNamespace = "")
-        String descripcion,
         @WebParam(name = "zonaId", targetNamespace = "")
-        long zonaId,
+        Zona zonaId,
         @WebParam(name = "modulos", targetNamespace = "")
         long modulos,
         @WebParam(name = "niveles", targetNamespace = "")
@@ -403,7 +412,7 @@ public interface AlmacenServiceWS {
         @WebParam(name = "descripcion", targetNamespace = "")
         String descripcion,
         @WebParam(name = "zonaId", targetNamespace = "")
-        long zonaId,
+        Zona zonaId,
         @WebParam(name = "modulos", targetNamespace = "")
         long modulos,
         @WebParam(name = "niveles", targetNamespace = "")

@@ -38,6 +38,7 @@ import com.cbp3.ws.cbp.service.ModificarEstanteriaWS;
 import com.cbp3.ws.cbp.service.ModificarEstanteriaWSResponse;
 import com.cbp3.ws.cbp.service.ModificarRelacionZonasWS;
 import com.cbp3.ws.cbp.service.ModificarRelacionZonasWSResponse;
+import com.cbp3.ws.cbp.service.RelacionAlmacenes;
 import com.cbp3.ws.cbp.service.RelacionZonas;
 import com.cbp3.ws.cbp.service.SaveAditionaInformationAlmacenWSResponse;
 import com.cbp3.ws.cbp.service.Solicitud;
@@ -261,6 +262,19 @@ public class AlmacenController {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		java.util.List<Zona> respuesta = new ArrayList<>();
 		respuesta = almacenMethods.listaZonas();
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// consulta lista de almacenes relacionados por medio de almacen id.....
+	
+	@RequestMapping(value = "/listaAlmacenesRelacionados/{AlmacenId}", produces = { "application/json" }) 
+	public @ResponseBody java.util.List<RelacionAlmacenes> listaAlmacenesRelacionados(@PathVariable(value = "AlmacenId") long arg0) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<RelacionAlmacenes> respuesta = new ArrayList<>();
+		respuesta = almacenMethods.listaAlmacenesRelacionados(arg0);
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
 	}

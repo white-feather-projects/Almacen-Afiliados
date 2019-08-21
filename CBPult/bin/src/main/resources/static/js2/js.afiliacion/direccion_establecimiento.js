@@ -112,7 +112,7 @@ window.addEventListener('load', function(){
 			console.log("value-------", $("#estado_tab5").val());
 			console.log("texto--------", $("#estado_tab5").text());
 			
-			var canton = {
+				var canton = {
 					"idProvincia": $("#estado_tab5").val(),
 					"nombreProvincia": $("#estado_tab5").text(),
 					"paisId":{

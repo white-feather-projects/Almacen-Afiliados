@@ -19,10 +19,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="direccion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="gerenteSucursal" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="officeId" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="productId" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="tipoAlmacenId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="tipoAlmacenId" type="{http://service.cbp.ws.cbp3.com/}tipoAlmacen" minOccurs="0"/>
  *         &lt;element name="warehouseName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="warehouseNumber" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,20 +34,16 @@ import javax.xml.bind.annotation.XmlType;
     "direccion",
     "gerenteSucursal",
     "officeId",
-    "productId",
     "tipoAlmacenId",
-    "warehouseName",
-    "warehouseNumber"
+    "warehouseName"
 })
 public class AlmacenDTO {
 
     protected String direccion;
     protected long gerenteSucursal;
     protected long officeId;
-    protected long productId;
-    protected long tipoAlmacenId;
+    protected TipoAlmacen tipoAlmacenId;
     protected String warehouseName;
-    protected String warehouseNumber;
 
     /**
      * Obtiene el valor de la propiedad direccion.
@@ -108,34 +102,26 @@ public class AlmacenDTO {
     }
 
     /**
-     * Obtiene el valor de la propiedad productId.
-     * 
-     */
-    public long getProductId() {
-        return productId;
-    }
-
-    /**
-     * Define el valor de la propiedad productId.
-     * 
-     */
-    public void setProductId(long value) {
-        this.productId = value;
-    }
-
-    /**
      * Obtiene el valor de la propiedad tipoAlmacenId.
      * 
+     * @return
+     *     possible object is
+     *     {@link TipoAlmacen }
+     *     
      */
-    public long getTipoAlmacenId() {
+    public TipoAlmacen getTipoAlmacenId() {
         return tipoAlmacenId;
     }
 
     /**
      * Define el valor de la propiedad tipoAlmacenId.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link TipoAlmacen }
+     *     
      */
-    public void setTipoAlmacenId(long value) {
+    public void setTipoAlmacenId(TipoAlmacen value) {
         this.tipoAlmacenId = value;
     }
 
@@ -161,30 +147,6 @@ public class AlmacenDTO {
      */
     public void setWarehouseName(String value) {
         this.warehouseName = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad warehouseNumber.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getWarehouseNumber() {
-        return warehouseNumber;
-    }
-
-    /**
-     * Define el valor de la propiedad warehouseNumber.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setWarehouseNumber(String value) {
-        this.warehouseNumber = value;
     }
 
 }

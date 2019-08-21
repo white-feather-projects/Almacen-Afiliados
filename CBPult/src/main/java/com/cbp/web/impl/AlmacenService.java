@@ -40,6 +40,7 @@ import com.cbp3.ws.cbp.service.ModificarEstanteriaWS;
 import com.cbp3.ws.cbp.service.ModificarEstanteriaWSResponse;
 import com.cbp3.ws.cbp.service.ModificarRelacionZonasWS;
 import com.cbp3.ws.cbp.service.ModificarRelacionZonasWSResponse;
+import com.cbp3.ws.cbp.service.RelacionAlmacenes;
 import com.cbp3.ws.cbp.service.RelacionZonas;
 import com.cbp3.ws.cbp.service.SaveAditionaInformationAlmacenWSResponse;
 import com.cbp3.ws.cbp.service.Solicitud;
@@ -137,7 +138,7 @@ public class AlmacenService extends Util implements AlmacenDAO{
 			AlmacenServiceWS WSmethod = ws.getAlmacenServiceWSPort();
 			
 			//respuestaCrearComercio.setReturn(WSmethod.crearComercioWS(crearComercio.getIdentificacionComercio(), crearComercio.getNombreEmpresarial(), crearComercio.getNombreComercial(), crearComercio.getEmail(), crearComercio.getTelefonoContacto(), crearComercio.getEstadoComercioActivo(), crearComercio.getTelefonoLocal(), crearComercio.getNumCuentaAsociado(), crearComercio.getAfiliadoOtroBanco(), crearComercio.getTipoIdentificacionId(), crearComercio.getActividadComercial(), crearComercio.getHorarioComercial()));
-			respuestaModificarAlmacen.setReturn(WSmethod.modificarAlmacenWS(ModificarAlmacenDTO.getNumeroAlmacen(), ModificarAlmacenDTO.getNombreAlmacen(), ModificarAlmacenDTO.getIdentificacionOficina(), ModificarAlmacenDTO.getIdentificacionProducto(), ModificarAlmacenDTO.getCodigoUsuarioModifica(), ModificarAlmacenDTO.getFechaHoraModifica(), ModificarAlmacenDTO.getTipoAlmacen(), ModificarAlmacenDTO.getDireccion(), ModificarAlmacenDTO.getGerenteSucursal()));	
+			respuestaModificarAlmacen.setReturn(WSmethod.modificarAlmacenWS(ModificarAlmacenDTO.getNumeroAlmacen(), ModificarAlmacenDTO.getNombreAlmacen(), ModificarAlmacenDTO.getIdentificacionOficina(), ModificarAlmacenDTO.getCodigoUsuarioModifica(), ModificarAlmacenDTO.getFechaHoraModifica(), ModificarAlmacenDTO.getTipoAlmacen(), ModificarAlmacenDTO.getDireccion(), ModificarAlmacenDTO.getGerenteSucursal()));	
 			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -189,7 +190,7 @@ public class AlmacenService extends Util implements AlmacenDAO{
 			AlmacenServiceWS WSmethod = ws.getAlmacenServiceWSPort();
 			
 			//respuestaCrearComercio.setReturn(WSmethod.crearComercioWS(crearComercio.getIdentificacionComercio(), crearComercio.getNombreEmpresarial(), crearComercio.getNombreComercial(), crearComercio.getEmail(), crearComercio.getTelefonoContacto(), crearComercio.getEstadoComercioActivo(), crearComercio.getTelefonoLocal(), crearComercio.getNumCuentaAsociado(), crearComercio.getAfiliadoOtroBanco(), crearComercio.getTipoIdentificacionId(), crearComercio.getActividadComercial(), crearComercio.getHorarioComercial()));
-			respuestaCrearEstanteria.setReturn(WSmethod.crearEstanteriaWS(CrearEstanteriaWS.getDescripcion(), CrearEstanteriaWS.getZonaId(), CrearEstanteriaWS.getModulos(), CrearEstanteriaWS.getNiveles()));	
+			respuestaCrearEstanteria.setReturn(WSmethod.crearEstanteriaWS(CrearEstanteriaWS.getZonaId(), CrearEstanteriaWS.getModulos(), CrearEstanteriaWS.getNiveles()));	
 			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -373,24 +374,7 @@ public class AlmacenService extends Util implements AlmacenDAO{
 			AlmacenServiceWS WSmethod = ws.getAlmacenServiceWSPort();
 		
 			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
-			for(int i = 0; i < WSmethod.listaAlmacenesWS().size(); i++) {
-				
-				Warehouse objetoWarehouse = new Warehouse();
-				
-				objetoWarehouse.setCodigoUsuarioModifica(WSmethod.listaAlmacenesWS().get(i).getCodigoUsuarioModifica());
-				objetoWarehouse.setDireccion(WSmethod.listaAlmacenesWS().get(i).getDireccion());
-				objetoWarehouse.setFechaHoraCarga(WSmethod.listaAlmacenesWS().get(i).getFechaHoraCarga());
-				objetoWarehouse.setFechaHoraModificacion(WSmethod.listaAlmacenesWS().get(i).getFechaHoraModificacion());
-				objetoWarehouse.setGerenteSucursal(WSmethod.listaAlmacenesWS().get(i).getGerenteSucursal());
-				objetoWarehouse.setIdWarehouse(WSmethod.listaAlmacenesWS().get(i).getIdWarehouse());
-				objetoWarehouse.setOfficeId(WSmethod.listaAlmacenesWS().get(i).getOfficeId());
-				objetoWarehouse.setProductId(WSmethod.listaAlmacenesWS().get(i).getProductId());
-				objetoWarehouse.setTipoAlmacenId(WSmethod.listaAlmacenesWS().get(i).getTipoAlmacenId());
-				objetoWarehouse.setWarehouseName(WSmethod.listaAlmacenesWS().get(i).getWarehouseName());
-				objetoWarehouse.setWarehouseNumber(WSmethod.listaAlmacenesWS().get(i).getWarehouseNumber());
-				
-				respuestaAlmacenes.add(objetoWarehouse);
-			}
+			respuestaAlmacenes = WSmethod.listaAlmacenesWS();
 		
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -416,21 +400,7 @@ public class AlmacenService extends Util implements AlmacenDAO{
 			AlmacenServiceWS WSmethod = ws.getAlmacenServiceWSPort();
 		
 			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
-			for(int i = 0; i < WSmethod.listaEstanteriasWS().size(); i++) {
-				
-				Estanteria objetoEstanteria = new Estanteria();
-				
-				objetoEstanteria.setCodigoUsuarioModifica(WSmethod.listaEstanteriasWS().get(i).getCodigoUsuarioModifica());
-				objetoEstanteria.setDescripcion(WSmethod.listaEstanteriasWS().get(i).getDescripcion());
-				objetoEstanteria.setEstanteriaId(WSmethod.listaEstanteriasWS().get(i).getEstanteriaId());
-				objetoEstanteria.setFechaCargaDatos(WSmethod.listaEstanteriasWS().get(i).getFechaCargaDatos());
-				objetoEstanteria.setFechaHoraModificacion(WSmethod.listaEstanteriasWS().get(i).getFechaHoraModificacion());
-				objetoEstanteria.setModulos(WSmethod.listaEstanteriasWS().get(i).getModulos());
-				objetoEstanteria.setNiveles(WSmethod.listaEstanteriasWS().get(i).getNiveles());
-				objetoEstanteria.setZonaId(WSmethod.listaEstanteriasWS().get(i).getZonaId());
-				
-				respuestaEstanteria.add(objetoEstanteria);
-			}
+			respuestaEstanteria = WSmethod.listaEstanteriasWS();
 		
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -456,20 +426,7 @@ public class AlmacenService extends Util implements AlmacenDAO{
 			AlmacenServiceWS WSmethod = ws.getAlmacenServiceWSPort();
 		
 			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
-			for(int i = 0; i < WSmethod.listaRelacionZonasWS().size(); i++) {
-				
-				RelacionZonas objetoRelacionZonas = new RelacionZonas();
-				
-				objetoRelacionZonas.setCodigoUsuarioModifica(WSmethod.listaRelacionZonasWS().get(i).getCodigoUsuarioModifica());
-				objetoRelacionZonas.setComentarios(WSmethod.listaRelacionZonasWS().get(i).getComentarios());
-				objetoRelacionZonas.setFechaCargaDatos(WSmethod.listaRelacionZonasWS().get(i).getFechaCargaDatos());
-				objetoRelacionZonas.setFechaHoraModificacion(WSmethod.listaRelacionZonasWS().get(i).getFechaHoraModificacion());
-				objetoRelacionZonas.setRelacionZonasId(WSmethod.listaRelacionZonasWS().get(i).getRelacionZonasId());
-				objetoRelacionZonas.setZonaActualId(WSmethod.listaRelacionZonasWS().get(i).getZonaActualId());
-				objetoRelacionZonas.setZonaDestinoId(WSmethod.listaRelacionZonasWS().get(i).getZonaDestinoId());
-				
-				respuestaRelacionZonas.add(objetoRelacionZonas);
-			}
+			respuestaRelacionZonas = WSmethod.listaRelacionZonasWS();
 		
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -495,22 +452,7 @@ public class AlmacenService extends Util implements AlmacenDAO{
 			AlmacenServiceWS WSmethod = ws.getAlmacenServiceWSPort();
 		
 			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
-			for(int i = 0; i < WSmethod.listaZonasWS().size(); i++) {
-				
-				Zona objetoZona = new Zona();
-				
-				objetoZona.setCodigoUsuarioModifica(WSmethod.listaZonasWS().get(i).getCodigoUsuarioModifica());
-				objetoZona.setDescripcion(WSmethod.listaZonasWS().get(i).getDescripcion());
-				objetoZona.setEncargadoZona(WSmethod.listaZonasWS().get(i).getEncargadoZona());
-				objetoZona.setFechaCargaDatos(WSmethod.listaZonasWS().get(i).getFechaCargaDatos());
-				objetoZona.setFechaHoraModificacion(WSmethod.listaZonasWS().get(i).getFechaHoraModificacion());
-				objetoZona.setIdWarehouse(WSmethod.listaZonasWS().get(i).getIdWarehouse());
-				objetoZona.setTipoZonaId(WSmethod.listaZonasWS().get(i).getTipoZonaId());
-				objetoZona.setZonaId(WSmethod.listaZonasWS().get(i).getZonaId());
-				objetoZona.setZonaNombre(WSmethod.listaZonasWS().get(i).getZonaNombre());
-				
-				respuestaZona.add(objetoZona);
-			}
+			respuestaZona = WSmethod.listaZonasWS();
 		
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -521,6 +463,32 @@ public class AlmacenService extends Util implements AlmacenDAO{
 		}
 		
 		return respuestaZona;
+	}
+	
+	////////////////////////////////////
+	//Methodo para listar Almacenes Relacionados...
+	public java.util.List<RelacionAlmacenes> listaAlmacenesRelacionados(long arg0) {
+		
+		//instanciar Objeto para retorno....
+		java.util.List<RelacionAlmacenes> respuestaRelacionAlmacenes = new ArrayList<>();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AlmacenServiceWS_Service ws = new AlmacenServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AlmacenServiceWS?WSDL"));
+			AlmacenServiceWS WSmethod = ws.getAlmacenServiceWSPort();
+		
+			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
+			respuestaRelacionAlmacenes = WSmethod.listaAlmacenesRelacionadosByAlmacenIdIdWS(arg0);
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaRelacionAlmacenes;
 	}
 	
 }

@@ -20,7 +20,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="estanteriaId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="zonaId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="zonaId" type="{http://service.cbp.ws.cbp3.com/}zona" minOccurs="0"/>
  *         &lt;element name="modulos" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="niveles" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="codigoUsuarioModifica" type="{http://www.w3.org/2001/XMLSchema}long"/>
@@ -47,7 +47,7 @@ public class ModificarEstanteriaWS {
 
     protected long estanteriaId;
     protected String descripcion;
-    protected long zonaId;
+    protected Zona zonaId;
     protected long modulos;
     protected long niveles;
     protected long codigoUsuarioModifica;
@@ -97,16 +97,24 @@ public class ModificarEstanteriaWS {
     /**
      * Obtiene el valor de la propiedad zonaId.
      * 
+     * @return
+     *     possible object is
+     *     {@link Zona }
+     *     
      */
-    public long getZonaId() {
+    public Zona getZonaId() {
         return zonaId;
     }
 
     /**
      * Define el valor de la propiedad zonaId.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Zona }
+     *     
      */
-    public void setZonaId(long value) {
+    public void setZonaId(Zona value) {
         this.zonaId = value;
     }
 

@@ -63,6 +63,7 @@ public class ObjectFactory {
     private final static QName _ConsultaAlmacenPorNumeroAlmacenWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaAlmacenPorNumeroAlmacenWS");
     private final static QName _ListTipoZonaWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listTipoZonaWSResponse");
     private final static QName _Tipoidentificacion_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "tipoidentificacion");
+    private final static QName _ListaAlmacenesRelacionadosByAlmacenIdIdWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listaAlmacenesRelacionadosByAlmacenIdIdWS");
     private final static QName _Estanteria_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "estanteria");
     private final static QName _ConsultaZonaPorZonaIdWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaZonaPorZonaIdWS");
     private final static QName _ModificarRelacionAlmacenesWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarRelacionAlmacenesWSResponse");
@@ -72,11 +73,13 @@ public class ObjectFactory {
     private final static QName _Empleado_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "empleado");
     private final static QName _ConsultaZonaPorZonaIdWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaZonaPorZonaIdWSResponse");
     private final static QName _ListaRelacionAlmacenesWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listaRelacionAlmacenesWS");
+    private final static QName _TipoAlmacen_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "tipoAlmacen");
     private final static QName _RelacionZonas_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "relacionZonas");
     private final static QName _ConsultaAlmacenPorAlmacenIdWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaAlmacenPorAlmacenIdWSResponse");
     private final static QName _CrearAlmacenWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearAlmacenWS");
     private final static QName _ListaZonasWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listaZonasWS");
     private final static QName _CrearRelacionZonasWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearRelacionZonasWSResponse");
+    private final static QName _ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listaAlmacenesRelacionadosByAlmacenIdIdWSResponse");
     private final static QName _ModificarAlmacenWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarAlmacenWS");
     private final static QName _ModificarAlmacenWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarAlmacenWSResponse");
 
@@ -328,6 +331,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse }
+     * 
+     */
+    public ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse createListaAlmacenesRelacionadosByAlmacenIdIdWSResponse() {
+        return new ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse();
+    }
+
+    /**
      * Create an instance of {@link CrearRelacionZonasWSResponse }
      * 
      */
@@ -376,6 +387,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link TipoAlmacen }
+     * 
+     */
+    public TipoAlmacen createTipoAlmacen() {
+        return new TipoAlmacen();
+    }
+
+    /**
      * Create an instance of {@link ListaRelacionAlmacenesWS }
      * 
      */
@@ -421,6 +440,14 @@ public class ObjectFactory {
      */
     public Estanteria createEstanteria() {
         return new Estanteria();
+    }
+
+    /**
+     * Create an instance of {@link ListaAlmacenesRelacionadosByAlmacenIdIdWS }
+     * 
+     */
+    public ListaAlmacenesRelacionadosByAlmacenIdIdWS createListaAlmacenesRelacionadosByAlmacenIdIdWS() {
+        return new ListaAlmacenesRelacionadosByAlmacenIdIdWS();
     }
 
     /**
@@ -919,6 +946,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListaAlmacenesRelacionadosByAlmacenIdIdWS }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listaAlmacenesRelacionadosByAlmacenIdIdWS")
+    public JAXBElement<ListaAlmacenesRelacionadosByAlmacenIdIdWS> createListaAlmacenesRelacionadosByAlmacenIdIdWS(ListaAlmacenesRelacionadosByAlmacenIdIdWS value) {
+        return new JAXBElement<ListaAlmacenesRelacionadosByAlmacenIdIdWS>(_ListaAlmacenesRelacionadosByAlmacenIdIdWS_QNAME, ListaAlmacenesRelacionadosByAlmacenIdIdWS.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Estanteria }{@code >}}
      * 
      */
@@ -1000,6 +1036,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link TipoAlmacen }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "tipoAlmacen")
+    public JAXBElement<TipoAlmacen> createTipoAlmacen(TipoAlmacen value) {
+        return new JAXBElement<TipoAlmacen>(_TipoAlmacen_QNAME, TipoAlmacen.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link RelacionZonas }{@code >}}
      * 
      */
@@ -1042,6 +1087,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "crearRelacionZonasWSResponse")
     public JAXBElement<CrearRelacionZonasWSResponse> createCrearRelacionZonasWSResponse(CrearRelacionZonasWSResponse value) {
         return new JAXBElement<CrearRelacionZonasWSResponse>(_CrearRelacionZonasWSResponse_QNAME, CrearRelacionZonasWSResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listaAlmacenesRelacionadosByAlmacenIdIdWSResponse")
+    public JAXBElement<ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse> createListaAlmacenesRelacionadosByAlmacenIdIdWSResponse(ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse value) {
+        return new JAXBElement<ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse>(_ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse_QNAME, ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse.class, null, value);
     }
 
     /**
