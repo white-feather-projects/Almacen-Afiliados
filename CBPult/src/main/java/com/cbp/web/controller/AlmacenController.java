@@ -38,9 +38,11 @@ import com.cbp3.ws.cbp.service.ModificarEstanteriaWS;
 import com.cbp3.ws.cbp.service.ModificarEstanteriaWSResponse;
 import com.cbp3.ws.cbp.service.ModificarRelacionZonasWS;
 import com.cbp3.ws.cbp.service.ModificarRelacionZonasWSResponse;
+import com.cbp3.ws.cbp.service.RelacionAlmacenes;
 import com.cbp3.ws.cbp.service.RelacionZonas;
 import com.cbp3.ws.cbp.service.SaveAditionaInformationAlmacenWSResponse;
 import com.cbp3.ws.cbp.service.Solicitud;
+import com.cbp3.ws.cbp.service.TipoZona;
 import com.cbp3.ws.cbp.service.Warehouse;
 import com.cbp3.ws.cbp.service.Zona;
 
@@ -108,6 +110,7 @@ public class AlmacenController {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		CrearAlmacenWSResponse respuesta = new CrearAlmacenWSResponse();
 		respuesta = almacenMethods.crearAlmacen(CrearAlmacenWS);
+		//System.out.println(CrearAlmacenWS.getDto().getDirec);
 		//System.out.println(ModificarAlmacenDTO.toString());
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
@@ -261,6 +264,30 @@ public class AlmacenController {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		java.util.List<Zona> respuesta = new ArrayList<>();
 		respuesta = almacenMethods.listaZonas();
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	// la consulta de la Lista de Zonas debe pedir un Id de Almacén (para listar las zonas de este especificamente)
+	
+	@RequestMapping(value = "/listaTipoZonas", produces = { "application/json" }) 
+	public @ResponseBody java.util.List<TipoZona> listaTipoZonas() {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<TipoZona> respuesta = new ArrayList<>();
+		respuesta = almacenMethods.listaTipoZonas();
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// consulta lista de almacenes relacionados por medio de almacen id.....
+	
+	@RequestMapping(value = "/listaAlmacenesRelacionados/{AlmacenId}", produces = { "application/json" }) 
+	public @ResponseBody java.util.List<RelacionAlmacenes> listaAlmacenesRelacionados(@PathVariable(value = "AlmacenId") long arg0) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<RelacionAlmacenes> respuesta = new ArrayList<>();
+		respuesta = almacenMethods.listaAlmacenesRelacionados(arg0);
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
 	}

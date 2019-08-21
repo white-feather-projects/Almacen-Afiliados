@@ -61,6 +61,36 @@ window.addEventListener('load', function(){
 		console.log("identificacion", identificacion.value);
 		soloNumeros(identificacion);
 		document.getElementById("identificacion_tab6").style.border = "1px solid black";
+		
+		if($("#identificacion_tab6").attr("maxlength") === "9"){
+			if($("#identificacion_tab6").val().length < 9){
+				swal("Longitud debe ser de 9");
+				document.getElementById("identificacion_tab6").style.border = "1px solid red";
+				$("#identificacion_tab6").val("");
+			}else if($("#identificacion_tab6").val().length == 9){
+				consultarContacto();
+			}
+		}
+		
+		if($("#identificacion_tab6").attr("maxlength") === "11"){
+			if($("#identificacion_tab6").val().length < 11){
+				swal("Longitud debe ser de 11");
+				document.getElementById("identificacion_tab6").style.border = "1px solid red";
+				$("#identificacion_tab6").val("");
+			}else if($("#identificacion_tab6").val().length == 11){
+				consultarContacto();
+			}
+		}
+		
+		if($("#identificacion_tab6").attr("maxlength") === "10"){
+			if($("#identificacion_tab6").val().length < 10){
+				swal("Longitud debe ser de 10");
+				document.getElementById("identificacion_tab6").style.border = "1px solid red";
+				$("#identificacion_tab6").val("");
+			}else if($("#identificacion_tab6").val().length == 10){
+				consultarContacto();
+			}
+		}
 	});
 	
 	telefono.addEventListener('blur', ()=>{
@@ -107,4 +137,44 @@ function soloNumeros(numero){
 	}else{
 		return true;
 	}
+}
+
+function consultarContacto(){
+	
+	$.ajax({
+         type: "GET",
+         url: '/CBPult/Afiliacion/consultaContactoByIdentificacionContacto/'+$("#identificacion_tab6").val()+'',
+         dataType: "json",
+         success: processSuccess,
+         error: processError
+	});
+	
+	function processSuccess(data, status, req) {
+		console.log("consulta_contacto---", data);
+		
+		if(typeof(data.return.identificacionContacto) == "object"){
+			
+		}else if(data.return.identificacionContacto == $("#identificacion_tab6").val()){
+			
+			$("#tipo_identificacion_tab6").val(data.return.tipoIdentificacionId.nombre);
+			$("#identificacion_tab6").val(data.return.identificacionContacto);
+			$("#cargo_tab6").val(data.return.cargoContacto);
+			$("#primer_nombre_tab6").val(data.return.primerNombre);
+			$("#segundo_nombre_tab6").val(data.return.segundoNombre);
+			$("#primer_apellido_tab6").val(data.return.primerApellido);
+			$("#segundo_apellido_tab6").val(data.return.segundoApellido);
+			$("#telefono_tab6").val(data.return.telefonoLocal);
+			$("#correo_electronico_tab6").val(data.return.emailContacto);
+			
+		}
+		
+	} 
+	
+	function processError(data, status, req) {
+     //alert(req.responseText + " " + status);
+    	swal("Error al contactar el servicio", data);
+    	valid = false;
+    	return valid;
+	} 
+	
 }

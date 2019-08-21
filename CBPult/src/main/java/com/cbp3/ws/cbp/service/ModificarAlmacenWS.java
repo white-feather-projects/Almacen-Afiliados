@@ -21,7 +21,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="numeroAlmacen" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="nombreAlmacen" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="identificacionOficina" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="identificacionProducto" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="codigoUsuarioModifica" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="fechaHoraModifica" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="tipoAlmacen" type="{http://www.w3.org/2001/XMLSchema}long"/>
@@ -40,7 +39,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "numeroAlmacen",
     "nombreAlmacen",
     "identificacionOficina",
-    "identificacionProducto",
     "codigoUsuarioModifica",
     "fechaHoraModifica",
     "tipoAlmacen",
@@ -52,7 +50,6 @@ public class ModificarAlmacenWS {
     protected String numeroAlmacen;
     protected String nombreAlmacen;
     protected long identificacionOficina;
-    protected long identificacionProducto;
     protected long codigoUsuarioModifica;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fechaHoraModifica;
@@ -122,22 +119,6 @@ public class ModificarAlmacenWS {
      */
     public void setIdentificacionOficina(long value) {
         this.identificacionOficina = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad identificacionProducto.
-     * 
-     */
-    public long getIdentificacionProducto() {
-        return identificacionProducto;
-    }
-
-    /**
-     * Define el valor de la propiedad identificacionProducto.
-     * 
-     */
-    public void setIdentificacionProducto(long value) {
-        this.identificacionProducto = value;
     }
 
     /**
