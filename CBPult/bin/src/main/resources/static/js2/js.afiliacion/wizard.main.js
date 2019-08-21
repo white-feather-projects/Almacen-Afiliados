@@ -212,12 +212,17 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 						 		            //alert(req.responseText + " " + status);
 						 		       		console.log(data);
 						 		       		
+						 		       		var uno = 0;
+						 		       		
 								 		       	if(data.return.descripcion === "FAIL"){
 							 		           		swal("Error al Crear Comercio", data.return.descripcion);
 							 		           		valid = false;
 							 		           		return valid;
 							 		           		
 							 		           	}else if(data.return.descripcion === "OK"){
+							 		           		uno = 1;
+							 		           		valid = false;
+							 		           		
 								 		           	document.getElementById("tipo_identificacion_tab2").disabled = true;
 								 		           	document.getElementById("identificacion_tab2").disabled = true;
 								 		           	document.getElementById("nombre_empresa_tab2").disabled = true;
@@ -231,11 +236,12 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 								 		           	document.getElementById("telefono_alternativo_tab2").disabled = true;
 								 		           	document.getElementById("horario_fin_tab2").disabled = true;
 								 		           	
-								 		           
-								 		        	 
-								 			       swal("Comercio Creado", data.return.descripcion);
-							 		           		valid = true;
-							 		           		return valid;
+								 		           if(uno == 1){
+								 		        	  swal("Comercio Creado", data.return.descripcion);
+								 		           		valid = true;
+								 		           		return valid;
+								 		           }
+								 			       return valid;
 							 		           		
 							 		           	}else if(data.return.descripcion === "Comercio ya existe"){
 								 		           		valid = false;
@@ -879,14 +885,6 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 			       if (currentIndex === 3 && stepDirection === 'forward') {
 			    	   var cont1 = 0;
 			    	   
-			    	   var avenida_calle_tab5 = $("#avenida_calle_tab5").val();
-			    	   if(avenida_calle_tab5.length >= 1){
-				        	 cont1 = cont1 + 1;
-				         }else{
-				        	 cont1 = cont1;
-				        	document.getElementById("avenida_calle_tab5").style.border = "1px solid red";
-				         }
-			    	   
 			    	   var localidad_tab5 = $("#localidad_tab5").val();
 			    	   if(localidad_tab5.length >= 1){
 				        	 cont1 = cont1 + 1;
@@ -918,22 +916,13 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 				        	 cont1 = cont1;
 				        	document.getElementById("codigo_postal_tab5").style.border = "1px solid red";
 				         }
-			    	   
-			    	   var nombre_inmueble_tab5 = $("#nombre_inmueble_tab5").val();
-			    	   if(nombre_inmueble_tab5.length >= 1){
-				        	 cont1 = cont1 + 1;
-				         }else{
-				        	 cont1 = cont1;
-				        	document.getElementById("nombre_inmueble_tab5").style.border = "1px solid red";
-				         }
-			    	   
 				         
-				         if(cont1 == 6){
+				         if(cont1 == 4){
 				        	 console.log(cont1);
 				        	 
 				        	 if($("#contEstablecimiento").val() == "0"){
 				        		 
-				        		 $("#contEstablecimiento").val("1");
+				        		 
 				        		 
 				        		 $.ajax({
 				 		               type: "GET",
@@ -1038,7 +1027,7 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 								 		            //alert(req.responseText + " " + status);
 								 		       		console.log("crear establecimiento----", data);
 								 		       		
-								 		       	
+								 		       	$("#contEstablecimiento").val("1");
 									 			           	
 									 			           var crear_comercio_establecimiento_json = {
 												 		       		"comercioId": {
@@ -1201,10 +1190,8 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 				        		 	valid = true;
 				 		           	return valid;
 				        	 }
-				        		 
-				        		 
 				 		       
-				         }else if(cont1 < 6){
+				         }else if(cont1 < 4){
 				        	 valid = false;
 				        	 return valid;
 				         }
@@ -2048,7 +2035,7 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		      	        	  if(data1.return.descripcion === "OK"){
 		      	        		swal({
 		      	        		     title: "EXITO!",
-		      	        		     text: "Recaudos Registrados",
+		      	        		     text: "Correo Enviado...",
 		      	        		     type: "success",
 		      	        		     timer: 3000
 		      	        		     },

@@ -96,9 +96,9 @@
 										                                                                    	</div>
 																												<div class="col-sm-12">
 																													<select name="select" id="tipo_identificacion_tab2" class="form-control">
-																														<option value="Cedula de Residente">Cedula de Residente</option>
+																														<option value="Cedula">Cedula</option>
 										                                                                                <option value="DIMEX">DIMEX</option>
-										                                                                                <option value="Cedula de Persona Jurídica">Cedula de Persona Jurídica</option>
+										                                                                                <option value="Cedula Jurídica">Cedula Jurídica</option>
 								                                                                        			</select>
 																												</div>
 																												
@@ -197,7 +197,7 @@
 																												<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																												
 																												<div class="col-sm-12">
-										                                                                    		<label>Hora de Inicio(*): </label>
+										                                                                    		<label>Inicio Hora de Trabajo(*): </label>
 										                                                                    	</div>
 																												<div class="col-sm-12">
 																													<select name="select" id="horario_inicio_tab2" class="form-control">
@@ -256,7 +256,7 @@
 																												<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																												
 																												<div class="col-sm-12">
-										                                                                    		<label>Hora de Finalización(*): </label>
+										                                                                    		<label>Hora Finalización de Trabajo(*): </label>
 										                                                                    	</div>
 																												<div class="col-sm-12">
 																													<select name="select" id="horario_fin_tab2" class="form-control">
@@ -457,9 +457,9 @@
 								                                                                    	</div>
 																										<div class="col-sm-12">
 																											<select name="select" id="tipo_identificacion_tab4" class="form-control">
-																												<option value="Cedula de Residente">Cedula de Residente</option>
+																												<option value="Cedula">Cedula </option>
 								                                                                                <option value="DIMEX">DIMEX</option>
-								                                                                                <option value="Cedula de Persona Jurídica">Cedula de Persona Jurídica</option>
+								                                                                                <option value="Cedula Jurídica">Cedula Jurídica</option>
 						                                                                        			</select>
 																										</div>
 																										
@@ -589,7 +589,7 @@
 																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																											
 																											<div class="col-sm-12">
-									                                                                    		<label>Avenida / Calle(*): </label>
+									                                                                    		<label>Avenida / Calle: </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
 																												<input type="text" class="form-control" placeholder="" id="avenida_calle_tab5"/>
@@ -608,7 +608,7 @@
 									                                                                    		<label>Punto de Referencia(*): </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="punto_referencia_tab5"/>
+																												<input type="text" class="form-control" placeholder="" id="punto_referencia_tab5"  maxlength="500"/>
 																											</div>
 																											
 									                                                                    </div>
@@ -649,7 +649,7 @@
 																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																											
 																											<div class="col-sm-12">
-									                                                                    		<label>Nombre del inmueble(*): </label>
+									                                                                    		<label>Nombre del inmueble: </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
 																												<input type="text" class="form-control" placeholder="" id="nombre_inmueble_tab5"/>
@@ -715,6 +715,19 @@
 								                                                            	<form id="miform">
 									                                                                <div class="form-group row">
 									                                                                    <div class="col-sm-12">
+									                                                                    	<div class="col-sm-12">
+									                                                                    		<label>Tipo Identificación(*): </label>
+									                                                                    	</div>
+																											<div class="col-sm-12">
+																												<select name="select" id="tipo_identificacion_tab6" class="form-control">
+																													<option value="Cedula">Cedula</option>
+									                                                                                <option value="DIMEX">DIMEX</option>
+									                                                                                <option value="Cedula Jurídica">Cedula Jurídica</option>
+							                                                                        			</select>
+																											</div>
+																											
+																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+									                                                                    
 																											<div class="col-sm-12">
 									                                                                    		<label>Primer Nombre(*): </label>
 									                                                                    	</div>
@@ -734,19 +747,6 @@
 																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
 																											
 																											<div class="col-sm-12">
-									                                                                    		<label>Tipo Identificación(*): </label>
-									                                                                    	</div>
-																											<div class="col-sm-12">
-																												<select name="select" id="tipo_identificacion_tab6" class="form-control">
-																													<option value="Cedula de Residente">Cedula de Residente</option>
-									                                                                                <option value="DIMEX">DIMEX</option>
-									                                                                                <option value="Cedula de Persona Jurídica">Cedula de Persona Jurídica</option>
-							                                                                        			</select>
-																											</div>
-																											
-																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
-																											
-																											<div class="col-sm-12">
 									                                                                    		<label>Teléfono(*): </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
@@ -761,6 +761,15 @@
 								                                                            	<form id="miform">
 									                                                                <div class="form-group row">
 									                                                                    <div class="col-sm-12">
+									                                                                    	<div class="col-sm-12">
+									                                                                    		<label>Identificación(*): </label>
+									                                                                    	</div>
+																											<div class="col-sm-12">
+																												<input type="text" class="form-control" placeholder="" id="identificacion_tab6" maxlength="9"/>
+																											</div>
+																											
+																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
+																											
 																											<div class="col-sm-12">
 									                                                                    		<label>Segundo Nombre: </label>
 									                                                                    	</div>
@@ -775,15 +784,6 @@
 									                                                                    	</div>
 																											<div class="col-sm-12">
 																												<input type="text" class="form-control" placeholder="" id="segundo_apellido_tab6"/>
-																											</div>
-																											
-																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
-																											
-																											<div class="col-sm-12">
-									                                                                    		<label>Identificación(*): </label>
-									                                                                    	</div>
-																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="identificacion_tab6" maxlength="9"/>
 																											</div>
 																											
 																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>

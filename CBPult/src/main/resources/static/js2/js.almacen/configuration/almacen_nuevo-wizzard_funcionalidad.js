@@ -50,10 +50,10 @@ function evtNuevaZona(){
                                     <label class="col-sm-12 col-form-label">Tipo Zona</label>
                                     <div class="col-sm-12">
                                         <select name="select" id="cboxTipo_zona`+contador_zonas+`" class="form-control">
-                                            <option value="Recibo">Recibo</option>
-                                            <option value="Almacenaje">Almacenaje</option>
-                                            <option value="Almacenaje Restringido">Almacenaje Restringido</option>
-                                            <option value="Despacho">Despacho</option>
+                                            <option value="Recibo" name="1">Recibo</option>
+                                            <option value="Almacenaje" name="2">Almacenaje</option>
+                                            <option value="Restringido" name="3">Restringido</option>
+                                            <option value="Despacho" name="4">Despacho</option>
                                         </select>
                              		</div>
                                 </div>
@@ -322,7 +322,6 @@ function evtNuevaZona(){
 		}
 	})
 	contador_zonas++;
-	
 }
 
 

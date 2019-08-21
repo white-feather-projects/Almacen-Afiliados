@@ -264,7 +264,7 @@ window.addEventListener('load', ()=>{
     				  			  if(i == 0){
     				  				$("#distrito").html(distrito3);
     				  			  }else if(i >= 1){
-    				  				$("#ciudad_tab5").append(distrito3);
+    				  				$("#distrito").append(distrito3);
     				  			  }
     				  			  
     			  		  	}

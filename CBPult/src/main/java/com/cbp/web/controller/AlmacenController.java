@@ -42,6 +42,7 @@ import com.cbp3.ws.cbp.service.RelacionAlmacenes;
 import com.cbp3.ws.cbp.service.RelacionZonas;
 import com.cbp3.ws.cbp.service.SaveAditionaInformationAlmacenWSResponse;
 import com.cbp3.ws.cbp.service.Solicitud;
+import com.cbp3.ws.cbp.service.TipoZona;
 import com.cbp3.ws.cbp.service.Warehouse;
 import com.cbp3.ws.cbp.service.Zona;
 
@@ -109,6 +110,7 @@ public class AlmacenController {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		CrearAlmacenWSResponse respuesta = new CrearAlmacenWSResponse();
 		respuesta = almacenMethods.crearAlmacen(CrearAlmacenWS);
+		//System.out.println(CrearAlmacenWS.getDto().getDirec);
 		//System.out.println(ModificarAlmacenDTO.toString());
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
@@ -262,6 +264,17 @@ public class AlmacenController {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		java.util.List<Zona> respuesta = new ArrayList<>();
 		respuesta = almacenMethods.listaZonas();
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	// la consulta de la Lista de Zonas debe pedir un Id de Almacén (para listar las zonas de este especificamente)
+	
+	@RequestMapping(value = "/listaTipoZonas", produces = { "application/json" }) 
+	public @ResponseBody java.util.List<TipoZona> listaTipoZonas() {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<TipoZona> respuesta = new ArrayList<>();
+		respuesta = almacenMethods.listaTipoZonas();
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
 	}
