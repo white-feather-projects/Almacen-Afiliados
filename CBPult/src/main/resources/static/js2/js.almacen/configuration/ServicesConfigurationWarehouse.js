@@ -331,7 +331,18 @@ function crearListaZonasServ(idAlmacen){
 					});
 					
 				});
-
+				//////////////////
+				swal({
+        		     title: "EXITO!",
+        		     text: "Creación del Almacén Exitosa...",
+        		     type: "success",
+        		     timer: 3000
+        		     },
+        		     function () {
+        		            location.href = "/CBPult/Almacen/configuration_almacen"
+        		     }
+    		    );
+				//////////////////
 			}
 					
 			
@@ -359,8 +370,6 @@ function crearEstanteriaServ(info_estanteria){
         	
         	console.log("Respuesta Creacion Estanteria",response);
         	
-        	swal("Creación del Almacén Exitosa");
-        	//location.href = "/CBPult/Almacen/configuration_almacen";
         },
         error: function(e, txt){
         	swal("Error al crear las Estanterias de la Zona ", info_estanteria.zonaId.zonaId);
