@@ -339,7 +339,7 @@ function crearListaZonasServ(idAlmacen){
                timer: 3000
                },
                function () {
-                      location.href = "/CBPult/Almacen/configuration_almacen"
+            	   location.href = "/CBPult/Almacen/configuration_almacen"
                }
           );
           //////////////////

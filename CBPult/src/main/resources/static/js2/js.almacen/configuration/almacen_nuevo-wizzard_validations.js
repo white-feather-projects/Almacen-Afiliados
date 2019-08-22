@@ -197,7 +197,7 @@ if(IdAlmacen === "nuevo"){
 			console.log(centerSwitchesRel);
 			
 			// Consumo de Servicios - ServicesConfigurationWarehouse.js
-			//crearAlmacenServ();
+			crearAlmacenServ();
 		}
 
 	});
