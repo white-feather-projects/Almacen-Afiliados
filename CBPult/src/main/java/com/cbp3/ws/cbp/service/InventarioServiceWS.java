@@ -293,4 +293,412 @@ public interface InventarioServiceWS {
         @WebParam(name = "idProductDetalle", targetNamespace = "")
         long idProductDetalle);
 
+    /**
+     * 
+     * @param ordenRelDetId
+     * @return
+     *     returns com.cbp3.ws.cbp.service.OrdenRelDet
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "consultaOrdenRelDetPorOrdenRelDetIdWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaOrdenRelDetPorOrdenRelDetIdWS")
+    @ResponseWrapper(localName = "consultaOrdenRelDetPorOrdenRelDetIdWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaOrdenRelDetPorOrdenRelDetIdWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/consultaOrdenRelDetPorOrdenRelDetIdWSRequest", output = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/consultaOrdenRelDetPorOrdenRelDetIdWSResponse")
+    public OrdenRelDet consultaOrdenRelDetPorOrdenRelDetIdWS(
+        @WebParam(name = "ordenRelDetId", targetNamespace = "")
+        long ordenRelDetId);
+
+    /**
+     * 
+     * @param fechaCargaDatos
+     * @param idProduct
+     * @param cantidad
+     * @param ordenRelacionadaId
+     * @return
+     *     returns com.cbp3.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "crearOrdenRelDetalleWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.CrearOrdenRelDetalleWS")
+    @ResponseWrapper(localName = "crearOrdenRelDetalleWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.CrearOrdenRelDetalleWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/crearOrdenRelDetalleWSRequest", output = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/crearOrdenRelDetalleWSResponse")
+    public RespuestaDTO crearOrdenRelDetalleWS(
+        @WebParam(name = "ordenRelacionadaId", targetNamespace = "")
+        OrdenRelacionada ordenRelacionadaId,
+        @WebParam(name = "idProduct", targetNamespace = "")
+        Product idProduct,
+        @WebParam(name = "cantidad", targetNamespace = "")
+        long cantidad,
+        @WebParam(name = "fechaCargaDatos", targetNamespace = "")
+        XMLGregorianCalendar fechaCargaDatos);
+
+    /**
+     * 
+     * @param codigoUsuarioModifica
+     * @param fechaHoraModificacion
+     * @param idProduct
+     * @param cantidad
+     * @param comentarios
+     * @param ordenRelDetId
+     * @param ordenRelacionadaId
+     * @return
+     *     returns com.cbp3.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "modificarOrdenRelDetalleWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ModificarOrdenRelDetalleWS")
+    @ResponseWrapper(localName = "modificarOrdenRelDetalleWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ModificarOrdenRelDetalleWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/modificarOrdenRelDetalleWSRequest", output = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/modificarOrdenRelDetalleWSResponse")
+    public RespuestaDTO modificarOrdenRelDetalleWS(
+        @WebParam(name = "ordenRelDetId", targetNamespace = "")
+        long ordenRelDetId,
+        @WebParam(name = "ordenRelacionadaId", targetNamespace = "")
+        OrdenRelacionada ordenRelacionadaId,
+        @WebParam(name = "idProduct", targetNamespace = "")
+        Product idProduct,
+        @WebParam(name = "cantidad", targetNamespace = "")
+        long cantidad,
+        @WebParam(name = "comentarios", targetNamespace = "")
+        String comentarios,
+        @WebParam(name = "codigoUsuarioModifica", targetNamespace = "")
+        long codigoUsuarioModifica,
+        @WebParam(name = "fechaHoraModificacion", targetNamespace = "")
+        XMLGregorianCalendar fechaHoraModificacion);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<com.cbp3.ws.cbp.service.OrdenRelDet>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listOrdenRelDetalleWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListOrdenRelDetalleWS")
+    @ResponseWrapper(localName = "listOrdenRelDetalleWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListOrdenRelDetalleWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/listOrdenRelDetalleWSRequest", output = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/listOrdenRelDetalleWSResponse")
+    public List<OrdenRelDet> listOrdenRelDetalleWS();
+
+    /**
+     * 
+     * @param fechaCargaDatos
+     * @param fechaAjusteInventario
+     * @param movimientoId
+     * @param idProduct
+     * @param tipoAjuste
+     * @param cantidad
+     * @param comentarios
+     * @return
+     *     returns com.cbp3.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "crearAjusteInventarioWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.CrearAjusteInventarioWS")
+    @ResponseWrapper(localName = "crearAjusteInventarioWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.CrearAjusteInventarioWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/crearAjusteInventarioWSRequest", output = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/crearAjusteInventarioWSResponse")
+    public RespuestaDTO crearAjusteInventarioWS(
+        @WebParam(name = "fechaAjusteInventario", targetNamespace = "")
+        XMLGregorianCalendar fechaAjusteInventario,
+        @WebParam(name = "movimientoId", targetNamespace = "")
+        Movimiento movimientoId,
+        @WebParam(name = "tipoAjuste", targetNamespace = "")
+        String tipoAjuste,
+        @WebParam(name = "idProduct", targetNamespace = "")
+        Product idProduct,
+        @WebParam(name = "cantidad", targetNamespace = "")
+        long cantidad,
+        @WebParam(name = "comentarios", targetNamespace = "")
+        String comentarios,
+        @WebParam(name = "fechaCargaDatos", targetNamespace = "")
+        XMLGregorianCalendar fechaCargaDatos);
+
+    /**
+     * 
+     * @param fechaAjusteInventario
+     * @param movimientoId
+     * @param codigoUsuarioModifica
+     * @param ajusteInventarioId
+     * @param fechaHoraModificacion
+     * @param idProduct
+     * @param tipoAjuste
+     * @param cantidad
+     * @param comentarios
+     * @return
+     *     returns com.cbp3.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "modificarAjusteInventarioWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ModificarAjusteInventarioWS")
+    @ResponseWrapper(localName = "modificarAjusteInventarioWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ModificarAjusteInventarioWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/modificarAjusteInventarioWSRequest", output = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/modificarAjusteInventarioWSResponse")
+    public RespuestaDTO modificarAjusteInventarioWS(
+        @WebParam(name = "ajusteInventarioId", targetNamespace = "")
+        long ajusteInventarioId,
+        @WebParam(name = "fechaAjusteInventario", targetNamespace = "")
+        XMLGregorianCalendar fechaAjusteInventario,
+        @WebParam(name = "movimientoId", targetNamespace = "")
+        Movimiento movimientoId,
+        @WebParam(name = "tipoAjuste", targetNamespace = "")
+        String tipoAjuste,
+        @WebParam(name = "idProduct", targetNamespace = "")
+        Product idProduct,
+        @WebParam(name = "cantidad", targetNamespace = "")
+        long cantidad,
+        @WebParam(name = "comentarios", targetNamespace = "")
+        String comentarios,
+        @WebParam(name = "codigoUsuarioModifica", targetNamespace = "")
+        long codigoUsuarioModifica,
+        @WebParam(name = "fechaHoraModificacion", targetNamespace = "")
+        XMLGregorianCalendar fechaHoraModificacion);
+
+    /**
+     * 
+     * @param ajusteInventarioId
+     * @return
+     *     returns com.cbp3.ws.cbp.service.AjusteInventario
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "consultaAjusteInventarioPorAjusteInventarioIdWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaAjusteInventarioPorAjusteInventarioIdWS")
+    @ResponseWrapper(localName = "consultaAjusteInventarioPorAjusteInventarioIdWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaAjusteInventarioPorAjusteInventarioIdWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/consultaAjusteInventarioPorAjusteInventarioIdWSRequest", output = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/consultaAjusteInventarioPorAjusteInventarioIdWSResponse")
+    public AjusteInventario consultaAjusteInventarioPorAjusteInventarioIdWS(
+        @WebParam(name = "ajusteInventarioId", targetNamespace = "")
+        long ajusteInventarioId);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<com.cbp3.ws.cbp.service.AjusteInventario>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listAjusteInventarioWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListAjusteInventarioWS")
+    @ResponseWrapper(localName = "listAjusteInventarioWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListAjusteInventarioWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/listAjusteInventarioWSRequest", output = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/listAjusteInventarioWSResponse")
+    public List<AjusteInventario> listAjusteInventarioWS();
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<com.cbp3.ws.cbp.service.Tercero>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listTerceroWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListTerceroWS")
+    @ResponseWrapper(localName = "listTerceroWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListTerceroWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/listTerceroWSRequest", output = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/listTerceroWSResponse")
+    public List<Tercero> listTerceroWS();
+
+    /**
+     * 
+     * @param descripcion
+     * @param fechaCargaDatos
+     * @param movimientoId
+     * @param ordenRelacionadaNumber
+     * @param tipoOrdenId
+     * @param idProduct
+     * @param cantidad
+     * @return
+     *     returns com.cbp3.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "crearOrdenRelacionadaWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.CrearOrdenRelacionadaWS")
+    @ResponseWrapper(localName = "crearOrdenRelacionadaWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.CrearOrdenRelacionadaWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/crearOrdenRelacionadaWSRequest", output = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/crearOrdenRelacionadaWSResponse")
+    public RespuestaDTO crearOrdenRelacionadaWS(
+        @WebParam(name = "ordenRelacionadaNumber", targetNamespace = "")
+        String ordenRelacionadaNumber,
+        @WebParam(name = "tipoOrdenId", targetNamespace = "")
+        TipoOrden tipoOrdenId,
+        @WebParam(name = "descripcion", targetNamespace = "")
+        String descripcion,
+        @WebParam(name = "movimientoId", targetNamespace = "")
+        Movimiento movimientoId,
+        @WebParam(name = "idProduct", targetNamespace = "")
+        Product idProduct,
+        @WebParam(name = "cantidad", targetNamespace = "")
+        long cantidad,
+        @WebParam(name = "fechaCargaDatos", targetNamespace = "")
+        XMLGregorianCalendar fechaCargaDatos);
+
+    /**
+     * 
+     * @param descripcion
+     * @param cantidadMinima
+     * @param movimientoId
+     * @param ordenRelacionadaNumber
+     * @param statusOrden
+     * @param tipoOrdenId
+     * @param idProduct
+     * @param cantidad
+     * @param cantidadMaxima
+     * @param tipoGeneracion
+     * @param comentarios
+     * @param ordenRelacionadaId
+     * @return
+     *     returns com.cbp3.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "modificarOrdenRelacionadaWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ModificarOrdenRelacionadaWS")
+    @ResponseWrapper(localName = "modificarOrdenRelacionadaWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ModificarOrdenRelacionadaWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/modificarOrdenRelacionadaWSRequest", output = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/modificarOrdenRelacionadaWSResponse")
+    public RespuestaDTO modificarOrdenRelacionadaWS(
+        @WebParam(name = "ordenRelacionadaId", targetNamespace = "")
+        long ordenRelacionadaId,
+        @WebParam(name = "ordenRelacionadaNumber", targetNamespace = "")
+        String ordenRelacionadaNumber,
+        @WebParam(name = "tipoOrdenId", targetNamespace = "")
+        TipoOrden tipoOrdenId,
+        @WebParam(name = "descripcion", targetNamespace = "")
+        String descripcion,
+        @WebParam(name = "movimientoId", targetNamespace = "")
+        Movimiento movimientoId,
+        @WebParam(name = "idProduct", targetNamespace = "")
+        Product idProduct,
+        @WebParam(name = "comentarios", targetNamespace = "")
+        String comentarios,
+        @WebParam(name = "statusOrden", targetNamespace = "")
+        String statusOrden,
+        @WebParam(name = "tipoGeneracion", targetNamespace = "")
+        String tipoGeneracion,
+        @WebParam(name = "cantidad", targetNamespace = "")
+        long cantidad,
+        @WebParam(name = "cantidadMinima", targetNamespace = "")
+        long cantidadMinima,
+        @WebParam(name = "cantidadMaxima", targetNamespace = "")
+        long cantidadMaxima);
+
+    /**
+     * 
+     * @param ordenRelacionadaNumber
+     * @return
+     *     returns com.cbp3.ws.cbp.service.OrdenRelacionada
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "consultaOrdenRelacionadaPorNumeroOrdenIdWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaOrdenRelacionadaPorNumeroOrdenIdWS")
+    @ResponseWrapper(localName = "consultaOrdenRelacionadaPorNumeroOrdenIdWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaOrdenRelacionadaPorNumeroOrdenIdWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/consultaOrdenRelacionadaPorNumeroOrdenIdWSRequest", output = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/consultaOrdenRelacionadaPorNumeroOrdenIdWSResponse")
+    public OrdenRelacionada consultaOrdenRelacionadaPorNumeroOrdenIdWS(
+        @WebParam(name = "ordenRelacionadaNumber", targetNamespace = "")
+        String ordenRelacionadaNumber);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<com.cbp3.ws.cbp.service.OrdenRelacionada>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listOrdenRelacionadaWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListOrdenRelacionadaWS")
+    @ResponseWrapper(localName = "listOrdenRelacionadaWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListOrdenRelacionadaWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/listOrdenRelacionadaWSRequest", output = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/listOrdenRelacionadaWSResponse")
+    public List<OrdenRelacionada> listOrdenRelacionadaWS();
+
+    /**
+     * 
+     * @param fechaCargaDatos
+     * @param fechaAjusteRecibo
+     * @param movimientoId
+     * @param idProduct
+     * @param cantidad
+     * @param comentarios
+     * @return
+     *     returns com.cbp3.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "crearAjusteReciboWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.CrearAjusteReciboWS")
+    @ResponseWrapper(localName = "crearAjusteReciboWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.CrearAjusteReciboWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/crearAjusteReciboWSRequest", output = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/crearAjusteReciboWSResponse")
+    public RespuestaDTO crearAjusteReciboWS(
+        @WebParam(name = "fechaAjusteRecibo", targetNamespace = "")
+        XMLGregorianCalendar fechaAjusteRecibo,
+        @WebParam(name = "movimientoId", targetNamespace = "")
+        Movimiento movimientoId,
+        @WebParam(name = "idProduct", targetNamespace = "")
+        Product idProduct,
+        @WebParam(name = "cantidad", targetNamespace = "")
+        long cantidad,
+        @WebParam(name = "comentarios", targetNamespace = "")
+        String comentarios,
+        @WebParam(name = "fechaCargaDatos", targetNamespace = "")
+        XMLGregorianCalendar fechaCargaDatos);
+
+    /**
+     * 
+     * @param ajusteReciboId
+     * @param movimientoId
+     * @param codigoUsuarioModifica
+     * @param fechaHoraModificacion
+     * @param idProduct
+     * @param cantidad
+     * @param comentarios
+     * @return
+     *     returns com.cbp3.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "modificarAjusteReciboWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ModificarAjusteReciboWS")
+    @ResponseWrapper(localName = "modificarAjusteReciboWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ModificarAjusteReciboWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/modificarAjusteReciboWSRequest", output = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/modificarAjusteReciboWSResponse")
+    public RespuestaDTO modificarAjusteReciboWS(
+        @WebParam(name = "ajusteReciboId", targetNamespace = "")
+        long ajusteReciboId,
+        @WebParam(name = "movimientoId", targetNamespace = "")
+        Movimiento movimientoId,
+        @WebParam(name = "idProduct", targetNamespace = "")
+        Product idProduct,
+        @WebParam(name = "cantidad", targetNamespace = "")
+        long cantidad,
+        @WebParam(name = "comentarios", targetNamespace = "")
+        String comentarios,
+        @WebParam(name = "codigoUsuarioModifica", targetNamespace = "")
+        long codigoUsuarioModifica,
+        @WebParam(name = "fechaHoraModificacion", targetNamespace = "")
+        XMLGregorianCalendar fechaHoraModificacion);
+
+    /**
+     * 
+     * @param ajusteReciboId
+     * @return
+     *     returns com.cbp3.ws.cbp.service.AjusteRecibo
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "consultaAjusteReciboPorAjusteReciboIdWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaAjusteReciboPorAjusteReciboIdWS")
+    @ResponseWrapper(localName = "consultaAjusteReciboPorAjusteReciboIdWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaAjusteReciboPorAjusteReciboIdWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/consultaAjusteReciboPorAjusteReciboIdWSRequest", output = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/consultaAjusteReciboPorAjusteReciboIdWSResponse")
+    public AjusteRecibo consultaAjusteReciboPorAjusteReciboIdWS(
+        @WebParam(name = "ajusteReciboId", targetNamespace = "")
+        long ajusteReciboId);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<com.cbp3.ws.cbp.service.AjusteRecibo>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listAjusteReciboWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListAjusteReciboWS")
+    @ResponseWrapper(localName = "listAjusteReciboWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListAjusteReciboWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/listAjusteReciboWSRequest", output = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/listAjusteReciboWSResponse")
+    public List<AjusteRecibo> listAjusteReciboWS();
+
+    /**
+     * 
+     * @param ordenRelacionadaId
+     * @return
+     *     returns com.cbp3.ws.cbp.service.OrdenRelacionada
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "consultaOrdenRelacionadaPorOrdenRelacionadaIdWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaOrdenRelacionadaPorOrdenRelacionadaIdWS")
+    @ResponseWrapper(localName = "consultaOrdenRelacionadaPorOrdenRelacionadaIdWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaOrdenRelacionadaPorOrdenRelacionadaIdWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/consultaOrdenRelacionadaPorOrdenRelacionadaIdWSRequest", output = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/consultaOrdenRelacionadaPorOrdenRelacionadaIdWSResponse")
+    public OrdenRelacionada consultaOrdenRelacionadaPorOrdenRelacionadaIdWS(
+        @WebParam(name = "ordenRelacionadaId", targetNamespace = "")
+        long ordenRelacionadaId);
+
 }

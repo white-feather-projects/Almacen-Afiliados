@@ -111,6 +111,7 @@
 						<wsdlUrl>http://18.222.73.208:8080/CBP-3/AfiliacionServiceWS?WSDL</wsdlUrl>
 						<wsdlUrl>http://18.222.73.208:8080/CBP-3/UbicacionGeograficaWS?WSDL</wsdlUrl>
 						<wsdlUrl>http://18.222.73.208:8080/CBP-3/AlmacenServiceWS?WSDL</wsdlUrl>
+						<wsdlUrl>http://18.222.73.208:8080/CBP-3/InventarioServiceWS?WSDL</wsdlUrl>
 					</wsdlUrls>
 				</configuration>
 			</plugin>

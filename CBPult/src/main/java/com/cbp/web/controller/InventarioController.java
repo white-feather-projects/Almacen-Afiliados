@@ -152,7 +152,7 @@ public class InventarioController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value = "/listaMovimientosByTipoMovimiento", produces = { "application/json" }) 
+	@RequestMapping(value = "/listaProductoUbicacion", produces = { "application/json" }) 
 	public @ResponseBody java.util.List<ProductoUbicacion> listaProductoUbicacion() {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		java.util.List<ProductoUbicacion> respuesta = new ArrayList<>();
