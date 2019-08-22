@@ -266,7 +266,7 @@ function evtNuevaZona(){
 	contenedor_zonas.append(html_zona);
 	contenedor_relZonas.append(html_zona_relacion);
 	
-	swal("nueva Zona "+contador_zonas);
+	swal("nueva Zona "+(contador_zonas+1));
 	
 	// tablas del Tab de Zonas
 	$('table.display'+contador_zonas).DataTable({ 

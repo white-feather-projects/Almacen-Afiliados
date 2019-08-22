@@ -310,37 +310,46 @@ function crearListaZonasServ(idAlmacen){
         data: JSON.stringify(info_zonas),
         success: function(response){
         	
-			if(response.return.descripcion == "OK"){
-				
-				console.log("Respuesta Creacion Zonas",response);
-				
-				response.return.listZonas.forEach(function(zona, index){
-					data_zonas[index].id = zona.zonaId;
-					data_zonas[index].estanteriasZona.forEach(function(estanteria){
-						
-						//Construyendo el objeto de Estanteria a Crear
-						var info_estanteria = {
-							"zonaId": {
-								"zonaId": data_zonas[index].id
-							},
-							"modulos": estanteria[0],
-							"niveles": estanteria[1]
-						}						
-						crearEstanteriaServ(info_estanteria);
-						
-					});
-					
-				});				
-				console.log("Fin de Creación de Estanterias...");
-				swal("Creación del Almacén Exitosa");
-			}					
-			
-        },
-        error: function(e, txt){
-        	swal("Error al crear las Zonas");
-	    	console.log("error:"+ txt + e);
-	    	console.log(info_zonas);
-        }
+        if(response.return.descripcion == "OK"){
+
+          console.log("Respuesta Creacion Zonas",response);
+
+          response.return.listZonas.forEach(function(zona, index){
+            data_zonas[index].id = zona.zonaId;
+            data_zonas[index].estanteriasZona.forEach(function(estanteria){
+
+              //Construyendo el objeto de Estanteria a Crear
+              var info_estanteria = {
+                "zonaId": {
+                  "zonaId": data_zonas[index].id
+                },
+                "modulos": estanteria[0],
+                "niveles": estanteria[1]
+              }						
+              crearEstanteriaServ(info_estanteria);
+
+            });
+
+          });
+          //////////////////
+          swal({
+               title: "EXITO!",
+               text: "Creación del Almacén Exitosa...",
+               type: "success",
+               timer: 3000
+               },
+               function () {
+                      location.href = "/CBPult/Almacen/configuration_almacen"
+               }
+          );
+          //////////////////
+        }			
+      },
+      error: function(e, txt){
+        swal("Error al crear las Zonas");
+      console.log("error:"+ txt + e);
+      console.log(info_zonas);
+      }
 		
 	});
 	
@@ -358,7 +367,7 @@ function crearEstanteriaServ(info_estanteria){
         success: function(response){
         	
         	console.log("Respuesta Creacion Estanteria",response);
-        	//location.href = "/CBPult/Almacen/configuration_almacen";
+          
         },
         error: function(e, txt){
         	swal("Error al crear las Estanterias de la Zona ", info_estanteria.zonaId.zonaId);
