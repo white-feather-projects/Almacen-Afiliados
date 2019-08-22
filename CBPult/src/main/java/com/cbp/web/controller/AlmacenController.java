@@ -140,7 +140,10 @@ public class AlmacenController {
 	public @ResponseBody CrearListaZonaWizzardWSResponse crearListaZonaWizzard(@RequestBody CrearListaZonaWizzardWS CrearListaZonaWizzardWS) {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		CrearListaZonaWizzardWSResponse respuesta = new CrearListaZonaWizzardWSResponse();
+		System.out.println(CrearListaZonaWizzardWS.getListZonaDTO().get(0).getDescripcion());
+		System.out.println(CrearListaZonaWizzardWS.getListZonaDTO().get(0).getEncargadoZona().getEmpleadoId());
 		respuesta = almacenMethods.crearListaZonaWizzard(CrearListaZonaWizzardWS);
+		
 		//System.out.println(ModificarAlmacenDTO.toString());
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
@@ -327,8 +330,8 @@ public class AlmacenController {
 	//+////////////// Almacen ///////////////
 		
 		//+////////////// Nuevo Almacen Wizzard ///////////////
-		@RequestMapping(value = "/almacen_nuevo-wizzard", method = RequestMethod.GET)
-	    public String almacen_nuevo_wizzard(Model model) {
+		@RequestMapping(value = "/almacen_nuevo-wizzard&{IdAlmacen}", method = RequestMethod.GET)
+	    public String almacen_nuevo_wizzard(@PathVariable(value = "IdAlmacen") String IdAlmacen, Model model) {
 			model.addAttribute("name", name);
 			model.addAttribute("link", link);
 			
