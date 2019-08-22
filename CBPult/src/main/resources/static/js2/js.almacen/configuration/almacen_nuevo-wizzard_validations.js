@@ -76,10 +76,8 @@ if(IdAlmacen === "nuevo"){
 						    "zonas": []
 						};					
 						console.log("Info del Almacen", data_almacen);
-						//swal("Valido");
 						
 					}else if(validated != 2){
-						//swal("invalido");
 						return false;
 					}				
 					
@@ -103,10 +101,10 @@ if(IdAlmacen === "nuevo"){
 						for (var j = 0; j < estanterias.length; j++) {
 							var modulo, nivel;
 							for (var k = 0; k < estanterias[j].cells.length; k++) {							
-								if(k == 1){
+								if(k == 0){
 									modulo = estanterias[j].cells[k].innerHTML;
 								}
-								else if(k == 2){
+								else if(k == 1){
 									nivel = estanterias[j].cells[k].innerHTML;
 								}							
 							}
@@ -190,8 +188,16 @@ if(IdAlmacen === "nuevo"){
 			return true;        
 		},
 		onFinish: function () {
+			
+			// Construyendo los objetos de las Relaciones
+			// Relaciones de Almacén
+			var centerSwitchesRel = $('#simpletablerel .uno center');
+			var centerIdAlmacenRel = $('#simpletablerel .dos center');
+			
+			console.log(centerSwitchesRel);
+			
 			// Consumo de Servicios - ServicesConfigurationWarehouse.js
-			crearAlmacenServ();
+			//crearAlmacenServ();
 		}
 
 	});
