@@ -99,21 +99,22 @@
 									                                                        	<div class="row">
 									                                                        		
 									                                                        		<!-- Contenido de Card -->
-									                                                        		 
+									                                                        		<!-- 
 									                                                        		<div class="col-sm-6">
 										                                                                <label class="col-sm-12 col-form-label">Código de Almacén</label>
 										                                                                <div class="col-sm-12">
 										                                                                    <input type="text" id="txtCodigo_almacen" class="form-control" placeholder="Codigo" style="">
 										                                                                </div>
 									                                                            	</div>
+									                                                            	 --> 
 									                                                            
 										                                                            <div class="col-sm-6 mobile-inputs">
 										                                                                <label class="col-sm-12 col-form-label">Tipo Almacén</label>
 										                                                                <div class="col-sm-12">
 											                                                                <select name="select" id="cboxTipo_almacen" class="form-control">
-											                                                                    <option value="Almacén">Almacén</option>
-											                                                                    <option value="Laboratorio">Laboratorio</option>
-											                                                                    <option value="Sucursal">Sucursal</option>
+											                                                                    <option value="Almacén" name="1">Almacén</option>
+											                                                                    <option value="Laboratorio" name="2">Laboratorio</option>
+											                                                                    <option value="Sucursal" name="3">Sucursal</option>
 											                                                                </select>
 										                                                         		</div>
 										                                                            </div>
@@ -128,16 +129,16 @@
 										                                                            <div class="col-sm-6 mobile-inputs">
 										                                                                <label class="col-sm-12 col-form-label">Gerente de Sucursal</label>
 										                                                                <div class="col-sm-12">
-											                                                                <select name="select" id="cboxEncargado_almacen" class="form-control">
-												                                                                <option value="Elon Musk">Elon Musk</option>
-												                                                                <option value="Einstein">Einstein</option>
-												                                                            	<option value="Jack Ma">Jack Ma</option>
+											                                                                <select name="select" id="cboxEncargado_almacen" class="form-control"> <!-- Comsumir servicio de Consulta de Empleados -->
+												                                                                <option value="Elon Musk" name="1">Elon Musk</option>
+												                                                                <option value="Einstein" name="2">Einstein</option>
+												                                                            	<option value="Jack Ma" name="3">Jack Ma</option>
 												                                                    		</select>
 												                                                    											                                                          
 											                                                			</div>
 											                                                		</div>
 										                                                        	
-										                                                        	<div class="col-sm-12">
+										                                                        	<div class="col-sm-6 mobile-inputs">
 										                                                                <label class="col-sm-12 col-form-label solo_texto ">Ubicación (Dirección)</label>
 										                                                                <div class="col-sm-12">
 										                                                                    <input type="text" class="form-control" id="txtUbicacion_almacen">

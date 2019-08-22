@@ -1,5 +1,5 @@
 var data_almacen; // para capturar la toda la info del modulo (Almacen, Zonas, Relaciones)
-var data_zonas;// se usa para capturar las Zonas i se incrusta en "data_almacen" en el atributo "zonasAlmacen"
+var data_zonas; // se usa para capturar las Zonas i se incrusta en "data_almacen" en el atributo "zonasAlmacen"
 
 var txtDescAlmacen = $('#txtDesc_almacen');
 var txtUbicacionAlmacen = $('#txtUbicacion_almacen');
@@ -55,73 +55,17 @@ $('#demo').steps({
 				}
 				///
 				
-				// Validacion Encargado
-				var Encargado = $('#cboxEncargado_almacen').val(); // lo necesito porque el servicio de Crear me pide el IdTipo Almacen, mas no el Tipo en si
-				var idEncargado;
-				if(Encargado === 'Elon Musk'){
-					idEncargado = 1;
-				}
-				else if(Encargado === 'Einstein'){
-					idEncargado = 2;
-				}
-				else if(Encargado === 'Jack Ma'){
-					idEncargado = 3;
-				}
-				else{
-					console.log("Encargado no Existente");
-					idEncargado = null;
-				}
-				// Validacion Encargado
-				
-				// Validacion Tipo Almacen
-				var tipoAlmacen = $('#cboxTipo_almacen').val(); // lo necesito porque el servicio de Crear me pide el IdTipo Almacen, mas no el Tipo en si
-				var idTipoAlmacen;
-				if(tipoAlmacen === 'Almacén'){
-					idTipoAlmacen = 1;
-				}
-				else if(tipoAlmacen === 'Laboratorio'){
-					idTipoAlmacen = 2;
-				}
-				else if(tipoAlmacen === 'Sucursal'){
-					idTipoAlmacen = 3;
-				}
-				else{
-					console.log("Tipo de Almacén no Existente");
-					idTipoAlmacen = null;
-				}
-				// Validacion Tipo Almacen
-				
-				
-				// Validacion y Creacion Id Almacen
-				var warehouseText;
-				var IdAlmacen = $('#txtCodigo_almacen').val();
-				if(idTipoAlmacen == 1){
-					warehouseText = "Almacen-"+IdAlmacen;
-				}		
-				else if(idTipoAlmacen == 2){
-					warehouseText = "Laboratorio-"+IdAlmacen;
-				}
-				else if(idTipoAlmacen == 3){
-					warehouseText = "Sucursal-"+IdAlmacen;
-				}
-				else{
-					console.log("No se puede Enviar Id, Tipo de Almacén no Existente");
-					warehouseText = null;
-				}
-				// Validacion y Creacion Id Almacen
-				
 				if(validated == 2){
 					
 					// Creacion del Almacén
 					
 					data_almacen = {
 						"direccion": $('#txtUbicacion_almacen').val(),
-					    "gerenteSucursal": idEncargado,
+					    "gerenteSucursal": parseInt($('select[id="cboxEncargado_almacen"] option:selected').attr('name')),
 					    "officeId": 1,
-					    "productId": 1,
-					    "tipoAlmacenId": idTipoAlmacen,
+					    "tipoAlmacenId": parseInt($('select[id="cboxTipo_almacen"] option:selected').attr('name')),
 					    "warehouseName": $('#txtDesc_almacen').val(),
-					    "warehouseNumber": warehouseText
+					    "zonas": []
 					};
 					/* Consumo 
 					$.ajax({
@@ -163,7 +107,7 @@ $('#demo').steps({
  		       		}*/
 					// Creacion del Almacén
 					
-					//console.log(data_almacen);
+					console.log("Info del Almacen", data_almacen);
 					//swal("Valido");
 					
 				}else if(validated != 2){
@@ -181,12 +125,9 @@ $('#demo').steps({
 		/// Las valla parte de Zonas está en "almacen_nuevo-wizzard_funcionalidad.js"
 		if(currentIndex === 1){
 			
-			
-			
 			if(stepDirection === 'forward'){
-				
-				// Armando el Json de listZonas		
-				console.log("Zonas que pasan a Relaciones", zonaListTemp);				
+								
+				// Armando el Json de listZonas					
 				data_zonas = zonaListTemp.map(function(zona, i){	
 					var estanterias = $('#simpletable'+zona.zona.id+' tbody tr');
 					var estanterias_json = [];
@@ -206,14 +147,17 @@ $('#demo').steps({
 					
 					return {
 						"id": zona.zona.id,
+						"idWareHouse": '',
 						"tipoZona": $('#cboxTipo_zona'+zona.zona.id).val(),
 						"descripcionZona": $('#txtDescripcion_zona'+zona.zona.id).val(),
 						"encargadoZona": $('#cboxEncargado_zona'+zona.zona.id).val(),
-						"estanteriasZona": estanterias_json
+						"estanteriasZona": estanterias_json,
+						"relacionesZona": []
 					}
-				});				
-				console.log("Pasan a Relaciones: ", data_zonas);
+				});	
 				
+				data_almacen.zonas = data_zonas;
+				console.log("Almacen: ", data_almacen);
 			}			
 			
 		}		
@@ -221,15 +165,13 @@ $('#demo').steps({
 		
 		if(currentIndex === 2){
 			
-			// para no cargar a cada rato la Tabla de Relaciones
+			// para no cargar a cada rato la Tabla de Relaciones del Almacén
 			if(listar == 0){
 				listarAlmacenesRelServ();
 				listar++;
 			}
 			
 			for (var i = 0; i < data_zonas.length; i++) {
-				console.log("Zona Actual", data_zonas[i]);
-				console.log('Relaciones de Zona '+i);
 				
 				// Llenado de los campos de las Zonas en Relaciones
 				$('#cboxTipo_zonarel'+data_zonas[i].id).val(data_zonas[i].tipoZona);
@@ -237,31 +179,34 @@ $('#demo').steps({
 				$('#cboxEncargado_zonarel'+data_zonas[i].id).val(data_zonas[i].encargadoZona);
 				// Llenado de los campos de las Zonas en Relaciones
 				
+				// Llenado de Tablas de Relaciones
 				for (var j = 0; j < data_zonas.length; j++) {
 					
 					if(j != i){
-						console.log(data_zonas[j]);
 						$('#tbodyrel_'+data_zonas[i].id).append(`
 							<tr>
 								<td style="text-align:center">
 									<div class="row" style="display: inline-block">
-		                                <div class="col-sm-4"><input type="checkbox" class="js-switch-blue_rel" checked="" data-switchery="true" style="display: none;"></div>
+		                                <div class="col-sm-4"><input type="checkbox" class="js-switch-blue_rel" data-switchery="true" style="display: none;"></div>
 		                            </div>
 								</td>							
 								<td>`+data_zonas[j].tipoZona+`</td>
 								<td>`+data_zonas[j].descripcionZona+`</td>
 								<td>`+data_zonas[j].encargadoZona+`</td>
-							</tr>
-						`);
-					}					
+							</tr>						`
+						);
+					}	
 					
-				}				
+				}
+				// Llenado de Tablas de Relaciones
 				
 			}			
 			// Cargar Switches de las Tablas de Relación de las Zonas
 			Array.prototype.forEach.call($('.js-switch-blue_rel'), (item, i)=>{
 				var actual_switch = new Switchery(item, {
-					color: '#17a2b8'
+					color: '#17a2b8',
+					secondaryColor: '#e0e0e0',
+					jackSecondaryColor: '#17a2b8'
 				});
 			});
 			

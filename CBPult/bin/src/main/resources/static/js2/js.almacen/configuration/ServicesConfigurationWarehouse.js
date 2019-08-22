@@ -175,7 +175,7 @@ function listarAlmacenesRelServ(){
                 "class": "uno",
                 "defaultContent": "",
                 "render": function ( data ) {
-                	return '<center><input type="checkbox" class="js-switch-blue" checked="" data-switchery="true" style="display: none;"></center>';
+                	return '<center><input type="checkbox" class="js-switch-blue" data-switchery="true" style="display: none;"></center>';
                 }
            },
     	   {
@@ -222,12 +222,12 @@ function listarAlmacenesRelServ(){
         // ejecuta una funcion Despues de Cargar los Registros de la Tabla
         // lo uso para cargar la clase de los Switches
         initComplete: function( settings, json){
-            console.log(json);
-            alert("tabla terminada");
             //Cargar Switches
 			Array.prototype.forEach.call($('.js-switch-blue'), (item, i)=>{
 				var actual_switch = new Switchery(item, {
-					color: '#17a2b8'
+					color: '#17a2b8',
+					secondaryColor: '#e0e0e0',
+					jackSecondaryColor: '#17a2b8'
 				});
 			});
         },
