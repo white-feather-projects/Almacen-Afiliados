@@ -20,6 +20,7 @@
 	    
 	    <!-- Servicios Almacen -->
 	    <script type="text/javascript" th:src="@{/js2/js.almacen/configuration/ServicesConfigurationWarehouse.js}"></script>
+	    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 	    
      </head>
      
@@ -73,7 +74,8 @@
 															     	<ul class="step-steps">															      
 																        <li class="tb1"><a href="#tab1" id="verificar1" data-type="inverse" data-from="top" data-align="left" data-icon="fa fa-check"><span class="number">Almacen</span> <i class="fa fa-home" style="font-size:30px"></i></a></li>
 																        <li class="tb2"><a href="#tab2" id="verificar2" data-type="inverse" data-from="top" data-align="left" data-icon="fa fa-check"><span class="number">Zonas</span> <i class="fa fa-home" style="font-size:30px"></i></a></li>
-																        <li class="tb3"><a href="#tab3" id="verificar3" data-type="inverse" data-from="top" data-align="left" data-icon="fa fa-check"><span class="number">Relaciones</span> <i class="fa fa-home" style="font-size:30px"></i></a></li>
+																        <li class="tb3"><a href="#tab3" id="verificar3" data-type="inverse" data-from="top" data-align="left" data-icon="fa fa-check"><span class="number">Rels de Almacén</span> <i class="fa fa-home" style="font-size:30px"></i></a></li>
+																        <li class="tb4"><a href="#tab4" id="verificar4" data-type="inverse" data-from="top" data-align="left" data-icon="fa fa-check"><span class="number">Relaciones de Zonas</span> <i class="fa fa-home" style="font-size:30px"></i></a></li>
 																    </ul>
 															      
 															      	<!-- Contenido Wizzard -->
@@ -242,7 +244,21 @@
 									                                                    	
 									                                        			</div>
 									                                    			</div>
-									                                                <!-- Card 1 -->
+									                                                <!-- Card 1 -->				                                                
+																            		
+																            	</div>																            	
+																            																	            
+									                                		</div>
+																		</div>																		
+																		<!-- Tab 3 -->		
+																		
+																		<!-- Tab 4 -->																		
+																      	<div class="step-tab-panel" id="tab4">
+																            <div class="page-body">
+																            
+																            	<div id="relaciones_almacen" class="row">
+																            	
+																            		<!-- contenido del Row -->									                                            	
 									                                                
 									                                                <!-- Separador -->
 									                                                <div class="col-sm-12">
@@ -266,7 +282,7 @@
 									                                			</div>
 									                                		</div>
 																		</div>																		
-																		<!-- Tab 3 -->												        
+																		<!-- Tab 4 -->											        
 																                
 																        
 																        

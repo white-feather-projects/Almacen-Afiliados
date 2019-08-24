@@ -23,7 +23,7 @@ function evtNuevaZona(){
         		<div class="col-sm-12" style="margin: 5px 0px 5px 0px;">									                                                			
             		<div class="column" align="left">																
 						<a style="margin-right: 5px;" title="Eliminar Zona">
-							<i id="btnEliminarZona_config" onClick="eliminarZona(`+contador_zonas+`)" class="fa fa-plus-square agregaryasignar" style="font-size: 50px"></i>
+							<img id="btnEliminarZona_config" onClick="eliminarZona(`+contador_zonas+`)" src="`+thEliminar+`" style="width: 60px"></img>
 						</a>
 					</div>											                                                	
         		</div>
@@ -335,13 +335,10 @@ function crearTr(actual){
 		$('#tbody'+actual).append(`
 			<tr>
 		    	<td>`+modulos.val()+`</td>
-		    	<td>`+niveles.val()+`</td>																														    	
+		    	<td>`+niveles.val()+`</td>																												    	
 		    	<td>
-		    		<a onclick="location.href = '/CBPult/Almacen/relacion-zona_nuevo-editar'">
-		    			<img alt="Editar" src="`+thEditar+`" width="30px">
-		    		</a>
-		    		<a onclick="alert('Relación Eliminada')">
-		    			<img alt="Eliminar" src="`+thEliminar+`" width="30px">
+		    		<a onclick="alert('EstanteriaEliminada')">
+		    			<img alt="Eliminar" src="`+thEliminar+`" onclick="console.log()"  width="30px">
 		    		</a>
 		    	</td>
 		    </tr>

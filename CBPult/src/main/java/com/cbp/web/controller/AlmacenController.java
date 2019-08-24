@@ -29,6 +29,8 @@ import com.cbp3.ws.cbp.service.CrearEstanteriaWS;
 import com.cbp3.ws.cbp.service.CrearEstanteriaWSResponse;
 import com.cbp3.ws.cbp.service.CrearListaZonaWizzardWS;
 import com.cbp3.ws.cbp.service.CrearListaZonaWizzardWSResponse;
+import com.cbp3.ws.cbp.service.CrearRelacionAlmacenesWS;
+import com.cbp3.ws.cbp.service.CrearRelacionAlmacenesWSResponse;
 import com.cbp3.ws.cbp.service.CrearRelacionZonasWS;
 import com.cbp3.ws.cbp.service.CrearRelacionZonasWSResponse;
 import com.cbp3.ws.cbp.service.Estanteria;
@@ -172,6 +174,20 @@ public class AlmacenController {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		ConsultaZonaPorZonaIdWSResponse respuesta = new ConsultaZonaPorZonaIdWSResponse();
 		respuesta = almacenMethods.consultaZonaPorZonaId(ConsultaZonaPorZonaIdWS);
+		//System.out.println(ModificarAlmacenDTO.toString());
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	//
+	
+	@RequestMapping(value = "/crearRelacionAlmacenes", produces = { "application/json" })
+	public @ResponseBody CrearRelacionAlmacenesWSResponse crearRelacionAlmacenes(@RequestBody CrearRelacionAlmacenesWS CrearRelacionAlmacenesWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		CrearRelacionAlmacenesWSResponse respuesta = new CrearRelacionAlmacenesWSResponse();
+		respuesta = almacenMethods.crearRelacionAlmacenes(CrearRelacionAlmacenesWS);
 		//System.out.println(ModificarAlmacenDTO.toString());
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;

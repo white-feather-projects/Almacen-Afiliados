@@ -88,7 +88,7 @@ if(IdAlmacen === "nuevo"){
 			
 			
 			// tab Zonas
-			/// Las valla parte de Zonas está en "almacen_nuevo-wizzard_funcionalidad.js"
+			/// El código que hace funcionar el tab de Zonas está en "almacen_nuevo-wizzard_funcionalidad.js"
 			if(currentIndex === 1){
 				
 				if(stepDirection === 'forward'){
@@ -123,19 +123,24 @@ if(IdAlmacen === "nuevo"){
 					});	
 					
 					data_almacen.zonas = data_zonas;
-					console.log("Almacen: ", data_almacen);
+					
 				}			
 				
-			}		
-			// tab Zonas
+			}
 			
+			// tab Relaciones de Almacén		
 			if(currentIndex === 2){
 				
 				// para no cargar a cada rato la Tabla de Relaciones del Almacén
 				if(listar == 0){
 					listarAlmacenesRelServ();
 					listar++;
-				}
+				}				
+				
+				console.log("Objeto Zona", data_zonas);
+				var zonasRel = data_zonas.map(function(i, zona){
+					
+				});
 				
 				for (var i = 0; i < data_zonas.length; i++) {
 					
@@ -183,21 +188,31 @@ if(IdAlmacen === "nuevo"){
 					}				
 				}
 				
+				if(stepDirection === 'forward'){
+
+					// Consumo de Servicios - ServicesConfigurationWarehouse.js
+					// Almacén, Zonas y Estanterias
+					crearAlmacenServ();
+					
+				}
+				
+			}
+			
+			// tab Relaciones de Zonas
+			if(currentIndex === 3){
+				
+				if(stepDirection === 'backward'){
+					
+					
+					
+				}
+				
 			}
 	    	
 			return true;        
 		},
 		onFinish: function () {
 			
-			// Construyendo los objetos de las Relaciones
-			// Relaciones de Almacén
-			var centerSwitchesRel = $('#simpletablerel .uno center');
-			var centerIdAlmacenRel = $('#simpletablerel .dos center');
-			
-			console.log(centerSwitchesRel);
-			
-			// Consumo de Servicios - ServicesConfigurationWarehouse.js
-			//crearAlmacenServ();
 		}
 
 	});
