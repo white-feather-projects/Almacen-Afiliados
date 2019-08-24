@@ -16,8 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class UploadFileServiceImplAfiliacion implements IUploadFileService{
-		private final String PATH="/home/ubuntu/documentosAdquiriencia";
-		//private final String PATH="C:\\pnp\\";
+		//private final String PATH="/home/ubuntu/documentosAdquiriencia";
+		private final String PATH="C:\\pnp\\";
 		@Override
 		public Resource load(String filename) throws MalformedURLException {
 

@@ -28,15 +28,7 @@ import com.cbp.web.dto.ActiveOrInactiveOperadoraTelefonicaDTO;
 import com.cbp.web.dto.AsociarBancoComercioDTO;
 import com.cbp.web.dto.AsociarComercioConContactoDTO;
 import com.cbp.web.dto.AsociarComercioConRepresentanteLegalDTO;
-import com.cbp.web.dto.CargaArchivosDTO;
-import com.cbp.web.dto.ClientDTO;
 import com.cbp.web.dto.CodigoPostalDTO;
-import com.cbp.web.dto.ConsultaAsociacionComercioContactoDTO;
-import com.cbp.web.dto.ConsultaAsociacionComercioOtroBancoDTO;
-import com.cbp.web.dto.ConsultaAsociacionComercioRepresentanteDTO;
-import com.cbp.web.dto.ConsultaBancoAfiliacionIdDTO;
-import com.cbp.web.dto.ConsultaContactoByIdentificacionContactoDTO;
-import com.cbp.web.dto.ConsultaRepresentanteLegalByIdentificacionRepresentanteDTO;
 import com.cbp.web.dto.CrearContactoDTO;
 import com.cbp.web.dto.CrearOperadorTelefonicoDTO;
 import com.cbp.web.dto.CrearRepresentanteLegalDTO;
@@ -46,18 +38,16 @@ import com.cbp.web.dto.EditarAsociacionComercioConRepresentanteLegalDTO;
 import com.cbp.web.dto.EditarContactoDTO;
 import com.cbp.web.dto.EditarRepresentanteLegalDTO;
 import com.cbp.web.dto.ModificarOperadorTelefonicoDTO;
-import com.cbp.web.dto.RespuestaDTO;
 import com.cbp.web.dto.actualizaStatusComercioDTO;
-import com.cbp.web.dto.consultaComercioDTO;
 import com.cbp.web.dto.crearComercioDTO;
 import com.cbp.web.dto.modificarComercioDTO;
-import com.cbp.web.impl.UploadFileServiceImpl;
+import com.cbp.web.impl.EmailService;
 import com.cbp.web.impl.UploadFileServiceImplAfiliacion;
 import com.cbp.web.util.Util;
 import com.cbp3.ws.cbp.service.ActiveOrInactiveOperadoraTelefonicaWSResponse;
 import com.cbp3.ws.cbp.service.ActualizaStatusComercioWSResponse;
-import com.cbp3.ws.cbp.service.AfiliacionServiceWS;
-import com.cbp3.ws.cbp.service.AfiliacionServiceWS_Service;
+import com.cbp3.ws.cbp.service.ActualizaStatusPrecargaComercioWS;
+import com.cbp3.ws.cbp.service.ActualizaStatusPrecargaComercioWSResponse;
 import com.cbp3.ws.cbp.service.AsociarBancoComercioWSResponse;
 import com.cbp3.ws.cbp.service.AsociarComercioConContactoWSResponse;
 import com.cbp3.ws.cbp.service.AsociarComercioConRepresentanteLegalWSResponse;
@@ -71,20 +61,17 @@ import com.cbp3.ws.cbp.service.CodigoPostalWSResponse;
 import com.cbp3.ws.cbp.service.Comercio;
 import com.cbp3.ws.cbp.service.ComercioEstabl;
 import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioContactoWSResponse;
-import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioOtroBancoWS;
 import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioOtroBancoWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaAsociacionComercioRepresentanteWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaBancoAfiliacionByIdWSResponse;
-import com.cbp3.ws.cbp.service.ConsultaComercioPorComercioIdWS;
 import com.cbp3.ws.cbp.service.ConsultaComercioPorComercioIdWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaComercioPorIdentificacionComercioWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaContactoByIdentificacionContactoWSResponse;
-import com.cbp3.ws.cbp.service.ConsultaEntityBankByIdEntityBankWS;
 import com.cbp3.ws.cbp.service.ConsultaEntityBankByIdEntityBankWSResponse;
-import com.cbp3.ws.cbp.service.ConsultaPagoByNumComprobanteReciboWS;
 import com.cbp3.ws.cbp.service.ConsultaPagoByNumComprobanteReciboWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaPrecargaComercioPorIdWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaPrecargaComercioPorIdentificacionComercioWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse;
-import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWS;
 import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWSResponse;
 import com.cbp3.ws.cbp.service.CrearComercioEstablecimientoWS;
 import com.cbp3.ws.cbp.service.CrearComercioEstablecimientoWSResponse;
@@ -95,6 +82,8 @@ import com.cbp3.ws.cbp.service.CrearEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.CrearOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.CrearPagoComercioWS;
 import com.cbp3.ws.cbp.service.CrearPagoComercioWSResponse;
+import com.cbp3.ws.cbp.service.CrearPrecargaComercioWS;
+import com.cbp3.ws.cbp.service.CrearPrecargaComercioWSResponse;
 import com.cbp3.ws.cbp.service.CrearRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.Distrito;
 import com.cbp3.ws.cbp.service.EditarAsociacionBancoComercioWSResponse;
@@ -106,7 +95,6 @@ import com.cbp3.ws.cbp.service.EntityBank;
 import com.cbp3.ws.cbp.service.Establecimiento;
 import com.cbp3.ws.cbp.service.ListPagosByIdentificacionComercioWS;
 import com.cbp3.ws.cbp.service.ListRecaudosByComercioWS;
-import com.cbp3.ws.cbp.service.ListaSolicitudesWSResponse;
 import com.cbp3.ws.cbp.service.ModificarAsociacionComercioOtroBancoWS;
 import com.cbp3.ws.cbp.service.ModificarAsociacionComercioOtroBancoWSResponse;
 import com.cbp3.ws.cbp.service.ModificarAsociarComercioRecaudoWS;
@@ -120,13 +108,12 @@ import com.cbp3.ws.cbp.service.ModificarOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.Operadortelefonico;
 import com.cbp3.ws.cbp.service.Pago;
 import com.cbp3.ws.cbp.service.Pais;
+import com.cbp3.ws.cbp.service.PrecargaComercio;
 import com.cbp3.ws.cbp.service.Provincia;
 import com.cbp3.ws.cbp.service.Recaudo;
 import com.cbp3.ws.cbp.service.Solicitud;
 import com.cbp3.ws.cbp.service.TipoRecaudo;
 import com.cbp3.ws.cbp.service.Tipoidentificacion;
-
-import sun.rmi.runtime.Log;
 
 @Controller
 @RequestMapping("/Afiliacion")
@@ -141,6 +128,9 @@ public class AfiliacionController extends Util{
 
 	@Autowired
 	AfiliacionDAO afiliacionMethods;
+	
+	@Autowired
+    EmailService emailService;
 	
 	@RequestMapping(value = "/crearClienteComercio", produces = { "application/json" })
 	public @ResponseBody CrearComercioWSResponse crearClienteComercio(@RequestBody crearComercioDTO crearComercio) {
@@ -168,7 +158,29 @@ public class AfiliacionController extends Util{
 		ActualizaStatusComercioWSResponse respuesta = new ActualizaStatusComercioWSResponse();
 		respuesta = afiliacionMethods.actualizarStatusComercio(actualizaStatusComercioDTO);
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		
 		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/enviarCorreo/{correo}", produces = { "application/json" })
+	public @ResponseBody Void enviarCorreo(@PathVariable(value = "correo") String correo) {
+		/*
+		 * Envio de correo al cliente para informarle que su solicitud de tdc fue
+		 * aprobada
+		 */
+		String subject = "Notificacion Finanplus";
+		String text = "<html><p><b>Estimado(a) Cliente</b></p><p>"
+				+ "<p><b>Finanplus le informa: Que su Proceso de Afiliación ha sido un exito,"
+				+ " PorFavor estar pendiente al siguiente correo donde se notificara su total Validez o Negación de su solicitud. </b></p></html>";
+
+		String to = correo;
+		System.out.println("correo al enviar-----"+correo);
+
+		emailService.sendSimpleMessage(to, subject, text);
+		/* Fin */
+		return null;
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -510,6 +522,61 @@ public class AfiliacionController extends Util{
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		ModificarEstablecimientoWSResponse respuesta = new ModificarEstablecimientoWSResponse();
 		respuesta = afiliacionMethods.modificarEstablecimiento(ModificarEstablecimientoWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/actualizaStatusPrecargaComercio", produces = { "application/json" })
+	public @ResponseBody ActualizaStatusPrecargaComercioWSResponse actualizaStatusPrecargaComercio(@RequestBody ActualizaStatusPrecargaComercioWS ActualizaStatusPrecargaComercioWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ActualizaStatusPrecargaComercioWSResponse respuesta = new ActualizaStatusPrecargaComercioWSResponse();
+		respuesta = afiliacionMethods.actualizaStatusPrecargaComercio(ActualizaStatusPrecargaComercioWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/consultaPrecargaCOmercioPorIdentificacionComercio/{identificacionComercio}", produces = { "application/json" })
+	public @ResponseBody ConsultaPrecargaComercioPorIdentificacionComercioWSResponse consultaPrecargaCOmercioPorIdentificacionComercio(@PathVariable (value = "identificacionComercio") String identificacionComercio) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ConsultaPrecargaComercioPorIdentificacionComercioWSResponse respuesta = new ConsultaPrecargaComercioPorIdentificacionComercioWSResponse();
+		respuesta = afiliacionMethods.consultaPrecargaCOmercioPorIdentificacionComercio(identificacionComercio);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/consultaPrecargaComercioPorId/{id}", produces = { "application/json" })
+	public @ResponseBody ConsultaPrecargaComercioPorIdWSResponse consultaPrecargaComercioPorId(@PathVariable (value = "id") long id) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ConsultaPrecargaComercioPorIdWSResponse respuesta = new ConsultaPrecargaComercioPorIdWSResponse();
+		respuesta = afiliacionMethods.consultaPrecargaComercioPorId(id);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/crearPrecargaComercio", produces = { "application/json" })
+	public @ResponseBody CrearPrecargaComercioWSResponse crearPrecargaComercio(@RequestBody CrearPrecargaComercioWS CrearPrecargaComercioWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		CrearPrecargaComercioWSResponse respuesta = new CrearPrecargaComercioWSResponse();
+		respuesta = afiliacionMethods.crearPrecargaComercio(CrearPrecargaComercioWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/listaPrecargaComercio", produces = { "application/json" })
+	public @ResponseBody java.util.List<PrecargaComercio> listaPrecargaComercio() {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<PrecargaComercio> respuesta = new ArrayList<>();
+		respuesta = afiliacionMethods.listaPrecargaComercio();
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
 	}
@@ -1120,6 +1187,8 @@ public class AfiliacionController extends Util{
 		return  respuesta;
 	}
 	
+	
+	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -1199,6 +1268,14 @@ public class AfiliacionController extends Util{
 		model.addAttribute("name", name);
 		model.addAttribute("link", link);
 		return "templates.afiliacion/pre_carga_ejecutivo";
+	}
+	
+	@RequestMapping(value = "/bandeja_analista_comercial", method = RequestMethod.GET)
+	public String bandeja_analista_comercial(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/bandeja_analista_comercial";
 	}
 	
 	@RequestMapping(value = "/bandejas_ejecutivo", method = RequestMethod.GET)

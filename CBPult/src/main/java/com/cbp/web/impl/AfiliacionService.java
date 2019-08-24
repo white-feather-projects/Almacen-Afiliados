@@ -36,6 +36,8 @@ import com.cbp.web.dto.modificarComercioDTO;
 import com.cbp.web.util.Util;
 import com.cbp3.ws.cbp.service.ActiveOrInactiveOperadoraTelefonicaWSResponse;
 import com.cbp3.ws.cbp.service.ActualizaStatusComercioWSResponse;
+import com.cbp3.ws.cbp.service.ActualizaStatusPrecargaComercioWS;
+import com.cbp3.ws.cbp.service.ActualizaStatusPrecargaComercioWSResponse;
 import com.cbp3.ws.cbp.service.AfiliacionServiceWS;
 import com.cbp3.ws.cbp.service.AfiliacionServiceWS_Service;
 import com.cbp3.ws.cbp.service.AsociarBancoComercioWSResponse;
@@ -63,6 +65,9 @@ import com.cbp3.ws.cbp.service.ConsultaEntityBankByIdEntityBankWS;
 import com.cbp3.ws.cbp.service.ConsultaEntityBankByIdEntityBankWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaPagoByNumComprobanteReciboWS;
 import com.cbp3.ws.cbp.service.ConsultaPagoByNumComprobanteReciboWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaPrecargaComercioPorIdWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaPrecargaComercioPorIdentificacionComercioWS;
+import com.cbp3.ws.cbp.service.ConsultaPrecargaComercioPorIdentificacionComercioWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWS;
 import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWSResponse;
@@ -75,6 +80,8 @@ import com.cbp3.ws.cbp.service.CrearEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.CrearOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.CrearPagoComercioWS;
 import com.cbp3.ws.cbp.service.CrearPagoComercioWSResponse;
+import com.cbp3.ws.cbp.service.CrearPrecargaComercioWS;
+import com.cbp3.ws.cbp.service.CrearPrecargaComercioWSResponse;
 import com.cbp3.ws.cbp.service.CrearRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.Distrito;
 import com.cbp3.ws.cbp.service.EditarAsociacionBancoComercioWSResponse;
@@ -100,6 +107,7 @@ import com.cbp3.ws.cbp.service.ModificarOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.Operadortelefonico;
 import com.cbp3.ws.cbp.service.Pago;
 import com.cbp3.ws.cbp.service.Pais;
+import com.cbp3.ws.cbp.service.PrecargaComercio;
 import com.cbp3.ws.cbp.service.Provincia;
 import com.cbp3.ws.cbp.service.Recaudo;
 import com.cbp3.ws.cbp.service.Solicitud;
@@ -1041,6 +1049,136 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 		}
 		
 		return respuestaModificarEstablecimientoWSResponse;
+	}
+	
+	////////////////////////////////////
+	//Methodo para Actualizar Status Precarga Comercio...
+	public ActualizaStatusPrecargaComercioWSResponse actualizaStatusPrecargaComercio(ActualizaStatusPrecargaComercioWS ActualizaStatusPrecargaComercioWS) {
+	
+		//instanciar Objeto para retorno....
+		ActualizaStatusPrecargaComercioWSResponse respuestaActualizaStatusPrecargaComercio = new ActualizaStatusPrecargaComercioWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaActualizaStatusPrecargaComercio.setReturn(WSmethod.actualizaStatusPrecargaComercioWS(ActualizaStatusPrecargaComercioWS.getIdentificacionComercio(), ActualizaStatusPrecargaComercioWS.getStatusComercio()));
+			//respuestaModificarComercioEstablecimiento = ModificarComercioEstablecimientoWS;
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaActualizaStatusPrecargaComercio;
+	}
+	
+	////////////////////////////////////
+	//Methodo para Consulta Precarga Comercio por medio de identificacion Comercio...
+	public ConsultaPrecargaComercioPorIdentificacionComercioWSResponse consultaPrecargaCOmercioPorIdentificacionComercio(String identificacionComercio) {
+	
+		//instanciar Objeto para retorno....
+		ConsultaPrecargaComercioPorIdentificacionComercioWSResponse respuestaConsultaPrecargaComercioPorIdentificacionComercio = new ConsultaPrecargaComercioPorIdentificacionComercioWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaConsultaPrecargaComercioPorIdentificacionComercio.setReturn(WSmethod.consultaPrecargaComercioPorIdentificacionComercioWS(identificacionComercio));
+			//respuestaModificarComercioEstablecimiento = ModificarComercioEstablecimientoWS;
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaConsultaPrecargaComercioPorIdentificacionComercio;
+	}
+	
+	////////////////////////////////////
+	//Methodo para Consulta Precarga Comercio por medio de id...
+	public ConsultaPrecargaComercioPorIdWSResponse consultaPrecargaComercioPorId(long id) {
+	
+		//instanciar Objeto para retorno....
+		ConsultaPrecargaComercioPorIdWSResponse respuestaConsultaPrecargaComercioPorId = new ConsultaPrecargaComercioPorIdWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaConsultaPrecargaComercioPorId.setReturn(WSmethod.consultaPrecargaComercioPorIdWS(id));
+			//respuestaModificarComercioEstablecimiento = ModificarComercioEstablecimientoWS;
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaConsultaPrecargaComercioPorId;
+	}
+	
+	////////////////////////////////////
+	//Methodo para Crear Precarga Comercio...
+	public CrearPrecargaComercioWSResponse crearPrecargaComercio(CrearPrecargaComercioWS CrearPrecargaComercioWS) {
+	
+		//instanciar Objeto para retorno....
+		CrearPrecargaComercioWSResponse respuestaCrearPrecargaComercio = new CrearPrecargaComercioWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			respuestaCrearPrecargaComercio.setReturn(WSmethod.crearPrecargaComercioWS(CrearPrecargaComercioWS.getTipoIdentificacionId(), CrearPrecargaComercioWS.getIdentificacionComercio(), CrearPrecargaComercioWS.getStatusComercio(), CrearPrecargaComercioWS.getNombreEmpresarial(), CrearPrecargaComercioWS.getCiudad(), CrearPrecargaComercioWS.getUrbanizacion(), CrearPrecargaComercioWS.getGeolocalizacion(), CrearPrecargaComercioWS.getPuntoReferencia(), CrearPrecargaComercioWS.getIdProvincia(), CrearPrecargaComercioWS.getIdCanton(), CrearPrecargaComercioWS.getIdDistrito(), CrearPrecargaComercioWS.getTipoIdentifContactoId(), CrearPrecargaComercioWS.getIdentificacionContacto(), CrearPrecargaComercioWS.getPrimerNombre(), CrearPrecargaComercioWS.getSegundoNombre(), CrearPrecargaComercioWS.getPrimerApellido(), CrearPrecargaComercioWS.getSegundoApellido(), CrearPrecargaComercioWS.getTelefonoLocal(), CrearPrecargaComercioWS.getTelefonoCelular(), CrearPrecargaComercioWS.getEmailContacto(), CrearPrecargaComercioWS.getFechaCargaDatos()));
+			//respuestaModificarComercioEstablecimiento = ModificarComercioEstablecimientoWS;
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaCrearPrecargaComercio;
+	}
+	
+	////////////////////////////////////
+	//Methodo para listar Precargas Comercio...
+	public java.util.List<PrecargaComercio> listaPrecargaComercio() {
+		
+		//instanciar Objeto para retorno....
+		java.util.List<PrecargaComercio> respuestaPrecargaComercio = new ArrayList<>();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
+			respuestaPrecargaComercio = WSmethod.listPrecargaComercioWS();
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaPrecargaComercio;
 	}
 
 	////////////////////////////////////
