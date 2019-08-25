@@ -142,8 +142,6 @@ public class AlmacenController {
 	public @ResponseBody CrearListaZonaWizzardWSResponse crearListaZonaWizzard(@RequestBody CrearListaZonaWizzardWS CrearListaZonaWizzardWS) {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		CrearListaZonaWizzardWSResponse respuesta = new CrearListaZonaWizzardWSResponse();
-		System.out.println(CrearListaZonaWizzardWS.getListZonaDTO().get(0).getDescripcion());
-		System.out.println(CrearListaZonaWizzardWS.getListZonaDTO().get(0).getEncargadoZona().getEmpleadoId());
 		respuesta = almacenMethods.crearListaZonaWizzard(CrearListaZonaWizzardWS);
 		
 		//System.out.println(ModificarAlmacenDTO.toString());

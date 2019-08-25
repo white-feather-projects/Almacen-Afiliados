@@ -106,6 +106,35 @@ function cargarDatosAlmacenServ() {
 	}); 
 }
 
+function consultarDatosAlmacenServ() {
+	
+	var url = window.location.pathname;
+	var idWarehouse = url.substring(url.lastIndexOf('&') + 1);
+	
+	var Id_consulta_Almacen = {
+		"idAlmacen": idWarehouse			
+	}
+
+	$.ajax({
+	    url: '/CBPult/Almacen/consultarAlmacenPorAlmacenId',
+	    dataType: 'json',
+	    contentType:'application/json',
+	    data:JSON.stringify(Id_consulta_Almacen),
+	    type: 'POST',
+	    success: function(response){
+		    console.log(response);		   
+		    console.log(response.return.idWarehouse);
+		    return response;
+		},
+	    error: function(e){
+	    	swal("Error al consultar el Almacén");	
+	    	console.log("error:"+ txt , e);
+	    	console.log("Error - Info del Almacén: ", Id_consulta_Almacen);
+	    	return e;
+		}
+	}); 
+}
+
 function modificarAlmacenServ(){
 	
 	var numeroAlmacen = $("#numeroAlmacen").val();
@@ -270,10 +299,13 @@ function crearAlmacenServ(){
 	        error: function(e, txt){
 	        	swal("Error al crear el Almacén");	
 		    	console.log("error:"+ txt , e);
-		    	console.log("Error - Info del Almacén: ", info_almacen);
+		    	console.log("Error - Info del Almacén: ", info_almacen, "Error: ", response.return.descripcion);
+		    	valid = false;
+		    	zonas_creadas = false;
 	        }
 		
 		});
+		
 	}
 	else{
 		//////////////////
@@ -285,7 +317,9 @@ function crearAlmacenServ(){
 		      confirmButtonText: 'Continuar'	               
         });
         //////////////////
+        valid = false;
 	}
+	
 }
 
 function crearListaZonasServ(idAlmacen){
@@ -323,12 +357,13 @@ function crearListaZonasServ(idAlmacen){
 	        if(response.return.descripcion == "OK"){
 	
 	          console.log("Respuesta Creacion Zonas",response);
+	          zonas_response = response;
 	
 	          response.return.listZonas.forEach(function(zona, index){
 	            data_zonas[index].id = zona.zonaId;
 	            data_zonas[index].estanteriasZona.forEach(function(estanteria){
 	
-	              //Construyendo el objeto de Estanteria a Crear
+	             //Construyendo el objeto de Estanteria a Crear
 	              var info_estanteria = {
 	                "zonaId": {
 	                  "zonaId": data_zonas[index].id
@@ -342,31 +377,27 @@ function crearListaZonasServ(idAlmacen){
 	
 	          });
 	          
-	          
 	          // - Creacion de Relaciones de Almacén
-	          //crearRelacionesAlmacenServ(idAlmacen);
-	          
-	          // - Creacion de Relaciones de Zonas
-	          crearRelacionesZonasServ();
-	          
+	          crearRelacionesAlmacenServ(idAlmacen);
 	          
 	          //////////////////          
 	          Swal.fire({
 			      title: "NUEVO ALMACÉN CREADO",
-			      text: "Creación del Almacén ID: [ " +idAlmacen+ " ], Tipo: [ "+ data_almacen.tipoAlmacen +" ] Exitosa...",
+			      text: "Creación del Almacén ID: [ " +idAlmacen+ " ], Tipo: [ "+ data_almacen.tipoAlmacen +" ] Exitosa!!! Presiona (Siguiente) para Personalizar las Relaciones de tus Zonas",
 			      type: "success",
 			      confirmButtonColor: '#3085d6',
-			      confirmButtonText: 'Continuar'	               
-	          }).then(() => {
-	        	  location.href = "/CBPult/Almacen/configuration_almacen"
+			      confirmButtonText: 'OK'	               
 	          });
 	          //////////////////
+	          zonas_creadas = true;
 	        }			
       },
       error: function(e, txt){
     	  swal("Error al crear las Zonas");
 	      console.log("error:"+ txt + e);
-	      console.log("Error - Info de las Zonas: ", info_zonas);
+	      console.log("Error - Info de las Zonas: ", info_zonas, "Error: ");
+	      valid = false;
+	      zonas_creadas = false;
       }
 		
 	});
@@ -390,7 +421,9 @@ function crearEstanteriaServ(info_estanteria){
         error: function(e, txt){
         	swal("Error al crear las Estanterias de la Zona ", info_estanteria.zonaId.zonaId);
 	    	console.log("error:"+ txt + e);
-	    	console.log("Error - Info de las Estanterias: ", info_estanteria);
+	    	console.log("Error - Info de las Estanterias: ", info_estanteria, " Error: ", response.return.descripcion);
+	    	valid = false;
+	    	zonas_creadas = false;
         }
 		
 	});
@@ -426,10 +459,11 @@ function crearRelacionesAlmacenServ(idAlmacen){
     	        	console.log("Respuesta... ", response);
     	        	
     	        },
-    	        error: function(){
+    	        error: function(e, txt){
     	        	swal("Error al crear las Relaciones del Almacén");
     	        	console.log("error:"+ txt + e);
-    	        	console.log("Error - Info de las Relaciones de Almacén: ", info_Relacion_almacen);
+    	        	console.log("Error - Info de las Relaciones de Almacén: ", info_Relacion_almacen, "Error: ", response.return.descripcion);
+    	        	zonas_creadas = false;
     	        }
     			
     		});
@@ -442,9 +476,51 @@ function crearRelacionesAlmacenServ(idAlmacen){
 function crearRelacionesZonasServ(){
 	
 	data_zonas.map(function(zona, i){
-	
+		
+		// Construyendo Relaciones de Almacén
+		$('#tbodyrel_'+i+' tr').map(function(j, tr){
+			
+			
+			if($('#tbodyrel_'+i+' tr td .js-switch-blue_rel')[j].checked){
+	    		
+
+	    		var info_Relacion_zona = {
+	    				"zonaActualId": {
+	    					"zonaId": $('#txtCodigo_zona_rel'+i).val()
+	    				},
+	    				"zonaDestinoId": {
+	    					"zonaId": $('#tbodyrel_'+i+' tr th.id_zonaRel')[j].innerHTML
+	    				}
+	    		};
+	    		
+	    		$.ajax({
+	    			
+	    			url: '/CBPult/Almacen/crearRelacionZonas',
+	    	        type: "POST",         
+	    	        contentType: "application/json",
+	    	        dataType: "json",
+	    	        data: JSON.stringify(info_Relacion_zona),
+	    	        success: function(response){    	        	
+	    	        	
+	    	        	console.log(i, "Relacion Zona ["+i+", "+j+"]: ", info_Relacion_zona);
+	    	        	console.log("Respuesta Relacion Zona ... ", response);
+	    	        	
+	    	        },
+	    	        error: function(e, txt){
+	    	        	swal("Error al crear las Relaciones de las Zonas");
+	    	        	console.log("error:"+ txt + e);
+	    	        	console.log("Error - Info de las Relaciones de Zonas: ", info_Relacion_zona);
+	    	        	zonas_creadas = false;
+	    	        }
+	    			
+	    		});
+	    		
+	    	}
+			
+	    
+		});
 		
 		
-	})
+	});
 	
 }
