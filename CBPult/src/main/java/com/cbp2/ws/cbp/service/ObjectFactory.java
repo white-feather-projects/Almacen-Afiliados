@@ -24,12 +24,15 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _ListProductByCatalogueWS_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "listProductByCatalogueWS");
     private final static QName _ConsultPurchaseOrderRequestByIdOrderWS_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "consultPurchaseOrderRequestByIdOrderWS");
     private final static QName _CreatePurchaseOrderRequestWSResponse_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "createPurchaseOrderRequestWSResponse");
     private final static QName _ListPlasticByPurchaseorderNumberWSResponse_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "listPlasticByPurchaseorderNumberWSResponse");
+    private final static QName _TypeCatalogue_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "typeCatalogue");
     private final static QName _ModifyPurchaseOrderWSResponse_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "modifyPurchaseOrderWSResponse");
     private final static QName _ChageStatusPurchaseOrderWSResponse_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "chageStatusPurchaseOrderWSResponse");
     private final static QName _Provider_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "provider");
+    private final static QName _ListCatalogueWS_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "listCatalogueWS");
     private final static QName _ChangeOnlyStatusRequestWS_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "changeOnlyStatusRequestWS");
     private final static QName _ChageQuantityPurchaseOrderRequestWSResponse_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "chageQuantityPurchaseOrderRequestWSResponse");
     private final static QName _ListPurchaseOrderWS_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "listPurchaseOrderWS");
@@ -38,15 +41,18 @@ public class ObjectFactory {
     private final static QName _ConsultPurchaseOrderWS_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "consultPurchaseOrderWS");
     private final static QName _ChageQuantityPurchaseOrderRequestWS_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "chageQuantityPurchaseOrderRequestWS");
     private final static QName _LastPurchaseOrderWSResponse_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "lastPurchaseOrderWSResponse");
+    private final static QName _ConsultaTipoCatalogoWSResponse_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "consultaTipoCatalogoWSResponse");
     private final static QName _ListPurchaseOrderWSResponse_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "listPurchaseOrderWSResponse");
     private final static QName _ConsultPurchaseOrderWSResponse_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "consultPurchaseOrderWSResponse");
     private final static QName _PurchaseOrder_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "purchaseOrder");
     private final static QName _CreatePurchaseOrderRequestWS_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "createPurchaseOrderRequestWS");
     private final static QName _ListProductsWS_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "listProductsWS");
     private final static QName _ChageStatusPurchaseOrderWS_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "chageStatusPurchaseOrderWS");
+    private final static QName _GeneratePurchaseOrderOtherProductsWSResponse_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "generatePurchaseOrderOtherProductsWSResponse");
     private final static QName _GeneratePurchaseOrderWS_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "generatePurchaseOrderWS");
     private final static QName _Plastic_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "plastic");
     private final static QName _ChangeOnlyStatusRequestWSResponse_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "changeOnlyStatusRequestWSResponse");
+    private final static QName _GeneratePurchaseOrderOtherProductsWS_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "generatePurchaseOrderOtherProductsWS");
     private final static QName _PurchaseOrderRequest_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "purchaseOrderRequest");
     private final static QName _ConsultPurchaseOrderRequestByIdOrderWSResponse_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "consultPurchaseOrderRequestByIdOrderWSResponse");
     private final static QName _Catalogue_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "catalogue");
@@ -54,11 +60,16 @@ public class ObjectFactory {
     private final static QName _LastPurchaseOrderWS_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "lastPurchaseOrderWS");
     private final static QName _GeneratePurchaseOrderWSResponse_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "generatePurchaseOrderWSResponse");
     private final static QName _ListPurchaseOrderRequestWS_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "listPurchaseOrderRequestWS");
+    private final static QName _ListCatalogueWSResponse_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "listCatalogueWSResponse");
     private final static QName _ValidaTarjetaWS_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "validaTarjetaWS");
     private final static QName _ListPurchaseOrderRequestWSResponse_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "listPurchaseOrderRequestWSResponse");
+    private final static QName _ListTypeCatalogueWS_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "listTypeCatalogueWS");
     private final static QName _ListProductsWSResponse_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "listProductsWSResponse");
+    private final static QName _ListProductByCatalogueWSResponse_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "listProductByCatalogueWSResponse");
+    private final static QName _ConsultaTipoCatalogoWS_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "consultaTipoCatalogoWS");
     private final static QName _Product_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "product");
     private final static QName _ListPlasticByPurchaseorderNumberWS_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "listPlasticByPurchaseorderNumberWS");
+    private final static QName _ListTypeCatalogueWSResponse_QNAME = new QName("http://service.cbp.ws.cbp2.com/", "listTypeCatalogueWSResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.cbp2.ws.cbp.service
@@ -124,6 +135,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ListCatalogueWS }
+     * 
+     */
+    public ListCatalogueWS createListCatalogueWS() {
+        return new ListCatalogueWS();
+    }
+
+    /**
      * Create an instance of {@link ChageStatusPurchaseOrderWSResponse }
      * 
      */
@@ -156,6 +175,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link TypeCatalogue }
+     * 
+     */
+    public TypeCatalogue createTypeCatalogue() {
+        return new TypeCatalogue();
+    }
+
+    /**
      * Create an instance of {@link ConsultPurchaseOrderRequestByIdOrderWS }
      * 
      */
@@ -172,6 +199,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ListProductByCatalogueWS }
+     * 
+     */
+    public ListProductByCatalogueWS createListProductByCatalogueWS() {
+        return new ListProductByCatalogueWS();
+    }
+
+    /**
      * Create an instance of {@link ListPlasticByPurchaseorderNumberWS }
      * 
      */
@@ -180,11 +215,35 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ListTypeCatalogueWSResponse }
+     * 
+     */
+    public ListTypeCatalogueWSResponse createListTypeCatalogueWSResponse() {
+        return new ListTypeCatalogueWSResponse();
+    }
+
+    /**
      * Create an instance of {@link Product }
      * 
      */
     public Product createProduct() {
         return new Product();
+    }
+
+    /**
+     * Create an instance of {@link ConsultaTipoCatalogoWS }
+     * 
+     */
+    public ConsultaTipoCatalogoWS createConsultaTipoCatalogoWS() {
+        return new ConsultaTipoCatalogoWS();
+    }
+
+    /**
+     * Create an instance of {@link ListProductByCatalogueWSResponse }
+     * 
+     */
+    public ListProductByCatalogueWSResponse createListProductByCatalogueWSResponse() {
+        return new ListProductByCatalogueWSResponse();
     }
 
     /**
@@ -204,11 +263,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ListTypeCatalogueWS }
+     * 
+     */
+    public ListTypeCatalogueWS createListTypeCatalogueWS() {
+        return new ListTypeCatalogueWS();
+    }
+
+    /**
      * Create an instance of {@link ValidaTarjetaWS }
      * 
      */
     public ValidaTarjetaWS createValidaTarjetaWS() {
         return new ValidaTarjetaWS();
+    }
+
+    /**
+     * Create an instance of {@link ListCatalogueWSResponse }
+     * 
+     */
+    public ListCatalogueWSResponse createListCatalogueWSResponse() {
+        return new ListCatalogueWSResponse();
     }
 
     /**
@@ -268,11 +343,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GeneratePurchaseOrderOtherProductsWS }
+     * 
+     */
+    public GeneratePurchaseOrderOtherProductsWS createGeneratePurchaseOrderOtherProductsWS() {
+        return new GeneratePurchaseOrderOtherProductsWS();
+    }
+
+    /**
      * Create an instance of {@link PurchaseOrderRequest }
      * 
      */
     public PurchaseOrderRequest createPurchaseOrderRequest() {
         return new PurchaseOrderRequest();
+    }
+
+    /**
+     * Create an instance of {@link GeneratePurchaseOrderOtherProductsWSResponse }
+     * 
+     */
+    public GeneratePurchaseOrderOtherProductsWSResponse createGeneratePurchaseOrderOtherProductsWSResponse() {
+        return new GeneratePurchaseOrderOtherProductsWSResponse();
     }
 
     /**
@@ -340,6 +431,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ConsultaTipoCatalogoWSResponse }
+     * 
+     */
+    public ConsultaTipoCatalogoWSResponse createConsultaTipoCatalogoWSResponse() {
+        return new ConsultaTipoCatalogoWSResponse();
+    }
+
+    /**
      * Create an instance of {@link LastPurchaseOrderWSResponse }
      * 
      */
@@ -372,11 +471,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link BdsUtil }
+     * Create an instance of {@link TipoCatalogoDTO }
      * 
      */
-    public BdsUtil createBdsUtil() {
-        return new BdsUtil();
+    public TipoCatalogoDTO createTipoCatalogoDTO() {
+        return new TipoCatalogoDTO();
     }
 
     /**
@@ -393,6 +492,23 @@ public class ObjectFactory {
      */
     public PlasticDTO createPlasticDTO() {
         return new PlasticDTO();
+    }
+
+    /**
+     * Create an instance of {@link BdsUtil }
+     * 
+     */
+    public BdsUtil createBdsUtil() {
+        return new BdsUtil();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListProductByCatalogueWS }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp2.com/", name = "listProductByCatalogueWS")
+    public JAXBElement<ListProductByCatalogueWS> createListProductByCatalogueWS(ListProductByCatalogueWS value) {
+        return new JAXBElement<ListProductByCatalogueWS>(_ListProductByCatalogueWS_QNAME, ListProductByCatalogueWS.class, null, value);
     }
 
     /**
@@ -423,6 +539,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link TypeCatalogue }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp2.com/", name = "typeCatalogue")
+    public JAXBElement<TypeCatalogue> createTypeCatalogue(TypeCatalogue value) {
+        return new JAXBElement<TypeCatalogue>(_TypeCatalogue_QNAME, TypeCatalogue.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ModifyPurchaseOrderWSResponse }{@code >}}
      * 
      */
@@ -447,6 +572,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.cbp.ws.cbp2.com/", name = "provider")
     public JAXBElement<Provider> createProvider(Provider value) {
         return new JAXBElement<Provider>(_Provider_QNAME, Provider.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListCatalogueWS }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp2.com/", name = "listCatalogueWS")
+    public JAXBElement<ListCatalogueWS> createListCatalogueWS(ListCatalogueWS value) {
+        return new JAXBElement<ListCatalogueWS>(_ListCatalogueWS_QNAME, ListCatalogueWS.class, null, value);
     }
 
     /**
@@ -522,6 +656,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaTipoCatalogoWSResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp2.com/", name = "consultaTipoCatalogoWSResponse")
+    public JAXBElement<ConsultaTipoCatalogoWSResponse> createConsultaTipoCatalogoWSResponse(ConsultaTipoCatalogoWSResponse value) {
+        return new JAXBElement<ConsultaTipoCatalogoWSResponse>(_ConsultaTipoCatalogoWSResponse_QNAME, ConsultaTipoCatalogoWSResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ListPurchaseOrderWSResponse }{@code >}}
      * 
      */
@@ -576,6 +719,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GeneratePurchaseOrderOtherProductsWSResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp2.com/", name = "generatePurchaseOrderOtherProductsWSResponse")
+    public JAXBElement<GeneratePurchaseOrderOtherProductsWSResponse> createGeneratePurchaseOrderOtherProductsWSResponse(GeneratePurchaseOrderOtherProductsWSResponse value) {
+        return new JAXBElement<GeneratePurchaseOrderOtherProductsWSResponse>(_GeneratePurchaseOrderOtherProductsWSResponse_QNAME, GeneratePurchaseOrderOtherProductsWSResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GeneratePurchaseOrderWS }{@code >}}
      * 
      */
@@ -600,6 +752,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.cbp.ws.cbp2.com/", name = "changeOnlyStatusRequestWSResponse")
     public JAXBElement<ChangeOnlyStatusRequestWSResponse> createChangeOnlyStatusRequestWSResponse(ChangeOnlyStatusRequestWSResponse value) {
         return new JAXBElement<ChangeOnlyStatusRequestWSResponse>(_ChangeOnlyStatusRequestWSResponse_QNAME, ChangeOnlyStatusRequestWSResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GeneratePurchaseOrderOtherProductsWS }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp2.com/", name = "generatePurchaseOrderOtherProductsWS")
+    public JAXBElement<GeneratePurchaseOrderOtherProductsWS> createGeneratePurchaseOrderOtherProductsWS(GeneratePurchaseOrderOtherProductsWS value) {
+        return new JAXBElement<GeneratePurchaseOrderOtherProductsWS>(_GeneratePurchaseOrderOtherProductsWS_QNAME, GeneratePurchaseOrderOtherProductsWS.class, null, value);
     }
 
     /**
@@ -666,6 +827,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListCatalogueWSResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp2.com/", name = "listCatalogueWSResponse")
+    public JAXBElement<ListCatalogueWSResponse> createListCatalogueWSResponse(ListCatalogueWSResponse value) {
+        return new JAXBElement<ListCatalogueWSResponse>(_ListCatalogueWSResponse_QNAME, ListCatalogueWSResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ValidaTarjetaWS }{@code >}}
      * 
      */
@@ -684,12 +854,39 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListTypeCatalogueWS }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp2.com/", name = "listTypeCatalogueWS")
+    public JAXBElement<ListTypeCatalogueWS> createListTypeCatalogueWS(ListTypeCatalogueWS value) {
+        return new JAXBElement<ListTypeCatalogueWS>(_ListTypeCatalogueWS_QNAME, ListTypeCatalogueWS.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ListProductsWSResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://service.cbp.ws.cbp2.com/", name = "listProductsWSResponse")
     public JAXBElement<ListProductsWSResponse> createListProductsWSResponse(ListProductsWSResponse value) {
         return new JAXBElement<ListProductsWSResponse>(_ListProductsWSResponse_QNAME, ListProductsWSResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListProductByCatalogueWSResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp2.com/", name = "listProductByCatalogueWSResponse")
+    public JAXBElement<ListProductByCatalogueWSResponse> createListProductByCatalogueWSResponse(ListProductByCatalogueWSResponse value) {
+        return new JAXBElement<ListProductByCatalogueWSResponse>(_ListProductByCatalogueWSResponse_QNAME, ListProductByCatalogueWSResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultaTipoCatalogoWS }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp2.com/", name = "consultaTipoCatalogoWS")
+    public JAXBElement<ConsultaTipoCatalogoWS> createConsultaTipoCatalogoWS(ConsultaTipoCatalogoWS value) {
+        return new JAXBElement<ConsultaTipoCatalogoWS>(_ConsultaTipoCatalogoWS_QNAME, ConsultaTipoCatalogoWS.class, null, value);
     }
 
     /**
@@ -708,6 +905,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.cbp.ws.cbp2.com/", name = "listPlasticByPurchaseorderNumberWS")
     public JAXBElement<ListPlasticByPurchaseorderNumberWS> createListPlasticByPurchaseorderNumberWS(ListPlasticByPurchaseorderNumberWS value) {
         return new JAXBElement<ListPlasticByPurchaseorderNumberWS>(_ListPlasticByPurchaseorderNumberWS_QNAME, ListPlasticByPurchaseorderNumberWS.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListTypeCatalogueWSResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp2.com/", name = "listTypeCatalogueWSResponse")
+    public JAXBElement<ListTypeCatalogueWSResponse> createListTypeCatalogueWSResponse(ListTypeCatalogueWSResponse value) {
+        return new JAXBElement<ListTypeCatalogueWSResponse>(_ListTypeCatalogueWSResponse_QNAME, ListTypeCatalogueWSResponse.class, null, value);
     }
 
 }

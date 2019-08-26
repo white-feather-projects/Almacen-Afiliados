@@ -492,7 +492,6 @@ public interface InventarioServiceWS {
      * 
      * @param descripcion
      * @param fechaCargaDatos
-     * @param movimientoId
      * @param ordenRelacionadaNumber
      * @param tipoOrdenId
      * @param idProduct
@@ -512,8 +511,6 @@ public interface InventarioServiceWS {
         TipoOrden tipoOrdenId,
         @WebParam(name = "descripcion", targetNamespace = "")
         String descripcion,
-        @WebParam(name = "movimientoId", targetNamespace = "")
-        Movimiento movimientoId,
         @WebParam(name = "idProduct", targetNamespace = "")
         Product idProduct,
         @WebParam(name = "cantidad", targetNamespace = "")
@@ -525,7 +522,6 @@ public interface InventarioServiceWS {
      * 
      * @param descripcion
      * @param cantidadMinima
-     * @param movimientoId
      * @param ordenRelacionadaNumber
      * @param statusOrden
      * @param tipoOrdenId
@@ -552,8 +548,6 @@ public interface InventarioServiceWS {
         TipoOrden tipoOrdenId,
         @WebParam(name = "descripcion", targetNamespace = "")
         String descripcion,
-        @WebParam(name = "movimientoId", targetNamespace = "")
-        Movimiento movimientoId,
         @WebParam(name = "idProduct", targetNamespace = "")
         Product idProduct,
         @WebParam(name = "comentarios", targetNamespace = "")

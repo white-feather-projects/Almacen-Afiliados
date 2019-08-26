@@ -78,6 +78,8 @@ import com.cbp3.ws.cbp.service.CrearContactoWSResponse;
 import com.cbp3.ws.cbp.service.CrearEstablecimientoWS;
 import com.cbp3.ws.cbp.service.CrearEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.CrearOperadorTelefonicoWSResponse;
+import com.cbp3.ws.cbp.service.CrearOrdenRelacionadaWS;
+import com.cbp3.ws.cbp.service.CrearOrdenRelacionadaWSResponse;
 import com.cbp3.ws.cbp.service.CrearPagoComercioWS;
 import com.cbp3.ws.cbp.service.CrearPagoComercioWSResponse;
 import com.cbp3.ws.cbp.service.CrearPrecargaComercioWS;
@@ -91,6 +93,8 @@ import com.cbp3.ws.cbp.service.EditarContactoWSResponse;
 import com.cbp3.ws.cbp.service.EditarRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.EntityBank;
 import com.cbp3.ws.cbp.service.Establecimiento;
+import com.cbp3.ws.cbp.service.InventarioServiceWS;
+import com.cbp3.ws.cbp.service.InventarioServiceWS_Service;
 import com.cbp3.ws.cbp.service.ListPagosByIdentificacionComercioWS;
 import com.cbp3.ws.cbp.service.ListRecaudosByComercioWS;
 import com.cbp3.ws.cbp.service.ListaSolicitudesWSResponse;
@@ -108,6 +112,7 @@ import com.cbp3.ws.cbp.service.Operadortelefonico;
 import com.cbp3.ws.cbp.service.Pago;
 import com.cbp3.ws.cbp.service.Pais;
 import com.cbp3.ws.cbp.service.PrecargaComercio;
+import com.cbp3.ws.cbp.service.Product;
 import com.cbp3.ws.cbp.service.Provincia;
 import com.cbp3.ws.cbp.service.Recaudo;
 import com.cbp3.ws.cbp.service.Solicitud;
@@ -1156,6 +1161,32 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 	}
 	
 	////////////////////////////////////
+	//Methodo para Crear Orden de Despacho...
+	public CrearOrdenRelacionadaWSResponse crearOrdenRelacionada(CrearOrdenRelacionadaWS CrearOrdenRelacionadaWS) {
+	
+		//instanciar Objeto para retorno....
+		CrearOrdenRelacionadaWSResponse respuestaCrearOrdenRelacionada = new CrearOrdenRelacionadaWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			InventarioServiceWS_Service ws = new InventarioServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/InventarioServiceWS?WSDL"));
+			InventarioServiceWS WSmethod = ws.getInventarioServiceWSPort();
+		
+			respuestaCrearOrdenRelacionada.setReturn(WSmethod.crearOrdenRelacionadaWS(CrearOrdenRelacionadaWS.getOrdenRelacionadaNumber(), CrearOrdenRelacionadaWS.getTipoOrdenId(), CrearOrdenRelacionadaWS.getDescripcion(), CrearOrdenRelacionadaWS.getIdProduct(), CrearOrdenRelacionadaWS.getCantidad(), CrearOrdenRelacionadaWS.getFechaCargaDatos()));
+			//respuestaModificarComercioEstablecimiento = ModificarComercioEstablecimientoWS;
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaCrearOrdenRelacionada;
+	}
+	
+	////////////////////////////////////
 	//Methodo para listar Precargas Comercio...
 	public java.util.List<PrecargaComercio> listaPrecargaComercio() {
 		
@@ -1413,6 +1444,32 @@ public class AfiliacionService extends Util implements AfiliacionDAO{
 		}
 		
 		return respuestaRecaudos;
+	}
+	
+	//////////////////////////////////////////////////////
+	//Methodo para listar Productos...
+	public java.util.List<Product> listaProductos() {
+		
+		//instanciar Objeto para retorno....
+		java.util.List<Product> respuestaProduct = new ArrayList<>();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AfiliacionServiceWS_Service ws = new AfiliacionServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AfiliacionServiceWS?WSDL"));
+			AfiliacionServiceWS WSmethod = ws.getAfiliacionServiceWSPort();
+		
+			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
+			respuestaProduct = WSmethod.listProductsWS();
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaProduct;
 	}
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

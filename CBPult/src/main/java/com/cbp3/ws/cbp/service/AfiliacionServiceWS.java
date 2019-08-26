@@ -163,6 +163,18 @@ public interface AfiliacionServiceWS {
 
     /**
      * 
+     * @return
+     *     returns java.util.List<com.cbp3.ws.cbp.service.Product>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listProductsWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListProductsWS")
+    @ResponseWrapper(localName = "listProductsWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListProductsWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/listProductsWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/listProductsWSResponse")
+    public List<Product> listProductsWS();
+
+    /**
+     * 
      * @param afiliadoOtroBanco
      * @param nombreCanal
      * @param identificacionComercio

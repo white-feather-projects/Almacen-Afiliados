@@ -120,7 +120,7 @@ window.addEventListener('load', function(){
 	
 	nombre_comercial_tab2.addEventListener('blur', ()=>{
 		console.log("nombre comercial", nombre_comercial_tab2.value);
-		soloLetrasYNum(nombre_comercial_tab2);
+		//soloLetrasYNum(nombre_comercial_tab2);
 		document.getElementById("nombre_comercial_tab2").style.border = "1px solid black";
 	});
 	

@@ -25,6 +25,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="fechaHoraModificacion" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="modulos" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="niveles" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="zona" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="zonaId" type="{http://service.cbp.ws.cbp3.com/}zona" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -43,6 +44,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "fechaHoraModificacion",
     "modulos",
     "niveles",
+    "zona",
     "zonaId"
 })
 public class Estanteria {
@@ -56,6 +58,7 @@ public class Estanteria {
     protected XMLGregorianCalendar fechaHoraModificacion;
     protected long modulos;
     protected long niveles;
+    protected long zona;
     protected Zona zonaId;
 
     /**
@@ -208,6 +211,22 @@ public class Estanteria {
      */
     public void setNiveles(long value) {
         this.niveles = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad zona.
+     * 
+     */
+    public long getZona() {
+        return zona;
+    }
+
+    /**
+     * Define el valor de la propiedad zona.
+     * 
+     */
+    public void setZona(long value) {
+        this.zona = value;
     }
 
     /**

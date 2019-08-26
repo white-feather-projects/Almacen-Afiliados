@@ -80,6 +80,8 @@ import com.cbp3.ws.cbp.service.CrearContactoWSResponse;
 import com.cbp3.ws.cbp.service.CrearEstablecimientoWS;
 import com.cbp3.ws.cbp.service.CrearEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.CrearOperadorTelefonicoWSResponse;
+import com.cbp3.ws.cbp.service.CrearOrdenRelacionadaWS;
+import com.cbp3.ws.cbp.service.CrearOrdenRelacionadaWSResponse;
 import com.cbp3.ws.cbp.service.CrearPagoComercioWS;
 import com.cbp3.ws.cbp.service.CrearPagoComercioWSResponse;
 import com.cbp3.ws.cbp.service.CrearPrecargaComercioWS;
@@ -109,6 +111,7 @@ import com.cbp3.ws.cbp.service.Operadortelefonico;
 import com.cbp3.ws.cbp.service.Pago;
 import com.cbp3.ws.cbp.service.Pais;
 import com.cbp3.ws.cbp.service.PrecargaComercio;
+import com.cbp3.ws.cbp.service.Product;
 import com.cbp3.ws.cbp.service.Provincia;
 import com.cbp3.ws.cbp.service.Recaudo;
 import com.cbp3.ws.cbp.service.Solicitud;
@@ -182,6 +185,48 @@ public class AfiliacionController extends Util{
 		/* Fin */
 		return null;
 	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/enviarCorreo2/{correo}", produces = { "application/json" })
+	public @ResponseBody Void enviarCorreo2(@PathVariable(value = "correo") String correo) {
+		/*
+		 * Envio de correo al cliente para informarle que su solicitud de tdc fue
+		 * aprobada
+		 */
+		String subject = "Notificacion Finanplus";
+		String text = "<html><p><b>Estimado(a) Cliente</b></p><p>"
+				+ "<p><b>Finanplus le informa: Que su Proceso de Afiliacion a sido aprobado,"
+				+ " PorFavor acercarse al almacen 89. </b></p></html>";
+
+		String to = correo;
+		System.out.println("correo al enviar-----"+correo);
+
+		emailService.sendSimpleMessage(to, subject, text);
+		/* Fin */
+		return null;
+	}  
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/enviarCorreo3/{correo}", produces = { "application/json" })
+	public @ResponseBody Void enviarCorreo3(@PathVariable(value = "correo") String correo) {
+		/*
+		 * Envio de correo al cliente para informarle que su solicitud de tdc fue
+		 * aprobada
+		 */
+		String subject = "Notificacion Finanplus";
+		String text = "<html><p><b>Estimado(a) Cliente</b></p><p>"
+				+ "<p><b>Finanplus le informa: Que su Proceso de Afiliacion a sido Denegado,"
+				+ " PorFavor acercarse a la oficina mas cercana. </b></p></html>";
+
+		String to = correo;
+		System.out.println("correo al enviar-----"+correo);
+
+		emailService.sendSimpleMessage(to, subject, text);
+		/* Fin */
+		return null;
+	}  
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -572,6 +617,17 @@ public class AfiliacionController extends Util{
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	@RequestMapping(value = "/crearOrdenRelacionada", produces = { "application/json" })
+	public @ResponseBody CrearOrdenRelacionadaWSResponse crearOrdenRelacionada(@RequestBody CrearOrdenRelacionadaWS CrearOrdenRelacionadaWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		CrearOrdenRelacionadaWSResponse respuesta = new CrearOrdenRelacionadaWSResponse();
+		respuesta = afiliacionMethods.crearOrdenRelacionada(CrearOrdenRelacionadaWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	@RequestMapping(value = "/listaPrecargaComercio", produces = { "application/json" })
 	public @ResponseBody java.util.List<PrecargaComercio> listaPrecargaComercio() {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
@@ -676,6 +732,17 @@ public class AfiliacionController extends Util{
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		java.util.List<Recaudo> respuesta = new ArrayList<>();
 		respuesta = afiliacionMethods.listaRecaudosByComercio(ListRecaudosByComercioWS);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/listaProductos", produces = { "application/json" })
+	public @ResponseBody java.util.List<Product> listaProductos() {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<Product> respuesta = new ArrayList<>();
+		respuesta = afiliacionMethods.listaProductos();
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
 	}
@@ -1412,6 +1479,14 @@ public class AfiliacionController extends Util{
 		model.addAttribute("name", name);
 		model.addAttribute("link", link);
 		return "templates.afiliacion/pre_carga_operador";
+	}
+	
+	@RequestMapping(value = "/aprobacion_recaudos&{value1}", method = RequestMethod.GET)
+	public String aprobacion_recaudos(@PathVariable("value1") String value, Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.afiliacion/aprobacion_recaudos";
 	}
 	
 	@RequestMapping(value = "/menu_afiliacion", method = RequestMethod.GET)

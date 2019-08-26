@@ -31,7 +31,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="fechaHoraModificacion" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="fechaOrden" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="idProduct" type="{http://service.cbp.ws.cbp3.com/}product" minOccurs="0"/>
- *         &lt;element name="movimientoId" type="{http://service.cbp.ws.cbp3.com/}movimiento" minOccurs="0"/>
  *         &lt;element name="ordenRelacionadaId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="ordenRelacionadaNumber" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="statusOrden" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -60,7 +59,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "fechaHoraModificacion",
     "fechaOrden",
     "idProduct",
-    "movimientoId",
     "ordenRelacionadaId",
     "ordenRelacionadaNumber",
     "statusOrden",
@@ -86,7 +84,6 @@ public class OrdenRelacionada {
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fechaOrden;
     protected Product idProduct;
-    protected Movimiento movimientoId;
     protected Long ordenRelacionadaId;
     protected String ordenRelacionadaNumber;
     protected String statusOrden;
@@ -395,30 +392,6 @@ public class OrdenRelacionada {
      */
     public void setIdProduct(Product value) {
         this.idProduct = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad movimientoId.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Movimiento }
-     *     
-     */
-    public Movimiento getMovimientoId() {
-        return movimientoId;
-    }
-
-    /**
-     * Define el valor de la propiedad movimientoId.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Movimiento }
-     *     
-     */
-    public void setMovimientoId(Movimiento value) {
-        this.movimientoId = value;
     }
 
     /**

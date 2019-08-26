@@ -4638,7 +4638,8 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 						var tipoIdentificacionId_nombre = data.return.tipoIdentificacionId.nombre;
 						var tipoIdentificacionId_tipoIdentificacionId = data.return.tipoIdentificacionId.tipoIdentificacionId;
 			       		
-			           	$("#tipo_identificacion_tab2").val(tipoIdentificacionId_nombre).prop('disabled', true);
+			           	$('select[id="tipo_identificacion_tab2"] option:selected').val(tipoIdentificacionId_nombre);
+			           	document.getElementById("tipo_identificacion_tab2").disabled = true;
 			           	$("#identificacion_tab2").val(identificacionComercio).prop('disabled', true);
 			           	$("#nombre_empresa_tab2").val(nombreEmpresarial);
 			           	$("#nombre_comercial_tab2").val(nombreComercial);
@@ -4697,7 +4698,8 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 								            //alert(req.responseText + " " + status);
 								       		console.log("consulta representante asociacion-----", data);
 								       		
-								       		$("#tipo_identificacion_tab4").val(data.return.representanteLegal.tipoIdentificacionId.nombre).prop('disabled', true);
+								       		$('select[id="tipo_identificacion_tab4"] option:selected').val(data.return.representanteLegal.tipoIdentificacionId.nombre);
+								       		document.getElementById("tipo_identificacion_tab4").disabled = true;
 								       		$("#identificacion_tab4").val(data.return.representanteLegal.identificacionRepresentante).prop('disabled', true);
 								       		$("#primer_nombre_tab4").val(data.return.representanteLegal.primerNombre);
 								       		$("#segundo_nombre_tab4").val(data.return.representanteLegal.segundoNombre);
@@ -4762,7 +4764,8 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 													       		$("#segundo_nombre_tab6").val(data.return.contacto.segundoNombre);
 													       		$("#primer_apellido_tab6").val(data.return.contacto.primerApellido);
 													       		$("#segundo_apellido_tab6").val(data.return.contacto.segundoApellido);
-													       		$("#tipo_identificacion_tab6").val(data.return.contacto.tipoIdentificacionId.nombre).prop('disabled', true);
+													       		$('select[id="tipo_identificacion_tab6"] option:selected').val(data.return.contacto.tipoIdentificacionId.nombre);
+													       		document.getElementById("tipo_identificacion_tab6").disabled = true;
 													       		$("#identificacion_tab6").val(data.return.contacto.identificacionContacto).prop('disabled', true);
 													       		$("#telefono_tab6").val(data.return.contacto.telefonoLocal);
 													       		$("#correo_electronico_tab6").val(data.return.contacto.emailContacto);
@@ -5128,7 +5131,8 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 				        					"codOperadora": "Claro",
 				        					"operadortelfId": 13,
 				        					"operadortelfNombre": "Claro"
-				        	 			}
+				        	 			},
+				        	 			"cantidadLineasOperador": $("#cantidad_claro_tab3").val()
 			 			    	};
 			 			    	
 			 			    	$.ajax({

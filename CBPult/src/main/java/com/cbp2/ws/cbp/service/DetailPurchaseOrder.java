@@ -27,7 +27,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="minQuantityTdc" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="numberLoteRequest" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="orderId" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="purchaseOrderId" type="{http://service.cbp.ws.cbp2.com/}purchaseOrder" minOccurs="0"/>
  *         &lt;element name="quantityRequest" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -48,7 +47,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "minQuantityTdc",
     "numberLoteRequest",
     "orderId",
-    "purchaseOrderId",
     "quantityRequest"
 })
 public class DetailPurchaseOrder {
@@ -64,7 +62,6 @@ public class DetailPurchaseOrder {
     protected long minQuantityTdc;
     protected String numberLoteRequest;
     protected long orderId;
-    protected PurchaseOrder purchaseOrderId;
     protected long quantityRequest;
 
     /**
@@ -257,30 +254,6 @@ public class DetailPurchaseOrder {
      */
     public void setOrderId(long value) {
         this.orderId = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad purchaseOrderId.
-     * 
-     * @return
-     *     possible object is
-     *     {@link PurchaseOrder }
-     *     
-     */
-    public PurchaseOrder getPurchaseOrderId() {
-        return purchaseOrderId;
-    }
-
-    /**
-     * Define el valor de la propiedad purchaseOrderId.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PurchaseOrder }
-     *     
-     */
-    public void setPurchaseOrderId(PurchaseOrder value) {
-        this.purchaseOrderId = value;
     }
 
     /**

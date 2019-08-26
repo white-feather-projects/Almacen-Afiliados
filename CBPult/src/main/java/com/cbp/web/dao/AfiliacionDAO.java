@@ -67,6 +67,8 @@ import com.cbp3.ws.cbp.service.CrearContactoWSResponse;
 import com.cbp3.ws.cbp.service.CrearEstablecimientoWS;
 import com.cbp3.ws.cbp.service.CrearEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.CrearOperadorTelefonicoWSResponse;
+import com.cbp3.ws.cbp.service.CrearOrdenRelacionadaWS;
+import com.cbp3.ws.cbp.service.CrearOrdenRelacionadaWSResponse;
 import com.cbp3.ws.cbp.service.CrearPagoComercioWS;
 import com.cbp3.ws.cbp.service.CrearPagoComercioWSResponse;
 import com.cbp3.ws.cbp.service.CrearPrecargaComercioWS;
@@ -99,6 +101,7 @@ import com.cbp3.ws.cbp.service.Operadortelefonico;
 import com.cbp3.ws.cbp.service.Pago;
 import com.cbp3.ws.cbp.service.Pais;
 import com.cbp3.ws.cbp.service.PrecargaComercio;
+import com.cbp3.ws.cbp.service.Product;
 import com.cbp3.ws.cbp.service.Provincia;
 import com.cbp3.ws.cbp.service.Recaudo;
 import com.cbp3.ws.cbp.service.Solicitud;
@@ -186,6 +189,8 @@ public interface AfiliacionDAO {
 	
 	public CrearPrecargaComercioWSResponse crearPrecargaComercio(CrearPrecargaComercioWS CrearPrecargaComercioWS);
 	
+	public CrearOrdenRelacionadaWSResponse crearOrdenRelacionada(CrearOrdenRelacionadaWS CrearOrdenRelacionadaWS);
+	
 	public java.util.List<PrecargaComercio> listaPrecargaComercio();
 	
 	public java.util.List<Solicitud> listaSolicitudes();
@@ -205,6 +210,8 @@ public interface AfiliacionDAO {
 	public java.util.List<ComercioEstabl> listaComercioEstablecimiento(com.cbp3.ws.cbp.service.ListaComercioEstablecimientosWS ListaComercioEstablecimientosWS);
 	
 	public java.util.List<Recaudo> listaRecaudosByComercio(ListRecaudosByComercioWS ListRecaudosByComercioWS);
+	
+	public java.util.List<Product> listaProductos();
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	

@@ -21,7 +21,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="ordenRelacionadaNumber" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="tipoOrdenId" type="{http://service.cbp.ws.cbp3.com/}tipoOrden" minOccurs="0"/>
  *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="movimientoId" type="{http://service.cbp.ws.cbp3.com/}movimiento" minOccurs="0"/>
  *         &lt;element name="idProduct" type="{http://service.cbp.ws.cbp3.com/}product" minOccurs="0"/>
  *         &lt;element name="cantidad" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="fechaCargaDatos" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
@@ -38,7 +37,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "ordenRelacionadaNumber",
     "tipoOrdenId",
     "descripcion",
-    "movimientoId",
     "idProduct",
     "cantidad",
     "fechaCargaDatos"
@@ -48,7 +46,6 @@ public class CrearOrdenRelacionadaWS {
     protected String ordenRelacionadaNumber;
     protected TipoOrden tipoOrdenId;
     protected String descripcion;
-    protected Movimiento movimientoId;
     protected Product idProduct;
     protected long cantidad;
     @XmlSchemaType(name = "dateTime")
@@ -124,30 +121,6 @@ public class CrearOrdenRelacionadaWS {
      */
     public void setDescripcion(String value) {
         this.descripcion = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad movimientoId.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Movimiento }
-     *     
-     */
-    public Movimiento getMovimientoId() {
-        return movimientoId;
-    }
-
-    /**
-     * Define el valor de la propiedad movimientoId.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Movimiento }
-     *     
-     */
-    public void setMovimientoId(Movimiento value) {
-        this.movimientoId = value;
     }
 
     /**
