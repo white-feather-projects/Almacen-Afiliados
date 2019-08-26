@@ -14,12 +14,15 @@ var empty_Estanterias = 0;
 var valid = false;
 
 var url = window.location.pathname;
-var Tipo = url.substring(url.lastIndexOf('%') + 1);
+var Tipo = url.substring(url.lastIndexOf('/')+1, url.lastIndexOf('&'));
 var IdAlmacen =  url.substring(url.lastIndexOf('&') + 1);
 
 
 
 $(document).ready(function(){
+	
+	console.log("Tipo: ", Tipo);
+	console.log("IdAlmacén: ", IdAlmacen);
 	
 	// Validaciones de contenido
 	// tab Almacen
@@ -44,7 +47,10 @@ $(document).ready(function(){
 	
 });
 
-if(IdAlmacen === "nuevo"){
+if(Tipo == "newalm"){
+			
+	$('#titleWizardAlmacen').append("<h2>Creacion de Almacén</h2>");
+	$('#titleAlmacen').append("<code>"+IdAlmacen+"</code>");
 	
 	$('#demo').steps({
 		
@@ -264,9 +270,17 @@ if(IdAlmacen === "nuevo"){
 	});
 	
 }
-else if(IdAlmacen === "editar"){
+else if(Tipo === "editar"){
 	
-	alert("Modificando");
+	console.log("Tipo: ", Tipo);
+	console.log("IdAlmacén: ", IdAlmacen);
+	
+	$('#titleWizardAlmacen').append("<h2>Modificación del Almacén : "+IdAlmacen+"</h2>");
+	$('#titleAlmacen').append("<code>"+IdAlmacen+"</code>");
+	$('#contentCodigo_almacen').css("display", "initial");
+	$('#contentCodigo_almacen').attr("class", "col-sm-12");
+	
+	cargaDatosModificarAlmacenIdServ();
 	
 	$('#demo').steps({
 		

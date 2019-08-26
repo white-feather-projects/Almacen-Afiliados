@@ -63,7 +63,7 @@ function listarAlmacenesServ(){
                 "class": "seis",
                 "defaultContent": "",
                 "render": function ( data ) {
-                	return '<center><a href="/CBPult/Almacen/almacen_nuevo-editar/'+data+'" title="Editar solicitud de orden de compra"><input type="hidden" id="edit" value="'+data+'"><i class="fa fa-edit" agregaryasignar" style="font-size:30px"></i></a></center>';
+                	return '<center><a href="/CBPult/Almacen/almacen_nuevo-wizzard/editar&'+data+'" title="Editar solicitud de orden de compra"><input type="hidden" id="edit" value="'+data+'"><i class="fa fa-edit" agregaryasignar" style="font-size:30px"></i></a></center>';
               	}
             }
         ]
@@ -101,7 +101,7 @@ function cargarDatosAlmacenServ() {
 		    document.getElementById('numeroAlmacen').value = resp.return.warehouseNumber;
 		},
 	    error: function(e){
-	    	console.log("errro:"+e);
+	    	console.log("error:"+e);
 		}
 	}); 
 }
@@ -520,6 +520,93 @@ function crearRelacionesZonasServ(){
 	    
 		});
 		
+		
+	});
+	
+}
+
+// Servicios Edit Wizzard
+function cargaDatosModificarAlmacenIdServ(){
+	
+	var datos = {
+		"idAlmacen": IdAlmacen			
+	}
+
+	$.ajax({
+	    url:'/CBPult/Almacen/consultarAlmacenPorAlmacenId',
+	    dataType: 'json',
+	    contentType:'application/json',
+	    data:JSON.stringify(datos),
+	    type: 'POST',
+	    success: function(resp){
+		    
+	    	console.log("Respuesta Consulta Almacen: ",resp);
+	    	var response_tipoZona = resp.return.tipoAlmacenId;
+	    	if(response_tipoZona == 1){
+	    		response_tipoZona = "ALMACEN"
+	    	}
+	    	else if(response_tipoZona == 2){
+	    		response_tipoZona = "LABORATORIO"
+	    	}
+	    	else if(response_tipoZona == 3){
+	    		response_tipoZona = "SUCURSAL"
+	    	}
+	    	
+	    	$('#txtCodigo_almacen').val(resp.return.warehouseNumber);	    	
+			$("#cboxTipo_almacen option[value="+response_tipoZona+"]").attr("selected",true);			
+		    document.getElementById('txtDesc_almacen').value = resp.return.warehouseName;		    
+		    document.getElementById('txtUbicacion_almacen').value = resp.return.direccion;
+		    
+		},
+	    error: function(e){
+	    	console.log("error:"+e);
+		}
+	}); 
+	
+	
+	var zonas;
+	var estanterias;
+	
+	// Pedir Servicio consultarZonasPorIdAlmacen
+	$.get("/CBPult/Almacen/listaZonas", function(getZonas){
+		
+		getZonas.map(function(zona, i){	
+			
+			console.log("zona: ", zona, "index: ", i);
+			
+			if(zona.idWarehouse.idWarehouse == IdAlmacen){
+				
+				data_zonas.push({
+					"id": zona.zonaId,
+					"tipoZona": zona.tipoZonaId.nombre,
+					"IdTipoZona": zona.tipoZonaId.tipoZonaId,
+					"descripcionZona": zona.zonaNombre,
+					"encargadoZona": zona.encargadoZona.empleadoId,
+					"estanteriasZona": [],
+					"relacionesZona": []
+				});
+				
+				$.get("/CBPult/Almacen/listaEstanterias", function(dataEstanterias){
+					
+					var ests = dataEstanterias.map(function(est, j){
+						
+						if(est.zonaId.zonaId == data_zonas[i].id){
+							return {
+								"id": est.estanteriaId,
+								"modulos": est.modulos,
+								"niveles": est.niveles
+							}			
+						}
+				
+					})
+					
+					data_zonas[i].estanteriasZona.push(ests);			
+					
+				});
+				
+			}			
+		});
+		console.log("Zonas... ",data_zonas);
 		
 	});
 	

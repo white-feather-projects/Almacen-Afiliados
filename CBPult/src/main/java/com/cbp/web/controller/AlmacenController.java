@@ -344,8 +344,8 @@ public class AlmacenController {
 	//+////////////// Almacen ///////////////
 		
 		//+////////////// Nuevo Almacen Wizzard ///////////////
-		@RequestMapping(value = "/almacen_nuevo-wizzard&{IdAlmacen}", method = RequestMethod.GET)
-	    public String almacen_nuevo_wizzard(@PathVariable(value = "IdAlmacen") String IdAlmacen, Model model) {
+		@RequestMapping(value = "/almacen_nuevo-wizzard/{Tipo}&{IdAlmacen}", method = RequestMethod.GET)
+	    public String almacen_nuevo_wizzard(@PathVariable(value = "Tipo") String Tipo, @PathVariable(value = "IdAlmacen") String IdAlmacen, Model model) {
 			model.addAttribute("name", name);
 			model.addAttribute("link", link);
 			
