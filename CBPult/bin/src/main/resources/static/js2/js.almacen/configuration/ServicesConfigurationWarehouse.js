@@ -1,3 +1,5 @@
+var IdAlmacen;
+
 function listarAlmacenesServ(){
 		
     $('#configuracionAlmacen').DataTable( {
@@ -151,7 +153,7 @@ function modificarAlmacenServ(){
 	}); 
 }
 
-// Servicios para el Wizard
+// Servicios para crea Almacen
 function listarAlmacenesRelServ(){
 	
     $('#simpletablerel').DataTable( {
@@ -235,3 +237,138 @@ function listarAlmacenesRelServ(){
     });
     
 }
+
+function crearAlmacenServ(){
+	
+	var info_almacen = {
+		"dto": {
+			"direccion": data_almacen.direccion,
+			"gerenteSucursal": 2,
+			"officeId": 1,
+			"tipoAlmacenId":{
+				"nombre": data_almacen.tipoAlmacen,
+				"tipoAlmacenId": data_almacen.tipoAlmacenId
+			},
+			"warehouseName": data_almacen.direccion
+		}
+	};
+	
+	$.ajax({
+		
+		 url: '/CBPult/Almacen/crearAlmacen',
+         type: "POST",         
+         contentType: "application/json",
+         dataType: "json",
+         data: JSON.stringify(info_almacen),
+         success: function(response){
+        	
+        	console.log("Respuesta Creacion Almacén",response);
+        	
+			if(response.return.descripcion == "OK"){
+				crearListaZonasServ(response.return.idObjetoCreadoCreado);
+			}
+			
+         },
+         error: function(e, txt){
+        	swal("Error al crear el Almacén");	
+	    	console.log("error:"+ txt , e);
+	    	console.log("Error Almacén: ", info_almacen);
+         }
+  	});
+	
+}
+
+function crearListaZonasServ(idAlmacen){
+	
+	var info_zonas = {
+		"listZonaDTO":[] // este objeto lo pide el Servicio y lleva toda la lista
+	};
+	
+	// Construyendo el objeto acoplado al servicio de crear Lista Zonas
+	for(var i = 0; i < data_zonas.length; i++){
+	
+		info_zonas.listZonaDTO.push({
+			"descripcion": data_zonas[i].descripcionZona,
+			"encargadoZona": {
+				"empleadoId": 2 // quemado, hace falta la alimentación desde el modulo de Empleados
+			},
+			"idWarehouse": idAlmacen,
+			"tipoZonaId": {
+				"nombre": data_zonas[i].tipoZona,
+				"tipoZonaId": data_zonas[i].IdTipoZona
+			},
+			"zonaNombre": data_zonas[i].descripcionZona 			
+		});
+		
+	}
+	$.ajax({
+		
+		url: '/CBPult/Almacen/crearListaZonaWizzard',
+        type: "POST",         
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(info_zonas),
+        success: function(response){
+        	
+			if(response.return.descripcion == "OK"){
+				
+				console.log("Respuesta Creacion Zonas",response);
+				
+				response.return.listZonas.forEach(function(zona, index){
+					data_zonas[index].id = zona.zonaId;
+					data_zonas[index].estanteriasZona.forEach(function(estanteria){
+						
+						//Construyendo el objeto de Estanteria a Crear
+						var info_estanteria = {
+							"zonaId": {
+								"zonaId": data_zonas[index].id
+							},
+							"modulos": estanteria[0],
+							"niveles": estanteria[1]
+						}						
+						crearEstanteriaServ(info_estanteria);
+						
+					});
+					
+				});				
+				console.log("Fin de Creación de Estanterias...");
+				swal("Creación del Almacén Exitosa");
+			}					
+			
+        },
+        error: function(e, txt){
+        	swal("Error al crear las Zonas");
+	    	console.log("error:"+ txt + e);
+	    	console.log(info_zonas);
+        }
+		
+	});
+	
+}
+
+function crearEstanteriaServ(info_estanteria){
+	
+	$.ajax({
+		
+		url: '/CBPult/Almacen/crearEstanteria',
+        type: "POST",         
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(info_estanteria),
+        success: function(response){
+        	
+        	console.log("Respuesta Creacion Estanteria",response);
+        	//location.href = "/CBPult/Almacen/configuration_almacen";
+        },
+        error: function(e, txt){
+        	swal("Error al crear las Estanterias de la Zona ", info_estanteria.zonaId.zonaId);
+	    	console.log("error:"+ txt + e);
+	    	console.log(info_estanteria);
+        }
+		
+	});
+	
+}
+
+
+
