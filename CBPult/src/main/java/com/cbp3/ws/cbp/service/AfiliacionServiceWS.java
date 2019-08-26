@@ -7,6 +7,7 @@ import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.ws.Action;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
@@ -24,6 +25,153 @@ import javax.xml.ws.ResponseWrapper;
 })
 public interface AfiliacionServiceWS {
 
+
+    /**
+     * 
+     * @param identificacionComercio
+     * @return
+     *     returns com.cbp3.ws.cbp.service.PrecargaComercio
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "consultaPrecargaComercioPorIdentificacionComercioWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaPrecargaComercioPorIdentificacionComercioWS")
+    @ResponseWrapper(localName = "consultaPrecargaComercioPorIdentificacionComercioWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaPrecargaComercioPorIdentificacionComercioWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/consultaPrecargaComercioPorIdentificacionComercioWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/consultaPrecargaComercioPorIdentificacionComercioWSResponse")
+    public PrecargaComercio consultaPrecargaComercioPorIdentificacionComercioWS(
+        @WebParam(name = "identificacionComercio", targetNamespace = "")
+        String identificacionComercio);
+
+    /**
+     * 
+     * @param fechaCargaDatos
+     * @param idProvincia
+     * @param segundoNombre
+     * @param identificacionComercio
+     * @param tipoIdentifContactoId
+     * @param primerNombre
+     * @param primerApellido
+     * @param tipoIdentificacionId
+     * @param segundoApellido
+     * @param emailContacto
+     * @param statusComercio
+     * @param identificacionContacto
+     * @param telefonoCelular
+     * @param geolocalizacion
+     * @param urbanizacion
+     * @param ciudad
+     * @param idCanton
+     * @param puntoReferencia
+     * @param nombreEmpresarial
+     * @param telefonoLocal
+     * @param idDistrito
+     * @return
+     *     returns com.cbp3.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "crearPrecargaComercioWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.CrearPrecargaComercioWS")
+    @ResponseWrapper(localName = "crearPrecargaComercioWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.CrearPrecargaComercioWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/crearPrecargaComercioWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/crearPrecargaComercioWSResponse")
+    public RespuestaDTO crearPrecargaComercioWS(
+        @WebParam(name = "tipoIdentificacionId", targetNamespace = "")
+        Tipoidentificacion tipoIdentificacionId,
+        @WebParam(name = "identificacionComercio", targetNamespace = "")
+        String identificacionComercio,
+        @WebParam(name = "statusComercio", targetNamespace = "")
+        String statusComercio,
+        @WebParam(name = "nombreEmpresarial", targetNamespace = "")
+        String nombreEmpresarial,
+        @WebParam(name = "ciudad", targetNamespace = "")
+        String ciudad,
+        @WebParam(name = "urbanizacion", targetNamespace = "")
+        String urbanizacion,
+        @WebParam(name = "geolocalizacion", targetNamespace = "")
+        String geolocalizacion,
+        @WebParam(name = "puntoReferencia", targetNamespace = "")
+        String puntoReferencia,
+        @WebParam(name = "idProvincia", targetNamespace = "")
+        Provincia idProvincia,
+        @WebParam(name = "idCanton", targetNamespace = "")
+        Canton idCanton,
+        @WebParam(name = "idDistrito", targetNamespace = "")
+        Distrito idDistrito,
+        @WebParam(name = "tipoIdentifContactoId", targetNamespace = "")
+        Tipoidentificacion tipoIdentifContactoId,
+        @WebParam(name = "identificacionContacto", targetNamespace = "")
+        String identificacionContacto,
+        @WebParam(name = "primerNombre", targetNamespace = "")
+        String primerNombre,
+        @WebParam(name = "segundoNombre", targetNamespace = "")
+        String segundoNombre,
+        @WebParam(name = "primerApellido", targetNamespace = "")
+        String primerApellido,
+        @WebParam(name = "segundoApellido", targetNamespace = "")
+        String segundoApellido,
+        @WebParam(name = "telefonoLocal", targetNamespace = "")
+        String telefonoLocal,
+        @WebParam(name = "telefonoCelular", targetNamespace = "")
+        String telefonoCelular,
+        @WebParam(name = "emailContacto", targetNamespace = "")
+        String emailContacto,
+        @WebParam(name = "fechaCargaDatos", targetNamespace = "")
+        XMLGregorianCalendar fechaCargaDatos);
+
+    /**
+     * 
+     * @param identificacionComercio
+     * @param statusComercio
+     * @return
+     *     returns com.cbp3.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "actualizaStatusPrecargaComercioWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ActualizaStatusPrecargaComercioWS")
+    @ResponseWrapper(localName = "actualizaStatusPrecargaComercioWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ActualizaStatusPrecargaComercioWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/actualizaStatusPrecargaComercioWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/actualizaStatusPrecargaComercioWSResponse")
+    public RespuestaDTO actualizaStatusPrecargaComercioWS(
+        @WebParam(name = "identificacionComercio", targetNamespace = "")
+        String identificacionComercio,
+        @WebParam(name = "statusComercio", targetNamespace = "")
+        String statusComercio);
+
+    /**
+     * 
+     * @param id
+     * @return
+     *     returns com.cbp3.ws.cbp.service.PrecargaComercio
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "consultaPrecargaComercioPorIdWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaPrecargaComercioPorIdWS")
+    @ResponseWrapper(localName = "consultaPrecargaComercioPorIdWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ConsultaPrecargaComercioPorIdWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/consultaPrecargaComercioPorIdWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/consultaPrecargaComercioPorIdWSResponse")
+    public PrecargaComercio consultaPrecargaComercioPorIdWS(
+        @WebParam(name = "id", targetNamespace = "")
+        long id);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<com.cbp3.ws.cbp.service.PrecargaComercio>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listPrecargaComercioWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListPrecargaComercioWS")
+    @ResponseWrapper(localName = "listPrecargaComercioWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListPrecargaComercioWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/listPrecargaComercioWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/listPrecargaComercioWSResponse")
+    public List<PrecargaComercio> listPrecargaComercioWS();
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<com.cbp3.ws.cbp.service.Product>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listProductsWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListProductsWS")
+    @ResponseWrapper(localName = "listProductsWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListProductsWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/listProductsWSRequest", output = "http://service.cbp.ws.cbp3.com/AfiliacionServiceWS/listProductsWSResponse")
+    public List<Product> listProductsWS();
 
     /**
      * 

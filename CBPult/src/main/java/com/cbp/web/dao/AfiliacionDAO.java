@@ -27,6 +27,8 @@ import com.cbp.web.dto.modificarComercioDTO;
 import com.cbp1.ws.cbp.service.ActualizaClienteConInformacionAdicionalWSResponse;
 import com.cbp3.ws.cbp.service.ActiveOrInactiveOperadoraTelefonicaWSResponse;
 import com.cbp3.ws.cbp.service.ActualizaStatusComercioWSResponse;
+import com.cbp3.ws.cbp.service.ActualizaStatusPrecargaComercioWS;
+import com.cbp3.ws.cbp.service.ActualizaStatusPrecargaComercioWSResponse;
 import com.cbp3.ws.cbp.service.AsociarBancoComercioWSResponse;
 import com.cbp3.ws.cbp.service.AsociarComercioConContactoWSResponse;
 import com.cbp3.ws.cbp.service.AsociarComercioConRepresentanteLegalWSResponse;
@@ -51,6 +53,10 @@ import com.cbp3.ws.cbp.service.ConsultaEntityBankByIdEntityBankWS;
 import com.cbp3.ws.cbp.service.ConsultaEntityBankByIdEntityBankWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaPagoByNumComprobanteReciboWS;
 import com.cbp3.ws.cbp.service.ConsultaPagoByNumComprobanteReciboWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaPrecargaComercioPorIdWS;
+import com.cbp3.ws.cbp.service.ConsultaPrecargaComercioPorIdWSResponse;
+import com.cbp3.ws.cbp.service.ConsultaPrecargaComercioPorIdentificacionComercioWS;
+import com.cbp3.ws.cbp.service.ConsultaPrecargaComercioPorIdentificacionComercioWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaRepresentanteLegalByIdentificacionRepresentanteWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWS;
 import com.cbp3.ws.cbp.service.ConsultaTipoRecaudoByIdTipoRecaudoWSResponse;
@@ -61,8 +67,12 @@ import com.cbp3.ws.cbp.service.CrearContactoWSResponse;
 import com.cbp3.ws.cbp.service.CrearEstablecimientoWS;
 import com.cbp3.ws.cbp.service.CrearEstablecimientoWSResponse;
 import com.cbp3.ws.cbp.service.CrearOperadorTelefonicoWSResponse;
+import com.cbp3.ws.cbp.service.CrearOrdenRelacionadaWS;
+import com.cbp3.ws.cbp.service.CrearOrdenRelacionadaWSResponse;
 import com.cbp3.ws.cbp.service.CrearPagoComercioWS;
 import com.cbp3.ws.cbp.service.CrearPagoComercioWSResponse;
+import com.cbp3.ws.cbp.service.CrearPrecargaComercioWS;
+import com.cbp3.ws.cbp.service.CrearPrecargaComercioWSResponse;
 import com.cbp3.ws.cbp.service.CrearRepresentanteLegalWSResponse;
 import com.cbp3.ws.cbp.service.Distrito;
 import com.cbp3.ws.cbp.service.EditarAsociacionBancoComercioWSResponse;
@@ -90,6 +100,8 @@ import com.cbp3.ws.cbp.service.ModificarOperadorTelefonicoWSResponse;
 import com.cbp3.ws.cbp.service.Operadortelefonico;
 import com.cbp3.ws.cbp.service.Pago;
 import com.cbp3.ws.cbp.service.Pais;
+import com.cbp3.ws.cbp.service.PrecargaComercio;
+import com.cbp3.ws.cbp.service.Product;
 import com.cbp3.ws.cbp.service.Provincia;
 import com.cbp3.ws.cbp.service.Recaudo;
 import com.cbp3.ws.cbp.service.Solicitud;
@@ -169,6 +181,18 @@ public interface AfiliacionDAO {
 	
 	public ModificarEstablecimientoWSResponse modificarEstablecimiento(ModificarEstablecimientoWS ModificarEstablecimientoWS);
 	
+	public ActualizaStatusPrecargaComercioWSResponse actualizaStatusPrecargaComercio(ActualizaStatusPrecargaComercioWS ActualizaStatusPrecargaComercioWS);
+	
+	public ConsultaPrecargaComercioPorIdentificacionComercioWSResponse consultaPrecargaCOmercioPorIdentificacionComercio(String identificacionComercio);
+	
+	public ConsultaPrecargaComercioPorIdWSResponse consultaPrecargaComercioPorId(long id);
+	
+	public CrearPrecargaComercioWSResponse crearPrecargaComercio(CrearPrecargaComercioWS CrearPrecargaComercioWS);
+	
+	public CrearOrdenRelacionadaWSResponse crearOrdenRelacionada(CrearOrdenRelacionadaWS CrearOrdenRelacionadaWS);
+	
+	public java.util.List<PrecargaComercio> listaPrecargaComercio();
+	
 	public java.util.List<Solicitud> listaSolicitudes();
 	
 	public java.util.List<BancoAfiliacion> listaAsociacionBancoComercio();
@@ -186,6 +210,8 @@ public interface AfiliacionDAO {
 	public java.util.List<ComercioEstabl> listaComercioEstablecimiento(com.cbp3.ws.cbp.service.ListaComercioEstablecimientosWS ListaComercioEstablecimientosWS);
 	
 	public java.util.List<Recaudo> listaRecaudosByComercio(ListRecaudosByComercioWS ListRecaudosByComercioWS);
+	
+	public java.util.List<Product> listaProductos();
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	

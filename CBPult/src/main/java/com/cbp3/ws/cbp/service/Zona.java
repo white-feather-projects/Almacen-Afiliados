@@ -23,6 +23,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="encargadoZona" type="{http://service.cbp.ws.cbp3.com/}empleado" minOccurs="0"/>
  *         &lt;element name="fechaCargaDatos" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="fechaHoraModificacion" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="idAlmacen" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="idTipoZona" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="idWarehouse" type="{http://service.cbp.ws.cbp3.com/}warehouse" minOccurs="0"/>
  *         &lt;element name="tipoZonaId" type="{http://service.cbp.ws.cbp3.com/}tipoZona" minOccurs="0"/>
  *         &lt;element name="zonaId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
@@ -42,6 +44,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "encargadoZona",
     "fechaCargaDatos",
     "fechaHoraModificacion",
+    "idAlmacen",
+    "idTipoZona",
     "idWarehouse",
     "tipoZonaId",
     "zonaId",
@@ -56,6 +60,8 @@ public class Zona {
     protected XMLGregorianCalendar fechaCargaDatos;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fechaHoraModificacion;
+    protected long idAlmacen;
+    protected long idTipoZona;
     protected Warehouse idWarehouse;
     protected TipoZona tipoZonaId;
     protected Long zonaId;
@@ -179,6 +185,38 @@ public class Zona {
      */
     public void setFechaHoraModificacion(XMLGregorianCalendar value) {
         this.fechaHoraModificacion = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad idAlmacen.
+     * 
+     */
+    public long getIdAlmacen() {
+        return idAlmacen;
+    }
+
+    /**
+     * Define el valor de la propiedad idAlmacen.
+     * 
+     */
+    public void setIdAlmacen(long value) {
+        this.idAlmacen = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad idTipoZona.
+     * 
+     */
+    public long getIdTipoZona() {
+        return idTipoZona;
+    }
+
+    /**
+     * Define el valor de la propiedad idTipoZona.
+     * 
+     */
+    public void setIdTipoZona(long value) {
+        this.idTipoZona = value;
     }
 
     /**

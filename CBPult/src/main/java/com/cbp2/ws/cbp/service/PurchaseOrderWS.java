@@ -27,6 +27,114 @@ public interface PurchaseOrderWS {
 
     /**
      * 
+     * @param typeCatalogue
+     * @return
+     *     returns java.util.List<com.cbp2.ws.cbp.service.Catalogue>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listCatalogueWS", targetNamespace = "http://service.cbp.ws.cbp2.com/", className = "com.cbp2.ws.cbp.service.ListCatalogueWS")
+    @ResponseWrapper(localName = "listCatalogueWSResponse", targetNamespace = "http://service.cbp.ws.cbp2.com/", className = "com.cbp2.ws.cbp.service.ListCatalogueWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp2.com/PurchaseOrderWS/listCatalogueWSRequest", output = "http://service.cbp.ws.cbp2.com/PurchaseOrderWS/listCatalogueWSResponse")
+    public List<Catalogue> listCatalogueWS(
+        @WebParam(name = "typeCatalogue", targetNamespace = "")
+        long typeCatalogue);
+
+    /**
+     * 
+     * @param codeUserLoader
+     * @param orderType
+     * @param quantity
+     * @param nombreCanal
+     * @param productId
+     * @param orderCommetns
+     * @param orderStatus
+     * @param orderDescription
+     * @param purchaseOrderAprovedDate
+     * @param purchaseOrderDate
+     * @param idProvider
+     * @param orderRequestId
+     * @param codeUserAproved
+     * @return
+     *     returns com.cbp2.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "generatePurchaseOrderOtherProductsWS", targetNamespace = "http://service.cbp.ws.cbp2.com/", className = "com.cbp2.ws.cbp.service.GeneratePurchaseOrderOtherProductsWS")
+    @ResponseWrapper(localName = "generatePurchaseOrderOtherProductsWSResponse", targetNamespace = "http://service.cbp.ws.cbp2.com/", className = "com.cbp2.ws.cbp.service.GeneratePurchaseOrderOtherProductsWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp2.com/PurchaseOrderWS/generatePurchaseOrderOtherProductsWSRequest", output = "http://service.cbp.ws.cbp2.com/PurchaseOrderWS/generatePurchaseOrderOtherProductsWSResponse")
+    public RespuestaDTO generatePurchaseOrderOtherProductsWS(
+        @WebParam(name = "orderDescription", targetNamespace = "")
+        String orderDescription,
+        @WebParam(name = "orderCommetns", targetNamespace = "")
+        String orderCommetns,
+        @WebParam(name = "idProvider", targetNamespace = "")
+        String idProvider,
+        @WebParam(name = "codeUserLoader", targetNamespace = "")
+        String codeUserLoader,
+        @WebParam(name = "codeUserAproved", targetNamespace = "")
+        String codeUserAproved,
+        @WebParam(name = "orderType", targetNamespace = "")
+        String orderType,
+        @WebParam(name = "orderStatus", targetNamespace = "")
+        String orderStatus,
+        @WebParam(name = "purchaseOrderDate", targetNamespace = "")
+        String purchaseOrderDate,
+        @WebParam(name = "purchaseOrderAprovedDate", targetNamespace = "")
+        String purchaseOrderAprovedDate,
+        @WebParam(name = "productId", targetNamespace = "")
+        Product productId,
+        @WebParam(name = "orderRequestId", targetNamespace = "")
+        PurchaseOrderRequest orderRequestId,
+        @WebParam(name = "quantity", targetNamespace = "")
+        String quantity,
+        @WebParam(name = "nombreCanal", targetNamespace = "")
+        String nombreCanal);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<com.cbp2.ws.cbp.service.TypeCatalogue>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listTypeCatalogueWS", targetNamespace = "http://service.cbp.ws.cbp2.com/", className = "com.cbp2.ws.cbp.service.ListTypeCatalogueWS")
+    @ResponseWrapper(localName = "listTypeCatalogueWSResponse", targetNamespace = "http://service.cbp.ws.cbp2.com/", className = "com.cbp2.ws.cbp.service.ListTypeCatalogueWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp2.com/PurchaseOrderWS/listTypeCatalogueWSRequest", output = "http://service.cbp.ws.cbp2.com/PurchaseOrderWS/listTypeCatalogueWSResponse")
+    public List<TypeCatalogue> listTypeCatalogueWS();
+
+    /**
+     * 
+     * @param idCatalogue
+     * @return
+     *     returns java.util.List<com.cbp2.ws.cbp.service.Product>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listProductByCatalogueWS", targetNamespace = "http://service.cbp.ws.cbp2.com/", className = "com.cbp2.ws.cbp.service.ListProductByCatalogueWS")
+    @ResponseWrapper(localName = "listProductByCatalogueWSResponse", targetNamespace = "http://service.cbp.ws.cbp2.com/", className = "com.cbp2.ws.cbp.service.ListProductByCatalogueWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp2.com/PurchaseOrderWS/listProductByCatalogueWSRequest", output = "http://service.cbp.ws.cbp2.com/PurchaseOrderWS/listProductByCatalogueWSResponse")
+    public List<Product> listProductByCatalogueWS(
+        @WebParam(name = "idCatalogue", targetNamespace = "")
+        long idCatalogue);
+
+    /**
+     * 
+     * @param catalogue
+     * @return
+     *     returns com.cbp2.ws.cbp.service.TipoCatalogoDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "consultaTipoCatalogoWS", targetNamespace = "http://service.cbp.ws.cbp2.com/", className = "com.cbp2.ws.cbp.service.ConsultaTipoCatalogoWS")
+    @ResponseWrapper(localName = "consultaTipoCatalogoWSResponse", targetNamespace = "http://service.cbp.ws.cbp2.com/", className = "com.cbp2.ws.cbp.service.ConsultaTipoCatalogoWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp2.com/PurchaseOrderWS/consultaTipoCatalogoWSRequest", output = "http://service.cbp.ws.cbp2.com/PurchaseOrderWS/consultaTipoCatalogoWSResponse")
+    public TipoCatalogoDTO consultaTipoCatalogoWS(
+        @WebParam(name = "catalogue", targetNamespace = "")
+        long catalogue);
+
+    /**
+     * 
      * @param fechaHoraCarga
      * @param idCanal
      * @param statusOrder

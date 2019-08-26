@@ -354,6 +354,7 @@ function crearListaZonasServ(idAlmacen){
         data: JSON.stringify(info_zonas),
         success: function(response){
         	
+
 	        if(response.return.descripcion == "OK"){
 	
 	          console.log("Respuesta Creacion Zonas",response);
@@ -391,6 +392,7 @@ function crearListaZonasServ(idAlmacen){
 	          //////////////////
 	          zonas_creadas = true;
 	        }			
+
       },
       error: function(e, txt){
     	  swal("Error al crear las Zonas");

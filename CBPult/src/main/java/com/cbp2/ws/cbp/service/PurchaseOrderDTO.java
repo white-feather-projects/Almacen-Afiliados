@@ -22,7 +22,9 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="detailPurchaseOrder" type="{http://service.cbp.ws.cbp2.com/}detailPurchaseOrder" minOccurs="0"/>
  *         &lt;element name="file" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="listPlastic" type="{http://service.cbp.ws.cbp2.com/}plastic" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="listPurchaseOrder" type="{http://service.cbp.ws.cbp2.com/}purchaseOrder" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="purchaseOrder" type="{http://service.cbp.ws.cbp2.com/}purchaseOrder" minOccurs="0"/>
+ *         &lt;element name="respuesta" type="{http://service.cbp.ws.cbp2.com/}respuestaDTO" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,7 +38,9 @@ import javax.xml.bind.annotation.XmlType;
     "detailPurchaseOrder",
     "file",
     "listPlastic",
-    "purchaseOrder"
+    "listPurchaseOrder",
+    "purchaseOrder",
+    "respuesta"
 })
 public class PurchaseOrderDTO {
 
@@ -45,7 +49,10 @@ public class PurchaseOrderDTO {
     protected List<String> file;
     @XmlElement(nillable = true)
     protected List<Plastic> listPlastic;
+    @XmlElement(nillable = true)
+    protected List<PurchaseOrder> listPurchaseOrder;
     protected PurchaseOrder purchaseOrder;
+    protected RespuestaDTO respuesta;
 
     /**
      * Obtiene el valor de la propiedad detailPurchaseOrder.
@@ -130,6 +137,35 @@ public class PurchaseOrderDTO {
     }
 
     /**
+     * Gets the value of the listPurchaseOrder property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the listPurchaseOrder property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getListPurchaseOrder().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link PurchaseOrder }
+     * 
+     * 
+     */
+    public List<PurchaseOrder> getListPurchaseOrder() {
+        if (listPurchaseOrder == null) {
+            listPurchaseOrder = new ArrayList<PurchaseOrder>();
+        }
+        return this.listPurchaseOrder;
+    }
+
+    /**
      * Obtiene el valor de la propiedad purchaseOrder.
      * 
      * @return
@@ -151,6 +187,30 @@ public class PurchaseOrderDTO {
      */
     public void setPurchaseOrder(PurchaseOrder value) {
         this.purchaseOrder = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad respuesta.
+     * 
+     * @return
+     *     possible object is
+     *     {@link RespuestaDTO }
+     *     
+     */
+    public RespuestaDTO getRespuesta() {
+        return respuesta;
+    }
+
+    /**
+     * Define el valor de la propiedad respuesta.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link RespuestaDTO }
+     *     
+     */
+    public void setRespuesta(RespuestaDTO value) {
+        this.respuesta = value;
     }
 
 }

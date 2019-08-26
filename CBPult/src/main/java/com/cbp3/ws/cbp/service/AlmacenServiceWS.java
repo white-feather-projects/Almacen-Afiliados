@@ -40,6 +40,36 @@ public interface AlmacenServiceWS {
 
     /**
      * 
+     * @param idZona
+     * @return
+     *     returns java.util.List<com.cbp3.ws.cbp.service.Estanteria>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listEstanteriasByIdZonaWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListEstanteriasByIdZonaWS")
+    @ResponseWrapper(localName = "listEstanteriasByIdZonaWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListEstanteriasByIdZonaWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/listEstanteriasByIdZonaWSRequest", output = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/listEstanteriasByIdZonaWSResponse")
+    public List<Estanteria> listEstanteriasByIdZonaWS(
+        @WebParam(name = "idZona", targetNamespace = "")
+        long idZona);
+
+    /**
+     * 
+     * @param idAlmacen
+     * @return
+     *     returns java.util.List<com.cbp3.ws.cbp.service.Zona>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "liistZonasByIdAlmacenWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.LiistZonasByIdAlmacenWS")
+    @ResponseWrapper(localName = "liistZonasByIdAlmacenWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.LiistZonasByIdAlmacenWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/liistZonasByIdAlmacenWSRequest", output = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/liistZonasByIdAlmacenWSResponse")
+    public List<Zona> liistZonasByIdAlmacenWS(
+        @WebParam(name = "idAlmacen", targetNamespace = "")
+        long idAlmacen);
+
+    /**
+     * 
      * @param arg0
      * @return
      *     returns java.util.List<com.cbp3.ws.cbp.service.RelacionAlmacenes>

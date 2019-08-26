@@ -18,6 +18,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="catalogue" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="catalogueId" type="{http://service.cbp.ws.cbp2.com/}catalogue" minOccurs="0"/>
  *         &lt;element name="codigoUsuarioModifica" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="fechaHoraCarga" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
@@ -37,6 +38,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "product", propOrder = {
+    "catalogue",
     "catalogueId",
     "codigoUsuarioModifica",
     "fechaHoraCarga",
@@ -49,6 +51,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class Product {
 
+    protected long catalogue;
     protected Catalogue catalogueId;
     protected Long codigoUsuarioModifica;
     @XmlSchemaType(name = "dateTime")
@@ -60,6 +63,22 @@ public class Product {
     protected String productLogo;
     protected String productName;
     protected Long warehouseId;
+
+    /**
+     * Obtiene el valor de la propiedad catalogue.
+     * 
+     */
+    public long getCatalogue() {
+        return catalogue;
+    }
+
+    /**
+     * Define el valor de la propiedad catalogue.
+     * 
+     */
+    public void setCatalogue(long value) {
+        this.catalogue = value;
+    }
 
     /**
      * Obtiene el valor de la propiedad catalogueId.

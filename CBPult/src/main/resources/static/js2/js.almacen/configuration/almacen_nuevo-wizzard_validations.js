@@ -494,7 +494,6 @@ else if(Tipo === "editar"){
 	        		window.location.href = '/CBPult/Almacen/configuration_almacen';
 	        	}
 	        });			
-			
 		}
 
 	});
