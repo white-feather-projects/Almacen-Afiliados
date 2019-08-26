@@ -1,26 +1,56 @@
 'use strict';
 
-$(window).on('load', function() {
-    function notify(message, type) {
-        $.growl( {
-            message: message
-        }
-        , {
-            type:type, allow_dismiss:false, label:'Cancel', className:'btn-xs btn-inverse', placement: {
-                from: 'bottom', align: 'right'
-            }
-            , delay:2500, animate: {
-                enter: 'animated fadeInRight', exit: 'animated fadeOutRight'
-            }
-            , offset: {
-                x: 30, y: 30
-            }
-        }
-        );
-    }
-    ;
-    notify('Bievenido a la Creación de Almacenes', 'inverse');
-});
+var url = window.location.pathname;
+var Tipo = url.substring(url.lastIndexOf('/')+1, url.lastIndexOf('&'));
+
+if(Tipo == "newalm"){
+	$(window).on('load', function() {
+	    function notify(message, type) {
+	        $.growl( {
+	            message: message
+	        }
+	        , {
+	            type:type, allow_dismiss:false, label:'Cancel', className:'btn-xs btn-inverse', placement: {
+	                from: 'bottom', align: 'right'
+	            }
+	            , delay:2500, animate: {
+	                enter: 'animated fadeInRight', exit: 'animated fadeOutRight'
+	            }
+	            , offset: {
+	                x: 30, y: 30
+	            }
+	        }
+	        );
+	    }
+	    ;
+	    notify('Bievenido a la Creación de Almacenes', 'inverse');
+	});
+}
+else if(Tipo == "editar"){
+	$(window).on('load', function() {
+	    function notify(message, type) {
+	        $.growl( {
+	            message: message
+	        }
+	        , {
+	            type:type, allow_dismiss:false, label:'Cancel', className:'btn-xs btn-inverse', placement: {
+	                from: 'bottom', align: 'right'
+	            }
+	            , delay:2500, animate: {
+	                enter: 'animated fadeInRight', exit: 'animated fadeOutRight'
+	            }
+	            , offset: {
+	                x: 30, y: 30
+	            }
+	        }
+	        );
+	    }
+	    ;
+	    notify('Bievenido a la Modificación de Almacenes', 'inverse');
+	});
+}
+
+
 $(document).ready(function() {
     
     function notify(from, align, icon, type, animIn, animOut) {
