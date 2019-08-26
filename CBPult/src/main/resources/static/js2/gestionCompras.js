@@ -3,7 +3,7 @@
     window.addEventListener('load', function(){
 
         $('#generationPurchases').on('click', function(){
-            location.href = "/listpurchaseorder";
+            location.href = "/CBPult/Gestion_Compras/listpurchaseorder";
     
         })
         

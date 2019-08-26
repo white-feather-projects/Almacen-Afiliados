@@ -4,9 +4,17 @@ h2{
 }
 
 /* Cards */
-.card-block{
+.card{
 	border: 2px solid #01a9ac;
 }
+
+.cardlimit{
+	height: 390px;
+	overflow: hidden;
+}
+/* Cards */
+ 
+ 
 /* Botoneras Grandes */
 
 .botonera .btn{
@@ -45,14 +53,3 @@ thead{
 	}
 	/* Botoneras Tablas */
 /* TABLAS */
-
-
-
- /* Tarjetas */
-.cardlimit{
-	height: 390px;
-	overflow: hidden;
-}
- /* Tarjetas */	
- 
- 

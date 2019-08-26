@@ -2,14 +2,19 @@
 
     window.addEventListener('load', function(){
 
+        $('#generationPurchases').on('click', function(){
+            location.href = "/CBPult/purchaseManagementConfiguration";
+    
+        })
+        
         $('#configuration_almacen').on('click', function(){
-            location.href = "/configuration_almacen";
+            location.href = "/CBPult/Almacen/configuration_almacen";
     
         })
         
         $('#configuration_afiliados').on('click', function(){
-            location.href = "/configuration_afiliados";
+            location.href = "/CBPult/Afiliacion/configuration_afiliados";
     
         })
-    
+        
     });

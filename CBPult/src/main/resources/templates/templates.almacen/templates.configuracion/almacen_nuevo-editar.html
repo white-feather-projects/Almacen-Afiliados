@@ -24,6 +24,13 @@
         <link rel="stylesheet" type="text/css" th:href="@{/css/feather.css}">
         <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">          
         <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/sweetalert.css}">
+        <script type="text/javascript" th:src="@{/js/sweetalert.min.js}"></script>
+        
+        <!-- Servicios Almacen -->
+        <script type="text/javascript" th:src="@{/js2/js.almacen/configuration/ServicesConfigurationWarehouse.js}"></script>
+        
+       	<script type="text/javascript" th:src="@{/js2/js.almacen/configuration/almacen_nuevo-editar.js}"></script>
 
         
         <link rel="stylesheet" type="text/css" th:href="@{/css2/css.almacen/GeneralForm.css}">
@@ -75,12 +82,12 @@
                                             
                                             	<div class="col-sm-12 botonera botonera2" style="margin-bottom:30px">                                            		
                                             		
-                                           			<button id="btnGuardar_almacen" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/configuration_almacen'; alert('Almacén Guardado');">
+                                           			<button id="btnGuardar_almacen" class="btn btn-primary btn-md waves-effect text-center mb-20">
 			                                   			Guardar
 			                                   		</button>
                                             			                                       		
 		                                       		
-			                                   		<button id="btnCalcelar_almacen" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/configuration_almacen'; alert('Almacén Cancelado');">
+			                                   		<button id="btnCalcelar_almacen" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/CBPult/Almacen/configuration_almacen'; alert('Almacén Cancelado');">
 			                                   			Cancelar
 			                                   		</button>
 		                                   		
@@ -101,7 +108,7 @@
                                                         		<div class="col-sm-6">
 	                                                                <label class="col-sm-12 col-form-label">Código de Almacén</label>
 	                                                                <div class="col-sm-12">
-	                                                                    <input type="text" id="txtCodigo_almacen" class="form-control" placeholder="Codigo" disabled>
+	                                                                    <input type="text" id="txtCodigo_almacen" class="form-control" readonly>
 	                                                                </div>
                                                             	</div>
                                                             
@@ -109,9 +116,9 @@
 	                                                                <label class="col-sm-12 col-form-label">Tipo Almacén</label>
 	                                                                <div class="col-sm-12">
 		                                                                <select name="select" id="cboxTipo_almacen" class="form-control">
-		                                                                    <option value="Almacén">Almacén</option>
-		                                                                    <option value="Laboratorio">Laboratorio</option>
-		                                                                    <option value="Sucursal">Sucursal</option>
+		                                                                    <option value="1">Almacén</option>
+		                                                                    <option value="2">Laboratorio</option>
+		                                                                    <option value="3">Sucursal</option>
 		                                                                </select>
 	                                                         		</div>
 	                                                            </div>
@@ -134,11 +141,12 @@
 	                                                                <label class="col-sm-12 col-form-label">Gerente de Sucursal</label>
 	                                                                <div class="col-sm-12">
 		                                                                <select name="select" id="cboxEncargado_almacen" class="form-control">
-		                                                                    <option value="Elon Musk">Elon Musk</option>
-		                                                                    <option value="Einstein">Einstein</option>
-		                                                                    <option value="Jack Ma">Jack Ma</option>
+		                                                                    <option value="1">Elon Musk</option>
+		                                                                    <option value="2">Einstein</option>
+		                                                                    <option value="3">Jack Ma</option>
 		                                                                </select>
 	                                                         		</div>
+	                                                         		<input type="hidden" id="numeroAlmacen">
 	                                                            </div>
 	                                                            <!-- Contenido de Card -->  
 	                                                            
@@ -225,7 +233,7 @@
 					                                                    <script type="text/javascript">
 					                                                    	
 						                                                    $(".editar-relacion").click(function(){
-							                                                	location.href = "/relacion-almacen_nuevo-editar";
+							                                                	location.href = "/CBPult/Almacen/relacion-almacen_nuevo-editar";
 							                                                });
 					                                                    					                                                    	
 					                                                    </script>
@@ -247,13 +255,13 @@
 			                                       	<div class="row botonera2" style="margin-bottom:30px">
 			                                       		
 			                                       		<div class="col-sm-4">		                                       		
-				                                       		<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="btnNueva_zona" onclick="location.href='/zona_nuevo-editar';">
+				                                       		<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="btnNueva_zona" onclick="location.href='/CBPult/Almacen/zona_nuevo-editar';">
 					                                   			Nueva Zona
 					                                   		</button>
 					                                   </div>
 					                                   
 					                                   <div class="col-sm-8">		                                       		
-				                                       		<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="btnNueva_relacion" onclick="location.href='/relacion-almacen_nuevo-editar';">
+				                                       		<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="btnNueva_relacion" onclick="location.href='/CBPult/Almacen/relacion-almacen_nuevo-editar';">
 					                                   			Nueva Relación
 					                                   		</button>
 					                                   </div>
@@ -295,7 +303,7 @@
 					                                                            	<td>Recibo de Nueva Mercancia</td>
 					                                                            	<td>Alfred Newman</td>
 					                                                            	<td>
-					                                                            		<a onclick="location.href='/zona_nuevo-editar'">
+					                                                            		<a onclick="location.href='/CBPult/Almacen/zona_nuevo-editar'">
 					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
 					                                                            		</a>					                                                            		
 					                                                            	</td>					                                                            	
@@ -306,7 +314,7 @@
 					                                                            	<td>Recibo de Mercancia en Reparaciones</td>
 					                                                            	<td>Carlos Rater</td>
 					                                                            	<td>
-					                                                            		<a onclick="location.href='/zona_nuevo-editar'">
+					                                                            		<a onclick="location.href='/CBPult/Almacen/zona_nuevo-editar'">
 					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
 					                                                            		</a>					                                                            		
 					                                                            	</td>
@@ -317,7 +325,7 @@
 					                                                            	<td>Almacenaje General</td>
 					                                                            	<td>Carlos Rater</td>
 					                                                            	<td>
-					                                                            		<a onclick="location.href='/zona_nuevo-editar'">
+					                                                            		<a onclick="location.href='/CBPult/Almacen/zona_nuevo-editar'">
 					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
 					                                                            		</a>					                                                            		
 					                                                            	</td>
@@ -328,7 +336,7 @@
 					                                                            	<td>Almacenaje de Mercancia de alto valor</td>
 					                                                            	<td>Empleado X</td>
 					                                                            	<td>
-					                                                            		<a onclick="location.href='/zona_nuevo-editar'">
+					                                                            		<a onclick="location.href='/CBPult/Almacen/zona_nuevo-editar'">
 					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
 					                                                            		</a>					                                                            		
 					                                                            	</td>
@@ -339,7 +347,7 @@
 					                                                            	<td>Despacho de Mercancias</td>
 					                                                            	<td>Stiven Rutherford</td>
 					                                                            	<td>
-					                                                            		<a onclick="location.href='/zona_nuevo-editar'">
+					                                                            		<a onclick="location.href='/CBPult/Almacen/zona_nuevo-editar'">
 					                                                            			<img alt="Consultar" th:src="@{/img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico}" width="30px">
 					                                                            		</a>					                                                            		
 					                                                            	</td>

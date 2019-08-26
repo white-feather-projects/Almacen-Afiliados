@@ -18,7 +18,7 @@ console.log(user);
 
 function listarPurchseOrder(){
     $('#listPurchaseOrder').DataTable( {
-    
+  
     	sort:true,
     	destroy: true,
     	 
@@ -26,10 +26,10 @@ function listarPurchseOrder(){
           
     	
     	language: {
-    		url: '/js2/Spanish.json'
+    		url: '../js2/Spanish.json'
         },
         ajax: {
-              url: "/listPurchaseOrderRequest",
+              url: "/CBPult/Gestion_Compras/listPurchaseOrderRequest",
             dataSrc: '',
         	
         },
@@ -39,15 +39,16 @@ function listarPurchseOrder(){
         	{
                 "data": "numberOrder", // can be null or undefined
                 "class": "cero",
-                "render": function ( data ) {
+                "render": function (data, type, full, meta) {
                 	
             	//	return '<center>'+ data +'</center>';
             		
-            		if (data == null) {
+            		if (full.statusOrder != "APROBADA") {
                    
-            			return '<center>'+ "No generada" +'</center>';                 
+            		return '<center title="No hay detalle,debe generar orden de compra">'+data+'</center>';
+            			//return '<center title="Ver detalle de compra"><a href="/verDetalleCompra/'+full.idOrderRequest+'">'+data+'</a></center><input type="hidden" id="status" value="'+data+'">'
                       }else{
-                    	return '<center ><a href="/verDetalleCompra/'+data+'">'+data+'</a></center><input type="hidden" id="status" value="'+data+'">'
+                    	return '<center title="Ver detalle de compra"><a href="/CBPult/Gestion_Compras/verDetalleCompra/'+full.idOrderRequest+'">'+data+'</a></center><input type="hidden" id="status" value="'+data+'">'
                     	 // return '<center>'+ data +'</center>';
                       }
               	}	
@@ -105,7 +106,7 @@ function listarPurchseOrder(){
                 "render": function ( data, type, full, meta ) {
                 	
                 	
-                		return '<center><a title="Ver" id="ver" href="/verpurchaseorder/'+data+'"><i class="fa fa-search" style="font-size:30px" aria-hidden="true"></i></a></center>';
+                		return '<center><a title="Ver" id="ver" href="/CBPult/Gestion_Compras/verpurchaseorder/'+data+'"><i class="fa fa-search" style="font-size:30px" aria-hidden="true"></i></a></center>';
                 		//return '<center><a class="ui blue button" href="/4track/api/devices?id=">Ver</a></center>';
                 }
             },
@@ -115,12 +116,12 @@ function listarPurchseOrder(){
                 "class": "editar",
                 "defaultContent": "",
                 "render": function (data, type, full, meta) {
-                	if (full.statusOrder == "aprobada") {
+                	if (full.statusOrder == "APROVADA") {
                   // console.log(data);
                   // console.log(full.statusOrder);
                 		return '<center><i class="fa fa-check" agregaryasignar" title="Solicitud aprobada" style="font-size:30px"></i></center>';                  
                 }else{
-                	return '<center><a href="/editpurchaceorder/'+data+'" title="Editar solicitud de orden de compra"><input type="hidden" id="edit" value="'+data+'"><i class="fa fa-edit" agregaryasignar" style="font-size:30px"></i></a></center>';
+                	return '<center><a href="/CBPult/Gestion_Compras/editpurchaceorder/'+data+'" title="Editar solicitud de orden de compra"><input type="hidden" id="edit" value="'+data+'"><i class="fa fa-edit" agregaryasignar" style="font-size:30px"></i></a></center>';
                 }
                 }
             
@@ -143,15 +144,15 @@ function listarPurchseOrder(){
               
                 	var user=$('#username').val();
                 	
-                	if(full.statusOrder == "aprobada" && user != 'ROLE_USER'){
+                	if(full.statusOrder == "APROBADA" && user != 'ROLE_USER'){
                 	
                 		return '<center><i class="fa fa-check" agregaryasignar" title="Solicitud aprobada" style="font-size:30px"></i></center>';                               
                 	}else if(user == 'ROLE_USER'){
                 		
-                		 return '<center><a href="/generatedpurchaseorder/'+data+'" title="Generar orden de compra"></a></center>';   
+                		 return '<center><a href="/CBPult/Gestion_Compras/generatedpurchaseorder/'+data+'" title="Generar orden de compra"></a></center>';   
                 	}else{
                 		
-                		 return '<center><a href="/generatedpurchaseorder/'+data+'" title="Generar orden de compra"><i class="fa fa-file generar" style="font-size:30px"></i></a></center>';   
+                		 return '<center><a href="/CBPult/Gestion_Compras/generatedpurchaseorder/'+data+'" title="Generar orden de compra"><i class="fa fa-file generar" style="font-size:30px"></i></a></center>';   
                 	}                 
                 }
             }
@@ -175,7 +176,7 @@ var datos = {
 		"statusOrder": status
 		}
 
-var url3='/cambio';
+var url3='/CBPult/Gestion_Compras/cambio';
 
 $.ajax({
     url:url3,
@@ -187,16 +188,21 @@ $.ajax({
     	//location.href = '/'+resp.mensaje;
     	
     	swal({
-    	    title: 'Seguro de cancelar solicitud de orden de compra?',
-    	    text: 'Redirigiendo...',
-    	    icon: 'Exitoso',
-    	    buttons: true,
-    	},
-    	function() {
+    		  title: "Estas Seguro?",
+    		  text: "Su solicitud sera cancelada!",
+    		  type: "warning",
+    		  showCancelButton: true,
+    		  confirmButtonClass: "btn-danger",
+    		  confirmButtonText: "Si,Cancelar Solicitud!",
+    		  closeOnConfirm: false
+    		},
+    		function(){
+    			swal("Su solicitud fue cancela!");
+    			location.href = "/CBPult/Gestion_Compras/listpurchaseorder";
+    		  
+    		});
     		
-    	    location.href = "/listpurchaseorder";
- 
-    	}) 
+    	   
 
    
 	/*    if(true){

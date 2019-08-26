@@ -61,62 +61,6 @@ public RespuestaDTO createPurchaseOrderRequestWS(PurchaseOrderRequestDTO ge, Pro
 	return res;
 }
 
-
-
-
-
-	
-	
-	/**
-	 * Metodo para crear solicitud de orden de compra
-	 */
-/*
-	public RespuestaFDTO createPurchaseOrderRequestWS(String descriptionOrder, long quantity, String codeUserLouder,
-	String codeUserAproved, String statusOrder, String fechaCarga, ProductDTO productDTO) {
-	RespuestaFDTO respuesta = new RespuestaFDTO();
-	com.cbp2.ws.cbp.service.RespuestaDTO response = new com.cbp2.ws.cbp.service.RespuestaDTO();
-    com.cbp2.ws.cbp.service.Product productWS = new com.cbp2.ws.cbp.service.Product();
-		try {
-			
-			
-			// productDTO.setIdProduct(Long.valueOf(val));
-			productWS.setIdProduct(productDTO.getIdProduct());
-
-			/*
-			 * productWS.setProductActive(productDTO.getProductActive());
-			 * productWS.setProductName(productDTO.getProductName());
-			 * productWS.setProductLogo(productDTO.getProductLogo());
-			 */
-/*
-			PurchaseOrderWS_Service serv;
-
-			serv = new PurchaseOrderWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-2/PurchaseOrderWS?WSDL"));
-
-			PurchaseOrderWS port = serv.getPurchaseOrderWSPort();
-			response = port.createPurchaseOrderRequestWS(descriptionOrder, quantity, codeUserLouder, codeUserAproved,
-					/** StatusRequest.SOLICITUD_INGRESADA.getDescripcion() */
-			/*		statusOrder, fechaCarga, productWS, ChannelEnum.PERSONA_NATURAL.getId(),
-					ChannelEnum.PERSONA_NATURAL.getDescripcion());
-
-			if (response.getCodigo().equals(DESCRIPCION_RESPUESTA_FALLIDA)) {
-				respuesta.setDescripcion(DESCRIPCION_RESPUESTA_FALLIDA);
-				respuesta.setCodigo(CODIGO_RESPUESTA_FALLIDO);
-			} else {
-				respuesta.setDescripcion(DESCRIPCION_RESPUESTA_EXITOSO);
-				respuesta.setCodigo(CODIGO_RESPUESTA_EXITOSO);
-			}
-		} catch (IOException e) {
-			logger.severe(new StringBuilder("ERROR DAO al consumir el servicio createClientsWS: ").append("-CH-")
-					.append(ChannelEnum.PERSONA_NATURAL.getDescripcion()).append("-DT-").append(new Date())
-					.append("-STS-").append(DESCRIPCION_RESPUESTA_FALLIDA).append("-EXCP-").append(e.toString())
-					.toString() + e);
-		}
-
-		return respuesta;
-	}
-	
-	*/
-	
 	
 	/**
 	 * Metodo que devuelve la lista de solicitudes de orden de compras
@@ -235,7 +179,7 @@ public RespuestaDTO createPurchaseOrderRequestWS(PurchaseOrderRequestDTO ge, Pro
 			
 
 		} catch (IOException ex) {
-			logger.severe(new StringBuilder("ERROR DAO al consumir el servicio createClientsWS: ").append("-CH-")
+			logger.severe(new StringBuilder("ERROR DAO al consumir el servicio listPlasticByPurchaseorderNumberWS: ").append("-CH-")
 					.append(ChannelEnum.PERSONA_NATURAL.getDescripcion()).append("-DT-").append(new Date())
 					.append("-STS-").append(DESCRIPCION_RESPUESTA_FALLIDA).append("-EXCP-").append(ex.toString())
 					.toString() + ex);
@@ -258,7 +202,7 @@ public RespuestaDTO createPurchaseOrderRequestWS(PurchaseOrderRequestDTO ge, Pro
 	service = new PurchaseOrderWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-2/PurchaseOrderWS?WSDL"));
 	PurchaseOrderWS port = service.getPurchaseOrderWSPort();
 	purchaseOrder = port.lastPurchaseOrderWS();
-	System.out.println("prueba" + purchaseOrder);
+	//System.out.println("prueba" + purchaseOrder);
 			dto.setQuantity(purchaseOrder.getQuantity());
 			dto.setDescriptionOrder(purchaseOrder.getOrderDescription());
 			dto.setNumberOrder(purchaseOrder.getPurchaseOrderNumber());
@@ -297,7 +241,7 @@ public RespuestaDTO createPurchaseOrderRequestWS(PurchaseOrderRequestDTO ge, Pro
 					ChannelEnum.PERSONA_NATURAL.getDescripcion());
 
 			dto.setQuantity(purchaseOrderRequest.getQuantity());
-			System.out.println(purchaseOrderRequest.getQuantity());
+			//System.out.println(purchaseOrderRequest.getQuantity());
 			dto.setDescriptionOrder(purchaseOrderRequest.getDescriptionOrder());
 			dto.setStatusOrder(purchaseOrderRequest.getStatusOrder());
 			dto.setFechaCarga(xmlGregorianCalendarToString(purchaseOrderRequest.getFechaHoraCarga()));
@@ -317,8 +261,8 @@ public RespuestaDTO createPurchaseOrderRequestWS(PurchaseOrderRequestDTO ge, Pro
 			
 			dto.setProductDTO(pdto);
 			
-			System.out.println(dto);
-			System.out.println("prueba" + dto.getDescriptionOrder());
+			//System.out.println(dto);
+			//System.out.println("prueba" + dto.getDescriptionOrder());
 
 		} catch (IOException ex) {
 			Logger.getLogger(PurchaseOrderServices.class.getName()).log(Level.SEVERE, null, ex);
@@ -345,7 +289,7 @@ public RespuestaDTO createPurchaseOrderRequestWS(PurchaseOrderRequestDTO ge, Pro
 			service = new PurchaseOrderWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-2/PurchaseOrderWS?WSDL"));
 			PurchaseOrderWS port = service.getPurchaseOrderWSPort();
 			purchaseOrder = (com.cbp2.ws.cbp.service.PurchaseOrder) port.consultPurchaseOrderWS(id, ChannelEnum.PERSONA_NATURAL.getDescripcion());
-			System.out.println("purchaseOrder"+purchaseOrder);
+			//System.out.println("purchaseOrder"+purchaseOrder);
 			purchaseOrderDTO.setPurchaseOrderNumber(purchaseOrder.getPurchaseOrderNumber());
 			purchaseOrderDTO.setOrderCommetns(purchaseOrder.getOrderComents());
 			purchaseOrderDTO.setOrderStatus(purchaseOrder.getOrderStatus());

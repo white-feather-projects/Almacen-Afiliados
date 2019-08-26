@@ -58,7 +58,7 @@ $("#headerNotifications").append(
 '                <li><h6>Notifications</h6><label class="label label-danger">New</label></li>'+
 '                <li>'+
 '                    <div class="media">'+
-'                        <img class="d-flex align-self-center img-radius" src="../img/avatar-4.jpg" alt="Generic placeholder image">'+
+'                        <img class="d-flex align-self-center img-radius" th:src="${/img/avatar-4.jpg}" alt="Generic placeholder image">'+
 '                        <div class="media-body">'+
 '                            <h5 class="notification-user"></h5>'+
 '                            <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>'+
@@ -68,7 +68,7 @@ $("#headerNotifications").append(
 '                </li>'+
 '                <li>'+
 '                    <div class="media">'+
-'                        <img class="d-flex align-self-center img-radius" src="../img/avatar-3.jpg" alt="Generic placeholder image">'+
+'                        <img class="d-flex align-self-center img-radius" th:src="${/img/avatar-3.jpg}" alt="Generic placeholder image">'+
 '                        <div class="media-body">'+
 '                            <h5 class="notification-user">Joseph William</h5>'+
 '                            <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>'+
@@ -78,7 +78,7 @@ $("#headerNotifications").append(
 '                </li>'+
 '                <li>'+
 '                    <div class="media">'+
-'                        <img class="d-flex align-self-center img-radius" src="../img/avatar-4.jpg" alt="Generic placeholder image">'+
+'                        <img class="d-flex align-self-center img-radius" th:src="${/img/avatar-4.jpg}" alt="Generic placeholder image">'+
 '                        <div class="media-body">'+
 '                            <h5 class="notification-user">Sara Soudein</h5>'+
 '                            <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>'+
@@ -107,7 +107,7 @@ $("#headerNotifications").append(
 '    <li class="user-profile header-notification">'+
 '        <div class="dropdown-primary dropdown">'+
 '            <div class="dropdown-toggle" data-toggle="dropdown">'+
-'                <img src="../img/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">'+
+'                <img th:src="${/img/avatar-4.jpg}" class="img-radius" alt="User-Profile-Image">'+
 '                <span id="myspan">123</span>'+
 '                <i class="feather icon-chevron-down"></i>'+
 '            </div>'+
@@ -138,35 +138,35 @@ $("#sidebar").append(
 '                    <div class="main-friend-list" style="overflow: hidden; width: auto; height: 577px;">'+
 '                        <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" data-placement="left" title="" data-original-title="Josephin Doe">'+
 '                            <a class="media-left" href="#!">'+
-'                                <img class="media-object img-radius img-radius" src="../img/avatar-3.jpg" alt="Generic placeholder image ">'+
+'                                <img class="media-object img-radius img-radius" th:src="${/img/avatar-3.jpg}" alt="Generic placeholder image ">'+
 '                                <div class="live-status bg-success"></div>'+
 '                            </a>'+
 '                            <div class="media-body"><div class="f-13 chat-header">Josephin Doe</div></div>'+
 '                        </div>'+
 '                        <div class="media userlist-box" data-id="2" data-status="online" data-username="Lary Doe" data-toggle="tooltip" data-placement="left" title="" data-original-title="Lary Doe">'+
 '                            <a class="media-left" href="#!">'+
-'                                <img class="media-object img-radius" src="../img/avatar-2.jpg" alt="Generic placeholder image">'+
+'                                <img class="media-object img-radius" th:src="${/img/avatar-2.jpg}" alt="Generic placeholder image">'+
 '                                <div class="live-status bg-success"></div>'+
 '                            </a>'+
 '                            <div class="media-body"><div class="f-13 chat-header">Lary Doe</div></div>'+
 '                        </div>'+
 '                        <div class="media userlist-box" data-id="3" data-status="online" data-username="Alice" data-toggle="tooltip" data-placement="left" title="" data-original-title="Alice">'+
 '                            <a class="media-left" href="#!">'+
-'                                <img class="media-object img-radius" src="../img/avatar-4.jpg" alt="Generic placeholder image">'+
+'                                <img class="media-object img-radius" th:src="${/img/avatar-4.jpg}" alt="Generic placeholder image">'+
 '                                <div class="live-status bg-success"></div>'+
 '                            </a>'+
 '                            <div class="media-body"><div class="f-13 chat-header">Alice</div></div>'+
 '                        </div>'+
 '                        <div class="media userlist-box" data-id="4" data-status="online" data-username="Alia" data-toggle="tooltip" data-placement="left" title="" data-original-title="Alia">'+
 '                            <a class="media-left" href="#!">'+
-'                                <img class="media-object img-radius" src="../img/avatar-3.jpg" alt="Generic placeholder image">'+
+'                                <img class="media-object img-radius" th:src="${/img/avatar-3.jpg}" alt="Generic placeholder image">'+
 '                                <div class="live-status bg-success"></div>'+
 '                            </a>'+
 '                            <div class="media-body"><div class="f-13 chat-header">Alia</div></div>'+
 '                        </div>'+
 '                        <div class="media userlist-box" data-id="5" data-status="online" data-username="Suzen" data-toggle="tooltip" data-placement="left" title="" data-original-title="Suzen">'+
 '                            <a class="media-left" href="#!">'+
-'                                <img class="media-object img-radius" src="../img/avatar-2.jpg" alt="Generic placeholder image">'+
+'                                <img class="media-object img-radius" th:src="${/img/avatar-2.jpg}" alt="Generic placeholder image">'+
 '                                <div class="live-status bg-success"></div>'+
 '                            </a>'+
 '                            <div class="media-body"><div class="f-13 chat-header">Suzen</div></div>'+
@@ -183,7 +183,7 @@ $("#showChatContent").html('');
 $("#showChatContent").append(
 '    <div class="media chat-inner-header"><a class="back_chatBox"><i class="feather icon-chevron-left"></i> Josephin Doe</a></div>'+
 '    <div class="media chat-messages">'+
-'        <a class="media-left photo-table" href="#!"><img class="media-object img-radius img-radius m-t-5" src="../img/avatar-3.jpg" alt="Generic placeholder image"></a>'+
+'        <a class="media-left photo-table" href="#!"><img class="media-object img-radius img-radius m-t-5" th:src="${/img/avatar-3.jpg}" alt="Generic placeholder image"></a>'+
 '        <div class="media-body chat-menu-content">'+
 '            <div class="">'+
 '                <p class="chat-cont">Im just looking around. Will you tell me something about yourself?</p>'+
@@ -198,7 +198,7 @@ $("#showChatContent").append(
 '                <p class="chat-time">8:20 a.m.</p>'+
 '            </div>'+
 '        </div>'+
-'        <div class="media-right photo-table"><a href="#!"><img class="media-object img-radius img-radius m-t-5" src="../img/avatar-4.jpg" alt="Generic placeholder image"></a></div>'+
+'        <div class="media-right photo-table"><a href="#!"><img class="media-object img-radius img-radius m-t-5" th:src="${/img/avatar-4.jpg}" alt="Generic placeholder image"></a></div>'+
 '    </div>'+
 '    <div class="chat-reply-box p-b-20">'+
 '        <div class="right-icon-control">'+
@@ -216,10 +216,22 @@ $("#mCSB_1").append(
 '        <div id="mCSB_1_container" class="mCSB_container " style="position: relative; top: -10px; left: 0px; width: 100%;max-height: 100%;" dir="ltr">'+
 '            <div class="pcoded-navigatio-lavel" menu-title-theme="theme5">Options Systems</div>'+
 '            <ul class="pcoded-item pcoded-left-item" item-border="true" item-border-style="none" subitem-border="true">'+
-'                <li class="active">'+
-'                    <a href="/dashborad">'+
+'                  <li class="active" id="menu_principal">'+
+'                    <a href="/CBPult/dashborad">'+
 '                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>'+
-'                        <span class="pcoded-mtext">Menu Principal</span>'+
+'                        <span class="pcoded-mtext">Menú Principal</span>'+
+'                    </a>'+
+'                </li>'+
+'                <li class="active" id="menu_emision" style="display:none">'+
+'                     <a  href="javascript:void(0)">'+
+'                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>'+
+'                        <span class="pcoded-mtext">Menú Emisión</span>'+
+'                    </a>'+
+'                </li>'+
+'                     <li class="active" id="menu_adquiriencia" style="display:none">'+
+'                    <a  href="javascript:void(0)">'+
+'                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>'+
+'                        <span class="pcoded-mtext">Menú Adquiriencia</span>'+
 '                    </a>'+
 '                </li>'+
 '            </ul>'+

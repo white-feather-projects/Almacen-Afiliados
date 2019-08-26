@@ -1,5 +1,6 @@
 package com.cbp.web.controller;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,11 +12,15 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cbp.web.dao.PurchaseOrder;
@@ -24,17 +29,84 @@ import com.cbp.web.dto.PurchaseOrderDTO;
 import com.cbp.web.dto.PurchaseOrderRequestDTO;
 
 import com.cbp.web.dto.RespuestaFDTO;
+import com.cbp.web.util.Util;
 import com.cbp2.ws.cbp.service.Product;
 import com.cbp2.ws.cbp.service.PurchaseOrderRequest;
 import com.cbp2.ws.cbp.service.RespuestaDTO;
 
 @Controller
-public class PurchaseOrderController {
+@RequestMapping("/Gestion_Compras")
+public class PurchaseOrderController extends Util {
+	
+	private String name;
+	private String link;
+	Authentication auth = null;
 
 	private final Logger log = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
 	PurchaseOrder purchaseOrderDAO;
+	
+	
+	 /***
+	  * Metodo GET  para ver gestion de compras
+	  */
+	 
+		@RequestMapping(value = "/managementpurchases", method = RequestMethod.GET)
+		public String managementPurchases(Model model) {
+		
+			auth = SecurityContextHolder.getContext().getAuthentication();
+			name=auth.getName();
+			String roleUser = "";
+			roleUser = auth.getAuthorities().iterator().next().getAuthority();
+				
+			if (auth.getName().equals("esteban")) {
+				link="/CBPult/img/esteban.jpeg";
+				
+			} else if (auth.getName().equals("karla")) {
+				link="/CBPult/img/karla.jpeg";
+			} else if (auth.getName().equals("admin")) {
+				link="/CBPult/img/logo_purple.png";
+
+			} else if (auth.getName().equals("victor")) {
+				link="/CBPult/img/logo_purple.png";
+			}
+			
+			model.addAttribute("roleUser", roleUser);
+			model.addAttribute("name", name);
+			model.addAttribute("link", link);
+			return "templates.purchaseOrder/managementpurchases";
+		}
+		
+		/*Fin*/
+	
+	/***
+	 * Metodo GET para crear solicitud de orden de compra
+	 * @param request
+	 * @return
+	 */
+	
+	@RequestMapping(value = "/createpurchaseorder", method = RequestMethod.GET)
+	public String createPurchaseOrder(Model model) throws IOException {
+		
+
+		
+        model.addAttribute("valorMinimo", readProperties("VALOR.MINIMO"));
+		model.addAttribute("valorMaximo", readProperties("VALOR.MAXIMO"));
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+
+		return "templates.purchaseOrder/pedido_plasticos";
+	}
+
+	@RequestMapping(value = "/corfirmationcreatepurchaseorder", method = RequestMethod.GET)
+	public String corfirmationCreatePurchaseOrder(Model model) {
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.purchaseOrder/pedido_plasticosconfirmacion";
+	}
+	
+	/*Fin*/
 	
 	
 	/***
@@ -53,6 +125,34 @@ public class PurchaseOrderController {
 	return query;
 	}
 	
+	
+	/***
+	 * Metodo GET para generar orden de compra
+	 * @param request
+	 * @return
+	 */
+	
+	@RequestMapping(value = "/generatedpurchaseorder/{idOrderRequest}", method = RequestMethod.GET)
+	public String generatedPurchaseOrder(@PathVariable(value = "idOrderRequest") Long idOrderRequest, Model model) throws IOException {
+		
+		
+		model.addAttribute("valorMinimo", readProperties("VALOR.MINIMO"));
+		model.addAttribute("valorMaximo", readProperties("VALOR.MAXIMO"));
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.purchaseOrder/generated_pedido_plasticos";
+	}
+	
+	@RequestMapping(value = "/generatedpurchaseorderconfirmacion/{idOrderRequest}", method = RequestMethod.GET)
+    public String generatedPurchaseOrderConfirmacion(@PathVariable(value = "idOrderRequest") Long idOrderRequest,Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		
+	return"templates.purchaseOrder/generated_plasticosconfirmacion";
+	}
+	
+	/*Fin*/
 	
 	
 	/***
@@ -90,8 +190,36 @@ public class PurchaseOrderController {
      return query;  
      }
 
+     
+     /***
+      * Metodo GET para editar solicitud de orden de compra 
+      * @param request
+      * @return
+      */
 
-
+     @RequestMapping(value = "/editpurchaceorder/{idOrderRequest}", method = RequestMethod.GET)
+     public String editPurchaceOrder(@PathVariable(value = "idOrderRequest") Long idOrderRequest, Model model) throws IOException {
+ 		
+ 		
+ 		
+ 		model.addAttribute("valorMinimo", readProperties("VALOR.MINIMO"));
+ 		model.addAttribute("valorMaximo", readProperties("VALOR.MAXIMO"));
+ 		model.addAttribute("name", name);
+ 		model.addAttribute("link", link);
+ 		
+ 	return"templates.purchaseOrder/editpurchaceorder";
+ 	}
+ 	
+ 	@RequestMapping(value = "/editpurchaceorderconfirmation/{idOrderRequest}", method = RequestMethod.GET)
+     public String editPurchaceOrderConfirmation(@PathVariable(value = "idOrderRequest") Long idOrderRequest, Model model) {
+ 		model.addAttribute("name", name);
+ 		model.addAttribute("link", link);
+ 		
+ 	return"templates.purchaseOrder/editpurchaceorderconfirmation";
+ 	}
+ 	
+ 	/*Fin*/
+ 	
      /***
       * Metodo para editar solicitud de orden de compra
       * @param request
@@ -105,7 +233,23 @@ public class PurchaseOrderController {
      return query;  
      }
 	
-	
+     
+     /***
+      * Metodo GET para listar las solicitudes de orden de compra
+      * @return
+      */
+     @RequestMapping(value = "/listpurchaseorder", method = RequestMethod.GET)
+ 	public String listPurchaseOrder(Model model) {
+ 		
+    //String roleUser = "";
+ 	//roleUser = auth.getAuthorities().iterator().next().getAuthority();
+ 	//model.addAttribute("roleUser", roleUser);
+ 	model.addAttribute("name", name);
+    model.addAttribute("link", link);
+    return "templates.purchaseOrder/listgestionplasticos";
+ 	}
+     
+     /*Fin*/
      
      /***
       * Metodo para listar las solicitudes de orden de compra
@@ -160,6 +304,22 @@ public class PurchaseOrderController {
 	 }
 	
 	 
+	 /**
+		 * Metodo GET de consulta por id para ver detalle de compra
+		 * @param id
+		 * @return
+		 */
+	 
+	 
+	 @RequestMapping(value = "/verDetalleCompra/{purchaseOrderNumber}", method = RequestMethod.GET)
+	    public String verDetalleCompra(@PathVariable(value = "purchaseOrderNumber") String purchaseOrderNumber, Model model) {
+			model.addAttribute("name", name);
+			model.addAttribute("link", link);
+			
+		return"templates.purchaseOrder/viewDetailPurchase";
+		}
+	 
+	 /*Fin*/
 	 
 	/**
 	 * Metodo de consulta por id para ver detalle de compra
@@ -194,7 +354,7 @@ public class PurchaseOrderController {
 	 try {
 	 is = new FileInputStream("c:\\Configuracion\\configuracion.properties");
 	 //is = new FileInputStream("/home/confPropertiesCBP/configuracion.properties");
-	 prop.load(is);
+	 prop.load(is);                                   
      } catch(IOException e) {
      System.out.println(e.toString());
 	 }
@@ -205,6 +365,36 @@ public class PurchaseOrderController {
 	 return query;
 	 }
 	
+/***
+ * Ver orden generada
+ */
+	 
+	 @RequestMapping(value = "/viewgenerateorder", method = RequestMethod.GET)
+	    public String viewgenerateorder(Model model) {
+			model.addAttribute("name", name);
+			model.addAttribute("link", link);
+			
+	     return "templates.purchaseOrder/view_generate_order";
+		}
 
+	 /*Fin*/
+	 
+	 
 
+		
+		
+		/***
+		 * Metodo para ver orden de compra
+		 */
+		@RequestMapping(value = "/verpurchaseorder/{idOrderRequest}", method = RequestMethod.GET)
+	    public String verPurchaseOrder(@PathVariable(value = "idOrderRequest") Long idOrderRequest, Model model) {
+			model.addAttribute("name", name);
+			model.addAttribute("link", link);
+			
+		return"templates.purchaseOrder/ver_pedido_plasticos";
+		}
+	 
+		/**/
+		
+		
      }

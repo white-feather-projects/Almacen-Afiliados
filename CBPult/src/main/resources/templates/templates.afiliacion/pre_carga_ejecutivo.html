@@ -7,7 +7,7 @@
 	>
     <head>
 		<th:block th:replace="fragments/header :: headlayout"></th:block>
-        <script type="text/javascript" src="../js2/js.afiliacion/pre_carga_ejecutivo.js"></script>
+        <script type="text/javascript" th:src="@{/js2/js.afiliacion/pre_carga_ejecutivo.js}"></script>
      </head>
     <body themebg-pattern="pattern4">
          	<!--/////////////////////////////////////////////////-->
@@ -41,9 +41,6 @@
                                                 <div class="col-sm-12">
                                                     <div class="card">
                                                         <div class="card-header">
-                                                            <div class="card-header-rigth">
-                                                                <i class="icofont icofont-spinner-alt-4"></i>
-                                                            </div>
                                                         </div>
                                                         <div class="card-block">
                                                             <h4 class="sub-title">Pre-Carga - Ejecutivo de Ventas</h4>
@@ -57,10 +54,9 @@
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<select name="select" id="tipo_identificacion" class="form-control">
-																						<option value="RIF">RIF</option>
-		                                                                                <option value="C.I.">C.I.</option>
-		                                                                                <option value="Pasaporte">Pasaporte</option>
-		                                                                                <option value ="Cedula de Persona Jurídica">Cedula de Persona Jurídica</option>
+																						<option value="Cedula">Cedula</option>
+		                                                                                <option value="DIMEX">DIMEX</option>
+		                                                                                <option value="Cedula Jurídica">Cedula Jurídica</option>
                                                                         			</select>
 																				</div>
 																				
@@ -71,7 +67,6 @@
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<select name="select" id="provincia" class="form-control">
-																						<option value="provincia">provincia</option>
 		                                                                                
                                                                         			</select>
 																				</div>
@@ -91,7 +86,7 @@
 		                                                                    		<label>Punto de referencia(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="punto_de_referencia"/>
+																					<input type="text" class="form-control" placeholder="" id="punto_de_referencia" maxlength="500"/>
 																				</div>
 																				
 		                                                                    </div>
@@ -106,7 +101,7 @@
 		                                                                    		<label>Documento de Identidad(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="documento"/>
+																					<input type="text" class="form-control" placeholder="" id="documento" maxlength="9"/>
 																				</div>
 																				
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -116,7 +111,6 @@
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<select name="select" id="canton" class="form-control">
-																						<option value="canton">canton</option>
 		                                                                                
                                                                         			</select>
 																				</div>
@@ -152,7 +146,6 @@
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<select name="select" id="distrito" class="form-control">
-																						<option value="distrito">distrito</option>
 		                                                                                
                                                                         			</select>
 																				</div>
@@ -185,10 +178,9 @@
 		                                                                    	</div>
 																				<div class="col-sm-12">
 																					<select name="select" id="tipo_identificacion2" class="form-control">
-																						<option value="RIF">RIF</option>
-		                                                                                <option value="C.I.">C.I.</option>
-		                                                                                <option value="Pasaporte">Pasaporte</option>
-		                                                                                <option value ="Cedula de Persona Jurídica">Cedula de Persona Jurídica</option>
+																						<option value="Cedula">Cedula</option>
+		                                                                                <option value="DIMEX">DIMEX</option>
+		                                                                                <option value="Cedula Jurídica">Cedula Jurídica</option>
                                                                         			</select>
 																				</div>
 																				
@@ -216,7 +208,7 @@
 		                                                                    		<label>Documento de identidad(*): </label>
 		                                                                    	</div>
 																				<div class="col-sm-12">
-																					<input type="text" class="form-control" placeholder="" id="documento2"/>
+																					<input type="text" class="form-control" placeholder="" id="documento2" maxlength="9"/>
 																				</div>
 																				
 																				<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>

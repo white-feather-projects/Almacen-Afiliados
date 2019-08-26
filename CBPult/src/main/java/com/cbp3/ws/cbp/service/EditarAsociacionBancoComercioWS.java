@@ -20,6 +20,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="idEntityBanck" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="numeroAfiliacion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="numTerminalesComprar" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="operadorTelefonicoId" type="{http://service.cbp.ws.cbp3.com/}operadortelefonico" minOccurs="0"/>
+ *         &lt;element name="cantidadLineasOperador" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -33,7 +35,9 @@ import javax.xml.bind.annotation.XmlType;
     "idAsociacion",
     "idEntityBanck",
     "numeroAfiliacion",
-    "numTerminalesComprar"
+    "numTerminalesComprar",
+    "operadorTelefonicoId",
+    "cantidadLineasOperador"
 })
 public class EditarAsociacionBancoComercioWS {
 
@@ -41,6 +45,8 @@ public class EditarAsociacionBancoComercioWS {
     protected long idEntityBanck;
     protected String numeroAfiliacion;
     protected long numTerminalesComprar;
+    protected Operadortelefonico operadorTelefonicoId;
+    protected long cantidadLineasOperador;
 
     /**
      * Obtiene el valor de la propiedad idAsociacion.
@@ -112,6 +118,46 @@ public class EditarAsociacionBancoComercioWS {
      */
     public void setNumTerminalesComprar(long value) {
         this.numTerminalesComprar = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad operadorTelefonicoId.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Operadortelefonico }
+     *     
+     */
+    public Operadortelefonico getOperadorTelefonicoId() {
+        return operadorTelefonicoId;
+    }
+
+    /**
+     * Define el valor de la propiedad operadorTelefonicoId.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Operadortelefonico }
+     *     
+     */
+    public void setOperadorTelefonicoId(Operadortelefonico value) {
+        this.operadorTelefonicoId = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad cantidadLineasOperador.
+     * 
+     */
+    public long getCantidadLineasOperador() {
+        return cantidadLineasOperador;
+    }
+
+    /**
+     * Define el valor de la propiedad cantidadLineasOperador.
+     * 
+     */
+    public void setCantidadLineasOperador(long value) {
+        this.cantidadLineasOperador = value;
     }
 
 }

@@ -4,53 +4,54 @@ window.addEventListener('load', ()=>{
 	
 	 
 
-// ////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
 
     var data_json = JSON.parse(localStorage.getItem("data"));
 
-    $("#lote_confirmacion").val(data_json.lote).prop("disabled", true);
-    $("#cantidadTarjetasSolicitar_confirmacion").val(data_json.cantidadTarjetasSolicitar).prop("disabled", true);
-    $("#producto_confirmacion").val(data_json.producto).prop("disabled", true);
-    $("#descripcionOrden_confirmacion").val(data_json.descripcionOrden).prop("disabled", true);
-   
+    $("#lote_confirmacion").val(data_json.lote).prop("readonly", true);
+    $("#cantidadTarjetasSolicitar_confirmacion").val(data_json.cantidadTarjetasSolicitar).prop("readonly", true);
+  //  $("#producto_confirmacion").val(data_json.producto).prop("readonly", true);
+    $("#descripcionOrden_confirmacion").val(data_json.descripcionOrden).prop("readonly", true);
+   // $(".productConfirmation").text(data_json.proName);
+    $(".productConfirmation").append('<option selected value=' + data_json.producto + '>' + data_json.proName+ '</option>');
 
 
 //////////////////////////////////////////////////////////////////////
 	
-var lo =  document.querySelector("#lote_confirmacion");
-console.log(lo);
+    var lo =  document.querySelector("#lote_confirmacion");
+    console.log(lo);
     var cantidad= document.querySelector("#cantidadTarjetasSolicitar_confirmacion");
     var prod = document.querySelector("#producto_confirmacion");
-
+    //alert(data_json.producto);
     var descripcion = document.querySelector("#descripcionOrden_confirmacion");
-    var descripcion = document.querySelector("#descripcionOrden_confirmacion");
+    //var productName= $(".productConfirmation option:selected").text();
 
     /////////////////////////////////////////////////////////////////////
 
     cantidad.addEventListener('keyup', ()=>{
-        var cant = document.querySelector("#cantidadTarjetasSolicitar_confirmacion").value;
-        if(cant == "")
-        {   
-            swal("Espacio Obligatorio");
-        }else if((/^([0-9])*$/).test(cant)){
+    var cant = document.querySelector("#cantidadTarjetasSolicitar_confirmacion").value;
+    if(cant == "")
+    {   
+    swal("Espacio Obligatorio");
+    }else if((/^([0-9])*$/).test(cant)){
 
-        }else if((/[a-zA-Z]/).test(cant)){
-            swal("Dato Alfanumerico");
-            document.getElementById("cantidadTarjetasSolicitar_confirmacion").value = "";
-        }
+    }else if((/[a-zA-Z]/).test(cant)){
+    swal("Dato Alfanumerico");
+    document.getElementById("cantidadTarjetasSolicitar_confirmacion").value = "";
+    }
     });
     
-        prod.addEventListener('keyup', ()=>{
-        var pro = document.querySelector("#producto_confirmacion").value;
-        if(pro == "")
-        {   
-            swal("Espacio Obligatorio");
-        }else if((/[a-zA-Z]/).test(pro)){
+    prod.addEventListener('keyup', ()=>{
+    var pro = document.querySelector("#producto_confirmacion").value;
+    if(pro == "")
+    {   
+    swal("Espacio Obligatorio");
+    }else if((/[a-zA-Z]/).test(pro)){
 
-        }else if((/^([0-9])*$/).test(pro)){
-            swal("Dato Alfanumerico");
-            document.getElementById("producto_confirmacion").value = "";
-        }
+    }else if((/^([0-9])*$/).test(pro)){
+    swal("Dato Alfanumerico");
+    document.getElementById("producto_confirmacion").value = "";
+    }
     });
     
     
@@ -71,24 +72,24 @@ console.log(lo);
 /////////////////////////////Aceptar solicitud de orden de compra/////////////////////////////////////////    
     
 $('#aceptar_confirmacion').click(function(){
+	 
+	var descripcion = $("#descripcionOrden_confirmacion").val();
+    var cantidad = $("#cantidadTarjetasSolicitar_confirmacion").val();
+    var usuarioCreadorSolicitud = $("#usuarioCreadorSolicitud").val();
+    var status ="CARGADA";
+    var producto = $("#producto_confirmacion").val();
+	
     	
-    	   var cantidad = $("#cantidadTarjetasSolicitar_confirmacion").val();
-    	   var descripcion = $("#descripcionOrden_confirmacion").val();
-    	   console.log(descripcion);
-    	   var usuarioCreadorSolicitud = $("#usuarioCreadorSolicitud").val();
-           console.log(usuarioCreadorSolicitud);
-    	   var status ="Cargada";
-    	   console.log(status);
    
     	    
 var contenido = {
-		 "statusOrder":status,
-		   "descriptionOrder": descripcion,
-		    "quantity": cantidad,
-		    "codeUserLouder": usuarioCreadorSolicitud,
-		    "codeUserAproved": "002"
+	    "descriptionOrder": descripcion,
+		"quantity": cantidad,
+		"codeUserLouder": usuarioCreadorSolicitud,
+		"statusOrder":status,
+		"idProduct":producto,
 		
-}
+		        }
       
     	$.ajax({      headers: { 
             'Accept': 'application/json',
@@ -97,11 +98,16 @@ var contenido = {
             
   		  type: "POST",
   		  
-  		  url: "/createPurchaseOrdeRequestr",
+  		  url: "/CBPult/Gestion_Compras/createPurchaseOrdeRequestr",
   		  data: JSON.stringify(contenido),
   		dataType: "json",
   		  success: function(data)
   	    {
+  			  
+  			  
+  		if(data.descripcion=='OK'){
+      
+        
         
   			swal({
         	    title: 'Pedido de orden de compra exitosa',
@@ -111,12 +117,17 @@ var contenido = {
         	    buttons: false,
         	},
         	function() {
-        	    location.href = "/listpurchaseorder";
+        	    location.href = "/CBPult/Gestion_Compras/listpurchaseorder";
         	})   
                                
+              }else{
+            	swal("Solicitud de orden de compra no Exitosa");  
+              }
               }
               
-                },);  
+                },
+                
+    	);  
 
       
     });
@@ -126,20 +137,19 @@ var contenido = {
    $("#cancelar_confirmacion").click(function(){
    var cantidad = $("#cantidadTarjetasSolicitar_confirmacion").val();
    var descripcion = $("#descripcionOrden_confirmacion").val();
-    	   console.log(descripcion);
-    	   var usuarioCreadorSolicitud = $("#usuarioCreadorSolicitud").val();
-           console.log(usuarioCreadorSolicitud);
-   var status ="En Carga";
-   console.log(status);
-    	    
+   var usuarioCreadorSolicitud = $("#usuarioCreadorSolicitud").val();
+   var status ="EN CARGA";
+   var producto = $("#producto_confirmacion").val();
+   
 var contenido = {
-		   "statusOrder":status,
-		   "descriptionOrder": descripcion,
-		    "quantity": cantidad,
-		    "codeUserLouder": usuarioCreadorSolicitud,
-		    "codeUserAproved": "002"
-		
-}
+		    
+		    "descriptionOrder": descripcion,
+			"quantity": cantidad,
+			"codeUserLouder": usuarioCreadorSolicitud,
+			"statusOrder":status,
+			"idProduct":producto,
+		       
+                }
       
     	$.ajax({      headers: { 
             'Accept': 'application/json',
@@ -148,13 +158,13 @@ var contenido = {
             
   		  type: "POST",
   		  
-  		  url: "/createPurchaseOrdeRequestr",
+  		  url: "/CBPult/Gestion_Compras/createPurchaseOrdeRequestr",
   		  data: JSON.stringify(contenido),
   		dataType: "json",
   		  success: function(data)
   	    {
-        
-          
+  			if(data.descripcion=='OK'){
+  		
   			swal({
         	    title: 'Pedido de orden de compra en carga',
         	    text: 'Redirigiendo...',
@@ -163,12 +173,21 @@ var contenido = {
         	    buttons: false,
         	},
         	function() {
-        	    location.href = "/listpurchaseorder";
+        	    location.href = "/CBPult/Gestion_Compras/listpurchaseorder";
         	})   
-                               
+                  
+        	
+        	
+              }else{
+            	swal("Solicitud de orden de compra en carga no Exitosa!!");    
+              
+              }
               }
               
-                },);  
+                },
+                
+    	
+    	);  
     });
    
    
@@ -176,7 +195,7 @@ var contenido = {
    $("#salir").click(function(){
   
  	   localStorage.clear();
-        location.href = "/listpurchaseorder";
+        location.href = "/CBPult/Gestion_Compras/listpurchaseorder";
     });
     
     
@@ -187,38 +206,47 @@ var contenido = {
   
 /////////////////////////////Mostrar ultima orden de compra////////////////////////////////////////
 
-  $(document).ready(function() {	
-		listarLastOrder();
-	});
 
-	function listarLastOrder() {
+$(document).ready(function() {	
+	listarLastOrder();
+});
 
-	$.ajax({          
-	             
-			  type: "GET",
-			  dataType: "json",
-			  url: "/listLastPurchaseOrderRequest",
-			  success: function(data)
-		    {
-	          
-	          
-			 var fecha = data.fechaCarga;
-	         var quantity = data.quantity;
-	         var descriptionOrder = data.descriptionOrder;
-	         var numberOrder = data.numberOrder;
-	         var number = parseInt(numberOrder);
-	         var loteSiguiente = number+1;
-	      
-	        document.getElementById('cantidadTarjetasAnterior').value = quantity;
-	        document.getElementById('descripcionAnterior').value = descriptionOrder;
-	        document.getElementById('anteriorLote').value = number;
-	        document.getElementById('lote_confirmacion').value = loteSiguiente;
-	        document.getElementById('fecha').value = fecha;
-	        console.log(data);
-	                
-	                             
-	            }
-	            
-	      },);  
-	              
-	}   
+function listarLastOrder() {
+
+$.ajax({          
+             
+		  type: "GET",
+		  dataType: "json",
+		  url: "/CBPult/Gestion_Compras/listLastPurchaseOrderRequest",
+		  success: function(data)
+	    {
+
+	     if(data != " ")
+	     {
+    
+		 var fecha = data.fechaCarga;
+         var quantity = data.quantity;
+         var descriptionOrder = data.descriptionOrder;
+         var numberOrder = data.numberOrder;
+         var producto = data.productDTO;
+         var productoId = producto.idProduct;
+         var productoName= producto.productName;
+         
+         console.log("producto",productoId);
+         console.log("producto",productoName);
+      
+        document.getElementById('cantidadTarjetasAnterior').value = quantity;
+        document.getElementById('descripcionAnterior').value = descriptionOrder;
+        document.getElementById('anteriorLote').value = numberOrder;
+        document.getElementById('fecha').value = fecha;
+        $("#productoAnterior").append('<option value=' + productoId + '>' + productoName+ '</option>');
+                
+                             
+            }else{
+           swal("No hay ultima orden de compra");	
+            
+            }
+	    }
+      },);  
+              
+}   

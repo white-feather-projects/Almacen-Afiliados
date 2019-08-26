@@ -84,9 +84,9 @@ window.addEventListener('load', ()=>{
         document.getElementById("telefonoCelular").style.border = "1px solid black";
     }); 
     
-    
+ 
     banco.addEventListener('keyup', ()=>{
-    	soloTexto(banco);
+    	soloTextoNumeros(banco);
     	document.getElementById("banco").style.border = "1px solid black";
     }); 
    
@@ -147,6 +147,9 @@ window.addEventListener('load', ()=>{
     });
     
 });
+
+
+
     
     
     

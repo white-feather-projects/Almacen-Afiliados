@@ -11,7 +11,7 @@
     top: 50%;
     left:36%;
     color: #FDFEFE;
-    font-size: 1.6vw;
+    font-size: 1.2vw;
     font-family:Century Gothic;
     
 }
@@ -21,7 +21,7 @@
     top: 50%;
     left: 42%;
     color: #FDFEFE;
-    font-size: 1.6vw;
+    font-size: 1.2vw;
     font-family:Century Gothic;
     
 }
@@ -31,7 +31,7 @@
     top: 50%;
     left: 48%;
     color: #FDFEFE;
-     font-size: 1.6vw;
+     font-size: 1.2vw;
     font-family:Century Gothic;
     
 }
@@ -41,7 +41,7 @@
     top: 50%;
     left: 54%;
     color: #FDFEFE;
-    font-size: 1.6vw;
+    font-size: 1.2vw;
     font-family:Century Gothic;
     
 }
@@ -71,7 +71,7 @@
     top: 70.5%;
     left: 36.5%;
     color: #FDFEFE;
-    font-size: 170%;
+    font-size: 1.2vw;
     font-family:Century Gothic;
     
 }
@@ -81,7 +81,7 @@
     top: 81%;
     left: 42.5%;
     color: #FDFEFE;
-    font-size: 170%;
+    font-size: 1vw;
     font-family:Century Gothic;
      
 }
@@ -145,7 +145,7 @@
     top: 39%;
     color: #212F3D;
     left: 50%;
-   	font-size: 1.2vw;
+   	font-size: 1vw;
     font-family:Century Gothic;
     
 
@@ -158,4 +158,21 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+/* jquery validation */
+label.error {
+    color: #e7505a;
+    margin-left: 10px;
+    padding: 7px;
+}
+input.error {
+    border: 2px solid #e7505a;
+}
+
+#asignada-error {
+    color: white !important;
+    margin-left: 0px !important;
+    padding: 0px !important;
+    font-style:0px !important;
 }

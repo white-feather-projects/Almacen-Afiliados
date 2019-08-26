@@ -37,6 +37,9 @@ window.addEventListener('load', ()=>{
         $("#cantidadTarjetasSolicitar").val(data_json.cantidadTarjetasSolicitar);
         $("#producto").val(data_json.producto);
         $("#descripcionOrden").val(data_json.descripcionOrden);
+
+        
+        
            var la = "";
      document.getElementById('cantidadTarjetasSolicitar').value = la;
       var lo = "";
@@ -49,8 +52,9 @@ window.addEventListener('load', ()=>{
     var cantidad= document.querySelector("#cantidadTarjetasSolicitar");
     var prod = document.querySelector("#producto");
     var descripcion = document.querySelector("#descripcionOrden");
-   
-////////////////////////////////////////Validar campos//////////////////////////////////////////////
+    var productName= $(".product option:selected").text();
+    
+////////////////////////////////////////Validar cantidad maxima y minima de tarjetas a solicitar//////////////////////////////////////////////
 
 cantidad.addEventListener('blur', ()=>{
         var cant = document.querySelector("#cantidadTarjetasSolicitar").value;
@@ -97,15 +101,16 @@ cantidad.addEventListener('blur', ()=>{
     
     descripcion.addEventListener('keyup', ()=>{
         var descripOrden = document.querySelector("#descripcionOrden").value;
+        
+        
         if(descripOrden == "")
         {   
          	swal("Espacio Obligatorio");
-        }else if((/[a-zA-Z]/).test(descripOrden)){
-
-        }else if((/^([0-9])*$/).test(descripOrden)){
-        	swal("Dato Alfanumerico");
-            document.getElementById("descripcionOrden").value = "";
+        }else{
+        	
+        	soloTextoNumeros(descripcion);
         }
+        
     });
 
     
@@ -121,11 +126,13 @@ cantidad.addEventListener('blur', ()=>{
            "cantidadTarjetasSolicitar": cantidad.value,
            "producto": prod.value,
            "descripcionOrden": descripcion.value,
-                
+           "proName": productName,
+           
              };
-
+            //console.log(data);
+            //alert(data);
             localStorage.setItem("data", JSON.stringify(data));
-            location.href="/corfirmationcreatepurchaseorder";
+            location.href="/CBPult/Gestion_Compras/corfirmationcreatepurchaseorder";
         
         }
 
@@ -137,7 +144,7 @@ cantidad.addEventListener('blur', ()=>{
 
     $("#cancelar").click(function(){
         localStorage.clear();
-        location.href = "/listpurchaseorder";
+        location.href = "/CBPult/Gestion_Compras/listpurchaseorder";
     });
 
 });
@@ -156,28 +163,49 @@ $.ajax({
              
 		  type: "GET",
 		  dataType: "json",
-		  url: "/listLastPurchaseOrderRequest",
+		  url: "/CBPult/Gestion_Compras/listLastPurchaseOrderRequest",
 		  success: function(data)
 	    {
-          
-          
+         console.log("dataatata",data);
+         
+     
+         if(data != " ")
+          {
 		 var fecha = data.fechaCarga;
          var quantity = data.quantity;
          var descriptionOrder = data.descriptionOrder;
          var numberOrder = data.numberOrder;
-         var number = parseInt(numberOrder);
-         var loteSiguiente = number+1;
+         var producto = data.productDTO;
+         var productoId = producto.idProduct;
+         var productoName= producto.productName;
+         
+         console.log("producto",productoId);
+         console.log("producto",productoName);
       
         document.getElementById('cantidadTarjetasAnterior').value = quantity;
         document.getElementById('descripcionAnterior').value = descriptionOrder;
-        document.getElementById('anteriorLote').value = number;
-        document.getElementById('lote').value = loteSiguiente;
+        document.getElementById('anteriorLote').value = numberOrder;
         document.getElementById('fecha').value = fecha;
-        console.log(data);
+        $("#productoAnterior").append('<option value=' + productoId + '>' + productoName+ '</option>');
                 
                              
+            }else{
+           swal("No hay ultima orden de compra");	
+            
+            }
             }
             
       },);  
               
 }   
+
+//////////////////////////////// Funcion reguex
+function soloTextoNumeros(texto){
+	var patron = /^[0-9a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/;
+	if(texto.value.search(patron)){
+		swal("Solo Alfanumerico");
+		texto.value = "";
+	}else{
+		return true;
+	}
+}

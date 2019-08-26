@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="comercioId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="comercioRepresentanteId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="representanteId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="representanteLegal" type="{http://service.cbp.ws.cbp3.com/}representanteLegal" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,13 +32,15 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "comercioRepresentante", propOrder = {
     "comercioId",
     "comercioRepresentanteId",
-    "representanteId"
+    "representanteId",
+    "representanteLegal"
 })
 public class ComercioRepresentante {
 
     protected long comercioId;
     protected Long comercioRepresentanteId;
     protected long representanteId;
+    protected RepresentanteLegal representanteLegal;
 
     /**
      * Obtiene el valor de la propiedad comercioId.
@@ -93,6 +96,30 @@ public class ComercioRepresentante {
      */
     public void setRepresentanteId(long value) {
         this.representanteId = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad representanteLegal.
+     * 
+     * @return
+     *     possible object is
+     *     {@link RepresentanteLegal }
+     *     
+     */
+    public RepresentanteLegal getRepresentanteLegal() {
+        return representanteLegal;
+    }
+
+    /**
+     * Define el valor de la propiedad representanteLegal.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link RepresentanteLegal }
+     *     
+     */
+    public void setRepresentanteLegal(RepresentanteLegal value) {
+        this.representanteLegal = value;
     }
 
 }

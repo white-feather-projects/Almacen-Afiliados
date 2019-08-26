@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "AfiliacionServiceWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", wsdlLocation = "http://18.223.203.6:8080/CBP-3/AfiliacionServiceWS?WSDL")
+@WebServiceClient(name = "AfiliacionServiceWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", wsdlLocation = "http://18.222.73.208:8080/CBP-3/AfiliacionServiceWS?WSDL")
 public class AfiliacionServiceWS_Service
     extends Service
 {
@@ -30,7 +30,7 @@ public class AfiliacionServiceWS_Service
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://18.223.203.6:8080/CBP-3/AfiliacionServiceWS?WSDL");
+            url = new URL("http://18.222.73.208:8080/CBP-3/AfiliacionServiceWS?WSDL");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

@@ -94,12 +94,12 @@ window.addEventListener('load', ()=>{
     }); 
     
     /////////////////////////////////////////////////
-    
+ /*   
     antiguedad.addEventListener('keyup', ()=>{
         soloTexto(antiguedad);
         document.getElementById("antiguedad").style.border = "1px solid black";
     }); 
-    
+    */
     cargoOtraEmpresa.addEventListener('keyup', ()=>{
         soloTexto(cargoOtraEmpresa);
         document.getElementById("cargoOtraEmpresa").style.border = "1px solid black";

@@ -8,8 +8,11 @@ window.addEventListener('load', function(){
    // var documento_identidad = data_json.documento_identidad;
     console.log(documento_identidad);
     
-    ///////////////////////////////////////////////////////////////7
-    
+    ///////////////////////////////////////////////////////////////
+   //$('#dataCvv').html('555');
+   //$('#numeroUltimos').html('5555');
+ //$('#dateExperition').html('14/05');
+  //$('#dateEmison').html('14/05');
     var accountIban;
 	var accountNumber;
 	var accountStatus;
@@ -19,24 +22,34 @@ window.addEventListener('load', function(){
 	var idclient;
 	var surname;
 	
-    $.getJSON( "/consultAccountByClientWS/"+documento_identidad+"")
+    $.getJSON( "/CBPult/Solicitudes/consultAccountByClientWS/"+documento_identidad+"")
 	  .done(function( json ) {
-		  console.log(json.clientDTO.clientFirstName);
-		  accountIban = json.accountIban;
-		  accountNumber = json.accountNumber;
-		  accountStatus = json.accountStatus;
-		  clientDTO_clientFirstName = json.clientDTO.clientFirstName;
-		  clientDTO_clientLastName = json.clientDTO.clientLastName;
-		  clientDTO_clientSurname = json.clientDTO.clientSurname;
-		  idclient = json.clientDTO.idClient;
-		  surname = clientDTO_clientSurname.split(" ");
+		  console.log(json);                
+		  console.log(json.idDocument);
+		  accountIban = json.iban;
+		  accountNumber = json.account;
+		 // accountStatus = json.accountStatus;
+		  clientDTO_clientFirstName = json.firtName.toUpperCase();
+		  clientDTO_clientLastName = json.lastName;
+		  clientDTO_clientSurname = json.lastSurname.toUpperCase();
+		  idclient = json.idClient;
+		
+		  if(clientDTO_clientSurname.indexOf("-") > -1==true){
+			  surname = clientDTO_clientSurname.split("-");
+			 
+		  }else{
+			  surname = clientDTO_clientSurname.split(" ");
+		  }
+		 
 		  //console.log(surname[0]);
 		  console.log(idclient);
 		  
 	    //console.log( "JSON Data: " + json.clientDTO.clientSurname );
 	    //console.log(json.length);
-		 document.getElementById('textodos_uno').innerHTML = clientDTO_clientFirstName+" "+surname[0];
+		 document.getElementById('textodos_unoPrinted').innerHTML = clientDTO_clientFirstName+" "+surname[0] + " "+surname[1].charAt(0);
+		 document.getElementById('textodos_uno').innerHTML = clientDTO_clientFirstName+" "+surname[0] + " "+surname[1].charAt(0);
 		 document.getElementById('textotres').innerHTML = accountIban;
+		 document.getElementById('textotresPrinted').innerHTML = accountIban;
 	    
 	  })
 	  .fail(function( jqxhr, textStatus, error ) {
@@ -68,20 +81,24 @@ window.addEventListener('load', function(){
  //   $('#input1').blur(function(){
     var texto = $('#input1').val();
     $('#textouno_do').html(texto);
+    $('#textouno_doPrinted').html(texto);
 
     var texto = $('#input2').val();
     $('#textouno_dos').html(texto);
+    $('#textouno_dosPrinted').html(texto);
  //   })
 
     $('#input3').keyup(function(){
         var texto = $(this).val();
         $('#textouno_tres').html(texto);
+        $('#textouno_tresPrinted').html(texto);
         input3_1 = texto;
     })
 
     $('#input4').keyup(function(){
         var texto = $(this).val();
         $('#textouno_cuatro').html(texto);
+        $('#textouno_cuatroPrinted').html(texto);
         input4_1 = texto;
     })
 
@@ -109,7 +126,7 @@ window.addEventListener('load', function(){
     	
     	var numerotarjeta = input1.value+input2.value+input3_1+input4_1;
     	
-    	$.getJSON("/consultPlasticByNumber/"+numerotarjeta+"")
+    	$.getJSON("/CBPult/Solicitudes/consultPlasticByNumber/"+numerotarjeta+"")
   	  .done(function( json ) {
   		  idPlastic = json.idPlastic;
   		  plasticAsigned = json.plasticAsigned;
@@ -119,6 +136,7 @@ window.addEventListener('load', function(){
   		  plasticNumber = json.plasticNumber;
   		  plasticStatus = json.plasticStatus;
   	    
+  		 
   		  //console.log('Json: '+json.idPlastic+", "+json.plasticAsigned+", "+json.plasticCvv+", "+json.plasticDateIssue+", "+json.plasticExpDate+", "+json.plasticNumber+", "+json.plasticStatus);
   		  if(json.idPlastic == null){
   			  swal("Tarjeta no Encontrada");
@@ -126,21 +144,39 @@ window.addEventListener('load', function(){
   		  }else
   			  {
   			  	if(json.plasticAsigned == 0){
-  			  		swal("Tarjeta disponible");
-  			  		$('#textouno_uno').html(plasticExpDate);
-  			  		$('#textouno_uno_a').html(input4_1);
-  			  		$('#textouno_dos_a').html(plasticCvv);
+  			  		 			  		
+  			  		//$('#textouno_uno').html(plasticExpDate);
+  			  		//$('#textouno_uno_a').html(input4_1);
+  			  		$('#dateEmison').html(''+plasticDateIssue+'');
+  			  		$('#dateExperition').html(''+plasticExpDate+'');
+  			  	    $('#dataCvv').html(''+json.plasticCvv+'');
+  			  	    $('#numeroUltimos').html(''+$('#input4').val()+'');
+  			  	    
+  			  	    $('#dateEmisonPrinted').html(''+plasticDateIssue+'');
+			  		$('#dateExperitionPrinted').html(''+plasticExpDate+'');
+			  	    $('#dataCvvPrinted').html(''+json.plasticCvv+'');
+			  	    $('#numeroUltimosPrinted').html(''+$('#input4').val()+'');
+  			  	  
   			  		document.getElementById("imprimirButton").disabled = false;
   			  		///////////////////////////////////////////
-  			  		
-		  			  	console.log('idClient: '+idclient+', clientFirstName: '+clientDTO_clientFirstName+', clientLastName: '+clientDTO_clientLastName+', clientSurname: '+clientDTO_clientSurname);
-		  	        	console.log('idPlastic: '+idPlastic+', plasticAsigned: '+plasticAsigned+', plasticCvv: '+plasticCvv+', plasticDateIssue: '+plasticDateIssue+', plasticExpDate: '+plasticExpDate+', plasticNumber: '+plasticNumber+', plasticStatus: '+plasticStatus);
+  			  	    swal("Tarjeta disponible");
+		  			  //	console.log('idClient: '+idclient+', clientFirstName: '+clientDTO_clientFirstName+', clientLastName: '+clientDTO_clientLastName+', clientSurname: '+clientDTO_clientSurname);
+		  	        //	console.log('idPlastic: '+idPlastic+', plasticAsigned: '+plasticAsigned+', plasticCvv: '+plasticCvv+', plasticDateIssue: '+plasticDateIssue+', plasticExpDate: '+plasticExpDate+', plasticNumber: '+plasticNumber+', plasticStatus: '+plasticStatus);
   			  		
   			  	}else
   			  		{
   			  			stattarjet = 1;
   			  			swal("Tarjeta en uso");
   			  			document.getElementById("imprimirButton").disabled = true;
+  			  		$('#dateEmison').html('');
+  			  		$('#dateExperition').html('');
+  			  	    $('#dataCvv').html('');
+  			  	    $('#numeroUltimos').html('');
+  			     	$('#dateEmisonPrinted').html('');
+			  		$('#dateExperitionPrinted').html('');
+			  	    $('#dataCvvPrinted').html('');
+			  	    $('#numeroUltimosPrinted').html('');
+  			  	  
   			  		}
   			  }
   	  })
@@ -166,7 +202,7 @@ window.addEventListener('load', function(){
     
     $("#atrasButton").click(function(){
     	localStorage.clear();
-        location.href = "/bandeja_ventas";
+        location.href = "/CBPult/Solicitudes/bandeja_ventas";
     });
     
     ////////////////////////////////////////
@@ -271,6 +307,8 @@ window.addEventListener('load', function(){
     
     $("#imprimirButton").click(function(){
     	
+    	
+    	
     	if (document.getElementById("input3").value != "" && document.getElementById("input4").value != ""){
     		
     		var data_json = {
@@ -293,7 +331,7 @@ window.addEventListener('load', function(){
 	        	
 	        	$.ajax({
 	                type: "POST",
-	                url: '/assignPlasticToClient',
+	                url: '/CBPult/Solicitudes/assignPlasticToClient',
 	                contentType: "application/json",
 	                dataType: "json",
 	                data: JSON.stringify(data_json),
@@ -304,19 +342,24 @@ window.addEventListener('load', function(){
 	        	function processSuccess(data, status, req) {
 	                //alert(req.responseText + " " + status);
 	        		console.log(data);
+	        		 $('#asignada').val("asignada");
+	        		 $('#imprimirButton').prop("hidden",true);
+  					 $('#siguiente').prop("hidden",false);
+  					 $('#input3').prop('readonly', true); 
+  					 $('#input4').prop('readonly', true);
 	        		//location.href = "/dashborad";
 	            	//swal("Exito al Asignar Tarjeta");
 	        		
 	            	
 	            	swal({
 	            	    title: 'Exito al Asignar Tarjeta',
-	            	    text: 'Redirigiendo...',
+	            	    //text: 'Redirigiendo...',
 	            	    icon: 'Exitoso',
 	            	    timer: 1000,
 	            	    buttons: false,
 	            	},
 	            	function() {
-	            	    location.href = "/dashborad";
+	            	  //  location.href = "/dashborad";
 	            	})
 	            }  
 	        	
@@ -338,7 +381,64 @@ window.addEventListener('load', function(){
 		  	        	
 
     });
+    
+    
+    $("#prueba").click(function(){
+   	 $('#asignada').val("asignada");
+    });  
+    
+$("#saveComplet").click(function(){
+    	
+    	//Asignacion campos a variables de server impresion...
+        uno_digit_impre = input3_1+input4_1;
+        console.log("numero tarjeta", input3_1+input4_1);
+    	
+    	var data_json = {
+    			"parsImpresoraIP":"190.147.1.53",
+    			"parsClienteNom": nomb_clien_impre,//nombre cliente
+    			"parsTarjeta":uno_digit_impre//numero tarjeta
+    		};
+    	
+    	$.ajax({
+            type: "POST",
+            url: '/CBPult/Solicitudes/emitirTarjetaVerificada',
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(data_json),
+            success: processSuccess,
+            error: processError
+        });
+    	
+    	function processSuccess(data, status, req) {
+            //alert(req.responseText + " " + status);
+    		console.log(data.emitirTarjetaVerificadaResult);
+    		//location.href = "/dashborad";
+        	//swal("Exito al Asignar Tarjeta");
+    		
+        	
+        	swal({
+        	    title: data.emitirTarjetaVerificadaResult,
+        	    //text: 'Redirigiendo...',
+        	    icon: 'Exitoso',
+        	    timer: 1000,
+        	    buttons: false,
+        	},
+        	function() {
+        	  //  location.href = "/dashborad";
+        	})
+        }  
+    	
+    	function processError(data, status, req) {
+            //alert(req.responseText + " " + status);
+    		console.log(data);
+        	swal("Error al Contactar con el Servicio");
+    	}
+    }); 
+    
+    
 });
+
+
 
 /////////////////////////////////////////////////////7
 

@@ -4,13 +4,12 @@ window.addEventListener('load', ()=>{
 	listarPurchseOrder();
 	
 	$("#menu").on('click', function(){
-		location.href = "/gestion_solicitudes";
+		location.href = "/CBPult/Solicitudes/gestion_solicitudes";
 	})
 
 })
 
-/////////////////////////////////////////
-/////////////////////////////////////////
+/////////////////////////////////////////7
 
 function listarPurchseOrder(){
 	
@@ -19,8 +18,11 @@ function listarPurchseOrder(){
 	    
 	    sort:true,
 	    destroy: true,
+	    language: {
+    		url: '../js2/Spanish.json'
+        },
 	        ajax: {
-	              url: "/listClientAndAccountWS",
+	              url: "/CBPult/Solicitudes/listClientAndAccountWS",
 	            dataSrc: ''
 	        },
 	        columns: [ 
@@ -44,11 +46,27 @@ function listarPurchseOrder(){
 	                "class": "dos1",
 	                "defaultContent": "",
 	                "render": function ( data ) {
-	            return '<center>'+data+'</center>';
+	                if(data != " "){
+	                	var apellidos=data.split('-');
+	                	//alert(apellidos[0]);
+	                }
+	            return '<center>'+apellidos[0]+'</center>';
 	              }
-	            },   
+	            },  
 	            {
-	                "data": "clientBirthday", // can be null or undefined
+	                "data": "clientSurname", // can be null or undefined
+	                "class": "dos1",
+	                "defaultContent": "",
+	                "render": function ( data ) {
+	                if(data != " "){
+	                	var apellidos=data.split('-');
+	                	//alert(apellidos[0]);
+	                }
+	            return '<center>'+apellidos[1]+'</center>';
+	              }
+	            },    
+	            {
+	                "data": "fechaCarga", // can be null or undefined
 	                "class": "tres1",
 	                "defaultContent": "",
 	                "render": function ( data ) {
@@ -66,14 +84,14 @@ function listarPurchseOrder(){
 	              }
 	            },
 	            {
-	                "data": "clientDocumentId",
+	                "data": "idClient",
 	                "class": "editar",
 	                "defaultContent": "",
 	                "render": function (data) {
 	                	if(uno == "NEGADA"){
                    
 	                	}else if(uno == "ACTIVA"){
-	                		return '<center><a href="/confirmacion2/'+data+'" title="Editar"><i class="fa fa-plus-square agregaryasignar" style="font-size:30px"></i></a></center>';                      
+	                		return '<center><a href="/CBPult/Solicitudes/customerAnalysisTdc/'+data+'" title="Analizar"><i class="fa fa-plus-square agregaryasignar" style="font-size:30px"></i></a></center>';                      
 	                	}
 	                }
 	            }

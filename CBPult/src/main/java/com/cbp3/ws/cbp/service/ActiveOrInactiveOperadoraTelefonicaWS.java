@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="operadortelfId" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="active" type="{http://www.w3.org/2001/XMLSchema}unsignedShort" minOccurs="0"/>
+ *         &lt;element name="active" type="{http://www.w3.org/2001/XMLSchema}unsignedShort"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,7 +36,7 @@ public class ActiveOrInactiveOperadoraTelefonicaWS {
 
     protected long operadortelfId;
     @XmlSchemaType(name = "unsignedShort")
-    protected Integer active;
+    protected int active;
 
     /**
      * Obtiene el valor de la propiedad operadortelfId.
@@ -57,24 +57,16 @@ public class ActiveOrInactiveOperadoraTelefonicaWS {
     /**
      * Obtiene el valor de la propiedad active.
      * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
      */
-    public Integer getActive() {
+    public int getActive() {
         return active;
     }
 
     /**
      * Define el valor de la propiedad active.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
      */
-    public void setActive(Integer value) {
+    public void setActive(int value) {
         this.active = value;
     }
 

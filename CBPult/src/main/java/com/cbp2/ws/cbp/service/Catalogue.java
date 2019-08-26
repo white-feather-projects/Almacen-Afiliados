@@ -24,6 +24,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="fechaHoraCarga" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="fechaHoraModificacion" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="idCatalogue" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="typeCatalogue" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="typeCatalogueId" type="{http://service.cbp.ws.cbp2.com/}typeCatalogue" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -39,7 +41,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "codigoUsuarioModifica",
     "fechaHoraCarga",
     "fechaHoraModificacion",
-    "idCatalogue"
+    "idCatalogue",
+    "typeCatalogue",
+    "typeCatalogueId"
 })
 public class Catalogue {
 
@@ -51,6 +55,8 @@ public class Catalogue {
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fechaHoraModificacion;
     protected Long idCatalogue;
+    protected long typeCatalogue;
+    protected TypeCatalogue typeCatalogueId;
 
     /**
      * Obtiene el valor de la propiedad catalogueActive.
@@ -186,6 +192,46 @@ public class Catalogue {
      */
     public void setIdCatalogue(Long value) {
         this.idCatalogue = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad typeCatalogue.
+     * 
+     */
+    public long getTypeCatalogue() {
+        return typeCatalogue;
+    }
+
+    /**
+     * Define el valor de la propiedad typeCatalogue.
+     * 
+     */
+    public void setTypeCatalogue(long value) {
+        this.typeCatalogue = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad typeCatalogueId.
+     * 
+     * @return
+     *     possible object is
+     *     {@link TypeCatalogue }
+     *     
+     */
+    public TypeCatalogue getTypeCatalogueId() {
+        return typeCatalogueId;
+    }
+
+    /**
+     * Define el valor de la propiedad typeCatalogueId.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TypeCatalogue }
+     *     
+     */
+    public void setTypeCatalogueId(TypeCatalogue value) {
+        this.typeCatalogueId = value;
     }
 
 }

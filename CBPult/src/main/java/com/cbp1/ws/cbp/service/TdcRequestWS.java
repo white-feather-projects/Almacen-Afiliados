@@ -27,21 +27,24 @@ public interface TdcRequestWS {
 
     /**
      * 
-     * @param nombreCanal
+     * @param tdcRequest
      * @param statusTdcRequest
+     * @param canal
      * @return
-     *     returns java.util.List<com.cbp1.ws.cbp.service.TdcRequest>
+     *     returns com.cbp1.ws.cbp.service.RespuestaDTO
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listTdcRequestByStatusWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ListTdcRequestByStatusWS")
-    @ResponseWrapper(localName = "listTdcRequestByStatusWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ListTdcRequestByStatusWSResponse")
-    @Action(input = "http://service.cbp.ws.cbp1.com/TdcRequestWS/listTdcRequestByStatusWSRequest", output = "http://service.cbp.ws.cbp1.com/TdcRequestWS/listTdcRequestByStatusWSResponse")
-    public List<TdcRequest> listTdcRequestByStatusWS(
+    @RequestWrapper(localName = "denyTdcRequestWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.DenyTdcRequestWS")
+    @ResponseWrapper(localName = "denyTdcRequestWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.DenyTdcRequestWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp1.com/TdcRequestWS/denyTdcRequestWSRequest", output = "http://service.cbp.ws.cbp1.com/TdcRequestWS/denyTdcRequestWSResponse")
+    public RespuestaDTO denyTdcRequestWS(
+        @WebParam(name = "tdcRequest", targetNamespace = "")
+        TdcRequest tdcRequest,
         @WebParam(name = "statusTdcRequest", targetNamespace = "")
         String statusTdcRequest,
-        @WebParam(name = "nombreCanal", targetNamespace = "")
-        String nombreCanal);
+        @WebParam(name = "canal", targetNamespace = "")
+        String canal);
 
     /**
      * 
@@ -63,6 +66,24 @@ public interface TdcRequestWS {
 
     /**
      * 
+     * @param nombreCanal
+     * @param statusTdcRequest
+     * @return
+     *     returns java.util.List<com.cbp1.ws.cbp.service.TdcRequest>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listTdcRequestByStatusWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ListTdcRequestByStatusWS")
+    @ResponseWrapper(localName = "listTdcRequestByStatusWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ListTdcRequestByStatusWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp1.com/TdcRequestWS/listTdcRequestByStatusWSRequest", output = "http://service.cbp.ws.cbp1.com/TdcRequestWS/listTdcRequestByStatusWSResponse")
+    public List<TdcRequest> listTdcRequestByStatusWS(
+        @WebParam(name = "statusTdcRequest", targetNamespace = "")
+        String statusTdcRequest,
+        @WebParam(name = "nombreCanal", targetNamespace = "")
+        String nombreCanal);
+
+    /**
+     * 
      * @param tdcRequest
      * @param statusTdcRequest
      * @param canal
@@ -75,27 +96,6 @@ public interface TdcRequestWS {
     @ResponseWrapper(localName = "approveTdcRequestWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.ApproveTdcRequestWSResponse")
     @Action(input = "http://service.cbp.ws.cbp1.com/TdcRequestWS/approveTdcRequestWSRequest", output = "http://service.cbp.ws.cbp1.com/TdcRequestWS/approveTdcRequestWSResponse")
     public RespuestaDTO approveTdcRequestWS(
-        @WebParam(name = "tdcRequest", targetNamespace = "")
-        TdcRequest tdcRequest,
-        @WebParam(name = "statusTdcRequest", targetNamespace = "")
-        String statusTdcRequest,
-        @WebParam(name = "canal", targetNamespace = "")
-        String canal);
-
-    /**
-     * 
-     * @param tdcRequest
-     * @param statusTdcRequest
-     * @param canal
-     * @return
-     *     returns com.cbp1.ws.cbp.service.RespuestaDTO
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "denyTdcRequestWS", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.DenyTdcRequestWS")
-    @ResponseWrapper(localName = "denyTdcRequestWSResponse", targetNamespace = "http://service.cbp.ws.cbp1.com/", className = "com.cbp1.ws.cbp.service.DenyTdcRequestWSResponse")
-    @Action(input = "http://service.cbp.ws.cbp1.com/TdcRequestWS/denyTdcRequestWSRequest", output = "http://service.cbp.ws.cbp1.com/TdcRequestWS/denyTdcRequestWSResponse")
-    public RespuestaDTO denyTdcRequestWS(
         @WebParam(name = "tdcRequest", targetNamespace = "")
         TdcRequest tdcRequest,
         @WebParam(name = "statusTdcRequest", targetNamespace = "")

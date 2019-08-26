@@ -19,7 +19,7 @@ window.addEventListener('load', function(){
 	var idclient;
 	var surname;
 	
-    $.getJSON( "/consultAccountByClientWS/"+documento_identidad+"")
+    $.getJSON( "/CBPult/Solicitudes/consultAccountByClientWS/"+documento_identidad+"")
 	  .done(function( json ) {
 		  console.log(json);
 		  console.log(json.idDocument);
@@ -117,7 +117,7 @@ window.addEventListener('load', function(){
     	
     	var numerotarjeta = input1.value+input2.value+input3_1+input4_1;
     	
-    	$.getJSON("/consultPlasticByNumber/"+numerotarjeta+"")
+    	$.getJSON("/CBPult/Solicitudes/consultPlasticByNumber/"+numerotarjeta+"")
   	  .done(function( json ) {
   		  idPlastic = json.idPlastic;
   		  plasticAsigned = json.plasticAsigned;
@@ -184,7 +184,7 @@ window.addEventListener('load', function(){
     
     $("#atrasButton").click(function(){
     	localStorage.clear();
-        location.href = "/bandeja_ventas";
+        location.href = "/CBPult/Solicitudes/bandeja_ventas";
     });
     
     ////////////////////////////////////////
@@ -311,7 +311,7 @@ window.addEventListener('load', function(){
 	        	
 	        	$.ajax({
 	                type: "POST",
-	                url: '/assignPlasticToClient',
+	                url: '/CBPult/Solicitudes/assignPlasticToClient',
 	                contentType: "application/json",
 	                dataType: "json",
 	                data: JSON.stringify(data_json),
@@ -334,7 +334,7 @@ window.addEventListener('load', function(){
 	            	    buttons: false,
 	            	},
 	            	function() {
-	            	    location.href = "/dashborad";
+	            	    location.href = "/CBPult/dashborad";
 	            	})
 	            }  
 	        	

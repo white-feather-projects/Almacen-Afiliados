@@ -17,13 +17,18 @@ window.addEventListener('load', ()=>{
 		var status = "TARJETA_POR_IMPRIMIR";
 		listarTdc(status);
 	});
+	
+	/*$("#solicitud_completada").on('click', function(){
+		var status = "SOLICITUD_COMPLETADA";
+		listarTdc(status);
+	});*/
 
     $("#crear_Soli").on('click', function(){
-        location.href = "/carga_datos";
+        location.href = "/CBPult/Solicitudes/carga_datos";
     })
     
     $("#menu").on('click', function(){
-    	location.href = "/gestion_solicitudes";
+    	location.href = "/CBPult/Solicitudes/gestion_solicitudes";
     })
 
 })
@@ -38,10 +43,10 @@ window.addEventListener('load', ()=>{
 	    destroy: true,
 	    searching: true,
 	    language: {
-    		url: '/js2/Spanish.json'
+    		url: '../js2/Spanish.json'
         },
 	        ajax: {
-	              url: "/listTdcRequest/"+status+"",
+	              url: "/CBPult/Solicitudes/listTdcRequest/"+status+"",
 	            dataSrc: ''
 	        },
 	        columns: [ 
@@ -59,7 +64,26 @@ window.addEventListener('load', ()=>{
 	                "class": "uno1",
 	                "defaultContent": "",
 	                "render": function ( data ) {
-	            return '<center class="p2">'+data+'</center>';
+	                	  if(data != " "){
+	  	                	var apellidos=data.split('-');
+	  	                	//alert(apellidos[0]);
+	  	                }	
+	                	
+	                	
+	            return '<center class="p2">'+apellidos[0]+'</center>';
+	              }
+	            },
+	            {
+	                "data": "clientId.clientSurname", // can be null or undefined
+	                "class": "uno1",
+	                "defaultContent": "",
+	                "render": function ( data ) {
+	                	 if(data != " "){
+		  	                	var apellidos=data.split('-');
+		  	                	//alert(apellidos[0]);
+		  	                }	
+	                	
+	            return '<center class="p2">'+apellidos[1]+'</center>';
 	              }
 	            },
 	            {
@@ -106,7 +130,7 @@ window.addEventListener('load', ()=>{
 	                "class": "ver",
 	                "defaultContent": "",
 	                "render": function ( data, type, full, meta ) {
-	                		return '<center><a title="Ver" href="/consulta/'+data+'"><i class="fa fa-search" style="font-size:30px" aria-hidden="true"></i></a></center>';
+	                		return '<center><a title="Ver" href="/CBPult/Solicitudes/consulta/'+data+'"><i class="fa fa-search" style="font-size:30px" aria-hidden="true"></i></a></center>';
 	                		//return '<center><a class="ui blue button" href="/4track/api/devices?id=">Ver</a></center>';
 	                }
 	            }

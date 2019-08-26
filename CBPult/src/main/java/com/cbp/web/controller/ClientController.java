@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -30,8 +31,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,16 +45,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.tempuri.EmitirTarjetaVerificadaResponse;
+import org.tempuri.EstadoImpresoraResponse;
 
 import com.cbp.web.dao.AccountDAO;
 import com.cbp.web.dao.CardDAO;
 import com.cbp.web.dao.ClientDAO;
+import com.cbp.web.dao.ImpresoraDAO;
 import com.cbp.web.dao.TdcRequestDAO;
 import com.cbp.web.dto.AccountDTO;
 import com.cbp.web.dto.AccountQueryAssignetTdcDTO;
 import com.cbp.web.dto.AssignPlasticDTO;
 import com.cbp.web.dto.CargaArchivosDTO;
 import com.cbp.web.dto.ClientDTO;
+import com.cbp.web.dto.EmitirTarjetaVerificadaDTO;
+import com.cbp.web.dto.EstadoImpresoraDTO;
 import com.cbp.web.dto.NewClientDTOLocal;
 import com.cbp.web.dto.PlasticDTO;
 import com.cbp.web.dto.RespuestaDTO;
@@ -66,6 +74,7 @@ import com.cbp1.ws.cbp.service.CategoriaOcupacional;
 import com.cbp1.ws.cbp.service.Client;
 import com.cbp1.ws.cbp.service.CodigoPostal;
 import com.cbp1.ws.cbp.service.Distrito;
+import com.cbp1.ws.cbp.service.EntityBank;
 import com.cbp1.ws.cbp.service.InformacionAdicionalClienteDTO;
 import com.cbp1.ws.cbp.service.NewClientDTO;
 import com.cbp1.ws.cbp.service.Pais;
@@ -74,16 +83,18 @@ import com.cbp1.ws.cbp.service.TdcRequest;
 import com.cbp1.ws.cbp.service.TdcRequestDTO;
 import com.cbp1.ws.cbp.service.UsersFp;
 import com.cbp1.ws.cbp.service.ValidaClientDTO;
+import com.cbp.web.impl.EmailService;
 
 /**
  * @author Equipo
  *
  */
-
 @Controller
+@RequestMapping("/Solicitudes")
 public class ClientController extends Util {
-
 	
+	private String name;
+	private String link;
 	Authentication auth = null;
 	
 	@Autowired
@@ -104,12 +115,208 @@ public class ClientController extends Util {
 	@Autowired
 	TdcRequestDAO tdcRequestDAO;
 
+    @Autowired
+    EmailService emailService;
+    
 	@Autowired
 	CardDAO cardDAO;
+	
+	@Autowired
+	ImpresoraDAO impresoraDAO;
+	
 	private final Logger log = LoggerFactory.getLogger(getClass());
 
 	private Environment env;
 
+	
+//////////////////////////////////////////////////////////////////////////////
+	/***
+	 * Metodos GET de cliente
+	 * 
+	 */
+	
+	@RequestMapping(value = "/gestion_solicitudes", method = RequestMethod.GET)
+    public String gestion_Solicitudes(Model model) {
+		auth = SecurityContextHolder.getContext().getAuthentication();
+		name=auth.getName();
+		String roleUser = "";
+		roleUser = auth.getAuthorities().iterator().next().getAuthority();
+			
+		if (auth.getName().equals("esteban")) {
+			link="/CBPult/img/esteban.jpeg";
+			
+		} else if (auth.getName().equals("karla")) {
+			link="/CBPult/img/karla.jpeg";
+		} else if (auth.getName().equals("admin")) {
+			link="/CBPult/img/logo_purple.png";
+
+		} else if (auth.getName().equals("victor")) {
+			link="/CBPult/img/logo_purple.png";
+		}
+		
+		model.addAttribute("roleUser", roleUser);
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+	return"templates.gestion_cliente/gestion_solicitudes";
+	}
+	
+//////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/analisis", method = RequestMethod.GET)
+    public String analisis(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		
+	return"templates.gestion_cliente/analisis";
+	}
+	
+//////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/bandeja_riesgos", method = RequestMethod.GET)
+    public String bandeja_riesgos(Model model) {
+		auth = SecurityContextHolder.getContext().getAuthentication();
+		name=auth.getName();
+		String roleUser = "";
+		roleUser = auth.getAuthorities().iterator().next().getAuthority();
+			
+		if (auth.getName().equals("esteban")) {
+			link="/CBPult/img/esteban.jpeg";
+			
+		} else if (auth.getName().equals("karla")) {
+			link="/CBPult/img/karla.jpeg";
+		} else if (auth.getName().equals("admin")) {
+			link="/CBPult/img/logo_purple.png";
+
+		} else if (auth.getName().equals("victor")) {
+			link="/CBPult/img/logo_purple.png";
+		}
+		
+		model.addAttribute("roleUser", roleUser);
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		
+	return"templates.gestion_cliente/bandeja_riesgos";
+	}
+	
+//////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/bandeja_ventas", method = RequestMethod.GET)
+    public String bandeja_ventas(Model model) {
+		auth = SecurityContextHolder.getContext().getAuthentication();
+		name=auth.getName();
+		String roleUser = "";
+		roleUser = auth.getAuthorities().iterator().next().getAuthority();
+			
+		if (auth.getName().equals("esteban")) {
+			link="/CBPult/img/esteban.jpeg";
+			
+		} else if (auth.getName().equals("karla")) {
+			link="/CBPult/img/karla.jpeg";
+		} else if (auth.getName().equals("admin")) {
+			link="/CBPult/img/logo_purple.png";
+
+		} else if (auth.getName().equals("victor")) {
+			link="/CBPult/img/logo_purple.png";
+		}
+		
+		model.addAttribute("roleUser", roleUser);
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+	return"templates.gestion_cliente/bandeja_ventas";
+	}
+	
+//////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/carga_archivos", method = RequestMethod.GET)
+    public String carga_archivos(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+	return"templates.gestion_cliente/carga_archivos";
+	}
+	
+//////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/carga_datos", method = RequestMethod.GET)
+    public String carga_datos(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+	return"templates.gestion_cliente/carga_datos";
+	}
+	
+//////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/confirmacion", method = RequestMethod.GET)
+    public String confirmacion(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+	return"templates.gestion_cliente/confirmacion";
+	}
+	
+//////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/confirmacion2/{clientDocumentId}", method = RequestMethod.GET)
+	public String confirmacion2(@PathVariable(value = "clientDocumentId") Long idOrderRequest, Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.gestion_cliente/confirmacion2";
+	}
+	
+//////////////////////////////////////////////////////////////////////////////
+	
+	
+	@RequestMapping(value = "/documento", method = RequestMethod.GET)
+    public String documento(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+	return"templates.gestion_cliente/documento";
+	}
+	
+//////////////////////////////////////////////////////////////////////////////
+		
+	@RequestMapping(value = "/client", method = RequestMethod.GET)
+    public String client(Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+	return"templates.gestion_cliente/client";
+	}
+	
+//////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/impresion_tarjetas/{docum}", method = RequestMethod.GET)
+    public String impresion_tarjetas1(Model model, @PathVariable(value = "docum") String docum) {
+		model.addAttribute("document", docum);
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+	return"templates.gestion_cliente/impresion_tarjetas";
+	}
+	
+//////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/consulta/{clientId}", method = RequestMethod.GET)
+	public String consulta(@PathVariable(value = "clientId") String clientId, Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.gestion_cliente/consulta";
+	}
+	
+//////////////////////////////////////////////////////////////////////////////
+	
+	
+	/***
+	 * 
+	 * Fin de metodos GET de cliente
+	 */
+	
+	
+	
 	@RequestMapping(value = "/createClient", produces = { "application/json" })
 	public @ResponseBody RespuestaDTO createClientWS(@RequestBody ClientDTO client) {
 		System.out.println("Entro createCient: " + client.getClientFirstName());
@@ -118,6 +325,8 @@ public class ClientController extends Util {
 		System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
 	}
+	
+	
 
 	@GetMapping(value = "/consultClient/{clientId}", produces = { "application/json" })
 	public @ResponseBody ClientDTO consultClientWS(@PathVariable(value = "clientId") String clientId) {
@@ -502,6 +711,13 @@ public class ClientController extends Util {
 		return clientDAO.queryCatOcup();
 	}
 	
+	@GetMapping(value = "/listBanks", produces = { "application/json" })
+	public @ResponseBody List<EntityBank> listBanks() {
+			
+		log.info("categoria: {}",clientDAO.listBanksWS().toArray());
+		return clientDAO.listBanksWS();
+	}
+	
 	//consulta de cliente
 	@GetMapping(value = "/validateIdent/{ident}", produces = { "application/json" })
 	public @ResponseBody ValidaClientDTO validateClientId(@PathVariable(value = "ident") String ident) {
@@ -524,7 +740,30 @@ public class ClientController extends Util {
 		return cli;
 	}
 	
-
+	
+	
+	/***
+	 * Metodo GET para crear cliente
+	 * @param model
+	 * @return
+	 */
+	
+	@RequestMapping(value = "/newClientTdc", method = RequestMethod.GET)
+	public String clienetCreateNew( Model model) {
+		
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.gestion_cliente/client";
+	}
+	
+    ///////////////////////////////////////////////////////////////////
+	
+	/***
+	 * Metodo para crear cliente
+	 * @param rc
+	 * @return
+	 */
+	
 	@RequestMapping(value = "/createNewClient", produces = { "application/json" })
 	public @ResponseBody com.cbp1.ws.cbp.service.RespuestaDTO  createNewClient(NewClientDTOLocal rc) {
 	
@@ -575,7 +814,7 @@ public class ClientController extends Util {
 		return cli;
 	}
 	
-	
+	 ///////////////////////////////////////////////////////////////////
 	
 	/**
 	 * @param reques
@@ -585,8 +824,11 @@ public class ClientController extends Util {
 	public @ResponseBody com.cbp1.ws.cbp.service.RespuestaDTO  createNewClientAsosiate( HttpServletRequest reques, MultipartHttpServletRequest files ) {
 		InformacionAdicionalClienteDTO info= new InformacionAdicionalClienteDTO();
 		Provincia proV= new Provincia();
+		Provincia proT= new Provincia();
 		Canton canV= new Canton();
+		Canton canT= new Canton();
 		Distrito desV=new Distrito();
+		Distrito desT=new Distrito();
 		Client cli= new Client();
 		
 		com.cbp1.ws.cbp.service.RespuestaDTO res= new com.cbp1.ws.cbp.service.RespuestaDTO();
@@ -615,7 +857,7 @@ public class ClientController extends Util {
 			      info.setCantonVivienda(canV);
 			      break;
 			    case "distritoVivienda":
-			    log.info("distroV:{}",Long.parseLong(value[0]) );
+			    log.info("distroVivienda:{}",Long.parseLong(value[0]) );
 			     desV.setIdDistrito(Long.parseLong(value[0]));;
 			     info.setDistritoVivienda(desV);
 			      break;
@@ -652,18 +894,18 @@ public class ClientController extends Util {
 				    info.setSueldoMensual(Long.parseLong(value[0]));
 					break;
 				case "provinciaTrabajo":
-				   proV.setIdProvincia(Long.parseLong(value[0]));
-				   info.setProvinciaTrabajo(proV);
+				   proT.setIdProvincia(Long.parseLong(value[0]));
+				   info.setProvinciaTrabajo(proT);
 				    break;
 				 case "cantonTrabajo":
-					canV.setIdCanton(Long.parseLong(value[0]));
-					info.setCantonTrabajo(canV);
+					canT.setIdCanton(Long.parseLong(value[0]));
+					info.setCantonTrabajo(canT);
 					break;
 				case "distritoTrabajo":
 				     //desV.setCantonId(Long.parseLong("1"));
-				     desV.setIdDistrito(Long.parseLong("1"));
-				     log.info("distroT:{}",Long.parseLong(value[0]) );
-				     info.setDistritoTrabajo(desV);
+					desT.setIdDistrito(Long.parseLong(value[0]));
+				     log.info("distroTrabajo:{}",Long.parseLong(value[0]));
+				     info.setDistritoTrabajo(desT);
 				     break;
 				case "telefonoEmpresa":
 				    info.setTelefonoEmpresa(value[0]);
@@ -672,7 +914,7 @@ public class ClientController extends Util {
 				  info.setEmail(value[0]);
 				    break;
 				case "nombreOtraEmpresa":
-					info.setNombreOtraEmpresa(value[0]);;
+					info.setNombreOtraEmpresa(value[0]);
 					break;
 				 case "antiguedad":
 					info.setAntiguedad(value[0]);
@@ -757,9 +999,12 @@ public class ClientController extends Util {
 
 		  
 		  res=clientDAO.additionalInformation(info,clienId );
-		  log.info("Resp de wl: {}",res.getDescripcion());
+		  //log.info("Resp de wl: {}",res.getDescripcion());
 		  
-		  log.info("information {}",info.toString());
+		  
+		  //log.info("information provincia {}",info.getProvinciaTrabajo().getIdProvincia().toString() + info.getProvinciaVivienda().getIdProvincia().toString());
+		  //log.info("information canton {}",info.getCantonTrabajo().getIdCanton().toString() + info.getCantonVivienda().getIdCanton().toString());
+		  //log.info("information distrito {}",info.getDistritoTrabajo().getIdDistrito().toString() + info.getDistritoVivienda().getIdDistrito().toString());
 		  
 		  if(res.getDescripcion().equals("OK")) {
 	
@@ -860,176 +1105,370 @@ public class ClientController extends Util {
         return response;
     }
     
-    @RequestMapping(value = "/asoosiateClientAnaliteTdc", produces = { "application/json" })
-	public @ResponseBody com.cbp1.ws.cbp.service.RespuestaDTO  updateNewClientAsosiate( HttpServletRequest reques, MultipartHttpServletRequest files ) {
-		InformacionAdicionalClienteDTO info= new InformacionAdicionalClienteDTO();
-		Provincia proV= new Provincia();
-		Canton canV= new Canton();
-		Distrito desV=new Distrito();
-		Client cli= new Client();
-		
-		com.cbp1.ws.cbp.service.RespuestaDTO res= new com.cbp1.ws.cbp.service.RespuestaDTO();
-		
-		//clienteId
-		Long clienId=(long) 0;
-		Map<String, String[]> map = reques.getParameterMap();
-		  for (Map.Entry<String,  String[]> entry : map.entrySet()) {
-			    String key = entry.getKey();
-			    String[] value = entry.getValue();
-			    // ...		    
-			    log.info("Varieables: {}","key:"+key+"="+value[0]);
-				   switch (entry.getKey()) {
-			    case "tenenciaVivienda":
-			     info.setTenenciaVivienda(value[0]);
-			      break;
-			    case "cuotaMensual":
-			      info.setCuotaMensual(value[0]);
-			      break;
-			    case "provinciaVivienda":
-			      proV.setIdProvincia(Long.parseLong(value[0]));
-			      info.setProvinciaVivienda(proV);
-			      break;
-			    case "cantonVivienda":
-			      canV.setIdCanton(Long.parseLong(value[0]));
-			      info.setCantonVivienda(canV);
-			      break;
-			    case "distritoVivienda":
-			    log.info("distroV:{}",Long.parseLong(value[0]) );
-			     desV.setIdDistrito(Long.parseLong(value[0]));;
-			     info.setDistritoVivienda(desV);
-			      break;
-			    case "ciudad":
-			      info.setCiudad(value[0]);
-			      break;
-			    case "sector":
-			      info.setSector(value[0]);
-			      break;
-			    case "ptoReferencia":
-				 info.setPtoReferencia(value[0]);
-				  break;
-			    case "codPostal":
-				  info.setCodPostal(value[0]);
-				  break;
-			    case "client":
-			    String pp="950";
-			    log.info("InformationclienIdLLef: {}",Long.parseLong(value[0]));
-			
-			   clienId=Long.parseLong(value[0]);
-				  break;
-				case "nombreEmpresa":
-				   info.setNombreEmpresa(value[0]);
-				    break;
-				 case "actividadEmpresa":
-					info.setActividadEmpresa(value[0]);
-					break;
-				case "cargo":
-				     info.setCargo(value[0]);
-				     break;
-				case "sueldoMensual":
-				    info.setSueldoMensual(Long.parseLong(value[0]));
-					break;
-				case "provinciaTrabajo":
-				   proV.setIdProvincia(Long.parseLong(value[0]));
-				   info.setProvinciaTrabajo(proV);
-				    break;
-				 case "cantonTrabajo":
-					canV.setIdCanton(Long.parseLong(value[0]));
-					info.setCantonTrabajo(canV);
-					break;
-				case "distritoTrabajo":
-				     //desV.setCantonId(Long.parseLong("1"));
-				     desV.setIdDistrito(Long.parseLong("1"));
-				     log.info("distroT:{}",Long.parseLong(value[0]) );
-				     info.setDistritoTrabajo(desV);
-				     break;
-				case "telefonoEmpresa":
-				    info.setTelefonoEmpresa(value[0]);
-					break;
-				case "email":
-				  info.setEmail(value[0]);
-				    break;
-				 case "antiguedad":
-					info.setAntiguedad(value[0]);
-					break;
-				case "cargoOtraEmpresa":
-				    info.setCargoOtraEmpresa(value[0]);
-				     break;
-				case "ultimoSueldo":
-				    info.setUltimoSueldo(Long.parseLong(value[0]));
-					break;
-				case "primerNombre":
-					info.setPrimerNombre(value[0]);
-					break;
-			     case "segundoNombre":
-					info.setSegundoNombre(value[0]);
-					break;
-				case "apellidos":
-					info.setApellidos(value[0]);
-					 break;
-				case "tipoDocumento":
-					 info.setTipoDocumento(value[0]);
-					break;
-				case "numeroDocumento":
-					 info.setNumeroDocumento(value[0]);
-					 break;
-				case "genero":
-					info.setGenero(value[0]);
-					break;
-				case "telefonoCelular":
-					 info.setTelefonoCelular(value[0]);
-					 break;
-				case "telefonoFijo":
-					 info.setTelefonoFijo(value[0]);
-					break;
-				case "emailReferencia":
-					info.setEmailReferencia(value[0]);
-					 break;
-				case "banco":
-					info.setBanco(value[0]);
-					break;
-				case "ctaAhorro":
-					 info.setCtaAhorro(value[0]);
-					 break;
-				case "ctaCorriente":
-					 info.setCtaCorriente(value[0]);
-					break;
-				case "TDC":
-					info.setTDC(value[0]);
-					break;
-				case "nombreOtraEmpresa":
-					info.setNombreOtraEmpresa(value[0]);;
-					break;
-					
-			  }
-	
-			}
-		  //metodo del recibir archivos.
-		  
-		  Iterator<String> itr =  files.getFileNames();
-			MultipartFile mpf=null;
-		  	String fileSaved="";
-		   while(itr.hasNext()) {	
-			  mpf = files.getFile(itr.next());			
-				try {
-					if(mpf.getName().equals("fileFinantialInformationName")){
-						fileSaved=upload.copy(mpf);
-						info.setFileFinantialInformationName(fileSaved);	
-					}else if(mpf.getName().equals("filePersonalInformationName")){
-						fileSaved=upload.copy(mpf);
-						info.setFilePersonalInformationName(fileSaved);
-					}
-			
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-		  }	  
+    
+    /**
+     * Metodo GET para analisis de riesgo    
+     * @param reques
+     * @param files
+     * @return
+     */
+    
+	@RequestMapping(value = "/customerAnalysisTdc/{id}", method = RequestMethod.GET)
+	public String analisisClient(Model model, @PathVariable(value = "id") Long id) {
 
-		  
-		   res=clientDAO.updateClientaAanaliteComplet(info);
-		  log.info("Resp de wl: {}",info.toString());
-		  
-		  
-		  	  
+		model.addAttribute("idClient", id);
+		model.addAttribute("name", name);
+		model.addAttribute("link", link);
+		return "templates.gestion_cliente/client_editar";
+	}
+
+	/////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * Metodo para analisis de riesgo
+	 * 
+	 * @param reques
+	 * @param files
+	 * @return
+	 */
+
+	@RequestMapping(value = "/asoosiateClientAnaliteTdc", produces = { "application/json" })
+	public @ResponseBody com.cbp1.ws.cbp.service.RespuestaDTO updateNewClientAsosiate(HttpServletRequest reques,
+			MultipartHttpServletRequest files) {
+		InformacionAdicionalClienteDTO info = new InformacionAdicionalClienteDTO();
+		Provincia proV = new Provincia();
+		Provincia proT = new Provincia();
+		Canton canV = new Canton();
+		Canton canT = new Canton();
+		Distrito desV = new Distrito();
+		Distrito desT = new Distrito();
+
+		Pais pais = new Pais();
+		Client cli = new Client();
+		String correoEnaviar = "";
+		long aprobado = 0;
+		String primerNombre = "";
+		String apellido = "";
+
+		CategoriaOcupacional catOcipacional = new CategoriaOcupacional();
+		com.cbp1.ws.cbp.service.RespuestaDTO res = new com.cbp1.ws.cbp.service.RespuestaDTO();
+
+		// clienteId
+		Long clienId = (long) 0;
+
+		Map<String, String[]> map = reques.getParameterMap();
+		for (Map.Entry<String, String[]> entry : map.entrySet()) {
+			info.setChannelRequest(ChannelEnum.PERSONA_NATURAL.getDescripcion());
+			info.setPersonaExpuestaPoliticamente("si");
+			info.setComentariosPersonaExpuesta("LISTO");
+			pais.setIdPais(Long.parseLong("1"));
+			info.setPaisId(pais);
+			String key = entry.getKey();
+			String[] value = entry.getValue();
+			// ...
+			log.info("Varieables: {}", "key:" + key + "=" + value[0]);
+			switch (entry.getKey()) {
+			case "tenenciaVivienda":
+				info.setTenenciaVivienda(value[0]);
+
+				break;
+			case "cuotaMensual":
+				info.setCuotaMensual(value[0]);
+				break;
+			case "provinciaVivienda":
+				proV.setIdProvincia(Long.parseLong(value[0]));
+				info.setProvinciaVivienda(proV);
+				break;
+			case "cantonVivienda":
+				canV.setIdCanton(Long.parseLong(value[0]));
+				info.setCantonVivienda(canV);
+				break;
+			case "distritoVivienda":
+				log.info("distroV:{}", Long.parseLong(value[0]));
+				desV.setIdDistrito(Long.parseLong(value[0]));
+				info.setDistritoVivienda(desV);
+				break;
+			case "ciudad":
+				info.setCiudad(value[0]);
+				break;
+			case "sector":
+				info.setSector(value[0]);
+				break;
+			case "ptoReferencia":
+				info.setPtoReferencia(value[0]);
+				break;
+			case "codPostal":
+				info.setCodPostal(value[0]);
+				break;
+			case "client":
+				String pp = "950";
+				log.info("InformationclienIdLLef: {}", Long.parseLong(value[0]));
+				// cli.setIdClient(Long.parseLong(pp));
+				// cli.setIdClient(Long.parseLong(value[0]));
+				// cli.getIdClient(value[0]);
+				clienId = Long.parseLong(value[0]);
+				break;
+			case "nombreEmpresa":
+				info.setNombreEmpresa(value[0]);
+				break;
+			case "actividadEmpresa":
+				info.setActividadEmpresa(value[0]);
+				break;
+			case "cargo":
+				info.setCargo(value[0]);
+				break;
+			case "sueldoMensual":
+				info.setSueldoMensual(Long.parseLong(value[0]));
+				break;
+			case "provinciaTrabajo":
+				proT.setIdProvincia(Long.parseLong(value[0]));
+				info.setProvinciaTrabajo(proT);
+				break;
+			case "cantonTrabajo":
+				canT.setIdCanton(Long.parseLong(value[0]));
+				info.setCantonTrabajo(canT);
+				break;
+			case "distritoTrabajo":
+				// desV.setCantonId(Long.parseLong("1"));
+				desT.setIdDistrito(Long.parseLong(value[0]));
+				log.info("distroT:{}", Long.parseLong(value[0]));
+				info.setDistritoTrabajo(desT);
+				break;
+			case "telefonoEmpresa":
+				info.setTelefonoEmpresa(value[0]);
+				break;
+			case "email":
+				info.setEmail(value[0]);
+				break;
+			case "nombreOtraEmpresa":
+				info.setNombreOtraEmpresa(value[0]);
+				;
+				break;
+			case "antiguedad":
+				info.setAntiguedad(value[0]);
+				break;
+			case "cargoOtraEmpresa":
+				info.setCargoOtraEmpresa(value[0]);
+				break;
+			case "ultimoSueldo":
+				info.setUltimoSueldo(Long.parseLong(value[0]));
+				break;
+			case "primerNombre":
+				info.setPrimerNombre(value[0]);
+				break;
+			case "segundoNombre":
+				info.setSegundoNombre(value[0]);
+				break;
+			case "apellidos":
+				info.setApellidos(value[0]);
+				break;
+			case "segundo_apellido":
+
+				info.setApellidos(info.getApellidos() + "-" + value[0]);
+				// log.info("pimer apellido {}", info.getApellidos());
+				break;
+			case "tipoDocumento":
+				info.setTipoDocumento(value[0]);
+				break;
+			case "numeroDocumento":
+				info.setNumeroDocumento(value[0]);
+				break;
+			case "genero":
+				info.setGenero(value[0]);
+				break;
+			case "telefonoCelular":
+				info.setTelefonoCelular(value[0]);
+				break;
+			case "telefonoFijo":
+				info.setTelefonoFijo(value[0]);
+				break;
+			case "emailReferencia":
+				info.setEmailReferencia(value[0]);
+				break;
+			case "banco":
+				info.setBanco(value[0]);
+				break;
+			case "ctaAhorro":
+				info.setCtaAhorro(value[0]);
+				break;
+			case "ctaCorriente":
+				info.setCtaCorriente(value[0]);
+				break;
+			case "TDC":
+				info.setTDC(value[0]);
+				break;
+			case "bancoEmisor":
+				info.setBancoEmisor(value[0]);
+				break;
+
+			///// Datos basicos/////
+			case "primer_nombre":
+				primerNombre = value[0];
+
+				info.setClientFirstName(value[0]);
+				break;
+
+			case "segundo_nombre":
+				info.setClientLastName(value[0]);
+				break;
+
+			case "primer_apellido":
+				apellido = value[0];
+				info.setClientSurname(value[0]);
+				break;
+			case "segundo_apellido_cliente":
+				info.setClientSurname(info.getClientSurname() + "-" + value[0]);
+				break;
+
+			case "tipo_identificador":
+				info.setClientTypeId(value[0]);
+				break;
+
+			case "documento_identidad":
+				info.setClientDocumentId(value[0]);
+				break;
+
+			case "radio_genero":
+				info.setClientGender(value[0]);
+				break;
+
+			case "example-datetime-local-input":
+				info.setClientBirthday(value[0]);
+				break;
+
+			case "pais_nacimiento":
+				info.setClientNationality(value[0]);
+
+				break;
+
+			case "radio_estado":
+				info.setClientCivilStatus(value[0]);
+				break;
+
+			case "correo_confirm":
+				correoEnaviar = value[0];
+
+				info.setClientEmail(value[0]);
+				break;
+
+			case "profesion":
+				info.setClientProfession(value[0]);
+				break;
+
+			case "celular":
+				info.setClientCellPhone(value[0]);
+				break;
+
+			case "personaEP":
+				info.setPersonaExpuestaPoliticamente(value[0]);
+				break;
+
+			case "tell_home":
+				info.setClientHomePhone(value[0]);
+				break;
+
+			case "idClientRespose":
+
+				clienId = Long.parseLong(value[0]);
+				info.setIdClient(clienId);
+				log.info("idclient: {}", clienId);
+				break;
+
+			case "CatOcupacion":
+
+				catOcipacional.setIdCatOcu(Long.parseLong(value[0]));
+				info.setCategoriOcuId(catOcipacional);
+				break;
+
+			case "preAprobado":
+				aprobado = Long.parseLong(value[0]);
+				info.setClientPreaprovedAmount(Long.parseLong(value[0]));
+				break;
+
+			case "documentsCreditSupport":
+				info.setDocumentsCreditSupport(value[0]);
+				break;
+
+			case "documentsBurotSupport":
+				info.setDocumentsBurotSupport(value[0]);
+				break;
+
+			case "usuarioCreadorSolicitud":
+				info.setNombreUsuarioModifica(value[0]);
+				break;
+
+			}
+
+		}
+		// metodo del recibir archivos.
+
+		Iterator<String> itr = files.getFileNames();
+		MultipartFile mpf = null;
+		String fileSaved = "";
+		while (itr.hasNext()) {
+			mpf = files.getFile(itr.next());
+			try {
+				if (mpf.getName().equals("fileFinantialInformationName")) {
+					fileSaved = upload.copy(mpf);
+					info.setFileFinantialInformationName(fileSaved);
+				} else if (mpf.getName().equals("filePersonalInformationName")) {
+					fileSaved = upload.copy(mpf);
+					info.setFilePersonalInformationName(fileSaved);
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		res = clientDAO.updateClientaAanaliteComplet(info);
+
+		/*
+		 * Envio de correo al cliente para informarle que su solicitud de tdc fue
+		 * aprobada
+		 */
+		String subject = "Notificacion Finanplus";
+		String text = "<html><p><b>Estimado(a) Cliente " + primerNombre + " " + apellido + "</b></p><p>"
+				+ "<p><b>Finanplus le informa: La solicitud de TDC fue aprobada por un monto de" + " " + aprobado
+				+ " colones. </b></p></html>";
+
+		String to = correoEnaviar;
+
+		emailService.sendSimpleMessage(to, subject, text);
+		/* Fin */
+
+		log.info("Resp de wl: {}", info.toString());
+
 		return res;
 	}
+    
+   /////////////////////////////////////////////////////////////////////////////////
+    
+    
+    
+    /////////////////////////////////////////////
+    ///////Estado de la Impresora////////////////
+    ////////////////////////////////////////////
+    
+    @RequestMapping(value = "/estadoImpresora", produces = { "application/json" })
+	public @ResponseBody EstadoImpresoraResponse estadoImpresora(@RequestBody EstadoImpresoraDTO parsImpresoraIp) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		EstadoImpresoraResponse respuesta = new EstadoImpresoraResponse();
+		respuesta = impresoraDAO.Estado_Impresora(parsImpresoraIp);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+    
+	/////////////////////////////////////////////
+	///////Emision de Tarjetas Verificadas///////
+	////////////////////////////////////////////
+    
+    @RequestMapping(value = "/emitirTarjetaVerificada", produces = { "application/json" })
+	public @ResponseBody EmitirTarjetaVerificadaResponse emitirTarjetaVerificada(@RequestBody EmitirTarjetaVerificadaDTO emitirTarjetaverificada) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+    	EmitirTarjetaVerificadaResponse respuesta = new EmitirTarjetaVerificadaResponse();
+		respuesta = impresoraDAO.Emitir_Tarjeta_Verificada(emitirTarjetaverificada);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+
 }

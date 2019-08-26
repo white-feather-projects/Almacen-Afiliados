@@ -2,16 +2,16 @@
 
 window.addEventListener('load', ()=>{
 	$("#menu_ejecutivo").on('click', function(){
-		location.href = "/menu_afiliacion_ejecutivo";
+		location.href = "/CBPult/Afiliacion/menu_afiliacion_ejecutivo";
 	})
 	
 	
 	$("#menu_operador").on('click', function(){
-		location.href = "/menu_operador";
+		location.href = "/CBPult/Afiliacion/menu_operador";
 	})
 	
 	$("#menu_autogestion").on('click', function(){
-		location.href = "/pre_carga_autogestion";
+		location.href = "/CBPult/Afiliacion/pre_carga_autogestion";
 	})
 	
 })

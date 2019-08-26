@@ -1,12 +1,14 @@
 'use strict'
 
 window.addEventListener('load', ()=>{
- 
+	$('#enviar').hide();
 
     $("#cancelar").click(function(){
         localStorage.clear();
-        location.href = "/listpurchaseorder";
+        location.href = "/CBPult/Gestion_Compras/listpurchaseorder";
     });
+    
+    
 
 });
 
@@ -27,7 +29,7 @@ function mostrarDatos() {
 		     
 			  type: "GET",
 			  dataType: "json",
-			  url: "/consultNumberOrder/"+id,
+			  url: "/CBPult/Gestion_Compras/consultNumberOrder/"+id,
 			  success: function(data)
 		    {
 	          console.log(data);
@@ -40,19 +42,59 @@ function mostrarDatos() {
 	         var NumberOrder = data.purchaseOrderNumber;
 	         var descripcion = data.orderCommetns;
 	         var fechadeaprovacion = data.purchaseOrderAprovedDate;
+	         var producto = data.productDTO;
+	         var productoId = producto.idProduct;
+	         var productoName= producto.productName;
 	         //console.log("status"+status);
 	         
 	         document.getElementById('lote').value = NumberOrder;
-	        document.getElementById('cantidadTarjetasSolicitar').value = quantity;
-	           document.getElementById('descripcionOrden').value = descripcion;
-	           document.getElementById('status').value = Orderstatus;
-	           document.getElementById('fecha').value = fechadeaprovacion;
-	          
-	          console.log(data);
+	         document.getElementById('cantidadTarjetasSolicitar').value = quantity;
+	         document.getElementById('descripcionOrden').value = descripcion;
+	         document.getElementById('status').value = Orderstatus;
+	         document.getElementById('fecha').value = fechadeaprovacion;
+	         $("#producto").append('<option value=' + productoId + '>' + productoName+ '</option>');
+	       
+	         
+
+	 		$.ajax({          
+	 			     
+	 				  type: "GET",
+	 				  dataType: "json",
+	 				  url:"/CBPult/Gestion_Compras/listPlastic/"+NumberOrder,
+	 			
+	 				  success: function(data)
+	 			    {
+	 		        	 		         
+	 		          if(data != ""){
+	 		        	 $('#enviar').show();
+	 		          //$('#lista').show();
+	 		        // $('.generada').show();
+	 		        	 $('#lista').show();
+	 		        	
+	 		          }else{
+
+	 		         // $('#listaVacia').show();
+	 		        // $('.por_generar').show();
+	 		        	
+	 		        	$("#statusCheck").removeClass("border-checkbox-group border-checkbox-group-success");
+	 		        	$("#statusCheck").addClass("border-checkbox-group border-checkbox-group-danger");
+	 		        	$('#checkbox2').filter(':checkbox').prop('checked',false);
+	 		        	$('#lista').show();
+	 		          }
+	 		              
+	 		                             
+	 		            }
+	 		            
+	 		   },);  
 	              
-	                             
-	            }
+	          }
 	            
 	              },);  
 	              
 	} 
+
+
+
+
+
+	

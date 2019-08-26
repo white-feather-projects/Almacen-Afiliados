@@ -42,7 +42,7 @@
                     <div class="ring"><div class="frame"></div></div>
                 </div><br>
                 <div class="text-center">
-                    <img src="../img/logo_orange.png" width="60" alt="logo.png">
+                    <img th:src="@{/img/logo_orange.png}" width="60" alt="logo.png">
                 </div>
             </div>
         </div>
@@ -85,7 +85,7 @@
                                                     <div class="card-block">
                                                     <div class="column" align="right">
 															
-															<a href="/newClientTdc" style="margin-right: 5px;"
+															<a href="/CBPult/Solicitudes/newClientTdc" style="margin-right: 5px;"
 																title="Crear solicitud de orden de compra"><i
 																class="fa fa-plus-square agregaryasignar"
 																style="font-size: 50px"></i></a>
@@ -96,7 +96,8 @@
                                                                 <thead>
                                                                 <tr>
                                                                 <th>Nombre</th>
-                                                                <th>Apellido</th>
+                                                                <th>Primer apellido</th>
+                                                                 <th>Segundo apellido</th>
                                                                 <th>Documento</th>
                                                                 <th>Fecha Creación</th>
                                                                 <th>Canal</th>
@@ -122,9 +123,9 @@
 																	<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="tarjetas_imprimir">
 																		Tarjetas por Imprimir
 																	</button>
-																	<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="solicitud_completada">
+																	<!--button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="solicitud_completada">
 																		Solicitud completada
-																	</button>
+																	</button-->
 																	
                                                                 </div>
                                                             </div>
