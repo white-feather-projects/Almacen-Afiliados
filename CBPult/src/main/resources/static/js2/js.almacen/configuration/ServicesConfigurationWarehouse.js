@@ -572,8 +572,6 @@ function cargaDatosModificarAlmacenIdServ(){
 		
 		getZonas.map(function(zona, i){	
 			
-			console.log("zona: ", zona, "index: ", i);
-			
 			if(zona.idWarehouse.idWarehouse == IdAlmacen){
 				
 				data_zonas.push({
@@ -586,7 +584,7 @@ function cargaDatosModificarAlmacenIdServ(){
 					"relacionesZona": []
 				});
 				
-				$.get("/CBPult/Almacen/listaEstanterias", function(dataEstanterias){
+				/*$.get("/CBPult/Almacen/listaEstanterias", function(dataEstanterias){
 					
 					var ests = dataEstanterias.map(function(est, j){
 						
@@ -602,7 +600,7 @@ function cargaDatosModificarAlmacenIdServ(){
 					
 					data_zonas[i].estanteriasZona.push(ests);			
 					
-				});
+				});*/
 				
 			}			
 		});

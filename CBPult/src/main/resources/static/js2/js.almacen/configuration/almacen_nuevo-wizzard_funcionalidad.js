@@ -1,7 +1,7 @@
 'use strict'
 
 var thEditar = "../img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico";
-var thEliminar = "../img2/bin_delete_file_garbage_recycle_remove_trash_icon_123192.ico";
+var thEliminar = "../../img2/bin_delete_file_garbage_recycle_remove_trash_icon_123192.ico";
 
 var contenedor_zonas = $('#zonas-content');
 var btnNuevaZona = $('#btnNuevaZona_config');
