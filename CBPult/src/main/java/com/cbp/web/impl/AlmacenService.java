@@ -547,4 +547,56 @@ public class AlmacenService extends Util implements AlmacenDAO{
 		return respuestaRelacionAlmacenes;
 	}
 	
+	////////////////////////////////////
+	//Methodo para listar ZOnas por Almacen Id...
+	public java.util.List<Zona> listaZonasByIdAlmacen(long idAlmacen) {
+		
+		//instanciar Objeto para retorno....
+		java.util.List<Zona> respuestaZona = new ArrayList<>();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AlmacenServiceWS_Service ws = new AlmacenServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AlmacenServiceWS?WSDL"));
+			AlmacenServiceWS WSmethod = ws.getAlmacenServiceWSPort();
+		
+			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
+			respuestaZona = WSmethod.liistZonasByIdAlmacenWS(idAlmacen);
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaZona;
+	}
+	
+	////////////////////////////////////
+	//Methodo para listar Estanterias por Id ZOnas...
+	public java.util.List<Estanteria> listaEstanteriasByIdZona(long idZona) {
+		
+		//instanciar Objeto para retorno....
+		java.util.List<Estanteria> respuestaEstanteria = new ArrayList<>();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AlmacenServiceWS_Service ws = new AlmacenServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AlmacenServiceWS?WSDL"));
+			AlmacenServiceWS WSmethod = ws.getAlmacenServiceWSPort();
+		
+			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
+			respuestaEstanteria = WSmethod.listEstanteriasByIdZonaWS(idZona);
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaEstanteria;
+	}
+	
 }
