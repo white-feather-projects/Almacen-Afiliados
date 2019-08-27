@@ -29,6 +29,8 @@ import com.cbp3.ws.cbp.service.CrearEstanteriaWS;
 import com.cbp3.ws.cbp.service.CrearEstanteriaWSResponse;
 import com.cbp3.ws.cbp.service.CrearListaZonaWizzardWS;
 import com.cbp3.ws.cbp.service.CrearListaZonaWizzardWSResponse;
+import com.cbp3.ws.cbp.service.CrearRelacionAlmacenesWS;
+import com.cbp3.ws.cbp.service.CrearRelacionAlmacenesWSResponse;
 import com.cbp3.ws.cbp.service.CrearRelacionZonasWS;
 import com.cbp3.ws.cbp.service.CrearRelacionZonasWSResponse;
 import com.cbp3.ws.cbp.service.Estanteria;
@@ -140,8 +142,6 @@ public class AlmacenController {
 	public @ResponseBody CrearListaZonaWizzardWSResponse crearListaZonaWizzard(@RequestBody CrearListaZonaWizzardWS CrearListaZonaWizzardWS) {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		CrearListaZonaWizzardWSResponse respuesta = new CrearListaZonaWizzardWSResponse();
-		System.out.println(CrearListaZonaWizzardWS.getListZonaDTO().get(0).getDescripcion());
-		System.out.println(CrearListaZonaWizzardWS.getListZonaDTO().get(0).getEncargadoZona().getEmpleadoId());
 		respuesta = almacenMethods.crearListaZonaWizzard(CrearListaZonaWizzardWS);
 		
 		//System.out.println(ModificarAlmacenDTO.toString());
@@ -172,6 +172,20 @@ public class AlmacenController {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		ConsultaZonaPorZonaIdWSResponse respuesta = new ConsultaZonaPorZonaIdWSResponse();
 		respuesta = almacenMethods.consultaZonaPorZonaId(ConsultaZonaPorZonaIdWS);
+		//System.out.println(ModificarAlmacenDTO.toString());
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	//
+	
+	@RequestMapping(value = "/crearRelacionAlmacenes", produces = { "application/json" })
+	public @ResponseBody CrearRelacionAlmacenesWSResponse crearRelacionAlmacenes(@RequestBody CrearRelacionAlmacenesWS CrearRelacionAlmacenesWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		CrearRelacionAlmacenesWSResponse respuesta = new CrearRelacionAlmacenesWSResponse();
+		respuesta = almacenMethods.crearRelacionAlmacenes(CrearRelacionAlmacenesWS);
 		//System.out.println(ModificarAlmacenDTO.toString());
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
@@ -296,6 +310,32 @@ public class AlmacenController {
 		return respuesta;
 	}
 	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// consulta lista de ZOnas por Almcen Id.....
+	
+	@RequestMapping(value = "/listaZonasByIdAlmacen/{AlmacenId}", produces = { "application/json" }) 
+	public @ResponseBody java.util.List<Zona> listaZonasByIdAlmacen(@PathVariable(value = "AlmacenId") long idAlmacen) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<Zona> respuesta = new ArrayList<>();
+		respuesta = almacenMethods.listaZonasByIdAlmacen(idAlmacen);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// consulta lista de ZOnas por Almcen Id.....
+	
+	@RequestMapping(value = "/listaEstanteriasByIdZona/{idZona}", produces = { "application/json" }) 
+	public @ResponseBody java.util.List<Estanteria> listaEstanteriasByIdZona(@PathVariable(value = "idZona") long idZona) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<Estanteria> respuesta = new ArrayList<>();
+		respuesta = almacenMethods.listaEstanteriasByIdZona(idZona);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -330,8 +370,8 @@ public class AlmacenController {
 	//+////////////// Almacen ///////////////
 		
 		//+////////////// Nuevo Almacen Wizzard ///////////////
-		@RequestMapping(value = "/almacen_nuevo-wizzard&{IdAlmacen}", method = RequestMethod.GET)
-	    public String almacen_nuevo_wizzard(@PathVariable(value = "IdAlmacen") String IdAlmacen, Model model) {
+		@RequestMapping(value = "/almacen_nuevo-wizzard/{Tipo}&{IdAlmacen}", method = RequestMethod.GET)
+	    public String almacen_nuevo_wizzard(@PathVariable(value = "Tipo") String Tipo, @PathVariable(value = "IdAlmacen") String IdAlmacen, Model model) {
 			model.addAttribute("name", name);
 			model.addAttribute("link", link);
 			

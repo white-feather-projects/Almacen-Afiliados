@@ -128,7 +128,6 @@ function evtNuevaZona(){
                                         <table id="simpletable`+contador_zonas+`" class="table-sm table-striped table-bordered display`+contador_zonas+` nowrap">
                                             <thead>
 												<tr>
-													<th>Código</th>
 													<th>Módulos</th>
 													<th>Niveles</th>
 													<th>Acciones</th>																														
@@ -335,7 +334,6 @@ function crearTr(actual){
 		
 		$('#tbody'+actual).append(`
 			<tr>
-		    	<td>1</td>
 		    	<td>`+modulos.val()+`</td>
 		    	<td>`+niveles.val()+`</td>																														    	
 		    	<td>

@@ -1,14 +1,19 @@
 'use strict'
 
 var thEditar = "../img2/draw_edit_pen_pencil_tool_write_writing_icon_123200.ico";
-var thEliminar = "../img2/bin_delete_file_garbage_recycle_remove_trash_icon_123192.ico";
+var thEliminar = "../../img2/bin_delete_file_garbage_recycle_remove_trash_icon_123192.ico";
 
 var contenedor_zonas = $('#zonas-content');
 var btnNuevaZona = $('#btnNuevaZona_config');
 var contador_zonas = 0;
 var zonaListTemp = [];
 
+var valid_ZonasRel = 0;
+
 var contenedor_relZonas = $('#relaciones_zonas');
+
+
+
 
 function evtNuevaZona(){
 		
@@ -23,7 +28,7 @@ function evtNuevaZona(){
         		<div class="col-sm-12" style="margin: 5px 0px 5px 0px;">									                                                			
             		<div class="column" align="left">																
 						<a style="margin-right: 5px;" title="Eliminar Zona">
-							<i id="btnEliminarZona_config" onClick="eliminarZona(`+contador_zonas+`)" class="fa fa-plus-square agregaryasignar" style="font-size: 50px"></i>
+							<img id="btnEliminarZona_config" onClick="eliminarZona(`+contador_zonas+`)" src="`+thEliminar+`" style="width: 60px"></img>
 						</a>
 					</div>											                                                	
         		</div>
@@ -154,117 +159,7 @@ function evtNuevaZona(){
         </div>										                                            
         <!-- Zona -->`;
 	
-	// Se usa para Crear una nueva Zona en el Tab de Zonas Cuando se presiona btnNuevaZona
-	var html_zona_relacion = `
-		<!-- Zona --> 
-        <div id="zona_rel`+contador_zonas+`" class="zona_zonas col-sm-12 card" style="border: none">
-        	
-        	<div class="row">
-        		
-        		<!-- Card 1 -->
-            	<div class="col-sm-4">											                                            	                                   
-                	<div class="card">                                                   
-                    	<div class="card-block">
-                    		<!-- Titulo de Card -->
-                        	<h4 class="sub-title">Información de Zona `+(contador_zonas+1)+`</h4>
-                        	
-                        	<!-- Row -->                                                        	
-                        	<div class="row">
-                        		
-                        		<!-- Contenido de Card -->  
-                        		<div class="col-sm-12" style="display:none">
-                                    <label class="col-sm-12 col-form-label">Código de Zona</label>
-                                    <div class="col-sm-12">
-                                        <input type="text" id="txtCodigo_zona_rel`+contador_zonas+`" class="form-control" placeholder="Codigo" value="`+contador_zonas+`" style="display: none">
-                                    </div>
-                            	</div>
-                            
-                                <div class="col-sm-12 mobile-inputs">
-                                    <label class="col-sm-12 col-form-label">Tipo Zona</label>
-                                    <div class="col-sm-12">
-                                        <select name="select" id="cboxTipo_zonarel`+contador_zonas+`" class="form-control" disabled>
-                                            <option value="Recibo">Recibo</option>
-                                            <option value="Almacenaje">Almacenaje</option>
-                                            <option value="Almacenaje Restringido">Almacenaje Restringido</option>
-                                            <option value="Despacho">Despacho</option>
-                                        </select>
-                             		</div>
-                                </div>
-                                
-                                <div class="col-sm-12 mobile-inputs">
-                                	<label class="col-sm-12 col-form-label">Descripción Zona</label>
-                                	<div class="col-sm-12">
-                                        <input type="text" id="txtDescripcion_zonarel`+contador_zonas+`" onblur="lleno(`+contador_zonas+`)" class="form-control solo_texto" placeholder="" disabled>
-                                    </div>
-                                </div>	                                                        	
-                                
-                                <div class="col-sm-12 mobile-inputs">
-                                    <label class="col-sm-12 col-form-label">Encargado de Zona</label>
-                                    <div class="col-sm-12">
-                                        <select name="select" id="cboxEncargado_zonarel`+contador_zonas+`" class="form-control" disabled>
-                                            <option value="Elon Musk">Elon Musk</option>
-                                            <option value="Einstein">Einstein</option>
-                                            <option value="Jack Ma">Jack Ma</option>
-                                        </select>
-                             		</div>
-                                </div>
-                                <!-- Contenido de Card -->  
-                                
-                        	</div>
-                        	<!-- Row -->                                                      		                                                        	
-                                                                      
-                    	</div>
-                	</div> 
-            	                                
-                </div>
-                <!-- Card 1 -->											                                            
-                
-                <!-- Card 2 -->
-            	<div class="col-sm-8"> 
-            	                                           
-                	<div class="card">                                                   
-                    	<div class="card-block">
-                    		<!-- Titulo de Card -->
-                        	<h4 class="sub-title">Relaciones Zona</h4>
-                        	
-                        	<!-- Fila 1 -->                                      
-                        	<div class="row">
-                        		<div class="col-sm-12">
-                        			
-                        			<div class="dt-responsive table-responsive">
-                                        <table id="simpletablerel`+contador_zonas+`" class="table-sm table-striped table-bordered displayrel`+contador_zonas+`">
-                                            <thead>
-												<tr>
-													<th>Relación</th>
-													<th>Tipo Zona</th>
-													<th>Descipción</th>
-													<th>Encargado</th>																													
-												 </tr>
-											</thead>
-											<tbody id="tbodyrel_`+contador_zonas+`">											    
-											    
-											</tbody>
-                                        </table>
-                                   	</div>                                                        			
-                                   	
-                                   	
-                        		</div> 
-                        	</div>                                                                                                                           
-                    	</div>
-                    	<!-- Fila 1 -->                                                   	
-                    	                                                         
-                	</div>
-            	</div>
-            	<!-- Card 2 -->
-        	                                
-            </div>
-        </div>										                                            
-        <!-- Zona -->`;
-	// ids del cuerpo de las tablas en relaciones id="tbodyrel_`+contador_zonas+`"
-	
-	
 	contenedor_zonas.append(html_zona);
-	contenedor_relZonas.append(html_zona_relacion);
 	
 	swal("nueva Zona "+(contador_zonas+1));
 	
@@ -290,28 +185,6 @@ function evtNuevaZona(){
 	var body = $('#simpletable'+contador_zonas);
 	body.find( 'tbody tr:eq(0)').remove();
 	
-	// tablas del Tab de Relaciones
-	
-	$("table.displayrel"+contador_zonas).DataTable({ 
-        "language": { // Configuración del Lenguaje de la Tabla
-            "lengthMenu": "Mostrar _MENU_ registros",
-            "zeroRecords": false,
-            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-            "sSearch": "Buscar:",            
-        },
-        "scrollY": "200px", // Alto de la Tabla
-        "scrollCollapse": true,
-        "paging": false,
-        "searching": false,
-        "info": false,
-        
-    });    
-	
-	// Para remover la fila de las tablas que aparece cuando no hay registros
-	var body = $('#simpletablerel'+contador_zonas);
-	body.find('tbody tr:eq(0)').remove();	
 	
 	// Armando el Json de listZonas		
 	zonaListTemp.push({
@@ -322,8 +195,6 @@ function evtNuevaZona(){
 	})
 	contador_zonas++;
 }
-
-
 	
 function crearTr(actual){
 	
@@ -335,13 +206,10 @@ function crearTr(actual){
 		$('#tbody'+actual).append(`
 			<tr>
 		    	<td>`+modulos.val()+`</td>
-		    	<td>`+niveles.val()+`</td>																														    	
+		    	<td>`+niveles.val()+`</td>																												    	
 		    	<td>
-		    		<a onclick="location.href = '/CBPult/Almacen/relacion-zona_nuevo-editar'">
-		    			<img alt="Editar" src="`+thEditar+`" width="30px">
-		    		</a>
-		    		<a onclick="alert('Relación Eliminada')">
-		    			<img alt="Eliminar" src="`+thEliminar+`" width="30px">
+		    		<a onclick="alert('EstanteriaEliminada')">
+		    			<img alt="Eliminar" src="`+thEliminar+`" onclick="console.log()"  width="30px">
 		    		</a>
 		    	</td>
 		    </tr>
@@ -374,7 +242,7 @@ function eliminarZona(actual){
 	});
 	console.log("Despues de Eliminar: ", zonaListTemp);
 	console.log("Eliminado...");
-	contador_zonas--;
+	//contador_zonas--;
 }
 
 
@@ -459,5 +327,180 @@ function niveles(_nivel){
 }
 //Validaciones Niveles
 
+function crearFormsZonasRel(){
 	
-
+	if(valid_ZonasRel == 0 && zonas_response != ""){
+		
+		zonas_response.return.listZonas.map(function(zona, i){
+			
+			
+			// Se usa para Crear una nueva Zona en el Tab de Zonas Cuando se presiona btnNuevaZona
+			var html_zona_relacion = `
+				<!-- Zona --> 
+		        <div id="zona_rel`+i+`" class="zona_zonas col-sm-12 card" style="border: none">
+		        	
+		        	<div class="row">
+		        		
+		        		<!-- Card 1 -->
+		            	<div class="col-sm-4">											                                            	                                   
+		                	<div class="card">                                                   
+		                    	<div class="card-block">
+		                    		<!-- Titulo de Card -->
+		                        	<h4 class="sub-title">Información de Zona `+(i+1)+`</h4>
+		                        	
+		                        	<!-- Row -->                                                        	
+		                        	<div class="row">
+		                        		
+		                        		<!-- Contenido de Card -->  
+		                        		<div class="col-sm-12">
+		                                    <label class="col-sm-12 col-form-label">Código de Zona</label>
+		                                    <div class="col-sm-12">
+		                                        <input type="text" id="txtCodigo_zona_rel`+i+`" class="form-control" placeholder="Codigo" disabled>
+		                                    </div>
+		                            	</div>
+		                            
+		                                <div class="col-sm-12 mobile-inputs">
+		                                    <label class="col-sm-12 col-form-label">Tipo Zona</label>
+		                                    <div class="col-sm-12">
+		                                        <select name="select" id="cboxTipo_zonarel`+i+`" class="form-control" disabled>
+		                                            <option value="Recibo">Recibo</option>
+		                                            <option value="Almacenaje">Almacenaje</option>
+		                                            <option value="Restringido">Restringido</option>
+		                                            <option value="Despacho">Despacho</option>
+		                                        </select>
+		                             		</div>
+		                                </div>
+		                                
+		                                <div class="col-sm-12 mobile-inputs">
+		                                	<label class="col-sm-12 col-form-label">Descripción Zona</label>
+		                                	<div class="col-sm-12">
+		                                        <input type="text" id="txtDescripcion_zonarel`+i+`" onblur="lleno(`+i+`)" class="form-control solo_texto" placeholder="" disabled>
+		                                    </div>
+		                                </div>	                                                        	
+		                                
+		                                <div class="col-sm-12 mobile-inputs">
+		                                    <label class="col-sm-12 col-form-label">Encargado de Zona</label>
+		                                    <div class="col-sm-12">
+		                                        <input type="text" id="txtEncargado_zonarel`+i+`" class="form-control" placeholder="Codigo" disabled>
+		                             		</div>
+		                                </div>
+		                                <!-- Contenido de Card -->  
+		                                
+		                        	</div>
+		                        	<!-- Row -->                                                      		                                                        	
+		                                                                      
+		                    	</div>
+		                	</div> 
+		            	                                
+		                </div>
+		                <!-- Card 1 -->											                                            
+		                
+		                <!-- Card 2 -->
+		            	<div class="col-sm-8"> 
+		            	                                           
+		                	<div class="card">                                                   
+		                    	<div class="card-block">
+		                    		<!-- Titulo de Card -->
+		                        	<h4 class="sub-title">Relaciones Zona</h4>
+		                        	
+		                        	<!-- Fila 1 -->                                      
+		                        	<div class="row">
+		                        		<div class="col-sm-12">
+		                        			
+		                        			<div class="dt-responsive table-responsive">
+		                                        <table id="simpletablerel`+i+`" class="table-sm table-striped table-bordered displayrel`+i+`">
+		                                            <thead>
+														<tr>
+															<th>Relación</th>
+															<th>Código Zona</th>
+															<th>Tipo Zona</th>
+															<th>Descipción</th>
+															<th>Encargado</th>																													
+														 </tr>
+													</thead>
+													<tbody id="tbodyrel_`+i+`">											    
+													    
+													</tbody>
+		                                        </table>
+		                                   	</div>                                                        			
+		                                   	
+		                                   	
+		                        		</div> 
+		                        	</div>                                                                                                                           
+		                    	</div>
+		                    	<!-- Fila 1 -->                                                   	
+		                    	                                                         
+		                	</div>
+		            	</div>
+		            	<!-- Card 2 -->
+		        	                                
+		            </div>
+		        </div>										                                            
+		        <!-- Zona -->`;
+			// ids del cuerpo de las tablas en relaciones id="tbodyrel_`+contador_zonas+`"
+			
+			// tablas del Tab de Relaciones
+			
+			$("table.displayrel"+i).DataTable({ 
+				"language": { // Configuración del Lenguaje de la Tabla
+		            "lengthMenu": "Mostrar _MENU_ registros",
+		            "zeroRecords": false,
+		            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+		            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+		            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+		            "sSearch": "Buscar:",            
+		        },
+		        "scrollY": "200px", // Alto de la Tabla
+		        "scrollCollapse": true,
+		        "paging": false,
+		        "searching": false,
+		        "info": false,		        
+		    });
+			
+			// Para remover la fila de las tablas que aparece cuando no hay registros
+			var body = $('#simpletablerel'+i);
+			body.find('tbody tr:eq(0)').remove();
+			
+			contenedor_relZonas.append(html_zona_relacion);
+			
+			$('#txtCodigo_zona_rel'+i).val(zonas_response.return.listZonas[i].zonaId);			
+			$('#cboxTipo_zonarel'+i+' option[value='+zonas_response.return.listZonas[i].tipoZonaId.nombre+']').attr('selected', true);
+			$('#txtDescripcion_zonarel'+i).val(zonas_response.return.listZonas[i].descripcion);
+			$('#txtEncargado_zonarel'+i).val(zonas_response.return.listZonas[i].encargadoZona.empleadoId);
+			
+			// Llenado de Tablas de Relaciones
+			for (var j = 0; j < zonas_response.return.listZonas.length; j++) {
+				
+				if(j != i){
+					
+					$('#tbodyrel_'+i).append(`
+						<tr>
+							<td style="text-align:center">
+								<div class="row" style="display: inline-block">
+	                                <div class="col-sm-4"><input type="checkbox" class="js-switch-blue_rel" data-switchery="true" style="display: none;"></div>
+	                            </div>
+							</td>
+							<th class="id_zonaRel">`+zonas_response.return.listZonas[j].zonaId+`</th>							
+							<td>`+zonas_response.return.listZonas[j].tipoZonaId.nombre+`</td>
+							<td>`+zonas_response.return.listZonas[j].descripcion+`</td>
+							<td>`+zonas_response.return.listZonas[j].encargadoZona.empleadoId+`</td>
+						</tr>						`
+					);
+				}				
+			}			
+			// Llenado de Tablas de Relaciones
+			
+		});
+		// Cargar Switches de las Tablas de Relación de las Zonas
+		Array.prototype.forEach.call($('.js-switch-blue_rel'), (item, i)=>{
+			var actual_switch = new Switchery(item, {
+				color: '#17a2b8',
+				secondaryColor: '#e0e0e0',
+				jackSecondaryColor: '#17a2b8'
+			});
+		});
+		valid_ZonasRel++;
+		
+	}
+	
+}

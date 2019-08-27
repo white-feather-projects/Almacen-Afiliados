@@ -30,6 +30,8 @@ import com.cbp3.ws.cbp.service.CrearEstanteriaWS;
 import com.cbp3.ws.cbp.service.CrearEstanteriaWSResponse;
 import com.cbp3.ws.cbp.service.CrearListaZonaWizzardWS;
 import com.cbp3.ws.cbp.service.CrearListaZonaWizzardWSResponse;
+import com.cbp3.ws.cbp.service.CrearRelacionAlmacenesWS;
+import com.cbp3.ws.cbp.service.CrearRelacionAlmacenesWSResponse;
 import com.cbp3.ws.cbp.service.CrearRelacionZonasWS;
 import com.cbp3.ws.cbp.service.CrearRelacionZonasWSResponse;
 import com.cbp3.ws.cbp.service.Estanteria;
@@ -254,6 +256,32 @@ public class AlmacenService extends Util implements AlmacenDAO{
 		}
 		
 		return respuestaConsultaZonaPorZonaId;
+	}
+	
+	////////////////////////////////
+	//Methodo para crear relacion Almacenes...
+	public CrearRelacionAlmacenesWSResponse crearRelacionAlmacenes(CrearRelacionAlmacenesWS CrearRelacionAlmacenesWS) {
+		
+		//instanciar Objeto para retorno....
+		CrearRelacionAlmacenesWSResponse respuestaCrearRelacionAlmacenes = new CrearRelacionAlmacenesWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AlmacenServiceWS_Service ws = new AlmacenServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AlmacenServiceWS?WSDL"));
+			AlmacenServiceWS WSmethod = ws.getAlmacenServiceWSPort();
+			
+			//respuestaCrearComercio.setReturn(WSmethod.crearComercioWS(crearComercio.getIdentificacionComercio(), crearComercio.getNombreEmpresarial(), crearComercio.getNombreComercial(), crearComercio.getEmail(), crearComercio.getTelefonoContacto(), crearComercio.getEstadoComercioActivo(), crearComercio.getTelefonoLocal(), crearComercio.getNumCuentaAsociado(), crearComercio.getAfiliadoOtroBanco(), crearComercio.getTipoIdentificacionId(), crearComercio.getActividadComercial(), crearComercio.getHorarioComercial()));
+			respuestaCrearRelacionAlmacenes.setReturn(WSmethod.crearRelacionAlmacenesWS(CrearRelacionAlmacenesWS.getAlmacenActualId(), CrearRelacionAlmacenesWS.getAlmacenDestinoId(), CrearRelacionAlmacenesWS.getComentarios(), CrearRelacionAlmacenesWS.getFechaCargaDatos()));	
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaCrearRelacionAlmacenes;
 	}
 	
 	////////////////////////////////
@@ -517,6 +545,58 @@ public class AlmacenService extends Util implements AlmacenDAO{
 		}
 		
 		return respuestaRelacionAlmacenes;
+	}
+	
+	////////////////////////////////////
+	//Methodo para listar ZOnas por Almacen Id...
+	public java.util.List<Zona> listaZonasByIdAlmacen(long idAlmacen) {
+		
+		//instanciar Objeto para retorno....
+		java.util.List<Zona> respuestaZona = new ArrayList<>();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AlmacenServiceWS_Service ws = new AlmacenServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AlmacenServiceWS?WSDL"));
+			AlmacenServiceWS WSmethod = ws.getAlmacenServiceWSPort();
+		
+			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
+			respuestaZona = WSmethod.liistZonasByIdAlmacenWS(idAlmacen);
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaZona;
+	}
+	
+	////////////////////////////////////
+	//Methodo para listar Estanterias por Id ZOnas...
+	public java.util.List<Estanteria> listaEstanteriasByIdZona(long idZona) {
+		
+		//instanciar Objeto para retorno....
+		java.util.List<Estanteria> respuestaEstanteria = new ArrayList<>();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AlmacenServiceWS_Service ws = new AlmacenServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AlmacenServiceWS?WSDL"));
+			AlmacenServiceWS WSmethod = ws.getAlmacenServiceWSPort();
+		
+			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
+			respuestaEstanteria = WSmethod.listEstanteriasByIdZonaWS(idZona);
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaEstanteria;
 	}
 	
 }

@@ -15,6 +15,8 @@ import com.cbp3.ws.cbp.service.CrearEstanteriaWS;
 import com.cbp3.ws.cbp.service.CrearEstanteriaWSResponse;
 import com.cbp3.ws.cbp.service.CrearListaZonaWizzardWS;
 import com.cbp3.ws.cbp.service.CrearListaZonaWizzardWSResponse;
+import com.cbp3.ws.cbp.service.CrearRelacionAlmacenesWS;
+import com.cbp3.ws.cbp.service.CrearRelacionAlmacenesWSResponse;
 import com.cbp3.ws.cbp.service.CrearRelacionZonasWS;
 import com.cbp3.ws.cbp.service.CrearRelacionZonasWSResponse;
 import com.cbp3.ws.cbp.service.Estanteria;
@@ -51,6 +53,8 @@ public interface AlmacenDAO {
 	
 	public ConsultaZonaPorZonaIdWSResponse consultaZonaPorZonaId(ConsultaZonaPorZonaIdWS ConsultaZonaPorZonaIdWS);
 	
+	public CrearRelacionAlmacenesWSResponse crearRelacionAlmacenes(CrearRelacionAlmacenesWS CrearRelacionAlmacenesWS);
+	
 	public CrearRelacionZonasWSResponse crearRelacionZonas(CrearRelacionZonasWS CrearRelacionZonasWS);
 	
 	public ModificarEstanteriaWSResponse modificarEstanteria(ModificarEstanteriaWS ModificarEstanteriaWS);
@@ -68,4 +72,8 @@ public interface AlmacenDAO {
 	public java.util.List<TipoZona> listaTipoZonas();
 	
 	public java.util.List<RelacionAlmacenes> listaAlmacenesRelacionados(long arg0);
+	
+	public java.util.List<Zona> listaZonasByIdAlmacen(long idAlmacen);
+	
+	public java.util.List<Estanteria> listaEstanteriasByIdZona(long idZona);
 }
