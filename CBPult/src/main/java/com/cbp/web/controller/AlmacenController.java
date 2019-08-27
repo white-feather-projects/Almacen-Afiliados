@@ -310,6 +310,32 @@ public class AlmacenController {
 		return respuesta;
 	}
 	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// consulta lista de ZOnas por Almcen Id.....
+	
+	@RequestMapping(value = "/listaZonasByIdAlmacen/{AlmacenId}", produces = { "application/json" }) 
+	public @ResponseBody java.util.List<Zona> listaZonasByIdAlmacen(@PathVariable(value = "AlmacenId") long idAlmacen) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<Zona> respuesta = new ArrayList<>();
+		respuesta = almacenMethods.listaZonasByIdAlmacen(idAlmacen);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// consulta lista de ZOnas por Almcen Id.....
+	
+	@RequestMapping(value = "/listaEstanteriasByIdZona/{idZona}", produces = { "application/json" }) 
+	public @ResponseBody java.util.List<Estanteria> listaEstanteriasByIdZona(@PathVariable(value = "idZona") long idZona) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<Estanteria> respuesta = new ArrayList<>();
+		respuesta = almacenMethods.listaEstanteriasByIdZona(idZona);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
