@@ -56,6 +56,8 @@ if(Tipo == "newalm"){
 		
 		onChange: function (currentIndex, newIndex, stepDirection) {
 			
+			console.log("onChange", currentIndex, newIndex, stepDirection);
+			
 			// tab Almacen
 			if(currentIndex === 0){
 				
@@ -195,6 +197,7 @@ if(Tipo == "newalm"){
 				// para no cargar a cada rato la Tabla de Relaciones del Almacén
 				if(listar == 0){
 					listarAlmacenesRelServ();
+					//swalRelacionesAlmacenServ();
 					listar++;
 				}				
 				
@@ -272,9 +275,6 @@ if(Tipo == "newalm"){
 }
 else if(Tipo === "editar"){
 	
-	console.log("Tipo: ", Tipo);
-	console.log("IdAlmacén: ", IdAlmacen);
-	
 	$('#titleWizardAlmacen').append("<h2>Modificación del Almacén : "+IdAlmacen+"</h2>");
 	$('#titleAlmacen').append("<code>"+IdAlmacen+"</code>");
 	$('#contentCodigo_almacen').css("display", "initial");
@@ -290,6 +290,8 @@ else if(Tipo === "editar"){
 			if(currentIndex === 0){
 				
 				if(stepDirection === 'forward'){
+					
+					console.log("Data: ", data_zonas);
 					
 					var validated = 0;
 					
@@ -313,6 +315,8 @@ else if(Tipo === "editar"){
 						// Creacion del Almacén
 						
 						data_almacen = {
+							"id": IdAlmacen,
+							"warehouseName": $('#txtCodigo_almacen').val(),
 							"direccion": $('#txtUbicacion_almacen').val(),
 						    "gerenteSucursal": parseInt($('select[id="cboxEncargado_almacen"] option:selected').attr('name')),
 						    "officeId": 1,
