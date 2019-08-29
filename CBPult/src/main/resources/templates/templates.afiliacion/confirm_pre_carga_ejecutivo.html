@@ -65,11 +65,11 @@
 															      <ul class="step-steps">
 															        <!-- <li class="tb1"><a href="#tab1"><span class="number"></span> <i class="fa fa-user" style="font-size:30px"></i></a></li> -->
 															        <li class="tb2"><a th:href="@{#tab2}" id="verificar"><span class="number"></span> <i class="fa fa-home" style="font-size:30px"></i></a></li>
-															        <li class="tb3"><a th:href="@{#tab3}"><span class="number"></span><i class="fa fa-suitcase" style="font-size:30px"></i></a></li>
-															        <li class="tb4"><a th:href="@{#tab4}"><span class="number"></span><i class="fa fa-id-card-o" style="font-size:30px"></i></a></li>
-															        <li class="tb5"><a th:href="@{#tab5}"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
-															        <li class="tb6"><a th:href="@{#tab6}"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
-															        <li class="tb7"><a th:href="@{#tab7}"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
+															        <li class="tb3"><a th:href="@{#tab3}"><span class="number"></span><i class="fa fa-id-card" style="font-size:30px"></i></a></li>
+															        <li class="tb4"><a th:href="@{#tab4}"><span class="number"></span><i class="fa fa-id-card" style="font-size:30px"></i></a></li>
+															        <li class="tb5"><a th:href="@{#tab5}"><span class="number"></span><i class="fa fa-id-card" style="font-size:30px"></i></a></li>
+															        <li class="tb6"><a th:href="@{#tab6}"><span class="number"></span><i class="fa fa-id-card" style="font-size:30px"></i></a></li>
+															        <li class="tb7"><a th:href="@{#tab7}"><span class="number"></span><i class="fa fa-id-card" style="font-size:30px"></i></a></li>
 															        <!-- <li class="tb8"><a th:href="@{#tab8}"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li> -->
 															        <li class="tb9"><a th:href="@{#tab9}"><span class="number"></span><i class="fa fa-file-pdf-o" style="font-size:30px"></i></a></li>
 															      </ul>
@@ -95,7 +95,7 @@
 										                                                                    		<label>Tipo de Identificación(*): </label>
 										                                                                    	</div>
 																												<div class="col-sm-12">
-																													<select name="select" id="tipo_identificacion_tab2" class="form-control">
+																													<select name="select" id="tipo_identificacion_tab2" class="form-control" tabindex="1">
 																														<option value="Cedula">Cedula</option>
 										                                                                                <option value="DIMEX">DIMEX</option>
 										                                                                                <option value="Cedula Jurídica">Cedula Jurídica</option>
@@ -108,7 +108,7 @@
 										                                                                    		<label>Nombre de la Empresa(*): </label>
 										                                                                    	</div>
 																												<div class="col-sm-12">
-																													<input type="text" class="form-control" placeholder="" id="nombre_empresa_tab2" required/>
+																													<input type="text" class="form-control" placeholder="" id="nombre_empresa_tab2" required tabindex="3"/>
 																												</div>
 																												
 																												<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -117,7 +117,7 @@
 										                                                                    		<label>Correo Electronico: </label>
 										                                                                    	</div>
 																												<div class="col-sm-12">
-																													<input type="text" class="form-control" placeholder="" id="correo_tab2"/>
+																													<input type="text" class="form-control" placeholder="" id="correo_tab2" tabindex="5"/>
 																												</div>
 																												
 																												<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -126,7 +126,7 @@
 										                                                                    		<label>Numero de IBAN(*): </label>
 										                                                                    	</div>
 																												<div class="col-sm-12">
-																													<input type="text" class="form-control" placeholder="" id="numero_iban_tab2" maxlength="22" value="CR" required/>
+																													<input type="text" class="form-control" placeholder="" id="numero_iban_tab2" maxlength="22" value="CR" required tabindex="7"/>
 																												</div>
 																												
 																												<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -135,7 +135,7 @@
 										                                                                    		<label>Afiliado a otra Procesadora(*): </label>
 										                                                                    	</div>
 																												<div class="col-sm-12">
-																													<select name="select" id="afiliado_tab2" class="form-control">
+																													<select name="select" id="afiliado_tab2" class="form-control" tabindex="9">
 																														<option value="SI">SI</option>
 										                                                                                <option value="NO">NO</option>
 								                                                                        			</select>
@@ -147,7 +147,7 @@
 										                                                                    		<label>Teléfono Alternativo: </label>
 										                                                                    	</div>
 																												<div class="col-sm-12">
-																													<input type="text" class="form-control" placeholder="" id="telefono_alternativo_tab2"/>
+																													<input type="text" class="form-control" placeholder="" id="telefono_alternativo_tab2" tabindex="11" maxlength="7"/>
 																												</div>
 																												
 										                                                                    </div>
@@ -162,7 +162,7 @@
 										                                                                    		<label>Documento de Identidad(*): </label>
 										                                                                    	</div>
 																												<div class="col-sm-12">
-																													<input type="text" class="form-control" placeholder="" id="identificacion_tab2" maxlength="9" required/>
+																													<input type="text" class="form-control" placeholder="" id="identificacion_tab2" maxlength="9" tabindex="2" required/>
 																												</div>
 																												
 																												<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -171,7 +171,7 @@
 										                                                                    		<label>Nombre Comercial o Fantasía(*): </label>
 										                                                                    	</div>
 																												<div class="col-sm-12">
-																													<input type="text" class="form-control" placeholder="" id="nombre_comercial_tab2" required/>
+																													<input type="text" class="form-control" placeholder="" id="nombre_comercial_tab2" required tabindex="4"/>
 																												</div>
 																												
 																												<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -180,7 +180,7 @@
 										                                                                    		<label>Teléfono Local(*): </label>
 										                                                                    	</div>
 																												<div class="col-sm-12">
-																													<input type="text" class="form-control" placeholder="" id="telefono_local_tab2" required/>
+																													<input type="text" class="form-control" placeholder="" id="telefono_local_tab2" required tabindex="6" maxlength="7"/>
 																												</div>
 																												
 																												<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -189,7 +189,7 @@
 										                                                                    		<label>Banco(*): </label>
 										                                                                    	</div>
 										                                                                    	<div class="col-sm-12">
-																													<select name="select" id="banco_tab2" class="form-control">
+																													<select name="select" id="banco_tab2" class="form-control" tabindex="8">
 																													
 								                                                                        			</select>
 																												</div>
@@ -200,7 +200,7 @@
 										                                                                    		<label>Inicio Hora de Trabajo(*): </label>
 										                                                                    	</div>
 																												<div class="col-sm-12">
-																													<select name="select" id="horario_inicio_tab2" class="form-control">
+																													<select name="select" id="horario_inicio_tab2" class="form-control" tabindex="10">
 																														<option value="12:30 am">12:30 am</option>
 																														<option value="01:00 am">01:00 am</option>
 																														<option value="01:30 am">01:30 am</option>
@@ -259,7 +259,7 @@
 										                                                                    		<label>Hora Finalización de Trabajo(*): </label>
 										                                                                    	</div>
 																												<div class="col-sm-12">
-																													<select name="select" id="horario_fin_tab2" class="form-control">
+																													<select name="select" id="horario_fin_tab2" class="form-control" tabindex="12">
 																														<option value="12:30 am">12:30 am</option>
 																														<option value="01:00 am">01:00 am</option>
 																														<option value="01:30 am">01:30 am</option>
@@ -394,7 +394,7 @@
 									                                                                    		<label>Cantidad de terminales Requeridos(*): </label>
 									                                                                    	</div>
 									                                                                    	<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="cantidad_terminales_tab3" required/>
+																												<input type="text" class="form-control" placeholder="" id="cantidad_terminales_tab3" required tabindex="1"/>
 																											</div>
 																											
 									                                                                    </div>
@@ -415,7 +415,7 @@
 									                                                                    		<label>Claro: </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="cantidad_claro_tab3"/>
+																												<input type="text" class="form-control" placeholder="" id="cantidad_claro_tab3" tabindex="2"/>
 																											</div>
 																											
 									                                                                    </div>
@@ -456,7 +456,7 @@
 								                                                                    		<label>Tipo de Identificación(*): </label>
 								                                                                    	</div>
 																										<div class="col-sm-12">
-																											<select name="select" id="tipo_identificacion_tab4" class="form-control">
+																											<select name="select" id="tipo_identificacion_tab4" class="form-control" tabindex="1">
 																												<option value="Cedula">Cedula </option>
 								                                                                                <option value="DIMEX">DIMEX</option>
 								                                                                                <option value="Cedula Jurídica">Cedula Jurídica</option>
@@ -469,7 +469,7 @@
 								                                                                    		<label>Primer Nombre(*): </label>
 								                                                                    	</div>
 																										<div class="col-sm-12">
-																											<input type="text" class="form-control" placeholder="" id="primer_nombre_tab4" required/>
+																											<input type="text" class="form-control" placeholder="" id="primer_nombre_tab4" required tabindex="3"/>
 																										</div>
 																										
 																										<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -478,7 +478,7 @@
 								                                                                    		<label>Primer Apellido(*): </label>
 								                                                                    	</div>
 																										<div class="col-sm-12">
-																											<input type="text" class="form-control" placeholder="" id="primer_apellido_tab4" required/>
+																											<input type="text" class="form-control" placeholder="" id="primer_apellido_tab4" required tabindex="5"/>
 																										</div>
 																										
 																										<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -487,7 +487,7 @@
 								                                                                    		<label>Teléfono Local: </label>
 								                                                                    	</div>
 																										<div class="col-sm-12">
-																											<input type="text" class="form-control" placeholder="" id="telefono_local_tab4"/>
+																											<input type="text" class="form-control" placeholder="" id="telefono_local_tab4" tabindex="7" maxlength="7"/>
 																										</div>
 																										
 																										<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -495,7 +495,7 @@
 								                                                                    		<label>Correo Electronico: </label>
 								                                                                    	</div>
 																										<div class="col-sm-12">
-																											<input type="text" class="form-control" placeholder="" id="correo_tab4"/>
+																											<input type="text" class="form-control" placeholder="" id="correo_tab4" tabindex="9"/>
 																										</div>
 																												
 										                                                        	</div>
@@ -506,7 +506,7 @@
 										                                                                    		<label>Documento de identidad(*): </label>
 										                                                                    	</div>
 																												<div class="col-sm-12">
-																													<input type="text" class="form-control" placeholder="" id="identificacion_tab4" maxlength="9" required/>
+																													<input type="text" class="form-control" placeholder="" id="identificacion_tab4" maxlength="9" required tabindex="2"/>
 																												</div>
 																												
 																												<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -515,7 +515,7 @@
 										                                                                    		<label>Segundo Nombre: </label>
 										                                                                    	</div>
 																												<div class="col-sm-12">
-																													<input type="text" class="form-control" placeholder="" id="segundo_nombre_tab4"/>
+																													<input type="text" class="form-control" placeholder="" id="segundo_nombre_tab4" tabindex="4"/>
 																												</div>
 																												
 																												<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -524,7 +524,7 @@
 										                                                                    		<label>Segundo Apellido: </label>
 										                                                                    	</div>
 																												<div class="col-sm-12">
-																													<input type="text" class="form-control" placeholder="" id="segundo_apellido_tab4"/>
+																													<input type="text" class="form-control" placeholder="" id="segundo_apellido_tab4" tabindex="6"/>
 																												</div>
 																												
 																												<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -533,7 +533,7 @@
 										                                                                    		<label>Teléfono Celular(*): </label>
 										                                                                    	</div>
 																												<div class="col-sm-12">
-																													<input type="text" class="form-control" placeholder="" id="telefono_celular_tab4" required/>
+																													<input type="text" class="form-control" placeholder="" id="telefono_celular_tab4" required tabindex="8" maxlength="10"/>
 																												</div>
 																												
 										                                                                    </div>
@@ -570,7 +570,7 @@
 									                                                                    		<label>Provincia(*): </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<select name="select" id="estado_tab5" class="form-control">
+																												<select name="select" id="estado_tab5" class="form-control" tabindex="1">
 																													
 							                                                                        			</select>
 																											</div>
@@ -581,7 +581,7 @@
 									                                                                    		<label>Distrito(*): </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<select name="select" id="ciudad_tab5" class="form-control">
+																												<select name="select" id="ciudad_tab5" class="form-control" tabindex="3">
 							
 							                                                                        			</select>
 																											</div>
@@ -592,7 +592,7 @@
 									                                                                    		<label>Avenida / Calle: </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="avenida_calle_tab5"/>
+																												<input type="text" class="form-control" placeholder="" id="avenida_calle_tab5" tabindex="5"/>
 																											</div>
 																											
 																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -600,7 +600,7 @@
 									                                                                    		<label>Localidad(*): </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="localidad_tab5"/>
+																												<input type="text" class="form-control" placeholder="" id="localidad_tab5" tabindex="7"/>
 																											</div>
 																											
 																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -608,7 +608,7 @@
 									                                                                    		<label>Punto de Referencia(*): </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="punto_referencia_tab5"  maxlength="500"/>
+																												<input type="text" class="form-control" placeholder="" id="punto_referencia_tab5"  maxlength="500" tabindex="9"/>
 																											</div>
 																											
 									                                                                    </div>
@@ -623,7 +623,7 @@
 									                                                                    		<label>Canton(*): </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<select name="select" id="municipio_tab5" class="form-control">
+																												<select name="select" id="municipio_tab5" class="form-control" tabindex="2">
 							
 							                                                                        			</select>
 																											</div>
@@ -634,7 +634,7 @@
 									                                                                    		<label>Sector / Urbanización(*): </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="sector_urbanizacion_tab5"/>
+																												<input type="text" class="form-control" placeholder="" id="sector_urbanizacion_tab5" tabindex="4"/>
 																											</div>
 																											
 																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -643,7 +643,7 @@
 									                                                                    		<label>Código Postal(*): </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="codigo_postal_tab5"/>
+																												<input type="text" class="form-control" placeholder="" id="codigo_postal_tab5" tabindex="6"/>
 																											</div>
 																											
 																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -652,7 +652,7 @@
 									                                                                    		<label>Nombre del inmueble: </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="nombre_inmueble_tab5"/>
+																												<input type="text" class="form-control" placeholder="" id="nombre_inmueble_tab5" tabindex="8"/>
 																											</div>
 																											
 																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -661,7 +661,7 @@
 									                                                                    		<label>Geo Localización: </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="geo_localizacion_tab5"/>
+																												<input type="text" class="form-control" placeholder="" id="geo_localizacion_tab5" tabindex="10"/>
 																											</div>
 																											
 									                                                                    </div>
@@ -700,7 +700,7 @@
 									                                                                    		<label>Cargo(*): </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="cargo_tab6"/>
+																												<input type="text" class="form-control" placeholder="" id="cargo_tab6" tabindex="1"/>
 																											</div>
 																											
 																											
@@ -719,7 +719,7 @@
 									                                                                    		<label>Tipo Identificación(*): </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<select name="select" id="tipo_identificacion_tab6" class="form-control">
+																												<select name="select" id="tipo_identificacion_tab6" class="form-control" tabindex="2">
 																													<option value="Cedula">Cedula</option>
 									                                                                                <option value="DIMEX">DIMEX</option>
 									                                                                                <option value="Cedula Jurídica">Cedula Jurídica</option>
@@ -732,7 +732,7 @@
 									                                                                    		<label>Primer Nombre(*): </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="primer_nombre_tab6"/>
+																												<input type="text" class="form-control" placeholder="" id="primer_nombre_tab6" tabindex="4"/>
 																											</div>
 																											
 																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -741,7 +741,7 @@
 									                                                                    		<label>Primer Apellido(*): </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="primer_apellido_tab6"/>
+																												<input type="text" class="form-control" placeholder="" id="primer_apellido_tab6" tabindex="6"/>
 																											</div>
 																											
 																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -750,7 +750,7 @@
 									                                                                    		<label>Teléfono(*): </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="telefono_tab6"/>
+																												<input type="text" class="form-control" placeholder="" id="telefono_tab6" tabindex="8" maxlength="7"/>
 																											</div>
 																											
 									                                                                    </div>
@@ -765,7 +765,7 @@
 									                                                                    		<label>Identificación(*): </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="identificacion_tab6" maxlength="9"/>
+																												<input type="text" class="form-control" placeholder="" id="identificacion_tab6" maxlength="9" tabindex="3"/>
 																											</div>
 																											
 																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -774,7 +774,7 @@
 									                                                                    		<label>Segundo Nombre: </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="segundo_nombre_tab6"/>
+																												<input type="text" class="form-control" placeholder="" id="segundo_nombre_tab6" tabindex="5"/>
 																											</div>
 																											
 																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -783,7 +783,7 @@
 									                                                                    		<label>Segundo Apellido: </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="segundo_apellido_tab6"/>
+																												<input type="text" class="form-control" placeholder="" id="segundo_apellido_tab6" tabindex="7"/>
 																											</div>
 																											
 																											<i class="feather text-primary f-60 p-t-1 p-b-10 d-block"></i>
@@ -792,7 +792,7 @@
 									                                                                    		<label>Correo Electronico(*): </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="correo_electronico_tab6"/>
+																												<input type="text" class="form-control" placeholder="" id="correo_electronico_tab6" tabindex="9"/>
 																											</div>
 																											
 									                                                                    </div>
@@ -827,7 +827,7 @@
 									                                                                    		<label>Nombre del Banco: </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<select name="select" id="nombre_banco_tab7" class="form-control">
+																												<select name="select" id="nombre_banco_tab7" class="form-control" tabindex="1">
 																												
 							                                                                        			</select>
 																											</div>
@@ -838,7 +838,7 @@
 									                                                                    		<label>Cantidad de POS: </label>
 									                                                                    	</div>
 																											<div class="col-sm-12">
-																												<input type="text" class="form-control" placeholder="" id="cantidad_tab7"/>
+																												<input type="text" class="form-control" placeholder="" id="cantidad_tab7" tabindex="3"/>
 																											</div>
 																											
 								                                                                    	</div>
@@ -853,7 +853,7 @@
 								                                                                    			<label>Tipo de POS: </label>
 								                                                                    		</div>
 								                                                                    		<div class="col-sm-12">
-																												<select name="select" id="tipo_POS_tab7" class="form-control">
+																												<select name="select" id="tipo_POS_tab7" class="form-control" tabindex="2">
 																													<option value="Tipo de POS">Tipo de POS</option>
 							                                                                        			</select>
 																											</div>
@@ -987,7 +987,7 @@
 						                                                                        		<button type="button" id="view_CedulaRepresentante" class="btn btn-primary btn-md waves-effect text-center mb-20"  data-toggle="modal" data-target="#exampleModalLong" disabled>
 							                                                                            	Visualizar
 							                                                                        	</button>
-							                                                                        	<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="Cedula_Representante_confirm">Visualización Existente</button>
+							                                                                        	<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="Cedula_Representante_confirm" data-toggle="modal" data-target="#exampleModalLong">Visualización Existente</button>
 							                                                                        	<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="modificar_Representante_legal">Modificar Representante Legal</button>
 						                                                                        	</div>
 						                                                                        </div>
@@ -1008,7 +1008,7 @@
 						                                                                        		<button type="button" id="view_CedulaContacto" class="btn btn-primary btn-md waves-effect text-center mb-20" data-toggle="modal" data-target="#exampleModalLong"  disabled>
 							                                                                            	Visualizar
 							                                                                        	</button>
-							                                                                        	<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="Cedula_Contacto_confirm">Visualización Existente</button>
+							                                                                        	<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="Cedula_Contacto_confirm" data-toggle="modal" data-target="#exampleModalLong">Visualización Existente</button>
 							                                                                        	<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="modificar_Cedula_contacto">Modificar Cedula del Contacto</button>
 						                                                                        	</div>
 						                                                                        </div>
@@ -1029,7 +1029,7 @@
 						                                                                        		<button type="button" id="view_Negocio" class="btn btn-primary btn-md waves-effect text-center mb-20" data-toggle="modal" data-target="#exampleModalLong"  disabled>
 							                                                                            	Visualizar
 							                                                                        	</button>
-							                                                                        	<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="Fachada_confirm">Visualización Existente</button>
+							                                                                        	<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="Fachada_confirm" data-toggle="modal" data-target="#exampleModalLong">Visualización Existente</button>
 							                                                                        	<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="modificar_Fachada_negocio">Modificar Fachada del Negocio</button>
 						                                                                        	</div>
 						                                                                        </div>
@@ -1057,7 +1057,8 @@
 														          </form>                
 														        </div>
 															        
-														       	<!--//////////////////////////////////////////////-->  
+														       	
+														      	<!--//////////////////////////////////////////////--> 
 																<!-- Modal visualizacion del files -->
 																<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 																  <div class="modal-dialog modal-lg" role="document">
@@ -1069,21 +1070,13 @@
 																        </button>
 																      </div>
 																      <div class="modal-body">
-																       <embed id="viweFiles" src="" type="application/pdf" width="100%" height="600px" />
+																       <embed id="viweFiless" src="" type="application/pdf" width="100%" height="600px" />
 																      </div>
 																      <div class="modal-footer">
 																        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 																      </div>
 																    </div>
 																  </div>
-																</div>
-																
-																<div class="wrapper text-center">
-																    <div class="popup">
-																        <embed type="application/pdf" width="800" height="600" id="embed" src=""></embed>
-																        
-																    </div>
-																    <button id="close" class="btn btn-primary btn-md waves-effect text-center mb-20">Cerrar Pop Up</button>
 																</div>
 														      	<!--//////////////////////////////////////////////--> 
 														    </div>

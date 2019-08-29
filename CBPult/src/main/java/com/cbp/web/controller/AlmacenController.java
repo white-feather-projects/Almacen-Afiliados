@@ -301,7 +301,7 @@ public class AlmacenController {
 	
 	// consulta lista de almacenes relacionados por medio de almacen id.....
 	
-	@RequestMapping(value = "/listaAlmacenesRelacionados/{AlmacenId}", produces = { "application/json" }) 
+	@RequestMapping(value = "/listaAlmacenesRelacionados/{AlmacenId}", produces = { "application/json" })
 	public @ResponseBody java.util.List<RelacionAlmacenes> listaAlmacenesRelacionados(@PathVariable(value = "AlmacenId") long arg0) {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		java.util.List<RelacionAlmacenes> respuesta = new ArrayList<>();
@@ -314,7 +314,7 @@ public class AlmacenController {
 	
 	// consulta lista de ZOnas por Almcen Id.....
 	
-	@RequestMapping(value = "/listaZonasByIdAlmacen/{AlmacenId}", produces = { "application/json" }) 
+	@RequestMapping(value = "/listaZonasByIdAlmacen/{AlmacenId}", produces = { "application/json" })
 	public @ResponseBody java.util.List<Zona> listaZonasByIdAlmacen(@PathVariable(value = "AlmacenId") long idAlmacen) {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		java.util.List<Zona> respuesta = new ArrayList<>();
@@ -332,6 +332,19 @@ public class AlmacenController {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
 		java.util.List<Estanteria> respuesta = new ArrayList<>();
 		respuesta = almacenMethods.listaEstanteriasByIdZona(idZona);
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// consulta lista Relacion Zonas por ZOna id Actual.....
+	
+	@RequestMapping(value = "/listaZonasRelacionadasPorZonaIdActual/{zonaActualId}", produces = { "application/json" }) 
+	public @ResponseBody java.util.List<RelacionZonas> listaZonasRelacionadasPorZonaIdActual(@PathVariable(value = "zonaActualId") long zonaActualId) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<RelacionZonas> respuesta = new ArrayList<>();
+		respuesta = almacenMethods.listaZonasRelacionadasPorZonaIdActual(zonaActualId);
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
 	}
@@ -480,8 +493,8 @@ public class AlmacenController {
 	//-////////////// Menu Movimiento de Mercancia ///////////////
 		
 		//+////////////// Inventario Almacen ///////////////
-		@RequestMapping(value = "/inventario_almacen", method = RequestMethod.GET)
-		public String inventario_almacen(Model model) {
+		@RequestMapping(value = "/inventario_almacen&{idAlmacen}", method = RequestMethod.GET)
+		public String inventario_almacen(@PathVariable (value = "idAlmacen" ) String idAlmacen, Model model) {
 			model.addAttribute("name", name);
 			model.addAttribute("link", link);
 			
@@ -500,8 +513,8 @@ public class AlmacenController {
 		//-////////////// Inventario General ///////////////
 		
 		//+////////////// Inventario Zona ///////////////
-		@RequestMapping(value = "/inventario_zona", method = RequestMethod.GET)
-		public String inventario_zona(Model model) {
+		@RequestMapping(value = "/inventario_zona&{idZona}", method = RequestMethod.GET)
+		public String inventario_zona(@PathVariable (value = "idZona") String idZona, Model model) {
 			model.addAttribute("name", name);
 			model.addAttribute("link", link);
 			

@@ -8,13 +8,27 @@ window.addEventListener('load', function(){
 	console.log("id--------", id);
 	
 //////////////////Consulta Recaudos Subidos ///////////////////
-		
-		$('#Cedula_Representante_confirm').on('click', function(){
+	
+	$.ajax({
+        type: "GET",
+        url: '/CBPult/Afiliacion/consultaComercio/'+id+'',
+        dataType: "json",
+        success: processSuccess,
+        error: processError
+ 	});
+	
+	function processSuccess(data, status, req) {
+        //alert(req.responseText + " " + status);
+   		console.log("consulta comercio-----", data);
+   		
+   		var aid = data.return.comercioId;
+   		
+   		$('#Cedula_Representante_confirm').on('click', function(){
 			
 			//document.getElementById("viweFiless").src = 'https://ruc.udc.es/dspace/bitstream/handle/2183/13995/2006_BICE%20n%C2%BA%202884_Importancia%20de%20algunas%20caracter%C3%ADsticas%20relevantes%20de%20los%20sucesores%20en%20las%20EFG.pdf?sequence=2&isAllowed=y';
 			
 			var lista_recaudos = {
-			"comercioId": id
+			"comercioId": aid
 		}
 	
     	$.ajax({
@@ -34,17 +48,35 @@ window.addEventListener('load', function(){
        			console.log(data);
        			var uno = data[0].recaudoNombre;
 		    	   
-		       	console.log('boton1');
+		       	console.log('boton1', uno);
 		       	
-		    		document.getElementById("viweFiless").src = '/home/ubuntu/documentosAdquiriencia/'+uno+'';
+		       	//alert($("#view_fileFinantial_save").val());
+		    	 var url='/CBPult/Afiliacion/viewFile/'+uno+'';
+		    	 console.log(url.substr(0, url.length-3));
+		    	 var urlformat = url.substr(-3);
+		    	 console.log("type---", urlformat);
+		    	 if(url.substr(-3) === "png"){
+		    		 console.log("Estoy en PNG");
+		    		 $('#viweFiless').prop("type", "image/png");
+		    		 console.log($('#viweFiless'));
+		    		 $('#viweFiless').attr('src', url);
+		    	 }else if(url.substr(-3) === "jpg"){
+		    		 console.log("Estoy en JPEG");
+		    		 $('#viweFiless').prop("type", "image/jpeg");
+		    		 console.log($('#viweFiless'));
+		    		 $('#viweFiless').attr('src', url);
+		    	 }else if(url.substr(-3) === "pdf"){
+		    		 console.log("Estoy en PDF");
+		    		 $('#viweFiless').prop("type", "application/pdf");
+		    		 console.log($('#viweFiless'));
+		    		 $('#viweFiless').attr('src', url);
+		    	 }
 			}
 			
 			function processError(data, status, req) {
-            //alert(req.responseText + " " + status);
-           	swal("Error al contacter el servicio", data);
-           	valid = false;
-           	return valid;
-   		}
+	            //alert(req.responseText + " " + status);
+	           	swal("Error al contacter el servicio", data);
+			}
 	
 		});
 		
@@ -53,7 +85,7 @@ window.addEventListener('load', function(){
 		$('#Cedula_Contacto_confirm').on('click', function(){
 			
 		var lista_recaudos = {
-			"comercioId": id
+			"comercioId": aid
 		}
 	
     	$.ajax({
@@ -73,16 +105,34 @@ window.addEventListener('load', function(){
        			console.log(data);
        			var uno = data[1].recaudoNombre;
 		    	   
-		       	console.log('boton1');
+		       	console.log('boton2', uno);
 		       	
-		       	document.getElementById("viweFiles").src = '/home/ubuntu/documentosAdquiriencia/'+uno+'';
+		      //alert($("#view_fileFinantial_save").val());
+		    	 var url='/CBPult/Afiliacion/viewFile/'+uno+'';
+		    	 console.log(url.substr(0, url.length-3));
+		    	 var urlformat = url.substr(-3);
+		    	 console.log("type---", urlformat);
+		    	 if(url.substr(-3) === "png"){
+		    		 console.log("Estoy en PNG");
+		    		 $('#viweFiless').prop("type", "image/png");
+		    		 console.log($('#viweFiless'));
+		    		 $('#viweFiless').attr('src', url);
+		    	 }else if(url.substr(-3) === "jpg"){
+		    		 console.log("Estoy en JPEG");
+		    		 $('#viweFiless').prop("type", "image/jpeg");
+		    		 console.log($('#viweFiless'));
+		    		 $('#viweFiless').attr('src', url);
+		    	 }else if(url.substr(-3) === "pdf"){
+		    		 console.log("Estoy en PDF");
+		    		 $('#viweFiless').prop("type", "application/pdf");
+		    		 console.log($('#viweFiless'));
+		    		 $('#viweFiless').attr('src', url);
+		    	 }
 			}
 			
 			function processError(data, status, req) {
             //alert(req.responseText + " " + status);
            	swal("Error al contacter el servicio", data);
-           	valid = false;
-           	return valid;
    		}
 	
 		});
@@ -92,7 +142,7 @@ window.addEventListener('load', function(){
 		$('#Fachada_confirm').on('click', function(){
 			
 			var lista_recaudos = {
-			"comercioId": id
+			"comercioId": aid
 		}
 	
     	$.ajax({
@@ -110,21 +160,48 @@ window.addEventListener('load', function(){
        		console.log("consulta fachada-----", data);
        		
        			console.log(data);
-       			var uno = data[1].recaudoNombre;
+       			var uno = data[2].recaudoNombre;
 		    	   
-		       	console.log('boton1');
+		       	console.log('boton3', uno);
 		    	
-		       	document.getElementById("viweFiles").src = '/home/ubuntu/documentosAdquiriencia/'+uno+'';
+		      //alert($("#view_fileFinantial_save").val());
+		    	 var url='/CBPult/Afiliacion/viewFile/'+uno+'';
+		    	 console.log(url.substr(0, url.length-3));
+		    	 var urlformat = url.substr(-3);
+		    	 console.log("type---", urlformat);
+		    	 if(url.substr(-3) === "png"){
+		    		 console.log("Estoy en PNG");
+		    		 $('#viweFiless').prop("type", "image/png");
+		    		 console.log($('#viweFiless'));
+		    		 $('#viweFiless').attr('src', url);
+		    	 }else if(url.substr(-3) === "jpg"){
+		    		 console.log("Estoy en JPEG");
+		    		 $('#viweFiless').prop("type", "image/jpeg");
+		    		 console.log($('#viweFiless'));
+		    		 $('#viweFiless').attr('src', url);
+		    	 }else if(url.substr(-3) === "pdf"){
+		    		 console.log("Estoy en PDF");
+		    		 $('#viweFiless').prop("type", "application/pdf");
+		    		 console.log($('#viweFiless'));
+		    		 $('#viweFiless').attr('src', url);
+		    	 }
 			}
 			
 			function processError(data, status, req) {
 	            //alert(req.responseText + " " + status);
 	           	swal("Error al contacter el servicio", data);
-	           	valid = false;
-	           	return valid;
 			}
 	
 		});
+	}
+		
+	function processError(data, status, req) {
+	    //alert(req.responseText + " " + status);
+	   	swal("Error al contacter el servicio", data);
+	   	
+	}
+		
+		
 		
 		
 		/////Botones///////
@@ -194,6 +271,17 @@ window.addEventListener('load', function(){
 		       		function processError(data, status, req) {
 			            //alert(req.responseText + " " + status);
 			           	console.log("Error al contacter el servicio", data);
+			           	
+			           	swal({
+     	        		     title: "EXITO!",
+     	        		     text: "Correo Enviado...",
+     	        		     type: "success",
+     	        		     timer: 3000
+     	        		     },
+     	        		     function () {
+     	        		            location.href = "/CBPult/Afiliacion/bandeja_analista_comercial"
+     	        		     });
+			           	
 					}
 		       		
 	       		}
@@ -334,6 +422,16 @@ window.addEventListener('load', function(){
 					       		function processError(data, status, req) {
 						            //alert(req.responseText + " " + status);
 						           	console.log("Error al contacter el servicio", data);
+						           	
+						           	swal({
+			      	        		     title: "EXITO!",
+			      	        		     text: "Correo Enviado...",
+			      	        		     type: "success",
+			      	        		     timer: 3000
+			      	        		     },
+			      	        		     function () {
+			      	        		            location.href = "/CBPult/Afiliacion/bandeja_analista_comercial"
+			      	        		     });
 								}
 					       		
 				       		}

@@ -59,37 +59,39 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		
 		$("#identificacion_tab2").on('blur', function(){
 			
+			if($("#identificacion_tab2").val().length == 0){
+				swal("Campo Obligatorio");
+			}else if($("#identificacion_tab2").val().length >= 1){
 				$.ajax({
-	               type: "GET",
-	               url: '/CBPult/Afiliacion/consultaComercio/'+$("#identificacion_tab2").val()+'',
-	               dataType: "json",
-	               success: processSuccess,
-	               error: processError
-				});
-				
-				function processSuccess(data, status, req) {
-		            //alert(req.responseText + " " + status);
-		       		console.log(data);
-		       		
-		           	if(typeof(data.return.identificacionComercio) == "object"){
-		           		contConsulta = 1;
-		           		
-		           	}else if(data.return.identificacionComercio === $("#identificacion_tab2").val()){
-		           		document.getElementById("identificacion_tab2").style.border = "1px solid red";
-		           		$("#identificacion_tab2").val("");
-		           		swal("Cliente ya Existe");
-		           		
-		           	}
-		       		
-				} 
-		       	
-		       	function processError(data, status, req) {
-		            //alert(req.responseText + " " + status);
-		           	swal("Error al contactar el servicio", data);
-		           	valid = false;
-		           	return valid;
-		       	} 
-			
+		               type: "GET",
+		               url: '/CBPult/Afiliacion/consultaComercio/'+$("#identificacion_tab2").val()+'',
+		               dataType: "json",
+		               success: processSuccess,
+		               error: processError
+					});
+					
+					function processSuccess(data, status, req) {
+			            //alert(req.responseText + " " + status);
+			       		console.log(data);
+			       		
+			           	if(typeof(data.return.identificacionComercio) == "object"){
+			           		contConsulta = 1;
+			           		
+			           	}else if(data.return.identificacionComercio === $("#identificacion_tab2").val()){
+			           		document.getElementById("identificacion_tab2").style.border = "1px solid red";
+			           		$("#identificacion_tab2").val("");
+			           		swal("Cliente ya Existe");
+			           		
+			           	}
+			       		
+					} 
+			       	
+			       	function processError(data, status, req) {
+			            //alert(req.responseText + " " + status);
+			           	swal("Error al contactar el servicio", data);
+			       	} 
+			}
+
 		});
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////////
@@ -112,10 +114,11 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		 		         }else{
 		 		        	contComercio = contComercio;
 		 		        	document.getElementById("nombre_empresa_tab2").style.border = "1px solid red";
+		 		        	
 		 		         }
 		 		         
 		 		         var numero_iban_tab2 = $("#numero_iban_tab2").val();
-		 		         if(numero_iban_tab2.length >= 1){
+		 		         if(numero_iban_tab2.length >= 3){
 		 		        	contComercio = contComercio + 1;
 		 		         }else{
 		 		        	contComercio = contComercio;
@@ -146,7 +149,12 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 				        	document.getElementById("telefono_local_tab2").style.border = "1px solid red";
 				         }
 		 		         
+		 		         console.log("ContComercio", contComercio);
+		 		         
 		 		         if(contComercio == 5){
+		 		        	 contComercio = 0;
+		 		        	 
+		 		        	 console.log("contConsulta---", contConsulta);
 		 		        	 
 		 		        	 if(contConsulta == 1){
 		 		        		console.log(cont1);
@@ -265,13 +273,16 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		 		        	 }else if(contConsulta == 0){
 		 		        		 swal("Cedula Existente");
 		 		        		 valid = false;
-		 		        		 return valid;
+		 		        		 return false;
 		 		        	 }
 		 		        	 
 				 		       	
 		 		         }else if(contComercio < 5){
+		 		        	 
+		 		        	 contComercio = 0;
+		 		        	 
 		 		        	 valid = false;
-		 		        	 return valid;
+		 		        	 return false;
 		 		         }
 		 		         
 		 	       }
@@ -2128,7 +2139,7 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		    
 		    
 		    
-		    /////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////
 		  /////////////////////////validacion de pasos/////////////////////////////////
 		    /* file*/
 		    
@@ -2139,22 +2150,35 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		  			if($(this).val().indexOf("pdf") > -1==true){			
 		  				if($('#fileCedulaRepresentanteInformationName')[0].files[0].size <=5000000){//validacion del tamaño
 		  			      $("#view_CedulaRepresentante").prop('disabled', false);
+		  			      $("#modificar_Representante_legal").prop('disabled', false);
 		  				}else{
 		  					swal('El Archivo Seleccionado supera el tamaño permitido!!');
 		  					$("#view_CedulaRepresentante").prop('disabled', true);
 		  					$("#fileCedulaRepresentanteInformationName").val('');
 		  				}
 		  		
-		  			}else if($(this).val().indexOf("jpeg") > -1==true){
+		  			}else if($(this).val().indexOf("jpg") > -1==true){
 		  				if($('#fileCedulaRepresentanteInformationName')[0].files[0].size <=5000000){//validacion del tamaño
 		    			      $("#view_CedulaRepresentante").prop('disabled', false);
+		    			      $("#modificar_Representante_legal").prop('disabled', false);
 		    				}else{
 		    					swal('El Archivo Seleccionado supera el tamaño permitido!!');
 		    					$("#view_CedulaRepresentante").prop('disabled', true);
 		    					$("#fileCedulaRepresentanteInformationName").val('');
 		    				}
 		  				
-		  			}else{
+		  			}else if($(this).val().indexOf("png") > -1==true){
+		  				if($('#fileCedulaRepresentanteInformationName')[0].files[0].size <=5000000){//validacion del tamaño
+		    			      $("#view_CedulaRepresentante").prop('disabled', false);
+		    			      $("#modificar_Representante_legal").prop('disabled', false);
+		    				}else{
+		    					swal('El Archivo Seleccionado supera el tamaño permitido!!');
+		    					$("#view_CedulaRepresentante").prop('disabled', true);
+		    					$("#fileCedulaRepresentanteInformationName").val('');
+		    				}
+		  				
+		  			}
+		  			else{
 		  				swal('El Archivo Seleccionado no tiene formato PDF o JPEG!!');
 		  				$("#view_CedulaRepresentante").prop('disabled', true);
 		  				$("#fileCedulaRepresentanteInformationName").val('');
@@ -2167,7 +2191,22 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		  	});
 		    
 		    $("#view_CedulaRepresentante").click(function() {
-		  	  getBase64($("#fileCedulaRepresentanteInformationName")[0].files[0], 'viweFiles');
+		  	  //getBase64($("#fileCedulaRepresentanteInformationName")[0].files[0], 'viweFiless');
+		  	  
+			  	var typeDocument= $("#fileCedulaRepresentanteInformationName")[0].files[0].type;
+			     console.log("tipo de documento",typeDocument);
+			     
+			     if(typeDocument == "application/pdf"){
+			     	$('#viweFiless').prop("type", "application/pdf");
+			     	getBase64($("#fileCedulaRepresentanteInformationName")[0].files[0], 'viweFiless');
+			     }else if(typeDocument == "image/jpeg"){
+			     	
+			     	$('#viweFiless').prop("type", "image/jpeg");
+			     	getBase64($("#fileCedulaRepresentanteInformationName")[0].files[0], 'viweFiless');
+			     }else{
+			    	$('#viweFiless').prop("type", "image/png");
+			     	getBase64($("#fileCedulaRepresentanteInformationName")[0].files[0], 'viweFiless');
+			     }
 		    });
 		    
 		    /////////////////////////////////////////////////////////////////////////
@@ -2180,15 +2219,27 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		  			if($(this).val().indexOf("pdf") > -1==true){
 		  				if($('#fileCedulaContactoInformationName')[0].files[0].size <=5000000){//validacion del tamaño
 		  				      $("#view_CedulaContacto").prop('disabled', false);
+		  				      $("#modificar_Cedula_contacto").prop('disabled', false);
 		  					}else{
 		  						swal('El Archivo Seleccionado supera el tamaño permitido!!');
 		  						$("#view_CedulaContacto").prop('disabled', true);
 		  						$("#fileCedulaContactoInformationName").val('');
 		  					}
 		  		
-		  			}else if($(this).val().indexOf("jpeg") > -1==true){
+		  			}else if($(this).val().indexOf("jpg") > -1==true){
 		  				if($('#fileCedulaContactoInformationName')[0].files[0].size <=5000000){//validacion del tamaño
 						      $("#view_CedulaContacto").prop('disabled', false);
+						      $("#modificar_Cedula_contacto").prop('disabled', false);
+							}else{
+								swal('El Archivo Seleccionado supera el tamaño permitido!!');
+								$("#view_CedulaContacto").prop('disabled', true);
+								$("#fileCedulaContactoInformationName").val('');
+							}
+		  				
+		  			}else if($(this).val().indexOf("png") > -1==true){
+		  				if($('#fileCedulaContactoInformationName')[0].files[0].size <=5000000){//validacion del tamaño
+						      $("#view_CedulaContacto").prop('disabled', false);
+						      $("#modificar_Cedula_contacto").prop('disabled', false);
 							}else{
 								swal('El Archivo Seleccionado supera el tamaño permitido!!');
 								$("#view_CedulaContacto").prop('disabled', true);
@@ -2208,7 +2259,21 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		  	});
 		    
 		    $("#view_CedulaContacto").click(function() {
-		  	  getBase64($("#fileCedulaContactoInformationName")[0].files[0], 'viweFiles');
+		  	  //getBase64($("#fileCedulaContactoInformationName")[0].files[0], 'viweFiless');
+		    	var typeDocument= $("#fileCedulaContactoInformationName")[0].files[0].type;
+			     console.log("tipo de documento",typeDocument);
+			     
+			     if(typeDocument == "application/pdf"){
+			     	$('#viweFiless').prop("type", "application/pdf");
+			     	getBase64($("#fileCedulaContactoInformationName")[0].files[0], 'viweFiless');
+			     }else if(typeDocument == "image/jpeg"){
+			     	
+			     	$('#viweFiless').prop("type", "image/jpeg");
+			     	getBase64($("#fileCedulaContactoInformationName")[0].files[0], 'viweFiless');
+			     }else{
+			    	$('#viweFiless').prop("type", "image/png");
+			     	getBase64($("#fileCedulaContactoInformationName")[0].files[0], 'viweFiless');
+			     }
 		    });
 		    
 		    /////////////////////////////////////////////////////////////////////////////////
@@ -2221,15 +2286,27 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		  			if($(this).val().indexOf("pdf") > -1==true){
 		  				if($('#fileNegocioInformationName')[0].files[0].size <=5000000){//validacion del tamaño
 		  				      $("#view_Negocio").prop('disabled', false);
+		  				      $("#modificar_Fachada_negocio").prop('disabled', false);
 		  					}else{
 		  						swal('El Archivo Seleccionado supera el tamaño permitido!!');
 		  						$("#view_Negocio").prop('disabled', true);
 		  						$("#fileNegocioInformationName").val('');
 		  					}
 		  		
-		  			}else if($(this).val().indexOf("jpeg") > -1==true){
+		  			}else if($(this).val().indexOf("jpg") > -1==true){
 		  				if($('#fileNegocioInformationName')[0].files[0].size <=5000000){//validacion del tamaño
 						      $("#view_Negocio").prop('disabled', false);
+						      $("#modificar_Fachada_negocio").prop('disabled', false);
+							}else{
+								swal('El Archivo Seleccionado supera el tamaño permitido!!');
+								$("#view_Negocio").prop('disabled', true);
+								$("#fileNogocioInformationName").val('');
+							}
+		  				
+		  			}else if($(this).val().indexOf("png") > -1==true){
+		  				if($('#fileNegocioInformationName')[0].files[0].size <=5000000){//validacion del tamaño
+						      $("#view_Negocio").prop('disabled', false);
+						      $("#modificar_Fachada_negocio").prop('disabled', false);
 							}else{
 								swal('El Archivo Seleccionado supera el tamaño permitido!!');
 								$("#view_Negocio").prop('disabled', true);
@@ -2249,7 +2326,21 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		  	});
 		    
 		    $("#view_Negocio").click(function() {
-		  	  getBase64($("#fileNegocioInformationName")[0].files[0], 'viweFiles');
+		  	  //getBase64($("#fileNegocioInformationName")[0].files[0], 'viweFiless');
+		    	var typeDocument= $("#fileNegocioInformationName")[0].files[0].type;
+			     console.log("tipo de documento",typeDocument);
+			     
+			     if(typeDocument == "application/pdf"){
+			     	$('#viweFiless').prop("type", "application/pdf");
+			     	getBase64($("#fileNegocioInformationName")[0].files[0], 'viweFiless');
+			     }else if(typeDocument == "image/jpeg"){
+			     	
+			     	$('#viweFiless').prop("type", "image/jpeg");
+			     	getBase64($("#fileNegocioInformationName")[0].files[0], 'viweFiless');
+			     }else{
+			    	$('#viweFiless').prop("type", "image/png");
+			     	getBase64($("#fileNegocioInformationName")[0].files[0], 'viweFiless');
+			     }
 		    });
 		    
 		    /////////////////////////////////////////////////////////////////////////////////
@@ -2345,36 +2436,41 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		
 		$("#identificacion_tab2").on('blur', function(){
 			
-				$.ajax({
-	               type: "GET",
-	               url: '/CBPult/Afiliacion/consultaComercio/'+$("#identificacion_tab2").val()+'',
-	               dataType: "json",
-	               success: processSuccess,
-	               error: processError
-				});
+			if($("#identificacion_tab2").val().length == 0){
+				swal("Campo Obligatorio");
+			}else if($("#identificacion_tab2").val().length >= 1){
 				
-				function processSuccess(data, status, req) {
-		            //alert(req.responseText + " " + status);
-		       		console.log(data);
-		       		
-		           	if(typeof(data.return.identificacionComercio) == "object"){
-		           		contConsulta = 1;
-		           		
-		           	}else if(data.return.identificacionComercio === $("#identificacion_tab2").val()){
-		           		document.getElementById("identificacion_tab2").style.border = "1px solid red";
-		           		$("#identificacion_tab2").val("");
-		           		swal("Cliente ya Existe");
-		           		contConsulta = 0;
-		           	}
-		       		
-				} 
-		       	
-		       	function processError(data, status, req) {
-		            //alert(req.responseText + " " + status);
-		           	swal("Error al contactar el servicio", data);
-		           	valid = false;
-		           	return valid;
-		       	} 
+				$.ajax({
+		               type: "GET",
+		               url: '/CBPult/Afiliacion/consultaComercio/'+$("#identificacion_tab2").val()+'',
+		               dataType: "json",
+		               success: processSuccess,
+		               error: processError
+					});
+					
+					function processSuccess(data, status, req) {
+			            //alert(req.responseText + " " + status);
+			       		console.log(data);
+			       		
+			           	if(typeof(data.return.identificacionComercio) == "object"){
+			           		contConsulta = 1;
+			           		
+			           	}else if(data.return.identificacionComercio === $("#identificacion_tab2").val()){
+			           		document.getElementById("identificacion_tab2").style.border = "1px solid red";
+			           		$("#identificacion_tab2").val("");
+			           		swal("Cliente ya Existe");
+			           		contConsulta = 0;
+			           	}
+			       		
+					} 
+			       	
+			       	function processError(data, status, req) {
+			            //alert(req.responseText + " " + status);
+			           	swal("Error al contactar el servicio", data);
+			           	valid = false;
+			           	return valid;
+			       	} 
+			}	
 			
 		});
 		
@@ -2401,7 +2497,7 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		 		         }
 		 		         
 		 		         var numero_iban_tab2 = $("#numero_iban_tab2").val();
-		 		         if(numero_iban_tab2.length >= 1){
+		 		         if(numero_iban_tab2.length >= 3){
 		 		        	contComercio = contComercio + 1;
 		 		         }else{
 		 		        	contComercio = contComercio;
@@ -2433,6 +2529,7 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 				         }
 		 		         
 		 		         if(contComercio == 5){
+		 		        	 contComercio = 0;
 		 		        	 
 		 		        	 if(contConsulta == 1){
 		 		        		console.log(cont1);
@@ -2556,6 +2653,9 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		 		        	 
 				 		       	
 		 		         }else if(contComercio < 5){
+		 		        	 
+		 		        	 contComercio = 0;
+		 		        	 
 		 		        	 valid = false;
 		 		        	 return valid;
 		 		         }
@@ -4442,7 +4542,7 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		    
 		    
 		    
-		    /////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////
 		  /////////////////////////validacion de pasos/////////////////////////////////
 		    /* file*/
 		    
@@ -4453,22 +4553,35 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		  			if($(this).val().indexOf("pdf") > -1==true){			
 		  				if($('#fileCedulaRepresentanteInformationName')[0].files[0].size <=5000000){//validacion del tamaño
 		  			      $("#view_CedulaRepresentante").prop('disabled', false);
+		  			      $("#modificar_Representante_legal").prop('disabled', false);
 		  				}else{
 		  					swal('El Archivo Seleccionado supera el tamaño permitido!!');
 		  					$("#view_CedulaRepresentante").prop('disabled', true);
 		  					$("#fileCedulaRepresentanteInformationName").val('');
 		  				}
 		  		
-		  			}else if($(this).val().indexOf("jpeg") > -1==true){
+		  			}else if($(this).val().indexOf("jpg") > -1==true){
 		  				if($('#fileCedulaRepresentanteInformationName')[0].files[0].size <=5000000){//validacion del tamaño
 		    			      $("#view_CedulaRepresentante").prop('disabled', false);
+		    			      $("#modificar_Representante_legal").prop('disabled', false);
 		    				}else{
 		    					swal('El Archivo Seleccionado supera el tamaño permitido!!');
 		    					$("#view_CedulaRepresentante").prop('disabled', true);
 		    					$("#fileCedulaRepresentanteInformationName").val('');
 		    				}
 		  				
-		  			}else{
+		  			}else if($(this).val().indexOf("png") > -1==true){
+		  				if($('#fileCedulaRepresentanteInformationName')[0].files[0].size <=5000000){//validacion del tamaño
+		    			      $("#view_CedulaRepresentante").prop('disabled', false);
+		    			      $("#modificar_Representante_legal").prop('disabled', false);
+		    				}else{
+		    					swal('El Archivo Seleccionado supera el tamaño permitido!!');
+		    					$("#view_CedulaRepresentante").prop('disabled', true);
+		    					$("#fileCedulaRepresentanteInformationName").val('');
+		    				}
+		  				
+		  			}
+		  			else{
 		  				swal('El Archivo Seleccionado no tiene formato PDF o JPEG!!');
 		  				$("#view_CedulaRepresentante").prop('disabled', true);
 		  				$("#fileCedulaRepresentanteInformationName").val('');
@@ -4481,7 +4594,22 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		  	});
 		    
 		    $("#view_CedulaRepresentante").click(function() {
-		  	  getBase64($("#fileCedulaRepresentanteInformationName")[0].files[0], 'viweFiles');
+		  	  //getBase64($("#fileCedulaRepresentanteInformationName")[0].files[0], 'viweFiless');
+		  	  
+			  	var typeDocument= $("#fileCedulaRepresentanteInformationName")[0].files[0].type;
+			     console.log("tipo de documento",typeDocument);
+			     
+			     if(typeDocument == "application/pdf"){
+			     	$('#viweFiless').prop("type", "application/pdf");
+			     	getBase64($("#fileCedulaRepresentanteInformationName")[0].files[0], 'viweFiless');
+			     }else if(typeDocument == "image/jpeg"){
+			     	
+			     	$('#viweFiless').prop("type", "image/jpeg");
+			     	getBase64($("#fileCedulaRepresentanteInformationName")[0].files[0], 'viweFiless');
+			     }else{
+			    	$('#viweFiless').prop("type", "image/png");
+			     	getBase64($("#fileCedulaRepresentanteInformationName")[0].files[0], 'viweFiless');
+			     }
 		    });
 		    
 		    /////////////////////////////////////////////////////////////////////////
@@ -4494,20 +4622,32 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		  			if($(this).val().indexOf("pdf") > -1==true){
 		  				if($('#fileCedulaContactoInformationName')[0].files[0].size <=5000000){//validacion del tamaño
 		  				      $("#view_CedulaContacto").prop('disabled', false);
+		  				      $("#modificar_Cedula_contacto").prop('disabled', false);
 		  					}else{
 		  						swal('El Archivo Seleccionado supera el tamaño permitido!!');
 		  						$("#view_CedulaContacto").prop('disabled', true);
 		  						$("#fileCedulaContactoInformationName").val('');
 		  					}
 		  		
-		  			}else if($(this).val().indexOf("jpeg") > -1==true){
+		  			}else if($(this).val().indexOf("jpg") > -1==true){
 		  				if($('#fileCedulaContactoInformationName')[0].files[0].size <=5000000){//validacion del tamaño
 						      $("#view_CedulaContacto").prop('disabled', false);
+						      $("#modificar_Cedula_contacto").prop('disabled', false);
 							}else{
 								swal('El Archivo Seleccionado supera el tamaño permitido!!');
 								$("#view_CedulaContacto").prop('disabled', true);
 								$("#fileCedulaContactoInformationName").val('');
 							}
+		  				
+		  			}else if($(this).val().indexOf("png") > -1==true){
+		  				if($('#fileCedulaRepresentanteInformationName')[0].files[0].size <=5000000){//validacion del tamaño
+		    			      $("#view_CedulaRepresentante").prop('disabled', false);
+		    			      $("#modificar_Representante_legal").prop('disabled', false);
+		    				}else{
+		    					swal('El Archivo Seleccionado supera el tamaño permitido!!');
+		    					$("#view_CedulaRepresentante").prop('disabled', true);
+		    					$("#fileCedulaRepresentanteInformationName").val('');
+		    				}
 		  				
 		  			}else{
 		  				swal('El Archivo Seleccionado no tiene formato PDF o JPEG!!');
@@ -4522,7 +4662,21 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		  	});
 		    
 		    $("#view_CedulaContacto").click(function() {
-		  	  getBase64($("#fileCedulaContactoInformationName")[0].files[0], 'viweFiles');
+		  	  //getBase64($("#fileCedulaContactoInformationName")[0].files[0], 'viweFiless');
+		    	var typeDocument= $("#fileCedulaContactoInformationName")[0].files[0].type;
+			     console.log("tipo de documento",typeDocument);
+			     
+			     if(typeDocument == "application/pdf"){
+			     	$('#viweFiless').prop("type", "application/pdf");
+			     	getBase64($("#fileCedulaContactoInformationName")[0].files[0], 'viweFiless');
+			     }else if(typeDocument == "image/jpeg"){
+			     	
+			     	$('#viweFiless').prop("type", "image/jpeg");
+			     	getBase64($("#fileCedulaContactoInformationName")[0].files[0], 'viweFiless');
+			     }else{
+			    	$('#viweFiless').prop("type", "image/png");
+			     	getBase64($("#fileCedulaContactoInformationName")[0].files[0], 'viweFiless');
+			     }
 		    });
 		    
 		    /////////////////////////////////////////////////////////////////////////////////
@@ -4535,20 +4689,32 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		  			if($(this).val().indexOf("pdf") > -1==true){
 		  				if($('#fileNegocioInformationName')[0].files[0].size <=5000000){//validacion del tamaño
 		  				      $("#view_Negocio").prop('disabled', false);
+		  				      $("#modificar_Fachada_negocio").prop('disabled', false);
 		  					}else{
 		  						swal('El Archivo Seleccionado supera el tamaño permitido!!');
 		  						$("#view_Negocio").prop('disabled', true);
 		  						$("#fileNegocioInformationName").val('');
 		  					}
 		  		
-		  			}else if($(this).val().indexOf("jpeg") > -1==true){
+		  			}else if($(this).val().indexOf("jpg") > -1==true){
 		  				if($('#fileNegocioInformationName')[0].files[0].size <=5000000){//validacion del tamaño
 						      $("#view_Negocio").prop('disabled', false);
+						      $("#modificar_Fachada_negocio").prop('disabled', false);
 							}else{
 								swal('El Archivo Seleccionado supera el tamaño permitido!!');
 								$("#view_Negocio").prop('disabled', true);
 								$("#fileNogocioInformationName").val('');
 							}
+		  				
+		  			}else if($(this).val().indexOf("png") > -1==true){
+		  				if($('#fileCedulaRepresentanteInformationName')[0].files[0].size <=5000000){//validacion del tamaño
+		    			      $("#view_CedulaRepresentante").prop('disabled', false);
+		    			      $("#modificar_Representante_legal").prop('disabled', false);
+		    				}else{
+		    					swal('El Archivo Seleccionado supera el tamaño permitido!!');
+		    					$("#view_CedulaRepresentante").prop('disabled', true);
+		    					$("#fileCedulaRepresentanteInformationName").val('');
+		    				}
 		  				
 		  			}else{
 		  				swal('El Archivo Seleccionado no tiene formato PDF o JPEG!!');
@@ -4563,7 +4729,21 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		  	});
 		    
 		    $("#view_Negocio").click(function() {
-		  	  getBase64($("#fileNegocioInformationName")[0].files[0], 'viweFiles');
+		  	  //getBase64($("#fileNegocioInformationName")[0].files[0], 'viweFiless');
+		    	var typeDocument= $("#fileNegocioInformationName")[0].files[0].type;
+			     console.log("tipo de documento",typeDocument);
+			     
+			     if(typeDocument == "application/pdf"){
+			     	$('#viweFiless').prop("type", "application/pdf");
+			     	getBase64($("#fileNegocioInformationName")[0].files[0], 'viweFiless');
+			     }else if(typeDocument == "image/jpeg"){
+			     	
+			     	$('#viweFiless').prop("type", "image/jpeg");
+			     	getBase64($("#fileNegocioInformationName")[0].files[0], 'viweFiless');
+			     }else{
+			    	$('#viweFiless').prop("type", "image/png");
+			     	getBase64($("#fileNegocioInformationName")[0].files[0], 'viweFiless');
+			     }
 		    });
 		    
 		    /////////////////////////////////////////////////////////////////////////////////
@@ -4814,11 +4994,20 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 																			       			var uno = data[0].recaudoNombre;
 																					    	   
 																					       	console.log('boton1');
-																					    	$(".wrapper").show();
-																					    		document.getElementById("embed").src = '/home/ubuntu/documentosAdquiriencia/'+uno+'';
-																					    		$("#close").on('click', function(){
-																					    		$(".wrapper").hide();
-																				    		})
+																					       	//alert($("#view_fileFinantial_save").val());
+																					    	 var url='/CBPult/Afiliacion/viewFile/'+uno+'';
+																					    	 console.log(url.substr(-3));
+																					    	 var urlformat = url.substr(-3);
+																					    	 if(urlformat == "png"){
+																					    		 $('#viweFiless').prop("type", "image/png");
+																					    		 $('#viweFiless').attr('src', url);
+																					    	 }else if(urlformat == "pdf"){
+																					    		 $('#viweFiless').prop("type", "application/pdf");
+																					    		 $('#viweFiless').attr('src', url);
+																					    	 }else{
+																					    		 $('#viweFiless').prop("type", "image/jpeg");
+																					    		 $('#viweFiless').attr('src', url);
+																					    	 }
 																       				}
 																       				
 																       				function processError(data, status, req) {
@@ -4856,11 +5045,20 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 																			       			var uno = data[1].recaudoNombre;
 																					    	   
 																					       	console.log('boton1');
-																					    	$(".wrapper").show();
-																					    		document.getElementById("embed").src = '/home/ubuntu/documentosAdquiriencia/'+uno+'';
-																					    		$("#close").on('click', function(){
-																					    		$(".wrapper").hide();
-																				    		})
+																					      //alert($("#view_fileFinantial_save").val());
+																					    	 var url='/CBPult/Afiliacion/viewFile/'+uno+'';
+																					    	 console.log(url.substr(-3));
+																					    	 var urlformat = url.substr(-3);
+																					    	 if(urlformat === "png"){
+																					    		 $('#viweFiless').prop("type", "image/png");
+																					    		 $('#viweFiless').attr('src', url);
+																					    	 }else if(urlformat === "pdf"){
+																					    		 $('#viweFiless').prop("type", "application/pdf");
+																					    		 $('#viweFiless').attr('src', url);
+																					    	 }else{
+																					    		 $('#viweFiless').prop("type", "image/jpeg");
+																					    		 $('#viweFiless').attr('src', url);
+																					    	 }
 																       				}
 																       				
 																       				function processError(data, status, req) {
@@ -4895,14 +5093,23 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 																			       		console.log("consulta fachada-----", data);
 																			       		
 																			       			console.log(data);
-																			       			var uno = data[1].recaudoNombre;
+																			       			var uno = data[2].recaudoNombre;
 																					    	   
 																					       	console.log('boton1');
-																					    	$(".wrapper").show();
-																					    		document.getElementById("embed").src = '/home/ubuntu/documentosAdquiriencia/'+uno+'';
-																					    		$("#close").on('click', function(){
-																					    		$(".wrapper").hide();
-																				    		})
+																					      //alert($("#view_fileFinantial_save").val());
+																					    	 var url='/CBPult/Afiliacion/viewFile/'+uno+'';
+																					    	 console.log(url.substr(-3));
+																					    	 var urlformat = url.substr(-3);
+																					    	 if(urlformat == "png"){
+																					    		 $('#viweFiless').prop("type", "image/png");
+																					    		 $('#viweFiless').attr('src', url);
+																					    	 }else if(urlformat == "pdf"){
+																					    		 $('#viweFiless').prop("type", "application/pdf");
+																					    		 $('#viweFiless').attr('src', url);
+																					    	 }else{
+																					    		 $('#viweFiless').prop("type", "image/jpeg");
+																					    		 $('#viweFiless').attr('src', url);
+																					    	 }
 																       				}
 																       				
 																       				function processError(data, status, req) {
@@ -6143,7 +6350,7 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		  					$("#fileCedulaRepresentanteInformationName").val('');
 		  				}
 		  		
-		  			}else if($(this).val().indexOf("jpeg") > -1==true){
+		  			}else if($(this).val().indexOf("jpg") > -1==true){
 		  				if($('#fileCedulaRepresentanteInformationName')[0].files[0].size <=5000000){//validacion del tamaño
 		    			      $("#view_CedulaRepresentante").prop('disabled', false);
 		    			      $("#modificar_Representante_legal").prop('disabled', false);
@@ -6153,7 +6360,18 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		    					$("#fileCedulaRepresentanteInformationName").val('');
 		    				}
 		  				
-		  			}else{
+		  			}else if($(this).val().indexOf("png") > -1==true){
+		  				if($('#fileCedulaRepresentanteInformationName')[0].files[0].size <=5000000){//validacion del tamaño
+		    			      $("#view_CedulaRepresentante").prop('disabled', false);
+		    			      $("#modificar_Representante_legal").prop('disabled', false);
+		    				}else{
+		    					swal('El Archivo Seleccionado supera el tamaño permitido!!');
+		    					$("#view_CedulaRepresentante").prop('disabled', true);
+		    					$("#fileCedulaRepresentanteInformationName").val('');
+		    				}
+		  				
+		  			}
+		  			else{
 		  				swal('El Archivo Seleccionado no tiene formato PDF o JPEG!!');
 		  				$("#view_CedulaRepresentante").prop('disabled', true);
 		  				$("#fileCedulaRepresentanteInformationName").val('');
@@ -6166,7 +6384,22 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		  	});
 		    
 		    $("#view_CedulaRepresentante").click(function() {
-		  	  getBase64($("#fileCedulaRepresentanteInformationName")[0].files[0], 'viweFiles');
+		  	  //getBase64($("#fileCedulaRepresentanteInformationName")[0].files[0], 'viweFiless');
+		  	  
+			  	var typeDocument= $("#fileCedulaRepresentanteInformationName")[0].files[0].type;
+			     console.log("tipo de documento",typeDocument);
+			     
+			     if(typeDocument == "application/pdf"){
+			     	$('#viweFiless').prop("type", "application/pdf");
+			     	getBase64($("#fileCedulaRepresentanteInformationName")[0].files[0], 'viweFiless');
+			     }else if(typeDocument == "image/jpeg"){
+			     	
+			     	$('#viweFiless').prop("type", "image/jpeg");
+			     	getBase64($("#fileCedulaRepresentanteInformationName")[0].files[0], 'viweFiless');
+			     }else{
+			    	$('#viweFiless').prop("type", "image/png");
+			     	getBase64($("#fileCedulaRepresentanteInformationName")[0].files[0], 'viweFiless');
+			     }
 		    });
 		    
 		    /////////////////////////////////////////////////////////////////////////
@@ -6186,7 +6419,7 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		  						$("#fileCedulaContactoInformationName").val('');
 		  					}
 		  		
-		  			}else if($(this).val().indexOf("jpeg") > -1==true){
+		  			}else if($(this).val().indexOf("jpg") > -1==true){
 		  				if($('#fileCedulaContactoInformationName')[0].files[0].size <=5000000){//validacion del tamaño
 						      $("#view_CedulaContacto").prop('disabled', false);
 						      $("#modificar_Cedula_contacto").prop('disabled', false);
@@ -6195,6 +6428,16 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 								$("#view_CedulaContacto").prop('disabled', true);
 								$("#fileCedulaContactoInformationName").val('');
 							}
+		  				
+		  			}else if($(this).val().indexOf("png") > -1==true){
+		  				if($('#fileCedulaContactoInformationName')[0].files[0].size <=5000000){//validacion del tamaño
+		    			      $("#view_CedulaRepresentante").prop('disabled', false);
+		    			      $("#modificar_Representante_legal").prop('disabled', false);
+		    				}else{
+		    					swal('El Archivo Seleccionado supera el tamaño permitido!!');
+		    					$("#view_CedulaRepresentante").prop('disabled', true);
+		    					$("#fileCedulaRepresentanteInformationName").val('');
+		    				}
 		  				
 		  			}else{
 		  				swal('El Archivo Seleccionado no tiene formato PDF o JPEG!!');
@@ -6209,7 +6452,21 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		  	});
 		    
 		    $("#view_CedulaContacto").click(function() {
-		  	  getBase64($("#fileCedulaContactoInformationName")[0].files[0], 'viweFiles');
+		  	  //getBase64($("#fileCedulaContactoInformationName")[0].files[0], 'viweFiless');
+		    	var typeDocument= $("#fileCedulaContactoInformationName")[0].files[0].type;
+			     console.log("tipo de documento",typeDocument);
+			     
+			     if(typeDocument == "application/pdf"){
+			     	$('#viweFiless').prop("type", "application/pdf");
+			     	getBase64($("#fileCedulaContactoInformationName")[0].files[0], 'viweFiless');
+			     }else if(typeDocument == "image/jpeg"){
+			     	
+			     	$('#viweFiless').prop("type", "image/jpeg");
+			     	getBase64($("#fileCedulaContactoInformationName")[0].files[0], 'viweFiless');
+			     }else{
+			    	$('#viweFiless').prop("type", "image/png");
+			     	getBase64($("#fileCedulaContactoInformationName")[0].files[0], 'viweFiless');
+			     }
 		    });
 		    
 		    /////////////////////////////////////////////////////////////////////////////////
@@ -6229,7 +6486,7 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		  						$("#fileNegocioInformationName").val('');
 		  					}
 		  		
-		  			}else if($(this).val().indexOf("jpeg") > -1==true){
+		  			}else if($(this).val().indexOf("jpg") > -1==true){
 		  				if($('#fileNegocioInformationName')[0].files[0].size <=5000000){//validacion del tamaño
 						      $("#view_Negocio").prop('disabled', false);
 						      $("#modificar_Fachada_negocio").prop('disabled', false);
@@ -6238,6 +6495,16 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 								$("#view_Negocio").prop('disabled', true);
 								$("#fileNogocioInformationName").val('');
 							}
+		  				
+		  			}else if($(this).val().indexOf("png") > -1==true){
+		  				if($('#filefileNegocioInformationName')[0].files[0].size <=5000000){//validacion del tamaño
+		    			      $("#view_CedulaRepresentante").prop('disabled', false);
+		    			      $("#modificar_Representante_legal").prop('disabled', false);
+		    				}else{
+		    					swal('El Archivo Seleccionado supera el tamaño permitido!!');
+		    					$("#view_CedulaRepresentante").prop('disabled', true);
+		    					$("#fileCedulaRepresentanteInformationName").val('');
+		    				}
 		  				
 		  			}else{
 		  				swal('El Archivo Seleccionado no tiene formato PDF o JPEG!!');
@@ -6252,7 +6519,21 @@ $("#modificar_Fachada_negocio").prop('disabled', true);
 		  	});
 		    
 		    $("#view_Negocio").click(function() {
-		  	  getBase64($("#fileNegocioInformationName")[0].files[0], 'viweFiles');
+		  	  //getBase64($("#fileNegocioInformationName")[0].files[0], 'viweFiless');
+		    	var typeDocument= $("#fileNegocioInformationName")[0].files[0].type;
+			     console.log("tipo de documento",typeDocument);
+			     
+			     if(typeDocument == "application/pdf"){
+			     	$('#viweFiless').prop("type", "application/pdf");
+			     	getBase64($("#fileNegocioInformationName")[0].files[0], 'viweFiless');
+			     }else if(typeDocument == "image/jpeg"){
+			     	
+			     	$('#viweFiless').prop("type", "image/jpeg");
+			     	getBase64($("#fileNegocioInformationName")[0].files[0], 'viweFiless');
+			     }else{
+			    	$('#viweFiless').prop("type", "image/png");
+			     	getBase64($("#fileNegocioInformationName")[0].files[0], 'viweFiless');
+			     }
 		    });
 		    
 		    /////////////////////////////////////////////////////////////////////////////////

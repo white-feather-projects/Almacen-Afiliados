@@ -599,4 +599,30 @@ public class AlmacenService extends Util implements AlmacenDAO{
 		return respuestaEstanteria;
 	}
 	
+	////////////////////////////////////
+	//Methodo para listar Zonas Relacionadas por ZOna Id...
+	public java.util.List<RelacionZonas> listaZonasRelacionadasPorZonaIdActual(long zonaActualId) {
+		
+		//instanciar Objeto para retorno....
+		java.util.List<RelacionZonas> respuestaRelacionZonas = new ArrayList<>();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AlmacenServiceWS_Service ws = new AlmacenServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AlmacenServiceWS?WSDL"));
+			AlmacenServiceWS WSmethod = ws.getAlmacenServiceWSPort();
+		
+			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
+			respuestaRelacionZonas = WSmethod.listaZonasRelacionadasByZonaActualIdWS(zonaActualId);
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaRelacionZonas;
+	
+	}
 }

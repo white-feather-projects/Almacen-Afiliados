@@ -85,6 +85,21 @@ public interface AlmacenServiceWS {
 
     /**
      * 
+     * @param zonaActualId
+     * @return
+     *     returns java.util.List<com.cbp3.ws.cbp.service.RelacionZonas>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listaZonasRelacionadasByZonaActualIdWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListaZonasRelacionadasByZonaActualIdWS")
+    @ResponseWrapper(localName = "listaZonasRelacionadasByZonaActualIdWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListaZonasRelacionadasByZonaActualIdWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/listaZonasRelacionadasByZonaActualIdWSRequest", output = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/listaZonasRelacionadasByZonaActualIdWSResponse")
+    public List<RelacionZonas> listaZonasRelacionadasByZonaActualIdWS(
+        @WebParam(name = "zonaActualId", targetNamespace = "")
+        long zonaActualId);
+
+    /**
+     * 
      * @return
      *     returns java.util.List<com.cbp3.ws.cbp.service.RelacionZonas>
      */

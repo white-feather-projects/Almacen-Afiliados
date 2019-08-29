@@ -441,7 +441,7 @@ window.addEventListener('load', ()=>{
     
     nombre_empresa.addEventListener('blur', ()=>{
     	console.log("nombre empresa", nombre_empresa.value);
-    	soloTexto(nombre_empresa);
+    	soloLetrasYNum(nombre_empresa);
     });
     
     distrito.addEventListener('blur', ()=>{
@@ -633,7 +633,7 @@ window.addEventListener('load', ()=>{
     ////////////Botones////////////////////////////////////
     
     $("#atras_2").on('click', function(){
-    	location.href = "../../CBPult/Afiliacion/menu_afiliacion";
+    	location.href = "../../CBPult/Afiliacion/menu_afiliacion_ejecutivo";
     });
     
     $("#aceptar_2").on('click', function(){
@@ -716,7 +716,15 @@ window.addEventListener('load', ()=>{
     		function processSuccess(data, status, req) {
              //alert(req.responseText + " " + status);
         		console.log(data);
-        		
+        		swal({
+	        		     title: "EXITO!",
+	        		     text: "Pre Carga Creada...",
+	        		     type: "success",
+	        		     timer: 3000
+	        		     },
+	        		     function () {
+	        		            location.href = "/CBPult/Afiliacion/bandejas_ejecutivo"
+	        		     });
         	} 
         	
         	function processError(data, status, req) {
@@ -734,7 +742,7 @@ window.addEventListener('load', ()=>{
     
 });
 
-////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
 
 function soloTexto(texto){
 	var patron = /^[A-Za-z \u00C0-\u017F]*$/;
@@ -754,4 +762,19 @@ function soloNumeros(numero){
 	}else{
 		return true;
 	}
+}
+
+function soloLetrasYNum(campo) {
+	 var validos = " abcdefghijklmnopqrstuvwxyz0123456789";
+	 var letra;
+	 var bien = true;
+	 for (var i=0; i<campo.value.length; i++) {
+		  letra=campo.value.charAt(i).toLowerCase()
+		  if (validos.indexOf(letra) == -1){bien=false;};
+		  }
+		  if (!bien) {
+			  campo.value = "";
+			  swal("Campo Alfanumerico");
+			  //campo.focus();
+		  }
 }
