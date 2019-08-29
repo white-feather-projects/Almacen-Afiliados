@@ -25,6 +25,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="fechaCargaDatos" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="fechaHoraModificacion" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="relacionAlmacenesId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="status" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -41,7 +42,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "comentarios",
     "fechaCargaDatos",
     "fechaHoraModificacion",
-    "relacionAlmacenesId"
+    "relacionAlmacenesId",
+    "status"
 })
 public class RelacionAlmacenes {
 
@@ -54,6 +56,7 @@ public class RelacionAlmacenes {
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fechaHoraModificacion;
     protected Long relacionAlmacenesId;
+    protected String status;
 
     /**
      * Obtiene el valor de la propiedad almacenActualId.
@@ -221,6 +224,30 @@ public class RelacionAlmacenes {
      */
     public void setRelacionAlmacenesId(Long value) {
         this.relacionAlmacenesId = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad status.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * Define el valor de la propiedad status.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setStatus(String value) {
+        this.status = value;
     }
 
 }

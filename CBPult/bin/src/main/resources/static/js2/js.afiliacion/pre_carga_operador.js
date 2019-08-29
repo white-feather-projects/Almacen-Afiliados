@@ -325,6 +325,34 @@ window.addEventListener('load', ()=>{
 				swal("Longitud debe ser de 9");
 				document.getElementById("documento").style.border = "1px solid red";
 				$("#documento").val("");
+			}else if($("#documento").val().length == 9){
+				$.ajax({
+			        type: "GET",
+			        url: '/CBPult/Afiliacion/consultaComercio/'+$("#documento").val()+'',
+			        dataType: "json",
+			        success: processSuccess,
+			        error: processError
+			   	});
+				
+					function processSuccess(data, status, req) {
+			        //alert(req.responseText + " " + status);
+			   		console.log(data);
+			   		if(typeof(data.return.identificacionComercio) === "object"){
+
+			   		}else if(typeof(data.return.identificacionComercio) != "object"){
+			   			swal("Ya existe el Comercio");
+						document.getElementById("documento").style.border = "1px solid red";
+						$("#documento").val("")
+			   		}
+			   		
+			   		
+			   	} 
+			   	
+			   	function processError(data, status, req) {
+			        //alert(req.responseText + " " + status);
+			       	swal("Error al contactar el servicio", data);
+			       	
+			   	} 
 			}
 		}
 		
@@ -333,6 +361,34 @@ window.addEventListener('load', ()=>{
 				swal("Longitud debe ser de 11");
 				document.getElementById("documento").style.border = "1px solid red";
 				$("#documento").val("");
+			}else if($("#documento").val().length == 9){
+				$.ajax({
+			        type: "GET",
+			        url: '/CBPult/Afiliacion/consultaComercio/'+$("#documento").val()+'',
+			        dataType: "json",
+			        success: processSuccess,
+			        error: processError
+			   	});
+				
+					function processSuccess(data, status, req) {
+			        //alert(req.responseText + " " + status);
+			   		console.log(data);
+			   		if(typeof(data.return.identificacionComercio) === "object"){
+
+			   		}else if(typeof(data.return.identificacionComercio) != "object"){
+			   			swal("Ya existe el Comercio");
+						document.getElementById("documento").style.border = "1px solid red";
+						$("#documento").val("")
+			   		}
+			   		
+			   		
+			   	} 
+			   	
+			   	function processError(data, status, req) {
+			        //alert(req.responseText + " " + status);
+			       	swal("Error al contactar el servicio", data);
+			       	
+			   	} 
 			}
 		}
 		
@@ -341,6 +397,34 @@ window.addEventListener('load', ()=>{
 				swal("Longitud debe ser de 10");
 				document.getElementById("documento").style.border = "1px solid red";
 				$("#documento").val("");
+			}else if($("#documento").val().length == 9){
+				$.ajax({
+			        type: "GET",
+			        url: '/CBPult/Afiliacion/consultaComercio/'+$("#documento").val()+'',
+			        dataType: "json",
+			        success: processSuccess,
+			        error: processError
+			   	});
+				
+					function processSuccess(data, status, req) {
+			        //alert(req.responseText + " " + status);
+			   		console.log(data);
+			   		if(typeof(data.return.identificacionComercio) === "object"){
+
+			   		}else if(typeof(data.return.identificacionComercio) != "object"){
+			   			swal("Ya existe el Comercio");
+						document.getElementById("documento").style.border = "1px solid red";
+						$("#documento").val("")
+			   		}
+			   		
+			   		
+			   	} 
+			   	
+			   	function processError(data, status, req) {
+			        //alert(req.responseText + " " + status);
+			       	swal("Error al contactar el servicio", data);
+			       	
+			   	} 
 			}
 		}
     });
@@ -406,6 +490,34 @@ window.addEventListener('load', ()=>{
 				swal("Longitud debe ser de 9");
 				document.getElementById("documento2").style.border = "1px solid red";
 				$("#documento2").val("");
+			}else if($("#documento2").val().length == 9){
+				$.ajax({
+			        type: "GET",
+			        url: '/CBPult/Afiliacion/consultaComercio/'+$("#documento2").val()+'',
+			        dataType: "json",
+			        success: processSuccess,
+			        error: processError
+			   	});
+				
+					function processSuccess(data, status, req) {
+			        //alert(req.responseText + " " + status);
+			   		console.log(data);
+			   		if(typeof(data.return.identificacionComercio) === "object"){
+
+			   		}else if(typeof(data.return.identificacionComercio) != "object"){
+			   			swal("Ya existe el Comercio");
+						document.getElementById("documento2").style.border = "1px solid red";
+						$("#documento2").val("")
+			   		}
+			   		
+			   		
+			   	} 
+			   	
+			   	function processError(data, status, req) {
+			        //alert(req.responseText + " " + status);
+			       	swal("Error al contactar el servicio", data);
+			       	
+			   	} 
 			}
 		}
 		
@@ -414,6 +526,34 @@ window.addEventListener('load', ()=>{
 				swal("Longitud debe ser de 11");
 				document.getElementById("documento2").style.border = "1px solid red";
 				$("#documento2").val("");
+			}else if($("#documento2").val().length == 11){
+				$.ajax({
+			        type: "GET",
+			        url: '/CBPult/Afiliacion/consultaComercio/'+$("#documento2").val()+'',
+			        dataType: "json",
+			        success: processSuccess,
+			        error: processError
+			   	});
+				
+					function processSuccess(data, status, req) {
+			        //alert(req.responseText + " " + status);
+			   		console.log(data);
+			   		if(typeof(data.return.identificacionComercio) === "object"){
+
+			   		}else if(typeof(data.return.identificacionComercio) != "object"){
+			   			swal("Ya existe el Comercio");
+						document.getElementById("documento2").style.border = "1px solid red";
+						$("#documento2").val("")
+			   		}
+			   		
+			   		
+			   	} 
+			   	
+			   	function processError(data, status, req) {
+			        //alert(req.responseText + " " + status);
+			       	swal("Error al contactar el servicio", data);
+			       	
+			   	} 
 			}
 		}
 		
@@ -422,6 +562,34 @@ window.addEventListener('load', ()=>{
 				swal("Longitud debe ser de 10");
 				document.getElementById("documento2").style.border = "1px solid red";
 				$("#documento2").val("");
+			}else if($("#documento2").val().length == 10){
+				$.ajax({
+			        type: "GET",
+			        url: '/CBPult/Afiliacion/consultaComercio/'+$("#documento2").val()+'',
+			        dataType: "json",
+			        success: processSuccess,
+			        error: processError
+			   	});
+				
+					function processSuccess(data, status, req) {
+			        //alert(req.responseText + " " + status);
+			   		console.log(data);
+			   		if(typeof(data.return.identificacionComercio) === "object"){
+
+			   		}else if(typeof(data.return.identificacionComercio) != "object"){
+			   			swal("Ya existe el Comercio");
+						document.getElementById("documento2").style.border = "1px solid red";
+						$("#documento2").val("")
+			   		}
+			   		
+			   		
+			   	} 
+			   	
+			   	function processError(data, status, req) {
+			        //alert(req.responseText + " " + status);
+			       	swal("Error al contactar el servicio", data);
+			       	
+			   	} 
 			}
 		}
     });
@@ -462,9 +630,107 @@ window.addEventListener('load', ()=>{
     });
     
     //////////////////////////////////////////////////////////////////////////////
-    ////////////Consumo Service Crear Comercio////////////////////////////////////
+    ////////////Botones////////////////////////////////////
     
+    $("#atras_2").on('click', function(){
+    	location.href = "../../CBPult/Afiliacion/menu_operador";
+    });
     
+    $("#aceptar_2").on('click', function(){
+    	
+    	if($("#documento").val().length >=1 && $('select[id="provincia"] option:selected').val().length >=1 && $('select[id="canton"] option:selected').val().length >=1 && $('select[id="distrito"] option:selected').val().length >=1 && $("#ciudad").val().length >=1 && $("#urbanizacion").val().length >=1 && $("#geo_localizacion").val().length >=1 && $("#punto_de_referencia").val().length >=1 && $("#documento2").val().length >=1 && $("#primer_nombre").val().length >=1){
+    		
+    		var crearPrecargaComercio = {
+    				"tipoIdentificacionId": {
+    					"nombre": $('select[id="tipo_identificacion"] option:selected').val(),
+    					"tipoIdentificacionId": 1
+    				},
+    				"identificacionComercio": $("#documento").val(),
+    				"statusComercio": "I",
+    				"nombreEmpresarial": $("#nombre_empresa").val(),
+    				"ciudad": $("#ciudad").val(),
+    				"urbanizacion": $("#urbanizacion").val(),
+    				"geolocalizacion": $("#geo_localizacion").val(),
+    				"puntoReferencia": $("#punto_de_referencia").val(),
+    				"idProvincia": {
+    					"idProvincia": $('select[id="provincia"] option:selected').val(),
+    					"nombreProvincia": $('select[id="provincia"] option:selected').text(),
+    					"paisId": {
+    						"idPais": 1,
+    						"nombrePais": "Costa Rica"
+    					}
+    				},
+    				"idCanton": {
+    					"idCanton": $('select[id="canton"] option:selected').val(),
+    					"nombreCanton": $('select[id="canton"] option:selected').text(),
+    					"provinciaId": {
+    						"idProvincia": $('select[id="provincia"] option:selected').val(),
+    						"nombreProvincia": $('select[id="provincia"] option:selected').text(),
+    						"paisId": {
+    							"idPais": 1,
+    							"nombrePais": "Costa Rica"
+    						}
+    					}
+    				},
+    				"idDistrito": {
+    					"cantonId": {
+    						"idCanton": $('select[id="canton"] option:selected').val(),
+    						"nombreCanton": $('select[id="canton"] option:selected').text(),
+    						"provinciaId": {
+    							"idProvincia": $('select[id="provincia"] option:selected').val(),
+    							"nombreProvincia": $('select[id="provincia"] option:selected').text(),
+    							"paisId": {
+    								"idPais": 1,
+    								"nombrePais": "Costa Rica"
+    							}
+    						}
+    					},
+    					"idDistrito": $('select[id="distrito"] option:selected').val(),
+    					"nombreDistrito": $('select[id="distrito"] option:selected').text()
+    				},
+    				"tipoIdentifContactoId": {
+    					"nombre": $('select[id="tipo_identificacion2"] option:selected').val(),
+    					"tipoIdentificacionId": 1
+    				},
+    				"identificacionContacto": $("#documento2").val(),
+    				"primerNombre": $("#primer_nombre").val(),
+    				"segundoNombre": $("#segundo_nombre").val(),
+    				"primerApellido": $("#primer_apellido").val(),
+    				"segundoApellido": $("#segundo_apellido").val(),
+    				"telefonoLocal": $("#telefono_local").val(),
+    				"telefonoCelular": $("#telefono_celular").val(),
+    				"emailContacto": $("#correo_electronico").val(),
+    				"fechaCargaDatos": ""
+    		};
+    	
+        	$.ajax({
+             type: "POST",
+             url: '/CBPult/Afiliacion/crearPrecargaComercio',
+             contentType: "application/json",
+             dataType: "json",
+             data: JSON.stringify(crearPrecargaComercio),
+             success: processSuccess,
+             error: processError
+        	});
+    	
+    		function processSuccess(data, status, req) {
+             //alert(req.responseText + " " + status);
+        		console.log(data);
+        		
+        	} 
+        	
+        	function processError(data, status, req) {
+             //alert(req.responseText + " " + status);
+            	swal("Error al contactar el servicio", data);
+            	valid = false;
+            	return valid;
+            } 
+    		
+    	}else{
+    		swal("Campos Obligatorios");
+    	}
+    	
+    });
     
 });
 
