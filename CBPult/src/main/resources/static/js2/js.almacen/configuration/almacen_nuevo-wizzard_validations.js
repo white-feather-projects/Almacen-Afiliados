@@ -280,18 +280,28 @@ else if(Tipo === "editar"){
 	$('#contentCodigo_almacen').css("display", "initial");
 	$('#contentCodigo_almacen').attr("class", "col-sm-12");
 	
+	
 	cargaDatosModificarAlmacenIdServ();
+	var cargaDatos = 0;
 	
 	$('#demo').steps({
 		
 		onChange: function (currentIndex, newIndex, stepDirection) {
 			
+			
+			
 			// tab Almacen
-			if(currentIndex === 0){
+			if(currentIndex === 0){				
+				
+				if(cargaDatos == 0){					
+					cargaDatosModificarZonasServ();
+					cargaDatos++;
+				}
+				
+				
+				console.log("zafasd")
 				
 				if(stepDirection === 'forward'){
-					
-					console.log("Data: ", data_zonas);
 					
 					var validated = 0;
 					
@@ -312,10 +322,9 @@ else if(Tipo === "editar"){
 					
 					if(validated == 2){
 						
-						// Creacion del Almacén
-						
+						// Creacion del Almacén						
 						data_almacen = {
-							"id": IdAlmacen,
+							"idAlmacen": parseInt(IdAlmacen),
 							"warehouseName": $('#txtCodigo_almacen').val(),
 							"direccion": $('#txtUbicacion_almacen').val(),
 						    "gerenteSucursal": parseInt($('select[id="cboxEncargado_almacen"] option:selected').attr('name')),
@@ -323,11 +332,13 @@ else if(Tipo === "editar"){
 						    "tipoAlmacen": $('#cboxTipo_almacen').val(),
 						    "tipoAlmacenId": parseInt($('select[id="cboxTipo_almacen"] option:selected').attr('name')),
 						    "warehouseName": $('#txtDesc_almacen').val(),
-						    "zonas": []
-						};					
+						    "zonas": data_zonas
+						};
+						console.log("Almacén: ", data_almacen);
 						return true;
 						
-					}else if(validated != 2){
+					}
+					else if(validated != 2){
 						return false;
 					}				
 					
@@ -341,54 +352,15 @@ else if(Tipo === "editar"){
 			/// El código que hace funcionar el tab de Zonas está en "almacen_nuevo-wizzard_funcionalidad.js"
 			if(currentIndex === 1){
 				
+				console.log("Zonas en Tab Zonas: ", data_zonas);
+				
+				valid_descZonas = data_zonas.length;
+				empty_Estanterias = 0;
+				
 				if(stepDirection === 'forward'){
 					
-					valid_descZonas = 0;
-					empty_Estanterias = 0;
 					
-					// Construyendo el Json de listZonas					
-					data_zonas = zonaListTemp.map(function(zona, i){	
-						var estanterias = $('#simpletable'+zona.zona.id+' tbody tr');
-						var estanterias_json = [];
-											
-						if($('#txtDescripcion_zona'+zona.zona.id).val().length > 0){
-							valid_descZonas++;
-						}
-						else{
-							$('#txtDescripcion_zona'+zona.zona.id).css("border" , "1px solid red");
-						}
-						
-						if(estanterias.length < 1){
-							estanterias_json.push([1,1]);												        
-							empty_Estanterias++;
-						}
-						else{
-							for (var j = 0; j < estanterias.length; j++) {
-								var modulo, nivel;
-								for (var k = 0; k < estanterias[j].cells.length; k++) {							
-									if(k == 0){
-										modulo = estanterias[j].cells[k].innerHTML;
-									}
-									else if(k == 1){
-										nivel = estanterias[j].cells[k].innerHTML;
-									}							
-								}
-								estanterias_json.push([modulo, nivel]);
-							}
-						}
-						
-						return {
-							"id": zona.zona.id,
-							"tipoZona": $('#cboxTipo_zona'+zona.zona.id).val(),
-							"IdTipoZona": parseInt($('select[id="cboxTipo_zona'+zona.zona.id+'"] option:selected').attr('name')),
-							"descripcionZona": $('#txtDescripcion_zona'+zona.zona.id).val(),
-							"encargadoZona": $('#cboxEncargado_zona'+zona.zona.id).val(),
-							"estanteriasZona": estanterias_json,
-							"relacionesZona": []
-						}
-					});	
 					
-					data_almacen.zonas = data_zonas;
 					
 				}
 				
@@ -425,6 +397,8 @@ else if(Tipo === "editar"){
 			
 			// tab Relaciones de Almacén		
 			if(currentIndex === 2){
+				
+				console.log(data_zonas);
 				
 				// para no cargar a cada rato la Tabla de Relaciones del Almacén
 				if(listar == 0){

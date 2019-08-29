@@ -496,14 +496,13 @@ function crearRelacionesZonasServ(){
 			
 			if($('#tbodyrel_'+i+' tr td .js-switch-blue_rel')[j].checked){
 	    		
-
 	    		var info_Relacion_zona = {
-	    				"zonaActualId": {
-	    					"zonaId": $('#txtCodigo_zona_rel'+i).val()
-	    				},
-	    				"zonaDestinoId": {
-	    					"zonaId": $('#tbodyrel_'+i+' tr th.id_zonaRel')[j].innerHTML
-	    				}
+    				"zonaActualId": {
+    					"zonaId": $('#txtCodigo_zona_rel'+i).val()
+    				},
+    				"zonaDestinoId": {
+    					"zonaId": $('#tbodyrel_'+i+' tr th.id_zonaRel')[j].innerHTML
+    				}
 	    		};
 	    		
 	    		$.ajax({
@@ -793,6 +792,7 @@ function cargaDatosModificarAlmacenIdServ(){ // Carga toda la información del A
 	    		response_tipoAlmacen = "SUCURSAL"
 	    	}
 	    	
+	    	// Llenando los campos del Tab de Almacén
 	    	$('#txtCodigo_almacen').val(resp.return.warehouseNumber);	    	
 			$("#cboxTipo_almacen option[value="+response_tipoAlmacen+"]").attr("selected",true);			
 		    document.getElementById('txtDesc_almacen').value = resp.return.warehouseName;		    
@@ -827,13 +827,16 @@ function cargaDatosModificarAlmacenIdServ(){ // Carga toda la información del A
 						//Lista de Estanterias de la Zona 
 						$.get("/CBPult/Almacen/listaEstanteriasByIdZona/"+zona.zonaId+"", function(getEstanterias){
 							
-							estanteriasZona.push(getEstanterias);
+							getEstanterias.map(function(estanteria){
+								estanteriasZona.push(estanteria);								
+							});
+							//estanteriasZona.push(getEstanterias);
 							
 						});
 						//Lista de Estanterias de la Zona 
 						
 						//console.log("Almacen: "+IdAlmacen+" Zona: "+i+" ID ( "+zona.zonaId+" )"); console.log(zona)
-						//console.log("Estanterias de la Zona: ", estanteriasZona);
+						//console.log("Estanterias de la Zona: "+i, estanteriasZona);
 						
 						
 						
@@ -869,12 +872,13 @@ function cargaDatosModificarAlmacenIdServ(){ // Carga toda la información del A
 						
 					});
 					
-					console.log("Data: ", data_zonas);
+					//console.log("Data: ", data_zonas);
+					
 						
 				}
 				else{
 					data_zonas.push({
-						"id": "",
+						"id": 1,
 						"tipoZona": "Recibo",
 						"IdTipoZona": 1,
 						"descripcionZona": "",
@@ -883,20 +887,234 @@ function cargaDatosModificarAlmacenIdServ(){ // Carga toda la información del A
 						"relacionesZona": []
 					});
 					swal("Almacén sin Zonas, puedes crearle nuevas");
-				}				
+				}
 				
 			});
 		    
+		    
+		    // Relaciones del Almacén			
+			$.get('/CBPult/Almacen/listaAlmacenesRelacionados/'+IdAlmacen+"", function(relacionesAlmacen){
+				
+				console.log(relacionesAlmacen);
+				
+			});
+			
 		},
 	    error: function(e){
 	    	console.log("Almacen error: "+ e);
 		}
 	}); 
 	
-	data_zonas.map(function(zona, i){
+}
+
+function cargaDatosModificarZonasServ(){
+	
+	console.log("Hola");
+	
+	data_zonas.map(function(zona){
+		
+		//console.log(zona);
+		
+		var html_zona = `
+			<!-- Zona --> 
+	        <div id="zona`+zona.id+`" class="zona_zonas col-sm-12 card" style="border: none">
+	    	
+	    	<div class="row">
+	    		<!-- Btn Eliminar Zona -->
+	    		<div class="col-sm-12" style="margin: 5px 0px 5px 0px;">									                                                			
+	        		<div class="column" align="left">																
+						<a style="margin-right: 5px;" title="Eliminar Zona">
+							<img id="btnEliminarZona_config" onClick="eliminarZona(`+zona.id+`)" src="`+thEliminar+`" style="width: 60px"></img>
+						</a>
+					</div>											                                                	
+	    		</div>
+	    		<!-- Btn Eliminar Zona -->
+	    		<!-- Card 1 -->
+	        	<div class="col-sm-4">											                                            	                                   
+	            	<div class="card">                                                   
+	                	<div class="card-block">
+	                		<!-- Titulo de Card -->
+	                    	<h4 class="sub-title">Información de Zona `+zona.id+`</h4>
+	                    	
+	                    	<!-- Row -->                                                        	
+	                    	<div class="row">
+	                    		
+	                    		<!-- Contenido de Card -->  
+	                    		<div class="col-sm-12">
+	                                <label class="col-sm-12 col-form-label">Código de Zona</label>
+	                                <div class="col-sm-12">
+	                                    <input type="text" id="txtCodigo_zona`+zona.id+`" class="form-control" placeholder="Codigo" disabled>
+	                                </div>
+	                        	</div>
+	                        
+	                            <div class="col-sm-12 mobile-inputs">
+	                                <label class="col-sm-12 col-form-label">Tipo Zona</label>
+	                                <div class="col-sm-12">
+	                                    <select name="select" id="cboxTipo_zona`+zona.id+`" class="form-control">
+	                                        <option value="Recibo" name="1">Recibo</option>
+	                                        <option value="Almacenaje" name="2">Almacenaje</option>
+	                                        <option value="Restringido" name="3">Restringido</option>
+	                                        <option value="Despacho" name="4">Despacho</option>
+	                                    </select>
+	                         		</div>
+	                            </div>
+	                            
+	                            <div class="col-sm-12 mobile-inputs">
+	                            	<label class="col-sm-12 col-form-label">Descripción Zona</label>
+	                            	<div class="col-sm-12">
+	                                    <input type="text" id="txtDescripcion_zona`+zona.id+`" onblur="lleno(`+zona.id+`)" class="form-control solo_texto" placeholder="">
+	                                </div>
+	                            </div>	                                                        	
+	                            
+	                            <div class="col-sm-12 mobile-inputs">
+	                                <label class="col-sm-12 col-form-label">Encargado de Zona</label>
+	                                <div class="col-sm-12">
+	                                    <select name="select" id="cboxEncargado_zona`+zona.id+`" class="form-control">
+	                                        <option value="Elon Musk">Elon Musk</option>
+	                                        <option value="Einstein">Einstein</option>
+	                                        <option value="Jack Ma">Jack Ma</option>
+	                                    </select>
+	                         		</div>
+	                            </div>
+	                            <!-- Contenido de Card -->  
+	                            
+	                    	</div>
+	                    	<!-- Row -->                                                      		                                                        	
+	                                                                  
+	                	</div>
+	            	</div> 
+	        	                                
+	            </div>
+	            <!-- Card 1 -->											                                            
+	            
+	            <!-- Card 2 -->
+	        	<div class="col-sm-8"> 
+	        	                                           
+	            	<div class="card">                                                   
+	                	<div class="card-block">
+	                		<!-- Titulo de Card -->
+	                    	<h4 class="sub-title">Información Estanterias</h4>
+	                    	
+	                    	<!-- Fila 1 -->                                      
+	                    	<div class="row">
+	                    		<div class="col-sm-12">
+	                    		
+	                    			<!-- inputs Estanteria -->
+	                    			<div class="row">
+	                                    
+	                                    <div class="col-sm-5">														                                                                
+	                                        <div class="col-sm-12">
+	                                            <input type="text" id="txtModulos_estanteria`+zona.id+`" class="form-control solo_num" onblur="modulos(`+zona.id+`)" placeholder="Módulos">
+	                                        </div>
+	                                	</div>
+	                    			
+	                    				<div class="col-sm-5">														                                                                
+	                                        <div class="col-sm-12">
+	                                            <input type="text" id="txtNiveles_estanteria`+zona.id+`" class="form-control solo_num"  onblur="niveles(`+zona.id+`)" placeholder="Niveles">
+	                                        </div>
+	                                	</div>
+	                                	
+	                                	<div class="col-sm-2">									                                                			
+	                                		<div class="column" align="right">																
+												<a onClick="crearTr(`+zona.id+`)" style="margin-right: 5px;" title="Nueva Estanteria">
+													<i class="fa fa-plus-square agregaryasignar" style="font-size: 50px"></i>
+												</a>
+											</div>											                                                	
+	                            		</div>
+	                            		
+	                    			</div>
+	                    			<!-- inputs Estanteria -->
+	                    			
+	                    			<div class="dt-responsive table-responsive">
+	                                    <table id="simpletable`+zona.id+`" class="table-sm table-striped table-bordered display`+zona.id+` nowrap">
+	                                        <thead>
+												<tr>
+													<th>Módulos</th>
+													<th>Niveles</th>
+													<th>Acciones</th>																														
+												 </tr>
+											</thead>
+											<tbody id="tbody`+zona.id+`">
+											    
+											    
+											</tbody>
+	                                    </table>
+	                               	</div>                                                        			
+	                               	
+	                               	
+	                    		</div> 
+	                    	</div>                                                                                                                           
+	                	</div>
+	                	<!-- Fila 1 -->                                                   	
+	                	                                                         
+	            	</div>
+	        	</div>
+	        	<!-- Card 2 -->
+	    	                                
+	        </div>
+	    </div>										                                            
+	    <!-- Zona -->
+	    `;
+		
+		$('#zonas-content').append(html_zona);
+		
+		$("#simpletable"+zona.id).DataTable({ 
+			"language": { // Configuración del Lenguaje de la Tabla
+	            "lengthMenu": "Mostrar _MENU_ registros",
+	            "zeroRecords": false,
+	            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+	            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+	            "sSearch": "Buscar:",            
+	        },
+	        "scrollY": "200px", // Alto de la Tabla
+	        "scrollCollapse": true,
+	        "paging": false,
+	        "searching": false,
+	        "info": false,		        
+	    });
+		
+		//console.log("Estanterias: ", zona.estanteriasZona);
+		zona.estanteriasZona.map(function(est, j){
+
+			$('#tbody'+zona.id).append(`
+				<tr id="est_`+est.estanteriaId+`">
+			    	<td>`+est.modulos+`</td>
+			    	<td>`+est.niveles+`</td>																												    	
+			    	<td>
+			    		<a onclick="alert('EstanteriaEliminada')">
+			    			<img alt="Eliminar" src="`+thEliminar+`" onclick="console.log()"  width="30px">
+			    		</a>
+			    	</td>
+			    </tr>
+			`);
+			
+		});
 		
 		
+		// Para remover la fila de las tablas que aparece cuando no hay registros
+		var body = $('#simpletable'+zona.id);
+		body.find( 'tbody tr:eq(0)').remove();
 		
+		var tipo_zona;
+		if(zona.IdTipoZona == 1){
+			tipo_zona = "Recibo";
+		}
+		else if(zona.IdTipoZona == 2){
+			tipo_zona = "Almacenaje";
+		}
+		else if(zona.IdTipoZona == 3){
+			tipo_zona = "Restringido";
+		}
+		else if(zona.IdTipoZona == 4){
+			tipo_zona = "Despacho";
+		}
+		
+		$('#txtCodigo_zona'+zona.id).val(zona.id);    	
+		$("#cboxTipo_zona"+zona.id+" option[value="+tipo_zona+"]").attr("selected",true);
+		$('#txtDescripcion_zona'+zona.id).val(zona.descripcionZona);
+		//$('#cboxEncargado_zona'+zona.encargadoZona);
+
 	});
 	
 }

@@ -76,12 +76,63 @@ public interface AlmacenServiceWS {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listaAlmacenesRelacionadosByAlmacenIdIdWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListaAlmacenesRelacionadosByAlmacenIdIdWS")
-    @ResponseWrapper(localName = "listaAlmacenesRelacionadosByAlmacenIdIdWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListaAlmacenesRelacionadosByAlmacenIdIdWSResponse")
-    @Action(input = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/listaAlmacenesRelacionadosByAlmacenIdIdWSRequest", output = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/listaAlmacenesRelacionadosByAlmacenIdIdWSResponse")
-    public List<RelacionAlmacenes> listaAlmacenesRelacionadosByAlmacenIdIdWS(
+    @RequestWrapper(localName = "listaAlmacenesRelacionadosByAlmacenIdWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListaAlmacenesRelacionadosByAlmacenIdWS")
+    @ResponseWrapper(localName = "listaAlmacenesRelacionadosByAlmacenIdWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListaAlmacenesRelacionadosByAlmacenIdWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/listaAlmacenesRelacionadosByAlmacenIdWSRequest", output = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/listaAlmacenesRelacionadosByAlmacenIdWSResponse")
+    public List<RelacionAlmacenes> listaAlmacenesRelacionadosByAlmacenIdWS(
         @WebParam(name = "arg0", targetNamespace = "")
         long arg0);
+
+    /**
+     * 
+     * @param zonaActualId
+     * @return
+     *     returns java.util.List<com.cbp3.ws.cbp.service.RelacionZonas>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listaZonasRelacionadasByZonaActualIdWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListaZonasRelacionadasByZonaActualIdWS")
+    @ResponseWrapper(localName = "listaZonasRelacionadasByZonaActualIdWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListaZonasRelacionadasByZonaActualIdWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/listaZonasRelacionadasByZonaActualIdWSRequest", output = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/listaZonasRelacionadasByZonaActualIdWSResponse")
+    public List<RelacionZonas> listaZonasRelacionadasByZonaActualIdWS(
+        @WebParam(name = "zonaActualId", targetNamespace = "")
+        long zonaActualId);
+
+    /**
+     * 
+     * @param relacionZonasId
+     * @param status
+     * @return
+     *     returns com.cbp3.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "actualizaStatusRelacionZonasWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ActualizaStatusRelacionZonasWS")
+    @ResponseWrapper(localName = "actualizaStatusRelacionZonasWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ActualizaStatusRelacionZonasWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/actualizaStatusRelacionZonasWSRequest", output = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/actualizaStatusRelacionZonasWSResponse")
+    public RespuestaDTO actualizaStatusRelacionZonasWS(
+        @WebParam(name = "relacionZonasId", targetNamespace = "")
+        long relacionZonasId,
+        @WebParam(name = "status", targetNamespace = "")
+        String status);
+
+    /**
+     * 
+     * @param relacionAlmacenesId
+     * @param status
+     * @return
+     *     returns com.cbp3.ws.cbp.service.RespuestaDTO
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "actualizaStatusRelacionAlmacenesWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ActualizaStatusRelacionAlmacenesWS")
+    @ResponseWrapper(localName = "actualizaStatusRelacionAlmacenesWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ActualizaStatusRelacionAlmacenesWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/actualizaStatusRelacionAlmacenesWSRequest", output = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/actualizaStatusRelacionAlmacenesWSResponse")
+    public RespuestaDTO actualizaStatusRelacionAlmacenesWS(
+        @WebParam(name = "relacionAlmacenesId", targetNamespace = "")
+        long relacionAlmacenesId,
+        @WebParam(name = "status", targetNamespace = "")
+        String status);
 
     /**
      * 
