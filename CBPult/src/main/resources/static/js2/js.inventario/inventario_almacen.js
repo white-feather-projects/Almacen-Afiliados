@@ -109,7 +109,7 @@ function listarAlmacenesRelacionados(idAlmacen){
 	                "class": "ver",
 	                "defaultContent": "",
 	                "render": function ( data, type, full, meta ) {
-	                		return '<center><a title="Visualizar Almacen" href="/CBPult/Almacen/relacion-almacen_nuevo-editar"><i class="fa fa-edit" style="font-size:30px" aria-hidden="true"></i></a></center>';
+	                		return '<center><a title="Visualizar Almacen" href="/CBPult/Almacen/relacion-almacen_consulta&'+idAlmacen+'_'+data+'"><i class="fa fa-edit" style="font-size:30px" aria-hidden="true"></i></a></center>';
 	                
 	                }
 	            }
@@ -173,7 +173,7 @@ function listarZonasAlmacen(idAlmacen){
 	                "class": "ver",
 	                "defaultContent": "",
 	                "render": function ( data, type, full, meta ) {
-                		return '<center><a title="Visualizar Zona" href="/CBPult/Almacen/inventario_zona&'+data+'"><i class="fa fa-edit" style="font-size:30px" aria-hidden="true"></i></a></center>';
+                		return '<center><a title="Visualizar Zona" href="/CBPult/Almacen/inventario_zona&'+idAlmacen+'_'+data+'"><i class="fa fa-edit" style="font-size:30px" aria-hidden="true"></i></a></center>';
 	                
 	                }
 	            }
