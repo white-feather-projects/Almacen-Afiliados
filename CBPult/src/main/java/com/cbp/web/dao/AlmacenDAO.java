@@ -76,4 +76,6 @@ public interface AlmacenDAO {
 	public java.util.List<Zona> listaZonasByIdAlmacen(long idAlmacen);
 	
 	public java.util.List<Estanteria> listaEstanteriasByIdZona(long idZona);
+	
+	public java.util.List<RelacionZonas> listaZonasRelacionadasPorZonaIdActual(long zonaActualId);
 }

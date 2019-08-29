@@ -1,6 +1,9 @@
 package com.cbp.web.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,6 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -1313,6 +1320,46 @@ public class AfiliacionController extends Util{
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
 	}
+	
+	
+	@RequestMapping(value = "/viewFile/{url}")
+    public ResponseEntity<byte[]> showPdf(@PathVariable(value="url") String url) {
+    	System.out.print("intro");
+    	File file = new File(upload.getPath(url).toString());
+        Path path = upload.getPath(url);
+        byte[] pdfContents = null;
+        try {
+            pdfContents = Files.readAllBytes(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String fileName = file.getName();
+
+        HttpHeaders headers = new HttpHeaders();
+        
+        String tipo = url.substring(url.length()-3);
+        if(tipo.equals("pdf")){
+        	System.out.println("tipooooo---- "+url.substring(url.length()-3));
+            headers.setContentType(MediaType.parseMediaType("application/pdf"));
+            headers.add("Content-Disposition", "inline;filename=" + fileName);
+              
+        }else if(tipo.equals("jpg")) {
+        	System.out.println("tipojpg---- "+url.substring(url.length()-3));
+            headers.setContentType(MediaType.parseMediaType("image/jpeg"));
+            headers.add("Content-Disposition", "inline;filename=" + fileName);
+
+        }else if(tipo.equals("png")) {
+        	System.out.println("tipooooo---- "+url.substring(url.length()-3));
+            headers.setContentType(MediaType.parseMediaType("image/png"));
+            headers.add("Content-Disposition", "inline;filename=" + fileName);
+
+        }
+        
+        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(
+                pdfContents, headers, HttpStatus.OK);
+        return response;
+
+    }
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
