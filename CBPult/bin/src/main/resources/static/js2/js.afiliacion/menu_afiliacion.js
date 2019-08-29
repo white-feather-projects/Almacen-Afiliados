@@ -14,4 +14,8 @@ window.addEventListener('load', ()=>{
 		location.href = "/CBPult/Afiliacion/pre_carga_autogestion";
 	})
 	
+	$("#menu_Analista_Comercial").on('click', function(){
+		location.href = "/CBPult/Afiliacion/bandeja_analista_comercial";
+	})
+	
 })

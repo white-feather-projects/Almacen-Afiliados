@@ -13,8 +13,6 @@ var valid_ZonasRel = 0;
 var contenedor_relZonas = $('#relaciones_zonas');
 
 
-
-
 function evtNuevaZona(){
 		
 	// Estas variables se usan simultaneamente con el mismo boton y crean Zonas en los 2 Tabs al mismo tempo
