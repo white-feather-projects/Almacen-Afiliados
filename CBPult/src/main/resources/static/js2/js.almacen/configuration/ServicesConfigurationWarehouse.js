@@ -184,8 +184,6 @@ function modificarAlmacenServ(){
 // Servicios para crea Almacen
 function listarAlmacenesRelServ(){
 	
-	var hola = "hola";
-	
     $('#simpletablerel').DataTable( {
 	    
     	sort:true,
@@ -264,12 +262,32 @@ function listarAlmacenesRelServ(){
         initComplete: function( settings, json){
             //Cargar Switches
 			Array.prototype.forEach.call($('.js-switch-blue'), (item, i)=>{
+				
 				var actual_switch = new Switchery(item, {
 					color: '#17a2b8',
 					secondaryColor: '#e0e0e0',
 					jackSecondaryColor: '#17a2b8'
 				});
-			});			
+			});
+			
+			var idsTablreRel = $('#simpletablerel td.dos center');
+			idsTablreRel.map(function(i, center){
+				
+				//console.log(center.innerHTML);
+				data_almacen.relaciones.map(function(rel, j){
+					
+					if(rel.almacenDestinoId.idWarehouse == center.innerHTML){
+						
+						//console.log($('.js-switch-blue')[i], center.innerHTML);
+						var actual = document.getElementsByClassName('js-switch-blue')[i]; //$('.js-switch-blue').attr("checked", true);
+						console.log(actual.checked);
+						//actual.setPosition(true);
+						
+					}
+					
+				});
+				
+			});
 			
         },
         
@@ -365,13 +383,14 @@ function crearListaZonasServ(idAlmacen){
         data: JSON.stringify(info_zonas),
         success: function(response){
         	
-
+        	console.log("Respuesta Creacion Zonas",response);
+        	
 	        if(response.return.descripcion == "OK"){
 	
-	          console.log("Respuesta Creacion Zonas",response);
 	          zonas_response = response;
 	
 	          response.return.listZonas.forEach(function(zona, index){
+	        	  
 	            data_zonas[index].id = zona.zonaId;
 	            data_zonas[index].estanteriasZona.forEach(function(estanteria){
 	
@@ -391,16 +410,6 @@ function crearListaZonasServ(idAlmacen){
 	          
 	          // - Creacion de Relaciones de Almacén
 	          crearRelacionesAlmacenServ(idAlmacen);
-	          
-	          //////////////////          
-	          Swal.fire({
-			      title: "NUEVO ALMACÉN CREADO",
-			      text: "Creación del Almacén ID: [ " +idAlmacen+ " ], Tipo: [ "+ data_almacen.tipoAlmacen +" ] Exitosa!!! Presiona (Siguiente) para Personalizar las Relaciones de tus Zonas",
-			      type: "success",
-			      confirmButtonColor: '#3085d6',
-			      confirmButtonText: 'OK'	               
-	          });
-	          //////////////////
 	          zonas_creadas = true;
 	        }			
 
@@ -476,13 +485,22 @@ function crearRelacionesAlmacenServ(idAlmacen){
     	        	swal("Error al crear las Relaciones del Almacén");
     	        	console.log("error:"+ txt + e);
     	        	console.log("Error - Info de las Relaciones de Almacén: ", info_Relacion_almacen, "Error: ", response.return.descripcion);
-    	        	zonas_creadas = false;
     	        }
     			
     		});
     		
     	}
     });
+    
+    //////////////////
+    Swal.fire({
+	      title: "NUEVO ALMACÉN CREADO",
+	      text: "Creación del Almacén ID: [ " +idAlmacen+ " ], Tipo: [ "+ data_almacen.tipoAlmacen +" ] Exitosa!!! Presiona (Siguiente) para Personalizar las Relaciones de tus Zonas",
+	      type: "success",
+	      confirmButtonColor: '#3085d6',
+	      confirmButtonText: 'OK'	               
+    });
+    //////////////////
     
 }
 
@@ -492,7 +510,6 @@ function crearRelacionesZonasServ(){
 		
 		// Construyendo Relaciones de Almacén
 		$('#tbodyrel_'+i+' tr').map(function(j, tr){
-			
 			
 			if($('#tbodyrel_'+i+' tr td .js-switch-blue_rel')[j].checked){
 	    		
@@ -860,7 +877,7 @@ function cargaDatosModificarAlmacenIdServ(){ // Carga toda la información del A
 						
 						//Lista de Relaciones de la Zona 
 						
-						data_zonas.push({
+						data_zonasTemp_editar.push({
 							"id": zona.zonaId,
 							"tipoZona": tipoZona,
 							"IdTipoZona": zona.idTipoZona,
@@ -874,10 +891,9 @@ function cargaDatosModificarAlmacenIdServ(){ // Carga toda la información del A
 					
 					//console.log("Data: ", data_zonas);
 					
-						
 				}
 				else{
-					data_zonas.push({
+					data_zonasTemp_editar.push({
 						"id": 1,
 						"tipoZona": "Recibo",
 						"IdTipoZona": 1,
@@ -886,7 +902,7 @@ function cargaDatosModificarAlmacenIdServ(){ // Carga toda la información del A
 						"estanteriasZona": [],
 						"relacionesZona": []
 					});
-					swal("Almacén sin Zonas, puedes crearle nuevas");
+					swal("Almacén sin Zonas, puedes crearle nuevas!");
 				}
 				
 			});
@@ -895,7 +911,8 @@ function cargaDatosModificarAlmacenIdServ(){ // Carga toda la información del A
 		    // Relaciones del Almacén			
 			$.get('/CBPult/Almacen/listaAlmacenesRelacionados/'+IdAlmacen+"", function(relacionesAlmacen){
 				
-				console.log(relacionesAlmacen);
+				data_relacionesTemp_Almacen = relacionesAlmacen;
+				console.log("Relaciones Almacen: ", data_relacionesTemp_Almacen);
 				
 			});
 			
@@ -903,15 +920,14 @@ function cargaDatosModificarAlmacenIdServ(){ // Carga toda la información del A
 	    error: function(e){
 	    	console.log("Almacen error: "+ e);
 		}
+		
 	}); 
 	
 }
 
 function cargaDatosModificarZonasServ(){
 	
-	console.log("Hola");
-	
-	data_zonas.map(function(zona){
+	data_zonasTemp_editar.map(function(zona){
 		
 		//console.log(zona);
 		
@@ -1016,7 +1032,7 @@ function cargaDatosModificarZonasServ(){
 	                                	
 	                                	<div class="col-sm-2">									                                                			
 	                                		<div class="column" align="right">																
-												<a onClick="crearTr(`+zona.id+`)" style="margin-right: 5px;" title="Nueva Estanteria">
+												<a onClick="crearTrEditar(`+zona.id+`)" style="margin-right: 5px;" title="Nueva Estanteria">
 													<i class="fa fa-plus-square agregaryasignar" style="font-size: 50px"></i>
 												</a>
 											</div>											                                                	
@@ -1029,6 +1045,7 @@ function cargaDatosModificarZonasServ(){
 	                                    <table id="simpletable`+zona.id+`" class="table-sm table-striped table-bordered display`+zona.id+` nowrap">
 	                                        <thead>
 												<tr>
+													<th>IdEstanteria</th>
 													<th>Módulos</th>
 													<th>Niveles</th>
 													<th>Acciones</th>																														
@@ -1074,11 +1091,16 @@ function cargaDatosModificarZonasServ(){
 	        "info": false,		        
 	    });
 		
-		//console.log("Estanterias: ", zona.estanteriasZona);
+		// Para remover la fila de las tablas que aparece cuando no hay registros
+		var body = $('#simpletable'+zona.id);
+		body.find( 'tbody tr:eq(0)').remove();
+		
+		//console.log("Estanterias Zona: ", zona.estanteriasZona);
 		zona.estanteriasZona.map(function(est, j){
-
+			
 			$('#tbody'+zona.id).append(`
 				<tr id="est_`+est.estanteriaId+`">
+					<td>`+est.estanteriaId+`</td>
 			    	<td>`+est.modulos+`</td>
 			    	<td>`+est.niveles+`</td>																												    	
 			    	<td>
@@ -1088,13 +1110,7 @@ function cargaDatosModificarZonasServ(){
 			    	</td>
 			    </tr>
 			`);
-			
-		});
-		
-		
-		// Para remover la fila de las tablas que aparece cuando no hay registros
-		var body = $('#simpletable'+zona.id);
-		body.find( 'tbody tr:eq(0)').remove();
+		});		
 		
 		var tipo_zona;
 		if(zona.IdTipoZona == 1){
@@ -1114,7 +1130,9 @@ function cargaDatosModificarZonasServ(){
 		$("#cboxTipo_zona"+zona.id+" option[value="+tipo_zona+"]").attr("selected",true);
 		$('#txtDescripcion_zona'+zona.id).val(zona.descripcionZona);
 		//$('#cboxEncargado_zona'+zona.encargadoZona);
-
+		
+		
+		
 	});
 	
 }
