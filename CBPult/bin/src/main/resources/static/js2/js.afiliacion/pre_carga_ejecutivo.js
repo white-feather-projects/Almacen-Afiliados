@@ -441,7 +441,7 @@ window.addEventListener('load', ()=>{
     
     nombre_empresa.addEventListener('blur', ()=>{
     	console.log("nombre empresa", nombre_empresa.value);
-    	soloTexto(nombre_empresa);
+    	soloLetrasYNum(nombre_empresa);
     });
     
     distrito.addEventListener('blur', ()=>{
@@ -762,4 +762,19 @@ function soloNumeros(numero){
 	}else{
 		return true;
 	}
+}
+
+function soloLetrasYNum(campo) {
+	 var validos = " abcdefghijklmnopqrstuvwxyz0123456789";
+	 var letra;
+	 var bien = true;
+	 for (var i=0; i<campo.value.length; i++) {
+		  letra=campo.value.charAt(i).toLowerCase()
+		  if (validos.indexOf(letra) == -1){bien=false;};
+		  }
+		  if (!bien) {
+			  campo.value = "";
+			  swal("Campo Alfanumerico");
+			  //campo.focus();
+		  }
 }
