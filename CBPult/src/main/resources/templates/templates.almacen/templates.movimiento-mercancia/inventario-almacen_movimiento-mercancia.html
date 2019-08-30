@@ -91,9 +91,9 @@
 	                                                                <label class="col-sm-12 col-form-label">Tipo Almacén</label>
 	                                                                <div class="col-sm-12">
 		                                                                <select name="select" id="cboxTipo_almacen" class="form-control">
-		                                                                    <option value="Almacén">Almacén</option>
-		                                                                    <option value="Laboratorio">Laboratorio</option>
-		                                                                    <option value="Sucursal">Sucursal</option>
+		                                                                    <option value="ALMACEN">Almacén</option>
+		                                                                    <option value="LABORATORIO">Laboratorio</option>
+		                                                                    <option value="SUCURSAL">Sucursal</option>
 		                                                                </select>
 	                                                         		</div>
 	                                                            </div>
@@ -180,26 +180,8 @@
 			                                       			<div class="botonera2">
 			                                       			
 			                                       				<div class="col-sm-4" style="padding: 0px">		                                       		
-						                                       		<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/CBPult/Almacen/inventario_movimiento'">
-							                                   			Orden de Trnasferencia
-							                                   		</button>
-							                                   </div>
-							                                   
-			                                       			</div>				                                       		
-					                                   </div>		                                       	
-			                                       	</div>	                                            
-	                                            </div>
-	                                            
-	                                            <div class="col-sm-4">	                                            	
-	                                            		                                            	                                   
-			                                       	<div class="row" style="margin-bottom:30px">
-			                                       		
-			                                       		<div class="col-sm-4">	
-			                                       			<div class="botonera2">
-			                                       			
-			                                       				<div class="col-sm-4" style="padding: 0px">		                                       		
-						                                       		<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/CBPult/Almacen/inventario_movimiento'">
-							                                   			Orden de Traspaso
+						                                       		<button type="button" class="btn btn-primary btn-md waves-effect text-center mb-20" id="btnGenerarOrden">
+							                                   			Generar Orden
 							                                   		</button>
 							                                   </div>
 							                                   
