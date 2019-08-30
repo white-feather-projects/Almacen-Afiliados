@@ -116,4 +116,12 @@ window.addEventListener('load', function(){
 	   	swal("Error al contactar el servicio", data);
 	}
 	
+	//////////////////////////////////////////////
+	
+	$("#btnAtras_movimiento").on('click', function(){
+		
+		location.href='/CBPult/Almacen/inventario_almacen&'+id+'';
+		
+	});
+	
 });
