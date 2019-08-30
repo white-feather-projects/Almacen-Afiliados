@@ -23,8 +23,7 @@
         <link rel="stylesheet" type="text/css" th:href="@{/css/responsive.bootstrap4.min.css}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
-        <script type="text/javascript" th:src="@{/js2/index.js}"></script>
-        <script th:src="@{/js2/bandeja_ventas.js}"></script>       
+        <script type="text/javascript" th:src="@{/js2/js.inventario/relacion_zona_consulta.js}"></script>     
 		
 		<link rel="stylesheet" type="text/css" th:href="@{/css2/css.almacen/GeneralForm.css}">
         
@@ -66,7 +65,7 @@
                                                 <div class="col-lg-4">
                                                     <div class="page-header-title">
                                                         <div class="d-inline">
-                                                            <h2>Nuevo / Editar  Relación Zona</h2>                                                            
+                                                            <h2>Consulta Relación Zona</h2>                                                            
                                                         </div>
                                                     </div>
                                                 </div>                                                
@@ -79,15 +78,10 @@
                                         	<!-- Row General -->
                                             <div class="row">
                                             
-                                            	<div class="col-sm-12 botonera botonera2" style="margin-bottom:30px">                                            		
-                                            		
-                                           			<button type="button" id="btnRelacionar_relacion-zona" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/CBPult/Almacen/almacen_nuevo-editar'; alert('Almacenes Relacionados');">
-			                                   			Relacionar
-			                                   		</button>
-                                            			                                       		
+                                            	<div class="col-sm-12 botonera botonera2" style="margin-bottom:30px">                                 		
 		                                       		
-			                                   		<button type="button" id="btnCancelar_relacion-zona" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/CBPult/Almacen/almacen_nuevo-editar'; alert('Relación Cancelada');">
-			                                   			Cancelar
+			                                   		<button type="button" id="btnAtras_relacion-zona" class="btn btn-primary btn-md waves-effect text-center mb-20">
+			                                   			Atras
 			                                   		</button>
 		                                   		
                                             	</div>	

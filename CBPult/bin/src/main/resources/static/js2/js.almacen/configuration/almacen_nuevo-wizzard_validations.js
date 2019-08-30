@@ -1,5 +1,7 @@
 var data_almacen; // para capturar la toda la info del modulo (Almacen, Zonas, Relaciones)
 var data_zonas = []; // se usa para capturar las Zonas y se incrusta en "data_almacen" en el atributo "zonasAlmacen"
+var data_zonasTemp_editar = [];
+var data_relacionesTemp_Almacen;
 var zonas_response = "";
 var zonas_creadas = false;
 
@@ -56,6 +58,8 @@ if(Tipo == "newalm"){
 		
 		onChange: function (currentIndex, newIndex, stepDirection) {
 			
+			console.log("onChange", currentIndex, newIndex, stepDirection);
+			
 			// tab Almacen
 			if(currentIndex === 0){
 				
@@ -90,7 +94,8 @@ if(Tipo == "newalm"){
 						    "tipoAlmacenId": parseInt($('select[id="cboxTipo_almacen"] option:selected').attr('name')),
 						    "warehouseName": $('#txtDesc_almacen').val(),
 						    "zonas": []
-						};					
+						};				
+						console.log(data_almacen);
 						return true;
 						
 					}else if(validated != 2){
@@ -195,6 +200,7 @@ if(Tipo == "newalm"){
 				// para no cargar a cada rato la Tabla de Relaciones del Almacén
 				if(listar == 0){
 					listarAlmacenesRelServ();
+					//swalRelacionesAlmacenServ();
 					listar++;
 				}				
 				
@@ -256,6 +262,7 @@ if(Tipo == "newalm"){
 			Swal.fire({
 	        	title: "¡¡¡ Cofiguración Completada !!!",
 			    text: "",
+			    allowOutsideClick: false,
 			    type: "success",
 			    confirmButtonColor: '#3085d6',
 			    confirmButtonText: 'Genial!'	               
@@ -272,24 +279,46 @@ if(Tipo == "newalm"){
 }
 else if(Tipo === "editar"){
 	
-	console.log("Tipo: ", Tipo);
-	console.log("IdAlmacén: ", IdAlmacen);
+	// Mensaje de Carga
+	let timerInterval;
+	Swal.fire({
+		title: 'Cargando Información de Tu Almacén!',
+		html: 'Espera un Momento',
+		allowOutsideClick: false,
+		timer: 3500,
+		onBeforeOpen: () => {
+			Swal.showLoading()
+			timerInterval = setInterval(() => {}, 100)
+		},
+		onClose: () => {
+			clearInterval(timerInterval);
+		}
+	});
+	// Mensaje de Carga
 	
 	$('#titleWizardAlmacen').append("<h2>Modificación del Almacén : "+IdAlmacen+"</h2>");
 	$('#titleAlmacen').append("<code>"+IdAlmacen+"</code>");
 	$('#contentCodigo_almacen').css("display", "initial");
 	$('#contentCodigo_almacen').attr("class", "col-sm-12");
 	
+	
 	cargaDatosModificarAlmacenIdServ();
+	var cargaDatos = 0;
 	
 	$('#demo').steps({
 		
 		onChange: function (currentIndex, newIndex, stepDirection) {
 			
 			// tab Almacen
-			if(currentIndex === 0){
+			if(currentIndex === 0){				
 				
-				if(stepDirection === 'forward'){
+				if(cargaDatos == 0){					
+					cargaDatosModificarZonasServ();
+					//cargaRelacionAlmacenServ();
+					cargaDatos++;
+				}				
+				
+				if(stepDirection === 'forward'){					
 					
 					var validated = 0;
 					
@@ -311,19 +340,23 @@ else if(Tipo === "editar"){
 					if(validated == 2){
 						
 						// Creacion del Almacén
-						
 						data_almacen = {
+							"idAlmacen": parseInt(IdAlmacen),
+							"warehouseName": $('#txtCodigo_almacen').val(),
 							"direccion": $('#txtUbicacion_almacen').val(),
 						    "gerenteSucursal": parseInt($('select[id="cboxEncargado_almacen"] option:selected').attr('name')),
 						    "officeId": 1,
 						    "tipoAlmacen": $('#cboxTipo_almacen').val(),
 						    "tipoAlmacenId": parseInt($('select[id="cboxTipo_almacen"] option:selected').attr('name')),
 						    "warehouseName": $('#txtDesc_almacen').val(),
-						    "zonas": []
-						};					
+						    "zonas": data_zonasTemp_editar,
+						    "relaciones": data_relacionesTemp_Almacen
+						}; 
+						console.log("Almacén: ", data_almacen);
 						return true;
 						
-					}else if(validated != 2){
+					}
+					else if(validated != 2){
 						return false;
 					}				
 					
@@ -337,54 +370,62 @@ else if(Tipo === "editar"){
 			/// El código que hace funcionar el tab de Zonas está en "almacen_nuevo-wizzard_funcionalidad.js"
 			if(currentIndex === 1){
 				
+				//console.log("Zonas en Tab Zonas: ", data_zonas);
+				
+				valid_descZonas = 0;
+				empty_Estanterias = 0;
+				
 				if(stepDirection === 'forward'){
 					
-					valid_descZonas = 0;
-					empty_Estanterias = 0;
+					console.log("Temp_DataZonas: ", data_zonasTemp_editar);
 					
-					// Construyendo el Json de listZonas					
-					data_zonas = zonaListTemp.map(function(zona, i){	
-						var estanterias = $('#simpletable'+zona.zona.id+' tbody tr');
+					data_zonas = data_zonasTemp_editar.map(function(zona){
+						
+						var estanterias = $('#simpletable'+zona.id+' tbody tr');						
 						var estanterias_json = [];
 											
-						if($('#txtDescripcion_zona'+zona.zona.id).val().length > 0){
+						if($('#txtDescripcion_zona'+zona.id).val().length > 0){
 							valid_descZonas++;
 						}
 						else{
-							$('#txtDescripcion_zona'+zona.zona.id).css("border" , "1px solid red");
+							$('#txtDescripcion_zona'+zona.id).css("border" , "1px solid red");
 						}
 						
 						if(estanterias.length < 1){
 							estanterias_json.push([1,1]);												        
 							empty_Estanterias++;
 						}
+						
 						else{
 							for (var j = 0; j < estanterias.length; j++) {
-								var modulo, nivel;
-								for (var k = 0; k < estanterias[j].cells.length; k++) {							
+								var modulo, nivel, id;
+								for (var k = 0; k < estanterias[j].cells.length; k++) {	
 									if(k == 0){
-										modulo = estanterias[j].cells[k].innerHTML;
+										id = estanterias[j].cells[k].innerHTML;
 									}
 									else if(k == 1){
+										modulo = estanterias[j].cells[k].innerHTML;
+									}
+									else if(k == 2){
 										nivel = estanterias[j].cells[k].innerHTML;
 									}							
 								}
-								estanterias_json.push([modulo, nivel]);
+								estanterias_json.push([id, modulo, nivel]);
 							}
 						}
 						
 						return {
-							"id": zona.zona.id,
-							"tipoZona": $('#cboxTipo_zona'+zona.zona.id).val(),
-							"IdTipoZona": parseInt($('select[id="cboxTipo_zona'+zona.zona.id+'"] option:selected').attr('name')),
-							"descripcionZona": $('#txtDescripcion_zona'+zona.zona.id).val(),
-							"encargadoZona": $('#cboxEncargado_zona'+zona.zona.id).val(),
+							"id": zona.id,
+							"tipoZona": $('#cboxTipo_zona'+zona.id).val(),
+							"IdTipoZona": parseInt($('select[id="cboxTipo_zona'+zona.id+'"] option:selected').attr('name')),
+							"descripcionZona": $('#txtDescripcion_zona'+zona.id).val(),
+							"encargadoZona": $('#cboxEncargado_zona'+zona.id).val(),
 							"estanteriasZona": estanterias_json,
-							"relacionesZona": []
-						}
-					});	
-					
-					data_almacen.zonas = data_zonas;
+							"relacionesZona": zona.relacionesZona
+						}						
+						
+					});
+					console.log("DataZonas", data_zonas);
 					
 				}
 				
@@ -416,15 +457,16 @@ else if(Tipo === "editar"){
 					return false;
 				}
 				
-				
 			}
 			
 			// tab Relaciones de Almacén		
 			if(currentIndex === 2){
 				
+				//console.log(data_zonas);
+				
 				// para no cargar a cada rato la Tabla de Relaciones del Almacén
 				if(listar == 0){
-					listarAlmacenesRelServ();
+					listarModificarAlmacenesRelServ();
 					listar++;
 				}				
 				
@@ -452,7 +494,7 @@ else if(Tipo === "editar"){
 						}).then((result) => {
 							if(result.value) {
 								valid = true;
-								crearAlmacenServ();							
+								//crearAlmacenServ();							
 							}
 							else if(result.dismiss === Swal.DismissReason.cancel) {
 								
@@ -481,11 +523,12 @@ else if(Tipo === "editar"){
 		},
 		onFinish: function () {
 			// - Creacion de Relaciones de Zonas
-			crearRelacionesZonasServ();
+			//crearRelacionesZonasServ();
 			
 			Swal.fire({
 	        	title: "¡¡¡ Cofiguración Completada !!!",
 			    text: "",
+			    allowOutsideClick: false,
 			    type: "success",
 			    confirmButtonColor: '#3085d6',
 			    confirmButtonText: 'Genial!'	               

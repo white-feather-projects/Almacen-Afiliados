@@ -13,8 +13,6 @@ var valid_ZonasRel = 0;
 var contenedor_relZonas = $('#relaciones_zonas');
 
 
-
-
 function evtNuevaZona(){
 		
 	// Estas variables se usan simultaneamente con el mismo boton y crean Zonas en los 2 Tabs al mismo tempo
@@ -161,7 +159,7 @@ function evtNuevaZona(){
 	
 	contenedor_zonas.append(html_zona);
 	
-	swal("nueva Zona "+(contador_zonas+1));
+	swal("Nueva Zona "+(contador_zonas+1));
 	
 	// tablas del Tab de Zonas
 	$('table.display'+contador_zonas).DataTable({ 
@@ -205,6 +203,39 @@ function crearTr(actual){
 		
 		$('#tbody'+actual).append(`
 			<tr>
+		    	<td>`+modulos.val()+`</td>
+		    	<td>`+niveles.val()+`</td>																												    	
+		    	<td>
+		    		<a onclick="alert('EstanteriaEliminada')">
+		    			<img alt="Eliminar" src="`+thEliminar+`" onclick="console.log()"  width="30px">
+		    		</a>
+		    	</td>
+		    </tr>
+		`);		
+		niveles.val("");
+		modulos.val("");
+		
+	}
+	else{
+		niveles.css("border", "1px solid red");
+		modulos.css("border", "1px solid red");
+		niveles.val("");
+		modulos.val("");
+		swal("llenar los campos de la Estanteria");
+	}
+	
+}
+
+function crearTrEditar(actual){
+	
+	var niveles = $('#txtNiveles_estanteria'+actual);
+	var modulos = $('#txtModulos_estanteria'+actual);
+	
+	if(niveles.val() != "" && modulos.val() != ""){
+		
+		$('#tbody'+actual).append(`
+			<tr>
+				<td style="color: red">Nueva</td>
 		    	<td>`+modulos.val()+`</td>
 		    	<td>`+niveles.val()+`</td>																												    	
 		    	<td>

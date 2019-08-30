@@ -186,9 +186,9 @@ function listarAlmacenesRelServ(){
 	
     $('#simpletablerel').DataTable( {
 	    
-    	sort:true,
-    	destroy: true,
-    	searching: true,
+    	sort:false,
+    	destroy: false,
+    	searching: false,
     	paging: false, // le quito el paging porque no deja cargar los switches de las otras paginas
       	
     	language: {
@@ -202,11 +202,20 @@ function listarAlmacenesRelServ(){
         columns: [ 
         	
            {
+        	   	"data": "idWarehouse",
                 "class": "uno",
                 "defaultContent": "",
-                "render": function ( data ) {
-                	return '<center><input type="checkbox" class="js-switch-blue js-check-change" data-switchery="true" style="display: none;"></center>';
+                "render": function ( data, type, full ) {
+                	return '<center><input type="checkbox" class="js-switch-blue js-check-change" data-switchery="true" style="display: none;" ></center>';;
                 }
+           },
+           {
+        	   "data:": "idWarehouse",
+        	   "class": "info",
+        	   "defaultContent": "",
+        	   "render": function ( data, type, full ){
+        		   return '<center><a title="Consultar Información del Almacén '+full.idWarehouse+'"><input type="hidden" id="dit"><i onclick="swalRelacionesAlmacenServ('+full.idWarehouse+')" class="fa fa-search" agregaryasignar" style="font-size:30px"></i></a></center>';
+        	   }
            },
     	   {
                 "data": "idWarehouse", // can be null or undefined
@@ -253,13 +262,14 @@ function listarAlmacenesRelServ(){
         // lo uso para cargar la clase de los Switches
         initComplete: function( settings, json){
             //Cargar Switches
-			Array.prototype.forEach.call($('.js-switch-blue'), (item, i)=>{
+			Array.prototype.forEach.call($('.js-switch-blue'), (item, i)=>{				
 				var actual_switch = new Switchery(item, {
 					color: '#17a2b8',
 					secondaryColor: '#e0e0e0',
 					jackSecondaryColor: '#17a2b8'
 				});
 			});
+			
         },
         
     });
@@ -354,13 +364,14 @@ function crearListaZonasServ(idAlmacen){
         data: JSON.stringify(info_zonas),
         success: function(response){
         	
-
+        	console.log("Respuesta Creacion Zonas",response);
+        	
 	        if(response.return.descripcion == "OK"){
 	
-	          console.log("Respuesta Creacion Zonas",response);
 	          zonas_response = response;
 	
 	          response.return.listZonas.forEach(function(zona, index){
+	        	  
 	            data_zonas[index].id = zona.zonaId;
 	            data_zonas[index].estanteriasZona.forEach(function(estanteria){
 	
@@ -380,16 +391,6 @@ function crearListaZonasServ(idAlmacen){
 	          
 	          // - Creacion de Relaciones de Almacén
 	          crearRelacionesAlmacenServ(idAlmacen);
-	          
-	          //////////////////          
-	          Swal.fire({
-			      title: "NUEVO ALMACÉN CREADO",
-			      text: "Creación del Almacén ID: [ " +idAlmacen+ " ], Tipo: [ "+ data_almacen.tipoAlmacen +" ] Exitosa!!! Presiona (Siguiente) para Personalizar las Relaciones de tus Zonas",
-			      type: "success",
-			      confirmButtonColor: '#3085d6',
-			      confirmButtonText: 'OK'	               
-	          });
-	          //////////////////
 	          zonas_creadas = true;
 	        }			
 
@@ -465,13 +466,22 @@ function crearRelacionesAlmacenServ(idAlmacen){
     	        	swal("Error al crear las Relaciones del Almacén");
     	        	console.log("error:"+ txt + e);
     	        	console.log("Error - Info de las Relaciones de Almacén: ", info_Relacion_almacen, "Error: ", response.return.descripcion);
-    	        	zonas_creadas = false;
     	        }
     			
     		});
     		
     	}
     });
+    
+    //////////////////
+    Swal.fire({
+	      title: "NUEVO ALMACÉN CREADO",
+	      text: "Creación del Almacén ID: [ " +idAlmacen+ " ], Tipo: [ "+ data_almacen.tipoAlmacen +" ] Exitosa!!! Presiona (Siguiente) para Personalizar las Relaciones de tus Zonas",
+	      type: "success",
+	      confirmButtonColor: '#3085d6',
+	      confirmButtonText: 'OK'	               
+    });
+    //////////////////
     
 }
 
@@ -482,17 +492,15 @@ function crearRelacionesZonasServ(){
 		// Construyendo Relaciones de Almacén
 		$('#tbodyrel_'+i+' tr').map(function(j, tr){
 			
-			
 			if($('#tbodyrel_'+i+' tr td .js-switch-blue_rel')[j].checked){
 	    		
-
 	    		var info_Relacion_zona = {
-	    				"zonaActualId": {
-	    					"zonaId": $('#txtCodigo_zona_rel'+i).val()
-	    				},
-	    				"zonaDestinoId": {
-	    					"zonaId": $('#tbodyrel_'+i+' tr th.id_zonaRel')[j].innerHTML
-	    				}
+    				"zonaActualId": {
+    					"zonaId": $('#txtCodigo_zona_rel'+i).val()
+    				},
+    				"zonaDestinoId": {
+    					"zonaId": $('#tbodyrel_'+i+' tr th.id_zonaRel')[j].innerHTML
+    				}
 	    		};
 	    		
 	    		$.ajax({
@@ -527,8 +535,338 @@ function crearRelacionesZonasServ(){
 	
 }
 
+function swalRelacionesAlmacenServ(id_Almacen){
+	
+	console.log(typeof id_Almacen);
+	var idAlmacenConsulta = {					
+		"idAlmacen": id_Almacen				
+	};
+	
+	$.ajax({
+		
+		url: '/CBPult/Almacen/consultarAlmacenPorAlmacenId',
+        type: "POST",         
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(idAlmacenConsulta),
+        success: function(response){
+        	console.log("Almacen ", response);
+        	var almacen = response.return;
+        	var tipoAlm;
+        	
+        	if(almacen.tipoAlmacenId == 1){
+        		tipoAlm = "Almacén";
+        	}
+        	else if(almacen.tipoAlmacenId == 2){
+        		tipoAlm = "Laboratorio";
+        	}
+        	else if(almacen.tipoAlmacenId == 3){
+        		tipoAlm = "Sucursal";
+        	}
+        	else{
+        		tipoAlm = "Desconocido";
+        	}
+        	
+        	var htmlAlmacen = `
+    			<div class="row">
+    									                                            
+    	        	<!-- Card 1 -->
+    	            <div class="col-sm-12">
+    	                <div class="card">
+    	                    <div class="card-header">
+    	                        <div class="card-header-rigth">									                                                            	
+    	                        </div>
+    	                    </div>
+    	                    <div class="card-block">
+    	                    	<!-- Titulo de Card -->
+    	                    	<h4 id="titleAlmacen" class="sub-title">Información de Almacén `+almacen.idWarehouse+`</h4>
+    	                    	
+    	                    	<!-- Row -->                                                        	
+    	                    	<div class="row">
+    	                    		
+    	                    		<!-- Contenido de Card -->
+    	                    		
+    	                    		<div id="contentCodigo_almacen" class="col-sm-12">
+    	                                <label class="col-sm-12 col-form-label">Código de Almacén</label>
+    	                                <div class="col-sm-12">
+    	                                    <input type="text" id="txtCodigo_almacen" value="`+almacen.warehouseNumber+`" class="form-control" placeholder="Codigo" disabled>
+    	                                </div>
+    	                        	</div>
+    	                        	
+    	                        
+    	                            <div class="col-sm-6 mobile-inputs">
+    	                                <label class="col-sm-12 col-form-label">Tipo Almacén</label>
+    	                                <div class="col-sm-12">
+    	                                    <input id="cboxTipo_almacen"  value="`+tipoAlm+`"class="form-control" disabled>
+    	                         		</div>
+    	                            </div>
+    	                            
+    	                            <div class="col-sm-6 mobile-inputs">
+    	                            	<label class="col-sm-12 col-form-label">Descripción Almacén</label>
+    	                            	<div class="col-sm-12">
+    	                                    <input type="text" id="txtDesc_almacen" value="`+almacen.warehouseName+`" class="form-control"  data-type="danger" data-from="top" data-align="left" data-icon="fa fa-check" disabled>
+    	                            	</div>
+    	                            </div>
+    	                            
+    	                            <div class="col-sm-6 mobile-inputs">
+    	                                <label class="col-sm-12 col-form-label">Gerente de Sucursal</label>
+    	                                <div class="col-sm-12">
+    	                                    <input type="text" id="cboxEncargado_almacen" value="`+almacen.gerenteSucursal+`" class="form-control" disabled> <!-- Comsumir servicio de Consulta de Empleados -->    	                            											                                                          
+    	                    			</div>
+    	                    		</div>
+    	                        	
+    	                        	<div class="col-sm-6 mobile-inputs">
+    	                                <label class="col-sm-12 col-form-label solo_texto ">Ubicación (Dirección)</label>
+    	                                <div class="col-sm-12">
+    	                                    <input id="txtUbicacion_almacen" value="`+almacen.direccion+`" type="text" class="form-control" disabled>
+    	                                </div>
+    	                            </div>
+    	                            
+    	                            
+    	                    		<!-- Contenido de Card -->  
+    	                                
+    	                		</div>
+    	            			<!-- Row -->                                                      		                                                        	
+    	                	 	                                                 
+    	        			</div>
+    	                	
+    	    			</div>
+    				</div>
+    	            <!-- Card 1 -->
+    	            
+    	            <!-- Card 1 -->
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <!-- Titulo de Card -->
+                            	<h4 class="sub-title" style="margin:0px">Zonas del Almacén</h4>
+                            </div>
+                            
+                            <div class="card-block">										                                                    	
+                            										                                                        	
+                            	<!-- Row -->                                                        	
+                            	<div class="row">
+                            		
+                            		<!-- Contenido de Card -->
+                            		 
+                            		<!-- Fila 1 -->										                                                        	
+                            		<div class="col-sm-12">
+                            			<div class="dt-responsive table-responsive">
+                                            <table id="tableZonasSwal" class="table table-striped table-bordered display2 nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Código Zona</th>
+                                                        <th>Tipo Zona</th>
+                                                        <th>Descripción</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    
+                                                </tbody>
+                                            </table>														                                                    
+                                       	</div>
+                            		</div>                                                                                                                            
+                                	
+                                	<!-- Fila 1 --> 										                                                            
+                                    
+                            		<!-- Contenido de Card -->  
+                                        
+                        		</div>
+                    			<!-- Row -->                                                      		                                                        	
+                        	 	                                                 
+                			</div>
+                        	
+            			</div>
+        			</div>
+                    <!-- Card 1 -->	
+    	            
+    			</div>
+    		`
+        	
+        	Swal.fire({
+        		title: '<strong>Información del Almacén '+response.return.idWarehouse+'</strong>',
+        		type: 'info',
+        		html: htmlAlmacen,
+        		showCloseButton: true,
+        		focusConfirm: false,
+        		confirmButtonText:'<i class="fa fa-thumbs-up"></i> OK!',
+        	});
+        	
+        	$('#tableZonasSwal').DataTable( {
+        	    
+            	sort: false,
+            	destroy: true,
+            	searching: false,
+            	paging: true, // le quito el paging porque no deja cargar los switches de las otras paginas
+              	
+            	language: {
+            		url: '../js2/Spanish.json'
+                },
+                ajax: {
+                	url:"/CBPult/Almacen/listaZonasByIdAlmacen/"+id_Almacen,
+                    dataSrc: ''
+                	
+                },       
+                columns: [
+                	{
+                		"data": "zonaId",
+                        "class": "uno",
+                        "defaultContent": "",
+                        "render": function ( data, type, full ) {
+                        	return '<center>'+data+'</center>';
+                        }
+                   },
+                   {
+                	   "data:": "idTipoZona",
+                	   "class": "info",
+                	   "defaultContent": "",
+                	   "render": function ( data, type, full ){
+                		   var tipoZona;
+
+                		   if(full.idTipoZona == 1){
+                			   tipoZona = "Recibo";
+                		   }
+                		   else if(full.idTipoZona == 2){
+                			   tipoZona = "Almacenaje";
+                		   }
+                		   else if(full.idTipoZona == 3){
+                			   tipoZona = "Restringido";
+                		   }
+                		   else if(full.idTipoZona == 4){
+                			   tipoZona = "Despacho";
+                		   }
+                		   else{
+                			   tipoZona = "Desconocido";
+                		   }
+                		   
+                		   return '<center>'+tipoZona+'</center>';
+                	   }
+                   },
+            	   {
+                        "data": "descripcion", // can be null or undefined
+                        "class": "dos",
+                        "defaultContent": "",
+                        "render": function ( data ) {
+                    		return '<center>'+data+'</center>';
+                      	}
+            	   }
+                ]
+        	});
+        
+        },					
+		error: function(e, txt){
+			console.log("Error: ", e, txt);
+		}
+		
+	});		
+	
+}
+
 // Servicios Edit Wizzard
-function cargaDatosModificarAlmacenIdServ(){
+function listarModificarAlmacenesRelServ(){
+	
+    $('#simpletablerel').DataTable( {
+	    
+    	sort:false,
+    	destroy: false,
+    	searching: false,
+    	paging: false, // le quito el paging porque no deja cargar los switches de las otras paginas
+      	
+    	language: {
+    		url: '../js2/Spanish.json'
+        },
+        ajax: {
+        	url:"/CBPult/Almacen/listaAlmacenes",
+            dataSrc: ''
+        	
+        },       
+        columns: [ 
+        	
+           {
+        	   	"data": "idWarehouse",
+                "class": "uno",
+                "defaultContent": "",
+                "render": function ( data, type, full ) {
+                	// Para Filtrar las Relaciones ya Existentes del Almacén
+                	var ret = '<center><input type="checkbox" class="js-switch-blue js-check-change" data-switchery="true" style="display: none;" ></center>';
+                	data_almacen.relaciones.map(function(rel, j){
+    					
+    					if(rel.almacenDestinoId.idWarehouse == data){
+    						ret = '<center><input type="checkbox" class="js-switch-blue js-check-change" data-switchery="true" style="display: none;" checked></center>';
+    					}
+    					
+    				});
+                	return ret;
+                }
+           },
+           {
+        	   "data:": "idWarehouse",
+        	   "class": "info",
+        	   "defaultContent": "",
+        	   "render": function ( data, type, full ){
+        		   return '<center><a title="Consultar Información del Almacén '+full.idWarehouse+'"><input type="hidden" id="dit"><i onclick="swalRelacionesAlmacenServ('+full.idWarehouse+')" class="fa fa-search" agregaryasignar" style="font-size:30px"></i></a></center>';
+        	   }
+           },
+    	   {
+                "data": "idWarehouse", // can be null or undefined
+                "class": "dos",
+                "defaultContent": "",
+                "render": function ( data ) {
+            		return '<center>'+data+'</center>';
+              	}
+            },
+            {
+                "data": "tipoAlmacenId", // can be null or undefined
+                "class": "cinco",
+                "defaultContent": "",
+                "render": function ( data ) {
+            		return '<center>'+data+'</center>';
+              	}
+            },
+            {
+                "data": "warehouseName", // can be null or undefined
+                "class": "tres",
+                "defaultContent": "",
+                "render": function ( data ) {
+            		return '<center>'+data+'</center>';
+              	}
+            },            
+            {
+                "data": "direccion", // can be null or undefined
+                "class": "cuatro",
+                "defaultContent": "",
+                "render": function ( data ) {
+            		return '<center>'+data+'</center>';
+              	}
+            },            
+            {
+                "data": "gerenteSucursal", // can be null or undefined
+                "class": "seis",
+                "defaultContent": "",
+                "render": function ( data ) {
+            		return '<center>'+data+'</center>';
+              	}
+            }            
+        ],
+        // ejecuta una funcion Despues de Cargar los Registros de la Tabla
+        // lo uso para cargar la clase de los Switches
+        initComplete: function( settings, json){
+            //Cargar Switches
+			Array.prototype.forEach.call($('.js-switch-blue'), (item, i)=>{				
+				var actual_switch = new Switchery(item, {
+					color: '#17a2b8',
+					secondaryColor: '#e0e0e0',
+					jackSecondaryColor: '#17a2b8'
+				});
+			});
+			
+        },
+        
+    });
+    
+}
+
+function cargaDatosModificarAlmacenIdServ(){ // Carga toda la información del Almacén, Zonas, Estanterias y Relaciones
 	
 	var datos = {
 		"idAlmacen": IdAlmacen			
@@ -543,71 +881,348 @@ function cargaDatosModificarAlmacenIdServ(){
 	    success: function(resp){
 		    
 	    	console.log("Respuesta Consulta Almacen: ",resp);
-	    	var response_tipoZona = resp.return.tipoAlmacenId;
-	    	if(response_tipoZona == 1){
-	    		response_tipoZona = "ALMACEN"
+	    	
+	    	var response_tipoAlmacen = resp.return.tipoAlmacenId;
+	    	if(response_tipoAlmacen == 1){
+	    		response_tipoAlmacen = "ALMACEN"
 	    	}
-	    	else if(response_tipoZona == 2){
-	    		response_tipoZona = "LABORATORIO"
+	    	else if(response_tipoAlmacen == 2){
+	    		response_tipoAlmacen = "LABORATORIO"
 	    	}
-	    	else if(response_tipoZona == 3){
-	    		response_tipoZona = "SUCURSAL"
+	    	else if(response_tipoAlmacen == 3){
+	    		response_tipoAlmacen = "SUCURSAL"
 	    	}
 	    	
+	    	// Llenando los campos del Tab de Almacén
 	    	$('#txtCodigo_almacen').val(resp.return.warehouseNumber);	    	
-			$("#cboxTipo_almacen option[value="+response_tipoZona+"]").attr("selected",true);			
+			$("#cboxTipo_almacen option[value="+response_tipoAlmacen+"]").attr("selected",true);			
 		    document.getElementById('txtDesc_almacen').value = resp.return.warehouseName;		    
 		    document.getElementById('txtUbicacion_almacen').value = resp.return.direccion;
 		    
+		    $.get("/CBPult/Almacen/listaZonasByIdAlmacen/"+IdAlmacen+"", function(getZonas){
+				
+				//console.log("Zonas del Almacén: ", getZonas);
+				
+				var tipoZona;				
+				
+				if(getZonas.length != 0){					
+					
+					getZonas.map(function(zona, i){
+						
+						var estanteriasZona = [];
+						var relacionesZona = [];
+						
+						if(zona.idTipoZona == 1){
+							tipoZona = "Recibo"
+						}
+						else if(zona.idTipoZona == 2){
+							tipoZona = "Almacenaje"
+						}
+						else if(zona.idTipoZona == 3){
+							tipoZona = "Restringido"
+						}
+						else if(zona.idTipoZona == 4){
+							tipoZona = "Despacho"
+						}
+						
+						//Lista de Estanterias de la Zona 
+						$.get("/CBPult/Almacen/listaEstanteriasByIdZona/"+zona.zonaId+"", function(getEstanterias){
+							
+							getEstanterias.map(function(estanteria){
+								estanteriasZona.push(estanteria);								
+							});
+							//estanteriasZona.push(getEstanterias);
+							
+						});
+						//Lista de Estanterias de la Zona 
+						
+						//console.log("Almacen: "+IdAlmacen+" Zona: "+i+" ID ( "+zona.zonaId+" )"); console.log(zona)
+						//console.log("Estanterias de la Zona: "+i, estanteriasZona);
+						
+						
+						
+						//Lista de Relaciones de la Zona 
+						$.get("/CBPult/Almacen/listaRelacionZonas", function(getRelaciones){
+							
+							//console.log("Info Rel: ", zona.zonaId, getRelaciones);
+							
+							getRelaciones.map(function(relacion, j){
+								
+								//console.log("Info Rel: ", zona.zonaId);
+								
+								if(relacion.zonaActualId.zonaId == zona.zonaId){
+									relacionesZona.push(relacion);
+								}
+								
+							});
+							
+						});
+						//console.log("Relaciones Zona ["+zona.zonaId+"]: ", relacionesZona);
+						
+						//Lista de Relaciones de la Zona 
+						
+						data_zonasTemp_editar.push({
+							"id": zona.zonaId,
+							"tipoZona": tipoZona,
+							"IdTipoZona": zona.idTipoZona,
+							"descripcionZona": zona.descripcion,
+							"encargadoZona": zona.encargadoZona,
+							"estanteriasZona": estanteriasZona,
+							"relacionesZona": relacionesZona
+						});
+						
+					});
+					
+					//console.log("Data: ", data_zonas);
+					
+				}
+				else{
+					data_zonasTemp_editar.push({
+						"id": 1,
+						"tipoZona": "Recibo",
+						"IdTipoZona": 1,
+						"descripcionZona": "",
+						"encargadoZona": "",
+						"estanteriasZona": [],
+						"relacionesZona": []
+					});
+					swal("Almacén sin Zonas, puedes crearle nuevas!");
+				}
+				
+			});
+		    
+		    
+		    // Relaciones del Almacén			
+			$.get('/CBPult/Almacen/listaAlmacenesRelacionados/'+IdAlmacen+"", function(relacionesAlmacen){
+				
+				data_relacionesTemp_Almacen = relacionesAlmacen;
+				console.log("Relaciones Almacen: ", data_relacionesTemp_Almacen);
+				
+			});
+			
 		},
 	    error: function(e){
-	    	console.log("error:"+e);
+	    	console.log("Almacen error: "+ e);
 		}
+		
 	}); 
 	
+}
+
+function cargaDatosModificarZonasServ(){
 	
-	var zonas;
-	var estanterias;
-	
-	// Pedir Servicio consultarZonasPorIdAlmacen
-	$.get("/CBPult/Almacen/listaZonas", function(getZonas){
+	data_zonasTemp_editar.map(function(zona){
 		
-		getZonas.map(function(zona, i){	
+		//console.log(zona);
+		
+		var html_zona = `
+			<!-- Zona --> 
+	        <div id="zona`+zona.id+`" class="zona_zonas col-sm-12 card" style="border: none">
+	    	
+	    	<div class="row">
+	    		<!-- Btn Eliminar Zona -->
+	    		<div class="col-sm-12" style="margin: 5px 0px 5px 0px;">									                                                			
+	        		<div class="column" align="left">																
+						<a style="margin-right: 5px;" title="Eliminar Zona">
+							<img id="btnEliminarZona_config" onClick="eliminarZona(`+zona.id+`)" src="`+thEliminar+`" style="width: 60px"></img>
+						</a>
+					</div>											                                                	
+	    		</div>
+	    		<!-- Btn Eliminar Zona -->
+	    		<!-- Card 1 -->
+	        	<div class="col-sm-4">											                                            	                                   
+	            	<div class="card">                                                   
+	                	<div class="card-block">
+	                		<!-- Titulo de Card -->
+	                    	<h4 class="sub-title">Información de Zona `+zona.id+`</h4>
+	                    	
+	                    	<!-- Row -->                                                        	
+	                    	<div class="row">
+	                    		
+	                    		<!-- Contenido de Card -->  
+	                    		<div class="col-sm-12">
+	                                <label class="col-sm-12 col-form-label">Código de Zona</label>
+	                                <div class="col-sm-12">
+	                                    <input type="text" id="txtCodigo_zona`+zona.id+`" class="form-control" placeholder="Codigo" disabled>
+	                                </div>
+	                        	</div>
+	                        
+	                            <div class="col-sm-12 mobile-inputs">
+	                                <label class="col-sm-12 col-form-label">Tipo Zona</label>
+	                                <div class="col-sm-12">
+	                                    <select name="select" id="cboxTipo_zona`+zona.id+`" class="form-control">
+	                                        <option value="Recibo" name="1">Recibo</option>
+	                                        <option value="Almacenaje" name="2">Almacenaje</option>
+	                                        <option value="Restringido" name="3">Restringido</option>
+	                                        <option value="Despacho" name="4">Despacho</option>
+	                                    </select>
+	                         		</div>
+	                            </div>
+	                            
+	                            <div class="col-sm-12 mobile-inputs">
+	                            	<label class="col-sm-12 col-form-label">Descripción Zona</label>
+	                            	<div class="col-sm-12">
+	                                    <input type="text" id="txtDescripcion_zona`+zona.id+`" onblur="lleno(`+zona.id+`)" class="form-control solo_texto" placeholder="">
+	                                </div>
+	                            </div>	                                                        	
+	                            
+	                            <div class="col-sm-12 mobile-inputs">
+	                                <label class="col-sm-12 col-form-label">Encargado de Zona</label>
+	                                <div class="col-sm-12">
+	                                    <select name="select" id="cboxEncargado_zona`+zona.id+`" class="form-control">
+	                                        <option value="Elon Musk">Elon Musk</option>
+	                                        <option value="Einstein">Einstein</option>
+	                                        <option value="Jack Ma">Jack Ma</option>
+	                                    </select>
+	                         		</div>
+	                            </div>
+	                            <!-- Contenido de Card -->  
+	                            
+	                    	</div>
+	                    	<!-- Row -->                                                      		                                                        	
+	                                                                  
+	                	</div>
+	            	</div> 
+	        	                                
+	            </div>
+	            <!-- Card 1 -->											                                            
+	            
+	            <!-- Card 2 -->
+	        	<div class="col-sm-8"> 
+	        	                                           
+	            	<div class="card">                                                   
+	                	<div class="card-block">
+	                		<!-- Titulo de Card -->
+	                    	<h4 class="sub-title">Información Estanterias</h4>
+	                    	
+	                    	<!-- Fila 1 -->                                      
+	                    	<div class="row">
+	                    		<div class="col-sm-12">
+	                    		
+	                    			<!-- inputs Estanteria -->
+	                    			<div class="row">
+	                                    
+	                                    <div class="col-sm-5">														                                                                
+	                                        <div class="col-sm-12">
+	                                            <input type="text" id="txtModulos_estanteria`+zona.id+`" class="form-control solo_num" onblur="modulos(`+zona.id+`)" placeholder="Módulos">
+	                                        </div>
+	                                	</div>
+	                    			
+	                    				<div class="col-sm-5">														                                                                
+	                                        <div class="col-sm-12">
+	                                            <input type="text" id="txtNiveles_estanteria`+zona.id+`" class="form-control solo_num"  onblur="niveles(`+zona.id+`)" placeholder="Niveles">
+	                                        </div>
+	                                	</div>
+	                                	
+	                                	<div class="col-sm-2">									                                                			
+	                                		<div class="column" align="right">																
+												<a onClick="crearTrEditar(`+zona.id+`)" style="margin-right: 5px;" title="Nueva Estanteria">
+													<i class="fa fa-plus-square agregaryasignar" style="font-size: 50px"></i>
+												</a>
+											</div>											                                                	
+	                            		</div>
+	                            		
+	                    			</div>
+	                    			<!-- inputs Estanteria -->
+	                    			
+	                    			<div class="dt-responsive table-responsive">
+	                                    <table id="simpletable`+zona.id+`" class="table-sm table-striped table-bordered display`+zona.id+` nowrap">
+	                                        <thead>
+												<tr>
+													<th>IdEstanteria</th>
+													<th>Módulos</th>
+													<th>Niveles</th>
+													<th>Acciones</th>																														
+												 </tr>
+											</thead>
+											<tbody id="tbody`+zona.id+`">
+											    
+											    
+											</tbody>
+	                                    </table>
+	                               	</div>                                                        			
+	                               	
+	                               	
+	                    		</div> 
+	                    	</div>                                                                                                                           
+	                	</div>
+	                	<!-- Fila 1 -->                                                   	
+	                	                                                         
+	            	</div>
+	        	</div>
+	        	<!-- Card 2 -->
+	    	                                
+	        </div>
+	    </div>										                                            
+	    <!-- Zona -->
+	    `;
+		
+		$('#zonas-content').append(html_zona);
+		
+		$("#simpletable"+zona.id).DataTable({ 
+			"language": { // Configuración del Lenguaje de la Tabla
+	            "lengthMenu": "Mostrar _MENU_ registros",
+	            "zeroRecords": false,
+	            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+	            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+	            "sSearch": "Buscar:",            
+	        },
+	        "scrollY": "200px", // Alto de la Tabla
+	        "scrollCollapse": true,
+	        "paging": false,
+	        "searching": false,
+	        "info": false,		        
+	    });
+		
+		// Para remover la fila de las tablas que aparece cuando no hay registros
+		var body = $('#simpletable'+zona.id);
+		body.find( 'tbody tr:eq(0)').remove();
+		
+		//console.log("Estanterias Zona: ", zona.estanteriasZona);
+		zona.estanteriasZona.map(function(est, j){
 			
-			if(zona.idWarehouse.idWarehouse == IdAlmacen){
-				
-				data_zonas.push({
-					"id": zona.zonaId,
-					"tipoZona": zona.tipoZonaId.nombre,
-					"IdTipoZona": zona.tipoZonaId.tipoZonaId,
-					"descripcionZona": zona.zonaNombre,
-					"encargadoZona": zona.encargadoZona.empleadoId,
-					"estanteriasZona": [],
-					"relacionesZona": []
-				});
-				
-				/*$.get("/CBPult/Almacen/listaEstanterias", function(dataEstanterias){
-					
-					var ests = dataEstanterias.map(function(est, j){
-						
-						if(est.zonaId.zonaId == data_zonas[i].id){
-							return {
-								"id": est.estanteriaId,
-								"modulos": est.modulos,
-								"niveles": est.niveles
-							}			
-						}
-				
-					})
-					
-					data_zonas[i].estanteriasZona.push(ests);			
-					
-				});*/
-				
-			}			
-		});
-		console.log("Zonas... ",data_zonas);
+			$('#tbody'+zona.id).append(`
+				<tr id="est_`+est.estanteriaId+`">
+					<td>`+est.estanteriaId+`</td>
+			    	<td>`+est.modulos+`</td>
+			    	<td>`+est.niveles+`</td>																												    	
+			    	<td>
+			    		<a onclick="alert('EstanteriaEliminada')">
+			    			<img alt="Eliminar" src="`+thEliminar+`" onclick="console.log()"  width="30px">
+			    		</a>
+			    	</td>
+			    </tr>
+			`);
+		});		
+		
+		var tipo_zona;
+		if(zona.IdTipoZona == 1){
+			tipo_zona = "Recibo";
+		}
+		else if(zona.IdTipoZona == 2){
+			tipo_zona = "Almacenaje";
+		}
+		else if(zona.IdTipoZona == 3){
+			tipo_zona = "Restringido";
+		}
+		else if(zona.IdTipoZona == 4){
+			tipo_zona = "Despacho";
+		}
+		
+		$('#txtCodigo_zona'+zona.id).val(zona.id);    	
+		$("#cboxTipo_zona"+zona.id+" option[value="+tipo_zona+"]").attr("selected",true);
+		$('#txtDescripcion_zona'+zona.id).val(zona.descripcionZona);
+		//$('#cboxEncargado_zona'+zona.encargadoZona);
+		
+		
 		
 	});
+	
+}
+
+function modificarAlmacenServ(){
+	
+	
 	
 }

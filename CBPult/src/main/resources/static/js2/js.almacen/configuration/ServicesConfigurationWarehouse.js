@@ -1187,13 +1187,10 @@ function cargaDatosModificarZonasServ(){
 					<td>`+est.estanteriaId+`</td>
 			    	<td>`+est.modulos+`</td>
 			    	<td>`+est.niveles+`</td>																												    	
-			    	<td>
-			    		<a onclick="alert('EstanteriaEliminada')">
-			    			<img alt="Eliminar" src="`+thEliminar+`" onclick="console.log()"  width="30px">
-			    		</a>
-			    	</td>
+			    	<td></td>
 			    </tr>
 			`);
+			
 		});		
 		
 		var tipo_zona;
@@ -1223,6 +1220,33 @@ function cargaDatosModificarZonasServ(){
 
 function modificarAlmacenServ(){
 	
+	var infoEdit_almacen = {
+		"numeroAlmacen": data_almacen.warehouseNumber,
+		"nombreAlmacen": data_almacen.warehouseName,
+		"identificacionOficina": 1,
+		"tipoAlmacen": data_almacen.tipoAlmacenId,
+		"direccion": data_almacen.direccion,
+		"gerenteSucursal": 2
+	}
+	console.log(infoEdit_almacen);
+	$.ajax({
+		
+		url: '/CBPult/Almacen/modificarAlmacen',
+        type: "POST",         
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(infoEdit_almacen),
+        success: function(response){
+        	
+    		console.log("Respuesta Edicion Almacén: ", response);
+        	
+        },
+		
+	});
 	
+}
+function modificarZonas(){
+	
+	console.log(data_zonas)
 	
 }
