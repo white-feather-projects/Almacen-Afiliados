@@ -535,6 +535,7 @@ public class AlmacenService extends Util implements AlmacenDAO{
 		
 			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
 			respuestaRelacionAlmacenes = WSmethod.listaAlmacenesRelacionadosByAlmacenIdWS(arg0);
+      
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

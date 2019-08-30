@@ -403,8 +403,8 @@ public class AlmacenController {
 		//-////////////// Nuevo/Editar Almacen ///////////////
 		
 		//+////////////// Nuevo/Editar Relacion Almacen ///////////////
-		@RequestMapping(value = "/relacion-almacen_nuevo-editar", method = RequestMethod.GET)
-		public String relacion_almacen_nuevo_editar(Model model) {
+		@RequestMapping(value = "/relacion-almacen_consulta&{idAlmacenActual}_{idAlmacenDestino}", method = RequestMethod.GET)
+		public String relacion_almacen_nuevo_editar(@PathVariable (value = "idAlmacenActual") String idAlmacenActual, @PathVariable (value = "idAlmacenDestino") String idAlmacenDestino, Model model) {
 			model.addAttribute("name", name);
 			model.addAttribute("link", link);
 			
@@ -427,8 +427,8 @@ public class AlmacenController {
 		//-////////////// Nuevo/Editar Almacen ///////////////
 		
 		//+////////////// Nuevo/Editar Relacion Almacen ///////////////
-		@RequestMapping(value = "/relacion-zona_nuevo-editar", method = RequestMethod.GET)
-		public String relacion_zona_nuevo_editar(Model model) {
+		@RequestMapping(value = "/relacion-zona_consulta/{idAlmacen}_{idZonaActual}&{idZonaDestino}", method = RequestMethod.GET)
+		public String relacion_zona_nuevo_editar(@PathVariable (value = "idZonaActual") String idZonaActual, @PathVariable (value = "idZonaDestino") String idZonaDestino, Model model) {
 			model.addAttribute("name", name);
 			model.addAttribute("link", link);
 			
@@ -512,8 +512,8 @@ public class AlmacenController {
 		//-////////////// Inventario General ///////////////
 		
 		//+////////////// Inventario Zona ///////////////
-		@RequestMapping(value = "/inventario_zona&{idZona}", method = RequestMethod.GET)
-		public String inventario_zona(@PathVariable (value = "idZona") String idZona, Model model) {
+		@RequestMapping(value = "/inventario_zona&{idAlmacen}_{idZona}", method = RequestMethod.GET)
+		public String inventario_zona(@PathVariable (value = "idAlmacen") String idAlmacen, @PathVariable (value = "idZona") String idZona, Model model) {
 			model.addAttribute("name", name);
 			model.addAttribute("link", link);
 			
