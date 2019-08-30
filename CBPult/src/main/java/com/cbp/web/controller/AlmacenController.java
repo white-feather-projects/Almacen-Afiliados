@@ -43,7 +43,6 @@ import com.cbp3.ws.cbp.service.ModificarRelacionZonasWSResponse;
 import com.cbp3.ws.cbp.service.RelacionAlmacenes;
 import com.cbp3.ws.cbp.service.RelacionZonas;
 import com.cbp3.ws.cbp.service.SaveAditionaInformationAlmacenWSResponse;
-import com.cbp3.ws.cbp.service.Solicitud;
 import com.cbp3.ws.cbp.service.TipoZona;
 import com.cbp3.ws.cbp.service.Warehouse;
 import com.cbp3.ws.cbp.service.Zona;
