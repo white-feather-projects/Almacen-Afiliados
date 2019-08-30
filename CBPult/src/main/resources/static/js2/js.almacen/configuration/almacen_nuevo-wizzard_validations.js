@@ -262,6 +262,7 @@ if(Tipo == "newalm"){
 			Swal.fire({
 	        	title: "¡¡¡ Cofiguración Completada !!!",
 			    text: "",
+			    allowOutsideClick: false,
 			    type: "success",
 			    confirmButtonColor: '#3085d6',
 			    confirmButtonText: 'Genial!'	               
@@ -465,7 +466,7 @@ else if(Tipo === "editar"){
 				
 				// para no cargar a cada rato la Tabla de Relaciones del Almacén
 				if(listar == 0){
-					listarAlmacenesRelServ();
+					listarModificarAlmacenesRelServ();
 					listar++;
 				}				
 				
@@ -493,7 +494,7 @@ else if(Tipo === "editar"){
 						}).then((result) => {
 							if(result.value) {
 								valid = true;
-								crearAlmacenServ();							
+								//crearAlmacenServ();							
 							}
 							else if(result.dismiss === Swal.DismissReason.cancel) {
 								
@@ -522,11 +523,12 @@ else if(Tipo === "editar"){
 		},
 		onFinish: function () {
 			// - Creacion de Relaciones de Zonas
-			crearRelacionesZonasServ();
+			//crearRelacionesZonasServ();
 			
 			Swal.fire({
 	        	title: "¡¡¡ Cofiguración Completada !!!",
 			    text: "",
+			    allowOutsideClick: false,
 			    type: "success",
 			    confirmButtonColor: '#3085d6',
 			    confirmButtonText: 'Genial!'	               
