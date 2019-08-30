@@ -7,6 +7,12 @@
 
 window.addEventListener('load', function(){
 	
+	$("#btnGenerarOrden").on('click', function(){
+		
+		location.href='/CBPult/Almacen/inventario_movimiento&'+id+'';
+		
+	});
+	
 	var consulta_Detalles_Almacen = {
 			"idAlmacen": id
 	};
@@ -26,8 +32,17 @@ window.addEventListener('load', function(){
 		console.log("Informacion Almacen", data);
    		
 		$("#txtCodigo_almacen").val(data.return.warehouseNumber).prop('disabled', true);
-		$('select[id="cboxTipo_almacen"] option:selected').val(data.return.tipoAlmacenId);
-		document.getElementById("cboxTipo_almacen").disabled = true;
+		if(data.return.tipoAlmacenId == 1){
+			$("#cboxTipo_almacen").val("ALMACEN");
+			document.getElementById("cboxTipo_almacen").disabled = true;
+		}else if(data.return.tipoAlmacenId == 2){
+			$("#cboxTipo_almacen").val("LABORATORIO");
+			document.getElementById("cboxTipo_almacen").disabled = true;
+		}else if(data.return.tipoAlmacenId == 3){
+			$("#cboxTipo_almacen").val("SUCURSAL");
+			document.getElementById("cboxTipo_almacen").disabled = true;
+		}
+		
 		$("#txtName_almacen").val(data.return.warehouseName).prop('disabled', true);
 		$("#txtUbicacion_almacen").val(data.return.direccion).prop('disabled', true);
 		$('select[id="cboxEncargado_almacen"] option:selected').val(data.return.gerenteSucursal);
@@ -93,7 +108,14 @@ function listarAlmacenesRelacionados(idAlmacen){
 	                "class": "tipo_almacen",
 	                "defaultContent": "",
 	                "render": function ( data ) {
-	            return '<center class="p4">'+data+'</center>';
+	                	if(data == 1){
+	                		return '<center class="p4">Almacen</center>';
+	                	}else if(data == 2){
+	                		return '<center class="p4">Laboratorio</center>';
+	                	}else if(data == 3){
+	                		return '<center class="p4">Sucursal</center>';
+	                	}
+	            
 	              }
 	            },
 	            {
@@ -149,7 +171,16 @@ function listarZonasAlmacen(idAlmacen){
 	                "class": "tipo_zona",
 	                "defaultContent": "",
 	                "render": function ( data ) {
-	            return '<center class="p2">'+data+'</center>';
+	                	if(data == 1){
+	                		return '<center class="p2">Recibo</center>';
+	                	}else if(data == 2){
+	                		return '<center class="p2">Almacenaje</center>';
+	                	}else if(data == 3){
+	                		return '<center class="p2">Restringido</center>';
+	                	}else if(data == 4){
+	                		return '<center class="p2">Despacho</center>';
+	                	}
+	            
 	              }
 	            },
 	            {

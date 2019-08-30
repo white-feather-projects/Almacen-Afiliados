@@ -35,7 +35,14 @@ window.addEventListener('load', function(){
 		console.log("Consulta Almacen Actual", data);
    		
 		$("#txtCodigoActual_relacion-almacen").val(data.return.warehouseNumber);
-		$('select [id="cboxTipoActual_relacion-almacen"] option:selected').val(data.return.tipoAlmacenId);
+		if(data.return.tipoAlmacenId == 1){
+			$("#cboxTipoActual_relacion-almacen").val("ALMACEN");
+		}else if(data.return.tipoAlmacenId == 2){
+			$("#cboxTipoActual_relacion-almacen").val("LABORATORIO");
+		}else if(data.return.tipoAlmacenId == 3){
+			$("#cboxTipoActual_relacion-almacen").val("SUCURSAL");
+		}
+		
 		$("#txtNameActual_relacion-almacen").val(data.return.warehouseName);
 		$("#txtUbicacionActual_relacion-almacen").val(data.return.direccion);
 		$("#txtGerenteActual_relacion-almacen").val(data.return.gerenteSucursal);
@@ -59,7 +66,14 @@ window.addEventListener('load', function(){
 				console.log("Consulta Almacen Destino", data);
 		   		
 				$("#txtCodigoDest_relacion-almacen").val(data.return.warehouseNumber);
-				$('select [id="cboxTipoDest_relacion-almacen"] option:selected').val(data.return.tipoAlmacenId);
+				if(data.return.tipoAlmacenId == 1){
+					$("#cboxTipoDest_relacion-almacen").val("ALMACEN");
+				}else if(data.return.tipoAlmacenId == 2){
+					$("#cboxTipoDest_relacion-almacen").val("LABORATORIO");
+				}else if(data.return.tipoAlmacenId == 3){
+					$("#cboxTipoDest_relacion-almacen").val("SUCURSAL");
+				}
+				
 				$("#txtNameDest_relacion-almacen").val(data.return.warehouseName);
 				$("#txtUbicacionDest_relacion-almacen").val(data.return.direccion);
 				$("#cboxGerenteDest_relacion-almacen").val(data.return.gerenteSucursal);

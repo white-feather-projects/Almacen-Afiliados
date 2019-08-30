@@ -522,8 +522,8 @@ public class AlmacenController {
 		//-////////////// Inventario Zona ///////////////
 		
 		//+////////////// Inventario Movimiento ///////////////
-		@RequestMapping(value = "/inventario_movimiento", method = RequestMethod.GET)
-		public String inventario_movimiento(Model model) {
+		@RequestMapping(value = "/inventario_movimiento&{idAlmacen}", method = RequestMethod.GET)
+		public String inventario_movimiento(@PathVariable (value = "idAlmacen") String idAlmacen, Model model) {
 			model.addAttribute("name", name);
 			model.addAttribute("link", link);
 			
