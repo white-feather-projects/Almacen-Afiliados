@@ -186,9 +186,9 @@ function listarAlmacenesRelServ(){
 	
     $('#simpletablerel').DataTable( {
 	    
-    	sort:true,
-    	destroy: true,
-    	searching: true,
+    	sort:false,
+    	destroy: false,
+    	searching: false,
     	paging: false, // le quito el paging porque no deja cargar los switches de las otras paginas
       	
     	language: {
@@ -202,10 +202,11 @@ function listarAlmacenesRelServ(){
         columns: [ 
         	
            {
+        	   	"data": "idWarehouse",
                 "class": "uno",
                 "defaultContent": "",
-                "render": function ( data ) {
-                	return '<center><input type="checkbox" class="js-switch-blue js-check-change" data-switchery="true" style="display: none;"></center>';
+                "render": function ( data, type, full ) {
+                	return '<center><input type="checkbox" class="js-switch-blue js-check-change" data-switchery="true" style="display: none;" ></center>';;
                 }
            },
            {
@@ -261,32 +262,12 @@ function listarAlmacenesRelServ(){
         // lo uso para cargar la clase de los Switches
         initComplete: function( settings, json){
             //Cargar Switches
-			Array.prototype.forEach.call($('.js-switch-blue'), (item, i)=>{
-				
+			Array.prototype.forEach.call($('.js-switch-blue'), (item, i)=>{				
 				var actual_switch = new Switchery(item, {
 					color: '#17a2b8',
 					secondaryColor: '#e0e0e0',
 					jackSecondaryColor: '#17a2b8'
 				});
-			});
-			
-			var idsTablreRel = $('#simpletablerel td.dos center');
-			idsTablreRel.map(function(i, center){
-				
-				//console.log(center.innerHTML);
-				data_almacen.relaciones.map(function(rel, j){
-					
-					if(rel.almacenDestinoId.idWarehouse == center.innerHTML){
-						
-						//console.log($('.js-switch-blue')[i], center.innerHTML);
-						var actual = document.getElementsByClassName('js-switch-blue')[i]; //$('.js-switch-blue').attr("checked", true);
-						console.log(actual.checked);
-						//actual.setPosition(true);
-						
-					}
-					
-				});
-				
 			});
 			
         },
@@ -782,6 +763,109 @@ function swalRelacionesAlmacenServ(id_Almacen){
 }
 
 // Servicios Edit Wizzard
+function listarModificarAlmacenesRelServ(){
+	
+    $('#simpletablerel').DataTable( {
+	    
+    	sort:false,
+    	destroy: false,
+    	searching: false,
+    	paging: false, // le quito el paging porque no deja cargar los switches de las otras paginas
+      	
+    	language: {
+    		url: '../js2/Spanish.json'
+        },
+        ajax: {
+        	url:"/CBPult/Almacen/listaAlmacenes",
+            dataSrc: ''
+        	
+        },       
+        columns: [ 
+        	
+           {
+        	   	"data": "idWarehouse",
+                "class": "uno",
+                "defaultContent": "",
+                "render": function ( data, type, full ) {
+                	// Para Filtrar las Relaciones ya Existentes del Almacén
+                	var ret = '<center><input type="checkbox" class="js-switch-blue js-check-change" data-switchery="true" style="display: none;" ></center>';
+                	data_almacen.relaciones.map(function(rel, j){
+    					
+    					if(rel.almacenDestinoId.idWarehouse == data){
+    						ret = '<center><input type="checkbox" class="js-switch-blue js-check-change" data-switchery="true" style="display: none;" checked></center>';
+    					}
+    					
+    				});
+                	return ret;
+                }
+           },
+           {
+        	   "data:": "idWarehouse",
+        	   "class": "info",
+        	   "defaultContent": "",
+        	   "render": function ( data, type, full ){
+        		   return '<center><a title="Consultar Información del Almacén '+full.idWarehouse+'"><input type="hidden" id="dit"><i onclick="swalRelacionesAlmacenServ('+full.idWarehouse+')" class="fa fa-search" agregaryasignar" style="font-size:30px"></i></a></center>';
+        	   }
+           },
+    	   {
+                "data": "idWarehouse", // can be null or undefined
+                "class": "dos",
+                "defaultContent": "",
+                "render": function ( data ) {
+            		return '<center>'+data+'</center>';
+              	}
+            },
+            {
+                "data": "tipoAlmacenId", // can be null or undefined
+                "class": "cinco",
+                "defaultContent": "",
+                "render": function ( data ) {
+            		return '<center>'+data+'</center>';
+              	}
+            },
+            {
+                "data": "warehouseName", // can be null or undefined
+                "class": "tres",
+                "defaultContent": "",
+                "render": function ( data ) {
+            		return '<center>'+data+'</center>';
+              	}
+            },            
+            {
+                "data": "direccion", // can be null or undefined
+                "class": "cuatro",
+                "defaultContent": "",
+                "render": function ( data ) {
+            		return '<center>'+data+'</center>';
+              	}
+            },            
+            {
+                "data": "gerenteSucursal", // can be null or undefined
+                "class": "seis",
+                "defaultContent": "",
+                "render": function ( data ) {
+            		return '<center>'+data+'</center>';
+              	}
+            }            
+        ],
+        // ejecuta una funcion Despues de Cargar los Registros de la Tabla
+        // lo uso para cargar la clase de los Switches
+        initComplete: function( settings, json){
+            //Cargar Switches
+			Array.prototype.forEach.call($('.js-switch-blue'), (item, i)=>{				
+				var actual_switch = new Switchery(item, {
+					color: '#17a2b8',
+					secondaryColor: '#e0e0e0',
+					jackSecondaryColor: '#17a2b8'
+				});
+			});
+			
+        },
+        
+    });
+    
+}
+
 function cargaDatosModificarAlmacenIdServ(){ // Carga toda la información del Almacén, Zonas, Estanterias y Relaciones
 	
 	var datos = {
@@ -1134,5 +1218,11 @@ function cargaDatosModificarZonasServ(){
 		
 		
 	});
+	
+}
+
+function modificarAlmacenServ(){
+	
+	
 	
 }

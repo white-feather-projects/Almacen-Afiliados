@@ -42,6 +42,8 @@ import com.cbp3.ws.cbp.service.ModificarEstanteriaWS;
 import com.cbp3.ws.cbp.service.ModificarEstanteriaWSResponse;
 import com.cbp3.ws.cbp.service.ModificarRelacionZonasWS;
 import com.cbp3.ws.cbp.service.ModificarRelacionZonasWSResponse;
+import com.cbp3.ws.cbp.service.ModificarZonaWS;
+import com.cbp3.ws.cbp.service.ModificarZonaWSResponse;
 import com.cbp3.ws.cbp.service.RelacionAlmacenes;
 import com.cbp3.ws.cbp.service.RelacionZonas;
 import com.cbp3.ws.cbp.service.SaveAditionaInformationAlmacenWSResponse;
@@ -334,6 +336,32 @@ public class AlmacenService extends Util implements AlmacenDAO{
 		}
 		
 		return respuestaModificarEstanteria;
+	}
+	
+	////////////////////////////////
+	//Methodo para modificar zona...
+	public ModificarZonaWSResponse modificarZona(ModificarZonaWS ModificarZonaWS) {
+		
+		//instanciar Objeto para retorno....
+		ModificarZonaWSResponse respuestaModificarZona = new ModificarZonaWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AlmacenServiceWS_Service ws = new AlmacenServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AlmacenServiceWS?WSDL"));
+			AlmacenServiceWS WSmethod = ws.getAlmacenServiceWSPort();
+			
+			//respuestaCrearComercio.setReturn(WSmethod.crearComercioWS(crearComercio.getIdentificacionComercio(), crearComercio.getNombreEmpresarial(), crearComercio.getNombreComercial(), crearComercio.getEmail(), crearComercio.getTelefonoContacto(), crearComercio.getEstadoComercioActivo(), crearComercio.getTelefonoLocal(), crearComercio.getNumCuentaAsociado(), crearComercio.getAfiliadoOtroBanco(), crearComercio.getTipoIdentificacionId(), crearComercio.getActividadComercial(), crearComercio.getHorarioComercial()));
+			respuestaModificarZona.setReturn(WSmethod.modificarZonaWS(ModificarZonaWS.getZonaId(), ModificarZonaWS.getZonaNombre(), ModificarZonaWS.getDescripcion(), ModificarZonaWS.getEncargadoZona(), ModificarZonaWS.getTipoZonaId(), ModificarZonaWS.getIdWarehouse(), ModificarZonaWS.getCodigoUsuarioModifica(), ModificarZonaWS.getFechaHoraModifica()));	
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaModificarZona;
 	}
 	
 	////////////////////////////////
