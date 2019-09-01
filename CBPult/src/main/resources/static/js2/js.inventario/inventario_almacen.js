@@ -25,12 +25,11 @@ window.addEventListener('load', function(){
         data: JSON.stringify(consulta_Detalles_Almacen),
         success: processSuccess,
         error: processError
- 	});
-	
+ 	});	
 	function processSuccess(data, status, req) {
         //alert(req.responseText + " " + status);
-		console.log("Informacion Almacen", data);
-   		
+		console.log("Informacion Almacen", data);	
+		
 		$("#txtCodigo_almacen").val(data.return.warehouseNumber).prop('disabled', true);
 		if(data.return.tipoAlmacenId == 1){
 			$("#cboxTipo_almacen").val("ALMACEN");
@@ -53,13 +52,40 @@ window.addEventListener('load', function(){
 		
 		/////Lista ZOnas de Almacen////////
 		
-		listarZonasAlmacen(id);
-	}
+		// Consulta Zonas Almacen (para Filtros Mercancias)
+		$('#cbox_almacen').append('<option value="'+id+'">'+data.return.idWarehouse+'</option>');	
 		
+		$.get('/CBPult/Almacen/listaZonasByIdAlmacen/'+$('#cbox_almacen').val()+'', function(zonasAlmacen){
+			console.log("Zonas Almacen: ", zonasAlmacen);			
+			for(var i = 0; i<zonasAlmacen.length; i++){
+				var zona = '<option value="'+zonasAlmacen[i].zonaId+'">'+zonasAlmacen[i].zonaId+'</option>';
+				$("#cbox_zona").append(zona);
+			}
+		});
+		// Consulta Zonas Almacen	
+		
+		listarZonasAlmacen(id);
+	}		
 	function processError(data, status, req) {
 	    //alert(req.responseText + " " + status);
 	   	swal("Error al contacter el servicio", data);
 	}
+	
+	//cbox_Zonas
+	$('#cbox_zona').change(function(){
+		
+		$('#cbox_estanteria option').remove();
+		$('#cbox_estanteria').append('<option value="Todas">Todas</option>');
+		
+		$.get('/CBPult/Almacen/listaEstanteriasByIdZona/'+$('#cbox_zona').val()+'', function(estanteriasZona){
+			console.log("Estanterias Zona: ", estanteriasZona);			
+			for(var i = 0; i<estanteriasZona.length; i++){
+				var estanteria = '<option value="'+estanteriasZona[i].estanteriaId+'">'+estanteriasZona[i].estanteriaId+'</option>';
+				$("#cbox_estanteria").append(estanteria);
+			}
+		});
+		
+	});
 	
 });
 

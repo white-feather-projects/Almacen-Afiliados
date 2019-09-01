@@ -29,10 +29,9 @@ window.addEventListener('load', function(){
         success: processSuccess,
         error: processError
  	});
-	
 	function processSuccess(data, status, req) {
         //alert(req.responseText + " " + status);
-		console.log("Informacion Almacen", data);
+		console.log("Informacion Zona", data);
    		
 		$("#txtCodigo_zona").val(data.return.zonaId).prop('disabled', true);
 		$('select[id="cboxTipo_zona"] option:selected').val(data.return.tipoZonaId.nombre);
@@ -42,6 +41,19 @@ window.addEventListener('load', function(){
 		document.getElementById("cboxEncargado_zona").disabled = true;
 		
 		listarZonasRelacionadas(idAlmacen_1, idZona);
+		
+		// Consulta Estanterias Zona (para Filtros Mercancias)
+		idAlmacen_1
+		$('#cbox_almacen').append('<option value="'+idAlmacen_1+'">'+idAlmacen_1+'</option>');
+		$('#cbox_zona').append('<option value="'+data.return.zonaId+'">'+data.return.zonaId+'</option>');
+		
+		$.get('/CBPult/Almacen/listaEstanteriasByIdZona/'+$('#cbox_zona').val()+'', function(estanteriasZona){
+			console.log("Estanterias Zona: ", estanteriasZona);			
+			for(var i = 0; i<estanteriasZona.length; i++){
+				var estanteria = '<option value="'+estanteriasZona[i].estanteriaId+'">'+estanteriasZona[i].estanteriaId+'</option>';
+				$("#cbox_estanteria").append(estanteria);
+			}
+		});
 		
 	}
 		

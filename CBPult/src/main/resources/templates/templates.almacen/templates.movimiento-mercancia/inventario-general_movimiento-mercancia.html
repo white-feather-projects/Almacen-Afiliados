@@ -24,7 +24,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
         <script type="text/javascript" th:src="@{/js2/index.js}"></script>
-        <script th:src="@{/js2/bandeja_ventas.js}"></script>
+
+        
+        <script th:src="@{/js2/js.inventario/inventario_general.js}"></script>
         
         <link rel="stylesheet" type="text/css" th:href="@{/css2/css.almacen/GeneralForm.css}">
     </head>
@@ -83,37 +85,30 @@
                                                         	<h4 class="sub-title">Mercancias General</h4>
                                                         	
                                                         	<div class="row" style="margin-bottom: 10px">
+                                                        	
                                                         		<div class="col-sm-4 mobile-inputs">
 	                                                                <label class="col-sm-12 col-form-label">Almacén</label>
 	                                                                <div class="col-sm-12">
-		                                                                <select name="select" id="cboxTipo_almacen" class="form-control">
-		                                                                    <option value="Almacén">Todos</option>
-		                                                                    <option value="Laboratorio">A-100</option>
-		                                                                    <option value="Sucursal">S-46</option>
+		                                                                <select name="select" id="cbox_almacen" class="form-control">
+		                                                                    <option value="Todos">Todos</option>
 		                                                                </select>
 	                                                         		</div>
 	                                                            </div>
-	                                                            
+	                                                            	                                                            
 	                                                            <div class="col-sm-4 mobile-inputs">
 	                                                                <label class="col-sm-12 col-form-label">Zona</label>
 	                                                                <div class="col-sm-12">
-		                                                                <select name="select" id="cboxTipo_almacen" class="form-control">
-		                                                                	<option value="Almacén">Todas</option>
-		                                                                    <option value="Almacén">R-1</option>
-		                                                                    <option value="Laboratorio">A-6</option>
-		                                                                    <option value="Sucursal">D-4</option>
+		                                                                <select name="select" id="cbox_zona" class="form-control">
+		                                                                	<option value="Todas">Todas</option>
 		                                                                </select>
 	                                                         		</div>
 	                                                            </div>
 	                                                            
 	                                                            <div class="col-sm-4 mobile-inputs">
-	                                                                <label class="col-sm-12 col-form-label">Estanteria</label>
+	                                                                <label class="col-sm-12 col-form-label">Estantería</label>
 	                                                                <div class="col-sm-12">
-		                                                                <select name="select" id="cboxTipo_almacen" class="form-control">
-		                                                                	<option value="Almacén">Todas</option>
-		                                                                    <option value="Almacén">802</option>
-		                                                                    <option value="Laboratorio">402</option>
-		                                                                    <option value="Sucursal">112</option>
+		                                                                <select name="select" id="cbox_estanteria" class="form-control">
+		                                                                	<option value="Todas">Todas</option>
 		                                                                </select>
 	                                                         		</div>
 	                                                            </div>
