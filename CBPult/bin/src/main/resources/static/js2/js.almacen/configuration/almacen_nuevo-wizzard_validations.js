@@ -342,7 +342,7 @@ else if(Tipo === "editar"){
 						// Creacion del Almacén
 						data_almacen = {
 							"idAlmacen": parseInt(IdAlmacen),
-							"warehouseName": $('#txtCodigo_almacen').val(),
+							"warehouseNumber": $('#txtCodigo_almacen').val(),
 							"direccion": $('#txtUbicacion_almacen').val(),
 						    "gerenteSucursal": parseInt($('select[id="cboxEncargado_almacen"] option:selected').attr('name')),
 						    "officeId": 1,
@@ -425,6 +425,58 @@ else if(Tipo === "editar"){
 						}						
 						
 					});
+					
+					// Añadiendo Zonas Nuevas							
+					var data_nuevas_zonas = zonaListTemp.map(function(zona){
+				
+						var estanterias = $('#simpletable'+zona.zona.id+' tbody tr');
+						var estanterias_json = [];
+											
+						if($('#txtDescripcion_zona'+zona.zona.id).val().length > 0){
+							valid_descZonas++;
+						}
+						else{
+							$('#txtDescripcion_zona'+zona.zona.id).css("border" , "1px solid red");
+						}
+						
+						if(estanterias.length < 1){
+							estanterias_json.push([1,1]);												        
+							empty_Estanterias++;
+						}
+						else{
+							for (var j = 0; j < estanterias.length; j++) {
+								var modulo, nivel;
+								for (var k = 0; k < estanterias[j].cells.length; k++) {							
+									if(k == 0){
+										modulo = estanterias[j].cells[k].innerHTML;
+									}
+									else if(k == 1){
+										nivel = estanterias[j].cells[k].innerHTML;
+									}							
+								}
+								estanterias_json.push([modulo, nivel]);
+							}
+						}
+						
+						return {
+							"id": zona.zona.id,
+							"tipoZona": $('#cboxTipo_zona'+zona.zona.id).val(),
+							"IdTipoZona": parseInt($('select[id="cboxTipo_zona'+zona.zona.id+'"] option:selected').attr('name')),
+							"descripcionZona": $('#txtDescripcion_zona'+zona.zona.id).val(),
+							"encargadoZona": $('#cboxEncargado_zona'+zona.zona.id).val(),
+							"estanteriasZona": estanterias_json,
+							"relacionesZona": []
+						}					
+					
+					});
+					
+					data_nuevas_zonas.map(function(nueva_zona, j){
+						
+						data_zonas.push(nueva_zona);
+						
+					})
+					
+					
 					console.log("DataZonas", data_zonas);
 					
 				}
@@ -483,7 +535,7 @@ else if(Tipo === "editar"){
 						buttonsStyling: false
 					})
 					if(valid == false){
-						swalWithBootstrapButtons.fire({
+						/*swalWithBootstrapButtons.fire({
 							title: '¿Quires Continuar?',
 							text: "Al Continuar se Creará el Almacén! Ya no podrás modificar mas la Información anterior, tendras que modificarla desde el proceso de Modificación",
 							type: 'warning',
@@ -505,9 +557,9 @@ else if(Tipo === "editar"){
 								)
 								
 							}
-						})
+						})*/
 					}
-					return valid;
+					return true;
 				}
 				
 			}
@@ -522,8 +574,7 @@ else if(Tipo === "editar"){
 			return true;        
 		},
 		onFinish: function () {
-			// - Creacion de Relaciones de Zonas
-			//crearRelacionesZonasServ();
+			modificarAlmacenServ();
 			
 			Swal.fire({
 	        	title: "¡¡¡ Cofiguración Completada !!!",

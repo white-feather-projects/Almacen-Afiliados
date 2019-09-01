@@ -38,8 +38,12 @@ import com.cbp3.ws.cbp.service.ModificarAlmacenWS;
 import com.cbp3.ws.cbp.service.ModificarAlmacenWSResponse;
 import com.cbp3.ws.cbp.service.ModificarEstanteriaWS;
 import com.cbp3.ws.cbp.service.ModificarEstanteriaWSResponse;
+import com.cbp3.ws.cbp.service.ModificarRelacionAlmacenesWS;
+import com.cbp3.ws.cbp.service.ModificarRelacionAlmacenesWSResponse;
 import com.cbp3.ws.cbp.service.ModificarRelacionZonasWS;
 import com.cbp3.ws.cbp.service.ModificarRelacionZonasWSResponse;
+import com.cbp3.ws.cbp.service.ModificarZonaWS;
+import com.cbp3.ws.cbp.service.ModificarZonaWSResponse;
 import com.cbp3.ws.cbp.service.RelacionAlmacenes;
 import com.cbp3.ws.cbp.service.RelacionZonas;
 import com.cbp3.ws.cbp.service.SaveAditionaInformationAlmacenWSResponse;
@@ -348,6 +352,34 @@ public class AlmacenController {
 		return respuesta;
 	}
 	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+	// Editar Zona
+	
+	@RequestMapping(value = "/modificarZona", produces = { "application/json" })
+	public @ResponseBody ModificarZonaWSResponse modificarZona(@RequestBody ModificarZonaWS ModificarZonaWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ModificarZonaWSResponse respuesta = new ModificarZonaWSResponse();
+		respuesta = almacenMethods.modificarZona(ModificarZonaWS);
+		//System.out.println(ModificarAlmacenDTO.toString());
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+	// Editar Zona
+	
+	@RequestMapping(value = "/modificarRelacionAlmacen", produces = { "application/json" })
+	public @ResponseBody ModificarRelacionAlmacenesWSResponse modificarRelacionAlmacen(@RequestBody ModificarRelacionAlmacenesWS modificarRelacionAlmacenesWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		ModificarRelacionAlmacenesWSResponse respuesta = new ModificarRelacionAlmacenesWSResponse();
+		respuesta = almacenMethods.modificarRelacionAlmacenes(modificarRelacionAlmacenesWS);
+		//System.out.println(ModificarAlmacenDTO.toString());
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+		
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	

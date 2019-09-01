@@ -24,6 +24,8 @@ import com.cbp3.ws.cbp.service.ModificarAlmacenWS;
 import com.cbp3.ws.cbp.service.ModificarAlmacenWSResponse;
 import com.cbp3.ws.cbp.service.ModificarEstanteriaWS;
 import com.cbp3.ws.cbp.service.ModificarEstanteriaWSResponse;
+import com.cbp3.ws.cbp.service.ModificarRelacionAlmacenesWS;
+import com.cbp3.ws.cbp.service.ModificarRelacionAlmacenesWSResponse;
 import com.cbp3.ws.cbp.service.ModificarRelacionZonasWS;
 import com.cbp3.ws.cbp.service.ModificarRelacionZonasWSResponse;
 import com.cbp3.ws.cbp.service.ModificarZonaWS;
@@ -64,6 +66,8 @@ public interface AlmacenDAO {
 	public ModificarZonaWSResponse modificarZona(ModificarZonaWS ModificarZonaWS);
 	
 	public ModificarRelacionZonasWSResponse modificarRelacionZonas(ModificarRelacionZonasWS ModificarRelacionZonasWS);
+	
+	public ModificarRelacionAlmacenesWSResponse modificarRelacionAlmacenes(ModificarRelacionAlmacenesWS ModificarRelacionAlmacenesWS);
 	
 	public java.util.List<Warehouse> listaAlmacenes();
 	

@@ -40,6 +40,8 @@ import com.cbp3.ws.cbp.service.ModificarAlmacenWS;
 import com.cbp3.ws.cbp.service.ModificarAlmacenWSResponse;
 import com.cbp3.ws.cbp.service.ModificarEstanteriaWS;
 import com.cbp3.ws.cbp.service.ModificarEstanteriaWSResponse;
+import com.cbp3.ws.cbp.service.ModificarRelacionAlmacenesWS;
+import com.cbp3.ws.cbp.service.ModificarRelacionAlmacenesWSResponse;
 import com.cbp3.ws.cbp.service.ModificarRelacionZonasWS;
 import com.cbp3.ws.cbp.service.ModificarRelacionZonasWSResponse;
 import com.cbp3.ws.cbp.service.ModificarZonaWS;
@@ -651,6 +653,33 @@ public class AlmacenService extends Util implements AlmacenDAO{
 		}
 		
 		return respuestaRelacionZonas;
+	
+	}
+	
+	////////////////////////////////////
+	//Methodo para listar Zonas Relacionadas por ZOna Id...
+	public ModificarRelacionAlmacenesWSResponse modificarRelacionAlmacenes(ModificarRelacionAlmacenesWS modificarRelacionAlmacenesWS) {
+	
+		//instanciar Objeto para retorno....
+		ModificarRelacionAlmacenesWSResponse respuestaModificacionRelacionesAlmacen = new ModificarRelacionAlmacenesWSResponse();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			AlmacenServiceWS_Service ws = new AlmacenServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AlmacenServiceWS?WSDL"));
+			AlmacenServiceWS WSmethod = ws.getAlmacenServiceWSPort();
+			
+			//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
+			respuestaModificacionRelacionesAlmacen = WSmethod.modificarRelacionAlmacenesWS(modificarRelacionAlmacenesWS.getAlmacenActualId(), modificarRelacionAlmacenesWS.getAlmacenDestinoId(), modificarRelacionAlmacenesWS.getComentarios(), modificarRelacionAlmacenesWS.getCodigoUsuarioModifica(), modificarRelacionAlmacenesWS.getFechaHoraModifica());
+		
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuestaModificacionRelacionesAlmacen;
 	
 	}
 }

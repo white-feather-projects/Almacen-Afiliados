@@ -3,7 +3,8 @@
     <head>
         <th:block th:replace="fragments/header :: headlayout"></th:block>		    
 		
-        <script th:src="@{/js2/js.almacen/configuration/zona_nuevo-editar.js}"></script>	    
+        <script th:src="@{/js2/js.almacen/configuration/zona_nuevo-editar.js}"></script>	
+        <script th:src="@{/js2/js.inventario/generar_orden.js}"></script> 
 		<link rel="stylesheet" type="text/css" th:href="@{/css2/css.almacen/GeneralForm.css}">
 
 	    <!-- DataTables -->
@@ -47,7 +48,7 @@
                                                 <div class="col-lg-4">
                                                     <div class="page-header-title">
                                                         <div class="d-inline">
-                                                            <h2>Nueva / Editar / Consultar Movimiento</h2>                                                            
+                                                            <h2>Generar Orden</h2>                                                        
                                                         </div>
                                                     </div>
                                                 </div>                                                
@@ -62,103 +63,23 @@
                                             
                                             	<div class="col-sm-12 botonera botonera2" style="margin-bottom:30px" align="right">                                            		
                                             		
-                                           			<button type="button" id="btnGuardar_movimiento" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/CBPult/Almacen/inventario_zona'; alert('Movimiento Guardadado')">
-			                                   			Guardar
+                                           			<button type="button" id="btnGenerar_movimiento" class="btn btn-primary btn-md waves-effect text-center mb-20">
+			                                   			Generar
 			                                   		</button>                                            			                                       		
 		                                       		
-			                                   		<button type="button" id="btnCancelar_movimiento" class="btn btn-primary btn-md waves-effect text-center mb-20" onclick="location.href='/CBPult/Almacen/inventario_zona'; alert('Movimiento Cancelado');">
-			                                   			Cancelar
+			                                   		<button type="button" id="btnAtras_movimiento" class="btn btn-primary btn-md waves-effect text-center mb-20">
+			                                   			Atras
 			                                   		</button>
 		                                   		
                                             	</div> 
-                                            	
-                                            	<!-- Card 1 -->
-                                            	<div class="col-sm-6"> 
-                                            	                                           
-                                                	<div class="card">                                                   
-                                                    	<div class="card-block">
-                                                    		<!-- Titulo de Card -->
-                                                        	<h4 class="sub-title">Información del Movimiento</h4>
-                                                        	
-                                                        	<!-- Row -->                                                        	
-                                                        	<div class="row">
-                                                        		
-                                                        		<!-- Contenido de Card --> 
-                                                        		
-                                                        		<!-- Primera Sección -->
-                                                        		<div class="col-sm-6">
-                                                        			
-                                                        			<div class="row">
-	                                                        			<div class="col-sm-12">
-			                                                                <label class="col-sm-12 col-form-label">Código del Movimiento</label>
-			                                                                <div class="col-sm-12">
-			                                                                    <input type="text" id="txtCodigo_movimiento" class="form-control" placeholder="Codigo" disabled>
-			                                                                </div>
-		                                                            	</div>	                                                                                                                         
-			                                                            
-			                                                            
-		                                                                <div class="col-sm-12 mobile-inputs">
-			                                                                <label class="col-sm-12 col-form-label">Tipo de Movimiento</label>
-			                                                                <div class="col-sm-12">
-				                                                                <select name="select" id="cboxTipo_movimiento" class="form-control">
-				                                                                    <option value="Almacén">Recibo</option>
-				                                                                    <option value="Laboratorio">Despacho</option>
-				                                                                    <option value="Sucursal">Transferencia</option>
-				                                                                    <option value="Sucursal">Traspaso</option>
-				                                                                </select>
-			                                                         		</div>
-			                                                            </div>			                                                            		                                                            
-			                                                            
-		                                                            </div>		                                                            
-                                                        			
-                                                        		</div>
-                                                        		<!-- Primera Sección -->
-                                                        		                                                        		                                                        	
-	                                                            <!-- Segunda Sección -->
-	                                                            <div class="col-sm-6">
-	                                                            	
-	                                                            	<div class="row">
-	                                                            		<div class="col-sm-12">
-			                                                                <label class="col-sm-12 col-form-label">Fecha Movimiento</label>
-			                                                                <div class="col-sm-12">
-			                                                                    <input type="date" id="txtDate_movimiento" class="form-control">
-			                                                                </div>
-		                                                            	</div>
-		                                                            	
-		                                                            	<div class="col-sm-12">
-			                                                            	<label class="col-sm-12 col-form-label">Encargado de Movimiento</label>
-			                                                                <div class="col-sm-12">
-				                                                                <select name="select" id="cboxEncargado_movimiento" class="form-control">
-				                                                                    <option value="Elon Musk">Elon Musk</option>
-				                                                                    <option value="Einstein">Einstein</option>
-				                                                                    <option value="Jack Ma">Jack Ma</option>
-				                                                                </select>
-			                                                         		</div>
-			                                                         	</div>
-	                                                            	</div>
-	                                                            	
-	                                                            </div>
-	                                                            <!-- Segunda Sección -->   
-	                                                           
-	                                                            
-	                                                            <!-- Contenido de Card -->  
-	                                                            
-                                                        	</div>
-                                                        	<!-- Row -->                                                      		                                                        	
-                                                                                                      
-                                                    	</div>
-                                                	</div> 
-                                            	                                
-	                                            </div>
-	                                            <!-- Card 1 -->
 	                                            
 	                                            <!-- Card 2 -->
-                                            	<div class="col-sm-6"> 
+                                            	<div class="col-sm-12"> 
                                             	                                           
                                                 	<div class="card">                                                   
                                                     	<div class="card-block">
                                                     		<!-- Titulo de Card -->
-                                                        	<h4 class="sub-title">Orden Relacionada</h4>
+                                                        	<h4 class="sub-title">Informacion Orden</h4>
                                                         	
                                                         	<!-- Row -->                                                        	
                                                         	<div class="row">
@@ -246,20 +167,17 @@
                                                         		<div class="col-sm-12">
 	                                                                <label class="col-sm-12 col-form-label">Código de Origen</label>
 	                                                                <div class="col-sm-12">
-	                                                                    <input type="text" id="txtCodigo_zona" class="form-control" placeholder="Codigo" disabled>
+	                                                                    <input type="text" id="txtCodigo_orden_1" class="form-control" placeholder="Codigo" disabled>
 	                                                                </div>
                                                             	</div>
                                                             
 	                                                            <div class="col-sm-12 mobile-inputs">
 	                                                                <label class="col-sm-12 col-form-label">Tipo Origen</label>
 	                                                                <div class="col-sm-12">
-		                                                                <select name="select" id="cboxTipo_zona" class="form-control">
-		                                                                    <option value="Recibo">Recibo</option>
-		                                                                    <option value="Almacenaje">Almacenaje</option>
-		                                                                    <option value="Almacenaje Restringido">Almacenaje Restringido</option>
-		                                                                    <option value="Despacho">Despacho</option>
-		                                                                    <option value="Despacho">Proveedor</option>
-		                                                                    <option value="Despacho">Tercero</option>
+		                                                                <select name="select" id="cboxTipo_orden_1" class="form-control" disabled>
+		                                                                    <option value="ALMACEN">Almacen</option>
+		                                                                    <option value="LABORATORIO">Laboratorio</option>
+		                                                                    <option value="SUCURSAL">Sucursal</option>
 		                                                                </select>
 	                                                         		</div>
 	                                                            </div>
@@ -267,14 +185,14 @@
 	                                                            <div class="col-sm-12 mobile-inputs">
 	                                                            	<label class="col-sm-12 col-form-label">Descripción Origen</label>
 	                                                            	<div class="col-sm-12">
-	                                                                    <input type="text" id="txtDescripcion_zona" class="form-control" placeholder="">
+	                                                                    <input type="text" id="txtDescripcion_orden_1" class="form-control" placeholder="" disabled>
 	                                                                </div>
 	                                                            </div>	                                                        	
 	                                                            
 	                                                            <div class="col-sm-12 mobile-inputs">
 	                                                                <label class="col-sm-12 col-form-label">Encargado de Origen</label>
 	                                                                <div class="col-sm-12">
-		                                                                <select name="select" id="cboxEncargado_zona" class="form-control">
+		                                                                <select name="select" id="cboxEncargado_orden_1" class="form-control" disabled>
 		                                                                    <option value="Elon Musk">Elon Musk</option>
 		                                                                    <option value="Einstein">Einstein</option>
 		                                                                    <option value="Jack Ma">Jack Ma</option>
@@ -307,20 +225,19 @@
                                                         		<div class="col-sm-12">
 	                                                                <label class="col-sm-12 col-form-label">Código de Destino</label>
 	                                                                <div class="col-sm-12">
-	                                                                    <input type="text" id="txtCodigo_zona" class="form-control" placeholder="Codigo" disabled>
+	                                                                	<select name="select" id="txtCodigo_orden_2" class="form-control">
+	                                                                	
+		                                                                </select>
 	                                                                </div>
                                                             	</div>
                                                             
 	                                                            <div class="col-sm-12 mobile-inputs">
 	                                                                <label class="col-sm-12 col-form-label">Tipo Destino</label>
 	                                                                <div class="col-sm-12">
-		                                                                <select name="select" id="cboxTipo_zona" class="form-control">
-		                                                                    <option value="Recibo">Recibo</option>
-		                                                                    <option value="Almacenaje">Almacenaje</option>
-		                                                                    <option value="Almacenaje Restringido">Almacenaje Restringido</option>
-		                                                                    <option value="Despacho">Despacho</option>
-		                                                                    <option value="Despacho">Proveedor</option>
-		                                                                    <option value="Despacho">Tercero</option>
+		                                                                <select name="select" id="cboxTipo_orden_2" class="form-control" disabled>
+		                                                                    <option value="ALMACEN">Almacen</option>
+		                                                                    <option value="LABORATORIO">Laboratorio</option>
+		                                                                    <option value="SUCURSAL">Sucursal</option>
 		                                                                </select>
 	                                                         		</div>
 	                                                            </div>
@@ -328,14 +245,14 @@
 	                                                            <div class="col-sm-12 mobile-inputs">
 	                                                            	<label class="col-sm-12 col-form-label">Descripción Destino</label>
 	                                                            	<div class="col-sm-12">
-	                                                                    <input type="text" id="txtDescripcion_zona" class="form-control" placeholder="">
+	                                                                    <input type="text" id="txtDescripcion_orden_2" class="form-control" placeholder="" disabled>
 	                                                                </div>
 	                                                            </div>	                                                        	
 	                                                            
 	                                                            <div class="col-sm-12 mobile-inputs">
 	                                                                <label class="col-sm-12 col-form-label">Encargado de Destino</label>
 	                                                                <div class="col-sm-12">
-		                                                                <select name="select" id="cboxEncargado_zona" class="form-control">
+		                                                                <select name="select" id="cboxEncargado_orden_2" class="form-control" disabled>
 		                                                                    <option value="Elon Musk">Elon Musk</option>
 		                                                                    <option value="Einstein">Einstein</option>
 		                                                                    <option value="Jack Ma">Jack Ma</option>
@@ -374,28 +291,6 @@
 																				<a id="btnNuevoAlmacen_config" href="#detalle_table" onclick="alert('Se añadió un nuevo producto al detalle');" style="margin-right: 5px;" title="Nuevo Almacén">
 																					<i class="fa fa-plus-square agregaryasignar" style="font-size: 50px"></i>
 																				</a>
-																			</div>
-																			<div class="col-sm-3">
-																				<div class="col-sm-12">				                                                            
-					                                                                <div class="col-sm-12">
-						                                                                <select name="select" id="cboxEncargado_almacen" class="form-control">
-						                                                                	<option>Tipo de Registro:</option>
-						                                                                    <option>Lote</option>
-						                                                                    <option>Unidad</option>
-						                                                                </select>
-					                                                         		</div>
-					                                                         	</div>
-																			</div>
-																			<div class="col-sm-3">
-																				<div class="col-sm-12">				                                                            
-					                                                                <div class="col-sm-12">
-						                                                                <select name="select" id="cboxEncargado_almacen" class="form-control">
-						                                                                	<option>Registro:</option>
-						                                                                    <option>Manual</option>
-						                                                                    <option>Laser</option>
-						                                                                </select>
-					                                                         		</div>
-					                                                         	</div>
 																			</div>
 																		</div>
 																	</div>
