@@ -1,6 +1,7 @@
 var data_almacen; // para capturar la toda la info del modulo (Almacen, Zonas, Relaciones)
 var data_zonas = []; // se usa para capturar las Zonas y se incrusta en "data_almacen" en el atributo "zonasAlmacen"
-var data_zonasTemp_editar = [];
+var data_zonasTemp_editar = []; // Sirve para cargar la info de las zonas del Almacén desde el Server y para graficar las Zonas cargadas en el Tab de Zonas
+var data_nuevas_zonas; // sirve para capturar las nuevas zonas y crearlas mediante el servicio
 var data_relacionesTemp_Almacen;
 var zonas_response = "";
 var zonas_creadas = false;
@@ -82,7 +83,7 @@ if(Tipo == "newalm"){
 					}
 					///
 					
-					if(validated == 2){
+					if(validated == 3){
 						
 						// Creacion del Almacén
 						
@@ -279,13 +280,22 @@ if(Tipo == "newalm"){
 }
 else if(Tipo === "editar"){
 	
+	$('#titleWizardAlmacen').append("<h2>Modificación del Almacén : "+IdAlmacen+"</h2>");
+	$('#titleAlmacen').append("<code>"+IdAlmacen+"</code>");
+	$('#contentCodigo_almacen').css("display", "initial");
+	$('#contentCodigo_almacen').attr("class", "col-sm-12");
+	
+	
+	cargaDatosModificarAlmacenIdServ();
+	var cargaDatos = 0;
+	
 	// Mensaje de Carga
 	let timerInterval;
 	Swal.fire({
 		title: 'Cargando Información de Tu Almacén!',
 		html: 'Espera un Momento',
 		allowOutsideClick: false,
-		timer: 3500,
+		timer: 3000,
 		onBeforeOpen: () => {
 			Swal.showLoading()
 			timerInterval = setInterval(() => {}, 100)
@@ -296,21 +306,13 @@ else if(Tipo === "editar"){
 	});
 	// Mensaje de Carga
 	
-	$('#titleWizardAlmacen').append("<h2>Modificación del Almacén : "+IdAlmacen+"</h2>");
-	$('#titleAlmacen').append("<code>"+IdAlmacen+"</code>");
-	$('#contentCodigo_almacen').css("display", "initial");
-	$('#contentCodigo_almacen').attr("class", "col-sm-12");
-	
-	
-	cargaDatosModificarAlmacenIdServ();
-	var cargaDatos = 0;
-	
 	$('#demo').steps({
 		
 		onChange: function (currentIndex, newIndex, stepDirection) {
 			
 			// tab Almacen
 			if(currentIndex === 0){				
+				
 				
 				if(cargaDatos == 0){					
 					cargaDatosModificarZonasServ();
@@ -320,7 +322,7 @@ else if(Tipo === "editar"){
 				
 				if(stepDirection === 'forward'){					
 					
-					var validated = 0;
+					var validated = 0;					
 					
 					// Validaciones de Vacio
 					if(txtDescAlmacen.val().length > 0){
@@ -336,6 +338,8 @@ else if(Tipo === "editar"){
 						txtUbicacionAlmacen.css("border" , "1px solid red");
 					}
 					///
+					
+					console.log("validated", validated);
 					
 					if(validated == 2){
 						
@@ -353,8 +357,8 @@ else if(Tipo === "editar"){
 						    "relaciones": data_relacionesTemp_Almacen
 						}; 
 						console.log("Almacén: ", data_almacen);
-						return true;
 						
+						return true;
 					}
 					else if(validated != 2){
 						return false;
@@ -427,7 +431,7 @@ else if(Tipo === "editar"){
 					});
 					
 					// Añadiendo Zonas Nuevas							
-					var data_nuevas_zonas = zonaListTemp.map(function(zona){
+					data_nuevas_zonas = zonaListTemp.map(function(zona){
 				
 						var estanterias = $('#simpletable'+zona.zona.id+' tbody tr');
 						var estanterias_json = [];
@@ -470,18 +474,19 @@ else if(Tipo === "editar"){
 					
 					});
 					
-					data_nuevas_zonas.map(function(nueva_zona, j){
+					/*data_nuevas_zonas.map(function(nueva_zona, j){
 						
 						data_zonas.push(nueva_zona);
 						
-					})
+					})*/
 					
 					
 					console.log("DataZonas", data_zonas);
+					console.log("Nuevas_DataZonas", data_nuevas_zonas);
 					
 				}
 				
-				if(valid_descZonas == data_zonas.length){
+				if(valid_descZonas >= data_zonas.length){
 					if(empty_Estanterias > 0 && zonas_creadas == false){
 						//////////////////
 						Swal.fire({
@@ -535,9 +540,9 @@ else if(Tipo === "editar"){
 						buttonsStyling: false
 					})
 					if(valid == false){
-						/*swalWithBootstrapButtons.fire({
+						swalWithBootstrapButtons.fire({
 							title: '¿Quires Continuar?',
-							text: "Al Continuar se Creará el Almacén! Ya no podrás modificar mas la Información anterior, tendras que modificarla desde el proceso de Modificación",
+							text: "Al Continuar se Guardará el Almacén! Ya no podrás modificar mas la Información anterior, tendras que modificarla desde el proceso de Modificación",
 							type: 'warning',
 							showCancelButton: true,
 							confirmButtonText: 'Si, Continuar!',
@@ -545,8 +550,13 @@ else if(Tipo === "editar"){
 							reverseButtons: true
 						}).then((result) => {
 							if(result.value) {
+								//crearAlmacenServ();
+								crearNuevasZonasServ();
+								modificarAlmacenServ();
+								modificarZonasServ();
+								modificarRelacionesAlmServ();
+								modificarRelacionesAlmServ();
 								valid = true;
-								//crearAlmacenServ();							
 							}
 							else if(result.dismiss === Swal.DismissReason.cancel) {
 								
@@ -557,9 +567,10 @@ else if(Tipo === "editar"){
 								)
 								
 							}
-						})*/
+						});
+						editFormsZonasRel();
 					}
-					return true;
+					return valid;
 				}
 				
 			}
@@ -574,7 +585,6 @@ else if(Tipo === "editar"){
 			return true;        
 		},
 		onFinish: function () {
-			modificarAlmacenServ();
 			
 			Swal.fire({
 	        	title: "¡¡¡ Cofiguración Completada !!!",
