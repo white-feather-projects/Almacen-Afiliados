@@ -17,6 +17,10 @@ import com.cbp.web.dao.AlmacenDAO;
 import com.cbp.web.dto.ConsultaAlmacenPorAlmacenIdDTO;
 import com.cbp.web.dto.ConsultaAlmacenPorNumeroAlmacenDTO;
 import com.cbp.web.dto.SaveAditionalInformationAlmacenDTO;
+import com.cbp3.ws.cbp.service.ActualizaStatusRelacionAlmacenesWS;
+import com.cbp3.ws.cbp.service.ActualizaStatusRelacionAlmacenesWSResponse;
+import com.cbp3.ws.cbp.service.ActualizaStatusRelacionZonasWS;
+import com.cbp3.ws.cbp.service.ActualizaStatusRelacionZonasWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaAlmacenPorAlmacenIdWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaAlmacenPorNumeroAlmacenWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaEstanteriaPorEstanteriaIdWS;
@@ -46,6 +50,7 @@ import com.cbp3.ws.cbp.service.ModificarZonaWS;
 import com.cbp3.ws.cbp.service.ModificarZonaWSResponse;
 import com.cbp3.ws.cbp.service.RelacionAlmacenes;
 import com.cbp3.ws.cbp.service.RelacionZonas;
+import com.cbp3.ws.cbp.service.RespuestaDTO;
 import com.cbp3.ws.cbp.service.SaveAditionaInformationAlmacenWSResponse;
 import com.cbp3.ws.cbp.service.TipoZona;
 import com.cbp3.ws.cbp.service.Warehouse;
@@ -211,7 +216,7 @@ public class AlmacenController {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	// faltaria el IdAlmacen para ubicar exactamente la Estanteria a Modificar
-	
+	/*
 	@RequestMapping(value = "/modificarEstanteria", produces = { "application/json" })
 	public @ResponseBody ModificarEstanteriaWSResponse modificarEstanteria(@RequestBody ModificarEstanteriaWS ModificarEstanteriaWS) {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
@@ -220,7 +225,7 @@ public class AlmacenController {
 		//System.out.println(ModificarAlmacenDTO.toString());
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
-	}
+	}*/
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -368,13 +373,28 @@ public class AlmacenController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
-	// Editar Zona
+	// Status Rel Almacen
 	
 	@RequestMapping(value = "/modificarRelacionAlmacen", produces = { "application/json" })
-	public @ResponseBody ModificarRelacionAlmacenesWSResponse modificarRelacionAlmacen(@RequestBody ModificarRelacionAlmacenesWS modificarRelacionAlmacenesWS) {
+	public @ResponseBody RespuestaDTO modificarRelacionAlmacen(@RequestBody ModificarRelacionAlmacenesWS modificarRelacionAlmacenesWS) {
 		//System.out.println("Entro createCient: " + client.getClientFirstName());
-		ModificarRelacionAlmacenesWSResponse respuesta = new ModificarRelacionAlmacenesWSResponse();
+		RespuestaDTO respuesta = new RespuestaDTO();
 		respuesta = almacenMethods.modificarRelacionAlmacenes(modificarRelacionAlmacenesWS);
+		//System.out.println(ModificarAlmacenDTO.toString());
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+	// Actualizar Status Relacion Almacén
+	
+	@RequestMapping(value = "/actualizarStatusRelacionAlmacen", produces = { "application/json" })
+	public @ResponseBody RespuestaDTO actualizarStatusRelacionAlmacen(@RequestBody ActualizaStatusRelacionAlmacenesWS actualizaStatusRelacionAlmacenWS) {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		RespuestaDTO respuesta = new RespuestaDTO();
+		respuesta = almacenMethods.actualizarStatusRelacionAlmacenes(actualizaStatusRelacionAlmacenWS);
 		//System.out.println(ModificarAlmacenDTO.toString());
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
@@ -544,8 +564,8 @@ public class AlmacenController {
 		//-////////////// Inventario General ///////////////
 		
 		//+////////////// Inventario Zona ///////////////
-		@RequestMapping(value = "/inventario_zona&{idAlmacen}_{idZona}", method = RequestMethod.GET)
-		public String inventario_zona(@PathVariable (value = "idAlmacen") String idAlmacen, @PathVariable (value = "idZona") String idZona, Model model) {
+		@RequestMapping(value = "/inventario_zona/{idAlmacen}_{idZona}&{tipoZona}", method = RequestMethod.GET)
+		public String inventario_zona(@PathVariable (value = "idAlmacen") String idAlmacen, @PathVariable (value = "idZona") String idZona, @PathVariable (value = "tipoZona") String tipoZona, Model model) {
 			model.addAttribute("name", name);
 			model.addAttribute("link", link);
 			
@@ -553,15 +573,15 @@ public class AlmacenController {
 		}
 		//-////////////// Inventario Zona ///////////////
 		
-		//+////////////// Inventario Movimiento ///////////////
-		@RequestMapping(value = "/inventario_movimiento&{idAlmacen}", method = RequestMethod.GET)
+		//+////////////// Inventario Generar Orden ///////////////
+		@RequestMapping(value = "/inventario_generar_orden&{idAlmacen}", method = RequestMethod.GET)
 		public String inventario_movimiento(@PathVariable (value = "idAlmacen") String idAlmacen, Model model) {
 			model.addAttribute("name", name);
 			model.addAttribute("link", link);
 			
-		return "templates.almacen/templates.movimiento-mercancia/movimiento-nuevo_movimiento-mercancia";
+		return "templates.almacen/templates.movimiento-mercancia/generar_orden_Transf_Traspaso";
 		}
-		//-////////////// Inventario Movimiento ///////////////
-	
+		//-////////////// Inventario Generar Orden ///////////////
+		
 	//+////////////// Movimiento de Mercancia ///////////////
 }

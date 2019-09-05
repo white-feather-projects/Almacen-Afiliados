@@ -3,9 +3,7 @@ package com.cbp3.ws.cbp.service;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -23,7 +21,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="idProduct" type="{http://service.cbp.ws.cbp3.com/}product" minOccurs="0"/>
  *         &lt;element name="cantidad" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="fechaCargaDatos" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="almacenOrigen" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="almacenDestino" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="idTercero" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="idComercio" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -39,7 +40,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "descripcion",
     "idProduct",
     "cantidad",
-    "fechaCargaDatos"
+    "almacenOrigen",
+    "almacenDestino",
+    "idTercero",
+    "idComercio"
 })
 public class CrearOrdenRelacionadaWS {
 
@@ -48,8 +52,10 @@ public class CrearOrdenRelacionadaWS {
     protected String descripcion;
     protected Product idProduct;
     protected long cantidad;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar fechaCargaDatos;
+    protected long almacenOrigen;
+    protected long almacenDestino;
+    protected long idTercero;
+    protected long idComercio;
 
     /**
      * Obtiene el valor de la propiedad ordenRelacionadaNumber.
@@ -164,27 +170,67 @@ public class CrearOrdenRelacionadaWS {
     }
 
     /**
-     * Obtiene el valor de la propiedad fechaCargaDatos.
+     * Obtiene el valor de la propiedad almacenOrigen.
      * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
      */
-    public XMLGregorianCalendar getFechaCargaDatos() {
-        return fechaCargaDatos;
+    public long getAlmacenOrigen() {
+        return almacenOrigen;
     }
 
     /**
-     * Define el valor de la propiedad fechaCargaDatos.
+     * Define el valor de la propiedad almacenOrigen.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
      */
-    public void setFechaCargaDatos(XMLGregorianCalendar value) {
-        this.fechaCargaDatos = value;
+    public void setAlmacenOrigen(long value) {
+        this.almacenOrigen = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad almacenDestino.
+     * 
+     */
+    public long getAlmacenDestino() {
+        return almacenDestino;
+    }
+
+    /**
+     * Define el valor de la propiedad almacenDestino.
+     * 
+     */
+    public void setAlmacenDestino(long value) {
+        this.almacenDestino = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad idTercero.
+     * 
+     */
+    public long getIdTercero() {
+        return idTercero;
+    }
+
+    /**
+     * Define el valor de la propiedad idTercero.
+     * 
+     */
+    public void setIdTercero(long value) {
+        this.idTercero = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad idComercio.
+     * 
+     */
+    public long getIdComercio() {
+        return idComercio;
+    }
+
+    /**
+     * Define el valor de la propiedad idComercio.
+     * 
+     */
+    public void setIdComercio(long value) {
+        this.idComercio = value;
     }
 
 }

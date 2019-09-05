@@ -9,7 +9,7 @@ window.addEventListener('load', function(){
 	
 	$("#btnGenerarOrden").on('click', function(){
 		
-		location.href='/CBPult/Almacen/inventario_movimiento&'+id+'';
+		location.href='/CBPult/Almacen/inventario_generar_orden&'+id+'';
 		
 	});
 	
@@ -184,12 +184,11 @@ function listarZonasAlmacen(idAlmacen){
 	        },
 	        columns: [ 
 	        	
-	        {
+	        	{
 	                "data": "zonaId", // can be null or undefined
 	                "class": "codigo_zona",
 	                "render": function ( data ) {
-	          
-	            return '<center class="p1">'+ data +'</center>';
+	                	return '<center class="p1">'+ data +'</center>';
 	              }	
 	            },
 	            {
@@ -230,7 +229,17 @@ function listarZonasAlmacen(idAlmacen){
 	                "class": "ver",
 	                "defaultContent": "",
 	                "render": function ( data, type, full, meta ) {
-                		return '<center><a title="Visualizar Zona" href="/CBPult/Almacen/inventario_zona&'+idAlmacen+'_'+data+'"><i class="fa fa-edit" style="font-size:30px" aria-hidden="true"></i></a></center>';
+	                	var tipoZona;
+	                	if(full.idTipoZona == 1){
+	                		tipoZona = "Recibo";
+	                	}else if(full.idTipoZona == 2){
+	                		tipoZona = "Almacenaje";
+	                	}else if(full.idTipoZona == 3){
+	                		tipoZona = "Restringido";
+	                	}else if(full.idTipoZona == 4){
+	                		tipoZona = "Despacho"
+	                	}
+                		return '<center><a title="Visualizar Zona" href="/CBPult/Almacen/inventario_zona/'+idAlmacen+'_'+data+'&'+tipoZona+'"><i class="fa fa-edit" style="font-size:30px" aria-hidden="true"></i></a></center>';
 	                
 	                }
 	            }

@@ -30,7 +30,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="fechaCargaDatos" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="fechaHoraModificacion" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="fechaOrden" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="idAlmacenDestino" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="idAlmacenOrigen" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="idComercio" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="idProduct" type="{http://service.cbp.ws.cbp3.com/}product" minOccurs="0"/>
+ *         &lt;element name="idTercero" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="ordenRelacionadaId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="ordenRelacionadaNumber" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="statusOrden" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -58,7 +62,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "fechaCargaDatos",
     "fechaHoraModificacion",
     "fechaOrden",
+    "idAlmacenDestino",
+    "idAlmacenOrigen",
+    "idComercio",
     "idProduct",
+    "idTercero",
     "ordenRelacionadaId",
     "ordenRelacionadaNumber",
     "statusOrden",
@@ -83,7 +91,11 @@ public class OrdenRelacionada {
     protected XMLGregorianCalendar fechaHoraModificacion;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fechaOrden;
+    protected long idAlmacenDestino;
+    protected long idAlmacenOrigen;
+    protected long idComercio;
     protected Product idProduct;
+    protected long idTercero;
     protected Long ordenRelacionadaId;
     protected String ordenRelacionadaNumber;
     protected String statusOrden;
@@ -371,6 +383,54 @@ public class OrdenRelacionada {
     }
 
     /**
+     * Obtiene el valor de la propiedad idAlmacenDestino.
+     * 
+     */
+    public long getIdAlmacenDestino() {
+        return idAlmacenDestino;
+    }
+
+    /**
+     * Define el valor de la propiedad idAlmacenDestino.
+     * 
+     */
+    public void setIdAlmacenDestino(long value) {
+        this.idAlmacenDestino = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad idAlmacenOrigen.
+     * 
+     */
+    public long getIdAlmacenOrigen() {
+        return idAlmacenOrigen;
+    }
+
+    /**
+     * Define el valor de la propiedad idAlmacenOrigen.
+     * 
+     */
+    public void setIdAlmacenOrigen(long value) {
+        this.idAlmacenOrigen = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad idComercio.
+     * 
+     */
+    public long getIdComercio() {
+        return idComercio;
+    }
+
+    /**
+     * Define el valor de la propiedad idComercio.
+     * 
+     */
+    public void setIdComercio(long value) {
+        this.idComercio = value;
+    }
+
+    /**
      * Obtiene el valor de la propiedad idProduct.
      * 
      * @return
@@ -392,6 +452,22 @@ public class OrdenRelacionada {
      */
     public void setIdProduct(Product value) {
         this.idProduct = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad idTercero.
+     * 
+     */
+    public long getIdTercero() {
+        return idTercero;
+    }
+
+    /**
+     * Define el valor de la propiedad idTercero.
+     * 
+     */
+    public void setIdTercero(long value) {
+        this.idTercero = value;
     }
 
     /**

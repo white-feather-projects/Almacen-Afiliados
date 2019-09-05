@@ -14,6 +14,10 @@ import com.cbp.web.dto.ConsultaAlmacenPorNumeroAlmacenDTO;
 import com.cbp.web.dto.ModificarAlmacenDTO;
 import com.cbp.web.dto.SaveAditionalInformationAlmacenDTO;
 import com.cbp.web.util.Util;
+import com.cbp3.ws.cbp.service.ActualizaStatusRelacionAlmacenesWS;
+import com.cbp3.ws.cbp.service.ActualizaStatusRelacionAlmacenesWSResponse;
+import com.cbp3.ws.cbp.service.ActualizaStatusRelacionZonasWS;
+import com.cbp3.ws.cbp.service.ActualizaStatusRelacionZonasWSResponse;
 import com.cbp3.ws.cbp.service.AfiliacionServiceWS;
 import com.cbp3.ws.cbp.service.AfiliacionServiceWS_Service;
 import com.cbp3.ws.cbp.service.AlmacenServiceWS;
@@ -35,6 +39,7 @@ import com.cbp3.ws.cbp.service.CrearRelacionAlmacenesWSResponse;
 import com.cbp3.ws.cbp.service.CrearRelacionZonasWS;
 import com.cbp3.ws.cbp.service.CrearRelacionZonasWSResponse;
 import com.cbp3.ws.cbp.service.Estanteria;
+import com.cbp3.ws.cbp.service.InventarioServiceWS_Service;
 import com.cbp3.ws.cbp.service.ListaAlmacenesWSResponse;
 import com.cbp3.ws.cbp.service.ModificarAlmacenWS;
 import com.cbp3.ws.cbp.service.ModificarAlmacenWSResponse;
@@ -48,6 +53,7 @@ import com.cbp3.ws.cbp.service.ModificarZonaWS;
 import com.cbp3.ws.cbp.service.ModificarZonaWSResponse;
 import com.cbp3.ws.cbp.service.RelacionAlmacenes;
 import com.cbp3.ws.cbp.service.RelacionZonas;
+import com.cbp3.ws.cbp.service.RespuestaDTO;
 import com.cbp3.ws.cbp.service.SaveAditionaInformationAlmacenWSResponse;
 import com.cbp3.ws.cbp.service.Solicitud;
 import com.cbp3.ws.cbp.service.TipoZona;
@@ -316,18 +322,18 @@ public class AlmacenService extends Util implements AlmacenDAO{
 	
 	////////////////////////////////
 	//Methodo para modificar estanteria...
-	public ModificarEstanteriaWSResponse modificarEstanteria(ModificarEstanteriaWS ModificarEstanteriaWS) {
+	/*public ModificarEstanteriaWSResponse modificarEstanteria(ModificarEstanteriaWS ModificarEstanteriaWS) {
 		
 		//instanciar Objeto para retorno....
 		ModificarEstanteriaWSResponse respuestaModificarEstanteria = new ModificarEstanteriaWSResponse();
 		
 		try {
 			//Conectar Servicio para mandar datos y recoger respuesta...
-			AlmacenServiceWS_Service ws = new AlmacenServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AlmacenServiceWS?WSDL"));
-			AlmacenServiceWS WSmethod = ws.getAlmacenServiceWSPort();
+			InventarioServiceWS_Service ws = new InventarioServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/InventarioServiceWS?WSDL"));
+			InventarioService WSmethod = ws.getInventarioServiceWSPort()();
 			
 			//respuestaCrearComercio.setReturn(WSmethod.crearComercioWS(crearComercio.getIdentificacionComercio(), crearComercio.getNombreEmpresarial(), crearComercio.getNombreComercial(), crearComercio.getEmail(), crearComercio.getTelefonoContacto(), crearComercio.getEstadoComercioActivo(), crearComercio.getTelefonoLocal(), crearComercio.getNumCuentaAsociado(), crearComercio.getAfiliadoOtroBanco(), crearComercio.getTipoIdentificacionId(), crearComercio.getActividadComercial(), crearComercio.getHorarioComercial()));
-			respuestaModificarEstanteria.setReturn(WSmethod.modificarEstanteriaWS(ModificarEstanteriaWS.getEstanteriaId(), ModificarEstanteriaWS.getDescripcion(), ModificarEstanteriaWS.getZonaId(), ModificarEstanteriaWS.getModulos(), ModificarEstanteriaWS.getNiveles(), ModificarEstanteriaWS.getCodigoUsuarioModifica(), ModificarEstanteriaWS.getFechaHoraModificacion()));	
+			respuestaModificarEstanteria.setReturn(WSmethod
 			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -338,7 +344,7 @@ public class AlmacenService extends Util implements AlmacenDAO{
 		}
 		
 		return respuestaModificarEstanteria;
-	}
+	}*/
 	
 	////////////////////////////////
 	//Methodo para modificar zona...
@@ -658,10 +664,10 @@ public class AlmacenService extends Util implements AlmacenDAO{
 	
 	////////////////////////////////////
 	//Methodo para listar Zonas Relacionadas por ZOna Id...
-	public ModificarRelacionAlmacenesWSResponse modificarRelacionAlmacenes(ModificarRelacionAlmacenesWS modificarRelacionAlmacenesWS) {
+	public RespuestaDTO modificarRelacionAlmacenes(ModificarRelacionAlmacenesWS modificarRelacionAlmacenesWS) {
 	
 		//instanciar Objeto para retorno....
-		ModificarRelacionAlmacenesWSResponse respuestaModificacionRelacionesAlmacen = new ModificarRelacionAlmacenesWSResponse();
+		RespuestaDTO respuestaModificacionRelacionesAlmacen = new RespuestaDTO();
 		
 		try {
 			//Conectar Servicio para mandar datos y recoger respuesta...
@@ -682,4 +688,86 @@ public class AlmacenService extends Util implements AlmacenDAO{
 		return respuestaModificacionRelacionesAlmacen;
 	
 	}
+	
+	////////////////////////////////////
+	//Methodo para listar Zonas Relacionadas por ZOna Id...
+	public RespuestaDTO actualizarStatusRelacionAlmacenes(ActualizaStatusRelacionAlmacenesWS ActualizaStatusRelacionAlmacenesWS) {
+	
+		//instanciar Objeto para retorno....
+		RespuestaDTO respuestaActualizarStatusRelacionesAlmacen = new RespuestaDTO();
+		
+		try {
+		//Conectar Servicio para mandar datos y recoger respuesta...
+		AlmacenServiceWS_Service ws = new AlmacenServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AlmacenServiceWS?WSDL"));
+		AlmacenServiceWS WSmethod = ws.getAlmacenServiceWSPort();
+		
+		//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
+		respuestaActualizarStatusRelacionesAlmacen = WSmethod.actualizaStatusRelacionAlmacenesWS(ActualizaStatusRelacionAlmacenesWS.getRelacionAlmacenesId(), ActualizaStatusRelacionAlmacenesWS.getStatus());
+		
+		} catch (MalformedURLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		}
+		
+		return respuestaActualizarStatusRelacionesAlmacen;
+	
+	}
+	
+	////////////////////////////////////
+	//Methodo para Actualizar Status de Relaciones de Almacen
+	/*public ActualizaStatusRelacionAlmacenesWSResponse actualizarStatusRelacionAlmacenes(ActualizaStatusRelacionAlmacenesWS actualizaStatusRelacionAlmacenesWS) {
+	
+		//instanciar Objeto para retorno....
+		ActualizaStatusRelacionAlmacenesWSResponse respuestaActualizaStatusRelacionAlmacenes = new ActualizaStatusRelacionAlmacenesWSResponse();
+		
+		try {
+		//Conectar Servicio para mandar datos y recoger respuesta...
+		AlmacenServiceWS_Service ws = new AlmacenServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AlmacenServiceWS?WSDL"));
+		AlmacenServiceWS WSmethod = ws.getAlmacenServiceWSPort();
+		
+		//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
+		respuestaActualizaStatusRelacionAlmacenes = WSmethod.actualizaStatusRelacionAlmacenesWS(actualizaStatusRelacionAlmacenesWS.getRelacionAlmacenesId(), actualizaStatusRelacionAlmacenesWS.getStatus());
+		
+		} catch (MalformedURLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		}
+		
+		return respuestaActualizaStatusRelacionAlmacenes;
+	
+	}*/
+	
+	////////////////////////////////////
+	//Methodo para Actualizar Status de Relaciones de Almacen
+	/*public ActualizaStatusRelacionZonasWSResponse actualizarStatusRelacionZonas(ActualizaStatusRelacionZonasWS actualizaStatusRelacionZonasWS) {
+	
+		//instanciar Objeto para retorno....
+		ActualizaStatusRelacionZonasWSResponse respuestaActualizaStatusRelacionZonas = new ActualizaStatusRelacionZonasWSResponse();
+		
+		try {
+		//Conectar Servicio para mandar datos y recoger respuesta...
+		AlmacenServiceWS_Service ws = new AlmacenServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/AlmacenServiceWS?WSDL"));
+		AlmacenServiceWS WSmethod = ws.getAlmacenServiceWSPort();
+		
+		//System.out.println("lista:-------"+WSmethod.listaSolicitudesWS().size());
+		respuestaActualizaStatusRelacionZonas = WSmethod.actualizaStatusRelacionZonasWS(actualizaStatusRelacionZonasWS.getRelacionZonasId(), actualizaStatusRelacionZonasWS.getStatus());
+		
+		} catch (MalformedURLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		}
+		
+		return respuestaActualizaStatusRelacionZonas;
+	
+	}*/
+	
 }

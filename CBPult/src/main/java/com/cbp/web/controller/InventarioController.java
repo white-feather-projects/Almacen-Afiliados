@@ -35,6 +35,8 @@ import com.cbp3.ws.cbp.service.CrearTerceroWS;
 import com.cbp3.ws.cbp.service.CrearTerceroWSResponse;
 import com.cbp3.ws.cbp.service.GenerarMovimientoWS;
 import com.cbp3.ws.cbp.service.GenerarMovimientoWSResponse;
+import com.cbp3.ws.cbp.service.ListPurchaseOrderPorEstatusWS;
+import com.cbp3.ws.cbp.service.ListPurchaseOrderPorEstatusWSResponse;
 import com.cbp3.ws.cbp.service.ModificarAjusteInventarioWS;
 import com.cbp3.ws.cbp.service.ModificarAjusteInventarioWSResponse;
 import com.cbp3.ws.cbp.service.ModificarAjusteReciboWS;
@@ -45,6 +47,7 @@ import com.cbp3.ws.cbp.service.ModificarTerceroWS;
 import com.cbp3.ws.cbp.service.ModificarTerceroWSResponse;
 import com.cbp3.ws.cbp.service.Movimiento;
 import com.cbp3.ws.cbp.service.ProductoUbicacion;
+import com.cbp3.ws.cbp.service.PurchaseOrder;
 import com.cbp3.ws.cbp.service.Tercero;
 import com.cbp3.ws.cbp.service.TipoMovimiento;
 
@@ -333,5 +336,17 @@ public class InventarioController {
 		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
 		return respuesta;
 	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+	@RequestMapping(value = "/listaOrdenesCompra", produces = { "application/json" }) 
+	public @ResponseBody java.util.List<PurchaseOrder> listaPruchaseOrderPorEstatus() {
+		//System.out.println("Entro createCient: " + client.getClientFirstName());
+		java.util.List<PurchaseOrder> respuesta = new ArrayList<>();
+		respuesta = inventarioDAO.listaPruchaseOrderPorEstatus();
+		//System.out.println("Entro createCient: " + respuesta.getDescripcion());
+		return respuesta;
+	}
+	
 	
 }

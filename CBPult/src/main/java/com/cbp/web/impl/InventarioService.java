@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -37,6 +38,8 @@ import com.cbp3.ws.cbp.service.GenerarMovimientoWS;
 import com.cbp3.ws.cbp.service.GenerarMovimientoWSResponse;
 import com.cbp3.ws.cbp.service.InventarioServiceWS;
 import com.cbp3.ws.cbp.service.InventarioServiceWS_Service;
+import com.cbp3.ws.cbp.service.ListPurchaseOrderPorEstatusWS;
+import com.cbp3.ws.cbp.service.ListPurchaseOrderPorEstatusWSResponse;
 import com.cbp3.ws.cbp.service.ModificarAjusteInventarioWS;
 import com.cbp3.ws.cbp.service.ModificarAjusteInventarioWSResponse;
 import com.cbp3.ws.cbp.service.ModificarAjusteReciboWS;
@@ -47,6 +50,7 @@ import com.cbp3.ws.cbp.service.ModificarTerceroWS;
 import com.cbp3.ws.cbp.service.ModificarTerceroWSResponse;
 import com.cbp3.ws.cbp.service.Movimiento;
 import com.cbp3.ws.cbp.service.ProductoUbicacion;
+import com.cbp3.ws.cbp.service.PurchaseOrder;
 import com.cbp3.ws.cbp.service.RelacionAlmacenes;
 import com.cbp3.ws.cbp.service.Tercero;
 import com.cbp3.ws.cbp.service.TipoMovimiento;
@@ -317,7 +321,7 @@ public class InventarioService extends Util implements InventarioDAO{
 			InventarioServiceWS WSmethod = ws.getInventarioServiceWSPort();
 			
 			//respuestaCrearComercio.setReturn(WSmethod.crearComercioWS(crearComercio.getIdentificacionComercio(), crearComercio.getNombreEmpresarial(), crearComercio.getNombreComercial(), crearComercio.getEmail(), crearComercio.getTelefonoContacto(), crearComercio.getEstadoComercioActivo(), crearComercio.getTelefonoLocal(), crearComercio.getNumCuentaAsociado(), crearComercio.getAfiliadoOtroBanco(), crearComercio.getTipoIdentificacionId(), crearComercio.getActividadComercial(), crearComercio.getHorarioComercial()));
-			respuestaCrearOrdenRelacionada.setReturn(WSmethod.crearOrdenRelacionadaWS(CrearOrdenRelacionadaWS.getOrdenRelacionadaNumber(), CrearOrdenRelacionadaWS.getTipoOrdenId(), CrearOrdenRelacionadaWS.getDescripcion(), CrearOrdenRelacionadaWS.getIdProduct(), CrearOrdenRelacionadaWS.getCantidad(), CrearOrdenRelacionadaWS.getFechaCargaDatos()));			
+			respuestaCrearOrdenRelacionada.setReturn(WSmethod.crearOrdenRelacionadaWS(CrearOrdenRelacionadaWS.getOrdenRelacionadaNumber(), CrearOrdenRelacionadaWS.getTipoOrdenId(), CrearOrdenRelacionadaWS.getDescripcion(), CrearOrdenRelacionadaWS.getIdProduct(), CrearOrdenRelacionadaWS.getCantidad(), CrearOrdenRelacionadaWS.getAlmacenOrigen(), CrearOrdenRelacionadaWS.getAlmacenDestino(), CrearOrdenRelacionadaWS.getIdTercero(), CrearOrdenRelacionadaWS.getIdComercio()));			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -677,6 +681,33 @@ public class InventarioService extends Util implements InventarioDAO{
 		}
 		
 		return respuestaTercero;
+	}
+	
+	
+	
+	////////////////////////////////
+	//Methodo para listar Tercero...
+	public java.util.List<PurchaseOrder> listaPruchaseOrderPorEstatus() {
+	
+		//instanciar Objeto para retorno....
+		java.util.List<PurchaseOrder> respuesta = new ArrayList<>();
+		
+		try {
+			//Conectar Servicio para mandar datos y recoger respuesta...
+			InventarioServiceWS_Service ws = new InventarioServiceWS_Service(new URL(readProperties("IP.AMBIENTE")+"/CBP-3/InventarioServiceWS?WSDL"));
+			InventarioServiceWS WSmethod = ws.getInventarioServiceWSPort();
+			
+			//respuestaCrearComercio.setReturn(WSmethod.crearComercioWS(crearComercio.getIdentificacionComercio(), crearComercio.getNombreEmpresarial(), crearComercio.getNombreComercial(), crearComercio.getEmail(), crearComercio.getTelefonoContacto(), crearComercio.getEstadoComercioActivo(), crearComercio.getTelefonoLocal(), crearComercio.getNumCuentaAsociado(), crearComercio.getAfiliadoOtroBanco(), crearComercio.getTipoIdentificacionId(), crearComercio.getActividadComercial(), crearComercio.getHorarioComercial()));
+			respuesta = WSmethod.listPurchaseOrderPorEstatusWS();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return respuesta;
 	}
 
 }
