@@ -491,11 +491,14 @@ public interface InventarioServiceWS {
     /**
      * 
      * @param descripcion
-     * @param fechaCargaDatos
+     * @param almacenDestino
+     * @param idComercio
+     * @param idTercero
      * @param ordenRelacionadaNumber
      * @param tipoOrdenId
      * @param idProduct
      * @param cantidad
+     * @param almacenOrigen
      * @return
      *     returns com.cbp3.ws.cbp.service.RespuestaDTO
      */
@@ -515,19 +518,29 @@ public interface InventarioServiceWS {
         Product idProduct,
         @WebParam(name = "cantidad", targetNamespace = "")
         long cantidad,
-        @WebParam(name = "fechaCargaDatos", targetNamespace = "")
-        XMLGregorianCalendar fechaCargaDatos);
+        @WebParam(name = "almacenOrigen", targetNamespace = "")
+        long almacenOrigen,
+        @WebParam(name = "almacenDestino", targetNamespace = "")
+        long almacenDestino,
+        @WebParam(name = "idTercero", targetNamespace = "")
+        long idTercero,
+        @WebParam(name = "idComercio", targetNamespace = "")
+        long idComercio);
 
     /**
      * 
      * @param descripcion
-     * @param cantidadMinima
-     * @param ordenRelacionadaNumber
+     * @param idTercero
      * @param statusOrden
      * @param tipoOrdenId
+     * @param cantidadMaxima
+     * @param cantidadMinima
+     * @param almacenDestino
+     * @param idComercio
+     * @param ordenRelacionadaNumber
      * @param idProduct
      * @param cantidad
-     * @param cantidadMaxima
+     * @param almacenOrigen
      * @param tipoGeneracion
      * @param comentarios
      * @param ordenRelacionadaId
@@ -561,7 +574,15 @@ public interface InventarioServiceWS {
         @WebParam(name = "cantidadMinima", targetNamespace = "")
         long cantidadMinima,
         @WebParam(name = "cantidadMaxima", targetNamespace = "")
-        long cantidadMaxima);
+        long cantidadMaxima,
+        @WebParam(name = "almacenOrigen", targetNamespace = "")
+        long almacenOrigen,
+        @WebParam(name = "almacenDestino", targetNamespace = "")
+        long almacenDestino,
+        @WebParam(name = "idTercero", targetNamespace = "")
+        long idTercero,
+        @WebParam(name = "idComercio", targetNamespace = "")
+        long idComercio);
 
     /**
      * 
@@ -694,5 +715,17 @@ public interface InventarioServiceWS {
     public OrdenRelacionada consultaOrdenRelacionadaPorOrdenRelacionadaIdWS(
         @WebParam(name = "ordenRelacionadaId", targetNamespace = "")
         long ordenRelacionadaId);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<com.cbp3.ws.cbp.service.PurchaseOrder>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listPurchaseOrderPorEstatusWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListPurchaseOrderPorEstatusWS")
+    @ResponseWrapper(localName = "listPurchaseOrderPorEstatusWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListPurchaseOrderPorEstatusWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/listPurchaseOrderPorEstatusWSRequest", output = "http://service.cbp.ws.cbp3.com/InventarioServiceWS/listPurchaseOrderPorEstatusWSResponse")
+    public List<PurchaseOrder> listPurchaseOrderPorEstatusWS();
 
 }

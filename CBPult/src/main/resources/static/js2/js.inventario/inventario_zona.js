@@ -1,14 +1,16 @@
 'use strict'
 
 	var url = window.location.pathname;
-	var id = url.substring(url.lastIndexOf('&') + 1);
-	var idAlmacen = id.indexOf("_");
-	var idAlmacen_1 = id.substring(0, idAlmacen);
-	var idZona = id.substring(id.lastIndexOf('_') + 1);
+	var id = url.substring(url.lastIndexOf('/') + 1);
+	var idAlmacen_1 = id.substring(id.indexOf("/")+1, id.indexOf("_"));
+	var idZona = id.substring(id.indexOf("_")+1, id.indexOf('&'));
+	var tipoZona = id.substring(id.lastIndexOf('&') + 1);
 	
-	console.log("id--------", id);
-	console.log("idZona", idZona);
+	
+	console.log("url", id);
 	console.log("idAlmacen", idAlmacen_1);
+	console.log("idZona", idZona);	
+	console.log("tipo", tipoZona);
 
 window.addEventListener('load', function(){
 	

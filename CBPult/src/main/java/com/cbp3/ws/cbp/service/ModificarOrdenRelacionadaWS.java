@@ -27,6 +27,10 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="cantidad" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="cantidadMinima" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="cantidadMaxima" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="almacenOrigen" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="almacenDestino" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="idTercero" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="idComercio" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -47,7 +51,11 @@ import javax.xml.bind.annotation.XmlType;
     "tipoGeneracion",
     "cantidad",
     "cantidadMinima",
-    "cantidadMaxima"
+    "cantidadMaxima",
+    "almacenOrigen",
+    "almacenDestino",
+    "idTercero",
+    "idComercio"
 })
 public class ModificarOrdenRelacionadaWS {
 
@@ -62,6 +70,10 @@ public class ModificarOrdenRelacionadaWS {
     protected long cantidad;
     protected long cantidadMinima;
     protected long cantidadMaxima;
+    protected long almacenOrigen;
+    protected long almacenDestino;
+    protected long idTercero;
+    protected long idComercio;
 
     /**
      * Obtiene el valor de la propiedad ordenRelacionadaId.
@@ -293,6 +305,70 @@ public class ModificarOrdenRelacionadaWS {
      */
     public void setCantidadMaxima(long value) {
         this.cantidadMaxima = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad almacenOrigen.
+     * 
+     */
+    public long getAlmacenOrigen() {
+        return almacenOrigen;
+    }
+
+    /**
+     * Define el valor de la propiedad almacenOrigen.
+     * 
+     */
+    public void setAlmacenOrigen(long value) {
+        this.almacenOrigen = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad almacenDestino.
+     * 
+     */
+    public long getAlmacenDestino() {
+        return almacenDestino;
+    }
+
+    /**
+     * Define el valor de la propiedad almacenDestino.
+     * 
+     */
+    public void setAlmacenDestino(long value) {
+        this.almacenDestino = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad idTercero.
+     * 
+     */
+    public long getIdTercero() {
+        return idTercero;
+    }
+
+    /**
+     * Define el valor de la propiedad idTercero.
+     * 
+     */
+    public void setIdTercero(long value) {
+        this.idTercero = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad idComercio.
+     * 
+     */
+    public long getIdComercio() {
+        return idComercio;
+    }
+
+    /**
+     * Define el valor de la propiedad idComercio.
+     * 
+     */
+    public void setIdComercio(long value) {
+        this.idComercio = value;
     }
 
 }

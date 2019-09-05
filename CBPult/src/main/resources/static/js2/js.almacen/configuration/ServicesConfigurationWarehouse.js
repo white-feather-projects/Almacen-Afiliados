@@ -290,7 +290,7 @@ function crearAlmacenServ(){
 			"warehouseName": data_almacen.direccion
 		}
 	};
-	
+	console.log("Datasdasfasd: "+data_almacen.zonas);
 	if(data_almacen.zonas.length > 0){
 		
 		$.ajax({
@@ -791,7 +791,7 @@ function listarModificarAlmacenesRelServ(){
                 	var ret = '<center><input type="checkbox" class="js-switch-blue js-check-change" data-switchery="true" style="display: none;" ></center>';
                 	data_almacen.relaciones.map(function(rel, j){
     					
-    					if(rel.almacenDestinoId.idWarehouse == data){
+    					if(rel.almacenDestinoId.idWarehouse == data && rel.status == "1"){
     						ret = '<center><input type="checkbox" class="js-switch-blue js-check-change" data-switchery="true" style="display: none;" checked></center>';
     					}
     					
@@ -1117,13 +1117,13 @@ function cargaDatosModificarZonasServ(){
 				                                    
 				                                    <div class="col-sm-5">														                                                                
 				                                        <div class="col-sm-12">
-				                                            <input type="text" id="txtModulos_estanteria`+zona.id+`" class="form-control solo_num" onblur="modulos(`+zona.id+`)" placeholder="Módulos">
+				                                            <input type="text" id="txtModulos_estanteria`+zona.id+`" class="form-control solo_num" onblur="modulos(`+zona.id+`)" maxlength="1" placeholder="Módulos">
 				                                        </div>
 				                                	</div>
 				                    			
 				                    				<div class="col-sm-5">														                                                                
 				                                        <div class="col-sm-12">
-				                                            <input type="text" id="txtNiveles_estanteria`+zona.id+`" class="form-control solo_num"  onblur="niveles(`+zona.id+`)" placeholder="Niveles">
+				                                            <input type="text" id="txtNiveles_estanteria`+zona.id+`" class="form-control solo_num"  onblur="niveles(`+zona.id+`)" maxlength="1" placeholder="Niveles">
 				                                        </div>
 				                                	</div>
 				                                	
@@ -1389,58 +1389,112 @@ function modificarRelacionesAlmServ(){
 	console.log("Relaciones Almacen...")
 	
 	// Construyendo Relaciones de Almacén
-    $('#simpletablerel .dos center').map(function(i, center){
-    	
+    $('#simpletablerel .dos center').map(function(i, center){    	
     	
     	if($('#simpletablerel .uno center .js-switch-blue')[i].checked){
+			
+    		var comprobar_relacion = 0;
+    		var relId;
+    		data_almacen.relaciones.map(function(rel, j){
+        		
+        		if(rel.almacenDestinoId.idWarehouse == parseInt(center.innerHTML)){
+        			relId = rel.relacionAlmacenesId;
+        			comprobar_relacion++;
+        		}
+        		
+        	});
     		
-    		data_almacen.map(function(zona, j){
-    			
-    			
-    			
-    		});
+    		if(comprobar_relacion == 0){
+    			var info_Relacion_almacen = {
+					"almacenActualId": {
+						"idWarehouse": IdAlmacen
+					},
+					"almacenDestinoId": {
+						"idWarehouse": parseInt(center.innerHTML)
+					}
+				};
+				
+				$.ajax({
+					
+					url: '/CBPult/Almacen/crearRelacionAlmacenes',
+			        type: "POST",         
+			        contentType: "application/json",
+			        dataType: "json",
+			        data: JSON.stringify(info_Relacion_almacen),
+			        success: function(response){    	        	
+			        	
+			        	console.log(i, "Relacion Almacén: ", info_Relacion_almacen);
+			        	console.log("Respuesta... ", response);
+			        	
+			        },
+			        error: function(e, txt){
+			        	swal("Error al crear las Relaciones del Almacén");
+			        	console.log("error:"+ txt + e);
+			        	console.log("Error - Info de las Relaciones de Almacén: ", info_Relacion_almacen, "Error: ", response.return.descripcion);
+			        }
+					
+				});
+    		}
+    		else if(comprobar_relacion > 0){
+    			var info_actualizarEstatus_RelAlmacen = {
+					"relacionAlmacenesId": relId,
+					"status": "1"
+				};    			
+    			$.ajax({
+					
+					url: '/CBPult/Almacen/actualizarStatusRelacionAlmacen',
+			        type: "POST",         
+			        contentType: "application/json",
+			        dataType: "json",
+			        data: JSON.stringify(info_actualizarEstatus_RelAlmacen),
+			        success: function(response){
+			        	console.log("Respuesta Actualizar Status Relación: ", response);
+			        },
+			        error: function(e, txt){
+			        	swal("Error al actualizar el status de la Relacion de almacenes");
+			        	console.log("error:"+ txt + e);
+			        }
+			        
+    			});
+    		}
+		}
+    	else if(!$('#simpletablerel .uno center .js-switch-blue')[i].checked){
+    		console.log("Gooafasd");
+    		var comprobar_relacion = 0;
+    		var relId;
+    		data_almacen.relaciones.map(function(rel, j){
+        		
+        		if(rel.almacenDestinoId.idWarehouse == parseInt(center.innerHTML)){
+        			relId = rel.relacionAlmacenesId;
+        			comprobar_relacion++;
+        		}
+        		
+        	});
     		
-    		/*var info_Relacion_almacen = {
-    			"almacenActualId": {
-    				"idWarehouse": idAlmacen
-    			},
-    			"almacenDestinoId": {
-    				"idWarehouse": parseInt(center.innerHTML)
-    			}
-    		};
-    		
-    		$.ajax({
-    			
-    			url: '/CBPult/Almacen/crearRelacionAlmacenes',
-    	        type: "POST",         
-    	        contentType: "application/json",
-    	        dataType: "json",
-    	        data: JSON.stringify(info_Relacion_almacen),
-    	        success: function(response){    	        	
-    	        	
-    	        	console.log(i, "Relacion Almacén: ", info_Relacion_almacen);
-    	        	console.log("Respuesta... ", response);
-    	        	
-    	        },
-    	        error: function(e, txt){
-    	        	swal("Error al crear las Relaciones del Almacén");
-    	        	console.log("error:"+ txt + e);
-    	        	console.log("Error - Info de las Relaciones de Almacén: ", info_Relacion_almacen, "Error: ", response.return.descripcion);
-    	        }
-    			
-    		});*/
-    		
+    		if(comprobar_relacion > 0){
+    			var info_actualizarEstatus_RelAlmacen = {
+					"relacionAlmacenesId": relId,
+					"status": "0"
+				};    			
+    			$.ajax({
+					
+					url: '/CBPult/Almacen/actualizarStatusRelacionAlmacen',
+			        type: "POST",         
+			        contentType: "application/json",
+			        dataType: "json",
+			        data: JSON.stringify(info_actualizarEstatus_RelAlmacen),
+			        success: function(response){
+			        	console.log("Respuesta Actualizar 0 Status Relación: ", response);
+			        },
+			        error: function(e, txt){
+			        	swal("Error al actualizar el status de la Relacion de almacenes");
+			        	console.log("error:"+ txt + e);
+			        }
+			        
+    			});
+    		}
     	}
+    	
     });
-    
-    //////////////////
-    Swal.fire({
-	      title: "NUEVO ALMACÉN CREADO",
-	      text: "Creación del Almacén ID: [ " +idAlmacen+ " ], Tipo: [ "+ data_almacen.tipoAlmacen +" ] Exitosa!!! Presiona (Siguiente) para Personalizar las Relaciones de tus Zonas",
-	      type: "success",
-	      confirmButtonColor: '#3085d6',
-	      confirmButtonText: 'OK'	               
-    });
-    //////////////////
 	
 }

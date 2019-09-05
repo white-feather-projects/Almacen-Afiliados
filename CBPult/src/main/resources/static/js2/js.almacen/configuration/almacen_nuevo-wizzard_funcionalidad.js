@@ -106,13 +106,13 @@ function evtNuevaZona(){
                                         
                                         <div class="col-sm-5">														                                                                
                                             <div class="col-sm-12">
-                                                <input type="text" id="txtModulos_estanteria`+contador_zonas+`" class="form-control solo_num" onblur="modulos(`+contador_zonas+`)" placeholder="Módulos">
+                                                <input type="text" id="txtModulos_estanteria`+contador_zonas+`" class="form-control solo_num" onblur="modulos(`+contador_zonas+`)" maxlength="1" placeholder="Módulos">
                                             </div>
                                     	</div>
                         			
                         				<div class="col-sm-5">														                                                                
                                             <div class="col-sm-12">
-                                                <input type="text" id="txtNiveles_estanteria`+contador_zonas+`" class="form-control solo_num"  onblur="niveles(`+contador_zonas+`)" placeholder="Niveles">
+                                                <input type="text" id="txtNiveles_estanteria`+contador_zonas+`" class="form-control solo_num"  onblur="niveles(`+contador_zonas+`)" maxlength="1" placeholder="Niveles">
                                             </div>
                                     	</div>
                                     	

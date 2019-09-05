@@ -26,6 +26,7 @@ public class ObjectFactory {
 
     private final static QName _ConsultaAjusteReciboPorAjusteReciboIdWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaAjusteReciboPorAjusteReciboIdWS");
     private final static QName _ListTerceroWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listTerceroWS");
+    private final static QName _ListPurchaseOrderPorEstatusWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listPurchaseOrderPorEstatusWSResponse");
     private final static QName _ListAjusteInventarioWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listAjusteInventarioWSResponse");
     private final static QName _ListOrdenRelacionadaWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listOrdenRelacionadaWSResponse");
     private final static QName _ConsultaPurchaseOrderPorPurchaseOrderIdWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "consultaPurchaseOrderPorPurchaseOrderIdWSResponse");
@@ -91,6 +92,7 @@ public class ObjectFactory {
     private final static QName _CrearProductoUbicacionWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearProductoUbicacionWSResponse");
     private final static QName _CrearOrdenRelDetalleWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearOrdenRelDetalleWSResponse");
     private final static QName _Empleado_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "empleado");
+    private final static QName _ListPurchaseOrderPorEstatusWS_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "listPurchaseOrderPorEstatusWS");
     private final static QName _ModificarAjusteReciboWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "modificarAjusteReciboWSResponse");
     private final static QName _Provider_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "provider");
     private final static QName _CrearOrdenRelacionadaWSResponse_QNAME = new QName("http://service.cbp.ws.cbp3.com/", "crearOrdenRelacionadaWSResponse");
@@ -395,6 +397,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ListPurchaseOrderPorEstatusWSResponse }
+     * 
+     */
+    public ListPurchaseOrderPorEstatusWSResponse createListPurchaseOrderPorEstatusWSResponse() {
+        return new ListPurchaseOrderPorEstatusWSResponse();
+    }
+
+    /**
      * Create an instance of {@link ConsultaAjusteReciboPorAjusteReciboIdWS }
      * 
      */
@@ -560,6 +570,14 @@ public class ObjectFactory {
      */
     public Empleado createEmpleado() {
         return new Empleado();
+    }
+
+    /**
+     * Create an instance of {@link ListPurchaseOrderPorEstatusWS }
+     * 
+     */
+    public ListPurchaseOrderPorEstatusWS createListPurchaseOrderPorEstatusWS() {
+        return new ListPurchaseOrderPorEstatusWS();
     }
 
     /**
@@ -810,6 +828,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listTerceroWS")
     public JAXBElement<ListTerceroWS> createListTerceroWS(ListTerceroWS value) {
         return new JAXBElement<ListTerceroWS>(_ListTerceroWS_QNAME, ListTerceroWS.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListPurchaseOrderPorEstatusWSResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listPurchaseOrderPorEstatusWSResponse")
+    public JAXBElement<ListPurchaseOrderPorEstatusWSResponse> createListPurchaseOrderPorEstatusWSResponse(ListPurchaseOrderPorEstatusWSResponse value) {
+        return new JAXBElement<ListPurchaseOrderPorEstatusWSResponse>(_ListPurchaseOrderPorEstatusWSResponse_QNAME, ListPurchaseOrderPorEstatusWSResponse.class, null, value);
     }
 
     /**
@@ -1395,6 +1422,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "empleado")
     public JAXBElement<Empleado> createEmpleado(Empleado value) {
         return new JAXBElement<Empleado>(_Empleado_QNAME, Empleado.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListPurchaseOrderPorEstatusWS }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.cbp.ws.cbp3.com/", name = "listPurchaseOrderPorEstatusWS")
+    public JAXBElement<ListPurchaseOrderPorEstatusWS> createListPurchaseOrderPorEstatusWS(ListPurchaseOrderPorEstatusWS value) {
+        return new JAXBElement<ListPurchaseOrderPorEstatusWS>(_ListPurchaseOrderPorEstatusWS_QNAME, ListPurchaseOrderPorEstatusWS.class, null, value);
     }
 
     /**

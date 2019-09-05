@@ -1,5 +1,7 @@
 package com.cbp.web.dao;
 
+import java.util.List;
+
 import com.cbp3.ws.cbp.service.AjusteInventario;
 import com.cbp3.ws.cbp.service.AjusteRecibo;
 import com.cbp3.ws.cbp.service.ConsultaAjusteReciboPorAjusteReciboIdWSResponse;
@@ -24,6 +26,8 @@ import com.cbp3.ws.cbp.service.CrearTerceroWS;
 import com.cbp3.ws.cbp.service.CrearTerceroWSResponse;
 import com.cbp3.ws.cbp.service.GenerarMovimientoWS;
 import com.cbp3.ws.cbp.service.GenerarMovimientoWSResponse;
+import com.cbp3.ws.cbp.service.ListPurchaseOrderPorEstatusWS;
+import com.cbp3.ws.cbp.service.ListPurchaseOrderPorEstatusWSResponse;
 import com.cbp3.ws.cbp.service.ModificarAjusteInventarioWS;
 import com.cbp3.ws.cbp.service.ModificarAjusteInventarioWSResponse;
 import com.cbp3.ws.cbp.service.ModificarAjusteReciboWS;
@@ -34,6 +38,7 @@ import com.cbp3.ws.cbp.service.ModificarTerceroWS;
 import com.cbp3.ws.cbp.service.ModificarTerceroWSResponse;
 import com.cbp3.ws.cbp.service.Movimiento;
 import com.cbp3.ws.cbp.service.ProductoUbicacion;
+import com.cbp3.ws.cbp.service.PurchaseOrder;
 import com.cbp3.ws.cbp.service.Tercero;
 import com.cbp3.ws.cbp.service.TipoMovimiento;
 
@@ -77,6 +82,13 @@ public interface InventarioDAO {
 	
 	public ModificarAjusteReciboWSResponse modificarAjusteRecibo(ModificarAjusteReciboWS ModificarAjusteReciboWS);
 	
+	
+	
+	
+	public java.util.List<PurchaseOrder> listaPruchaseOrderPorEstatus();
+	
+	//
+	
 	public java.util.List<Movimiento> listaMovimientosByTipoMovimiento(long idTipoMovimiento);
 	
 	public java.util.List<ProductoUbicacion> listaProductoUbicacion();
@@ -89,4 +101,8 @@ public interface InventarioDAO {
 	
 	public java.util.List<Tercero> listaTercero();
 
+	
+
+	
+	
 }

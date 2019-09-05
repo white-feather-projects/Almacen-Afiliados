@@ -3,6 +3,7 @@ var data_zonas = []; // se usa para capturar las Zonas y se incrusta en "data_al
 var data_zonasTemp_editar = []; // Sirve para cargar la info de las zonas del Almacén desde el Server y para graficar las Zonas cargadas en el Tab de Zonas
 var data_nuevas_zonas; // sirve para capturar las nuevas zonas y crearlas mediante el servicio
 var data_relacionesTemp_Almacen;
+var data_relacionesNuevas_Almacen;
 var zonas_response = "";
 var zonas_creadas = false;
 
@@ -83,7 +84,7 @@ if(Tipo == "newalm"){
 					}
 					///
 					
-					if(validated == 3){
+					if(validated == 2){
 						
 						// Creacion del Almacén
 						
@@ -159,7 +160,7 @@ if(Tipo == "newalm"){
 							"relacionesZona": []
 						}
 					});	
-					
+					console.log("Holii", data_zonas)
 					data_almacen.zonas = data_zonas;
 					
 				}
@@ -339,7 +340,7 @@ else if(Tipo === "editar"){
 					}
 					///
 					
-					console.log("validated", validated);
+					//console.log("validated", validated);
 					
 					if(validated == 2){
 						
@@ -396,7 +397,7 @@ else if(Tipo === "editar"){
 						}
 						
 						if(estanterias.length < 1){
-							estanterias_json.push([1,1]);												        
+							estanterias_json.push([1,1]);									        
 							empty_Estanterias++;
 						}
 						
@@ -550,12 +551,11 @@ else if(Tipo === "editar"){
 							reverseButtons: true
 						}).then((result) => {
 							if(result.value) {
-								//crearAlmacenServ();
 								crearNuevasZonasServ();
 								modificarAlmacenServ();
 								modificarZonasServ();
 								modificarRelacionesAlmServ();
-								modificarRelacionesAlmServ();
+								//modificarRelacionesAlmServ();
 								valid = true;
 							}
 							else if(result.dismiss === Swal.DismissReason.cancel) {

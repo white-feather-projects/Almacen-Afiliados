@@ -3,6 +3,10 @@ package com.cbp.web.dao;
 import com.cbp.web.dto.ConsultaAlmacenPorAlmacenIdDTO;
 import com.cbp.web.dto.ConsultaAlmacenPorNumeroAlmacenDTO;
 import com.cbp.web.dto.SaveAditionalInformationAlmacenDTO;
+import com.cbp3.ws.cbp.service.ActualizaStatusRelacionAlmacenesWS;
+import com.cbp3.ws.cbp.service.ActualizaStatusRelacionAlmacenesWSResponse;
+import com.cbp3.ws.cbp.service.ActualizaStatusRelacionZonasWS;
+import com.cbp3.ws.cbp.service.ActualizaStatusRelacionZonasWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaAlmacenPorAlmacenIdWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaAlmacenPorNumeroAlmacenWSResponse;
 import com.cbp3.ws.cbp.service.ConsultaEstanteriaPorEstanteriaIdWS;
@@ -32,6 +36,7 @@ import com.cbp3.ws.cbp.service.ModificarZonaWS;
 import com.cbp3.ws.cbp.service.ModificarZonaWSResponse;
 import com.cbp3.ws.cbp.service.RelacionAlmacenes;
 import com.cbp3.ws.cbp.service.RelacionZonas;
+import com.cbp3.ws.cbp.service.RespuestaDTO;
 import com.cbp3.ws.cbp.service.SaveAditionaInformationAlmacenWSResponse;
 import com.cbp3.ws.cbp.service.TipoZona;
 import com.cbp3.ws.cbp.service.Warehouse;
@@ -61,13 +66,21 @@ public interface AlmacenDAO {
 	
 	public CrearRelacionZonasWSResponse crearRelacionZonas(CrearRelacionZonasWS CrearRelacionZonasWS);
 	
-	public ModificarEstanteriaWSResponse modificarEstanteria(ModificarEstanteriaWS ModificarEstanteriaWS);
+	/*public ModificarEstanteriaWSResponse modificarEstanteria(ModificarEstanteriaWS ModificarEstanteriaWS);*/
 	
 	public ModificarZonaWSResponse modificarZona(ModificarZonaWS ModificarZonaWS);
 	
 	public ModificarRelacionZonasWSResponse modificarRelacionZonas(ModificarRelacionZonasWS ModificarRelacionZonasWS);
 	
-	public ModificarRelacionAlmacenesWSResponse modificarRelacionAlmacenes(ModificarRelacionAlmacenesWS ModificarRelacionAlmacenesWS);
+	public RespuestaDTO modificarRelacionAlmacenes(ModificarRelacionAlmacenesWS ModificarRelacionAlmacenesWS);
+	
+	
+	
+	public RespuestaDTO actualizarStatusRelacionAlmacenes(ActualizaStatusRelacionAlmacenesWS ActualizaStatusRelacionAlmacenesWS);
+	
+	//public ActualizaStatusRelacionZonasWSResponse actualizarStatusRelacionZonas(ActualizaStatusRelacionZonasWS ActualizaStatusRelacionZonasWS);
+	
+	
 	
 	public java.util.List<Warehouse> listaAlmacenes();
 	

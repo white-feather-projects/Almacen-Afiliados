@@ -85,6 +85,21 @@ public interface AlmacenServiceWS {
 
     /**
      * 
+     * @param idEstanteria
+     * @return
+     *     returns java.util.List<com.cbp3.ws.cbp.service.Slot>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listSlotsByEstanteriaIdWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListSlotsByEstanteriaIdWS")
+    @ResponseWrapper(localName = "listSlotsByEstanteriaIdWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ListSlotsByEstanteriaIdWSResponse")
+    @Action(input = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/listSlotsByEstanteriaIdWSRequest", output = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/listSlotsByEstanteriaIdWSResponse")
+    public List<Slot> listSlotsByEstanteriaIdWS(
+        @WebParam(name = "idEstanteria", targetNamespace = "")
+        long idEstanteria);
+
+    /**
+     * 
      * @param zonaActualId
      * @return
      *     returns java.util.List<com.cbp3.ws.cbp.service.RelacionZonas>
@@ -469,39 +484,6 @@ public interface AlmacenServiceWS {
         long modulos,
         @WebParam(name = "niveles", targetNamespace = "")
         long niveles);
-
-    /**
-     * 
-     * @param descripcion
-     * @param modulos
-     * @param codigoUsuarioModifica
-     * @param niveles
-     * @param fechaHoraModificacion
-     * @param estanteriaId
-     * @param zonaId
-     * @return
-     *     returns com.cbp3.ws.cbp.service.RespuestaDTO
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "modificarEstanteriaWS", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ModificarEstanteriaWS")
-    @ResponseWrapper(localName = "modificarEstanteriaWSResponse", targetNamespace = "http://service.cbp.ws.cbp3.com/", className = "com.cbp3.ws.cbp.service.ModificarEstanteriaWSResponse")
-    @Action(input = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/modificarEstanteriaWSRequest", output = "http://service.cbp.ws.cbp3.com/AlmacenServiceWS/modificarEstanteriaWSResponse")
-    public RespuestaDTO modificarEstanteriaWS(
-        @WebParam(name = "estanteriaId", targetNamespace = "")
-        long estanteriaId,
-        @WebParam(name = "descripcion", targetNamespace = "")
-        String descripcion,
-        @WebParam(name = "zonaId", targetNamespace = "")
-        Zona zonaId,
-        @WebParam(name = "modulos", targetNamespace = "")
-        long modulos,
-        @WebParam(name = "niveles", targetNamespace = "")
-        long niveles,
-        @WebParam(name = "codigoUsuarioModifica", targetNamespace = "")
-        long codigoUsuarioModifica,
-        @WebParam(name = "fechaHoraModificacion", targetNamespace = "")
-        XMLGregorianCalendar fechaHoraModificacion);
 
     /**
      * 
